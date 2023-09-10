@@ -148,8 +148,8 @@ func (r *SchedulingKoordinatorShDeviceV1Alpha1Manifest) Schema(_ context.Context
 								"health": schema.BoolAttribute{
 									Description:         "Health indicates whether the device is normal",
 									MarkdownDescription: "Health indicates whether the device is normal",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 

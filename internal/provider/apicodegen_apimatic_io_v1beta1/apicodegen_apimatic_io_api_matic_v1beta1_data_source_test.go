@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestApicodegenApimaticIoAPIMaticV1Beta1DataSource_ValidateSchema(t *testing.T) {
+func TestApicodegenApimaticIoApimaticV1Beta1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	apicodegen_apimatic_io_v1beta1.NewApicodegenApimaticIoAPIMaticV1Beta1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	apicodegen_apimatic_io_v1beta1.NewApicodegenApimaticIoApimaticV1Beta1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestApicodegenApimaticIoAPIMaticV1Beta1DataSource_ValidateSchema(t *testing
 	}
 }
 
-func TestApicodegenApimaticIoAPIMaticV1Beta1DataSource_ConfigurationErrors(t *testing.T) {
+func TestApicodegenApimaticIoApimaticV1Beta1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestApicodegenApimaticIoAPIMaticV1Beta1DataSource_ConfigurationErrors(t *te
 	}
 }
 
-func TestApicodegenApimaticIoAPIMaticV1Beta1DataSource_OfflineUsage(t *testing.T) {
+func TestApicodegenApimaticIoApimaticV1Beta1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

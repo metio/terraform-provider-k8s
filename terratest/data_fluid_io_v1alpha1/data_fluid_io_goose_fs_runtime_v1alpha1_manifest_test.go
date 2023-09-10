@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestDataFluidIoGooseFSRuntimeV1Alpha1Manifest(t *testing.T) {
+func TestDataFluidIoGooseFsruntimeV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_data_fluid_io_goose_fs_runtime_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

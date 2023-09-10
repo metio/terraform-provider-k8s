@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestExternaldnsK8SIoDNSEndpointV1Alpha1Resource_ValidateSchema(t *testing.T) {
+func TestExternaldnsK8SIoDnsendpointV1Alpha1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	externaldns_k8s_io_v1alpha1.NewExternaldnsK8SIoDNSEndpointV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	externaldns_k8s_io_v1alpha1.NewExternaldnsK8SIoDnsendpointV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

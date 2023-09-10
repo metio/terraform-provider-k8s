@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &ChaosMeshOrgAWSChaosV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &ChaosMeshOrgAWSChaosV1Alpha1DataSource{}
+	_ datasource.DataSource              = &ChaosMeshOrgAwschaosV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &ChaosMeshOrgAwschaosV1Alpha1DataSource{}
 )
 
-func NewChaosMeshOrgAWSChaosV1Alpha1DataSource() datasource.DataSource {
-	return &ChaosMeshOrgAWSChaosV1Alpha1DataSource{}
+func NewChaosMeshOrgAwschaosV1Alpha1DataSource() datasource.DataSource {
+	return &ChaosMeshOrgAwschaosV1Alpha1DataSource{}
 }
 
-type ChaosMeshOrgAWSChaosV1Alpha1DataSource struct {
+type ChaosMeshOrgAwschaosV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type ChaosMeshOrgAWSChaosV1Alpha1DataSourceData struct {
+type ChaosMeshOrgAwschaosV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -62,11 +62,11 @@ type ChaosMeshOrgAWSChaosV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_chaos_mesh_org_aws_chaos_v1alpha1"
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AWSChaos is the Schema for the awschaos API",
 		MarkdownDescription: "AWSChaos is the Schema for the awschaos API",
@@ -213,7 +213,7 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1DataSource) Schema(_ context.Context, _ dat
 	}
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -236,10 +236,10 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1DataSource) Configure(_ context.Context, re
 	}
 }
 
-func (r *ChaosMeshOrgAWSChaosV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ChaosMeshOrgAwschaosV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_chaos_mesh_org_aws_chaos_v1alpha1")
 
-	var data ChaosMeshOrgAWSChaosV1Alpha1DataSourceData
+	var data ChaosMeshOrgAwschaosV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -268,7 +268,7 @@ func (r *ChaosMeshOrgAWSChaosV1Alpha1DataSource) Read(ctx context.Context, reque
 		return
 	}
 
-	var readResponse ChaosMeshOrgAWSChaosV1Alpha1DataSourceData
+	var readResponse ChaosMeshOrgAwschaosV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &MariadbMmontesIoMariaDBV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &MariadbMmontesIoMariaDBV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &MariadbMmontesIoMariaDBV1Alpha1Resource{}
+	_ resource.Resource                = &MariadbMmontesIoMariaDbV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &MariadbMmontesIoMariaDbV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &MariadbMmontesIoMariaDbV1Alpha1Resource{}
 )
 
-func NewMariadbMmontesIoMariaDBV1Alpha1Resource() resource.Resource {
-	return &MariadbMmontesIoMariaDBV1Alpha1Resource{}
+func NewMariadbMmontesIoMariaDbV1Alpha1Resource() resource.Resource {
+	return &MariadbMmontesIoMariaDbV1Alpha1Resource{}
 }
 
-type MariadbMmontesIoMariaDBV1Alpha1Resource struct {
+type MariadbMmontesIoMariaDbV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type MariadbMmontesIoMariaDBV1Alpha1ResourceData struct {
+type MariadbMmontesIoMariaDbV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -1741,11 +1741,11 @@ type MariadbMmontesIoMariaDBV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_mariadb_mmontes_io_maria_db_v1alpha1"
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MariaDB is the Schema for the mariadbs API",
 		MarkdownDescription: "MariaDB is the Schema for the mariadbs API",
@@ -13071,7 +13071,7 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Schema(_ context.Context, _ re
 	}
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -13096,10 +13096,10 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Configure(_ context.Context, r
 	}
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_mariadb_mmontes_io_maria_db_v1alpha1")
 
-	var model MariadbMmontesIoMariaDBV1Alpha1ResourceData
+	var model MariadbMmontesIoMariaDbV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -13157,7 +13157,7 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Create(ctx context.Context, re
 		return
 	}
 
-	var readResponse MariadbMmontesIoMariaDBV1Alpha1ResourceData
+	var readResponse MariadbMmontesIoMariaDbV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -13175,10 +13175,10 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Create(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_mariadb_mmontes_io_maria_db_v1alpha1")
 
-	var data MariadbMmontesIoMariaDBV1Alpha1ResourceData
+	var data MariadbMmontesIoMariaDbV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -13207,7 +13207,7 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Read(ctx context.Context, requ
 		return
 	}
 
-	var readResponse MariadbMmontesIoMariaDBV1Alpha1ResourceData
+	var readResponse MariadbMmontesIoMariaDbV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -13225,10 +13225,10 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Read(ctx context.Context, requ
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_mariadb_mmontes_io_maria_db_v1alpha1")
 
-	var model MariadbMmontesIoMariaDBV1Alpha1ResourceData
+	var model MariadbMmontesIoMariaDbV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -13285,7 +13285,7 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Update(ctx context.Context, re
 		return
 	}
 
-	var readResponse MariadbMmontesIoMariaDBV1Alpha1ResourceData
+	var readResponse MariadbMmontesIoMariaDbV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -13303,10 +13303,10 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Update(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_mariadb_mmontes_io_maria_db_v1alpha1")
 
-	var data MariadbMmontesIoMariaDBV1Alpha1ResourceData
+	var data MariadbMmontesIoMariaDbV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -13327,7 +13327,7 @@ func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) Delete(ctx context.Context, re
 	}
 }
 
-func (r *MariadbMmontesIoMariaDBV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

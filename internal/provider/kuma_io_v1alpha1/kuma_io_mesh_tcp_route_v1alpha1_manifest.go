@@ -21,16 +21,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &KumaIoMeshTCPRouteV1Alpha1Manifest{}
+	_ datasource.DataSource = &KumaIoMeshTcprouteV1Alpha1Manifest{}
 )
 
-func NewKumaIoMeshTCPRouteV1Alpha1Manifest() datasource.DataSource {
-	return &KumaIoMeshTCPRouteV1Alpha1Manifest{}
+func NewKumaIoMeshTcprouteV1Alpha1Manifest() datasource.DataSource {
+	return &KumaIoMeshTcprouteV1Alpha1Manifest{}
 }
 
-type KumaIoMeshTCPRouteV1Alpha1Manifest struct{}
+type KumaIoMeshTcprouteV1Alpha1Manifest struct{}
 
-type KumaIoMeshTCPRouteV1Alpha1ManifestData struct {
+type KumaIoMeshTcprouteV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -73,11 +73,11 @@ type KumaIoMeshTCPRouteV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *KumaIoMeshTCPRouteV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *KumaIoMeshTcprouteV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_kuma_io_mesh_tcp_route_v1alpha1_manifest"
 }
 
-func (r *KumaIoMeshTCPRouteV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *KumaIoMeshTcprouteV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -345,10 +345,10 @@ func (r *KumaIoMeshTCPRouteV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 	}
 }
 
-func (r *KumaIoMeshTCPRouteV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *KumaIoMeshTcprouteV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_kuma_io_mesh_tcp_route_v1alpha1_manifest")
 
-	var model KumaIoMeshTCPRouteV1Alpha1ManifestData
+	var model KumaIoMeshTcprouteV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

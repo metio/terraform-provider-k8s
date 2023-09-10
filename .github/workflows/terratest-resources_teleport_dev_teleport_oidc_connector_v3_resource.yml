@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: ResourcesTeleportDevTeleportOIDCConnectorV3Resource
+name: ResourcesTeleportDevTeleportOidcconnectorV3Resource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/resources_teleport_dev_v3/resources_teleport_dev_teleport_oidc_connector_v3_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestResourcesTeleportDevTeleportOIDCConnectorV3Resource ./terratest/resources_teleport_dev_v3
+        run: go test -v -timeout=120s -count=1 -run TestResourcesTeleportDevTeleportOidcconnectorV3Resource ./terratest/resources_teleport_dev_v3

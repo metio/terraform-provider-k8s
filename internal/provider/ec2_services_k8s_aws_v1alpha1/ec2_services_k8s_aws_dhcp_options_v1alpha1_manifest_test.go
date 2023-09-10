@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestEc2ServicesK8SAwsDHCPOptionsV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestEc2ServicesK8SAwsDhcpoptionsV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	ec2_services_k8s_aws_v1alpha1.NewEc2ServicesK8SAwsDHCPOptionsV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	ec2_services_k8s_aws_v1alpha1.NewEc2ServicesK8SAwsDhcpoptionsV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

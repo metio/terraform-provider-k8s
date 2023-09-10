@@ -234,9 +234,12 @@ type KialiIoKialiV1Alpha1ResourceData struct {
 				} `tfsdk:"component_status" json:"component_status,omitempty"`
 				Config_map_name        *string `tfsdk:"config_map_name" json:"config_map_name,omitempty"`
 				Envoy_admin_local_port *int64  `tfsdk:"envoy_admin_local_port" json:"envoy_admin_local_port,omitempty"`
-				Gateway_api_class_name *string `tfsdk:"gateway_api_class_name" json:"gateway_api_class_name,omitempty"`
-				Istio_api_enabled      *bool   `tfsdk:"istio_api_enabled" json:"istio_api_enabled,omitempty"`
-				Istio_canary_revision  *struct {
+				Gateway_api_classes    *[]struct {
+					Class_name *string `tfsdk:"class_name" json:"class_name,omitempty"`
+					Name       *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"gateway_api_classes" json:"gateway_api_classes,omitempty"`
+				Istio_api_enabled     *bool `tfsdk:"istio_api_enabled" json:"istio_api_enabled,omitempty"`
+				Istio_canary_revision *struct {
 					Current *string `tfsdk:"current" json:"current,omitempty"`
 					Upgrade *string `tfsdk:"upgrade" json:"upgrade,omitempty"`
 				} `tfsdk:"istio_canary_revision" json:"istio_canary_revision,omitempty"`
@@ -1799,12 +1802,31 @@ func (r *KialiIoKialiV1Alpha1Resource) Schema(_ context.Context, _ resource.Sche
 										Computed:            false,
 									},
 
-									"gateway_api_class_name": schema.StringAttribute{
-										Description:         "The K8s Gateway API GatewayClass's Name used in Istio. If empty, the default value 'istio' is used.",
-										MarkdownDescription: "The K8s Gateway API GatewayClass's Name used in Istio. If empty, the default value 'istio' is used.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
+									"gateway_api_classes": schema.ListNestedAttribute{
+										Description:         "A list declaring all the Gateways used in Istio. If left empty or undefined, the default is a single list item whose name is 'Istio' and class_name is 'istio'.",
+										MarkdownDescription: "A list declaring all the Gateways used in Istio. If left empty or undefined, the default is a single list item whose name is 'Istio' and class_name is 'istio'.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"class_name": schema.StringAttribute{
+													Description:         "The name of the GatewayClass.",
+													MarkdownDescription: "The name of the GatewayClass.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "The name of the Gateway API implementation.",
+													MarkdownDescription: "The name of the Gateway API implementation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"istio_api_enabled": schema.BoolAttribute{

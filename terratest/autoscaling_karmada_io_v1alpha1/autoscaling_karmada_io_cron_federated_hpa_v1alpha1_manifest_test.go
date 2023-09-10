@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestAutoscalingKarmadaIoCronFederatedHPAV1Alpha1Manifest(t *testing.T) {
+func TestAutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_autoscaling_karmada_io_cron_federated_hpa_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

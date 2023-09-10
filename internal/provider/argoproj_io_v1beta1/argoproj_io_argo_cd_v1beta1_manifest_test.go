@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestArgoprojIoArgoCDV1Beta1Manifest_ValidateSchema(t *testing.T) {
+func TestArgoprojIoArgoCdV1Beta1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	argoproj_io_v1beta1.NewArgoprojIoArgoCDV1Beta1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	argoproj_io_v1beta1.NewArgoprojIoArgoCdV1Beta1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

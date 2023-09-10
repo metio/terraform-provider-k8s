@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestArgoprojIoArgoCDExportV1Alpha1Manifest(t *testing.T) {
+func TestArgoprojIoArgoCdexportV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_argoproj_io_argo_cd_export_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

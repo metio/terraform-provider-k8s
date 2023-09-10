@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &Apigatewayv2ServicesK8SAwsAPIV1Alpha1Manifest{}
+	_ datasource.DataSource = &Apigatewayv2ServicesK8SAwsApiV1Alpha1Manifest{}
 )
 
-func NewApigatewayv2ServicesK8SAwsAPIV1Alpha1Manifest() datasource.DataSource {
-	return &Apigatewayv2ServicesK8SAwsAPIV1Alpha1Manifest{}
+func NewApigatewayv2ServicesK8SAwsApiV1Alpha1Manifest() datasource.DataSource {
+	return &Apigatewayv2ServicesK8SAwsApiV1Alpha1Manifest{}
 }
 
-type Apigatewayv2ServicesK8SAwsAPIV1Alpha1Manifest struct{}
+type Apigatewayv2ServicesK8SAwsApiV1Alpha1Manifest struct{}
 
-type Apigatewayv2ServicesK8SAwsAPIV1Alpha1ManifestData struct {
+type Apigatewayv2ServicesK8SAwsApiV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -70,11 +70,11 @@ type Apigatewayv2ServicesK8SAwsAPIV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *Apigatewayv2ServicesK8SAwsAPIV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *Apigatewayv2ServicesK8SAwsApiV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_apigatewayv2_services_k8s_aws_api_v1alpha1_manifest"
 }
 
-func (r *Apigatewayv2ServicesK8SAwsAPIV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *Apigatewayv2ServicesK8SAwsApiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "API is the Schema for the APIS API",
 		MarkdownDescription: "API is the Schema for the APIS API",
@@ -345,10 +345,10 @@ func (r *Apigatewayv2ServicesK8SAwsAPIV1Alpha1Manifest) Schema(_ context.Context
 	}
 }
 
-func (r *Apigatewayv2ServicesK8SAwsAPIV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *Apigatewayv2ServicesK8SAwsApiV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_apigatewayv2_services_k8s_aws_api_v1alpha1_manifest")
 
-	var model Apigatewayv2ServicesK8SAwsAPIV1Alpha1ManifestData
+	var model Apigatewayv2ServicesK8SAwsApiV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

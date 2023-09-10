@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &TraefikIoMiddlewareTCPV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &TraefikIoMiddlewareTCPV1Alpha1DataSource{}
+	_ datasource.DataSource              = &TraefikIoMiddlewareTcpV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &TraefikIoMiddlewareTcpV1Alpha1DataSource{}
 )
 
-func NewTraefikIoMiddlewareTCPV1Alpha1DataSource() datasource.DataSource {
-	return &TraefikIoMiddlewareTCPV1Alpha1DataSource{}
+func NewTraefikIoMiddlewareTcpV1Alpha1DataSource() datasource.DataSource {
+	return &TraefikIoMiddlewareTcpV1Alpha1DataSource{}
 }
 
-type TraefikIoMiddlewareTCPV1Alpha1DataSource struct {
+type TraefikIoMiddlewareTcpV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type TraefikIoMiddlewareTCPV1Alpha1DataSourceData struct {
+type TraefikIoMiddlewareTcpV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -59,11 +59,11 @@ type TraefikIoMiddlewareTCPV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoMiddlewareTCPV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TraefikIoMiddlewareTcpV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_middleware_tcp_v1alpha1"
 }
 
-func (r *TraefikIoMiddlewareTCPV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TraefikIoMiddlewareTcpV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MiddlewareTCP is the CRD implementation of a Traefik TCP middleware. More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/",
 		MarkdownDescription: "MiddlewareTCP is the CRD implementation of a Traefik TCP middleware. More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/",
@@ -173,7 +173,7 @@ func (r *TraefikIoMiddlewareTCPV1Alpha1DataSource) Schema(_ context.Context, _ d
 	}
 }
 
-func (r *TraefikIoMiddlewareTCPV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *TraefikIoMiddlewareTcpV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -196,10 +196,10 @@ func (r *TraefikIoMiddlewareTCPV1Alpha1DataSource) Configure(_ context.Context, 
 	}
 }
 
-func (r *TraefikIoMiddlewareTCPV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TraefikIoMiddlewareTcpV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_traefik_io_middleware_tcp_v1alpha1")
 
-	var data TraefikIoMiddlewareTCPV1Alpha1DataSourceData
+	var data TraefikIoMiddlewareTcpV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -228,7 +228,7 @@ func (r *TraefikIoMiddlewareTCPV1Alpha1DataSource) Read(ctx context.Context, req
 		return
 	}
 
-	var readResponse TraefikIoMiddlewareTCPV1Alpha1DataSourceData
+	var readResponse TraefikIoMiddlewareTcpV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestArgoprojIoArgoCDExportV1Alpha1Resource(t *testing.T) {
+func TestArgoprojIoArgoCdexportV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_argoproj_io_argo_cd_export_v1alpha1"
 
 	_, err := os.Stat(path)

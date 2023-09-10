@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &TrainingKubedlIoElasticDLJobV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &TrainingKubedlIoElasticDLJobV1Alpha1DataSource{}
+	_ datasource.DataSource              = &TrainingKubedlIoElasticDljobV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &TrainingKubedlIoElasticDljobV1Alpha1DataSource{}
 )
 
-func NewTrainingKubedlIoElasticDLJobV1Alpha1DataSource() datasource.DataSource {
-	return &TrainingKubedlIoElasticDLJobV1Alpha1DataSource{}
+func NewTrainingKubedlIoElasticDljobV1Alpha1DataSource() datasource.DataSource {
+	return &TrainingKubedlIoElasticDljobV1Alpha1DataSource{}
 }
 
-type TrainingKubedlIoElasticDLJobV1Alpha1DataSource struct {
+type TrainingKubedlIoElasticDljobV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type TrainingKubedlIoElasticDLJobV1Alpha1DataSourceData struct {
+type TrainingKubedlIoElasticDljobV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -1244,11 +1244,11 @@ type TrainingKubedlIoElasticDLJobV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TrainingKubedlIoElasticDLJobV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TrainingKubedlIoElasticDljobV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_training_kubedl_io_elastic_dl_job_v1alpha1"
 }
 
-func (r *TrainingKubedlIoElasticDLJobV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TrainingKubedlIoElasticDljobV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -9314,7 +9314,7 @@ func (r *TrainingKubedlIoElasticDLJobV1Alpha1DataSource) Schema(_ context.Contex
 	}
 }
 
-func (r *TrainingKubedlIoElasticDLJobV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *TrainingKubedlIoElasticDljobV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -9337,10 +9337,10 @@ func (r *TrainingKubedlIoElasticDLJobV1Alpha1DataSource) Configure(_ context.Con
 	}
 }
 
-func (r *TrainingKubedlIoElasticDLJobV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TrainingKubedlIoElasticDljobV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_training_kubedl_io_elastic_dl_job_v1alpha1")
 
-	var data TrainingKubedlIoElasticDLJobV1Alpha1DataSourceData
+	var data TrainingKubedlIoElasticDljobV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -9369,7 +9369,7 @@ func (r *TrainingKubedlIoElasticDLJobV1Alpha1DataSource) Read(ctx context.Contex
 		return
 	}
 
-	var readResponse TrainingKubedlIoElasticDLJobV1Alpha1DataSourceData
+	var readResponse TrainingKubedlIoElasticDljobV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource_ValidateSchema(t *testing.T) {
+func TestSecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	secretgenerator_mittwald_de_v1alpha1.NewSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	secretgenerator_mittwald_de_v1alpha1.NewSecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

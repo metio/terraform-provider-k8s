@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestChaosMeshOrgIOChaosV1Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestChaosMeshOrgIochaosV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	chaos_mesh_org_v1alpha1.NewChaosMeshOrgIOChaosV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	chaos_mesh_org_v1alpha1.NewChaosMeshOrgIochaosV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestChaosMeshOrgIOChaosV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	}
 }
 
-func TestChaosMeshOrgIOChaosV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestChaosMeshOrgIochaosV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestChaosMeshOrgIOChaosV1Alpha1DataSource_ConfigurationErrors(t *testing.T)
 	}
 }
 
-func TestChaosMeshOrgIOChaosV1Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestChaosMeshOrgIochaosV1Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

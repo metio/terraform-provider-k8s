@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestCrdProjectcalicoOrgIPAMConfigV1DataSource(t *testing.T) {
+func TestCrdProjectcalicoOrgIpamconfigV1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_crd_projectcalico_org_ipam_config_v1"
 
 	_, err := os.Stat(path)

@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestMariadbMmontesIoMariaDBV1Alpha1DataSource(t *testing.T) {
+func TestMariadbMmontesIoMariaDbV1Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_mariadb_mmontes_io_maria_db_v1alpha1"
 
 	_, err := os.Stat(path)

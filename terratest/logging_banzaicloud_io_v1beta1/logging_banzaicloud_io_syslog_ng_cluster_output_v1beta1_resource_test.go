@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestLoggingBanzaicloudIoSyslogNGClusterOutputV1Beta1Resource(t *testing.T) {
+func TestLoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_logging_banzaicloud_io_syslog_ng_cluster_output_v1beta1"
 
 	_, err := os.Stat(path)

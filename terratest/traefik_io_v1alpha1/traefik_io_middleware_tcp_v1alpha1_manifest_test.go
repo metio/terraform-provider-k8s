@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestTraefikIoMiddlewareTCPV1Alpha1Manifest(t *testing.T) {
+func TestTraefikIoMiddlewareTcpV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_traefik_io_middleware_tcp_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

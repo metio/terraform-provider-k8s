@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestSloKoordinatorShNodeSLOV1Alpha1Manifest(t *testing.T) {
+func TestSloKoordinatorShNodeSloV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_slo_koordinator_sh_node_slo_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

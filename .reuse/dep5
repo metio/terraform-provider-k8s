@@ -383,6 +383,10 @@ Files: schemas/crd_v1/kubernetes-sigs/aws-load-balancer-controller/*
 Copyright: The kubernetes-sigs/aws-load-balancer-controller Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/kubernetes-sigs/gateway-api/*
+Copyright: The kubernetes-sigs/gateway-api Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/kubernetes-sigs/security-profiles-operator/*
 Copyright: The kubernetes-sigs/security-profiles-operator Authors
 License: Apache-2.0
@@ -503,8 +507,8 @@ Files: schemas/crd_v1/projectcalico/calico/*
 Copyright: The projectcalico/calico Authors
 License: Apache-2.0
 
-Files: schemas/crd_v1/prometheus-community/helm-charts/*
-Copyright: The prometheus-community/helm-charts Authors
+Files: schemas/crd_v1/prometheus-operator/prometheus-operator/*
+Copyright: The prometheus-operator/prometheus-operator Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/quay/container-security-operator/*

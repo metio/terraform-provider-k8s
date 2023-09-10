@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource{}
+	_ datasource.DataSource              = &Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource{}
 )
 
-func NewApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource() datasource.DataSource {
-	return &Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource{}
+func NewApigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource() datasource.DataSource {
+	return &Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource{}
 }
 
-type Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource struct {
+type Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSourceData struct {
+type Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -57,11 +57,11 @@ type Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_apigatewayv2_services_k8s_aws_vpc_link_v1alpha1"
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "VPCLink is the Schema for the VPCLinks API",
 		MarkdownDescription: "VPCLink is the Schema for the VPCLinks API",
@@ -171,7 +171,7 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource) Schema(_ context.C
 	}
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -194,10 +194,10 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource) Configure(_ contex
 	}
 }
 
-func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_apigatewayv2_services_k8s_aws_vpc_link_v1alpha1")
 
-	var data Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSourceData
+	var data Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -226,7 +226,7 @@ func (r *Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource) Read(ctx context.C
 		return
 	}
 
-	var readResponse Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSourceData
+	var readResponse Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

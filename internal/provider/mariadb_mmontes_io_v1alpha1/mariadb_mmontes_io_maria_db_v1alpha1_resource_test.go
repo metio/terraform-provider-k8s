@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestMariadbMmontesIoMariaDBV1Alpha1Resource_ValidateSchema(t *testing.T) {
+func TestMariadbMmontesIoMariaDbV1Alpha1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	mariadb_mmontes_io_v1alpha1.NewMariadbMmontesIoMariaDBV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	mariadb_mmontes_io_v1alpha1.NewMariadbMmontesIoMariaDbV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

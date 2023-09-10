@@ -21,16 +21,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &GraphqlGlooSoloIoGraphQLApiV1Beta1Manifest{}
+	_ datasource.DataSource = &GraphqlGlooSoloIoGraphQlapiV1Beta1Manifest{}
 )
 
-func NewGraphqlGlooSoloIoGraphQLApiV1Beta1Manifest() datasource.DataSource {
-	return &GraphqlGlooSoloIoGraphQLApiV1Beta1Manifest{}
+func NewGraphqlGlooSoloIoGraphQlapiV1Beta1Manifest() datasource.DataSource {
+	return &GraphqlGlooSoloIoGraphQlapiV1Beta1Manifest{}
 }
 
-type GraphqlGlooSoloIoGraphQLApiV1Beta1Manifest struct{}
+type GraphqlGlooSoloIoGraphQlapiV1Beta1Manifest struct{}
 
-type GraphqlGlooSoloIoGraphQLApiV1Beta1ManifestData struct {
+type GraphqlGlooSoloIoGraphQlapiV1Beta1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -142,11 +142,11 @@ type GraphqlGlooSoloIoGraphQLApiV1Beta1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *GraphqlGlooSoloIoGraphQLApiV1Beta1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_graphql_gloo_solo_io_graph_ql_api_v1beta1_manifest"
 }
 
-func (r *GraphqlGlooSoloIoGraphQLApiV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -836,10 +836,10 @@ func (r *GraphqlGlooSoloIoGraphQLApiV1Beta1Manifest) Schema(_ context.Context, _
 	}
 }
 
-func (r *GraphqlGlooSoloIoGraphQLApiV1Beta1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_graphql_gloo_solo_io_graph_ql_api_v1beta1_manifest")
 
-	var model GraphqlGlooSoloIoGraphQLApiV1Beta1ManifestData
+	var model GraphqlGlooSoloIoGraphQlapiV1Beta1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

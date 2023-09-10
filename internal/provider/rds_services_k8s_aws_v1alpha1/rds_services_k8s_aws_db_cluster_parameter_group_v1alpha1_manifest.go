@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Manifest{}
+	_ datasource.DataSource = &RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1Manifest{}
 )
 
-func NewRdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Manifest() datasource.DataSource {
-	return &RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Manifest{}
+func NewRdsServicesK8SAwsDbclusterParameterGroupV1Alpha1Manifest() datasource.DataSource {
+	return &RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1Manifest{}
 }
 
-type RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Manifest struct{}
+type RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1Manifest struct{}
 
-type RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1ManifestData struct {
+type RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -68,11 +68,11 @@ type RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_rds_services_k8s_aws_db_cluster_parameter_group_v1alpha1_manifest"
 }
 
-func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DBClusterParameterGroup is the Schema for the DBClusterParameterGroups API",
 		MarkdownDescription: "DBClusterParameterGroup is the Schema for the DBClusterParameterGroups API",
@@ -178,8 +178,8 @@ func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Manifest) Schema(_ cont
 					},
 
 					"parameter_overrides": schema.MapAttribute{
-						Description:         "These are ONLY user-defined parameter overrides for the DB cluster parameter group. This does not contain default or system parameters.",
-						MarkdownDescription: "These are ONLY user-defined parameter overrides for the DB cluster parameter group. This does not contain default or system parameters.",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -187,8 +187,8 @@ func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Manifest) Schema(_ cont
 					},
 
 					"parameters": schema.ListNestedAttribute{
-						Description:         "A list of parameters in the DB cluster parameter group to modify.  Valid Values (for the application method): immediate | pending-reboot  You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters.  When the application method is immediate, changes to dynamic parameters are applied immediately to the DB clusters associated with the parameter group. When the application method is pending-reboot, changes to dynamic and static parameters are applied after a reboot without failover to the DB clusters associated with the parameter group.  DEPRECATED - do not use.  Prefer ParameterOverrides instead.",
-						MarkdownDescription: "A list of parameters in the DB cluster parameter group to modify.  Valid Values (for the application method): immediate | pending-reboot  You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters.  When the application method is immediate, changes to dynamic parameters are applied immediately to the DB clusters associated with the parameter group. When the application method is pending-reboot, changes to dynamic and static parameters are applied after a reboot without failover to the DB clusters associated with the parameter group.  DEPRECATED - do not use.  Prefer ParameterOverrides instead.",
+						Description:         "A list of parameters in the DB cluster parameter group to modify.  Valid Values (for the application method): immediate | pending-reboot  You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters.  When the application method is immediate, changes to dynamic parameters are applied immediately to the DB clusters associated with the parameter group. When the application method is pending-reboot, changes to dynamic and static parameters are applied after a reboot without failover to the DB clusters associated with the parameter group.",
+						MarkdownDescription: "A list of parameters in the DB cluster parameter group to modify.  Valid Values (for the application method): immediate | pending-reboot  You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters.  When the application method is immediate, changes to dynamic parameters are applied immediately to the DB clusters associated with the parameter group. When the application method is pending-reboot, changes to dynamic and static parameters are applied after a reboot without failover to the DB clusters associated with the parameter group.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"allowed_values": schema.StringAttribute{
@@ -321,10 +321,10 @@ func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Manifest) Schema(_ cont
 	}
 }
 
-func (r *RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_rds_services_k8s_aws_db_cluster_parameter_group_v1alpha1_manifest")
 
-	var model RdsServicesK8SAwsDBClusterParameterGroupV1Alpha1ManifestData
+	var model RdsServicesK8SAwsDbclusterParameterGroupV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

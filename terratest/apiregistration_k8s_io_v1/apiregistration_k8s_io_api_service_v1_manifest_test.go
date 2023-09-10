@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestApiregistrationK8SIoAPIServiceV1Manifest(t *testing.T) {
+func TestApiregistrationK8SIoApiserviceV1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_apiregistration_k8s_io_api_service_v1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

@@ -22,16 +22,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &DataFluidIoJuiceFSRuntimeV1Alpha1Manifest{}
+	_ datasource.DataSource = &DataFluidIoJuiceFsruntimeV1Alpha1Manifest{}
 )
 
-func NewDataFluidIoJuiceFSRuntimeV1Alpha1Manifest() datasource.DataSource {
-	return &DataFluidIoJuiceFSRuntimeV1Alpha1Manifest{}
+func NewDataFluidIoJuiceFsruntimeV1Alpha1Manifest() datasource.DataSource {
+	return &DataFluidIoJuiceFsruntimeV1Alpha1Manifest{}
 }
 
-type DataFluidIoJuiceFSRuntimeV1Alpha1Manifest struct{}
+type DataFluidIoJuiceFsruntimeV1Alpha1Manifest struct{}
 
-type DataFluidIoJuiceFSRuntimeV1Alpha1ManifestData struct {
+type DataFluidIoJuiceFsruntimeV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -881,11 +881,11 @@ type DataFluidIoJuiceFSRuntimeV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *DataFluidIoJuiceFsruntimeV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_data_fluid_io_juice_fs_runtime_v1alpha1_manifest"
 }
 
-func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *DataFluidIoJuiceFsruntimeV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "JuiceFSRuntime is the Schema for the juicefsruntimes API",
 		MarkdownDescription: "JuiceFSRuntime is the Schema for the juicefsruntimes API",
@@ -6580,10 +6580,10 @@ func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 	}
 }
 
-func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *DataFluidIoJuiceFsruntimeV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_data_fluid_io_juice_fs_runtime_v1alpha1_manifest")
 
-	var model DataFluidIoJuiceFSRuntimeV1Alpha1ManifestData
+	var model DataFluidIoJuiceFsruntimeV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

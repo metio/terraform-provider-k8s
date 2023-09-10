@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource{}
+	_ datasource.DataSource              = &LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource{}
 )
 
-func NewLambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource() datasource.DataSource {
-	return &LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource{}
+func NewLambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource() datasource.DataSource {
+	return &LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource{}
 }
 
-type LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource struct {
+type LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSourceData struct {
+type LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -69,11 +69,11 @@ type LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_lambda_services_k8s_aws_function_url_config_v1alpha1"
 }
 
-func (r *LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "FunctionURLConfig is the Schema for the FunctionURLConfigs API",
 		MarkdownDescription: "FunctionURLConfig is the Schema for the FunctionURLConfigs API",
@@ -259,7 +259,7 @@ func (r *LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource) Schema(_ conte
 	}
 }
 
-func (r *LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -282,10 +282,10 @@ func (r *LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource) Configure(_ co
 	}
 }
 
-func (r *LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_lambda_services_k8s_aws_function_url_config_v1alpha1")
 
-	var data LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSourceData
+	var data LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -314,7 +314,7 @@ func (r *LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource) Read(ctx conte
 		return
 	}
 
-	var readResponse LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSourceData
+	var readResponse LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

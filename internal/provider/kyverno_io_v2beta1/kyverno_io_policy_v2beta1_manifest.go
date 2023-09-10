@@ -4888,8 +4888,8 @@ func (r *KyvernoIoPolicyV2Beta1Manifest) Schema(_ context.Context, _ datasource.
 														},
 
 														"predicate_type": schema.StringAttribute{
-															Description:         "PredicateType defines the type of Predicate contained within the Statement. Deprecated in favour of 'Type', to be removed soon",
-															MarkdownDescription: "PredicateType defines the type of Predicate contained within the Statement. Deprecated in favour of 'Type', to be removed soon",
+															Description:         "Deprecated in favour of 'Type', to be removed soon",
+															MarkdownDescription: "Deprecated in favour of 'Type', to be removed soon",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,

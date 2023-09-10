@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource{}
+	_ datasource.DataSource              = &RdsServicesK8SAwsDbparameterGroupV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &RdsServicesK8SAwsDbparameterGroupV1Alpha1DataSource{}
 )
 
-func NewRdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource() datasource.DataSource {
-	return &RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource{}
+func NewRdsServicesK8SAwsDbparameterGroupV1Alpha1DataSource() datasource.DataSource {
+	return &RdsServicesK8SAwsDbparameterGroupV1Alpha1DataSource{}
 }
 
-type RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource struct {
+type RdsServicesK8SAwsDbparameterGroupV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSourceData struct {
+type RdsServicesK8SAwsDbparameterGroupV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -61,11 +61,11 @@ type RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *RdsServicesK8SAwsDbparameterGroupV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_rds_services_k8s_aws_db_parameter_group_v1alpha1"
 }
 
-func (r *RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *RdsServicesK8SAwsDbparameterGroupV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DBParameterGroup is the Schema for the DBParameterGroups API",
 		MarkdownDescription: "DBParameterGroup is the Schema for the DBParameterGroups API",
@@ -157,8 +157,8 @@ func (r *RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource) Schema(_ context.C
 					},
 
 					"parameter_overrides": schema.MapAttribute{
-						Description:         "These are ONLY user-defined parameter overrides for the DB parameter group. This does not contain default or system parameters.",
-						MarkdownDescription: "These are ONLY user-defined parameter overrides for the DB parameter group. This does not contain default or system parameters.",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            false,
@@ -200,7 +200,7 @@ func (r *RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource) Schema(_ context.C
 	}
 }
 
-func (r *RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *RdsServicesK8SAwsDbparameterGroupV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -223,10 +223,10 @@ func (r *RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource) Configure(_ contex
 	}
 }
 
-func (r *RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *RdsServicesK8SAwsDbparameterGroupV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_rds_services_k8s_aws_db_parameter_group_v1alpha1")
 
-	var data RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSourceData
+	var data RdsServicesK8SAwsDbparameterGroupV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -255,7 +255,7 @@ func (r *RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSource) Read(ctx context.C
 		return
 	}
 
-	var readResponse RdsServicesK8SAwsDBParameterGroupV1Alpha1DataSourceData
+	var readResponse RdsServicesK8SAwsDbparameterGroupV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

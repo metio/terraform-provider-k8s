@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestHiveOpenshiftIoDNSZoneV1DataSource_ValidateSchema(t *testing.T) {
+func TestHiveOpenshiftIoDnszoneV1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	hive_openshift_io_v1.NewHiveOpenshiftIoDNSZoneV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	hive_openshift_io_v1.NewHiveOpenshiftIoDnszoneV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestHiveOpenshiftIoDNSZoneV1DataSource_ValidateSchema(t *testing.T) {
 	}
 }
 
-func TestHiveOpenshiftIoDNSZoneV1DataSource_ConfigurationErrors(t *testing.T) {
+func TestHiveOpenshiftIoDnszoneV1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestHiveOpenshiftIoDNSZoneV1DataSource_ConfigurationErrors(t *testing.T) {
 	}
 }
 
-func TestHiveOpenshiftIoDNSZoneV1DataSource_OfflineUsage(t *testing.T) {
+func TestHiveOpenshiftIoDnszoneV1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

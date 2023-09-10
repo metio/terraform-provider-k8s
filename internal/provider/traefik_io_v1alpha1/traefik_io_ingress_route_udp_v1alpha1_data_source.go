@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &TraefikIoIngressRouteUDPV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &TraefikIoIngressRouteUDPV1Alpha1DataSource{}
+	_ datasource.DataSource              = &TraefikIoIngressRouteUdpV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &TraefikIoIngressRouteUdpV1Alpha1DataSource{}
 )
 
-func NewTraefikIoIngressRouteUDPV1Alpha1DataSource() datasource.DataSource {
-	return &TraefikIoIngressRouteUDPV1Alpha1DataSource{}
+func NewTraefikIoIngressRouteUdpV1Alpha1DataSource() datasource.DataSource {
+	return &TraefikIoIngressRouteUdpV1Alpha1DataSource{}
 }
 
-type TraefikIoIngressRouteUDPV1Alpha1DataSource struct {
+type TraefikIoIngressRouteUdpV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type TraefikIoIngressRouteUDPV1Alpha1DataSourceData struct {
+type TraefikIoIngressRouteUdpV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -63,11 +63,11 @@ type TraefikIoIngressRouteUDPV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoIngressRouteUDPV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TraefikIoIngressRouteUdpV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_ingress_route_udp_v1alpha1"
 }
 
-func (r *TraefikIoIngressRouteUDPV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TraefikIoIngressRouteUdpV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "IngressRouteUDP is a CRD implementation of a Traefik UDP Router.",
 		MarkdownDescription: "IngressRouteUDP is a CRD implementation of a Traefik UDP Router.",
@@ -213,7 +213,7 @@ func (r *TraefikIoIngressRouteUDPV1Alpha1DataSource) Schema(_ context.Context, _
 	}
 }
 
-func (r *TraefikIoIngressRouteUDPV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *TraefikIoIngressRouteUdpV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -236,10 +236,10 @@ func (r *TraefikIoIngressRouteUDPV1Alpha1DataSource) Configure(_ context.Context
 	}
 }
 
-func (r *TraefikIoIngressRouteUDPV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TraefikIoIngressRouteUdpV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_traefik_io_ingress_route_udp_v1alpha1")
 
-	var data TraefikIoIngressRouteUDPV1Alpha1DataSourceData
+	var data TraefikIoIngressRouteUdpV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -268,7 +268,7 @@ func (r *TraefikIoIngressRouteUDPV1Alpha1DataSource) Read(ctx context.Context, r
 		return
 	}
 
-	var readResponse TraefikIoIngressRouteUDPV1Alpha1DataSourceData
+	var readResponse TraefikIoIngressRouteUdpV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

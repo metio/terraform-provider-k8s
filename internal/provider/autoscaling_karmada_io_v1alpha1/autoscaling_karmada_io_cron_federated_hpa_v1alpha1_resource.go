@@ -31,22 +31,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource{}
+	_ resource.Resource                = &AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource{}
 )
 
-func NewAutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource() resource.Resource {
-	return &AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource{}
+func NewAutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource() resource.Resource {
+	return &AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource{}
 }
 
-type AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource struct {
+type AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ResourceData struct {
+type AutoscalingKarmadaIoCronFederatedHpaV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -82,11 +82,11 @@ type AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_autoscaling_karmada_io_cron_federated_hpa_v1alpha1"
 }
 
-func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CronFederatedHPA represents a collection of repeating schedule to scale replica number of a specific workload. It can scale any resource implementing the scale subresource as well as FederatedHPA.",
 		MarkdownDescription: "CronFederatedHPA represents a collection of repeating schedule to scale replica number of a specific workload. It can scale any resource implementing the scale subresource as well as FederatedHPA.",
@@ -351,7 +351,7 @@ func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Schema(_ context.
 	}
 }
 
-func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -376,10 +376,10 @@ func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Configure(_ conte
 	}
 }
 
-func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_autoscaling_karmada_io_cron_federated_hpa_v1alpha1")
 
-	var model AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ResourceData
+	var model AutoscalingKarmadaIoCronFederatedHpaV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -437,7 +437,7 @@ func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Create(ctx contex
 		return
 	}
 
-	var readResponse AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ResourceData
+	var readResponse AutoscalingKarmadaIoCronFederatedHpaV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -455,10 +455,10 @@ func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Create(ctx contex
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_autoscaling_karmada_io_cron_federated_hpa_v1alpha1")
 
-	var data AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ResourceData
+	var data AutoscalingKarmadaIoCronFederatedHpaV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -487,7 +487,7 @@ func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Read(ctx context.
 		return
 	}
 
-	var readResponse AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ResourceData
+	var readResponse AutoscalingKarmadaIoCronFederatedHpaV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -505,10 +505,10 @@ func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Read(ctx context.
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_autoscaling_karmada_io_cron_federated_hpa_v1alpha1")
 
-	var model AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ResourceData
+	var model AutoscalingKarmadaIoCronFederatedHpaV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -565,7 +565,7 @@ func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Update(ctx contex
 		return
 	}
 
-	var readResponse AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ResourceData
+	var readResponse AutoscalingKarmadaIoCronFederatedHpaV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -583,10 +583,10 @@ func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Update(ctx contex
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_autoscaling_karmada_io_cron_federated_hpa_v1alpha1")
 
-	var data AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ResourceData
+	var data AutoscalingKarmadaIoCronFederatedHpaV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -607,7 +607,7 @@ func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) Delete(ctx contex
 	}
 }
 
-func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

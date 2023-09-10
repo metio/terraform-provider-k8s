@@ -143,7 +143,8 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 						} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 						Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
 					} `tfsdk:"grpc_service" json:"grpcService,omitempty"`
-					ProcessingMode *struct {
+					MetadataContextNamespaces *[]string `tfsdk:"metadata_context_namespaces" json:"metadataContextNamespaces,omitempty"`
+					ProcessingMode            *struct {
 						RequestBodyMode     *string `tfsdk:"request_body_mode" json:"requestBodyMode,omitempty"`
 						RequestHeaderMode   *string `tfsdk:"request_header_mode" json:"requestHeaderMode,omitempty"`
 						RequestTrailerMode  *string `tfsdk:"request_trailer_mode" json:"requestTrailerMode,omitempty"`
@@ -151,8 +152,9 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 						ResponseHeaderMode  *string `tfsdk:"response_header_mode" json:"responseHeaderMode,omitempty"`
 						ResponseTrailerMode *string `tfsdk:"response_trailer_mode" json:"responseTrailerMode,omitempty"`
 					} `tfsdk:"processing_mode" json:"processingMode,omitempty"`
-					RequestAttributes  *[]string `tfsdk:"request_attributes" json:"requestAttributes,omitempty"`
-					ResponseAttributes *[]string `tfsdk:"response_attributes" json:"responseAttributes,omitempty"`
+					RequestAttributes              *[]string `tfsdk:"request_attributes" json:"requestAttributes,omitempty"`
+					ResponseAttributes             *[]string `tfsdk:"response_attributes" json:"responseAttributes,omitempty"`
+					TypedMetadataContextNamespaces *[]string `tfsdk:"typed_metadata_context_namespaces" json:"typedMetadataContextNamespaces,omitempty"`
 				} `tfsdk:"overrides" json:"overrides,omitempty"`
 			} `tfsdk:"ext_proc" json:"extProc,omitempty"`
 			Extauth *struct {
@@ -325,6 +327,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 				} `tfsdk:"refs" json:"refs,omitempty"`
 			} `tfsdk:"rate_limit_regular_configs" json:"rateLimitRegularConfigs,omitempty"`
 			Ratelimit *struct {
+				LocalRatelimit *struct {
+					FillInterval  *string `tfsdk:"fill_interval" json:"fillInterval,omitempty"`
+					MaxTokens     *int64  `tfsdk:"max_tokens" json:"maxTokens,omitempty"`
+					TokensPerFill *int64  `tfsdk:"tokens_per_fill" json:"tokensPerFill,omitempty"`
+				} `tfsdk:"local_ratelimit" json:"localRatelimit,omitempty"`
 				RateLimits *[]struct {
 					Actions *[]struct {
 						DestinationCluster *map[string]string `tfsdk:"destination_cluster" json:"destinationCluster,omitempty"`
@@ -419,6 +426,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 				} `tfsdk:"authorized_limits" json:"authorizedLimits,omitempty"`
 			} `tfsdk:"ratelimit_basic" json:"ratelimitBasic,omitempty"`
 			RatelimitEarly *struct {
+				LocalRatelimit *struct {
+					FillInterval  *string `tfsdk:"fill_interval" json:"fillInterval,omitempty"`
+					MaxTokens     *int64  `tfsdk:"max_tokens" json:"maxTokens,omitempty"`
+					TokensPerFill *int64  `tfsdk:"tokens_per_fill" json:"tokensPerFill,omitempty"`
+				} `tfsdk:"local_ratelimit" json:"localRatelimit,omitempty"`
 				RateLimits *[]struct {
 					Actions *[]struct {
 						DestinationCluster *map[string]string `tfsdk:"destination_cluster" json:"destinationCluster,omitempty"`
@@ -503,6 +515,11 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 				} `tfsdk:"rate_limits" json:"rateLimits,omitempty"`
 			} `tfsdk:"ratelimit_early" json:"ratelimitEarly,omitempty"`
 			RatelimitRegular *struct {
+				LocalRatelimit *struct {
+					FillInterval  *string `tfsdk:"fill_interval" json:"fillInterval,omitempty"`
+					MaxTokens     *int64  `tfsdk:"max_tokens" json:"maxTokens,omitempty"`
+					TokensPerFill *int64  `tfsdk:"tokens_per_fill" json:"tokensPerFill,omitempty"`
+				} `tfsdk:"local_ratelimit" json:"localRatelimit,omitempty"`
 				RateLimits *[]struct {
 					Actions *[]struct {
 						DestinationCluster *map[string]string `tfsdk:"destination_cluster" json:"destinationCluster,omitempty"`
@@ -1799,6 +1816,15 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 												Computed: false,
 											},
 
+											"metadata_context_namespaces": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"processing_mode": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -1866,6 +1892,15 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"response_attributes": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"typed_metadata_context_namespaces": schema.ListAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
@@ -2955,6 +2990,43 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"local_ratelimit": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"fill_interval": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"max_tokens": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tokens_per_fill": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"rate_limits": schema.ListNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -3566,6 +3638,43 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"local_ratelimit": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"fill_interval": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"max_tokens": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tokens_per_fill": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"rate_limits": schema.ListNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -4118,6 +4227,43 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"local_ratelimit": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"fill_interval": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"max_tokens": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tokens_per_fill": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"rate_limits": schema.ListNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",

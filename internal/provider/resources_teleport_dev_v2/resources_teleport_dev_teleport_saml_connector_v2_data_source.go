@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &ResourcesTeleportDevTeleportSAMLConnectorV2DataSource{}
-	_ datasource.DataSourceWithConfigure = &ResourcesTeleportDevTeleportSAMLConnectorV2DataSource{}
+	_ datasource.DataSource              = &ResourcesTeleportDevTeleportSamlconnectorV2DataSource{}
+	_ datasource.DataSourceWithConfigure = &ResourcesTeleportDevTeleportSamlconnectorV2DataSource{}
 )
 
-func NewResourcesTeleportDevTeleportSAMLConnectorV2DataSource() datasource.DataSource {
-	return &ResourcesTeleportDevTeleportSAMLConnectorV2DataSource{}
+func NewResourcesTeleportDevTeleportSamlconnectorV2DataSource() datasource.DataSource {
+	return &ResourcesTeleportDevTeleportSamlconnectorV2DataSource{}
 }
 
-type ResourcesTeleportDevTeleportSAMLConnectorV2DataSource struct {
+type ResourcesTeleportDevTeleportSamlconnectorV2DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type ResourcesTeleportDevTeleportSAMLConnectorV2DataSourceData struct {
+type ResourcesTeleportDevTeleportSamlconnectorV2DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -77,11 +77,11 @@ type ResourcesTeleportDevTeleportSAMLConnectorV2DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_resources_teleport_dev_teleport_saml_connector_v2"
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SAMLConnector is the Schema for the samlconnectors API",
 		MarkdownDescription: "SAMLConnector is the Schema for the samlconnectors API",
@@ -330,7 +330,7 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2DataSource) Schema(_ context
 	}
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -353,10 +353,10 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2DataSource) Configure(_ cont
 	}
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_resources_teleport_dev_teleport_saml_connector_v2")
 
-	var data ResourcesTeleportDevTeleportSAMLConnectorV2DataSourceData
+	var data ResourcesTeleportDevTeleportSamlconnectorV2DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -385,7 +385,7 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2DataSource) Read(ctx context
 		return
 	}
 
-	var readResponse ResourcesTeleportDevTeleportSAMLConnectorV2DataSourceData
+	var readResponse ResourcesTeleportDevTeleportSamlconnectorV2DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

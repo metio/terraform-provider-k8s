@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &SloKoordinatorShNodeSLOV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &SloKoordinatorShNodeSLOV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &SloKoordinatorShNodeSLOV1Alpha1Resource{}
+	_ resource.Resource                = &SloKoordinatorShNodeSloV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &SloKoordinatorShNodeSloV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &SloKoordinatorShNodeSloV1Alpha1Resource{}
 )
 
-func NewSloKoordinatorShNodeSLOV1Alpha1Resource() resource.Resource {
-	return &SloKoordinatorShNodeSLOV1Alpha1Resource{}
+func NewSloKoordinatorShNodeSloV1Alpha1Resource() resource.Resource {
+	return &SloKoordinatorShNodeSloV1Alpha1Resource{}
 }
 
-type SloKoordinatorShNodeSLOV1Alpha1Resource struct {
+type SloKoordinatorShNodeSloV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type SloKoordinatorShNodeSLOV1Alpha1ResourceData struct {
+type SloKoordinatorShNodeSloV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -68,7 +68,18 @@ type SloKoordinatorShNodeSLOV1Alpha1ResourceData struct {
 			Policy                     *string `tfsdk:"policy" json:"policy,omitempty"`
 			SharePoolThresholdPercent  *int64  `tfsdk:"share_pool_threshold_percent" json:"sharePoolThresholdPercent,omitempty"`
 		} `tfsdk:"cpu_burst_strategy" json:"cpuBurstStrategy,omitempty"`
-		Extensions          *map[string]string `tfsdk:"extensions" json:"extensions,omitempty"`
+		Extensions       *map[string]string `tfsdk:"extensions" json:"extensions,omitempty"`
+		HostApplications *[]struct {
+			CgroupPath *struct {
+				Base         *string `tfsdk:"base" json:"base,omitempty"`
+				ParentDir    *string `tfsdk:"parent_dir" json:"parentDir,omitempty"`
+				RelativePath *string `tfsdk:"relative_path" json:"relativePath,omitempty"`
+			} `tfsdk:"cgroup_path" json:"cgroupPath,omitempty"`
+			Name     *string            `tfsdk:"name" json:"name,omitempty"`
+			Priority *string            `tfsdk:"priority" json:"priority,omitempty"`
+			Qos      *string            `tfsdk:"qos" json:"qos,omitempty"`
+			Strategy *map[string]string `tfsdk:"strategy" json:"strategy,omitempty"`
+		} `tfsdk:"host_applications" json:"hostApplications,omitempty"`
 		ResourceQOSStrategy *struct {
 			BeClass *struct {
 				BlkioQOS *struct {
@@ -290,11 +301,11 @@ type SloKoordinatorShNodeSLOV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_slo_koordinator_sh_node_slo_v1alpha1"
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "NodeSLO is the Schema for the nodeslos API",
 		MarkdownDescription: "NodeSLO is the Schema for the nodeslos API",
@@ -468,6 +479,83 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Schema(_ context.Context, _ re
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"host_applications": schema.ListNestedAttribute{
+						Description:         "QoS management for out-of-band applications",
+						MarkdownDescription: "QoS management for out-of-band applications",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"cgroup_path": schema.SingleNestedAttribute{
+									Description:         "Optional, defines the host cgroup configuration, use default if not specified according to priority and qos",
+									MarkdownDescription: "Optional, defines the host cgroup configuration, use default if not specified according to priority and qos",
+									Attributes: map[string]schema.Attribute{
+										"base": schema.StringAttribute{
+											Description:         "cgroup base dir, the format is various across cgroup drivers",
+											MarkdownDescription: "cgroup base dir, the format is various across cgroup drivers",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"parent_dir": schema.StringAttribute{
+											Description:         "cgroup parent path under base dir",
+											MarkdownDescription: "cgroup parent path under base dir",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"relative_path": schema.StringAttribute{
+											Description:         "cgroup relative path under parent dir",
+											MarkdownDescription: "cgroup relative path under parent dir",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"priority": schema.StringAttribute{
+									Description:         "Priority class of the application",
+									MarkdownDescription: "Priority class of the application",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"qos": schema.StringAttribute{
+									Description:         "QoS class of the application",
+									MarkdownDescription: "QoS class of the application",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"strategy": schema.MapAttribute{
+									Description:         "QoS Strategy of host application",
+									MarkdownDescription: "QoS Strategy of host application",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"resource_qos_strategy": schema.SingleNestedAttribute{
@@ -2223,7 +2311,7 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Schema(_ context.Context, _ re
 	}
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -2248,10 +2336,10 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Configure(_ context.Context, r
 	}
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_slo_koordinator_sh_node_slo_v1alpha1")
 
-	var model SloKoordinatorShNodeSLOV1Alpha1ResourceData
+	var model SloKoordinatorShNodeSloV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -2308,7 +2396,7 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Create(ctx context.Context, re
 		return
 	}
 
-	var readResponse SloKoordinatorShNodeSLOV1Alpha1ResourceData
+	var readResponse SloKoordinatorShNodeSloV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -2326,10 +2414,10 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Create(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_slo_koordinator_sh_node_slo_v1alpha1")
 
-	var data SloKoordinatorShNodeSLOV1Alpha1ResourceData
+	var data SloKoordinatorShNodeSloV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -2357,7 +2445,7 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Read(ctx context.Context, requ
 		return
 	}
 
-	var readResponse SloKoordinatorShNodeSLOV1Alpha1ResourceData
+	var readResponse SloKoordinatorShNodeSloV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -2375,10 +2463,10 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Read(ctx context.Context, requ
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_slo_koordinator_sh_node_slo_v1alpha1")
 
-	var model SloKoordinatorShNodeSLOV1Alpha1ResourceData
+	var model SloKoordinatorShNodeSloV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -2434,7 +2522,7 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Update(ctx context.Context, re
 		return
 	}
 
-	var readResponse SloKoordinatorShNodeSLOV1Alpha1ResourceData
+	var readResponse SloKoordinatorShNodeSloV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -2452,10 +2540,10 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Update(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_slo_koordinator_sh_node_slo_v1alpha1")
 
-	var data SloKoordinatorShNodeSLOV1Alpha1ResourceData
+	var data SloKoordinatorShNodeSloV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -2475,7 +2563,7 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) Delete(ctx context.Context, re
 	}
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

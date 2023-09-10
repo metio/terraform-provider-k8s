@@ -95,6 +95,12 @@ type TelemetryIstioIoTelemetryV1Alpha1ResourceData struct {
 		Selector *struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"selector" json:"selector,omitempty"`
+		TargetRef *struct {
+			Group     *string `tfsdk:"group" json:"group,omitempty"`
+			Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		Tracing *[]struct {
 			CustomTags *struct {
 				Environment *struct {
@@ -462,6 +468,47 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Resource) Schema(_ context.Context, _ 
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"target_ref": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"group": schema.StringAttribute{
+								Description:         "group is the group of the target resource.",
+								MarkdownDescription: "group is the group of the target resource.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kind": schema.StringAttribute{
+								Description:         "kind is kind of the target resource.",
+								MarkdownDescription: "kind is kind of the target resource.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "name is the name of the target resource.",
+								MarkdownDescription: "name is the name of the target resource.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"namespace": schema.StringAttribute{
+								Description:         "namespace is the namespace of the referent.",
+								MarkdownDescription: "namespace is the namespace of the referent.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

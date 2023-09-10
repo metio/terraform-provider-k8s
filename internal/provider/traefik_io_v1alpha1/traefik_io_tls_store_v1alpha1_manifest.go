@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &TraefikIoTLSStoreV1Alpha1Manifest{}
+	_ datasource.DataSource = &TraefikIoTlsstoreV1Alpha1Manifest{}
 )
 
-func NewTraefikIoTLSStoreV1Alpha1Manifest() datasource.DataSource {
-	return &TraefikIoTLSStoreV1Alpha1Manifest{}
+func NewTraefikIoTlsstoreV1Alpha1Manifest() datasource.DataSource {
+	return &TraefikIoTlsstoreV1Alpha1Manifest{}
 }
 
-type TraefikIoTLSStoreV1Alpha1Manifest struct{}
+type TraefikIoTlsstoreV1Alpha1Manifest struct{}
 
-type TraefikIoTLSStoreV1Alpha1ManifestData struct {
+type TraefikIoTlsstoreV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -60,11 +60,11 @@ type TraefikIoTLSStoreV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_tls_store_v1alpha1_manifest"
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TLSStore is the CRD implementation of a Traefik TLS Store. For the time being, only the TLSStore named default is supported. This means that you cannot have two stores that are named default in different Kubernetes namespaces. More info: https://doc.traefik.io/traefik/v3.0/https/tls/#certificates-stores",
 		MarkdownDescription: "TLSStore is the CRD implementation of a Traefik TLS Store. For the time being, only the TLSStore named default is supported. This means that you cannot have two stores that are named default in different Kubernetes namespaces. More info: https://doc.traefik.io/traefik/v3.0/https/tls/#certificates-stores",
@@ -232,10 +232,10 @@ func (r *TraefikIoTLSStoreV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 	}
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_traefik_io_tls_store_v1alpha1_manifest")
 
-	var model TraefikIoTLSStoreV1Alpha1ManifestData
+	var model TraefikIoTlsstoreV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

@@ -59,8 +59,9 @@ type ExecutorTestkubeIoExecutorV1DataSourceData struct {
 		ImagePullSecrets *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
-		Job_template *string `tfsdk:"job_template" json:"job_template,omitempty"`
-		Meta         *struct {
+		JobTemplateReference *string `tfsdk:"job_template_reference" json:"jobTemplateReference,omitempty"`
+		Job_template         *string `tfsdk:"job_template" json:"job_template,omitempty"`
+		Meta                 *struct {
 			DocsURI  *string            `tfsdk:"docs_uri" json:"docsURI,omitempty"`
 			IconURI  *string            `tfsdk:"icon_uri" json:"iconURI,omitempty"`
 			Tooltips *map[string]string `tfsdk:"tooltips" json:"tooltips,omitempty"`
@@ -210,6 +211,14 @@ func (r *ExecutorTestkubeIoExecutorV1DataSource) Schema(_ context.Context, _ dat
 						Required: false,
 						Optional: false,
 						Computed: true,
+					},
+
+					"job_template_reference": schema.StringAttribute{
+						Description:         "name of the template resource",
+						MarkdownDescription: "name of the template resource",
+						Required:            false,
+						Optional:            false,
+						Computed:            true,
 					},
 
 					"job_template": schema.StringAttribute{

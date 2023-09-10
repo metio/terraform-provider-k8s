@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestSloKoordinatorShNodeSLOV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestSloKoordinatorShNodeSloV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	slo_koordinator_sh_v1alpha1.NewSloKoordinatorShNodeSLOV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	slo_koordinator_sh_v1alpha1.NewSloKoordinatorShNodeSloV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

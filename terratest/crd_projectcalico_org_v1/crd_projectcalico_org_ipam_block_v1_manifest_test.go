@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestCrdProjectcalicoOrgIPAMBlockV1Manifest(t *testing.T) {
+func TestCrdProjectcalicoOrgIpamblockV1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_crd_projectcalico_org_ipam_block_v1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

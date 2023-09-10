@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &TrainingKubedlIoXGBoostJobV1Alpha1Manifest{}
+	_ datasource.DataSource = &TrainingKubedlIoXgboostJobV1Alpha1Manifest{}
 )
 
-func NewTrainingKubedlIoXGBoostJobV1Alpha1Manifest() datasource.DataSource {
-	return &TrainingKubedlIoXGBoostJobV1Alpha1Manifest{}
+func NewTrainingKubedlIoXgboostJobV1Alpha1Manifest() datasource.DataSource {
+	return &TrainingKubedlIoXgboostJobV1Alpha1Manifest{}
 }
 
-type TrainingKubedlIoXGBoostJobV1Alpha1Manifest struct{}
+type TrainingKubedlIoXgboostJobV1Alpha1Manifest struct{}
 
-type TrainingKubedlIoXGBoostJobV1Alpha1ManifestData struct {
+type TrainingKubedlIoXgboostJobV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -1238,11 +1238,11 @@ type TrainingKubedlIoXGBoostJobV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TrainingKubedlIoXGBoostJobV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TrainingKubedlIoXgboostJobV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_training_kubedl_io_xg_boost_job_v1alpha1_manifest"
 }
 
-func (r *TrainingKubedlIoXGBoostJobV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TrainingKubedlIoXgboostJobV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -9325,10 +9325,10 @@ func (r *TrainingKubedlIoXGBoostJobV1Alpha1Manifest) Schema(_ context.Context, _
 	}
 }
 
-func (r *TrainingKubedlIoXGBoostJobV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TrainingKubedlIoXgboostJobV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_training_kubedl_io_xg_boost_job_v1alpha1_manifest")
 
-	var model TrainingKubedlIoXGBoostJobV1Alpha1ManifestData
+	var model TrainingKubedlIoXgboostJobV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

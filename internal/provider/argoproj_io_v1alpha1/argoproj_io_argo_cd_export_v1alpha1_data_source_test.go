@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestArgoprojIoArgoCDExportV1Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestArgoprojIoArgoCdexportV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	argoproj_io_v1alpha1.NewArgoprojIoArgoCDExportV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	argoproj_io_v1alpha1.NewArgoprojIoArgoCdexportV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestArgoprojIoArgoCDExportV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	}
 }
 
-func TestArgoprojIoArgoCDExportV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestArgoprojIoArgoCdexportV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestArgoprojIoArgoCDExportV1Alpha1DataSource_ConfigurationErrors(t *testing
 	}
 }
 
-func TestArgoprojIoArgoCDExportV1Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestArgoprojIoArgoCdexportV1Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

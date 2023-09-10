@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestGetambassadorIoTCPMappingV3Alpha1Manifest(t *testing.T) {
+func TestGetambassadorIoTcpmappingV3Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_getambassador_io_tcp_mapping_v3alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

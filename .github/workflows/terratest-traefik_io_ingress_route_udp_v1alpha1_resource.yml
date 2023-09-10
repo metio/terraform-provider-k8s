@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: TraefikIoIngressRouteUDPV1Alpha1Resource
+name: TraefikIoIngressRouteUdpV1Alpha1Resource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/traefik_io_v1alpha1/traefik_io_ingress_route_udp_v1alpha1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestTraefikIoIngressRouteUDPV1Alpha1Resource ./terratest/traefik_io_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestTraefikIoIngressRouteUdpV1Alpha1Resource ./terratest/traefik_io_v1alpha1

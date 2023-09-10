@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &CephRookIoCephCOSIDriverV1Manifest{}
+	_ datasource.DataSource = &CephRookIoCephCosidriverV1Manifest{}
 )
 
-func NewCephRookIoCephCOSIDriverV1Manifest() datasource.DataSource {
-	return &CephRookIoCephCOSIDriverV1Manifest{}
+func NewCephRookIoCephCosidriverV1Manifest() datasource.DataSource {
+	return &CephRookIoCephCosidriverV1Manifest{}
 }
 
-type CephRookIoCephCOSIDriverV1Manifest struct{}
+type CephRookIoCephCosidriverV1Manifest struct{}
 
-type CephRookIoCephCOSIDriverV1ManifestData struct {
+type CephRookIoCephCosidriverV1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -204,11 +204,11 @@ type CephRookIoCephCOSIDriverV1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CephRookIoCephCOSIDriverV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CephRookIoCephCosidriverV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_cosi_driver_v1_manifest"
 }
 
-func (r *CephRookIoCephCOSIDriverV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CephRookIoCephCosidriverV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephCOSIDriver represents the CRD for the Ceph COSI Driver Deployment",
 		MarkdownDescription: "CephCOSIDriver represents the CRD for the Ceph COSI Driver Deployment",
@@ -1349,10 +1349,10 @@ func (r *CephRookIoCephCOSIDriverV1Manifest) Schema(_ context.Context, _ datasou
 	}
 }
 
-func (r *CephRookIoCephCOSIDriverV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CephRookIoCephCosidriverV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_ceph_rook_io_ceph_cosi_driver_v1_manifest")
 
-	var model CephRookIoCephCOSIDriverV1ManifestData
+	var model CephRookIoCephCosidriverV1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestStorageK8SIoCSIDriverV1Manifest(t *testing.T) {
+func TestStorageK8SIoCsidriverV1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_storage_k8s_io_csi_driver_v1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

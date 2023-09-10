@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestCrdProjectcalicoOrgBGPConfigurationV1Resource(t *testing.T) {
+func TestCrdProjectcalicoOrgBgpconfigurationV1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_crd_projectcalico_org_bgp_configuration_v1"
 
 	_, err := os.Stat(path)

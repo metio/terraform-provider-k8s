@@ -21,16 +21,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &ChaosMeshOrgIOChaosV1Alpha1Manifest{}
+	_ datasource.DataSource = &ChaosMeshOrgIochaosV1Alpha1Manifest{}
 )
 
-func NewChaosMeshOrgIOChaosV1Alpha1Manifest() datasource.DataSource {
-	return &ChaosMeshOrgIOChaosV1Alpha1Manifest{}
+func NewChaosMeshOrgIochaosV1Alpha1Manifest() datasource.DataSource {
+	return &ChaosMeshOrgIochaosV1Alpha1Manifest{}
 }
 
-type ChaosMeshOrgIOChaosV1Alpha1Manifest struct{}
+type ChaosMeshOrgIochaosV1Alpha1Manifest struct{}
 
-type ChaosMeshOrgIOChaosV1Alpha1ManifestData struct {
+type ChaosMeshOrgIochaosV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -103,11 +103,11 @@ type ChaosMeshOrgIOChaosV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ChaosMeshOrgIOChaosV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ChaosMeshOrgIochaosV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_chaos_mesh_org_io_chaos_v1alpha1_manifest"
 }
 
-func (r *ChaosMeshOrgIOChaosV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ChaosMeshOrgIochaosV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "IOChaos is the Schema for the iochaos API",
 		MarkdownDescription: "IOChaos is the Schema for the iochaos API",
@@ -615,10 +615,10 @@ func (r *ChaosMeshOrgIOChaosV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 	}
 }
 
-func (r *ChaosMeshOrgIOChaosV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ChaosMeshOrgIochaosV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_chaos_mesh_org_io_chaos_v1alpha1_manifest")
 
-	var model ChaosMeshOrgIOChaosV1Alpha1ManifestData
+	var model ChaosMeshOrgIochaosV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

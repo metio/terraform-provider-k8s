@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestCephRookIoCephCOSIDriverV1Resource_ValidateSchema(t *testing.T) {
+func TestCephRookIoCephCosidriverV1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	ceph_rook_io_v1.NewCephRookIoCephCOSIDriverV1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	ceph_rook_io_v1.NewCephRookIoCephCosidriverV1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

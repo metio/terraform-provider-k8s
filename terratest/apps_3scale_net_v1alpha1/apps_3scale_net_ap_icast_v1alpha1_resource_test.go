@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestApps3ScaleNetAPIcastV1Alpha1Resource(t *testing.T) {
+func TestApps3ScaleNetApicastV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_apps_3scale_net_ap_icast_v1alpha1"
 
 	_, err := os.Stat(path)

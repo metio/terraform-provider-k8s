@@ -262,8 +262,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Metadata(_ context.Context, request data
 
 func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Build is the Schema for the builds API",
-		MarkdownDescription: "Build is the Schema for the builds API",
+		Description:         "Build is the Schema for the builds API.",
+		MarkdownDescription: "Build is the Schema for the builds API.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -338,8 +338,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropiate to think it as pipeline.",
-				MarkdownDescription: "BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropiate to think it as pipeline.",
+				Description:         "BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropriate to think it as pipeline.",
+				MarkdownDescription: "BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropriate to think it as pipeline.",
 				Attributes: map[string]schema.Attribute{
 					"configuration": schema.SingleNestedAttribute{
 						Description:         "The configuration that should be used to perform the Build. Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility",
@@ -1404,8 +1404,8 @@ func (r *CamelApacheOrgBuildV1Manifest) Schema(_ context.Context, _ datasource.S
 								},
 
 								"custom": schema.SingleNestedAttribute{
-									Description:         "UserTask is used to execute any generic custom operation",
-									MarkdownDescription: "UserTask is used to execute any generic custom operation",
+									Description:         "UserTask is used to execute any generic custom operation.",
+									MarkdownDescription: "UserTask is used to execute any generic custom operation.",
 									Attributes: map[string]schema.Attribute{
 										"command": schema.StringAttribute{
 											Description:         "the command to execute",

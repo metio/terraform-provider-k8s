@@ -98,13 +98,11 @@ type CiliumIoCiliumNodeV2DataSourceData struct {
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
 		Instance_id *string `tfsdk:"instance_id" json:"instance-id,omitempty"`
 		Ipam        *struct {
-			Max_above_watermark           *int64    `tfsdk:"max_above_watermark" json:"max-above-watermark,omitempty"`
-			Max_allocate                  *int64    `tfsdk:"max_allocate" json:"max-allocate,omitempty"`
-			Min_allocate                  *int64    `tfsdk:"min_allocate" json:"min-allocate,omitempty"`
-			Pod_cidr_allocation_threshold *int64    `tfsdk:"pod_cidr_allocation_threshold" json:"pod-cidr-allocation-threshold,omitempty"`
-			Pod_cidr_release_threshold    *int64    `tfsdk:"pod_cidr_release_threshold" json:"pod-cidr-release-threshold,omitempty"`
-			PodCIDRs                      *[]string `tfsdk:"pod_cid_rs" json:"podCIDRs,omitempty"`
-			Pool                          *struct {
+			Max_above_watermark *int64    `tfsdk:"max_above_watermark" json:"max-above-watermark,omitempty"`
+			Max_allocate        *int64    `tfsdk:"max_allocate" json:"max-allocate,omitempty"`
+			Min_allocate        *int64    `tfsdk:"min_allocate" json:"min-allocate,omitempty"`
+			PodCIDRs            *[]string `tfsdk:"pod_cid_rs" json:"podCIDRs,omitempty"`
+			Pool                *struct {
 				Owner    *string `tfsdk:"owner" json:"owner,omitempty"`
 				Resource *string `tfsdk:"resource" json:"resource,omitempty"`
 			} `tfsdk:"pool" json:"pool,omitempty"`
@@ -555,22 +553,6 @@ func (r *CiliumIoCiliumNodeV2DataSource) Schema(_ context.Context, _ datasource.
 							"min_allocate": schema.Int64Attribute{
 								Description:         "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.",
 								MarkdownDescription: "MinAllocate is the minimum number of IPs that must be allocated when the node is first bootstrapped. It defines the minimum base socket of addresses that must be available. After reaching this watermark, the PreAllocate and MaxAboveWatermark logic takes over to continue allocating IPs.",
-								Required:            false,
-								Optional:            false,
-								Computed:            true,
-							},
-
-							"pod_cidr_allocation_threshold": schema.Int64Attribute{
-								Description:         "PodCIDRAllocationThreshold defines the minimum number of free IPs which must be available to this node via its pod CIDR pool. If the total number of IP addresses in the pod CIDR pool is less than this value, the pod CIDRs currently in-use by this node will be marked as depleted and cilium-operator will allocate a new pod CIDR to this node. This value effectively defines the buffer of IP addresses available immediately without requiring cilium-operator to get involved.",
-								MarkdownDescription: "PodCIDRAllocationThreshold defines the minimum number of free IPs which must be available to this node via its pod CIDR pool. If the total number of IP addresses in the pod CIDR pool is less than this value, the pod CIDRs currently in-use by this node will be marked as depleted and cilium-operator will allocate a new pod CIDR to this node. This value effectively defines the buffer of IP addresses available immediately without requiring cilium-operator to get involved.",
-								Required:            false,
-								Optional:            false,
-								Computed:            true,
-							},
-
-							"pod_cidr_release_threshold": schema.Int64Attribute{
-								Description:         "PodCIDRReleaseThreshold defines the maximum number of free IPs which may be available to this node via its pod CIDR pool. While the total number of free IP addresses in the pod CIDR pool is larger than this value, cilium-agent will attempt to release currently unused pod CIDRs.",
-								MarkdownDescription: "PodCIDRReleaseThreshold defines the maximum number of free IPs which may be available to this node via its pod CIDR pool. While the total number of free IP addresses in the pod CIDR pool is larger than this value, cilium-agent will attempt to release currently unused pod CIDRs.",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,

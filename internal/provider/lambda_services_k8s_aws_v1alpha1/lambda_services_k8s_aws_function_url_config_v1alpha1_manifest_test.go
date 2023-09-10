@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestLambdaServicesK8SAwsFunctionURLConfigV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestLambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	lambda_services_k8s_aws_v1alpha1.NewLambdaServicesK8SAwsFunctionURLConfigV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	lambda_services_k8s_aws_v1alpha1.NewLambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &MattermostComMattermostRestoreDBV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &MattermostComMattermostRestoreDBV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &MattermostComMattermostRestoreDBV1Alpha1Resource{}
+	_ resource.Resource                = &MattermostComMattermostRestoreDbV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &MattermostComMattermostRestoreDbV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &MattermostComMattermostRestoreDbV1Alpha1Resource{}
 )
 
-func NewMattermostComMattermostRestoreDBV1Alpha1Resource() resource.Resource {
-	return &MattermostComMattermostRestoreDBV1Alpha1Resource{}
+func NewMattermostComMattermostRestoreDbV1Alpha1Resource() resource.Resource {
+	return &MattermostComMattermostRestoreDbV1Alpha1Resource{}
 }
 
-type MattermostComMattermostRestoreDBV1Alpha1Resource struct {
+type MattermostComMattermostRestoreDbV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type MattermostComMattermostRestoreDBV1Alpha1ResourceData struct {
+type MattermostComMattermostRestoreDbV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -71,11 +71,11 @@ type MattermostComMattermostRestoreDBV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_mattermost_com_mattermost_restore_db_v1alpha1"
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MattermostRestoreDB is the Schema for the mattermostrestoredbs API",
 		MarkdownDescription: "MattermostRestoreDB is the Schema for the mattermostrestoredbs API",
@@ -260,7 +260,7 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Schema(_ context.Cont
 	}
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -285,10 +285,10 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Configure(_ context.C
 	}
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_mattermost_com_mattermost_restore_db_v1alpha1")
 
-	var model MattermostComMattermostRestoreDBV1Alpha1ResourceData
+	var model MattermostComMattermostRestoreDbV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -346,7 +346,7 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Create(ctx context.Co
 		return
 	}
 
-	var readResponse MattermostComMattermostRestoreDBV1Alpha1ResourceData
+	var readResponse MattermostComMattermostRestoreDbV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -364,10 +364,10 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Create(ctx context.Co
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_mattermost_com_mattermost_restore_db_v1alpha1")
 
-	var data MattermostComMattermostRestoreDBV1Alpha1ResourceData
+	var data MattermostComMattermostRestoreDbV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -396,7 +396,7 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Read(ctx context.Cont
 		return
 	}
 
-	var readResponse MattermostComMattermostRestoreDBV1Alpha1ResourceData
+	var readResponse MattermostComMattermostRestoreDbV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -414,10 +414,10 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Read(ctx context.Cont
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_mattermost_com_mattermost_restore_db_v1alpha1")
 
-	var model MattermostComMattermostRestoreDBV1Alpha1ResourceData
+	var model MattermostComMattermostRestoreDbV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -474,7 +474,7 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Update(ctx context.Co
 		return
 	}
 
-	var readResponse MattermostComMattermostRestoreDBV1Alpha1ResourceData
+	var readResponse MattermostComMattermostRestoreDbV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -492,10 +492,10 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Update(ctx context.Co
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_mattermost_com_mattermost_restore_db_v1alpha1")
 
-	var data MattermostComMattermostRestoreDBV1Alpha1ResourceData
+	var data MattermostComMattermostRestoreDbV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -516,7 +516,7 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) Delete(ctx context.Co
 	}
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

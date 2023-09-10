@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestCrdProjectcalicoOrgIPAMHandleV1Resource(t *testing.T) {
+func TestCrdProjectcalicoOrgIpamhandleV1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_crd_projectcalico_org_ipam_handle_v1"
 
 	_, err := os.Stat(path)

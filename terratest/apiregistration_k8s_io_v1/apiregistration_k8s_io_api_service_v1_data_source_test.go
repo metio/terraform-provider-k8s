@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestApiregistrationK8SIoAPIServiceV1DataSource(t *testing.T) {
+func TestApiregistrationK8SIoApiserviceV1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_apiregistration_k8s_io_api_service_v1"
 
 	_, err := os.Stat(path)

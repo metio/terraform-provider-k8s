@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &CrdProjectcalicoOrgBGPConfigurationV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &CrdProjectcalicoOrgBGPConfigurationV1DataSource{}
+	_ datasource.DataSource              = &CrdProjectcalicoOrgBgpconfigurationV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &CrdProjectcalicoOrgBgpconfigurationV1DataSource{}
 )
 
-func NewCrdProjectcalicoOrgBGPConfigurationV1DataSource() datasource.DataSource {
-	return &CrdProjectcalicoOrgBGPConfigurationV1DataSource{}
+func NewCrdProjectcalicoOrgBgpconfigurationV1DataSource() datasource.DataSource {
+	return &CrdProjectcalicoOrgBgpconfigurationV1DataSource{}
 }
 
-type CrdProjectcalicoOrgBGPConfigurationV1DataSource struct {
+type CrdProjectcalicoOrgBgpconfigurationV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type CrdProjectcalicoOrgBGPConfigurationV1DataSourceData struct {
+type CrdProjectcalicoOrgBgpconfigurationV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -83,11 +83,11 @@ type CrdProjectcalicoOrgBGPConfigurationV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CrdProjectcalicoOrgBGPConfigurationV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CrdProjectcalicoOrgBgpconfigurationV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_bgp_configuration_v1"
 }
 
-func (r *CrdProjectcalicoOrgBGPConfigurationV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CrdProjectcalicoOrgBgpconfigurationV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "BGPConfiguration contains the configuration for any BGP routing.",
 		MarkdownDescription: "BGPConfiguration contains the configuration for any BGP routing.",
@@ -361,7 +361,7 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1DataSource) Schema(_ context.Conte
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPConfigurationV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *CrdProjectcalicoOrgBgpconfigurationV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -384,10 +384,10 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1DataSource) Configure(_ context.Co
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPConfigurationV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CrdProjectcalicoOrgBgpconfigurationV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_crd_projectcalico_org_bgp_configuration_v1")
 
-	var data CrdProjectcalicoOrgBGPConfigurationV1DataSourceData
+	var data CrdProjectcalicoOrgBgpconfigurationV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -415,7 +415,7 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1DataSource) Read(ctx context.Conte
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgBGPConfigurationV1DataSourceData
+	var readResponse CrdProjectcalicoOrgBgpconfigurationV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

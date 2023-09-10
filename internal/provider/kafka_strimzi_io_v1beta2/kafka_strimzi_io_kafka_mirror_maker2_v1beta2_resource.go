@@ -205,7 +205,8 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ResourceData struct {
 		Mirrors *[]struct {
 			CheckpointConnector *struct {
 				AutoRestart *struct {
-					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+					Enabled     *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+					MaxRestarts *int64 `tfsdk:"max_restarts" json:"maxRestarts,omitempty"`
 				} `tfsdk:"auto_restart" json:"autoRestart,omitempty"`
 				Config   *map[string]string `tfsdk:"config" json:"config,omitempty"`
 				Pause    *bool              `tfsdk:"pause" json:"pause,omitempty"`
@@ -216,7 +217,8 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ResourceData struct {
 			GroupsPattern          *string `tfsdk:"groups_pattern" json:"groupsPattern,omitempty"`
 			HeartbeatConnector     *struct {
 				AutoRestart *struct {
-					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+					Enabled     *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+					MaxRestarts *int64 `tfsdk:"max_restarts" json:"maxRestarts,omitempty"`
 				} `tfsdk:"auto_restart" json:"autoRestart,omitempty"`
 				Config   *map[string]string `tfsdk:"config" json:"config,omitempty"`
 				Pause    *bool              `tfsdk:"pause" json:"pause,omitempty"`
@@ -225,7 +227,8 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ResourceData struct {
 			SourceCluster   *string `tfsdk:"source_cluster" json:"sourceCluster,omitempty"`
 			SourceConnector *struct {
 				AutoRestart *struct {
-					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+					Enabled     *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+					MaxRestarts *int64 `tfsdk:"max_restarts" json:"maxRestarts,omitempty"`
 				} `tfsdk:"auto_restart" json:"autoRestart,omitempty"`
 				Config   *map[string]string `tfsdk:"config" json:"config,omitempty"`
 				Pause    *bool              `tfsdk:"pause" json:"pause,omitempty"`
@@ -1916,6 +1919,14 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource) Schema(_ context.Contex
 													Optional:            true,
 													Computed:            false,
 												},
+
+												"max_restarts": schema.Int64Attribute{
+													Description:         "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.",
+													MarkdownDescription: "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -1994,6 +2005,14 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource) Schema(_ context.Contex
 													Optional:            true,
 													Computed:            false,
 												},
+
+												"max_restarts": schema.Int64Attribute{
+													Description:         "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.",
+													MarkdownDescription: "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -2052,6 +2071,14 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource) Schema(_ context.Contex
 												"enabled": schema.BoolAttribute{
 													Description:         "Whether automatic restart for failed connectors and tasks should be enabled or disabled.",
 													MarkdownDescription: "Whether automatic restart for failed connectors and tasks should be enabled or disabled.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"max_restarts": schema.Int64Attribute{
+													Description:         "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.",
+													MarkdownDescription: "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6017,8 +6044,8 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource) Schema(_ context.Contex
 						MarkdownDescription: "The configuration of tracing in Kafka Connect.",
 						Attributes: map[string]schema.Attribute{
 							"type": schema.StringAttribute{
-								Description:         "Type of the tracing used. Currently the only supported types are 'jaeger' for OpenTracing (Jaeger) tracing and 'opentelemetry' for OpenTelemetry tracing. The OpenTracing (Jaeger) tracing is deprecated.",
-								MarkdownDescription: "Type of the tracing used. Currently the only supported types are 'jaeger' for OpenTracing (Jaeger) tracing and 'opentelemetry' for OpenTelemetry tracing. The OpenTracing (Jaeger) tracing is deprecated.",
+								Description:         "Type of the tracing used. Currently the only supported type is 'opentelemetry' for OpenTelemetry tracing. As of Strimzi 0.37.0, 'jaeger' type is not supported anymore and this option is ignored.",
+								MarkdownDescription: "Type of the tracing used. Currently the only supported type is 'opentelemetry' for OpenTelemetry tracing. As of Strimzi 0.37.0, 'jaeger' type is not supported anymore and this option is ignored.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

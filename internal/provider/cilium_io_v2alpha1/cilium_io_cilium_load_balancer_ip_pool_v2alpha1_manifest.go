@@ -19,16 +19,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Manifest{}
+	_ datasource.DataSource = &CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest{}
 )
 
-func NewCiliumIoCiliumLoadBalancerIPPoolV2Alpha1Manifest() datasource.DataSource {
-	return &CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Manifest{}
+func NewCiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest() datasource.DataSource {
+	return &CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest{}
 }
 
-type CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Manifest struct{}
+type CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest struct{}
 
-type CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ManifestData struct {
+type CiliumIoCiliumLoadBalancerIppoolV2Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -57,11 +57,11 @@ type CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_load_balancer_ip_pool_v2alpha1_manifest"
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumLoadBalancerIPPool is a Kubernetes third-party resource which is used to defined pools of IPs which the operator can use to to allocate and advertise IPs for Services of type LoadBalancer.",
 		MarkdownDescription: "CiliumLoadBalancerIPPool is a Kubernetes third-party resource which is used to defined pools of IPs which the operator can use to to allocate and advertise IPs for Services of type LoadBalancer.",
@@ -222,10 +222,10 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Manifest) Schema(_ context.Cont
 	}
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_cilium_io_cilium_load_balancer_ip_pool_v2alpha1_manifest")
 
-	var model CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ManifestData
+	var model CiliumIoCiliumLoadBalancerIppoolV2Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

@@ -21,16 +21,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &CrdProjectcalicoOrgBGPConfigurationV1Manifest{}
+	_ datasource.DataSource = &CrdProjectcalicoOrgBgpconfigurationV1Manifest{}
 )
 
-func NewCrdProjectcalicoOrgBGPConfigurationV1Manifest() datasource.DataSource {
-	return &CrdProjectcalicoOrgBGPConfigurationV1Manifest{}
+func NewCrdProjectcalicoOrgBgpconfigurationV1Manifest() datasource.DataSource {
+	return &CrdProjectcalicoOrgBgpconfigurationV1Manifest{}
 }
 
-type CrdProjectcalicoOrgBGPConfigurationV1Manifest struct{}
+type CrdProjectcalicoOrgBgpconfigurationV1Manifest struct{}
 
-type CrdProjectcalicoOrgBGPConfigurationV1ManifestData struct {
+type CrdProjectcalicoOrgBgpconfigurationV1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -78,11 +78,11 @@ type CrdProjectcalicoOrgBGPConfigurationV1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CrdProjectcalicoOrgBGPConfigurationV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CrdProjectcalicoOrgBgpconfigurationV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_bgp_configuration_v1_manifest"
 }
 
-func (r *CrdProjectcalicoOrgBGPConfigurationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CrdProjectcalicoOrgBgpconfigurationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "BGPConfiguration contains the configuration for any BGP routing.",
 		MarkdownDescription: "BGPConfiguration contains the configuration for any BGP routing.",
@@ -377,10 +377,10 @@ func (r *CrdProjectcalicoOrgBGPConfigurationV1Manifest) Schema(_ context.Context
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPConfigurationV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CrdProjectcalicoOrgBgpconfigurationV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_crd_projectcalico_org_bgp_configuration_v1_manifest")
 
-	var model CrdProjectcalicoOrgBGPConfigurationV1ManifestData
+	var model CrdProjectcalicoOrgBgpconfigurationV1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

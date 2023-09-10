@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &TrainingKubedlIoTFJobV1Alpha1Manifest{}
+	_ datasource.DataSource = &TrainingKubedlIoTfjobV1Alpha1Manifest{}
 )
 
-func NewTrainingKubedlIoTFJobV1Alpha1Manifest() datasource.DataSource {
-	return &TrainingKubedlIoTFJobV1Alpha1Manifest{}
+func NewTrainingKubedlIoTfjobV1Alpha1Manifest() datasource.DataSource {
+	return &TrainingKubedlIoTfjobV1Alpha1Manifest{}
 }
 
-type TrainingKubedlIoTFJobV1Alpha1Manifest struct{}
+type TrainingKubedlIoTfjobV1Alpha1Manifest struct{}
 
-type TrainingKubedlIoTFJobV1Alpha1ManifestData struct {
+type TrainingKubedlIoTfjobV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -1286,11 +1286,11 @@ type TrainingKubedlIoTFJobV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TrainingKubedlIoTFJobV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TrainingKubedlIoTfjobV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_training_kubedl_io_tf_job_v1alpha1_manifest"
 }
 
-func (r *TrainingKubedlIoTFJobV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TrainingKubedlIoTfjobV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -9671,10 +9671,10 @@ func (r *TrainingKubedlIoTFJobV1Alpha1Manifest) Schema(_ context.Context, _ data
 	}
 }
 
-func (r *TrainingKubedlIoTFJobV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TrainingKubedlIoTfjobV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_training_kubedl_io_tf_job_v1alpha1_manifest")
 
-	var model TrainingKubedlIoTFJobV1Alpha1ManifestData
+	var model TrainingKubedlIoTfjobV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

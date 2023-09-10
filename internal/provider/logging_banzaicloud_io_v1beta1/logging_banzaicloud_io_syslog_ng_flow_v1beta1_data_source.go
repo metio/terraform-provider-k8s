@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource{}
-	_ datasource.DataSourceWithConfigure = &LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource{}
+	_ datasource.DataSource              = &LoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource{}
+	_ datasource.DataSourceWithConfigure = &LoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource{}
 )
 
-func NewLoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource() datasource.DataSource {
-	return &LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource{}
+func NewLoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource() datasource.DataSource {
+	return &LoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource{}
 }
 
-type LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource struct {
+type LoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSourceData struct {
+type LoggingBanzaicloudIoSyslogNgflowV1Beta1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -182,11 +182,11 @@ type LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_logging_banzaicloud_io_syslog_ng_flow_v1beta1"
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -1157,7 +1157,7 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource) Schema(_ context.Con
 	}
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1180,10 +1180,10 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource) Configure(_ context.
 	}
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_logging_banzaicloud_io_syslog_ng_flow_v1beta1")
 
-	var data LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSourceData
+	var data LoggingBanzaicloudIoSyslogNgflowV1Beta1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1212,7 +1212,7 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource) Read(ctx context.Con
 		return
 	}
 
-	var readResponse LoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSourceData
+	var readResponse LoggingBanzaicloudIoSyslogNgflowV1Beta1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

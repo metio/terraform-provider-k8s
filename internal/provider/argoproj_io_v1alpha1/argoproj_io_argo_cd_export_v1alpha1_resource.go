@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &ArgoprojIoArgoCDExportV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &ArgoprojIoArgoCDExportV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &ArgoprojIoArgoCDExportV1Alpha1Resource{}
+	_ resource.Resource                = &ArgoprojIoArgoCdexportV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &ArgoprojIoArgoCdexportV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &ArgoprojIoArgoCdexportV1Alpha1Resource{}
 )
 
-func NewArgoprojIoArgoCDExportV1Alpha1Resource() resource.Resource {
-	return &ArgoprojIoArgoCDExportV1Alpha1Resource{}
+func NewArgoprojIoArgoCdexportV1Alpha1Resource() resource.Resource {
+	return &ArgoprojIoArgoCdexportV1Alpha1Resource{}
 }
 
-type ArgoprojIoArgoCDExportV1Alpha1Resource struct {
+type ArgoprojIoArgoCdexportV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type ArgoprojIoArgoCDExportV1Alpha1ResourceData struct {
+type ArgoprojIoArgoCdexportV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -101,11 +101,11 @@ type ArgoprojIoArgoCDExportV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *ArgoprojIoArgoCdexportV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_argoproj_io_argo_cd_export_v1alpha1"
 }
 
-func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *ArgoprojIoArgoCdexportV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ArgoCDExport is the Schema for the argocdexports API",
 		MarkdownDescription: "ArgoCDExport is the Schema for the argocdexports API",
@@ -488,7 +488,7 @@ func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Schema(_ context.Context, _ res
 	}
 }
 
-func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *ArgoprojIoArgoCdexportV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -513,10 +513,10 @@ func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Configure(_ context.Context, re
 	}
 }
 
-func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *ArgoprojIoArgoCdexportV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_argoproj_io_argo_cd_export_v1alpha1")
 
-	var model ArgoprojIoArgoCDExportV1Alpha1ResourceData
+	var model ArgoprojIoArgoCdexportV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -574,7 +574,7 @@ func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Create(ctx context.Context, req
 		return
 	}
 
-	var readResponse ArgoprojIoArgoCDExportV1Alpha1ResourceData
+	var readResponse ArgoprojIoArgoCdexportV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -592,10 +592,10 @@ func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Create(ctx context.Context, req
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *ArgoprojIoArgoCdexportV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_argoproj_io_argo_cd_export_v1alpha1")
 
-	var data ArgoprojIoArgoCDExportV1Alpha1ResourceData
+	var data ArgoprojIoArgoCdexportV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -624,7 +624,7 @@ func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Read(ctx context.Context, reque
 		return
 	}
 
-	var readResponse ArgoprojIoArgoCDExportV1Alpha1ResourceData
+	var readResponse ArgoprojIoArgoCdexportV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -642,10 +642,10 @@ func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Read(ctx context.Context, reque
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *ArgoprojIoArgoCdexportV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_argoproj_io_argo_cd_export_v1alpha1")
 
-	var model ArgoprojIoArgoCDExportV1Alpha1ResourceData
+	var model ArgoprojIoArgoCdexportV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -702,7 +702,7 @@ func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Update(ctx context.Context, req
 		return
 	}
 
-	var readResponse ArgoprojIoArgoCDExportV1Alpha1ResourceData
+	var readResponse ArgoprojIoArgoCdexportV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -720,10 +720,10 @@ func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Update(ctx context.Context, req
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *ArgoprojIoArgoCdexportV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_argoproj_io_argo_cd_export_v1alpha1")
 
-	var data ArgoprojIoArgoCDExportV1Alpha1ResourceData
+	var data ArgoprojIoArgoCdexportV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -744,7 +744,7 @@ func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) Delete(ctx context.Context, req
 	}
 }
 
-func (r *ArgoprojIoArgoCDExportV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *ArgoprojIoArgoCdexportV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

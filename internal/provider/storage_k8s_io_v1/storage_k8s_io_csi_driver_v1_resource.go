@@ -29,22 +29,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &StorageK8SIoCSIDriverV1Resource{}
-	_ resource.ResourceWithConfigure   = &StorageK8SIoCSIDriverV1Resource{}
-	_ resource.ResourceWithImportState = &StorageK8SIoCSIDriverV1Resource{}
+	_ resource.Resource                = &StorageK8SIoCsidriverV1Resource{}
+	_ resource.ResourceWithConfigure   = &StorageK8SIoCsidriverV1Resource{}
+	_ resource.ResourceWithImportState = &StorageK8SIoCsidriverV1Resource{}
 )
 
-func NewStorageK8SIoCSIDriverV1Resource() resource.Resource {
-	return &StorageK8SIoCSIDriverV1Resource{}
+func NewStorageK8SIoCsidriverV1Resource() resource.Resource {
+	return &StorageK8SIoCsidriverV1Resource{}
 }
 
-type StorageK8SIoCSIDriverV1Resource struct {
+type StorageK8SIoCsidriverV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type StorageK8SIoCSIDriverV1ResourceData struct {
+type StorageK8SIoCsidriverV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -74,11 +74,11 @@ type StorageK8SIoCSIDriverV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *StorageK8SIoCSIDriverV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *StorageK8SIoCsidriverV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_storage_k8s_io_csi_driver_v1"
 }
 
-func (r *StorageK8SIoCSIDriverV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *StorageK8SIoCsidriverV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CSIDriver captures information about a Container Storage Interface (CSI) volume driver deployed on the cluster. Kubernetes attach detach controller uses this object to determine whether attach is required. Kubelet uses this object to determine whether pod information needs to be passed on mount. CSIDriver objects are non-namespaced.",
 		MarkdownDescription: "CSIDriver captures information about a Container Storage Interface (CSI) volume driver deployed on the cluster. Kubernetes attach detach controller uses this object to determine whether attach is required. Kubelet uses this object to determine whether pod information needs to be passed on mount. CSIDriver objects are non-namespaced.",
@@ -284,7 +284,7 @@ func (r *StorageK8SIoCSIDriverV1Resource) Schema(_ context.Context, _ resource.S
 	}
 }
 
-func (r *StorageK8SIoCSIDriverV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *StorageK8SIoCsidriverV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -309,10 +309,10 @@ func (r *StorageK8SIoCSIDriverV1Resource) Configure(_ context.Context, request r
 	}
 }
 
-func (r *StorageK8SIoCSIDriverV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *StorageK8SIoCsidriverV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_storage_k8s_io_csi_driver_v1")
 
-	var model StorageK8SIoCSIDriverV1ResourceData
+	var model StorageK8SIoCsidriverV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -369,7 +369,7 @@ func (r *StorageK8SIoCSIDriverV1Resource) Create(ctx context.Context, request re
 		return
 	}
 
-	var readResponse StorageK8SIoCSIDriverV1ResourceData
+	var readResponse StorageK8SIoCsidriverV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -387,10 +387,10 @@ func (r *StorageK8SIoCSIDriverV1Resource) Create(ctx context.Context, request re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *StorageK8SIoCSIDriverV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *StorageK8SIoCsidriverV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_storage_k8s_io_csi_driver_v1")
 
-	var data StorageK8SIoCSIDriverV1ResourceData
+	var data StorageK8SIoCsidriverV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -418,7 +418,7 @@ func (r *StorageK8SIoCSIDriverV1Resource) Read(ctx context.Context, request reso
 		return
 	}
 
-	var readResponse StorageK8SIoCSIDriverV1ResourceData
+	var readResponse StorageK8SIoCsidriverV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -436,10 +436,10 @@ func (r *StorageK8SIoCSIDriverV1Resource) Read(ctx context.Context, request reso
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *StorageK8SIoCSIDriverV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *StorageK8SIoCsidriverV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_storage_k8s_io_csi_driver_v1")
 
-	var model StorageK8SIoCSIDriverV1ResourceData
+	var model StorageK8SIoCsidriverV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -495,7 +495,7 @@ func (r *StorageK8SIoCSIDriverV1Resource) Update(ctx context.Context, request re
 		return
 	}
 
-	var readResponse StorageK8SIoCSIDriverV1ResourceData
+	var readResponse StorageK8SIoCsidriverV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -513,10 +513,10 @@ func (r *StorageK8SIoCSIDriverV1Resource) Update(ctx context.Context, request re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *StorageK8SIoCSIDriverV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *StorageK8SIoCsidriverV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_storage_k8s_io_csi_driver_v1")
 
-	var data StorageK8SIoCSIDriverV1ResourceData
+	var data StorageK8SIoCsidriverV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -536,7 +536,7 @@ func (r *StorageK8SIoCSIDriverV1Resource) Delete(ctx context.Context, request re
 	}
 }
 
-func (r *StorageK8SIoCSIDriverV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *StorageK8SIoCsidriverV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

@@ -207,9 +207,10 @@ type GlooSoloIoSettingsV1ResourceData struct {
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 				Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
 			} `tfsdk:"grpc_service" json:"grpcService,omitempty"`
-			MaxMessageTimeout *string `tfsdk:"max_message_timeout" json:"maxMessageTimeout,omitempty"`
-			MessageTimeout    *string `tfsdk:"message_timeout" json:"messageTimeout,omitempty"`
-			MutationRules     *struct {
+			MaxMessageTimeout         *string   `tfsdk:"max_message_timeout" json:"maxMessageTimeout,omitempty"`
+			MessageTimeout            *string   `tfsdk:"message_timeout" json:"messageTimeout,omitempty"`
+			MetadataContextNamespaces *[]string `tfsdk:"metadata_context_namespaces" json:"metadataContextNamespaces,omitempty"`
+			MutationRules             *struct {
 				AllowAllRouting *bool `tfsdk:"allow_all_routing" json:"allowAllRouting,omitempty"`
 				AllowEnvoy      *bool `tfsdk:"allow_envoy" json:"allowEnvoy,omitempty"`
 				AllowExpression *struct {
@@ -236,9 +237,10 @@ type GlooSoloIoSettingsV1ResourceData struct {
 				ResponseHeaderMode  *string `tfsdk:"response_header_mode" json:"responseHeaderMode,omitempty"`
 				ResponseTrailerMode *string `tfsdk:"response_trailer_mode" json:"responseTrailerMode,omitempty"`
 			} `tfsdk:"processing_mode" json:"processingMode,omitempty"`
-			RequestAttributes  *[]string `tfsdk:"request_attributes" json:"requestAttributes,omitempty"`
-			ResponseAttributes *[]string `tfsdk:"response_attributes" json:"responseAttributes,omitempty"`
-			StatPrefix         *string   `tfsdk:"stat_prefix" json:"statPrefix,omitempty"`
+			RequestAttributes              *[]string `tfsdk:"request_attributes" json:"requestAttributes,omitempty"`
+			ResponseAttributes             *[]string `tfsdk:"response_attributes" json:"responseAttributes,omitempty"`
+			StatPrefix                     *string   `tfsdk:"stat_prefix" json:"statPrefix,omitempty"`
+			TypedMetadataContextNamespaces *[]string `tfsdk:"typed_metadata_context_namespaces" json:"typedMetadataContextNamespaces,omitempty"`
 		} `tfsdk:"ext_proc" json:"extProc,omitempty"`
 		Extauth *struct {
 			ClearRouteCache   *bool `tfsdk:"clear_route_cache" json:"clearRouteCache,omitempty"`
@@ -1605,6 +1607,15 @@ func (r *GlooSoloIoSettingsV1Resource) Schema(_ context.Context, _ resource.Sche
 								Computed:            false,
 							},
 
+							"metadata_context_namespaces": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"mutation_rules": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -1808,6 +1819,15 @@ func (r *GlooSoloIoSettingsV1Resource) Schema(_ context.Context, _ resource.Sche
 							"stat_prefix": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"typed_metadata_context_namespaces": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

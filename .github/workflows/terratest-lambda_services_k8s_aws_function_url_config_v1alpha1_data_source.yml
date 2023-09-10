@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: LambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource
+name: LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/lambda_services_k8s_aws_v1alpha1/lambda_services_k8s_aws_function_url_config_v1alpha1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestLambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource ./terratest/lambda_services_k8s_aws_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestLambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource ./terratest/lambda_services_k8s_aws_v1alpha1

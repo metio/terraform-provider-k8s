@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestApiregistrationK8SIoAPIServiceV1Resource_ValidateSchema(t *testing.T) {
+func TestApiregistrationK8SIoApiserviceV1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	apiregistration_k8s_io_v1.NewApiregistrationK8SIoAPIServiceV1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	apiregistration_k8s_io_v1.NewApiregistrationK8SIoApiserviceV1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

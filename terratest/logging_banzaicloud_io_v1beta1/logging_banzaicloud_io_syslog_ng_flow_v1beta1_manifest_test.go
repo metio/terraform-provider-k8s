@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestLoggingBanzaicloudIoSyslogNGFlowV1Beta1Manifest(t *testing.T) {
+func TestLoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_logging_banzaicloud_io_syslog_ng_flow_v1beta1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &CephRookIoCephCOSIDriverV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &CephRookIoCephCOSIDriverV1DataSource{}
+	_ datasource.DataSource              = &CephRookIoCephCosidriverV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &CephRookIoCephCosidriverV1DataSource{}
 )
 
-func NewCephRookIoCephCOSIDriverV1DataSource() datasource.DataSource {
-	return &CephRookIoCephCOSIDriverV1DataSource{}
+func NewCephRookIoCephCosidriverV1DataSource() datasource.DataSource {
+	return &CephRookIoCephCosidriverV1DataSource{}
 }
 
-type CephRookIoCephCOSIDriverV1DataSource struct {
+type CephRookIoCephCosidriverV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type CephRookIoCephCOSIDriverV1DataSourceData struct {
+type CephRookIoCephCosidriverV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -210,11 +210,11 @@ type CephRookIoCephCOSIDriverV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CephRookIoCephCOSIDriverV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CephRookIoCephCosidriverV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_cosi_driver_v1"
 }
 
-func (r *CephRookIoCephCOSIDriverV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CephRookIoCephCosidriverV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephCOSIDriver represents the CRD for the Ceph COSI Driver Deployment",
 		MarkdownDescription: "CephCOSIDriver represents the CRD for the Ceph COSI Driver Deployment",
@@ -1338,7 +1338,7 @@ func (r *CephRookIoCephCOSIDriverV1DataSource) Schema(_ context.Context, _ datas
 	}
 }
 
-func (r *CephRookIoCephCOSIDriverV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *CephRookIoCephCosidriverV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1361,10 +1361,10 @@ func (r *CephRookIoCephCOSIDriverV1DataSource) Configure(_ context.Context, requ
 	}
 }
 
-func (r *CephRookIoCephCOSIDriverV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CephRookIoCephCosidriverV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_ceph_rook_io_ceph_cosi_driver_v1")
 
-	var data CephRookIoCephCOSIDriverV1DataSourceData
+	var data CephRookIoCephCosidriverV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1393,7 +1393,7 @@ func (r *CephRookIoCephCOSIDriverV1DataSource) Read(ctx context.Context, request
 		return
 	}
 
-	var readResponse CephRookIoCephCOSIDriverV1DataSourceData
+	var readResponse CephRookIoCephCosidriverV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

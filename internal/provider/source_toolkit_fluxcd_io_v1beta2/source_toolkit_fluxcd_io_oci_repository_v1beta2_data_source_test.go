@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestSourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource_ValidateSchema(t *testing.T) {
+func TestSourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	source_toolkit_fluxcd_io_v1beta2.NewSourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	source_toolkit_fluxcd_io_v1beta2.NewSourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestSourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource_ValidateSchema(t *t
 	}
 }
 
-func TestSourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource_ConfigurationErrors(t *testing.T) {
+func TestSourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestSourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource_ConfigurationErrors
 	}
 }
 
-func TestSourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource_OfflineUsage(t *testing.T) {
+func TestSourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

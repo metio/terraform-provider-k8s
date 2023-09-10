@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestTrainingKubedlIoXDLJobV1Alpha1DataSource(t *testing.T) {
+func TestTrainingKubedlIoXdljobV1Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_training_kubedl_io_xdl_job_v1alpha1"
 
 	_, err := os.Stat(path)

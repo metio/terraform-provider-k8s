@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestOperatorTigeraIoAPIServerV1DataSource_ValidateSchema(t *testing.T) {
+func TestOperatorTigeraIoApiserverV1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	operator_tigera_io_v1.NewOperatorTigeraIoAPIServerV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	operator_tigera_io_v1.NewOperatorTigeraIoApiserverV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestOperatorTigeraIoAPIServerV1DataSource_ValidateSchema(t *testing.T) {
 	}
 }
 
-func TestOperatorTigeraIoAPIServerV1DataSource_ConfigurationErrors(t *testing.T) {
+func TestOperatorTigeraIoApiserverV1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -58,7 +58,7 @@ func TestOperatorTigeraIoAPIServerV1DataSource_ConfigurationErrors(t *testing.T)
 	}
 }
 
-func TestOperatorTigeraIoAPIServerV1DataSource_OfflineUsage(t *testing.T) {
+func TestOperatorTigeraIoApiserverV1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

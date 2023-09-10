@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestCephRookIoCephNFSV1Manifest_ValidateSchema(t *testing.T) {
+func TestCephRookIoCephNfsV1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	ceph_rook_io_v1.NewCephRookIoCephNFSV1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	ceph_rook_io_v1.NewCephRookIoCephNfsV1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

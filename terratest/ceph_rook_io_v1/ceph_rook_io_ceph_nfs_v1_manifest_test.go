@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestCephRookIoCephNFSV1Manifest(t *testing.T) {
+func TestCephRookIoCephNfsV1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_ceph_rook_io_ceph_nfs_v1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &TraefikIoServersTransportTCPV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &TraefikIoServersTransportTCPV1Alpha1DataSource{}
+	_ datasource.DataSource              = &TraefikIoServersTransportTcpV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &TraefikIoServersTransportTcpV1Alpha1DataSource{}
 )
 
-func NewTraefikIoServersTransportTCPV1Alpha1DataSource() datasource.DataSource {
-	return &TraefikIoServersTransportTCPV1Alpha1DataSource{}
+func NewTraefikIoServersTransportTcpV1Alpha1DataSource() datasource.DataSource {
+	return &TraefikIoServersTransportTcpV1Alpha1DataSource{}
 }
 
-type TraefikIoServersTransportTCPV1Alpha1DataSource struct {
+type TraefikIoServersTransportTcpV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type TraefikIoServersTransportTCPV1Alpha1DataSourceData struct {
+type TraefikIoServersTransportTcpV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -67,11 +67,11 @@ type TraefikIoServersTransportTCPV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_servers_transport_tcp_v1alpha1"
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#serverstransport_3",
 		MarkdownDescription: "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#serverstransport_3",
@@ -247,7 +247,7 @@ func (r *TraefikIoServersTransportTCPV1Alpha1DataSource) Schema(_ context.Contex
 	}
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -270,10 +270,10 @@ func (r *TraefikIoServersTransportTCPV1Alpha1DataSource) Configure(_ context.Con
 	}
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_traefik_io_servers_transport_tcp_v1alpha1")
 
-	var data TraefikIoServersTransportTCPV1Alpha1DataSourceData
+	var data TraefikIoServersTransportTcpV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -302,7 +302,7 @@ func (r *TraefikIoServersTransportTCPV1Alpha1DataSource) Read(ctx context.Contex
 		return
 	}
 
-	var readResponse TraefikIoServersTransportTCPV1Alpha1DataSourceData
+	var readResponse TraefikIoServersTransportTcpV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestGetambassadorIoTLSContextV2DataSource(t *testing.T) {
+func TestGetambassadorIoTlscontextV2DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_getambassador_io_tls_context_v2"
 
 	_, err := os.Stat(path)

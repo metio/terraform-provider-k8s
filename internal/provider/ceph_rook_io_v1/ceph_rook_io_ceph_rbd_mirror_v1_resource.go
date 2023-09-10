@@ -31,22 +31,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CephRookIoCephRBDMirrorV1Resource{}
-	_ resource.ResourceWithConfigure   = &CephRookIoCephRBDMirrorV1Resource{}
-	_ resource.ResourceWithImportState = &CephRookIoCephRBDMirrorV1Resource{}
+	_ resource.Resource                = &CephRookIoCephRbdmirrorV1Resource{}
+	_ resource.ResourceWithConfigure   = &CephRookIoCephRbdmirrorV1Resource{}
+	_ resource.ResourceWithImportState = &CephRookIoCephRbdmirrorV1Resource{}
 )
 
-func NewCephRookIoCephRBDMirrorV1Resource() resource.Resource {
-	return &CephRookIoCephRBDMirrorV1Resource{}
+func NewCephRookIoCephRbdmirrorV1Resource() resource.Resource {
+	return &CephRookIoCephRbdmirrorV1Resource{}
 }
 
-type CephRookIoCephRBDMirrorV1Resource struct {
+type CephRookIoCephRbdmirrorV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CephRookIoCephRBDMirrorV1ResourceData struct {
+type CephRookIoCephRbdmirrorV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -227,11 +227,11 @@ type CephRookIoCephRBDMirrorV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CephRookIoCephRBDMirrorV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CephRookIoCephRbdmirrorV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_rbd_mirror_v1"
 }
 
-func (r *CephRookIoCephRBDMirrorV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CephRookIoCephRbdmirrorV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephRBDMirror represents a Ceph RBD Mirror",
 		MarkdownDescription: "CephRBDMirror represents a Ceph RBD Mirror",
@@ -1448,7 +1448,7 @@ func (r *CephRookIoCephRBDMirrorV1Resource) Schema(_ context.Context, _ resource
 	}
 }
 
-func (r *CephRookIoCephRBDMirrorV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CephRookIoCephRbdmirrorV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1473,10 +1473,10 @@ func (r *CephRookIoCephRBDMirrorV1Resource) Configure(_ context.Context, request
 	}
 }
 
-func (r *CephRookIoCephRBDMirrorV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CephRookIoCephRbdmirrorV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_ceph_rook_io_ceph_rbd_mirror_v1")
 
-	var model CephRookIoCephRBDMirrorV1ResourceData
+	var model CephRookIoCephRbdmirrorV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1534,7 +1534,7 @@ func (r *CephRookIoCephRBDMirrorV1Resource) Create(ctx context.Context, request 
 		return
 	}
 
-	var readResponse CephRookIoCephRBDMirrorV1ResourceData
+	var readResponse CephRookIoCephRbdmirrorV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1552,10 +1552,10 @@ func (r *CephRookIoCephRBDMirrorV1Resource) Create(ctx context.Context, request 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CephRookIoCephRBDMirrorV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CephRookIoCephRbdmirrorV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_ceph_rook_io_ceph_rbd_mirror_v1")
 
-	var data CephRookIoCephRBDMirrorV1ResourceData
+	var data CephRookIoCephRbdmirrorV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1584,7 +1584,7 @@ func (r *CephRookIoCephRBDMirrorV1Resource) Read(ctx context.Context, request re
 		return
 	}
 
-	var readResponse CephRookIoCephRBDMirrorV1ResourceData
+	var readResponse CephRookIoCephRbdmirrorV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1602,10 +1602,10 @@ func (r *CephRookIoCephRBDMirrorV1Resource) Read(ctx context.Context, request re
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CephRookIoCephRBDMirrorV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CephRookIoCephRbdmirrorV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_ceph_rook_io_ceph_rbd_mirror_v1")
 
-	var model CephRookIoCephRBDMirrorV1ResourceData
+	var model CephRookIoCephRbdmirrorV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1662,7 +1662,7 @@ func (r *CephRookIoCephRBDMirrorV1Resource) Update(ctx context.Context, request 
 		return
 	}
 
-	var readResponse CephRookIoCephRBDMirrorV1ResourceData
+	var readResponse CephRookIoCephRbdmirrorV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1680,10 +1680,10 @@ func (r *CephRookIoCephRBDMirrorV1Resource) Update(ctx context.Context, request 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CephRookIoCephRBDMirrorV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CephRookIoCephRbdmirrorV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_ceph_rook_io_ceph_rbd_mirror_v1")
 
-	var data CephRookIoCephRBDMirrorV1ResourceData
+	var data CephRookIoCephRbdmirrorV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1704,7 +1704,7 @@ func (r *CephRookIoCephRBDMirrorV1Resource) Delete(ctx context.Context, request 
 	}
 }
 
-func (r *CephRookIoCephRBDMirrorV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CephRookIoCephRbdmirrorV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

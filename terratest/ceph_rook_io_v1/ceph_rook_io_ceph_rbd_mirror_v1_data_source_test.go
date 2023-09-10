@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestCephRookIoCephRBDMirrorV1DataSource(t *testing.T) {
+func TestCephRookIoCephRbdmirrorV1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_ceph_rook_io_ceph_rbd_mirror_v1"
 
 	_, err := os.Stat(path)

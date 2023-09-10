@@ -66,8 +66,8 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Metadata(_ context.Context, 
 
 func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A CertificateRequest is used to request a signed certificate from one of the configured issuers.  All fields within the CertificateRequest's 'spec' are immutable after creation. A CertificateRequest will either succeed or fail, as denoted by its 'status.state' field.  A CertificateRequest is a one-shot resource, meaning it represents a single point in time request for a certificate and cannot be re-used.",
-		MarkdownDescription: "A CertificateRequest is used to request a signed certificate from one of the configured issuers.  All fields within the CertificateRequest's 'spec' are immutable after creation. A CertificateRequest will either succeed or fail, as denoted by its 'status.state' field.  A CertificateRequest is a one-shot resource, meaning it represents a single point in time request for a certificate and cannot be re-used.",
+		Description:         "A CertificateRequest is used to request a signed certificate from one of the configured issuers.  All fields within the CertificateRequest's 'spec' are immutable after creation. A CertificateRequest will either succeed or fail, as denoted by its 'Ready' status condition and its 'status.failureTime' field.  A CertificateRequest is a one-shot resource, meaning it represents a single point in time request for a certificate and cannot be re-used.",
+		MarkdownDescription: "A CertificateRequest is used to request a signed certificate from one of the configured issuers.  All fields within the CertificateRequest's 'spec' are immutable after creation. A CertificateRequest will either succeed or fail, as denoted by its 'Ready' status condition and its 'status.failureTime' field.  A CertificateRequest is a one-shot resource, meaning it represents a single point in time request for a certificate and cannot be re-used.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -142,12 +142,12 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Desired state of the CertificateRequest resource.",
-				MarkdownDescription: "Desired state of the CertificateRequest resource.",
+				Description:         "Specification of the desired state of the CertificateRequest resource. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+				MarkdownDescription: "Specification of the desired state of the CertificateRequest resource. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
 				Attributes: map[string]schema.Attribute{
 					"duration": schema.StringAttribute{
-						Description:         "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types.",
-						MarkdownDescription: "The requested 'duration' (i.e. lifetime) of the Certificate. This option may be ignored/overridden by some issuer types.",
+						Description:         "Requested 'duration' (i.e. lifetime) of the Certificate. Note that the issuer may choose to ignore the requested duration, just like any other requested attribute.",
+						MarkdownDescription: "Requested 'duration' (i.e. lifetime) of the Certificate. Note that the issuer may choose to ignore the requested duration, just like any other requested attribute.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -172,16 +172,16 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"is_ca": schema.BoolAttribute{
-						Description:         "IsCA will request to mark the certificate as valid for certificate signing when submitting to the issuer. This will automatically add the 'cert sign' usage to the list of 'usages'.",
-						MarkdownDescription: "IsCA will request to mark the certificate as valid for certificate signing when submitting to the issuer. This will automatically add the 'cert sign' usage to the list of 'usages'.",
+						Description:         "Requested basic constraints isCA value. Note that the issuer may choose to ignore the requested isCA value, just like any other requested attribute.  NOTE: If the CSR in the 'Request' field has a BasicConstraints extension, it must have the same isCA value as specified here.  If true, this will automatically add the 'cert sign' usage to the list of requested 'usages'.",
+						MarkdownDescription: "Requested basic constraints isCA value. Note that the issuer may choose to ignore the requested isCA value, just like any other requested attribute.  NOTE: If the CSR in the 'Request' field has a BasicConstraints extension, it must have the same isCA value as specified here.  If true, this will automatically add the 'cert sign' usage to the list of requested 'usages'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"issuer_ref": schema.SingleNestedAttribute{
-						Description:         "IssuerRef is a reference to the issuer for this CertificateRequest.  If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the CertificateRequest will be used.  If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times. The group field refers to the API group of the issuer which defaults to 'cert-manager.io' if empty.",
-						MarkdownDescription: "IssuerRef is a reference to the issuer for this CertificateRequest.  If the 'kind' field is not set, or set to 'Issuer', an Issuer resource with the given name in the same namespace as the CertificateRequest will be used.  If the 'kind' field is set to 'ClusterIssuer', a ClusterIssuer with the provided name will be used. The 'name' field in this stanza is required at all times. The group field refers to the API group of the issuer which defaults to 'cert-manager.io' if empty.",
+						Description:         "Reference to the issuer responsible for issuing the certificate. If the issuer is namespace-scoped, it must be in the same namespace as the Certificate. If the issuer is cluster-scoped, it can be used from any namespace.  The 'name' field of the reference must always be specified.",
+						MarkdownDescription: "Reference to the issuer responsible for issuing the certificate. If the issuer is namespace-scoped, it must be in the same namespace as the Certificate. If the issuer is cluster-scoped, it can be used from any namespace.  The 'name' field of the reference must always be specified.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "Group of the resource being referred to.",
@@ -213,8 +213,8 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"request": schema.StringAttribute{
-						Description:         "The PEM-encoded x509 certificate signing request to be submitted to the CA for signing.",
-						MarkdownDescription: "The PEM-encoded x509 certificate signing request to be submitted to the CA for signing.",
+						Description:         "The PEM-encoded X.509 certificate signing request to be submitted to the issuer for signing.  If the CSR has a BasicConstraints extension, its isCA attribute must match the 'isCA' value of this CertificateRequest. If the CSR has a KeyUsage extension, its key usages must match the key usages in the 'usages' field of this CertificateRequest. If the CSR has a ExtKeyUsage extension, its extended key usages must match the extended key usages in the 'usages' field of this CertificateRequest.",
+						MarkdownDescription: "The PEM-encoded X.509 certificate signing request to be submitted to the issuer for signing.  If the CSR has a BasicConstraints extension, its isCA attribute must match the 'isCA' value of this CertificateRequest. If the CSR has a KeyUsage extension, its key usages must match the key usages in the 'usages' field of this CertificateRequest. If the CSR has a ExtKeyUsage extension, its extended key usages must match the extended key usages in the 'usages' field of this CertificateRequest.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -232,8 +232,8 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"usages": schema.ListAttribute{
-						Description:         "Usages is the set of x509 usages that are requested for the certificate. If usages are set they SHOULD be encoded inside the CSR spec Defaults to 'digital signature' and 'key encipherment' if not specified.",
-						MarkdownDescription: "Usages is the set of x509 usages that are requested for the certificate. If usages are set they SHOULD be encoded inside the CSR spec Defaults to 'digital signature' and 'key encipherment' if not specified.",
+						Description:         "Requested key usages and extended key usages.  NOTE: If the CSR in the 'Request' field has uses the KeyUsage or ExtKeyUsage extension, these extensions must have the same values as specified here without any additional values.  If unset, defaults to 'digital signature' and 'key encipherment'.",
+						MarkdownDescription: "Requested key usages and extended key usages.  NOTE: If the CSR in the 'Request' field has uses the KeyUsage or ExtKeyUsage extension, these extensions must have the same values as specified here without any additional values.  If unset, defaults to 'digital signature' and 'key encipherment'.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -248,8 +248,8 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ 
 						Computed:            false,
 					},
 				},
-				Required: true,
-				Optional: false,
+				Required: false,
+				Optional: true,
 				Computed: false,
 			},
 		},

@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestGatewayNetworkingK8SIoHTTPRouteV1Alpha2Manifest(t *testing.T) {
+func TestGatewayNetworkingK8SIoHttprouteV1Alpha2Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_gateway_networking_k8s_io_http_route_v1alpha2_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

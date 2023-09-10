@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestGetambassadorIoTLSContextV1Resource(t *testing.T) {
+func TestGetambassadorIoTlscontextV1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_getambassador_io_tls_context_v1"
 
 	_, err := os.Stat(path)

@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: SloKoordinatorShNodeSLOV1Alpha1Manifest
+name: SloKoordinatorShNodeSloV1Alpha1Manifest
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/slo_koordinator_sh_v1alpha1/slo_koordinator_sh_node_slo_v1alpha1_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestSloKoordinatorShNodeSLOV1Alpha1Manifest ./terratest/slo_koordinator_sh_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestSloKoordinatorShNodeSloV1Alpha1Manifest ./terratest/slo_koordinator_sh_v1alpha1

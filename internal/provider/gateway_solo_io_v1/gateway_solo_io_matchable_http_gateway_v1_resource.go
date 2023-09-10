@@ -308,9 +308,10 @@ type GatewaySoloIoMatchableHttpGatewayV1ResourceData struct {
 						} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
 						Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
 					} `tfsdk:"grpc_service" json:"grpcService,omitempty"`
-					MaxMessageTimeout *string `tfsdk:"max_message_timeout" json:"maxMessageTimeout,omitempty"`
-					MessageTimeout    *string `tfsdk:"message_timeout" json:"messageTimeout,omitempty"`
-					MutationRules     *struct {
+					MaxMessageTimeout         *string   `tfsdk:"max_message_timeout" json:"maxMessageTimeout,omitempty"`
+					MessageTimeout            *string   `tfsdk:"message_timeout" json:"messageTimeout,omitempty"`
+					MetadataContextNamespaces *[]string `tfsdk:"metadata_context_namespaces" json:"metadataContextNamespaces,omitempty"`
+					MutationRules             *struct {
 						AllowAllRouting *bool `tfsdk:"allow_all_routing" json:"allowAllRouting,omitempty"`
 						AllowEnvoy      *bool `tfsdk:"allow_envoy" json:"allowEnvoy,omitempty"`
 						AllowExpression *struct {
@@ -337,9 +338,10 @@ type GatewaySoloIoMatchableHttpGatewayV1ResourceData struct {
 						ResponseHeaderMode  *string `tfsdk:"response_header_mode" json:"responseHeaderMode,omitempty"`
 						ResponseTrailerMode *string `tfsdk:"response_trailer_mode" json:"responseTrailerMode,omitempty"`
 					} `tfsdk:"processing_mode" json:"processingMode,omitempty"`
-					RequestAttributes  *[]string `tfsdk:"request_attributes" json:"requestAttributes,omitempty"`
-					ResponseAttributes *[]string `tfsdk:"response_attributes" json:"responseAttributes,omitempty"`
-					StatPrefix         *string   `tfsdk:"stat_prefix" json:"statPrefix,omitempty"`
+					RequestAttributes              *[]string `tfsdk:"request_attributes" json:"requestAttributes,omitempty"`
+					ResponseAttributes             *[]string `tfsdk:"response_attributes" json:"responseAttributes,omitempty"`
+					StatPrefix                     *string   `tfsdk:"stat_prefix" json:"statPrefix,omitempty"`
+					TypedMetadataContextNamespaces *[]string `tfsdk:"typed_metadata_context_namespaces" json:"typedMetadataContextNamespaces,omitempty"`
 				} `tfsdk:"ext_proc" json:"extProc,omitempty"`
 				Extauth *struct {
 					ClearRouteCache   *bool `tfsdk:"clear_route_cache" json:"clearRouteCache,omitempty"`
@@ -554,8 +556,22 @@ type GatewaySoloIoMatchableHttpGatewayV1ResourceData struct {
 					Via               *string `tfsdk:"via" json:"via,omitempty"`
 					XffNumTrustedHops *int64  `tfsdk:"xff_num_trusted_hops" json:"xffNumTrustedHops,omitempty"`
 				} `tfsdk:"http_connection_manager_settings" json:"httpConnectionManagerSettings,omitempty"`
-				LeftmostXffAddress *bool `tfsdk:"leftmost_xff_address" json:"leftmostXffAddress,omitempty"`
-				ProxyLatency       *struct {
+				HttpLocalRatelimit *struct {
+					DefaultLimit *struct {
+						FillInterval  *string `tfsdk:"fill_interval" json:"fillInterval,omitempty"`
+						MaxTokens     *int64  `tfsdk:"max_tokens" json:"maxTokens,omitempty"`
+						TokensPerFill *int64  `tfsdk:"tokens_per_fill" json:"tokensPerFill,omitempty"`
+					} `tfsdk:"default_limit" json:"defaultLimit,omitempty"`
+					EnableXRatelimitHeaders               *bool `tfsdk:"enable_x_ratelimit_headers" json:"enableXRatelimitHeaders,omitempty"`
+					LocalRateLimitPerDownstreamConnection *bool `tfsdk:"local_rate_limit_per_downstream_connection" json:"localRateLimitPerDownstreamConnection,omitempty"`
+				} `tfsdk:"http_local_ratelimit" json:"httpLocalRatelimit,omitempty"`
+				LeftmostXffAddress    *bool `tfsdk:"leftmost_xff_address" json:"leftmostXffAddress,omitempty"`
+				NetworkLocalRatelimit *struct {
+					FillInterval  *string `tfsdk:"fill_interval" json:"fillInterval,omitempty"`
+					MaxTokens     *int64  `tfsdk:"max_tokens" json:"maxTokens,omitempty"`
+					TokensPerFill *int64  `tfsdk:"tokens_per_fill" json:"tokensPerFill,omitempty"`
+				} `tfsdk:"network_local_ratelimit" json:"networkLocalRatelimit,omitempty"`
+				ProxyLatency *struct {
 					ChargeClusterStat        *bool   `tfsdk:"charge_cluster_stat" json:"chargeClusterStat,omitempty"`
 					ChargeListenerStat       *bool   `tfsdk:"charge_listener_stat" json:"chargeListenerStat,omitempty"`
 					EmitDynamicMetadata      *bool   `tfsdk:"emit_dynamic_metadata" json:"emitDynamicMetadata,omitempty"`
@@ -2446,6 +2462,15 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Resource) Schema(_ context.Context, 
 												Computed:            false,
 											},
 
+											"metadata_context_namespaces": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"mutation_rules": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -2649,6 +2674,15 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Resource) Schema(_ context.Context, 
 											"stat_prefix": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"typed_metadata_context_namespaces": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4151,12 +4185,111 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Resource) Schema(_ context.Context, 
 										Computed: false,
 									},
 
+									"http_local_ratelimit": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"default_limit": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"fill_interval": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"max_tokens": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"tokens_per_fill": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"enable_x_ratelimit_headers": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"local_rate_limit_per_downstream_connection": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"leftmost_xff_address": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"network_local_ratelimit": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"fill_interval": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"max_tokens": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tokens_per_fill": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+													int64validator.AtMost(4.294967295e+09),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"proxy_latency": schema.SingleNestedAttribute{

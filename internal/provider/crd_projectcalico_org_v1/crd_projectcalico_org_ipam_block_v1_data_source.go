@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &CrdProjectcalicoOrgIPAMBlockV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &CrdProjectcalicoOrgIPAMBlockV1DataSource{}
+	_ datasource.DataSource              = &CrdProjectcalicoOrgIpamblockV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &CrdProjectcalicoOrgIpamblockV1DataSource{}
 )
 
-func NewCrdProjectcalicoOrgIPAMBlockV1DataSource() datasource.DataSource {
-	return &CrdProjectcalicoOrgIPAMBlockV1DataSource{}
+func NewCrdProjectcalicoOrgIpamblockV1DataSource() datasource.DataSource {
+	return &CrdProjectcalicoOrgIpamblockV1DataSource{}
 }
 
-type CrdProjectcalicoOrgIPAMBlockV1DataSource struct {
+type CrdProjectcalicoOrgIpamblockV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type CrdProjectcalicoOrgIPAMBlockV1DataSourceData struct {
+type CrdProjectcalicoOrgIpamblockV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -64,11 +64,11 @@ type CrdProjectcalicoOrgIPAMBlockV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CrdProjectcalicoOrgIPAMBlockV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CrdProjectcalicoOrgIpamblockV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_ipam_block_v1"
 }
 
-func (r *CrdProjectcalicoOrgIPAMBlockV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CrdProjectcalicoOrgIpamblockV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -226,7 +226,7 @@ func (r *CrdProjectcalicoOrgIPAMBlockV1DataSource) Schema(_ context.Context, _ d
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPAMBlockV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *CrdProjectcalicoOrgIpamblockV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -249,10 +249,10 @@ func (r *CrdProjectcalicoOrgIPAMBlockV1DataSource) Configure(_ context.Context, 
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPAMBlockV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CrdProjectcalicoOrgIpamblockV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_crd_projectcalico_org_ipam_block_v1")
 
-	var data CrdProjectcalicoOrgIPAMBlockV1DataSourceData
+	var data CrdProjectcalicoOrgIpamblockV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -280,7 +280,7 @@ func (r *CrdProjectcalicoOrgIPAMBlockV1DataSource) Read(ctx context.Context, req
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgIPAMBlockV1DataSourceData
+	var readResponse CrdProjectcalicoOrgIpamblockV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -236,7 +236,14 @@ type CamelApacheOrgKameletBindingV1Alpha1DataSourceData struct {
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 							TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 						} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+						ResizePolicy *[]struct {
+							ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+							RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+						} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 						Resources *struct {
+							Claims *[]struct {
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
@@ -465,7 +472,14 @@ type CamelApacheOrgKameletBindingV1Alpha1DataSourceData struct {
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 							TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 						} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+						ResizePolicy *[]struct {
+							ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+							RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+						} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 						Resources *struct {
+							Claims *[]struct {
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
@@ -694,7 +708,14 @@ type CamelApacheOrgKameletBindingV1Alpha1DataSourceData struct {
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 							TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 						} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+						ResizePolicy *[]struct {
+							ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+							RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+						} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 						Resources *struct {
+							Claims *[]struct {
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
@@ -911,11 +932,15 @@ type CamelApacheOrgKameletBindingV1Alpha1DataSourceData struct {
 										Name     *string `tfsdk:"name" json:"name,omitempty"`
 									} `tfsdk:"data_source" json:"dataSource,omitempty"`
 									DataSourceRef *struct {
-										ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-										Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-										Name     *string `tfsdk:"name" json:"name,omitempty"`
+										ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+										Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+										Name      *string `tfsdk:"name" json:"name,omitempty"`
+										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 									} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 									Resources *struct {
+										Claims *[]struct {
+											Name *string `tfsdk:"name" json:"name,omitempty"`
+										} `tfsdk:"claims" json:"claims,omitempty"`
 										Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 										Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 									} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1610,8 +1635,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Metadata(_ context.Cont
 
 func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "KameletBinding is the Schema for the kamelets binding API",
-		MarkdownDescription: "KameletBinding is the Schema for the kamelets binding API",
+		Description:         "KameletBinding is the Schema for the kamelets binding API.",
+		MarkdownDescription: "KameletBinding is the Schema for the kamelets binding API.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -1676,8 +1701,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 				MarkdownDescription: "the specification of a KameletBinding",
 				Attributes: map[string]schema.Attribute{
 					"error_handler": schema.MapAttribute{
-						Description:         "ErrorHandler is an optional handler called upon an error occuring in the integration",
-						MarkdownDescription: "ErrorHandler is an optional handler called upon an error occuring in the integration",
+						Description:         "ErrorHandler is an optional handler called upon an error occurring in the integration",
+						MarkdownDescription: "ErrorHandler is an optional handler called upon an error occurring in the integration",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            false,
@@ -2276,8 +2301,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "The header field name",
-																								MarkdownDescription: "The header field name",
+																								Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            false,
 																								Optional:            false,
 																								Computed:            true,
@@ -2396,8 +2421,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "The header field name",
-																								MarkdownDescription: "The header field name",
+																								Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            false,
 																								Optional:            false,
 																								Computed:            true,
@@ -2512,8 +2537,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -2554,8 +2579,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
+																						Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																						MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																						Required:            false,
 																						Optional:            false,
 																						Computed:            true,
@@ -2764,8 +2789,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -2806,8 +2831,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
+																						Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																						MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																						Required:            false,
 																						Optional:            false,
 																						Computed:            true,
@@ -2926,10 +2951,56 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 															Computed: true,
 														},
 
+														"resize_policy": schema.ListNestedAttribute{
+															Description:         "Resources resize policy for the container.",
+															MarkdownDescription: "Resources resize policy for the container.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"resource_name": schema.StringAttribute{
+																		Description:         "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+																		MarkdownDescription: "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+
+																	"restart_policy": schema.StringAttribute{
+																		Description:         "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+																		MarkdownDescription: "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+																},
+															},
+															Required: false,
+															Optional: false,
+															Computed: true,
+														},
+
 														"resources": schema.SingleNestedAttribute{
 															Description:         "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 															MarkdownDescription: "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 															Attributes: map[string]schema.Attribute{
+																"claims": schema.ListNestedAttribute{
+																	Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																	MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"name": schema.StringAttribute{
+																				Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																				MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																				Required:            false,
+																				Optional:            false,
+																				Computed:            true,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: false,
+																	Computed: true,
+																},
+
 																"limits": schema.MapAttribute{
 																	Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -2940,8 +3011,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"requests": schema.MapAttribute{
-																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            false,
@@ -3183,8 +3254,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3225,8 +3296,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
+																						Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																						MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																						Required:            false,
 																						Optional:            false,
 																						Computed:            true,
@@ -3805,8 +3876,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "The header field name",
-																								MarkdownDescription: "The header field name",
+																								Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            false,
 																								Optional:            false,
 																								Computed:            true,
@@ -3925,8 +3996,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "The header field name",
-																								MarkdownDescription: "The header field name",
+																								Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            false,
 																								Optional:            false,
 																								Computed:            true,
@@ -4041,8 +4112,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4083,8 +4154,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
+																						Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																						MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																						Required:            false,
 																						Optional:            false,
 																						Computed:            true,
@@ -4293,8 +4364,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4335,8 +4406,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
+																						Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																						MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																						Required:            false,
 																						Optional:            false,
 																						Computed:            true,
@@ -4455,10 +4526,56 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 															Computed: true,
 														},
 
+														"resize_policy": schema.ListNestedAttribute{
+															Description:         "Resources resize policy for the container.",
+															MarkdownDescription: "Resources resize policy for the container.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"resource_name": schema.StringAttribute{
+																		Description:         "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+																		MarkdownDescription: "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+
+																	"restart_policy": schema.StringAttribute{
+																		Description:         "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+																		MarkdownDescription: "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+																},
+															},
+															Required: false,
+															Optional: false,
+															Computed: true,
+														},
+
 														"resources": schema.SingleNestedAttribute{
 															Description:         "Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod.",
 															MarkdownDescription: "Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod.",
 															Attributes: map[string]schema.Attribute{
+																"claims": schema.ListNestedAttribute{
+																	Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																	MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"name": schema.StringAttribute{
+																				Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																				MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																				Required:            false,
+																				Optional:            false,
+																				Computed:            true,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: false,
+																	Computed: true,
+																},
+
 																"limits": schema.MapAttribute{
 																	Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -4469,8 +4586,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"requests": schema.MapAttribute{
-																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            false,
@@ -4712,8 +4829,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4754,8 +4871,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
+																						Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																						MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																						Required:            false,
 																						Optional:            false,
 																						Computed:            true,
@@ -5334,8 +5451,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "The header field name",
-																								MarkdownDescription: "The header field name",
+																								Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            false,
 																								Optional:            false,
 																								Computed:            true,
@@ -5454,8 +5571,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"name": schema.StringAttribute{
-																								Description:         "The header field name",
-																								MarkdownDescription: "The header field name",
+																								Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																								MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																								Required:            false,
 																								Optional:            false,
 																								Computed:            true,
@@ -5570,8 +5687,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5612,8 +5729,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
+																						Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																						MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																						Required:            false,
 																						Optional:            false,
 																						Computed:            true,
@@ -5822,8 +5939,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5864,8 +5981,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
+																						Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																						MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																						Required:            false,
 																						Optional:            false,
 																						Computed:            true,
@@ -5984,10 +6101,56 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 															Computed: true,
 														},
 
+														"resize_policy": schema.ListNestedAttribute{
+															Description:         "Resources resize policy for the container.",
+															MarkdownDescription: "Resources resize policy for the container.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"resource_name": schema.StringAttribute{
+																		Description:         "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+																		MarkdownDescription: "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+
+																	"restart_policy": schema.StringAttribute{
+																		Description:         "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+																		MarkdownDescription: "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+																},
+															},
+															Required: false,
+															Optional: false,
+															Computed: true,
+														},
+
 														"resources": schema.SingleNestedAttribute{
 															Description:         "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 															MarkdownDescription: "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 															Attributes: map[string]schema.Attribute{
+																"claims": schema.ListNestedAttribute{
+																	Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																	MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"name": schema.StringAttribute{
+																				Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																				MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																				Required:            false,
+																				Optional:            false,
+																				Computed:            true,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: false,
+																	Computed: true,
+																},
+
 																"limits": schema.MapAttribute{
 																	Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -5998,8 +6161,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"requests": schema.MapAttribute{
-																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            false,
@@ -6241,8 +6404,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -6283,8 +6446,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"name": schema.StringAttribute{
-																						Description:         "The header field name",
-																						MarkdownDescription: "The header field name",
+																						Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																						MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																						Required:            false,
 																						Optional:            false,
 																						Computed:            true,
@@ -6671,8 +6834,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 													},
 
 													"supplemental_groups": schema.ListAttribute{
-														Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.",
-														MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.",
+														Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+														MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            false,
@@ -6820,8 +6983,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.",
+															Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            false,
@@ -6845,16 +7008,16 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 														},
 
 														"node_affinity_policy": schema.StringAttribute{
-															Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-															MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+															Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+															MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 															Required:            false,
 															Optional:            false,
 															Computed:            true,
 														},
 
 														"node_taints_policy": schema.StringAttribute{
-															Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-															MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+															Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+															MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 															Required:            false,
 															Optional:            false,
 															Computed:            true,
@@ -7377,8 +7540,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																},
 
 																"size_limit": schema.StringAttribute{
-																	Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
-																	MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
+																	Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																	MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 																	Required:            false,
 																	Optional:            false,
 																	Computed:            true,
@@ -7420,8 +7583,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																				},
 
 																				"data_source": schema.SingleNestedAttribute{
-																					Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
-																					MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+																					Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
+																					MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
 																					Attributes: map[string]schema.Attribute{
 																						"api_group": schema.StringAttribute{
 																							Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -7453,8 +7616,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																				},
 
 																				"data_source_ref": schema.SingleNestedAttribute{
-																					Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
-																					MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+																					Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. * While dataSource only allows local objects, dataSourceRef allows objects   in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																					MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. * While dataSource only allows local objects, dataSourceRef allows objects   in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 																					Attributes: map[string]schema.Attribute{
 																						"api_group": schema.StringAttribute{
 																							Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -7479,6 +7642,14 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																							Optional:            false,
 																							Computed:            true,
 																						},
+
+																						"namespace": schema.StringAttribute{
+																							Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																							MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																							Required:            false,
+																							Optional:            false,
+																							Computed:            true,
+																						},
 																					},
 																					Required: false,
 																					Optional: false,
@@ -7489,6 +7660,25 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																					Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																					MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																					Attributes: map[string]schema.Attribute{
+																						"claims": schema.ListNestedAttribute{
+																							Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																							MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"name": schema.StringAttribute{
+																										Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																										MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																										Required:            false,
+																										Optional:            false,
+																										Computed:            true,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: false,
+																							Computed: true,
+																						},
+
 																						"limits": schema.MapAttribute{
 																							Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																							MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -7499,8 +7689,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1DataSource) Schema(_ context.Contex
 																						},
 
 																						"requests": schema.MapAttribute{
-																							Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																							MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																							Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																							MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            false,

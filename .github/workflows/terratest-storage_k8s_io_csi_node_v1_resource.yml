@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: StorageK8SIoCSINodeV1Resource
+name: StorageK8SIoCsinodeV1Resource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/storage_k8s_io_v1/storage_k8s_io_csi_node_v1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestStorageK8SIoCSINodeV1Resource ./terratest/storage_k8s_io_v1
+        run: go test -v -timeout=120s -count=1 -run TestStorageK8SIoCsinodeV1Resource ./terratest/storage_k8s_io_v1

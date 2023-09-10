@@ -547,6 +547,13 @@ spec:
                               description: Whether automatic restart for failed connectors
                                 and tasks should be enabled or disabled.
                               type: boolean
+                            maxRestarts:
+                              description: The maximum number of connector restarts
+                                that the operator will try. If the connector remains
+                                in a failed state after reaching this limit, it must
+                                be restarted manually by the user. Defaults to an
+                                unlimited number of restarts.
+                              type: integer
                           type: object
                         config:
                           description: 'The Kafka Connector configuration. The following
@@ -587,6 +594,13 @@ spec:
                               description: Whether automatic restart for failed connectors
                                 and tasks should be enabled or disabled.
                               type: boolean
+                            maxRestarts:
+                              description: The maximum number of connector restarts
+                                that the operator will try. If the connector remains
+                                in a failed state after reaching this limit, it must
+                                be restarted manually by the user. Defaults to an
+                                unlimited number of restarts.
+                              type: integer
                           type: object
                         config:
                           description: 'The Kafka Connector configuration. The following
@@ -618,6 +632,13 @@ spec:
                               description: Whether automatic restart for failed connectors
                                 and tasks should be enabled or disabled.
                               type: boolean
+                            maxRestarts:
+                              description: The maximum number of connector restarts
+                                that the operator will try. If the connector remains
+                                in a failed state after reaching this limit, it must
+                                be restarted manually by the user. Defaults to an
+                                unlimited number of restarts.
+                              type: integer
                           type: object
                         config:
                           description: 'The Kafka Connector configuration. The following
@@ -2152,9 +2173,9 @@ spec:
                 properties:
                   type:
                     description: Type of the tracing used. Currently the only supported
-                      types are `jaeger` for OpenTracing (Jaeger) tracing and `opentelemetry`
-                      for OpenTelemetry tracing. The OpenTracing (Jaeger) tracing
-                      is deprecated.
+                      type is `opentelemetry` for OpenTelemetry tracing. As of Strimzi
+                      0.37.0, `jaeger` type is not supported anymore and this option
+                      is ignored.
                     enum:
                     - jaeger
                     - opentelemetry

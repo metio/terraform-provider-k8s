@@ -264,16 +264,16 @@ func (r *BusVolcanoShCommandV1Alpha1Resource) Schema(_ context.Context, _ resour
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-						MarkdownDescription: "Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"uid": schema.StringAttribute{
-						Description:         "UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
-						MarkdownDescription: "UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids",
+						Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+						MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

@@ -46,7 +46,8 @@ type KafkaStrimziIoKafkaConnectorV1Beta2ManifestData struct {
 
 	Spec *struct {
 		AutoRestart *struct {
-			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			Enabled     *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+			MaxRestarts *int64 `tfsdk:"max_restarts" json:"maxRestarts,omitempty"`
 		} `tfsdk:"auto_restart" json:"autoRestart,omitempty"`
 		Class    *string            `tfsdk:"class" json:"class,omitempty"`
 		Config   *map[string]string `tfsdk:"config" json:"config,omitempty"`
@@ -147,6 +148,14 @@ func (r *KafkaStrimziIoKafkaConnectorV1Beta2Manifest) Schema(_ context.Context, 
 							"enabled": schema.BoolAttribute{
 								Description:         "Whether automatic restart for failed connectors and tasks should be enabled or disabled.",
 								MarkdownDescription: "Whether automatic restart for failed connectors and tasks should be enabled or disabled.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"max_restarts": schema.Int64Attribute{
+								Description:         "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.",
+								MarkdownDescription: "The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

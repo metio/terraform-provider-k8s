@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Manifest(t *testing.T) {
+func TestSecretgeneratorMittwaldDeSshkeyPairV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_secretgenerator_mittwald_de_ssh_key_pair_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

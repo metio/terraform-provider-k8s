@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &CrdProjectcalicoOrgIPPoolV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &CrdProjectcalicoOrgIPPoolV1DataSource{}
+	_ datasource.DataSource              = &CrdProjectcalicoOrgIppoolV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &CrdProjectcalicoOrgIppoolV1DataSource{}
 )
 
-func NewCrdProjectcalicoOrgIPPoolV1DataSource() datasource.DataSource {
-	return &CrdProjectcalicoOrgIPPoolV1DataSource{}
+func NewCrdProjectcalicoOrgIppoolV1DataSource() datasource.DataSource {
+	return &CrdProjectcalicoOrgIppoolV1DataSource{}
 }
 
-type CrdProjectcalicoOrgIPPoolV1DataSource struct {
+type CrdProjectcalicoOrgIppoolV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type CrdProjectcalicoOrgIPPoolV1DataSourceData struct {
+type CrdProjectcalicoOrgIppoolV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -65,11 +65,11 @@ type CrdProjectcalicoOrgIPPoolV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_ip_pool_v1"
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -230,7 +230,7 @@ func (r *CrdProjectcalicoOrgIPPoolV1DataSource) Schema(_ context.Context, _ data
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -253,10 +253,10 @@ func (r *CrdProjectcalicoOrgIPPoolV1DataSource) Configure(_ context.Context, req
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPPoolV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CrdProjectcalicoOrgIppoolV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_crd_projectcalico_org_ip_pool_v1")
 
-	var data CrdProjectcalicoOrgIPPoolV1DataSourceData
+	var data CrdProjectcalicoOrgIppoolV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -284,7 +284,7 @@ func (r *CrdProjectcalicoOrgIPPoolV1DataSource) Read(ctx context.Context, reques
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgIPPoolV1DataSourceData
+	var readResponse CrdProjectcalicoOrgIppoolV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

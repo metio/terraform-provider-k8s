@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestCiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource(t *testing.T) {
+func TestCiliumIoCiliumBgppeeringPolicyV2Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1"
 
 	_, err := os.Stat(path)

@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestKumaIoMeshHTTPRouteV1Alpha1Manifest(t *testing.T) {
+func TestKumaIoMeshHttprouteV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_kuma_io_mesh_http_route_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

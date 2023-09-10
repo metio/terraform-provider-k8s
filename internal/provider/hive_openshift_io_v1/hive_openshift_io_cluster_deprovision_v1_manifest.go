@@ -44,6 +44,7 @@ type HiveOpenshiftIoClusterDeprovisionV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		BaseDomain  *string `tfsdk:"base_domain" json:"baseDomain,omitempty"`
 		ClusterID   *string `tfsdk:"cluster_id" json:"clusterID,omitempty"`
 		ClusterName *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
 		InfraID     *string `tfsdk:"infra_id" json:"infraID,omitempty"`
@@ -202,6 +203,14 @@ func (r *HiveOpenshiftIoClusterDeprovisionV1Manifest) Schema(_ context.Context, 
 				Description:         "ClusterDeprovisionSpec defines the desired state of ClusterDeprovision",
 				MarkdownDescription: "ClusterDeprovisionSpec defines the desired state of ClusterDeprovision",
 				Attributes: map[string]schema.Attribute{
+					"base_domain": schema.StringAttribute{
+						Description:         "BaseDomain is the DNS base domain.",
+						MarkdownDescription: "BaseDomain is the DNS base domain.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"cluster_id": schema.StringAttribute{
 						Description:         "ClusterID is a globally unique identifier for the cluster to deprovision. It will be used if specified.",
 						MarkdownDescription: "ClusterID is a globally unique identifier for the cluster to deprovision. It will be used if specified.",
@@ -235,8 +244,8 @@ func (r *HiveOpenshiftIoClusterDeprovisionV1Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "AlibabaCloud contains Alibaba Cloud specific deprovision settings",
 								Attributes: map[string]schema.Attribute{
 									"base_domain": schema.StringAttribute{
-										Description:         "BaseDomain is the DNS base domain",
-										MarkdownDescription: "BaseDomain is the DNS base domain",
+										Description:         "BaseDomain is the DNS base domain. TODO: Use the non-platform-specific BaseDomain field.",
+										MarkdownDescription: "BaseDomain is the DNS base domain. TODO: Use the non-platform-specific BaseDomain field.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -423,8 +432,8 @@ func (r *HiveOpenshiftIoClusterDeprovisionV1Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "IBMCloud contains IBM Cloud specific deprovision settings",
 								Attributes: map[string]schema.Attribute{
 									"base_domain": schema.StringAttribute{
-										Description:         "BaseDomain is the DNS base domain",
-										MarkdownDescription: "BaseDomain is the DNS base domain",
+										Description:         "BaseDomain is the DNS base domain. TODO: Use the non-platform-specific BaseDomain field.",
+										MarkdownDescription: "BaseDomain is the DNS base domain. TODO: Use the non-platform-specific BaseDomain field.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,

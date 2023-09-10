@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: KumaIoMeshHTTPRouteV1Alpha1Manifest
+name: KumaIoMeshHttprouteV1Alpha1Manifest
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/kuma_io_v1alpha1/kuma_io_mesh_http_route_v1alpha1_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestKumaIoMeshHTTPRouteV1Alpha1Manifest ./terratest/kuma_io_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestKumaIoMeshHttprouteV1Alpha1Manifest ./terratest/kuma_io_v1alpha1

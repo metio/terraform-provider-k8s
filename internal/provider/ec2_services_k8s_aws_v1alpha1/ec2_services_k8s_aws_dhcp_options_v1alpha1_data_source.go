@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource{}
+	_ datasource.DataSource              = &Ec2ServicesK8SAwsDhcpoptionsV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &Ec2ServicesK8SAwsDhcpoptionsV1Alpha1DataSource{}
 )
 
-func NewEc2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource() datasource.DataSource {
-	return &Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource{}
+func NewEc2ServicesK8SAwsDhcpoptionsV1Alpha1DataSource() datasource.DataSource {
+	return &Ec2ServicesK8SAwsDhcpoptionsV1Alpha1DataSource{}
 }
 
-type Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource struct {
+type Ec2ServicesK8SAwsDhcpoptionsV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSourceData struct {
+type Ec2ServicesK8SAwsDhcpoptionsV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -67,11 +67,11 @@ type Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *Ec2ServicesK8SAwsDhcpoptionsV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_ec2_services_k8s_aws_dhcp_options_v1alpha1"
 }
 
-func (r *Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *Ec2ServicesK8SAwsDhcpoptionsV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DHCPOptions is the Schema for the DHCPOptions API",
 		MarkdownDescription: "DHCPOptions is the Schema for the DHCPOptions API",
@@ -238,7 +238,7 @@ func (r *Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource) Schema(_ context.Contex
 	}
 }
 
-func (r *Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *Ec2ServicesK8SAwsDhcpoptionsV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -261,10 +261,10 @@ func (r *Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource) Configure(_ context.Con
 	}
 }
 
-func (r *Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *Ec2ServicesK8SAwsDhcpoptionsV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_ec2_services_k8s_aws_dhcp_options_v1alpha1")
 
-	var data Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSourceData
+	var data Ec2ServicesK8SAwsDhcpoptionsV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -293,7 +293,7 @@ func (r *Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSource) Read(ctx context.Contex
 		return
 	}
 
-	var readResponse Ec2ServicesK8SAwsDHCPOptionsV1Alpha1DataSourceData
+	var readResponse Ec2ServicesK8SAwsDhcpoptionsV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

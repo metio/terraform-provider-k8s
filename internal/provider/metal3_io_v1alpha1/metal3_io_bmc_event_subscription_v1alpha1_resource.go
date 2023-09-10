@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &Metal3IoBMCEventSubscriptionV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &Metal3IoBMCEventSubscriptionV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &Metal3IoBMCEventSubscriptionV1Alpha1Resource{}
+	_ resource.Resource                = &Metal3IoBmceventSubscriptionV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &Metal3IoBmceventSubscriptionV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &Metal3IoBmceventSubscriptionV1Alpha1Resource{}
 )
 
-func NewMetal3IoBMCEventSubscriptionV1Alpha1Resource() resource.Resource {
-	return &Metal3IoBMCEventSubscriptionV1Alpha1Resource{}
+func NewMetal3IoBmceventSubscriptionV1Alpha1Resource() resource.Resource {
+	return &Metal3IoBmceventSubscriptionV1Alpha1Resource{}
 }
 
-type Metal3IoBMCEventSubscriptionV1Alpha1Resource struct {
+type Metal3IoBmceventSubscriptionV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type Metal3IoBMCEventSubscriptionV1Alpha1ResourceData struct {
+type Metal3IoBmceventSubscriptionV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -72,11 +72,11 @@ type Metal3IoBMCEventSubscriptionV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_metal3_io_bmc_event_subscription_v1alpha1"
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "BMCEventSubscription is the Schema for the fast eventing API",
 		MarkdownDescription: "BMCEventSubscription is the Schema for the fast eventing API",
@@ -262,7 +262,7 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Schema(_ context.Context,
 	}
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -287,10 +287,10 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Configure(_ context.Conte
 	}
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_metal3_io_bmc_event_subscription_v1alpha1")
 
-	var model Metal3IoBMCEventSubscriptionV1Alpha1ResourceData
+	var model Metal3IoBmceventSubscriptionV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -348,7 +348,7 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Create(ctx context.Contex
 		return
 	}
 
-	var readResponse Metal3IoBMCEventSubscriptionV1Alpha1ResourceData
+	var readResponse Metal3IoBmceventSubscriptionV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -366,10 +366,10 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Create(ctx context.Contex
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_metal3_io_bmc_event_subscription_v1alpha1")
 
-	var data Metal3IoBMCEventSubscriptionV1Alpha1ResourceData
+	var data Metal3IoBmceventSubscriptionV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -398,7 +398,7 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Read(ctx context.Context,
 		return
 	}
 
-	var readResponse Metal3IoBMCEventSubscriptionV1Alpha1ResourceData
+	var readResponse Metal3IoBmceventSubscriptionV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -416,10 +416,10 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Read(ctx context.Context,
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_metal3_io_bmc_event_subscription_v1alpha1")
 
-	var model Metal3IoBMCEventSubscriptionV1Alpha1ResourceData
+	var model Metal3IoBmceventSubscriptionV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -476,7 +476,7 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Update(ctx context.Contex
 		return
 	}
 
-	var readResponse Metal3IoBMCEventSubscriptionV1Alpha1ResourceData
+	var readResponse Metal3IoBmceventSubscriptionV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -494,10 +494,10 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Update(ctx context.Contex
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_metal3_io_bmc_event_subscription_v1alpha1")
 
-	var data Metal3IoBMCEventSubscriptionV1Alpha1ResourceData
+	var data Metal3IoBmceventSubscriptionV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -518,7 +518,7 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) Delete(ctx context.Contex
 	}
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

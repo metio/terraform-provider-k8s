@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &AutoscalingKarmadaIoFederatedHPAV1Alpha1Manifest{}
+	_ datasource.DataSource = &AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest{}
 )
 
-func NewAutoscalingKarmadaIoFederatedHPAV1Alpha1Manifest() datasource.DataSource {
-	return &AutoscalingKarmadaIoFederatedHPAV1Alpha1Manifest{}
+func NewAutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest() datasource.DataSource {
+	return &AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest{}
 }
 
-type AutoscalingKarmadaIoFederatedHPAV1Alpha1Manifest struct{}
+type AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest struct{}
 
-type AutoscalingKarmadaIoFederatedHPAV1Alpha1ManifestData struct {
+type AutoscalingKarmadaIoFederatedHpaV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -158,11 +158,11 @@ type AutoscalingKarmadaIoFederatedHPAV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *AutoscalingKarmadaIoFederatedHPAV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_autoscaling_karmada_io_federated_hpa_v1alpha1_manifest"
 }
 
-func (r *AutoscalingKarmadaIoFederatedHPAV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters. When the system load increases, it will query the metrics from multiple clusters and scales up the replicas. When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas. After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.",
 		MarkdownDescription: "FederatedHPA is centralized HPA that can aggregate the metrics in multiple clusters. When the system load increases, it will query the metrics from multiple clusters and scales up the replicas. When the system load decreases, it will query the metrics from multiple clusters and scales down the replicas. After the replicas are scaled up/down, karmada-scheduler will schedule the replicas based on the policy.",
@@ -968,10 +968,10 @@ func (r *AutoscalingKarmadaIoFederatedHPAV1Alpha1Manifest) Schema(_ context.Cont
 	}
 }
 
-func (r *AutoscalingKarmadaIoFederatedHPAV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *AutoscalingKarmadaIoFederatedHpaV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_autoscaling_karmada_io_federated_hpa_v1alpha1_manifest")
 
-	var model AutoscalingKarmadaIoFederatedHPAV1Alpha1ManifestData
+	var model AutoscalingKarmadaIoFederatedHpaV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

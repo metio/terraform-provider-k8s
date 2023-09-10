@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestGetambassadorIoTLSContextV3Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestGetambassadorIoTlscontextV3Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	getambassador_io_v3alpha1.NewGetambassadorIoTLSContextV3Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	getambassador_io_v3alpha1.NewGetambassadorIoTlscontextV3Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &LoggingBanzaicloudIoSyslogNGFlowV1Beta1Manifest{}
+	_ datasource.DataSource = &LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest{}
 )
 
-func NewLoggingBanzaicloudIoSyslogNGFlowV1Beta1Manifest() datasource.DataSource {
-	return &LoggingBanzaicloudIoSyslogNGFlowV1Beta1Manifest{}
+func NewLoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest() datasource.DataSource {
+	return &LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest{}
 }
 
-type LoggingBanzaicloudIoSyslogNGFlowV1Beta1Manifest struct{}
+type LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest struct{}
 
-type LoggingBanzaicloudIoSyslogNGFlowV1Beta1ManifestData struct {
+type LoggingBanzaicloudIoSyslogNgflowV1Beta1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -176,11 +176,11 @@ type LoggingBanzaicloudIoSyslogNGFlowV1Beta1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_logging_banzaicloud_io_syslog_ng_flow_v1beta1_manifest"
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -1165,10 +1165,10 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Manifest) Schema(_ context.Conte
 	}
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_logging_banzaicloud_io_syslog_ng_flow_v1beta1_manifest")
 
-	var model LoggingBanzaicloudIoSyslogNGFlowV1Beta1ManifestData
+	var model LoggingBanzaicloudIoSyslogNgflowV1Beta1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

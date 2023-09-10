@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &TraefikIoTLSOptionV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &TraefikIoTLSOptionV1Alpha1DataSource{}
+	_ datasource.DataSource              = &TraefikIoTlsoptionV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &TraefikIoTlsoptionV1Alpha1DataSource{}
 )
 
-func NewTraefikIoTLSOptionV1Alpha1DataSource() datasource.DataSource {
-	return &TraefikIoTLSOptionV1Alpha1DataSource{}
+func NewTraefikIoTlsoptionV1Alpha1DataSource() datasource.DataSource {
+	return &TraefikIoTlsoptionV1Alpha1DataSource{}
 }
 
-type TraefikIoTLSOptionV1Alpha1DataSource struct {
+type TraefikIoTlsoptionV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type TraefikIoTLSOptionV1Alpha1DataSourceData struct {
+type TraefikIoTlsoptionV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -63,11 +63,11 @@ type TraefikIoTLSOptionV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoTLSOptionV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TraefikIoTlsoptionV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_tls_option_v1alpha1"
 }
 
-func (r *TraefikIoTLSOptionV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TraefikIoTlsoptionV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection. More info: https://doc.traefik.io/traefik/v3.0/https/tls/#tls-options",
 		MarkdownDescription: "TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection. More info: https://doc.traefik.io/traefik/v3.0/https/tls/#tls-options",
@@ -219,7 +219,7 @@ func (r *TraefikIoTLSOptionV1Alpha1DataSource) Schema(_ context.Context, _ datas
 	}
 }
 
-func (r *TraefikIoTLSOptionV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *TraefikIoTlsoptionV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -242,10 +242,10 @@ func (r *TraefikIoTLSOptionV1Alpha1DataSource) Configure(_ context.Context, requ
 	}
 }
 
-func (r *TraefikIoTLSOptionV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TraefikIoTlsoptionV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_traefik_io_tls_option_v1alpha1")
 
-	var data TraefikIoTLSOptionV1Alpha1DataSourceData
+	var data TraefikIoTlsoptionV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -274,7 +274,7 @@ func (r *TraefikIoTLSOptionV1Alpha1DataSource) Read(ctx context.Context, request
 		return
 	}
 
-	var readResponse TraefikIoTLSOptionV1Alpha1DataSourceData
+	var readResponse TraefikIoTlsoptionV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

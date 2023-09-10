@@ -31,22 +31,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource{}
-	_ resource.ResourceWithConfigure   = &SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource{}
-	_ resource.ResourceWithImportState = &SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource{}
+	_ resource.Resource                = &SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource{}
+	_ resource.ResourceWithConfigure   = &SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource{}
+	_ resource.ResourceWithImportState = &SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource{}
 )
 
-func NewSourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource() resource.Resource {
-	return &SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource{}
+func NewSourceToolkitFluxcdIoOcirepositoryV1Beta2Resource() resource.Resource {
+	return &SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource{}
 }
 
-type SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource struct {
+type SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type SourceToolkitFluxcdIoOCIRepositoryV1Beta2ResourceData struct {
+type SourceToolkitFluxcdIoOcirepositoryV1Beta2ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -95,11 +95,11 @@ type SourceToolkitFluxcdIoOCIRepositoryV1Beta2ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_source_toolkit_fluxcd_io_oci_repository_v1beta2"
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "OCIRepository is the Schema for the ocirepositories API",
 		MarkdownDescription: "OCIRepository is the Schema for the ocirepositories API",
@@ -444,7 +444,7 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Schema(_ context.Con
 	}
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -469,10 +469,10 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Configure(_ context.
 	}
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_source_toolkit_fluxcd_io_oci_repository_v1beta2")
 
-	var model SourceToolkitFluxcdIoOCIRepositoryV1Beta2ResourceData
+	var model SourceToolkitFluxcdIoOcirepositoryV1Beta2ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -530,7 +530,7 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Create(ctx context.C
 		return
 	}
 
-	var readResponse SourceToolkitFluxcdIoOCIRepositoryV1Beta2ResourceData
+	var readResponse SourceToolkitFluxcdIoOcirepositoryV1Beta2ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -548,10 +548,10 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Create(ctx context.C
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_source_toolkit_fluxcd_io_oci_repository_v1beta2")
 
-	var data SourceToolkitFluxcdIoOCIRepositoryV1Beta2ResourceData
+	var data SourceToolkitFluxcdIoOcirepositoryV1Beta2ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -580,7 +580,7 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Read(ctx context.Con
 		return
 	}
 
-	var readResponse SourceToolkitFluxcdIoOCIRepositoryV1Beta2ResourceData
+	var readResponse SourceToolkitFluxcdIoOcirepositoryV1Beta2ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -598,10 +598,10 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Read(ctx context.Con
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_source_toolkit_fluxcd_io_oci_repository_v1beta2")
 
-	var model SourceToolkitFluxcdIoOCIRepositoryV1Beta2ResourceData
+	var model SourceToolkitFluxcdIoOcirepositoryV1Beta2ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -658,7 +658,7 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Update(ctx context.C
 		return
 	}
 
-	var readResponse SourceToolkitFluxcdIoOCIRepositoryV1Beta2ResourceData
+	var readResponse SourceToolkitFluxcdIoOcirepositoryV1Beta2ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -676,10 +676,10 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Update(ctx context.C
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_source_toolkit_fluxcd_io_oci_repository_v1beta2")
 
-	var data SourceToolkitFluxcdIoOCIRepositoryV1Beta2ResourceData
+	var data SourceToolkitFluxcdIoOcirepositoryV1Beta2ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -700,7 +700,7 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) Delete(ctx context.C
 	}
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

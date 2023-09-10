@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: GetambassadorIoTLSContextV2DataSource
+name: GetambassadorIoTlscontextV2DataSource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/getambassador_io_v2/getambassador_io_tls_context_v2_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestGetambassadorIoTLSContextV2DataSource ./terratest/getambassador_io_v2
+        run: go test -v -timeout=120s -count=1 -run TestGetambassadorIoTlscontextV2DataSource ./terratest/getambassador_io_v2

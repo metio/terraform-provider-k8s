@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestLoggingBanzaicloudIoSyslogNGOutputV1Beta1Resource_ValidateSchema(t *testing.T) {
+func TestLoggingBanzaicloudIoSyslogNgoutputV1Beta1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	logging_banzaicloud_io_v1beta1.NewLoggingBanzaicloudIoSyslogNGOutputV1Beta1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	logging_banzaicloud_io_v1beta1.NewLoggingBanzaicloudIoSyslogNgoutputV1Beta1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

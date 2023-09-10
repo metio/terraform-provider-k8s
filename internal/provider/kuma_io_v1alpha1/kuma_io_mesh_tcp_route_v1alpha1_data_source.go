@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &KumaIoMeshTCPRouteV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &KumaIoMeshTCPRouteV1Alpha1DataSource{}
+	_ datasource.DataSource              = &KumaIoMeshTcprouteV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &KumaIoMeshTcprouteV1Alpha1DataSource{}
 )
 
-func NewKumaIoMeshTCPRouteV1Alpha1DataSource() datasource.DataSource {
-	return &KumaIoMeshTCPRouteV1Alpha1DataSource{}
+func NewKumaIoMeshTcprouteV1Alpha1DataSource() datasource.DataSource {
+	return &KumaIoMeshTcprouteV1Alpha1DataSource{}
 }
 
-type KumaIoMeshTCPRouteV1Alpha1DataSource struct {
+type KumaIoMeshTcprouteV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type KumaIoMeshTCPRouteV1Alpha1DataSourceData struct {
+type KumaIoMeshTcprouteV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -78,11 +78,11 @@ type KumaIoMeshTCPRouteV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *KumaIoMeshTCPRouteV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *KumaIoMeshTcprouteV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_kuma_io_mesh_tcp_route_v1alpha1"
 }
 
-func (r *KumaIoMeshTCPRouteV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *KumaIoMeshTcprouteV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -324,7 +324,7 @@ func (r *KumaIoMeshTCPRouteV1Alpha1DataSource) Schema(_ context.Context, _ datas
 	}
 }
 
-func (r *KumaIoMeshTCPRouteV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *KumaIoMeshTcprouteV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -347,10 +347,10 @@ func (r *KumaIoMeshTCPRouteV1Alpha1DataSource) Configure(_ context.Context, requ
 	}
 }
 
-func (r *KumaIoMeshTCPRouteV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *KumaIoMeshTcprouteV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_kuma_io_mesh_tcp_route_v1alpha1")
 
-	var data KumaIoMeshTCPRouteV1Alpha1DataSourceData
+	var data KumaIoMeshTcprouteV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -379,7 +379,7 @@ func (r *KumaIoMeshTCPRouteV1Alpha1DataSource) Read(ctx context.Context, request
 		return
 	}
 
-	var readResponse KumaIoMeshTCPRouteV1Alpha1DataSourceData
+	var readResponse KumaIoMeshTcprouteV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

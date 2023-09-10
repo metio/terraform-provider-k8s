@@ -32,22 +32,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource{}
-	_ resource.ResourceWithConfigure   = &GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource{}
-	_ resource.ResourceWithImportState = &GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource{}
+	_ resource.Resource                = &GatewayNetworkingK8SIoHttprouteV1Alpha2Resource{}
+	_ resource.ResourceWithConfigure   = &GatewayNetworkingK8SIoHttprouteV1Alpha2Resource{}
+	_ resource.ResourceWithImportState = &GatewayNetworkingK8SIoHttprouteV1Alpha2Resource{}
 )
 
-func NewGatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource() resource.Resource {
-	return &GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource{}
+func NewGatewayNetworkingK8SIoHttprouteV1Alpha2Resource() resource.Resource {
+	return &GatewayNetworkingK8SIoHttprouteV1Alpha2Resource{}
 }
 
-type GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource struct {
+type GatewayNetworkingK8SIoHttprouteV1Alpha2Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData struct {
+type GatewayNetworkingK8SIoHttprouteV1Alpha2ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -70,6 +70,7 @@ type GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData struct {
 			Kind        *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name        *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace   *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Port        *int64  `tfsdk:"port" json:"port,omitempty"`
 			SectionName *string `tfsdk:"section_name" json:"sectionName,omitempty"`
 		} `tfsdk:"parent_refs" json:"parentRefs,omitempty"`
 		Rules *[]struct {
@@ -101,12 +102,36 @@ type GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData struct {
 						} `tfsdk:"backend_ref" json:"backendRef,omitempty"`
 					} `tfsdk:"request_mirror" json:"requestMirror,omitempty"`
 					RequestRedirect *struct {
-						Hostname   *string `tfsdk:"hostname" json:"hostname,omitempty"`
+						Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
+						Path     *struct {
+							ReplaceFullPath    *string `tfsdk:"replace_full_path" json:"replaceFullPath,omitempty"`
+							ReplacePrefixMatch *string `tfsdk:"replace_prefix_match" json:"replacePrefixMatch,omitempty"`
+							Type               *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"path" json:"path,omitempty"`
 						Port       *int64  `tfsdk:"port" json:"port,omitempty"`
 						Scheme     *string `tfsdk:"scheme" json:"scheme,omitempty"`
 						StatusCode *int64  `tfsdk:"status_code" json:"statusCode,omitempty"`
 					} `tfsdk:"request_redirect" json:"requestRedirect,omitempty"`
-					Type *string `tfsdk:"type" json:"type,omitempty"`
+					ResponseHeaderModifier *struct {
+						Add *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"add" json:"add,omitempty"`
+						Remove *[]string `tfsdk:"remove" json:"remove,omitempty"`
+						Set    *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"set" json:"set,omitempty"`
+					} `tfsdk:"response_header_modifier" json:"responseHeaderModifier,omitempty"`
+					Type       *string `tfsdk:"type" json:"type,omitempty"`
+					UrlRewrite *struct {
+						Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
+						Path     *struct {
+							ReplaceFullPath    *string `tfsdk:"replace_full_path" json:"replaceFullPath,omitempty"`
+							ReplacePrefixMatch *string `tfsdk:"replace_prefix_match" json:"replacePrefixMatch,omitempty"`
+							Type               *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"path" json:"path,omitempty"`
+					} `tfsdk:"url_rewrite" json:"urlRewrite,omitempty"`
 				} `tfsdk:"filters" json:"filters,omitempty"`
 				Group     *string `tfsdk:"group" json:"group,omitempty"`
 				Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -142,12 +167,36 @@ type GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData struct {
 					} `tfsdk:"backend_ref" json:"backendRef,omitempty"`
 				} `tfsdk:"request_mirror" json:"requestMirror,omitempty"`
 				RequestRedirect *struct {
-					Hostname   *string `tfsdk:"hostname" json:"hostname,omitempty"`
+					Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
+					Path     *struct {
+						ReplaceFullPath    *string `tfsdk:"replace_full_path" json:"replaceFullPath,omitempty"`
+						ReplacePrefixMatch *string `tfsdk:"replace_prefix_match" json:"replacePrefixMatch,omitempty"`
+						Type               *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"path" json:"path,omitempty"`
 					Port       *int64  `tfsdk:"port" json:"port,omitempty"`
 					Scheme     *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					StatusCode *int64  `tfsdk:"status_code" json:"statusCode,omitempty"`
 				} `tfsdk:"request_redirect" json:"requestRedirect,omitempty"`
-				Type *string `tfsdk:"type" json:"type,omitempty"`
+				ResponseHeaderModifier *struct {
+					Add *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"add" json:"add,omitempty"`
+					Remove *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					Set    *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"set" json:"set,omitempty"`
+				} `tfsdk:"response_header_modifier" json:"responseHeaderModifier,omitempty"`
+				Type       *string `tfsdk:"type" json:"type,omitempty"`
+				UrlRewrite *struct {
+					Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
+					Path     *struct {
+						ReplaceFullPath    *string `tfsdk:"replace_full_path" json:"replaceFullPath,omitempty"`
+						ReplacePrefixMatch *string `tfsdk:"replace_prefix_match" json:"replacePrefixMatch,omitempty"`
+						Type               *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"path" json:"path,omitempty"`
+				} `tfsdk:"url_rewrite" json:"urlRewrite,omitempty"`
 			} `tfsdk:"filters" json:"filters,omitempty"`
 			Matches *[]struct {
 				Headers *[]struct {
@@ -170,11 +219,11 @@ type GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *GatewayNetworkingK8SIoHttprouteV1Alpha2Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_gateway_networking_k8s_io_http_route_v1alpha2"
 }
 
-func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *GatewayNetworkingK8SIoHttprouteV1Alpha2Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "HTTPRoute provides a way to route HTTP requests. This includes the capability to match requests by hostname, path, header, or query param. Filters can be used to specify additional processing steps. Backends specify where matching requests should be routed.",
 		MarkdownDescription: "HTTPRoute provides a way to route HTTP requests. This includes the capability to match requests by hostname, path, header, or query param. Filters can be used to specify additional processing steps. Backends specify where matching requests should be routed.",
@@ -304,8 +353,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 				MarkdownDescription: "Spec defines the desired state of HTTPRoute.",
 				Attributes: map[string]schema.Attribute{
 					"hostnames": schema.ListAttribute{
-						Description:         "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the request. This matches the RFC 1123 definition of a hostname with 2 notable exceptions:  1. IPs are not allowed. 2. A hostname may be prefixed with a wildcard label ('*.'). The wildcard    label must appear by itself as the first label.  If a hostname is specified by both the Listener and HTTPRoute, there must be at least one intersecting hostname for the HTTPRoute to be attached to the Listener. For example:  * A Listener with 'test.example.com' as the hostname matches HTTPRoutes   that have either not specified any hostnames, or have specified at   least one of 'test.example.com' or '*.example.com'. * A Listener with '*.example.com' as the hostname matches HTTPRoutes   that have either not specified any hostnames or have specified at least   one hostname that matches the Listener hostname. For example,   'test.example.com' and '*.example.com' would both match. On the other   hand, 'example.com' and 'test.example.net' would not match.  If both the Listener and HTTPRoute have specified hostnames, any HTTPRoute hostnames that do not match the Listener hostname MUST be ignored. For example, if a Listener specified '*.example.com', and the HTTPRoute specified 'test.example.com' and 'test.example.net', 'test.example.net' must not be considered for a match.  If both the Listener and HTTPRoute have specified hostnames, and none match with the criteria above, then the HTTPRoute is not accepted. The implementation must raise an 'Accepted' Condition with a status of 'False' in the corresponding RouteParentStatus.  Support: Core",
-						MarkdownDescription: "Hostnames defines a set of hostname that should match against the HTTP Host header to select a HTTPRoute to process the request. This matches the RFC 1123 definition of a hostname with 2 notable exceptions:  1. IPs are not allowed. 2. A hostname may be prefixed with a wildcard label ('*.'). The wildcard    label must appear by itself as the first label.  If a hostname is specified by both the Listener and HTTPRoute, there must be at least one intersecting hostname for the HTTPRoute to be attached to the Listener. For example:  * A Listener with 'test.example.com' as the hostname matches HTTPRoutes   that have either not specified any hostnames, or have specified at   least one of 'test.example.com' or '*.example.com'. * A Listener with '*.example.com' as the hostname matches HTTPRoutes   that have either not specified any hostnames or have specified at least   one hostname that matches the Listener hostname. For example,   'test.example.com' and '*.example.com' would both match. On the other   hand, 'example.com' and 'test.example.net' would not match.  If both the Listener and HTTPRoute have specified hostnames, any HTTPRoute hostnames that do not match the Listener hostname MUST be ignored. For example, if a Listener specified '*.example.com', and the HTTPRoute specified 'test.example.com' and 'test.example.net', 'test.example.net' must not be considered for a match.  If both the Listener and HTTPRoute have specified hostnames, and none match with the criteria above, then the HTTPRoute is not accepted. The implementation must raise an 'Accepted' Condition with a status of 'False' in the corresponding RouteParentStatus.  Support: Core",
+						Description:         "Hostnames defines a set of hostnames that should match against the HTTP Host header to select a HTTPRoute used to process the request. Implementations MUST ignore any port value specified in the HTTP Host header while performing a match and (absent of any applicable header modification configuration) MUST forward this header unmodified to the backend.  Valid values for Hostnames are determined by RFC 1123 definition of a hostname with 2 notable exceptions:  1. IPs are not allowed. 2. A hostname may be prefixed with a wildcard label ('*.'). The wildcard label must appear by itself as the first label.  If a hostname is specified by both the Listener and HTTPRoute, there must be at least one intersecting hostname for the HTTPRoute to be attached to the Listener. For example:  * A Listener with 'test.example.com' as the hostname matches HTTPRoutes that have either not specified any hostnames, or have specified at least one of 'test.example.com' or '*.example.com'. * A Listener with '*.example.com' as the hostname matches HTTPRoutes that have either not specified any hostnames or have specified at least one hostname that matches the Listener hostname. For example, '*.example.com', 'test.example.com', and 'foo.test.example.com' would all match. On the other hand, 'example.com' and 'test.example.net' would not match.  Hostnames that are prefixed with a wildcard label ('*.') are interpreted as a suffix match. That means that a match for '*.example.com' would match both 'test.example.com', and 'foo.test.example.com', but not 'example.com'.  If both the Listener and HTTPRoute have specified hostnames, any HTTPRoute hostnames that do not match the Listener hostname MUST be ignored. For example, if a Listener specified '*.example.com', and the HTTPRoute specified 'test.example.com' and 'test.example.net', 'test.example.net' must not be considered for a match.  If both the Listener and HTTPRoute have specified hostnames, and none match with the criteria above, then the HTTPRoute is not accepted. The implementation must raise an 'Accepted' Condition with a status of 'False' in the corresponding RouteParentStatus.  In the event that multiple HTTPRoutes specify intersecting hostnames (e.g. overlapping wildcard matching and exact matching hostnames), precedence must be given to rules from the HTTPRoute with the largest number of:  * Characters in a matching non-wildcard hostname. * Characters in a matching hostname.  If ties exist across multiple Routes, the matching precedence rules for HTTPRouteMatches takes over.  Support: Core",
+						MarkdownDescription: "Hostnames defines a set of hostnames that should match against the HTTP Host header to select a HTTPRoute used to process the request. Implementations MUST ignore any port value specified in the HTTP Host header while performing a match and (absent of any applicable header modification configuration) MUST forward this header unmodified to the backend.  Valid values for Hostnames are determined by RFC 1123 definition of a hostname with 2 notable exceptions:  1. IPs are not allowed. 2. A hostname may be prefixed with a wildcard label ('*.'). The wildcard label must appear by itself as the first label.  If a hostname is specified by both the Listener and HTTPRoute, there must be at least one intersecting hostname for the HTTPRoute to be attached to the Listener. For example:  * A Listener with 'test.example.com' as the hostname matches HTTPRoutes that have either not specified any hostnames, or have specified at least one of 'test.example.com' or '*.example.com'. * A Listener with '*.example.com' as the hostname matches HTTPRoutes that have either not specified any hostnames or have specified at least one hostname that matches the Listener hostname. For example, '*.example.com', 'test.example.com', and 'foo.test.example.com' would all match. On the other hand, 'example.com' and 'test.example.net' would not match.  Hostnames that are prefixed with a wildcard label ('*.') are interpreted as a suffix match. That means that a match for '*.example.com' would match both 'test.example.com', and 'foo.test.example.com', but not 'example.com'.  If both the Listener and HTTPRoute have specified hostnames, any HTTPRoute hostnames that do not match the Listener hostname MUST be ignored. For example, if a Listener specified '*.example.com', and the HTTPRoute specified 'test.example.com' and 'test.example.net', 'test.example.net' must not be considered for a match.  If both the Listener and HTTPRoute have specified hostnames, and none match with the criteria above, then the HTTPRoute is not accepted. The implementation must raise an 'Accepted' Condition with a status of 'False' in the corresponding RouteParentStatus.  In the event that multiple HTTPRoutes specify intersecting hostnames (e.g. overlapping wildcard matching and exact matching hostnames), precedence must be given to rules from the HTTPRoute with the largest number of:  * Characters in a matching non-wildcard hostname. * Characters in a matching hostname.  If ties exist across multiple Routes, the matching precedence rules for HTTPRouteMatches takes over.  Support: Core",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -313,13 +362,13 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 					},
 
 					"parent_refs": schema.ListNestedAttribute{
-						Description:         "ParentRefs references the resources (usually Gateways) that a Route wants to be attached to. Note that the referenced parent resource needs to allow this for the attachment to be complete. For Gateways, that means the Gateway needs to allow attachment from Routes of this kind and namespace.  The only kind of parent resource with 'Core' support is Gateway. This API may be extended in the future to support additional kinds of parent resources such as one of the route kinds.  It is invalid to reference an identical parent more than once. It is valid to reference multiple distinct sections within the same parent resource, such as 2 Listeners within a Gateway.  It is possible to separately reference multiple distinct objects that may be collapsed by an implementation. For example, some implementations may choose to merge compatible Gateway Listeners together. If that is the case, the list of routes attached to those resources should also be merged.",
-						MarkdownDescription: "ParentRefs references the resources (usually Gateways) that a Route wants to be attached to. Note that the referenced parent resource needs to allow this for the attachment to be complete. For Gateways, that means the Gateway needs to allow attachment from Routes of this kind and namespace.  The only kind of parent resource with 'Core' support is Gateway. This API may be extended in the future to support additional kinds of parent resources such as one of the route kinds.  It is invalid to reference an identical parent more than once. It is valid to reference multiple distinct sections within the same parent resource, such as 2 Listeners within a Gateway.  It is possible to separately reference multiple distinct objects that may be collapsed by an implementation. For example, some implementations may choose to merge compatible Gateway Listeners together. If that is the case, the list of routes attached to those resources should also be merged.",
+						Description:         "ParentRefs references the resources (usually Gateways) that a Route wants to be attached to. Note that the referenced parent resource needs to allow this for the attachment to be complete. For Gateways, that means the Gateway needs to allow attachment from Routes of this kind and namespace. For Services, that means the Service must either be in the same namespace for a 'producer' route, or the mesh implementation must support and allow 'consumer' routes for the referenced Service. ReferenceGrant is not applicable for governing ParentRefs to Services - it is not possible to create a 'producer' route for a Service in a different namespace from the Route.  There are two kinds of parent resources with 'Core' support:  * Gateway (Gateway conformance profile) * Service (Mesh conformance profile, experimental, ClusterIP Services only)  This API may be extended in the future to support additional kinds of parent resources.  It is invalid to reference an identical parent more than once. It is valid to reference multiple distinct sections within the same parent resource, such as two separate Listeners on the same Gateway or two separate ports on the same Service.  It is possible to separately reference multiple distinct objects that may be collapsed by an implementation. For example, some implementations may choose to merge compatible Gateway Listeners together. If that is the case, the list of routes attached to those resources should also be merged.  Note that for ParentRefs that cross namespace boundaries, there are specific rules. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example, Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable other kinds of cross-namespace reference.  ParentRefs from a Route to a Service in the same namespace are 'producer' routes, which apply default routing rules to inbound connections from any namespace to the Service.  ParentRefs from a Route to a Service in a different namespace are 'consumer' routes, and these routing rules are only applied to outbound connections originating from the same namespace as the Route, for which the intended destination of the connections are a Service targeted as a ParentRef of the Route.  ",
+						MarkdownDescription: "ParentRefs references the resources (usually Gateways) that a Route wants to be attached to. Note that the referenced parent resource needs to allow this for the attachment to be complete. For Gateways, that means the Gateway needs to allow attachment from Routes of this kind and namespace. For Services, that means the Service must either be in the same namespace for a 'producer' route, or the mesh implementation must support and allow 'consumer' routes for the referenced Service. ReferenceGrant is not applicable for governing ParentRefs to Services - it is not possible to create a 'producer' route for a Service in a different namespace from the Route.  There are two kinds of parent resources with 'Core' support:  * Gateway (Gateway conformance profile) * Service (Mesh conformance profile, experimental, ClusterIP Services only)  This API may be extended in the future to support additional kinds of parent resources.  It is invalid to reference an identical parent more than once. It is valid to reference multiple distinct sections within the same parent resource, such as two separate Listeners on the same Gateway or two separate ports on the same Service.  It is possible to separately reference multiple distinct objects that may be collapsed by an implementation. For example, some implementations may choose to merge compatible Gateway Listeners together. If that is the case, the list of routes attached to those resources should also be merged.  Note that for ParentRefs that cross namespace boundaries, there are specific rules. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example, Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable other kinds of cross-namespace reference.  ParentRefs from a Route to a Service in the same namespace are 'producer' routes, which apply default routing rules to inbound connections from any namespace to the Service.  ParentRefs from a Route to a Service in a different namespace are 'consumer' routes, and these routing rules are only applied to outbound connections originating from the same namespace as the Route, for which the intended destination of the connections are a Service targeted as a ParentRef of the Route.  ",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"group": schema.StringAttribute{
-									Description:         "Group is the group of the referent.  Support: Core",
-									MarkdownDescription: "Group is the group of the referent.  Support: Core",
+									Description:         "Group is the group of the referent. When unspecified, 'gateway.networking.k8s.io' is inferred. To set the core API group (such as for a 'Service' kind referent), Group must be explicitly set to '' (empty string).  Support: Core",
+									MarkdownDescription: "Group is the group of the referent. When unspecified, 'gateway.networking.k8s.io' is inferred. To set the core API group (such as for a 'Service' kind referent), Group must be explicitly set to '' (empty string).  Support: Core",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -330,8 +379,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 								},
 
 								"kind": schema.StringAttribute{
-									Description:         "Kind is kind of the referent.  Support: Core (Gateway) Support: Custom (Other Resources)",
-									MarkdownDescription: "Kind is kind of the referent.  Support: Core (Gateway) Support: Custom (Other Resources)",
+									Description:         "Kind is kind of the referent.  There are two kinds of parent resources with 'Core' support:  * Gateway (Gateway conformance profile) * Service (Mesh conformance profile, experimental, ClusterIP Services only)  Support for other resources is Implementation-Specific.",
+									MarkdownDescription: "Kind is kind of the referent.  There are two kinds of parent resources with 'Core' support:  * Gateway (Gateway conformance profile) * Service (Mesh conformance profile, experimental, ClusterIP Services only)  Support for other resources is Implementation-Specific.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -355,8 +404,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Namespace is the namespace of the referent. When unspecified (or empty string), this refers to the local namespace of the Route.  Support: Core",
-									MarkdownDescription: "Namespace is the namespace of the referent. When unspecified (or empty string), this refers to the local namespace of the Route.  Support: Core",
+									Description:         "Namespace is the namespace of the referent. When unspecified, this refers to the local namespace of the Route.  Note that there are specific rules for ParentRefs which cross namespace boundaries. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example: Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable any other kind of cross-namespace reference.  ParentRefs from a Route to a Service in the same namespace are 'producer' routes, which apply default routing rules to inbound connections from any namespace to the Service.  ParentRefs from a Route to a Service in a different namespace are 'consumer' routes, and these routing rules are only applied to outbound connections originating from the same namespace as the Route, for which the intended destination of the connections are a Service targeted as a ParentRef of the Route.  Support: Core",
+									MarkdownDescription: "Namespace is the namespace of the referent. When unspecified, this refers to the local namespace of the Route.  Note that there are specific rules for ParentRefs which cross namespace boundaries. Cross-namespace references are only valid if they are explicitly allowed by something in the namespace they are referring to. For example: Gateway has the AllowedRoutes field, and ReferenceGrant provides a generic way to enable any other kind of cross-namespace reference.  ParentRefs from a Route to a Service in the same namespace are 'producer' routes, which apply default routing rules to inbound connections from any namespace to the Service.  ParentRefs from a Route to a Service in a different namespace are 'consumer' routes, and these routing rules are only applied to outbound connections originating from the same namespace as the Route, for which the intended destination of the connections are a Service targeted as a ParentRef of the Route.  Support: Core",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -367,9 +416,21 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 									},
 								},
 
+								"port": schema.Int64Attribute{
+									Description:         "Port is the network port this Route targets. It can be interpreted differently based on the type of parent resource.  When the parent resource is a Gateway, this targets all listeners listening on the specified port that also support this kind of Route(and select this Route). It's not recommended to set 'Port' unless the networking behaviors specified in a Route must apply to a specific port as opposed to a listener(s) whose port(s) may be changed. When both Port and SectionName are specified, the name and port of the selected listener must match both specified values.  When the parent resource is a Service, this targets a specific port in the Service spec. When both Port (experimental) and SectionName are specified, the name and port of the selected port must match both specified values.  Implementations MAY choose to support other parent resources. Implementations supporting other types of parent resources MUST clearly document how/if Port is interpreted.  For the purpose of status, an attachment is considered successful as long as the parent resource accepts it partially. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Extended  ",
+									MarkdownDescription: "Port is the network port this Route targets. It can be interpreted differently based on the type of parent resource.  When the parent resource is a Gateway, this targets all listeners listening on the specified port that also support this kind of Route(and select this Route). It's not recommended to set 'Port' unless the networking behaviors specified in a Route must apply to a specific port as opposed to a listener(s) whose port(s) may be changed. When both Port and SectionName are specified, the name and port of the selected listener must match both specified values.  When the parent resource is a Service, this targets a specific port in the Service spec. When both Port (experimental) and SectionName are specified, the name and port of the selected port must match both specified values.  Implementations MAY choose to support other parent resources. Implementations supporting other types of parent resources MUST clearly document how/if Port is interpreted.  For the purpose of status, an attachment is considered successful as long as the parent resource accepts it partially. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Extended  ",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.Int64{
+										int64validator.AtLeast(1),
+										int64validator.AtMost(65535),
+									},
+								},
+
 								"section_name": schema.StringAttribute{
-									Description:         "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
-									MarkdownDescription: "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
+									Description:         "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name. When both Port (experimental) and SectionName are specified, the name and port of the selected listener must match both specified values. * Service: Port Name. When both Port (experimental) and SectionName are specified, the name and port of the selected listener must match both specified values. Note that attaching Routes to Services as Parents is part of experimental Mesh support and is not supported for any other purpose.  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
+									MarkdownDescription: "SectionName is the name of a section within the target resource. In the following resources, SectionName is interpreted as the following:  * Gateway: Listener Name. When both Port (experimental) and SectionName are specified, the name and port of the selected listener must match both specified values. * Service: Port Name. When both Port (experimental) and SectionName are specified, the name and port of the selected listener must match both specified values. Note that attaching Routes to Services as Parents is part of experimental Mesh support and is not supported for any other purpose.  Implementations MAY choose to support attaching Routes to other resources. If that is the case, they MUST clearly document how SectionName is interpreted.  When unspecified (empty string), this will reference the entire resource. For the purpose of status, an attachment is considered successful if at least one section in the parent resource accepts it. For example, Gateway listeners can restrict which Routes can attach to them by Route kind, namespace, or hostname. If 1 of 2 Gateway listeners accept attachment from the referencing Route, the Route MUST be considered successfully attached. If no Gateway listeners accept attachment from this Route, the Route MUST be considered detached from the Gateway.  Support: Core",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -392,22 +453,22 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"backend_refs": schema.ListNestedAttribute{
-									Description:         "If unspecified or invalid (refers to a non-existent resource or a Service with no endpoints), the rule performs no forwarding. If there are also no filters specified that would result in a response being sent, a HTTP 503 status code is returned. 503 responses must be sent so that the overall weight is respected; if an invalid backend is requested to have 80% of requests, then 80% of requests must get a 503 instead.  Support: Core for Kubernetes Service Support: Custom for any other resource  Support for weight: Core",
-									MarkdownDescription: "If unspecified or invalid (refers to a non-existent resource or a Service with no endpoints), the rule performs no forwarding. If there are also no filters specified that would result in a response being sent, a HTTP 503 status code is returned. 503 responses must be sent so that the overall weight is respected; if an invalid backend is requested to have 80% of requests, then 80% of requests must get a 503 instead.  Support: Core for Kubernetes Service Support: Custom for any other resource  Support for weight: Core",
+									Description:         "BackendRefs defines the backend(s) where matching requests should be sent.  Failure behavior here depends on how many BackendRefs are specified and how many are invalid.  If *all* entries in BackendRefs are invalid, and there are also no filters specified in this route rule, *all* traffic which matches this rule MUST receive a 500 status code.  See the HTTPBackendRef definition for the rules about what makes a single HTTPBackendRef invalid.  When a HTTPBackendRef is invalid, 500 status codes MUST be returned for requests that would have otherwise been routed to an invalid backend. If multiple backends are specified, and some are invalid, the proportion of requests that would otherwise have been routed to an invalid backend MUST receive a 500 status code.  For example, if two backends are specified with equal weights, and one is invalid, 50 percent of traffic must receive a 500. Implementations may choose how that 50 percent is determined.  Support: Core for Kubernetes Service  Support: Extended for Kubernetes ServiceImport  Support: Implementation-specific for any other resource  Support for weight: Core",
+									MarkdownDescription: "BackendRefs defines the backend(s) where matching requests should be sent.  Failure behavior here depends on how many BackendRefs are specified and how many are invalid.  If *all* entries in BackendRefs are invalid, and there are also no filters specified in this route rule, *all* traffic which matches this rule MUST receive a 500 status code.  See the HTTPBackendRef definition for the rules about what makes a single HTTPBackendRef invalid.  When a HTTPBackendRef is invalid, 500 status codes MUST be returned for requests that would have otherwise been routed to an invalid backend. If multiple backends are specified, and some are invalid, the proportion of requests that would otherwise have been routed to an invalid backend MUST receive a 500 status code.  For example, if two backends are specified with equal weights, and one is invalid, 50 percent of traffic must receive a 500. Implementations may choose how that 50 percent is determined.  Support: Core for Kubernetes Service  Support: Extended for Kubernetes ServiceImport  Support: Implementation-specific for any other resource  Support for weight: Core",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"filters": schema.ListNestedAttribute{
-												Description:         "Filters defined at this level should be executed if and only if the request is being forwarded to the backend defined here.  Support: Custom (For broader support of filters, use the Filters field in HTTPRouteRule.)",
-												MarkdownDescription: "Filters defined at this level should be executed if and only if the request is being forwarded to the backend defined here.  Support: Custom (For broader support of filters, use the Filters field in HTTPRouteRule.)",
+												Description:         "Filters defined at this level should be executed if and only if the request is being forwarded to the backend defined here.  Support: Implementation-specific (For broader support of filters, use the Filters field in HTTPRouteRule.)",
+												MarkdownDescription: "Filters defined at this level should be executed if and only if the request is being forwarded to the backend defined here.  Support: Implementation-specific (For broader support of filters, use the Filters field in HTTPRouteRule.)",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"extension_ref": schema.SingleNestedAttribute{
-															Description:         "ExtensionRef is an optional, implementation-specific extension to the 'filter' behavior.  For example, resource 'myroutefilter' in group 'networking.example.net'). ExtensionRef MUST NOT be used for core and extended filters.  Support: Implementation-specific",
-															MarkdownDescription: "ExtensionRef is an optional, implementation-specific extension to the 'filter' behavior.  For example, resource 'myroutefilter' in group 'networking.example.net'). ExtensionRef MUST NOT be used for core and extended filters.  Support: Implementation-specific",
+															Description:         "ExtensionRef is an optional, implementation-specific extension to the 'filter' behavior.  For example, resource 'myroutefilter' in group 'networking.example.net'). ExtensionRef MUST NOT be used for core and extended filters.  This filter can be used multiple times within the same rule.  Support: Implementation-specific",
+															MarkdownDescription: "ExtensionRef is an optional, implementation-specific extension to the 'filter' behavior.  For example, resource 'myroutefilter' in group 'networking.example.net'). ExtensionRef MUST NOT be used for core and extended filters.  This filter can be used multiple times within the same rule.  Support: Implementation-specific",
 															Attributes: map[string]schema.Attribute{
 																"group": schema.StringAttribute{
-																	Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
-																	MarkdownDescription: "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
+																	Description:         "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
+																	MarkdownDescription: "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -452,8 +513,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 															MarkdownDescription: "RequestHeaderModifier defines a schema for a filter that modifies request headers.  Support: Core",
 															Attributes: map[string]schema.Attribute{
 																"add": schema.ListNestedAttribute{
-																	Description:         "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input:   GET /foo HTTP/1.1   my-header: foo  Config:   add:   - name: 'my-header'     value: 'bar'  Output:   GET /foo HTTP/1.1   my-header: foo   my-header: bar",
-																	MarkdownDescription: "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input:   GET /foo HTTP/1.1   my-header: foo  Config:   add:   - name: 'my-header'     value: 'bar'  Output:   GET /foo HTTP/1.1   my-header: foo   my-header: bar",
+																	Description:         "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input: GET /foo HTTP/1.1 my-header: foo  Config: add: - name: 'my-header' value: 'bar,baz'  Output: GET /foo HTTP/1.1 my-header: foo,bar,baz",
+																	MarkdownDescription: "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input: GET /foo HTTP/1.1 my-header: foo  Config: add: - name: 'my-header' value: 'bar,baz'  Output: GET /foo HTTP/1.1 my-header: foo,bar,baz",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
@@ -488,8 +549,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 																},
 
 																"remove": schema.ListAttribute{
-																	Description:         "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input:   GET /foo HTTP/1.1   my-header1: foo   my-header2: bar   my-header3: baz  Config:   remove: ['my-header1', 'my-header3']  Output:   GET /foo HTTP/1.1   my-header2: bar",
-																	MarkdownDescription: "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input:   GET /foo HTTP/1.1   my-header1: foo   my-header2: bar   my-header3: baz  Config:   remove: ['my-header1', 'my-header3']  Output:   GET /foo HTTP/1.1   my-header2: bar",
+																	Description:         "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input: GET /foo HTTP/1.1 my-header1: foo my-header2: bar my-header3: baz  Config: remove: ['my-header1', 'my-header3']  Output: GET /foo HTTP/1.1 my-header2: bar",
+																	MarkdownDescription: "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input: GET /foo HTTP/1.1 my-header1: foo my-header2: bar my-header3: baz  Config: remove: ['my-header1', 'my-header3']  Output: GET /foo HTTP/1.1 my-header2: bar",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -497,8 +558,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 																},
 
 																"set": schema.ListNestedAttribute{
-																	Description:         "Set overwrites the request with the given header (name, value) before the action.  Input:   GET /foo HTTP/1.1   my-header: foo  Config:   set:   - name: 'my-header'     value: 'bar'  Output:   GET /foo HTTP/1.1   my-header: bar",
-																	MarkdownDescription: "Set overwrites the request with the given header (name, value) before the action.  Input:   GET /foo HTTP/1.1   my-header: foo  Config:   set:   - name: 'my-header'     value: 'bar'  Output:   GET /foo HTTP/1.1   my-header: bar",
+																	Description:         "Set overwrites the request with the given header (name, value) before the action.  Input: GET /foo HTTP/1.1 my-header: foo  Config: set: - name: 'my-header' value: 'bar'  Output: GET /foo HTTP/1.1 my-header: bar",
+																	MarkdownDescription: "Set overwrites the request with the given header (name, value) before the action.  Input: GET /foo HTTP/1.1 my-header: foo  Config: set: - name: 'my-header' value: 'bar'  Output: GET /foo HTTP/1.1 my-header: bar",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
@@ -538,16 +599,16 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 														},
 
 														"request_mirror": schema.SingleNestedAttribute{
-															Description:         "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  Support: Extended",
-															MarkdownDescription: "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  Support: Extended",
+															Description:         "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  This filter can be used multiple times within the same rule. Note that not all implementations will be able to support mirroring to multiple backends.  Support: Extended",
+															MarkdownDescription: "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  This filter can be used multiple times within the same rule. Note that not all implementations will be able to support mirroring to multiple backends.  Support: Extended",
 															Attributes: map[string]schema.Attribute{
 																"backend_ref": schema.SingleNestedAttribute{
-																	Description:         "BackendRef references a resource where mirrored requests are sent.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferencePolicy, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service Support: Custom for any other resource",
-																	MarkdownDescription: "BackendRef references a resource where mirrored requests are sent.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferencePolicy, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service Support: Custom for any other resource",
+																	Description:         "BackendRef references a resource where mirrored requests are sent.  Mirrored requests must be sent only to a single destination endpoint within this BackendRef, irrespective of how many endpoints are present within this BackendRef.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferenceGrant, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service  Support: Implementation-specific for any other resource",
+																	MarkdownDescription: "BackendRef references a resource where mirrored requests are sent.  Mirrored requests must be sent only to a single destination endpoint within this BackendRef, irrespective of how many endpoints are present within this BackendRef.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferenceGrant, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service  Support: Implementation-specific for any other resource",
 																	Attributes: map[string]schema.Attribute{
 																		"group": schema.StringAttribute{
-																			Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
-																			MarkdownDescription: "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
+																			Description:         "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
+																			MarkdownDescription: "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -558,8 +619,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 																		},
 
 																		"kind": schema.StringAttribute{
-																			Description:         "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
-																			MarkdownDescription: "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
+																			Description:         "Kind is the Kubernetes resource kind of the referent. For example 'Service'.  Defaults to 'Service' when not specified.  ExternalName services can refer to CNAME DNS records that may live outside of the cluster and as such are difficult to reason about in terms of conformance. They also may not be safe to forward to (see CVE-2021-25740 for more information). Implementations SHOULD NOT support ExternalName Services.  Support: Core (Services with a type other than ExternalName)  Support: Implementation-specific (Services with type ExternalName)",
+																			MarkdownDescription: "Kind is the Kubernetes resource kind of the referent. For example 'Service'.  Defaults to 'Service' when not specified.  ExternalName services can refer to CNAME DNS records that may live outside of the cluster and as such are difficult to reason about in terms of conformance. They also may not be safe to forward to (see CVE-2021-25740 for more information). Implementations SHOULD NOT support ExternalName Services.  Support: Core (Services with a type other than ExternalName)  Support: Implementation-specific (Services with type ExternalName)",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -583,8 +644,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 																		},
 
 																		"namespace": schema.StringAttribute{
-																			Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
-																			MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
+																			Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core",
+																			MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -596,8 +657,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 																		},
 
 																		"port": schema.Int64Attribute{
-																			Description:         "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. For other resources, destination port might be derived from the referent resource or this field.",
-																			MarkdownDescription: "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. For other resources, destination port might be derived from the referent resource or this field.",
+																			Description:         "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. In this case, the port number is the service port number, not the target port. For other resources, destination port might be derived from the referent resource or this field.",
+																			MarkdownDescription: "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. In this case, the port number is the service port number, not the target port. For other resources, destination port might be derived from the referent resource or this field.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -622,21 +683,63 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 															MarkdownDescription: "RequestRedirect defines a schema for a filter that responds to the request with an HTTP redirection.  Support: Core",
 															Attributes: map[string]schema.Attribute{
 																"hostname": schema.StringAttribute{
-																	Description:         "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname of the request is used.  Support: Core",
-																	MarkdownDescription: "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname of the request is used.  Support: Core",
+																	Description:         "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname in the 'Host' header of the request is used.  Support: Core",
+																	MarkdownDescription: "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname in the 'Host' header of the request is used.  Support: Core",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																	Validators: []validator.String{
 																		stringvalidator.LengthAtLeast(1),
 																		stringvalidator.LengthAtMost(253),
-																		stringvalidator.RegexMatches(regexp.MustCompile(`^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																		stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 																	},
 																},
 
+																"path": schema.SingleNestedAttribute{
+																	Description:         "Path defines parameters used to modify the path of the incoming request. The modified path is then used to construct the 'Location' header. When empty, the request path is used as-is.  Support: Extended",
+																	MarkdownDescription: "Path defines parameters used to modify the path of the incoming request. The modified path is then used to construct the 'Location' header. When empty, the request path is used as-is.  Support: Extended",
+																	Attributes: map[string]schema.Attribute{
+																		"replace_full_path": schema.StringAttribute{
+																			Description:         "ReplaceFullPath specifies the value with which to replace the full path of a request during a rewrite or redirect.",
+																			MarkdownDescription: "ReplaceFullPath specifies the value with which to replace the full path of a request during a rewrite or redirect.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.LengthAtMost(1024),
+																			},
+																		},
+
+																		"replace_prefix_match": schema.StringAttribute{
+																			Description:         "ReplacePrefixMatch specifies the value with which to replace the prefix match of a request during a rewrite or redirect. For example, a request to '/foo/bar' with a prefix match of '/foo' and a ReplacePrefixMatch of '/xyz' would be modified to '/xyz/bar'.  Note that this matches the behavior of the PathPrefix match type. This matches full path elements. A path element refers to the list of labels in the path split by the '/' separator. When specified, a trailing '/' is ignored. For example, the paths '/abc', '/abc/', and '/abc/def' would all match the prefix '/abc', but the path '/abcd' would not.  ReplacePrefixMatch is only compatible with a 'PathPrefix' HTTPRouteMatch. Using any other HTTPRouteMatch type on the same HTTPRouteRule will result in the implementation setting the Accepted Condition for the Route to 'status: False'.  Request Path | Prefix Match | Replace Prefix | Modified Path -------------|--------------|----------------|---------- /foo/bar     | /foo         | /xyz           | /xyz/bar /foo/bar     | /foo         | /xyz/          | /xyz/bar /foo/bar     | /foo/        | /xyz           | /xyz/bar /foo/bar     | /foo/        | /xyz/          | /xyz/bar /foo         | /foo         | /xyz           | /xyz /foo/        | /foo         | /xyz           | /xyz/ /foo/bar     | /foo         | <empty string> | /bar /foo/        | /foo         | <empty string> | / /foo         | /foo         | <empty string> | / /foo/        | /foo         | /              | / /foo         | /foo         | /              | /",
+																			MarkdownDescription: "ReplacePrefixMatch specifies the value with which to replace the prefix match of a request during a rewrite or redirect. For example, a request to '/foo/bar' with a prefix match of '/foo' and a ReplacePrefixMatch of '/xyz' would be modified to '/xyz/bar'.  Note that this matches the behavior of the PathPrefix match type. This matches full path elements. A path element refers to the list of labels in the path split by the '/' separator. When specified, a trailing '/' is ignored. For example, the paths '/abc', '/abc/', and '/abc/def' would all match the prefix '/abc', but the path '/abcd' would not.  ReplacePrefixMatch is only compatible with a 'PathPrefix' HTTPRouteMatch. Using any other HTTPRouteMatch type on the same HTTPRouteRule will result in the implementation setting the Accepted Condition for the Route to 'status: False'.  Request Path | Prefix Match | Replace Prefix | Modified Path -------------|--------------|----------------|---------- /foo/bar     | /foo         | /xyz           | /xyz/bar /foo/bar     | /foo         | /xyz/          | /xyz/bar /foo/bar     | /foo/        | /xyz           | /xyz/bar /foo/bar     | /foo/        | /xyz/          | /xyz/bar /foo         | /foo         | /xyz           | /xyz /foo/        | /foo         | /xyz           | /xyz/ /foo/bar     | /foo         | <empty string> | /bar /foo/        | /foo         | <empty string> | / /foo         | /foo         | <empty string> | / /foo/        | /foo         | /              | / /foo         | /foo         | /              | /",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.LengthAtMost(1024),
+																			},
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "Type defines the type of path modifier. Additional types may be added in a future release of the API.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
+																			MarkdownDescription: "Type defines the type of path modifier. Additional types may be added in a future release of the API.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.OneOf("ReplaceFullPath", "ReplacePrefixMatch"),
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"port": schema.Int64Attribute{
-																	Description:         "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.  Support: Extended",
-																	MarkdownDescription: "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.  Support: Extended",
+																	Description:         "Port is the port to be used in the value of the 'Location' header in the response.  If no port is specified, the redirect port MUST be derived using the following rules:  * If redirect scheme is not-empty, the redirect port MUST be the well-known port associated with the redirect scheme. Specifically 'http' to port 80 and 'https' to port 443. If the redirect scheme does not have a well-known port, the listener port of the Gateway SHOULD be used. * If redirect scheme is empty, the redirect port MUST be the Gateway Listener port.  Implementations SHOULD NOT add the port number in the 'Location' header in the following cases:  * A Location header that will use HTTP (whether that is determined via the Listener protocol or the Scheme field) _and_ use port 80. * A Location header that will use HTTPS (whether that is determined via the Listener protocol or the Scheme field) _and_ use port 443.  Support: Extended",
+																	MarkdownDescription: "Port is the port to be used in the value of the 'Location' header in the response.  If no port is specified, the redirect port MUST be derived using the following rules:  * If redirect scheme is not-empty, the redirect port MUST be the well-known port associated with the redirect scheme. Specifically 'http' to port 80 and 'https' to port 443. If the redirect scheme does not have a well-known port, the listener port of the Gateway SHOULD be used. * If redirect scheme is empty, the redirect port MUST be the Gateway Listener port.  Implementations SHOULD NOT add the port number in the 'Location' header in the following cases:  * A Location header that will use HTTP (whether that is determined via the Listener protocol or the Scheme field) _and_ use port 80. * A Location header that will use HTTPS (whether that is determined via the Listener protocol or the Scheme field) _and_ use port 443.  Support: Extended",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -647,8 +750,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 																},
 
 																"scheme": schema.StringAttribute{
-																	Description:         "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Support: Extended",
-																	MarkdownDescription: "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Support: Extended",
+																	Description:         "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Scheme redirects can affect the port of the redirect, for more information, refer to the documentation for the port field of this filter.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.  Support: Extended",
+																	MarkdownDescription: "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Scheme redirects can affect the port of the redirect, for more information, refer to the documentation for the port field of this filter.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.  Support: Extended",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -658,8 +761,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 																},
 
 																"status_code": schema.Int64Attribute{
-																	Description:         "StatusCode is the HTTP status code to be used in response.  Support: Core",
-																	MarkdownDescription: "StatusCode is the HTTP status code to be used in response.  Support: Core",
+																	Description:         "StatusCode is the HTTP status code to be used in response.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.  Support: Core",
+																	MarkdownDescription: "StatusCode is the HTTP status code to be used in response.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.  Support: Core",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -673,15 +776,169 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 															Computed: false,
 														},
 
+														"response_header_modifier": schema.SingleNestedAttribute{
+															Description:         "ResponseHeaderModifier defines a schema for a filter that modifies response headers.  Support: Extended",
+															MarkdownDescription: "ResponseHeaderModifier defines a schema for a filter that modifies response headers.  Support: Extended",
+															Attributes: map[string]schema.Attribute{
+																"add": schema.ListNestedAttribute{
+																	Description:         "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input: GET /foo HTTP/1.1 my-header: foo  Config: add: - name: 'my-header' value: 'bar,baz'  Output: GET /foo HTTP/1.1 my-header: foo,bar,baz",
+																	MarkdownDescription: "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input: GET /foo HTTP/1.1 my-header: foo  Config: add: - name: 'my-header' value: 'bar,baz'  Output: GET /foo HTTP/1.1 my-header: foo,bar,baz",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"name": schema.StringAttribute{
+																				Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+																				MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																				Validators: []validator.String{
+																					stringvalidator.LengthAtLeast(1),
+																					stringvalidator.LengthAtMost(256),
+																					stringvalidator.RegexMatches(regexp.MustCompile(`^[A-Za-z0-9!#$%&'*+\-.^_\x60|~]+$`), ""),
+																				},
+																			},
+
+																			"value": schema.StringAttribute{
+																				Description:         "Value is the value of HTTP Header to be matched.",
+																				MarkdownDescription: "Value is the value of HTTP Header to be matched.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																				Validators: []validator.String{
+																					stringvalidator.LengthAtLeast(1),
+																					stringvalidator.LengthAtMost(4096),
+																				},
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"remove": schema.ListAttribute{
+																	Description:         "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input: GET /foo HTTP/1.1 my-header1: foo my-header2: bar my-header3: baz  Config: remove: ['my-header1', 'my-header3']  Output: GET /foo HTTP/1.1 my-header2: bar",
+																	MarkdownDescription: "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input: GET /foo HTTP/1.1 my-header1: foo my-header2: bar my-header3: baz  Config: remove: ['my-header1', 'my-header3']  Output: GET /foo HTTP/1.1 my-header2: bar",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"set": schema.ListNestedAttribute{
+																	Description:         "Set overwrites the request with the given header (name, value) before the action.  Input: GET /foo HTTP/1.1 my-header: foo  Config: set: - name: 'my-header' value: 'bar'  Output: GET /foo HTTP/1.1 my-header: bar",
+																	MarkdownDescription: "Set overwrites the request with the given header (name, value) before the action.  Input: GET /foo HTTP/1.1 my-header: foo  Config: set: - name: 'my-header' value: 'bar'  Output: GET /foo HTTP/1.1 my-header: bar",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"name": schema.StringAttribute{
+																				Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+																				MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																				Validators: []validator.String{
+																					stringvalidator.LengthAtLeast(1),
+																					stringvalidator.LengthAtMost(256),
+																					stringvalidator.RegexMatches(regexp.MustCompile(`^[A-Za-z0-9!#$%&'*+\-.^_\x60|~]+$`), ""),
+																				},
+																			},
+
+																			"value": schema.StringAttribute{
+																				Description:         "Value is the value of HTTP Header to be matched.",
+																				MarkdownDescription: "Value is the value of HTTP Header to be matched.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																				Validators: []validator.String{
+																					stringvalidator.LengthAtLeast(1),
+																					stringvalidator.LengthAtMost(4096),
+																				},
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"type": schema.StringAttribute{
-															Description:         "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by   'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All   implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by   'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers   are encouraged to support extended filters.  - Custom: Filters that are defined and supported by specific vendors.   In the future, filters showing convergence in behavior across multiple   implementations will be considered for inclusion in extended or core   conformance levels. Filter-specific configuration for such filters   is specified using the ExtensionRef field. 'Type' should be set to   'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.",
-															MarkdownDescription: "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by   'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All   implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by   'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers   are encouraged to support extended filters.  - Custom: Filters that are defined and supported by specific vendors.   In the future, filters showing convergence in behavior across multiple   implementations will be considered for inclusion in extended or core   conformance levels. Filter-specific configuration for such filters   is specified using the ExtensionRef field. 'Type' should be set to   'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.",
+															Description:         "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by 'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by 'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers are encouraged to support extended filters.  - Implementation-specific: Filters that are defined and supported by specific vendors. In the future, filters showing convergence in behavior across multiple implementations will be considered for inclusion in extended or core conformance levels. Filter-specific configuration for such filters is specified using the ExtensionRef field. 'Type' should be set to 'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
+															MarkdownDescription: "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by 'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by 'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers are encouraged to support extended filters.  - Implementation-specific: Filters that are defined and supported by specific vendors. In the future, filters showing convergence in behavior across multiple implementations will be considered for inclusion in extended or core conformance levels. Filter-specific configuration for such filters is specified using the ExtensionRef field. 'Type' should be set to 'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("RequestHeaderModifier", "RequestMirror", "RequestRedirect", "ExtensionRef"),
+																stringvalidator.OneOf("RequestHeaderModifier", "ResponseHeaderModifier", "RequestMirror", "RequestRedirect", "URLRewrite", "ExtensionRef"),
 															},
+														},
+
+														"url_rewrite": schema.SingleNestedAttribute{
+															Description:         "URLRewrite defines a schema for a filter that modifies a request during forwarding.  Support: Extended",
+															MarkdownDescription: "URLRewrite defines a schema for a filter that modifies a request during forwarding.  Support: Extended",
+															Attributes: map[string]schema.Attribute{
+																"hostname": schema.StringAttribute{
+																	Description:         "Hostname is the value to be used to replace the Host header value during forwarding.  Support: Extended",
+																	MarkdownDescription: "Hostname is the value to be used to replace the Host header value during forwarding.  Support: Extended",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.LengthAtLeast(1),
+																		stringvalidator.LengthAtMost(253),
+																		stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+																	},
+																},
+
+																"path": schema.SingleNestedAttribute{
+																	Description:         "Path defines a path rewrite.  Support: Extended",
+																	MarkdownDescription: "Path defines a path rewrite.  Support: Extended",
+																	Attributes: map[string]schema.Attribute{
+																		"replace_full_path": schema.StringAttribute{
+																			Description:         "ReplaceFullPath specifies the value with which to replace the full path of a request during a rewrite or redirect.",
+																			MarkdownDescription: "ReplaceFullPath specifies the value with which to replace the full path of a request during a rewrite or redirect.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.LengthAtMost(1024),
+																			},
+																		},
+
+																		"replace_prefix_match": schema.StringAttribute{
+																			Description:         "ReplacePrefixMatch specifies the value with which to replace the prefix match of a request during a rewrite or redirect. For example, a request to '/foo/bar' with a prefix match of '/foo' and a ReplacePrefixMatch of '/xyz' would be modified to '/xyz/bar'.  Note that this matches the behavior of the PathPrefix match type. This matches full path elements. A path element refers to the list of labels in the path split by the '/' separator. When specified, a trailing '/' is ignored. For example, the paths '/abc', '/abc/', and '/abc/def' would all match the prefix '/abc', but the path '/abcd' would not.  ReplacePrefixMatch is only compatible with a 'PathPrefix' HTTPRouteMatch. Using any other HTTPRouteMatch type on the same HTTPRouteRule will result in the implementation setting the Accepted Condition for the Route to 'status: False'.  Request Path | Prefix Match | Replace Prefix | Modified Path -------------|--------------|----------------|---------- /foo/bar     | /foo         | /xyz           | /xyz/bar /foo/bar     | /foo         | /xyz/          | /xyz/bar /foo/bar     | /foo/        | /xyz           | /xyz/bar /foo/bar     | /foo/        | /xyz/          | /xyz/bar /foo         | /foo         | /xyz           | /xyz /foo/        | /foo         | /xyz           | /xyz/ /foo/bar     | /foo         | <empty string> | /bar /foo/        | /foo         | <empty string> | / /foo         | /foo         | <empty string> | / /foo/        | /foo         | /              | / /foo         | /foo         | /              | /",
+																			MarkdownDescription: "ReplacePrefixMatch specifies the value with which to replace the prefix match of a request during a rewrite or redirect. For example, a request to '/foo/bar' with a prefix match of '/foo' and a ReplacePrefixMatch of '/xyz' would be modified to '/xyz/bar'.  Note that this matches the behavior of the PathPrefix match type. This matches full path elements. A path element refers to the list of labels in the path split by the '/' separator. When specified, a trailing '/' is ignored. For example, the paths '/abc', '/abc/', and '/abc/def' would all match the prefix '/abc', but the path '/abcd' would not.  ReplacePrefixMatch is only compatible with a 'PathPrefix' HTTPRouteMatch. Using any other HTTPRouteMatch type on the same HTTPRouteRule will result in the implementation setting the Accepted Condition for the Route to 'status: False'.  Request Path | Prefix Match | Replace Prefix | Modified Path -------------|--------------|----------------|---------- /foo/bar     | /foo         | /xyz           | /xyz/bar /foo/bar     | /foo         | /xyz/          | /xyz/bar /foo/bar     | /foo/        | /xyz           | /xyz/bar /foo/bar     | /foo/        | /xyz/          | /xyz/bar /foo         | /foo         | /xyz           | /xyz /foo/        | /foo         | /xyz           | /xyz/ /foo/bar     | /foo         | <empty string> | /bar /foo/        | /foo         | <empty string> | / /foo         | /foo         | <empty string> | / /foo/        | /foo         | /              | / /foo         | /foo         | /              | /",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.LengthAtMost(1024),
+																			},
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "Type defines the type of path modifier. Additional types may be added in a future release of the API.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
+																			MarkdownDescription: "Type defines the type of path modifier. Additional types may be added in a future release of the API.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.OneOf("ReplaceFullPath", "ReplacePrefixMatch"),
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
 														},
 													},
 												},
@@ -691,8 +948,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 											},
 
 											"group": schema.StringAttribute{
-												Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
-												MarkdownDescription: "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
+												Description:         "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
+												MarkdownDescription: "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -703,8 +960,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 											},
 
 											"kind": schema.StringAttribute{
-												Description:         "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
-												MarkdownDescription: "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
+												Description:         "Kind is the Kubernetes resource kind of the referent. For example 'Service'.  Defaults to 'Service' when not specified.  ExternalName services can refer to CNAME DNS records that may live outside of the cluster and as such are difficult to reason about in terms of conformance. They also may not be safe to forward to (see CVE-2021-25740 for more information). Implementations SHOULD NOT support ExternalName Services.  Support: Core (Services with a type other than ExternalName)  Support: Implementation-specific (Services with type ExternalName)",
+												MarkdownDescription: "Kind is the Kubernetes resource kind of the referent. For example 'Service'.  Defaults to 'Service' when not specified.  ExternalName services can refer to CNAME DNS records that may live outside of the cluster and as such are difficult to reason about in terms of conformance. They also may not be safe to forward to (see CVE-2021-25740 for more information). Implementations SHOULD NOT support ExternalName Services.  Support: Core (Services with a type other than ExternalName)  Support: Implementation-specific (Services with type ExternalName)",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -728,8 +985,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 											},
 
 											"namespace": schema.StringAttribute{
-												Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
-												MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
+												Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core",
+												MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -741,8 +998,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 											},
 
 											"port": schema.Int64Attribute{
-												Description:         "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. For other resources, destination port might be derived from the referent resource or this field.",
-												MarkdownDescription: "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. For other resources, destination port might be derived from the referent resource or this field.",
+												Description:         "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. In this case, the port number is the service port number, not the target port. For other resources, destination port might be derived from the referent resource or this field.",
+												MarkdownDescription: "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. In this case, the port number is the service port number, not the target port. For other resources, destination port might be derived from the referent resource or this field.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -771,17 +1028,17 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 								},
 
 								"filters": schema.ListNestedAttribute{
-									Description:         "Filters define the filters that are applied to requests that match this rule.  The effects of ordering of multiple behaviors are currently unspecified. This can change in the future based on feedback during the alpha stage.  Conformance-levels at this level are defined based on the type of filter:  - ALL core filters MUST be supported by all implementations. - Implementers are encouraged to support extended filters. - Implementation-specific custom filters have no API guarantees across   implementations.  Specifying a core filter multiple times has unspecified or custom conformance.  Support: Core",
-									MarkdownDescription: "Filters define the filters that are applied to requests that match this rule.  The effects of ordering of multiple behaviors are currently unspecified. This can change in the future based on feedback during the alpha stage.  Conformance-levels at this level are defined based on the type of filter:  - ALL core filters MUST be supported by all implementations. - Implementers are encouraged to support extended filters. - Implementation-specific custom filters have no API guarantees across   implementations.  Specifying a core filter multiple times has unspecified or custom conformance.  Support: Core",
+									Description:         "Filters define the filters that are applied to requests that match this rule.  The effects of ordering of multiple behaviors are currently unspecified. This can change in the future based on feedback during the alpha stage.  Conformance-levels at this level are defined based on the type of filter:  - ALL core filters MUST be supported by all implementations. - Implementers are encouraged to support extended filters. - Implementation-specific custom filters have no API guarantees across implementations.  Specifying the same filter multiple times is not supported unless explicitly indicated in the filter.  All filters are expected to be compatible with each other except for the URLRewrite and RequestRedirect filters, which may not be combined. If an implementation can not support other combinations of filters, they must clearly document that limitation. In cases where incompatible or unsupported filters are specified and cause the 'Accepted' condition to be set to status 'False', implementations may use the 'IncompatibleFilters' reason to specify this configuration error.  Support: Core",
+									MarkdownDescription: "Filters define the filters that are applied to requests that match this rule.  The effects of ordering of multiple behaviors are currently unspecified. This can change in the future based on feedback during the alpha stage.  Conformance-levels at this level are defined based on the type of filter:  - ALL core filters MUST be supported by all implementations. - Implementers are encouraged to support extended filters. - Implementation-specific custom filters have no API guarantees across implementations.  Specifying the same filter multiple times is not supported unless explicitly indicated in the filter.  All filters are expected to be compatible with each other except for the URLRewrite and RequestRedirect filters, which may not be combined. If an implementation can not support other combinations of filters, they must clearly document that limitation. In cases where incompatible or unsupported filters are specified and cause the 'Accepted' condition to be set to status 'False', implementations may use the 'IncompatibleFilters' reason to specify this configuration error.  Support: Core",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"extension_ref": schema.SingleNestedAttribute{
-												Description:         "ExtensionRef is an optional, implementation-specific extension to the 'filter' behavior.  For example, resource 'myroutefilter' in group 'networking.example.net'). ExtensionRef MUST NOT be used for core and extended filters.  Support: Implementation-specific",
-												MarkdownDescription: "ExtensionRef is an optional, implementation-specific extension to the 'filter' behavior.  For example, resource 'myroutefilter' in group 'networking.example.net'). ExtensionRef MUST NOT be used for core and extended filters.  Support: Implementation-specific",
+												Description:         "ExtensionRef is an optional, implementation-specific extension to the 'filter' behavior.  For example, resource 'myroutefilter' in group 'networking.example.net'). ExtensionRef MUST NOT be used for core and extended filters.  This filter can be used multiple times within the same rule.  Support: Implementation-specific",
+												MarkdownDescription: "ExtensionRef is an optional, implementation-specific extension to the 'filter' behavior.  For example, resource 'myroutefilter' in group 'networking.example.net'). ExtensionRef MUST NOT be used for core and extended filters.  This filter can be used multiple times within the same rule.  Support: Implementation-specific",
 												Attributes: map[string]schema.Attribute{
 													"group": schema.StringAttribute{
-														Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
-														MarkdownDescription: "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
+														Description:         "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
+														MarkdownDescription: "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -826,8 +1083,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 												MarkdownDescription: "RequestHeaderModifier defines a schema for a filter that modifies request headers.  Support: Core",
 												Attributes: map[string]schema.Attribute{
 													"add": schema.ListNestedAttribute{
-														Description:         "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input:   GET /foo HTTP/1.1   my-header: foo  Config:   add:   - name: 'my-header'     value: 'bar'  Output:   GET /foo HTTP/1.1   my-header: foo   my-header: bar",
-														MarkdownDescription: "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input:   GET /foo HTTP/1.1   my-header: foo  Config:   add:   - name: 'my-header'     value: 'bar'  Output:   GET /foo HTTP/1.1   my-header: foo   my-header: bar",
+														Description:         "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input: GET /foo HTTP/1.1 my-header: foo  Config: add: - name: 'my-header' value: 'bar,baz'  Output: GET /foo HTTP/1.1 my-header: foo,bar,baz",
+														MarkdownDescription: "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input: GET /foo HTTP/1.1 my-header: foo  Config: add: - name: 'my-header' value: 'bar,baz'  Output: GET /foo HTTP/1.1 my-header: foo,bar,baz",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
@@ -862,8 +1119,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 													},
 
 													"remove": schema.ListAttribute{
-														Description:         "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input:   GET /foo HTTP/1.1   my-header1: foo   my-header2: bar   my-header3: baz  Config:   remove: ['my-header1', 'my-header3']  Output:   GET /foo HTTP/1.1   my-header2: bar",
-														MarkdownDescription: "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input:   GET /foo HTTP/1.1   my-header1: foo   my-header2: bar   my-header3: baz  Config:   remove: ['my-header1', 'my-header3']  Output:   GET /foo HTTP/1.1   my-header2: bar",
+														Description:         "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input: GET /foo HTTP/1.1 my-header1: foo my-header2: bar my-header3: baz  Config: remove: ['my-header1', 'my-header3']  Output: GET /foo HTTP/1.1 my-header2: bar",
+														MarkdownDescription: "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input: GET /foo HTTP/1.1 my-header1: foo my-header2: bar my-header3: baz  Config: remove: ['my-header1', 'my-header3']  Output: GET /foo HTTP/1.1 my-header2: bar",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -871,8 +1128,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 													},
 
 													"set": schema.ListNestedAttribute{
-														Description:         "Set overwrites the request with the given header (name, value) before the action.  Input:   GET /foo HTTP/1.1   my-header: foo  Config:   set:   - name: 'my-header'     value: 'bar'  Output:   GET /foo HTTP/1.1   my-header: bar",
-														MarkdownDescription: "Set overwrites the request with the given header (name, value) before the action.  Input:   GET /foo HTTP/1.1   my-header: foo  Config:   set:   - name: 'my-header'     value: 'bar'  Output:   GET /foo HTTP/1.1   my-header: bar",
+														Description:         "Set overwrites the request with the given header (name, value) before the action.  Input: GET /foo HTTP/1.1 my-header: foo  Config: set: - name: 'my-header' value: 'bar'  Output: GET /foo HTTP/1.1 my-header: bar",
+														MarkdownDescription: "Set overwrites the request with the given header (name, value) before the action.  Input: GET /foo HTTP/1.1 my-header: foo  Config: set: - name: 'my-header' value: 'bar'  Output: GET /foo HTTP/1.1 my-header: bar",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
@@ -912,16 +1169,16 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 											},
 
 											"request_mirror": schema.SingleNestedAttribute{
-												Description:         "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  Support: Extended",
-												MarkdownDescription: "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  Support: Extended",
+												Description:         "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  This filter can be used multiple times within the same rule. Note that not all implementations will be able to support mirroring to multiple backends.  Support: Extended",
+												MarkdownDescription: "RequestMirror defines a schema for a filter that mirrors requests. Requests are sent to the specified destination, but responses from that destination are ignored.  This filter can be used multiple times within the same rule. Note that not all implementations will be able to support mirroring to multiple backends.  Support: Extended",
 												Attributes: map[string]schema.Attribute{
 													"backend_ref": schema.SingleNestedAttribute{
-														Description:         "BackendRef references a resource where mirrored requests are sent.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferencePolicy, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service Support: Custom for any other resource",
-														MarkdownDescription: "BackendRef references a resource where mirrored requests are sent.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferencePolicy, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service Support: Custom for any other resource",
+														Description:         "BackendRef references a resource where mirrored requests are sent.  Mirrored requests must be sent only to a single destination endpoint within this BackendRef, irrespective of how many endpoints are present within this BackendRef.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferenceGrant, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service  Support: Implementation-specific for any other resource",
+														MarkdownDescription: "BackendRef references a resource where mirrored requests are sent.  Mirrored requests must be sent only to a single destination endpoint within this BackendRef, irrespective of how many endpoints are present within this BackendRef.  If the referent cannot be found, this BackendRef is invalid and must be dropped from the Gateway. The controller must ensure the 'ResolvedRefs' condition on the Route status is set to 'status: False' and not configure this backend in the underlying implementation.  If there is a cross-namespace reference to an *existing* object that is not allowed by a ReferenceGrant, the controller must ensure the 'ResolvedRefs'  condition on the Route is set to 'status: False', with the 'RefNotPermitted' reason and not configure this backend in the underlying implementation.  In either error case, the Message of the 'ResolvedRefs' Condition should be used to provide more detail about the problem.  Support: Extended for Kubernetes Service  Support: Implementation-specific for any other resource",
 														Attributes: map[string]schema.Attribute{
 															"group": schema.StringAttribute{
-																Description:         "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
-																MarkdownDescription: "Group is the group of the referent. For example, 'networking.k8s.io'. When unspecified (empty string), core API group is inferred.",
+																Description:         "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
+																MarkdownDescription: "Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -932,8 +1189,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 															},
 
 															"kind": schema.StringAttribute{
-																Description:         "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
-																MarkdownDescription: "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
+																Description:         "Kind is the Kubernetes resource kind of the referent. For example 'Service'.  Defaults to 'Service' when not specified.  ExternalName services can refer to CNAME DNS records that may live outside of the cluster and as such are difficult to reason about in terms of conformance. They also may not be safe to forward to (see CVE-2021-25740 for more information). Implementations SHOULD NOT support ExternalName Services.  Support: Core (Services with a type other than ExternalName)  Support: Implementation-specific (Services with type ExternalName)",
+																MarkdownDescription: "Kind is the Kubernetes resource kind of the referent. For example 'Service'.  Defaults to 'Service' when not specified.  ExternalName services can refer to CNAME DNS records that may live outside of the cluster and as such are difficult to reason about in terms of conformance. They also may not be safe to forward to (see CVE-2021-25740 for more information). Implementations SHOULD NOT support ExternalName Services.  Support: Core (Services with a type other than ExternalName)  Support: Implementation-specific (Services with type ExternalName)",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -957,8 +1214,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 															},
 
 															"namespace": schema.StringAttribute{
-																Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
-																MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferencePolicy object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferencePolicy documentation for details.  Support: Core",
+																Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core",
+																MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -970,8 +1227,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 															},
 
 															"port": schema.Int64Attribute{
-																Description:         "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. For other resources, destination port might be derived from the referent resource or this field.",
-																MarkdownDescription: "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. For other resources, destination port might be derived from the referent resource or this field.",
+																Description:         "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. In this case, the port number is the service port number, not the target port. For other resources, destination port might be derived from the referent resource or this field.",
+																MarkdownDescription: "Port specifies the destination port number to use for this resource. Port is required when the referent is a Kubernetes Service. In this case, the port number is the service port number, not the target port. For other resources, destination port might be derived from the referent resource or this field.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -996,21 +1253,63 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 												MarkdownDescription: "RequestRedirect defines a schema for a filter that responds to the request with an HTTP redirection.  Support: Core",
 												Attributes: map[string]schema.Attribute{
 													"hostname": schema.StringAttribute{
-														Description:         "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname of the request is used.  Support: Core",
-														MarkdownDescription: "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname of the request is used.  Support: Core",
+														Description:         "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname in the 'Host' header of the request is used.  Support: Core",
+														MarkdownDescription: "Hostname is the hostname to be used in the value of the 'Location' header in the response. When empty, the hostname in the 'Host' header of the request is used.  Support: Core",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
 															stringvalidator.LengthAtLeast(1),
 															stringvalidator.LengthAtMost(253),
-															stringvalidator.RegexMatches(regexp.MustCompile(`^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 														},
 													},
 
+													"path": schema.SingleNestedAttribute{
+														Description:         "Path defines parameters used to modify the path of the incoming request. The modified path is then used to construct the 'Location' header. When empty, the request path is used as-is.  Support: Extended",
+														MarkdownDescription: "Path defines parameters used to modify the path of the incoming request. The modified path is then used to construct the 'Location' header. When empty, the request path is used as-is.  Support: Extended",
+														Attributes: map[string]schema.Attribute{
+															"replace_full_path": schema.StringAttribute{
+																Description:         "ReplaceFullPath specifies the value with which to replace the full path of a request during a rewrite or redirect.",
+																MarkdownDescription: "ReplaceFullPath specifies the value with which to replace the full path of a request during a rewrite or redirect.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtMost(1024),
+																},
+															},
+
+															"replace_prefix_match": schema.StringAttribute{
+																Description:         "ReplacePrefixMatch specifies the value with which to replace the prefix match of a request during a rewrite or redirect. For example, a request to '/foo/bar' with a prefix match of '/foo' and a ReplacePrefixMatch of '/xyz' would be modified to '/xyz/bar'.  Note that this matches the behavior of the PathPrefix match type. This matches full path elements. A path element refers to the list of labels in the path split by the '/' separator. When specified, a trailing '/' is ignored. For example, the paths '/abc', '/abc/', and '/abc/def' would all match the prefix '/abc', but the path '/abcd' would not.  ReplacePrefixMatch is only compatible with a 'PathPrefix' HTTPRouteMatch. Using any other HTTPRouteMatch type on the same HTTPRouteRule will result in the implementation setting the Accepted Condition for the Route to 'status: False'.  Request Path | Prefix Match | Replace Prefix | Modified Path -------------|--------------|----------------|---------- /foo/bar     | /foo         | /xyz           | /xyz/bar /foo/bar     | /foo         | /xyz/          | /xyz/bar /foo/bar     | /foo/        | /xyz           | /xyz/bar /foo/bar     | /foo/        | /xyz/          | /xyz/bar /foo         | /foo         | /xyz           | /xyz /foo/        | /foo         | /xyz           | /xyz/ /foo/bar     | /foo         | <empty string> | /bar /foo/        | /foo         | <empty string> | / /foo         | /foo         | <empty string> | / /foo/        | /foo         | /              | / /foo         | /foo         | /              | /",
+																MarkdownDescription: "ReplacePrefixMatch specifies the value with which to replace the prefix match of a request during a rewrite or redirect. For example, a request to '/foo/bar' with a prefix match of '/foo' and a ReplacePrefixMatch of '/xyz' would be modified to '/xyz/bar'.  Note that this matches the behavior of the PathPrefix match type. This matches full path elements. A path element refers to the list of labels in the path split by the '/' separator. When specified, a trailing '/' is ignored. For example, the paths '/abc', '/abc/', and '/abc/def' would all match the prefix '/abc', but the path '/abcd' would not.  ReplacePrefixMatch is only compatible with a 'PathPrefix' HTTPRouteMatch. Using any other HTTPRouteMatch type on the same HTTPRouteRule will result in the implementation setting the Accepted Condition for the Route to 'status: False'.  Request Path | Prefix Match | Replace Prefix | Modified Path -------------|--------------|----------------|---------- /foo/bar     | /foo         | /xyz           | /xyz/bar /foo/bar     | /foo         | /xyz/          | /xyz/bar /foo/bar     | /foo/        | /xyz           | /xyz/bar /foo/bar     | /foo/        | /xyz/          | /xyz/bar /foo         | /foo         | /xyz           | /xyz /foo/        | /foo         | /xyz           | /xyz/ /foo/bar     | /foo         | <empty string> | /bar /foo/        | /foo         | <empty string> | / /foo         | /foo         | <empty string> | / /foo/        | /foo         | /              | / /foo         | /foo         | /              | /",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtMost(1024),
+																},
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type defines the type of path modifier. Additional types may be added in a future release of the API.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
+																MarkdownDescription: "Type defines the type of path modifier. Additional types may be added in a future release of the API.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("ReplaceFullPath", "ReplacePrefixMatch"),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"port": schema.Int64Attribute{
-														Description:         "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.  Support: Extended",
-														MarkdownDescription: "Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.  Support: Extended",
+														Description:         "Port is the port to be used in the value of the 'Location' header in the response.  If no port is specified, the redirect port MUST be derived using the following rules:  * If redirect scheme is not-empty, the redirect port MUST be the well-known port associated with the redirect scheme. Specifically 'http' to port 80 and 'https' to port 443. If the redirect scheme does not have a well-known port, the listener port of the Gateway SHOULD be used. * If redirect scheme is empty, the redirect port MUST be the Gateway Listener port.  Implementations SHOULD NOT add the port number in the 'Location' header in the following cases:  * A Location header that will use HTTP (whether that is determined via the Listener protocol or the Scheme field) _and_ use port 80. * A Location header that will use HTTPS (whether that is determined via the Listener protocol or the Scheme field) _and_ use port 443.  Support: Extended",
+														MarkdownDescription: "Port is the port to be used in the value of the 'Location' header in the response.  If no port is specified, the redirect port MUST be derived using the following rules:  * If redirect scheme is not-empty, the redirect port MUST be the well-known port associated with the redirect scheme. Specifically 'http' to port 80 and 'https' to port 443. If the redirect scheme does not have a well-known port, the listener port of the Gateway SHOULD be used. * If redirect scheme is empty, the redirect port MUST be the Gateway Listener port.  Implementations SHOULD NOT add the port number in the 'Location' header in the following cases:  * A Location header that will use HTTP (whether that is determined via the Listener protocol or the Scheme field) _and_ use port 80. * A Location header that will use HTTPS (whether that is determined via the Listener protocol or the Scheme field) _and_ use port 443.  Support: Extended",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1021,8 +1320,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 													},
 
 													"scheme": schema.StringAttribute{
-														Description:         "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Support: Extended",
-														MarkdownDescription: "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Support: Extended",
+														Description:         "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Scheme redirects can affect the port of the redirect, for more information, refer to the documentation for the port field of this filter.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.  Support: Extended",
+														MarkdownDescription: "Scheme is the scheme to be used in the value of the 'Location' header in the response. When empty, the scheme of the request is used.  Scheme redirects can affect the port of the redirect, for more information, refer to the documentation for the port field of this filter.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.  Support: Extended",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1032,8 +1331,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 													},
 
 													"status_code": schema.Int64Attribute{
-														Description:         "StatusCode is the HTTP status code to be used in response.  Support: Core",
-														MarkdownDescription: "StatusCode is the HTTP status code to be used in response.  Support: Core",
+														Description:         "StatusCode is the HTTP status code to be used in response.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.  Support: Core",
+														MarkdownDescription: "StatusCode is the HTTP status code to be used in response.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.  Support: Core",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1047,15 +1346,169 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 												Computed: false,
 											},
 
+											"response_header_modifier": schema.SingleNestedAttribute{
+												Description:         "ResponseHeaderModifier defines a schema for a filter that modifies response headers.  Support: Extended",
+												MarkdownDescription: "ResponseHeaderModifier defines a schema for a filter that modifies response headers.  Support: Extended",
+												Attributes: map[string]schema.Attribute{
+													"add": schema.ListNestedAttribute{
+														Description:         "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input: GET /foo HTTP/1.1 my-header: foo  Config: add: - name: 'my-header' value: 'bar,baz'  Output: GET /foo HTTP/1.1 my-header: foo,bar,baz",
+														MarkdownDescription: "Add adds the given header(s) (name, value) to the request before the action. It appends to any existing values associated with the header name.  Input: GET /foo HTTP/1.1 my-header: foo  Config: add: - name: 'my-header' value: 'bar,baz'  Output: GET /foo HTTP/1.1 my-header: foo,bar,baz",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+																	MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.LengthAtLeast(1),
+																		stringvalidator.LengthAtMost(256),
+																		stringvalidator.RegexMatches(regexp.MustCompile(`^[A-Za-z0-9!#$%&'*+\-.^_\x60|~]+$`), ""),
+																	},
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "Value is the value of HTTP Header to be matched.",
+																	MarkdownDescription: "Value is the value of HTTP Header to be matched.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.LengthAtLeast(1),
+																		stringvalidator.LengthAtMost(4096),
+																	},
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"remove": schema.ListAttribute{
+														Description:         "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input: GET /foo HTTP/1.1 my-header1: foo my-header2: bar my-header3: baz  Config: remove: ['my-header1', 'my-header3']  Output: GET /foo HTTP/1.1 my-header2: bar",
+														MarkdownDescription: "Remove the given header(s) from the HTTP request before the action. The value of Remove is a list of HTTP header names. Note that the header names are case-insensitive (see https://datatracker.ietf.org/doc/html/rfc2616#section-4.2).  Input: GET /foo HTTP/1.1 my-header1: foo my-header2: bar my-header3: baz  Config: remove: ['my-header1', 'my-header3']  Output: GET /foo HTTP/1.1 my-header2: bar",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"set": schema.ListNestedAttribute{
+														Description:         "Set overwrites the request with the given header (name, value) before the action.  Input: GET /foo HTTP/1.1 my-header: foo  Config: set: - name: 'my-header' value: 'bar'  Output: GET /foo HTTP/1.1 my-header: bar",
+														MarkdownDescription: "Set overwrites the request with the given header (name, value) before the action.  Input: GET /foo HTTP/1.1 my-header: foo  Config: set: - name: 'my-header' value: 'bar'  Output: GET /foo HTTP/1.1 my-header: bar",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+																	MarkdownDescription: "Name is the name of the HTTP Header to be matched. Name matching MUST be case insensitive. (See https://tools.ietf.org/html/rfc7230#section-3.2).  If multiple entries specify equivalent header names, the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent header name MUST be ignored. Due to the case-insensitivity of header names, 'foo' and 'Foo' are considered equivalent.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.LengthAtLeast(1),
+																		stringvalidator.LengthAtMost(256),
+																		stringvalidator.RegexMatches(regexp.MustCompile(`^[A-Za-z0-9!#$%&'*+\-.^_\x60|~]+$`), ""),
+																	},
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "Value is the value of HTTP Header to be matched.",
+																	MarkdownDescription: "Value is the value of HTTP Header to be matched.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.LengthAtLeast(1),
+																		stringvalidator.LengthAtMost(4096),
+																	},
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"type": schema.StringAttribute{
-												Description:         "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by   'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All   implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by   'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers   are encouraged to support extended filters.  - Custom: Filters that are defined and supported by specific vendors.   In the future, filters showing convergence in behavior across multiple   implementations will be considered for inclusion in extended or core   conformance levels. Filter-specific configuration for such filters   is specified using the ExtensionRef field. 'Type' should be set to   'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.",
-												MarkdownDescription: "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by   'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All   implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by   'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers   are encouraged to support extended filters.  - Custom: Filters that are defined and supported by specific vendors.   In the future, filters showing convergence in behavior across multiple   implementations will be considered for inclusion in extended or core   conformance levels. Filter-specific configuration for such filters   is specified using the ExtensionRef field. 'Type' should be set to   'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.",
+												Description:         "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by 'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by 'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers are encouraged to support extended filters.  - Implementation-specific: Filters that are defined and supported by specific vendors. In the future, filters showing convergence in behavior across multiple implementations will be considered for inclusion in extended or core conformance levels. Filter-specific configuration for such filters is specified using the ExtensionRef field. 'Type' should be set to 'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
+												MarkdownDescription: "Type identifies the type of filter to apply. As with other API fields, types are classified into three conformance levels:  - Core: Filter types and their corresponding configuration defined by 'Support: Core' in this package, e.g. 'RequestHeaderModifier'. All implementations must support core filters.  - Extended: Filter types and their corresponding configuration defined by 'Support: Extended' in this package, e.g. 'RequestMirror'. Implementers are encouraged to support extended filters.  - Implementation-specific: Filters that are defined and supported by specific vendors. In the future, filters showing convergence in behavior across multiple implementations will be considered for inclusion in extended or core conformance levels. Filter-specific configuration for such filters is specified using the ExtensionRef field. 'Type' should be set to 'ExtensionRef' for custom filters.  Implementers are encouraged to define custom implementation types to extend the core API with implementation-specific behavior.  If a reference to a custom filter type cannot be resolved, the filter MUST NOT be skipped. Instead, requests that would have been processed by that filter MUST receive a HTTP error response.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 												Validators: []validator.String{
-													stringvalidator.OneOf("RequestHeaderModifier", "RequestMirror", "RequestRedirect", "ExtensionRef"),
+													stringvalidator.OneOf("RequestHeaderModifier", "ResponseHeaderModifier", "RequestMirror", "RequestRedirect", "URLRewrite", "ExtensionRef"),
 												},
+											},
+
+											"url_rewrite": schema.SingleNestedAttribute{
+												Description:         "URLRewrite defines a schema for a filter that modifies a request during forwarding.  Support: Extended",
+												MarkdownDescription: "URLRewrite defines a schema for a filter that modifies a request during forwarding.  Support: Extended",
+												Attributes: map[string]schema.Attribute{
+													"hostname": schema.StringAttribute{
+														Description:         "Hostname is the value to be used to replace the Host header value during forwarding.  Support: Extended",
+														MarkdownDescription: "Hostname is the value to be used to replace the Host header value during forwarding.  Support: Extended",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(253),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+														},
+													},
+
+													"path": schema.SingleNestedAttribute{
+														Description:         "Path defines a path rewrite.  Support: Extended",
+														MarkdownDescription: "Path defines a path rewrite.  Support: Extended",
+														Attributes: map[string]schema.Attribute{
+															"replace_full_path": schema.StringAttribute{
+																Description:         "ReplaceFullPath specifies the value with which to replace the full path of a request during a rewrite or redirect.",
+																MarkdownDescription: "ReplaceFullPath specifies the value with which to replace the full path of a request during a rewrite or redirect.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtMost(1024),
+																},
+															},
+
+															"replace_prefix_match": schema.StringAttribute{
+																Description:         "ReplacePrefixMatch specifies the value with which to replace the prefix match of a request during a rewrite or redirect. For example, a request to '/foo/bar' with a prefix match of '/foo' and a ReplacePrefixMatch of '/xyz' would be modified to '/xyz/bar'.  Note that this matches the behavior of the PathPrefix match type. This matches full path elements. A path element refers to the list of labels in the path split by the '/' separator. When specified, a trailing '/' is ignored. For example, the paths '/abc', '/abc/', and '/abc/def' would all match the prefix '/abc', but the path '/abcd' would not.  ReplacePrefixMatch is only compatible with a 'PathPrefix' HTTPRouteMatch. Using any other HTTPRouteMatch type on the same HTTPRouteRule will result in the implementation setting the Accepted Condition for the Route to 'status: False'.  Request Path | Prefix Match | Replace Prefix | Modified Path -------------|--------------|----------------|---------- /foo/bar     | /foo         | /xyz           | /xyz/bar /foo/bar     | /foo         | /xyz/          | /xyz/bar /foo/bar     | /foo/        | /xyz           | /xyz/bar /foo/bar     | /foo/        | /xyz/          | /xyz/bar /foo         | /foo         | /xyz           | /xyz /foo/        | /foo         | /xyz           | /xyz/ /foo/bar     | /foo         | <empty string> | /bar /foo/        | /foo         | <empty string> | / /foo         | /foo         | <empty string> | / /foo/        | /foo         | /              | / /foo         | /foo         | /              | /",
+																MarkdownDescription: "ReplacePrefixMatch specifies the value with which to replace the prefix match of a request during a rewrite or redirect. For example, a request to '/foo/bar' with a prefix match of '/foo' and a ReplacePrefixMatch of '/xyz' would be modified to '/xyz/bar'.  Note that this matches the behavior of the PathPrefix match type. This matches full path elements. A path element refers to the list of labels in the path split by the '/' separator. When specified, a trailing '/' is ignored. For example, the paths '/abc', '/abc/', and '/abc/def' would all match the prefix '/abc', but the path '/abcd' would not.  ReplacePrefixMatch is only compatible with a 'PathPrefix' HTTPRouteMatch. Using any other HTTPRouteMatch type on the same HTTPRouteRule will result in the implementation setting the Accepted Condition for the Route to 'status: False'.  Request Path | Prefix Match | Replace Prefix | Modified Path -------------|--------------|----------------|---------- /foo/bar     | /foo         | /xyz           | /xyz/bar /foo/bar     | /foo         | /xyz/          | /xyz/bar /foo/bar     | /foo/        | /xyz           | /xyz/bar /foo/bar     | /foo/        | /xyz/          | /xyz/bar /foo         | /foo         | /xyz           | /xyz /foo/        | /foo         | /xyz           | /xyz/ /foo/bar     | /foo         | <empty string> | /bar /foo/        | /foo         | <empty string> | / /foo         | /foo         | <empty string> | / /foo/        | /foo         | /              | / /foo         | /foo         | /              | /",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtMost(1024),
+																},
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Type defines the type of path modifier. Additional types may be added in a future release of the API.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
+																MarkdownDescription: "Type defines the type of path modifier. Additional types may be added in a future release of the API.  Note that values may be added to this enum, implementations must ensure that unknown values will not cause a crash.  Unknown values here must result in the implementation setting the Accepted Condition for the Route to 'status: False', with a Reason of 'UnsupportedValue'.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("ReplaceFullPath", "ReplacePrefixMatch"),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 									},
@@ -1065,8 +1518,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 								},
 
 								"matches": schema.ListNestedAttribute{
-									Description:         "Matches define conditions used for matching the rule against incoming HTTP requests. Each match is independent, i.e. this rule will be matched if **any** one of the matches is satisfied.  For example, take the following matches configuration:  ''' matches: - path:     value: '/foo'   headers:   - name: 'version'     value: 'v2' - path:     value: '/v2/foo' '''  For a request to match against this rule, a request must satisfy EITHER of the two conditions:  - path prefixed with '/foo' AND contains the header 'version: v2' - path prefix of '/v2/foo'  See the documentation for HTTPRouteMatch on how to specify multiple match conditions that should be ANDed together.  If no matches are specified, the default is a prefix path match on '/', which has the effect of matching every HTTP request.  Proxy or Load Balancer routing configuration generated from HTTPRoutes MUST prioritize rules based on the following criteria, continuing on ties. Precedence must be given to the the Rule with the largest number of:  * Characters in a matching non-wildcard hostname. * Characters in a matching hostname. * Characters in a matching path. * Header matches. * Query param matches.  If ties still exist across multiple Routes, matching precedence MUST be determined in order of the following criteria, continuing on ties:  * The oldest Route based on creation timestamp. * The Route appearing first in alphabetical order by   '<namespace>/<name>'.  If ties still exist within the Route that has been given precedence, matching precedence MUST be granted to the first matching rule meeting the above criteria.",
-									MarkdownDescription: "Matches define conditions used for matching the rule against incoming HTTP requests. Each match is independent, i.e. this rule will be matched if **any** one of the matches is satisfied.  For example, take the following matches configuration:  ''' matches: - path:     value: '/foo'   headers:   - name: 'version'     value: 'v2' - path:     value: '/v2/foo' '''  For a request to match against this rule, a request must satisfy EITHER of the two conditions:  - path prefixed with '/foo' AND contains the header 'version: v2' - path prefix of '/v2/foo'  See the documentation for HTTPRouteMatch on how to specify multiple match conditions that should be ANDed together.  If no matches are specified, the default is a prefix path match on '/', which has the effect of matching every HTTP request.  Proxy or Load Balancer routing configuration generated from HTTPRoutes MUST prioritize rules based on the following criteria, continuing on ties. Precedence must be given to the the Rule with the largest number of:  * Characters in a matching non-wildcard hostname. * Characters in a matching hostname. * Characters in a matching path. * Header matches. * Query param matches.  If ties still exist across multiple Routes, matching precedence MUST be determined in order of the following criteria, continuing on ties:  * The oldest Route based on creation timestamp. * The Route appearing first in alphabetical order by   '<namespace>/<name>'.  If ties still exist within the Route that has been given precedence, matching precedence MUST be granted to the first matching rule meeting the above criteria.",
+									Description:         "Matches define conditions used for matching the rule against incoming HTTP requests. Each match is independent, i.e. this rule will be matched if **any** one of the matches is satisfied.  For example, take the following matches configuration:  ''' matches: - path: value: '/foo' headers: - name: 'version' value: 'v2' - path: value: '/v2/foo' '''  For a request to match against this rule, a request must satisfy EITHER of the two conditions:  - path prefixed with '/foo' AND contains the header 'version: v2' - path prefix of '/v2/foo'  See the documentation for HTTPRouteMatch on how to specify multiple match conditions that should be ANDed together.  If no matches are specified, the default is a prefix path match on '/', which has the effect of matching every HTTP request.  Proxy or Load Balancer routing configuration generated from HTTPRoutes MUST prioritize matches based on the following criteria, continuing on ties. Across all rules specified on applicable Routes, precedence must be given to the match having:  * 'Exact' path match. * 'Prefix' path match with largest number of characters. * Method match. * Largest number of header matches. * Largest number of query param matches.  Note: The precedence of RegularExpression path matches are implementation-specific.  If ties still exist across multiple Routes, matching precedence MUST be determined in order of the following criteria, continuing on ties:  * The oldest Route based on creation timestamp. * The Route appearing first in alphabetical order by '{namespace}/{name}'.  If ties still exist within an HTTPRoute, matching precedence MUST be granted to the FIRST matching rule (in list order) with a match meeting the above criteria.  When no rules matching a request have been successfully attached to the parent a request is coming from, a HTTP 404 status code MUST be returned.",
+									MarkdownDescription: "Matches define conditions used for matching the rule against incoming HTTP requests. Each match is independent, i.e. this rule will be matched if **any** one of the matches is satisfied.  For example, take the following matches configuration:  ''' matches: - path: value: '/foo' headers: - name: 'version' value: 'v2' - path: value: '/v2/foo' '''  For a request to match against this rule, a request must satisfy EITHER of the two conditions:  - path prefixed with '/foo' AND contains the header 'version: v2' - path prefix of '/v2/foo'  See the documentation for HTTPRouteMatch on how to specify multiple match conditions that should be ANDed together.  If no matches are specified, the default is a prefix path match on '/', which has the effect of matching every HTTP request.  Proxy or Load Balancer routing configuration generated from HTTPRoutes MUST prioritize matches based on the following criteria, continuing on ties. Across all rules specified on applicable Routes, precedence must be given to the match having:  * 'Exact' path match. * 'Prefix' path match with largest number of characters. * Method match. * Largest number of header matches. * Largest number of query param matches.  Note: The precedence of RegularExpression path matches are implementation-specific.  If ties still exist across multiple Routes, matching precedence MUST be determined in order of the following criteria, continuing on ties:  * The oldest Route based on creation timestamp. * The Route appearing first in alphabetical order by '{namespace}/{name}'.  If ties still exist within an HTTPRoute, matching precedence MUST be granted to the FIRST matching rule (in list order) with a match meeting the above criteria.  When no rules matching a request have been successfully attached to the parent a request is coming from, a HTTP 404 status code MUST be returned.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"headers": schema.ListNestedAttribute{
@@ -1088,8 +1541,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "Type specifies how to match against the value of the header.  Support: Core (Exact)  Support: Custom (RegularExpression)  Since RegularExpression HeaderMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
-															MarkdownDescription: "Type specifies how to match against the value of the header.  Support: Core (Exact)  Support: Custom (RegularExpression)  Since RegularExpression HeaderMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+															Description:         "Type specifies how to match against the value of the header.  Support: Core (Exact)  Support: Implementation-specific (RegularExpression)  Since RegularExpression HeaderMatchType has implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+															MarkdownDescription: "Type specifies how to match against the value of the header.  Support: Core (Exact)  Support: Implementation-specific (RegularExpression)  Since RegularExpression HeaderMatchType has implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1132,8 +1585,8 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 												MarkdownDescription: "Path specifies a HTTP request path matcher. If this field is not specified, a default prefix match on the '/' path is provided.",
 												Attributes: map[string]schema.Attribute{
 													"type": schema.StringAttribute{
-														Description:         "Type specifies how to match against the path Value.  Support: Core (Exact, PathPrefix)  Support: Custom (RegularExpression)",
-														MarkdownDescription: "Type specifies how to match against the path Value.  Support: Core (Exact, PathPrefix)  Support: Custom (RegularExpression)",
+														Description:         "Type specifies how to match against the path Value.  Support: Core (Exact, PathPrefix)  Support: Implementation-specific (RegularExpression)",
+														MarkdownDescription: "Type specifies how to match against the path Value.  Support: Core (Exact, PathPrefix)  Support: Implementation-specific (RegularExpression)",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1159,25 +1612,26 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 											},
 
 											"query_params": schema.ListNestedAttribute{
-												Description:         "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route.",
-												MarkdownDescription: "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route.",
+												Description:         "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route.  Support: Extended",
+												MarkdownDescription: "QueryParams specifies HTTP query parameter matchers. Multiple match values are ANDed together, meaning, a request must match all the specified query parameters to select the route.  Support: Extended",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3).",
-															MarkdownDescription: "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3).",
+															Description:         "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3).  If multiple entries specify equivalent query param names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent query param name MUST be ignored.  If a query param is repeated in an HTTP request, the behavior is purposely left undefined, since different data planes have different capabilities. However, it is *recommended* that implementations should match against the first value of the param if the data plane supports it, as this behavior is expected in other load balancing contexts outside of the Gateway API.  Users SHOULD NOT route traffic based on repeated query params to guard themselves against potential differences in the implementations.",
+															MarkdownDescription: "Name is the name of the HTTP query param to be matched. This must be an exact string match. (See https://tools.ietf.org/html/rfc7230#section-2.7.3).  If multiple entries specify equivalent query param names, only the first entry with an equivalent name MUST be considered for a match. Subsequent entries with an equivalent query param name MUST be ignored.  If a query param is repeated in an HTTP request, the behavior is purposely left undefined, since different data planes have different capabilities. However, it is *recommended* that implementations should match against the first value of the param if the data plane supports it, as this behavior is expected in other load balancing contexts outside of the Gateway API.  Users SHOULD NOT route traffic based on repeated query params to guard themselves against potential differences in the implementations.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 															Validators: []validator.String{
 																stringvalidator.LengthAtLeast(1),
 																stringvalidator.LengthAtMost(256),
+																stringvalidator.RegexMatches(regexp.MustCompile(`^[A-Za-z0-9!#$%&'*+\-.^_\x60|~]+$`), ""),
 															},
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "Type specifies how to match against the value of the query parameter.  Support: Extended (Exact)  Support: Custom (RegularExpression)  Since RegularExpression QueryParamMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
-															MarkdownDescription: "Type specifies how to match against the value of the query parameter.  Support: Extended (Exact)  Support: Custom (RegularExpression)  Since RegularExpression QueryParamMatchType has custom conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+															Description:         "Type specifies how to match against the value of the query parameter.  Support: Extended (Exact)  Support: Implementation-specific (RegularExpression)  Since RegularExpression QueryParamMatchType has Implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
+															MarkdownDescription: "Type specifies how to match against the value of the query parameter.  Support: Extended (Exact)  Support: Implementation-specific (RegularExpression)  Since RegularExpression QueryParamMatchType has Implementation-specific conformance, implementations can support POSIX, PCRE or any other dialects of regular expressions. Please read the implementation's documentation to determine the supported dialect.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1224,7 +1678,7 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Schema(_ context.Conte
 	}
 }
 
-func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *GatewayNetworkingK8SIoHttprouteV1Alpha2Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1249,10 +1703,10 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Configure(_ context.Co
 	}
 }
 
-func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *GatewayNetworkingK8SIoHttprouteV1Alpha2Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_gateway_networking_k8s_io_http_route_v1alpha2")
 
-	var model GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData
+	var model GatewayNetworkingK8SIoHttprouteV1Alpha2ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1310,7 +1764,7 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Create(ctx context.Con
 		return
 	}
 
-	var readResponse GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData
+	var readResponse GatewayNetworkingK8SIoHttprouteV1Alpha2ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1328,10 +1782,10 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Create(ctx context.Con
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *GatewayNetworkingK8SIoHttprouteV1Alpha2Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_gateway_networking_k8s_io_http_route_v1alpha2")
 
-	var data GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData
+	var data GatewayNetworkingK8SIoHttprouteV1Alpha2ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1360,7 +1814,7 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Read(ctx context.Conte
 		return
 	}
 
-	var readResponse GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData
+	var readResponse GatewayNetworkingK8SIoHttprouteV1Alpha2ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1378,10 +1832,10 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Read(ctx context.Conte
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *GatewayNetworkingK8SIoHttprouteV1Alpha2Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_gateway_networking_k8s_io_http_route_v1alpha2")
 
-	var model GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData
+	var model GatewayNetworkingK8SIoHttprouteV1Alpha2ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1438,7 +1892,7 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Update(ctx context.Con
 		return
 	}
 
-	var readResponse GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData
+	var readResponse GatewayNetworkingK8SIoHttprouteV1Alpha2ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1456,10 +1910,10 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Update(ctx context.Con
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *GatewayNetworkingK8SIoHttprouteV1Alpha2Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_gateway_networking_k8s_io_http_route_v1alpha2")
 
-	var data GatewayNetworkingK8SIoHTTPRouteV1Alpha2ResourceData
+	var data GatewayNetworkingK8SIoHttprouteV1Alpha2ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1480,7 +1934,7 @@ func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) Delete(ctx context.Con
 	}
 }
 
-func (r *GatewayNetworkingK8SIoHTTPRouteV1Alpha2Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *GatewayNetworkingK8SIoHttprouteV1Alpha2Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

@@ -19,16 +19,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &StorageK8SIoCSIDriverV1Manifest{}
+	_ datasource.DataSource = &StorageK8SIoCsidriverV1Manifest{}
 )
 
-func NewStorageK8SIoCSIDriverV1Manifest() datasource.DataSource {
-	return &StorageK8SIoCSIDriverV1Manifest{}
+func NewStorageK8SIoCsidriverV1Manifest() datasource.DataSource {
+	return &StorageK8SIoCsidriverV1Manifest{}
 }
 
-type StorageK8SIoCSIDriverV1Manifest struct{}
+type StorageK8SIoCsidriverV1Manifest struct{}
 
-type StorageK8SIoCSIDriverV1ManifestData struct {
+type StorageK8SIoCsidriverV1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -56,11 +56,11 @@ type StorageK8SIoCSIDriverV1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *StorageK8SIoCSIDriverV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *StorageK8SIoCsidriverV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_storage_k8s_io_csi_driver_v1_manifest"
 }
 
-func (r *StorageK8SIoCSIDriverV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *StorageK8SIoCsidriverV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CSIDriver captures information about a Container Storage Interface (CSI) volume driver deployed on the cluster. Kubernetes attach detach controller uses this object to determine whether attach is required. Kubelet uses this object to determine whether pod information needs to be passed on mount. CSIDriver objects are non-namespaced.",
 		MarkdownDescription: "CSIDriver captures information about a Container Storage Interface (CSI) volume driver deployed on the cluster. Kubernetes attach detach controller uses this object to determine whether attach is required. Kubelet uses this object to determine whether pod information needs to be passed on mount. CSIDriver objects are non-namespaced.",
@@ -221,10 +221,10 @@ func (r *StorageK8SIoCSIDriverV1Manifest) Schema(_ context.Context, _ datasource
 	}
 }
 
-func (r *StorageK8SIoCSIDriverV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *StorageK8SIoCsidriverV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_storage_k8s_io_csi_driver_v1_manifest")
 
-	var model StorageK8SIoCSIDriverV1ManifestData
+	var model StorageK8SIoCsidriverV1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

@@ -6512,8 +6512,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource) Schema(_ context
 					},
 
 					"pod_security_context": schema.SingleNestedAttribute{
-						Description:         "PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.",
-						MarkdownDescription: "PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.",
+						Description:         "PodSecurityContext configures the pod security context for the opentelemetry-collector pod, when running as a deployment, daemonset, or statefulset.",
+						MarkdownDescription: "PodSecurityContext configures the pod security context for the opentelemetry-collector pod, when running as a deployment, daemonset, or statefulset.",
 						Attributes: map[string]schema.Attribute{
 							"fs_group": schema.Int64Attribute{
 								Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1.",
@@ -6825,8 +6825,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Resource) Schema(_ context
 					},
 
 					"security_context": schema.SingleNestedAttribute{
-						Description:         "SecurityContext will be set as the container security context.",
-						MarkdownDescription: "SecurityContext will be set as the container security context.",
+						Description:         "SecurityContext configures the container security context for the opentelemetry-collector container.",
+						MarkdownDescription: "SecurityContext configures the container security context for the opentelemetry-collector container.",
 						Attributes: map[string]schema.Attribute{
 							"allow_privilege_escalation": schema.BoolAttribute{
 								Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process.",

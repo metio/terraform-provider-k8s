@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &CephRookIoCephNFSV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &CephRookIoCephNFSV1DataSource{}
+	_ datasource.DataSource              = &CephRookIoCephNfsV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &CephRookIoCephNfsV1DataSource{}
 )
 
-func NewCephRookIoCephNFSV1DataSource() datasource.DataSource {
-	return &CephRookIoCephNFSV1DataSource{}
+func NewCephRookIoCephNfsV1DataSource() datasource.DataSource {
+	return &CephRookIoCephNfsV1DataSource{}
 }
 
-type CephRookIoCephNFSV1DataSource struct {
+type CephRookIoCephNfsV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type CephRookIoCephNFSV1DataSourceData struct {
+type CephRookIoCephNfsV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -555,11 +555,11 @@ type CephRookIoCephNFSV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CephRookIoCephNFSV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CephRookIoCephNfsV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_nfs_v1"
 }
 
-func (r *CephRookIoCephNFSV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CephRookIoCephNfsV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephNFS represents a Ceph NFS",
 		MarkdownDescription: "CephNFS represents a Ceph NFS",
@@ -3883,7 +3883,7 @@ func (r *CephRookIoCephNFSV1DataSource) Schema(_ context.Context, _ datasource.S
 	}
 }
 
-func (r *CephRookIoCephNFSV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *CephRookIoCephNfsV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -3906,10 +3906,10 @@ func (r *CephRookIoCephNFSV1DataSource) Configure(_ context.Context, request dat
 	}
 }
 
-func (r *CephRookIoCephNFSV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CephRookIoCephNfsV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_ceph_rook_io_ceph_nfs_v1")
 
-	var data CephRookIoCephNFSV1DataSourceData
+	var data CephRookIoCephNfsV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -3938,7 +3938,7 @@ func (r *CephRookIoCephNFSV1DataSource) Read(ctx context.Context, request dataso
 		return
 	}
 
-	var readResponse CephRookIoCephNFSV1DataSourceData
+	var readResponse CephRookIoCephNfsV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

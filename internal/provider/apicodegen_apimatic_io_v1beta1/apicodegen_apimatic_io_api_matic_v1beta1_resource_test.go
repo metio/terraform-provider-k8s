@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestApicodegenApimaticIoAPIMaticV1Beta1Resource_ValidateSchema(t *testing.T) {
+func TestApicodegenApimaticIoApimaticV1Beta1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	apicodegen_apimatic_io_v1beta1.NewApicodegenApimaticIoAPIMaticV1Beta1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	apicodegen_apimatic_io_v1beta1.NewApicodegenApimaticIoApimaticV1Beta1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestChaosMeshOrgPodIOChaosV1Alpha1Resource(t *testing.T) {
+func TestChaosMeshOrgPodIochaosV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_chaos_mesh_org_pod_io_chaos_v1alpha1"
 
 	_, err := os.Stat(path)

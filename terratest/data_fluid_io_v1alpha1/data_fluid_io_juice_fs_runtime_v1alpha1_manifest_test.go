@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestDataFluidIoJuiceFSRuntimeV1Alpha1Manifest(t *testing.T) {
+func TestDataFluidIoJuiceFsruntimeV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_data_fluid_io_juice_fs_runtime_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

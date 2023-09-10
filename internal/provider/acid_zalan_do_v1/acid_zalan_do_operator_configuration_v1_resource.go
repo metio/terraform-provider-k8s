@@ -131,13 +131,17 @@ type AcidZalanDoOperatorConfigurationV1ResourceData struct {
 				Template         *bool   `tfsdk:"template" json:"template,omitempty"`
 				Userkey          *string `tfsdk:"userkey" json:"userkey,omitempty"`
 			} `tfsdk:"infrastructure_roles_secrets" json:"infrastructure_roles_secrets,omitempty"`
-			Inherited_annotations                        *[]string          `tfsdk:"inherited_annotations" json:"inherited_annotations,omitempty"`
-			Inherited_labels                             *[]string          `tfsdk:"inherited_labels" json:"inherited_labels,omitempty"`
-			Master_pod_move_timeout                      *string            `tfsdk:"master_pod_move_timeout" json:"master_pod_move_timeout,omitempty"`
-			Node_readiness_label                         *map[string]string `tfsdk:"node_readiness_label" json:"node_readiness_label,omitempty"`
-			Node_readiness_label_merge                   *string            `tfsdk:"node_readiness_label_merge" json:"node_readiness_label_merge,omitempty"`
-			Oauth_token_secret_name                      *string            `tfsdk:"oauth_token_secret_name" json:"oauth_token_secret_name,omitempty"`
-			Pdb_name_format                              *string            `tfsdk:"pdb_name_format" json:"pdb_name_format,omitempty"`
+			Inherited_annotations                    *[]string          `tfsdk:"inherited_annotations" json:"inherited_annotations,omitempty"`
+			Inherited_labels                         *[]string          `tfsdk:"inherited_labels" json:"inherited_labels,omitempty"`
+			Master_pod_move_timeout                  *string            `tfsdk:"master_pod_move_timeout" json:"master_pod_move_timeout,omitempty"`
+			Node_readiness_label                     *map[string]string `tfsdk:"node_readiness_label" json:"node_readiness_label,omitempty"`
+			Node_readiness_label_merge               *string            `tfsdk:"node_readiness_label_merge" json:"node_readiness_label_merge,omitempty"`
+			Oauth_token_secret_name                  *string            `tfsdk:"oauth_token_secret_name" json:"oauth_token_secret_name,omitempty"`
+			Pdb_name_format                          *string            `tfsdk:"pdb_name_format" json:"pdb_name_format,omitempty"`
+			Persistent_volume_claim_retention_policy *struct {
+				When_deleted *string `tfsdk:"when_deleted" json:"when_deleted,omitempty"`
+				When_scaled  *string `tfsdk:"when_scaled" json:"when_scaled,omitempty"`
+			} `tfsdk:"persistent_volume_claim_retention_policy" json:"persistent_volume_claim_retention_policy,omitempty"`
 			Pod_antiaffinity_preferred_during_scheduling *bool              `tfsdk:"pod_antiaffinity_preferred_during_scheduling" json:"pod_antiaffinity_preferred_during_scheduling,omitempty"`
 			Pod_antiaffinity_topology_key                *string            `tfsdk:"pod_antiaffinity_topology_key" json:"pod_antiaffinity_topology_key,omitempty"`
 			Pod_environment_configmap                    *string            `tfsdk:"pod_environment_configmap" json:"pod_environment_configmap,omitempty"`
@@ -996,6 +1000,37 @@ func (r *AcidZalanDoOperatorConfigurationV1Resource) Schema(_ context.Context, _
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"persistent_volume_claim_retention_policy": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"when_deleted": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("delete", "retain"),
+										},
+									},
+
+									"when_scaled": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("delete", "retain"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_antiaffinity_preferred_during_scheduling": schema.BoolAttribute{

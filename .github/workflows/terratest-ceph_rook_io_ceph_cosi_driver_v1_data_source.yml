@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: CephRookIoCephCOSIDriverV1DataSource
+name: CephRookIoCephCosidriverV1DataSource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/ceph_rook_io_v1/ceph_rook_io_ceph_cosi_driver_v1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestCephRookIoCephCOSIDriverV1DataSource ./terratest/ceph_rook_io_v1
+        run: go test -v -timeout=120s -count=1 -run TestCephRookIoCephCosidriverV1DataSource ./terratest/ceph_rook_io_v1

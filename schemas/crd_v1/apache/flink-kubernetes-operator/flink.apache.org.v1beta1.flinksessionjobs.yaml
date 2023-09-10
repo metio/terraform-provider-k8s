@@ -83,7 +83,6 @@ spec:
                         - FULL
                         - INCREMENTAL
                         - UNKNOWN
-                        - description
                         type: string
                       lastCheckpoint:
                         properties:
@@ -92,7 +91,6 @@ spec:
                             - FULL
                             - INCREMENTAL
                             - UNKNOWN
-                            - description
                             type: string
                           timeStamp:
                             type: integer

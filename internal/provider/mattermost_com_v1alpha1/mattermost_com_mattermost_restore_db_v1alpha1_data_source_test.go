@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestMattermostComMattermostRestoreDBV1Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestMattermostComMattermostRestoreDbV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	mattermost_com_v1alpha1.NewMattermostComMattermostRestoreDBV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	mattermost_com_v1alpha1.NewMattermostComMattermostRestoreDbV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestMattermostComMattermostRestoreDBV1Alpha1DataSource_ValidateSchema(t *te
 	}
 }
 
-func TestMattermostComMattermostRestoreDBV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestMattermostComMattermostRestoreDbV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestMattermostComMattermostRestoreDBV1Alpha1DataSource_ConfigurationErrors(
 	}
 }
 
-func TestMattermostComMattermostRestoreDBV1Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestMattermostComMattermostRestoreDbV1Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

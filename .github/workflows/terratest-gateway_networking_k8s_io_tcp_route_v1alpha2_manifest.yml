@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: GatewayNetworkingK8SIoTCPRouteV1Alpha2Manifest
+name: GatewayNetworkingK8SIoTcprouteV1Alpha2Manifest
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/gateway_networking_k8s_io_v1alpha2/gateway_networking_k8s_io_tcp_route_v1alpha2_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestGatewayNetworkingK8SIoTCPRouteV1Alpha2Manifest ./terratest/gateway_networking_k8s_io_v1alpha2
+        run: go test -v -timeout=120s -count=1 -run TestGatewayNetworkingK8SIoTcprouteV1Alpha2Manifest ./terratest/gateway_networking_k8s_io_v1alpha2

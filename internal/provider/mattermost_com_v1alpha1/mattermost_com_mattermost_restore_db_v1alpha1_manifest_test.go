@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestMattermostComMattermostRestoreDBV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestMattermostComMattermostRestoreDbV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	mattermost_com_v1alpha1.NewMattermostComMattermostRestoreDBV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	mattermost_com_v1alpha1.NewMattermostComMattermostRestoreDbV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestCrdProjectcalicoOrgBGPConfigurationV1Manifest(t *testing.T) {
+func TestCrdProjectcalicoOrgBgpconfigurationV1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_crd_projectcalico_org_bgp_configuration_v1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

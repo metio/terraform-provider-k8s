@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestResourcesTeleportDevTeleportOIDCConnectorV3DataSource_ValidateSchema(t *testing.T) {
+func TestResourcesTeleportDevTeleportOidcconnectorV3DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	resources_teleport_dev_v3.NewResourcesTeleportDevTeleportOIDCConnectorV3DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	resources_teleport_dev_v3.NewResourcesTeleportDevTeleportOidcconnectorV3DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestResourcesTeleportDevTeleportOIDCConnectorV3DataSource_ValidateSchema(t 
 	}
 }
 
-func TestResourcesTeleportDevTeleportOIDCConnectorV3DataSource_ConfigurationErrors(t *testing.T) {
+func TestResourcesTeleportDevTeleportOidcconnectorV3DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestResourcesTeleportDevTeleportOIDCConnectorV3DataSource_ConfigurationErro
 	}
 }
 
-func TestResourcesTeleportDevTeleportOIDCConnectorV3DataSource_OfflineUsage(t *testing.T) {
+func TestResourcesTeleportDevTeleportOidcconnectorV3DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

@@ -45,7 +45,7 @@ spec:
     name: v1
     schema:
       openAPIV3Schema:
-        description: Build is the Schema for the builds API
+        description: Build is the Schema for the builds API.
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -61,7 +61,8 @@ spec:
             type: object
           spec:
             description: BuildSpec defines the list of tasks to be execute for a Build.
-              From Camel K version 2, it would be more appropiate to think it as pipeline.
+              From Camel K version 2, it would be more appropriate to think it as
+              pipeline.
             properties:
               configuration:
                 description: 'The configuration that should be used to perform the
@@ -274,7 +275,7 @@ spec:
                               description: The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html.
                               items:
                                 description: MavenArtifact defines a GAV (Group:Artifact:Version)
-                                  Maven artifact
+                                  Maven artifact.
                                 properties:
                                   artifactId:
                                     description: Maven Artifact
@@ -297,7 +298,7 @@ spec:
                               description: A reference to the ConfigMap or Secret
                                 key that contains the Maven profile.
                               items:
-                                description: ValueSource --
+                                description: ValueSource --.
                                 properties:
                                   configMapKeyRef:
                                     description: Selects a key of a ConfigMap.
@@ -348,7 +349,7 @@ spec:
                             repositories:
                               description: additional repositories
                               items:
-                                description: Repository defines a Maven repository
+                                description: Repository defines a Maven repository.
                                 properties:
                                   id:
                                     description: identifies the repository
@@ -533,12 +534,12 @@ spec:
                               additionalProperties:
                                 description: Capability is a particular feature which
                                   requires a well known set of dependencies which
-                                  are specified in the runtime catalog
+                                  are specified in the runtime catalog.
                                 properties:
                                   dependencies:
                                     items:
                                       description: MavenArtifact defines a GAV (Group:Artifact:Version)
-                                        Maven artifact
+                                        Maven artifact.
                                       properties:
                                         artifactId:
                                           description: Maven Artifact
@@ -564,7 +565,7 @@ spec:
                                 application
                               items:
                                 description: MavenArtifact defines a GAV (Group:Artifact:Version)
-                                  Maven artifact
+                                  Maven artifact.
                                 properties:
                                   artifactId:
                                     description: Maven Artifact
@@ -603,7 +604,7 @@ spec:
                           items:
                             description: SourceSpec defines the configuration for
                               one or more routes to be executed in a certain Camel
-                              DSL language
+                              DSL language.
                             properties:
                               compression:
                                 description: if the content is compressed (base64
@@ -667,7 +668,7 @@ spec:
                       type: object
                     custom:
                       description: UserTask is used to execute any generic custom
-                        operation
+                        operation.
                       properties:
                         command:
                           description: the command to execute
@@ -834,13 +835,13 @@ spec:
                 type: string
             type: object
           status:
-            description: BuildStatus defines the observed state of Build
+            description: BuildStatus defines the observed state of Build.
             properties:
               artifacts:
                 description: a list of artifacts contained in the build
                 items:
                   description: Artifact represents a materialized artifact (a jar
-                    dependency or in general a file used by the build)
+                    dependency or in general a file used by the build).
                   properties:
                     checksum:
                       description: a checksum (SHA1) of the content

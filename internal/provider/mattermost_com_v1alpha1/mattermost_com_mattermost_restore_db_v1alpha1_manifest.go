@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &MattermostComMattermostRestoreDBV1Alpha1Manifest{}
+	_ datasource.DataSource = &MattermostComMattermostRestoreDbV1Alpha1Manifest{}
 )
 
-func NewMattermostComMattermostRestoreDBV1Alpha1Manifest() datasource.DataSource {
-	return &MattermostComMattermostRestoreDBV1Alpha1Manifest{}
+func NewMattermostComMattermostRestoreDbV1Alpha1Manifest() datasource.DataSource {
+	return &MattermostComMattermostRestoreDbV1Alpha1Manifest{}
 }
 
-type MattermostComMattermostRestoreDBV1Alpha1Manifest struct{}
+type MattermostComMattermostRestoreDbV1Alpha1Manifest struct{}
 
-type MattermostComMattermostRestoreDBV1Alpha1ManifestData struct {
+type MattermostComMattermostRestoreDbV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -53,11 +53,11 @@ type MattermostComMattermostRestoreDBV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_mattermost_com_mattermost_restore_db_v1alpha1_manifest"
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MattermostRestoreDB is the Schema for the mattermostrestoredbs API",
 		MarkdownDescription: "MattermostRestoreDB is the Schema for the mattermostrestoredbs API",
@@ -194,10 +194,10 @@ func (r *MattermostComMattermostRestoreDBV1Alpha1Manifest) Schema(_ context.Cont
 	}
 }
 
-func (r *MattermostComMattermostRestoreDBV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *MattermostComMattermostRestoreDbV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_mattermost_com_mattermost_restore_db_v1alpha1_manifest")
 
-	var model MattermostComMattermostRestoreDBV1Alpha1ManifestData
+	var model MattermostComMattermostRestoreDbV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

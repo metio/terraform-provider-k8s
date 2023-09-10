@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestCephRookIoCephRBDMirrorV1DataSource_ValidateSchema(t *testing.T) {
+func TestCephRookIoCephRbdmirrorV1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	ceph_rook_io_v1.NewCephRookIoCephRBDMirrorV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	ceph_rook_io_v1.NewCephRookIoCephRbdmirrorV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestCephRookIoCephRBDMirrorV1DataSource_ValidateSchema(t *testing.T) {
 	}
 }
 
-func TestCephRookIoCephRBDMirrorV1DataSource_ConfigurationErrors(t *testing.T) {
+func TestCephRookIoCephRbdmirrorV1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestCephRookIoCephRBDMirrorV1DataSource_ConfigurationErrors(t *testing.T) {
 	}
 }
 
-func TestCephRookIoCephRBDMirrorV1DataSource_OfflineUsage(t *testing.T) {
+func TestCephRookIoCephRbdmirrorV1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

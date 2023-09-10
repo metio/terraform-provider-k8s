@@ -22,16 +22,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &CephRookIoCephNFSV1Manifest{}
+	_ datasource.DataSource = &CephRookIoCephNfsV1Manifest{}
 )
 
-func NewCephRookIoCephNFSV1Manifest() datasource.DataSource {
-	return &CephRookIoCephNFSV1Manifest{}
+func NewCephRookIoCephNfsV1Manifest() datasource.DataSource {
+	return &CephRookIoCephNfsV1Manifest{}
 }
 
-type CephRookIoCephNFSV1Manifest struct{}
+type CephRookIoCephNfsV1Manifest struct{}
 
-type CephRookIoCephNFSV1ManifestData struct {
+type CephRookIoCephNfsV1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -551,11 +551,11 @@ type CephRookIoCephNFSV1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CephRookIoCephNFSV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CephRookIoCephNfsV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_nfs_v1_manifest"
 }
 
-func (r *CephRookIoCephNFSV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephNFS represents a Ceph NFS",
 		MarkdownDescription: "CephNFS represents a Ceph NFS",
@@ -3904,10 +3904,10 @@ func (r *CephRookIoCephNFSV1Manifest) Schema(_ context.Context, _ datasource.Sch
 	}
 }
 
-func (r *CephRookIoCephNFSV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CephRookIoCephNfsV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_ceph_rook_io_ceph_nfs_v1_manifest")
 
-	var model CephRookIoCephNFSV1ManifestData
+	var model CephRookIoCephNfsV1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

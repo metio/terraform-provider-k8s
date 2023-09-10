@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestCephRookIoCephNFSV1DataSource(t *testing.T) {
+func TestCephRookIoCephNfsV1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_ceph_rook_io_ceph_nfs_v1"
 
 	_, err := os.Stat(path)

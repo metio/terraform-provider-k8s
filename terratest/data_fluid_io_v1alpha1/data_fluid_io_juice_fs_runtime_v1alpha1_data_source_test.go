@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestDataFluidIoJuiceFSRuntimeV1Alpha1DataSource(t *testing.T) {
+func TestDataFluidIoJuiceFsruntimeV1Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_data_fluid_io_juice_fs_runtime_v1alpha1"
 
 	_, err := os.Stat(path)

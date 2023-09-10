@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: Apigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource
+name: Apigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/apigatewayv2_services_k8s_aws_v1alpha1/apigatewayv2_services_k8s_aws_vpc_link_v1alpha1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1DataSource ./terratest/apigatewayv2_services_k8s_aws_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestApigatewayv2ServicesK8SAwsVpclinkV1Alpha1DataSource ./terratest/apigatewayv2_services_k8s_aws_v1alpha1

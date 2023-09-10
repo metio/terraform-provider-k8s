@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestMattermostComMattermostRestoreDBV1Alpha1DataSource(t *testing.T) {
+func TestMattermostComMattermostRestoreDbV1Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_mattermost_com_mattermost_restore_db_v1alpha1"
 
 	_, err := os.Stat(path)

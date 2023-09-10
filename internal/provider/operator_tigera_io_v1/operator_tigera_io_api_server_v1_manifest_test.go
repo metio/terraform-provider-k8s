@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestOperatorTigeraIoAPIServerV1Manifest_ValidateSchema(t *testing.T) {
+func TestOperatorTigeraIoApiserverV1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	operator_tigera_io_v1.NewOperatorTigeraIoAPIServerV1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	operator_tigera_io_v1.NewOperatorTigeraIoApiserverV1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

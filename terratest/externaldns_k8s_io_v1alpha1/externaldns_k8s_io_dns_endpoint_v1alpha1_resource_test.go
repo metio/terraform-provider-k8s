@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestExternaldnsK8SIoDNSEndpointV1Alpha1Resource(t *testing.T) {
+func TestExternaldnsK8SIoDnsendpointV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_externaldns_k8s_io_dns_endpoint_v1alpha1"
 
 	_, err := os.Stat(path)

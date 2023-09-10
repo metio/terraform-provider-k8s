@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestAutoscalingKarmadaIoFederatedHPAV1Alpha1DataSource(t *testing.T) {
+func TestAutoscalingKarmadaIoFederatedHpaV1Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_autoscaling_karmada_io_federated_hpa_v1alpha1"
 
 	_, err := os.Stat(path)

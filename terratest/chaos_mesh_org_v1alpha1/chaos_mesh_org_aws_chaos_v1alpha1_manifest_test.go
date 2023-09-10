@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestChaosMeshOrgAWSChaosV1Alpha1Manifest(t *testing.T) {
+func TestChaosMeshOrgAwschaosV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_chaos_mesh_org_aws_chaos_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

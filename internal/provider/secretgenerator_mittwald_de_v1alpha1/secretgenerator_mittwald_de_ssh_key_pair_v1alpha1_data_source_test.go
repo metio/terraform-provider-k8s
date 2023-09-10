@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource_ValidateSchema(t *testing.T) {
+func TestSecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	secretgenerator_mittwald_de_v1alpha1.NewSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	secretgenerator_mittwald_de_v1alpha1.NewSecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource_ValidateSchema(t 
 	}
 }
 
-func TestSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
+func TestSecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource_ConfigurationErro
 	}
 }
 
-func TestSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource_OfflineUsage(t *testing.T) {
+func TestSecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestOperatorTigeraIoAPIServerV1Manifest(t *testing.T) {
+func TestOperatorTigeraIoApiserverV1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_operator_tigera_io_api_server_v1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

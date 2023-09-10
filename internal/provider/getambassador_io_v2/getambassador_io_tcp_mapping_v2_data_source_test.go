@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestGetambassadorIoTCPMappingV2DataSource_ValidateSchema(t *testing.T) {
+func TestGetambassadorIoTcpmappingV2DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	getambassador_io_v2.NewGetambassadorIoTCPMappingV2DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	getambassador_io_v2.NewGetambassadorIoTcpmappingV2DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestGetambassadorIoTCPMappingV2DataSource_ValidateSchema(t *testing.T) {
 	}
 }
 
-func TestGetambassadorIoTCPMappingV2DataSource_ConfigurationErrors(t *testing.T) {
+func TestGetambassadorIoTcpmappingV2DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestGetambassadorIoTCPMappingV2DataSource_ConfigurationErrors(t *testing.T)
 	}
 }
 
-func TestGetambassadorIoTCPMappingV2DataSource_OfflineUsage(t *testing.T) {
+func TestGetambassadorIoTcpmappingV2DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestHiveOpenshiftIoDNSZoneV1Manifest_ValidateSchema(t *testing.T) {
+func TestHiveOpenshiftIoDnszoneV1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	hive_openshift_io_v1.NewHiveOpenshiftIoDNSZoneV1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	hive_openshift_io_v1.NewHiveOpenshiftIoDnszoneV1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

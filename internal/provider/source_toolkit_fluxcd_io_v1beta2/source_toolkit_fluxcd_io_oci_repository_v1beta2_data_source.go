@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource{}
-	_ datasource.DataSourceWithConfigure = &SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource{}
+	_ datasource.DataSource              = &SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource{}
+	_ datasource.DataSourceWithConfigure = &SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource{}
 )
 
-func NewSourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource() datasource.DataSource {
-	return &SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource{}
+func NewSourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource() datasource.DataSource {
+	return &SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource{}
 }
 
-type SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource struct {
+type SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSourceData struct {
+type SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -82,11 +82,11 @@ type SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_source_toolkit_fluxcd_io_oci_repository_v1beta2"
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "OCIRepository is the Schema for the ocirepositories API",
 		MarkdownDescription: "OCIRepository is the Schema for the ocirepositories API",
@@ -351,7 +351,7 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource) Schema(_ context.C
 	}
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -374,10 +374,10 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource) Configure(_ contex
 	}
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_source_toolkit_fluxcd_io_oci_repository_v1beta2")
 
-	var data SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSourceData
+	var data SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -406,7 +406,7 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSource) Read(ctx context.C
 		return
 	}
 
-	var readResponse SourceToolkitFluxcdIoOCIRepositoryV1Beta2DataSourceData
+	var readResponse SourceToolkitFluxcdIoOcirepositoryV1Beta2DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

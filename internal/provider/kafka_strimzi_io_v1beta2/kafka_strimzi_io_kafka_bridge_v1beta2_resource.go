@@ -3422,8 +3422,8 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Resource) Schema(_ context.Context, _ r
 						MarkdownDescription: "The configuration of tracing in Kafka Bridge.",
 						Attributes: map[string]schema.Attribute{
 							"type": schema.StringAttribute{
-								Description:         "Type of the tracing used. Currently the only supported types are 'jaeger' for OpenTracing (Jaeger) tracing and 'opentelemetry' for OpenTelemetry tracing. The OpenTracing (Jaeger) tracing is deprecated.",
-								MarkdownDescription: "Type of the tracing used. Currently the only supported types are 'jaeger' for OpenTracing (Jaeger) tracing and 'opentelemetry' for OpenTelemetry tracing. The OpenTracing (Jaeger) tracing is deprecated.",
+								Description:         "Type of the tracing used. Currently the only supported type is 'opentelemetry' for OpenTelemetry tracing. As of Strimzi 0.37.0, 'jaeger' type is not supported anymore and this option is ignored.",
+								MarkdownDescription: "Type of the tracing used. Currently the only supported type is 'opentelemetry' for OpenTelemetry tracing. As of Strimzi 0.37.0, 'jaeger' type is not supported anymore and this option is ignored.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

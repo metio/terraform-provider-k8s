@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource{}
+	_ datasource.DataSource              = &CiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &CiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource{}
 )
 
-func NewCiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource() datasource.DataSource {
-	return &CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource{}
+func NewCiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource() datasource.DataSource {
+	return &CiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource{}
 }
 
-type CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource struct {
+type CiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSourceData struct {
+type CiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -64,11 +64,11 @@ type CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_load_balancer_ip_pool_v2alpha1"
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumLoadBalancerIPPool is a Kubernetes third-party resource which is used to defined pools of IPs which the operator can use to to allocate and advertise IPs for Services of type LoadBalancer.",
 		MarkdownDescription: "CiliumLoadBalancerIPPool is a Kubernetes third-party resource which is used to defined pools of IPs which the operator can use to to allocate and advertise IPs for Services of type LoadBalancer.",
@@ -212,7 +212,7 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource) Schema(_ context.Co
 	}
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -235,10 +235,10 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource) Configure(_ context
 	}
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_cilium_io_cilium_load_balancer_ip_pool_v2alpha1")
 
-	var data CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSourceData
+	var data CiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -266,7 +266,7 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSource) Read(ctx context.Co
 		return
 	}
 
-	var readResponse CiliumIoCiliumLoadBalancerIPPoolV2Alpha1DataSourceData
+	var readResponse CiliumIoCiliumLoadBalancerIppoolV2Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

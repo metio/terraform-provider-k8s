@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &SloKoordinatorShNodeSLOV1Alpha1Manifest{}
+	_ datasource.DataSource = &SloKoordinatorShNodeSloV1Alpha1Manifest{}
 )
 
-func NewSloKoordinatorShNodeSLOV1Alpha1Manifest() datasource.DataSource {
-	return &SloKoordinatorShNodeSLOV1Alpha1Manifest{}
+func NewSloKoordinatorShNodeSloV1Alpha1Manifest() datasource.DataSource {
+	return &SloKoordinatorShNodeSloV1Alpha1Manifest{}
 }
 
-type SloKoordinatorShNodeSLOV1Alpha1Manifest struct{}
+type SloKoordinatorShNodeSloV1Alpha1Manifest struct{}
 
-type SloKoordinatorShNodeSLOV1Alpha1ManifestData struct {
+type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -50,7 +50,18 @@ type SloKoordinatorShNodeSLOV1Alpha1ManifestData struct {
 			Policy                     *string `tfsdk:"policy" json:"policy,omitempty"`
 			SharePoolThresholdPercent  *int64  `tfsdk:"share_pool_threshold_percent" json:"sharePoolThresholdPercent,omitempty"`
 		} `tfsdk:"cpu_burst_strategy" json:"cpuBurstStrategy,omitempty"`
-		Extensions          *map[string]string `tfsdk:"extensions" json:"extensions,omitempty"`
+		Extensions       *map[string]string `tfsdk:"extensions" json:"extensions,omitempty"`
+		HostApplications *[]struct {
+			CgroupPath *struct {
+				Base         *string `tfsdk:"base" json:"base,omitempty"`
+				ParentDir    *string `tfsdk:"parent_dir" json:"parentDir,omitempty"`
+				RelativePath *string `tfsdk:"relative_path" json:"relativePath,omitempty"`
+			} `tfsdk:"cgroup_path" json:"cgroupPath,omitempty"`
+			Name     *string            `tfsdk:"name" json:"name,omitempty"`
+			Priority *string            `tfsdk:"priority" json:"priority,omitempty"`
+			Qos      *string            `tfsdk:"qos" json:"qos,omitempty"`
+			Strategy *map[string]string `tfsdk:"strategy" json:"strategy,omitempty"`
+		} `tfsdk:"host_applications" json:"hostApplications,omitempty"`
 		ResourceQOSStrategy *struct {
 			BeClass *struct {
 				BlkioQOS *struct {
@@ -272,11 +283,11 @@ type SloKoordinatorShNodeSLOV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_slo_koordinator_sh_node_slo_v1alpha1_manifest"
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "NodeSLO is the Schema for the nodeslos API",
 		MarkdownDescription: "NodeSLO is the Schema for the nodeslos API",
@@ -405,6 +416,83 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"host_applications": schema.ListNestedAttribute{
+						Description:         "QoS management for out-of-band applications",
+						MarkdownDescription: "QoS management for out-of-band applications",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"cgroup_path": schema.SingleNestedAttribute{
+									Description:         "Optional, defines the host cgroup configuration, use default if not specified according to priority and qos",
+									MarkdownDescription: "Optional, defines the host cgroup configuration, use default if not specified according to priority and qos",
+									Attributes: map[string]schema.Attribute{
+										"base": schema.StringAttribute{
+											Description:         "cgroup base dir, the format is various across cgroup drivers",
+											MarkdownDescription: "cgroup base dir, the format is various across cgroup drivers",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"parent_dir": schema.StringAttribute{
+											Description:         "cgroup parent path under base dir",
+											MarkdownDescription: "cgroup parent path under base dir",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"relative_path": schema.StringAttribute{
+											Description:         "cgroup relative path under parent dir",
+											MarkdownDescription: "cgroup relative path under parent dir",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"priority": schema.StringAttribute{
+									Description:         "Priority class of the application",
+									MarkdownDescription: "Priority class of the application",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"qos": schema.StringAttribute{
+									Description:         "QoS class of the application",
+									MarkdownDescription: "QoS class of the application",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"strategy": schema.MapAttribute{
+									Description:         "QoS Strategy of host application",
+									MarkdownDescription: "QoS Strategy of host application",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"resource_qos_strategy": schema.SingleNestedAttribute{
@@ -2160,10 +2248,10 @@ func (r *SloKoordinatorShNodeSLOV1Alpha1Manifest) Schema(_ context.Context, _ da
 	}
 }
 
-func (r *SloKoordinatorShNodeSLOV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_slo_koordinator_sh_node_slo_v1alpha1_manifest")
 
-	var model SloKoordinatorShNodeSLOV1Alpha1ManifestData
+	var model SloKoordinatorShNodeSloV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

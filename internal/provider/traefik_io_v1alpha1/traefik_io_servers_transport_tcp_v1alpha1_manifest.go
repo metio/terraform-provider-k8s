@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &TraefikIoServersTransportTCPV1Alpha1Manifest{}
+	_ datasource.DataSource = &TraefikIoServersTransportTcpV1Alpha1Manifest{}
 )
 
-func NewTraefikIoServersTransportTCPV1Alpha1Manifest() datasource.DataSource {
-	return &TraefikIoServersTransportTCPV1Alpha1Manifest{}
+func NewTraefikIoServersTransportTcpV1Alpha1Manifest() datasource.DataSource {
+	return &TraefikIoServersTransportTcpV1Alpha1Manifest{}
 }
 
-type TraefikIoServersTransportTCPV1Alpha1Manifest struct{}
+type TraefikIoServersTransportTcpV1Alpha1Manifest struct{}
 
-type TraefikIoServersTransportTCPV1Alpha1ManifestData struct {
+type TraefikIoServersTransportTcpV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -61,11 +61,11 @@ type TraefikIoServersTransportTCPV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_servers_transport_tcp_v1alpha1_manifest"
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#serverstransport_3",
 		MarkdownDescription: "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#serverstransport_3",
@@ -255,10 +255,10 @@ func (r *TraefikIoServersTransportTCPV1Alpha1Manifest) Schema(_ context.Context,
 	}
 }
 
-func (r *TraefikIoServersTransportTCPV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TraefikIoServersTransportTcpV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_traefik_io_servers_transport_tcp_v1alpha1_manifest")
 
-	var model TraefikIoServersTransportTCPV1Alpha1ManifestData
+	var model TraefikIoServersTransportTcpV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

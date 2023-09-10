@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestTraefikIoTLSStoreV1Alpha1Manifest(t *testing.T) {
+func TestTraefikIoTlsstoreV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_traefik_io_tls_store_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

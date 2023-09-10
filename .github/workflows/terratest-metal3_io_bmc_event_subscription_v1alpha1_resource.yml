@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: Metal3IoBMCEventSubscriptionV1Alpha1Resource
+name: Metal3IoBmceventSubscriptionV1Alpha1Resource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/metal3_io_v1alpha1/metal3_io_bmc_event_subscription_v1alpha1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestMetal3IoBMCEventSubscriptionV1Alpha1Resource ./terratest/metal3_io_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestMetal3IoBmceventSubscriptionV1Alpha1Resource ./terratest/metal3_io_v1alpha1

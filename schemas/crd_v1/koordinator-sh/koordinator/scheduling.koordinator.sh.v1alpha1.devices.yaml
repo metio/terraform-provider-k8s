@@ -36,6 +36,7 @@ spec:
                 items:
                   properties:
                     health:
+                      default: false
                       description: Health indicates whether the device is normal
                       type: boolean
                     id:
@@ -111,6 +112,8 @@ spec:
                             type: array
                         type: object
                       type: array
+                  required:
+                  - health
                   type: object
                 type: array
             type: object

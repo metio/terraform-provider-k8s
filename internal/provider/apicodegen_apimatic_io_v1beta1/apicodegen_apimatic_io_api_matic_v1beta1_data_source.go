@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &ApicodegenApimaticIoAPIMaticV1Beta1DataSource{}
-	_ datasource.DataSourceWithConfigure = &ApicodegenApimaticIoAPIMaticV1Beta1DataSource{}
+	_ datasource.DataSource              = &ApicodegenApimaticIoApimaticV1Beta1DataSource{}
+	_ datasource.DataSourceWithConfigure = &ApicodegenApimaticIoApimaticV1Beta1DataSource{}
 )
 
-func NewApicodegenApimaticIoAPIMaticV1Beta1DataSource() datasource.DataSource {
-	return &ApicodegenApimaticIoAPIMaticV1Beta1DataSource{}
+func NewApicodegenApimaticIoApimaticV1Beta1DataSource() datasource.DataSource {
+	return &ApicodegenApimaticIoApimaticV1Beta1DataSource{}
 }
 
-type ApicodegenApimaticIoAPIMaticV1Beta1DataSource struct {
+type ApicodegenApimaticIoApimaticV1Beta1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type ApicodegenApimaticIoAPIMaticV1Beta1DataSourceData struct {
+type ApicodegenApimaticIoApimaticV1Beta1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -238,11 +238,11 @@ type ApicodegenApimaticIoAPIMaticV1Beta1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ApicodegenApimaticIoAPIMaticV1Beta1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ApicodegenApimaticIoApimaticV1Beta1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_apicodegen_apimatic_io_api_matic_v1beta1"
 }
 
-func (r *ApicodegenApimaticIoAPIMaticV1Beta1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ApicodegenApimaticIoApimaticV1Beta1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIMatic is the Schema for the apimatics API",
 		MarkdownDescription: "APIMatic is the Schema for the apimatics API",
@@ -1575,7 +1575,7 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1DataSource) Schema(_ context.Context
 	}
 }
 
-func (r *ApicodegenApimaticIoAPIMaticV1Beta1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *ApicodegenApimaticIoApimaticV1Beta1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1598,10 +1598,10 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1DataSource) Configure(_ context.Cont
 	}
 }
 
-func (r *ApicodegenApimaticIoAPIMaticV1Beta1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ApicodegenApimaticIoApimaticV1Beta1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_apicodegen_apimatic_io_api_matic_v1beta1")
 
-	var data ApicodegenApimaticIoAPIMaticV1Beta1DataSourceData
+	var data ApicodegenApimaticIoApimaticV1Beta1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1630,7 +1630,7 @@ func (r *ApicodegenApimaticIoAPIMaticV1Beta1DataSource) Read(ctx context.Context
 		return
 	}
 
-	var readResponse ApicodegenApimaticIoAPIMaticV1Beta1DataSourceData
+	var readResponse ApicodegenApimaticIoApimaticV1Beta1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

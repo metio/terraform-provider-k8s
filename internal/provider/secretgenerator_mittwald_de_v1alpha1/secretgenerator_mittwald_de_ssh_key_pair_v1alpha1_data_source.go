@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource{}
+	_ datasource.DataSource              = &SecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &SecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource{}
 )
 
-func NewSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource() datasource.DataSource {
-	return &SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource{}
+func NewSecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource() datasource.DataSource {
+	return &SecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource{}
 }
 
-type SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource struct {
+type SecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSourceData struct {
+type SecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -58,11 +58,11 @@ type SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_secretgenerator_mittwald_de_ssh_key_pair_v1alpha1"
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SSHKeyPair is the Schema for the sshkeypairs API",
 		MarkdownDescription: "SSHKeyPair is the Schema for the sshkeypairs API",
@@ -178,7 +178,7 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource) Schema(_ context
 	}
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -201,10 +201,10 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource) Configure(_ cont
 	}
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_secretgenerator_mittwald_de_ssh_key_pair_v1alpha1")
 
-	var data SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSourceData
+	var data SecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -233,7 +233,7 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSource) Read(ctx context
 		return
 	}
 
-	var readResponse SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1DataSourceData
+	var readResponse SecretgeneratorMittwaldDeSshkeyPairV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestEc2ServicesK8SAwsNATGatewayV1Alpha1Resource_ValidateSchema(t *testing.T) {
+func TestEc2ServicesK8SAwsNatgatewayV1Alpha1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	ec2_services_k8s_aws_v1alpha1.NewEc2ServicesK8SAwsNATGatewayV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	ec2_services_k8s_aws_v1alpha1.NewEc2ServicesK8SAwsNatgatewayV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

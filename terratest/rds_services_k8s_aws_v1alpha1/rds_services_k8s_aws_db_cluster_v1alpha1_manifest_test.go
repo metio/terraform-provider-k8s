@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestRdsServicesK8SAwsDBClusterV1Alpha1Manifest(t *testing.T) {
+func TestRdsServicesK8SAwsDbclusterV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_rds_services_k8s_aws_db_cluster_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

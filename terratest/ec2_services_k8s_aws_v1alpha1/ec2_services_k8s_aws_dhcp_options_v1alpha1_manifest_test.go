@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestEc2ServicesK8SAwsDHCPOptionsV1Alpha1Manifest(t *testing.T) {
+func TestEc2ServicesK8SAwsDhcpoptionsV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_ec2_services_k8s_aws_dhcp_options_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

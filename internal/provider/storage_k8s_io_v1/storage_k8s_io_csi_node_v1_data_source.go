@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &StorageK8SIoCSINodeV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &StorageK8SIoCSINodeV1DataSource{}
+	_ datasource.DataSource              = &StorageK8SIoCsinodeV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &StorageK8SIoCsinodeV1DataSource{}
 )
 
-func NewStorageK8SIoCSINodeV1DataSource() datasource.DataSource {
-	return &StorageK8SIoCSINodeV1DataSource{}
+func NewStorageK8SIoCsinodeV1DataSource() datasource.DataSource {
+	return &StorageK8SIoCsinodeV1DataSource{}
 }
 
-type StorageK8SIoCSINodeV1DataSource struct {
+type StorageK8SIoCsinodeV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type StorageK8SIoCSINodeV1DataSourceData struct {
+type StorageK8SIoCsinodeV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -60,11 +60,11 @@ type StorageK8SIoCSINodeV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *StorageK8SIoCSINodeV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *StorageK8SIoCsinodeV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_storage_k8s_io_csi_node_v1"
 }
 
-func (r *StorageK8SIoCSINodeV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *StorageK8SIoCsinodeV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object.",
 		MarkdownDescription: "CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object.",
@@ -180,7 +180,7 @@ func (r *StorageK8SIoCSINodeV1DataSource) Schema(_ context.Context, _ datasource
 	}
 }
 
-func (r *StorageK8SIoCSINodeV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *StorageK8SIoCsinodeV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -203,10 +203,10 @@ func (r *StorageK8SIoCSINodeV1DataSource) Configure(_ context.Context, request d
 	}
 }
 
-func (r *StorageK8SIoCSINodeV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *StorageK8SIoCsinodeV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_storage_k8s_io_csi_node_v1")
 
-	var data StorageK8SIoCSINodeV1DataSourceData
+	var data StorageK8SIoCsinodeV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -234,7 +234,7 @@ func (r *StorageK8SIoCSINodeV1DataSource) Read(ctx context.Context, request data
 		return
 	}
 
-	var readResponse StorageK8SIoCSINodeV1DataSourceData
+	var readResponse StorageK8SIoCsinodeV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

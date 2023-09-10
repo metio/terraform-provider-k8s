@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: TrainingKubedlIoXGBoostJobV1Alpha1DataSource
+name: TrainingKubedlIoXgboostJobV1Alpha1DataSource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/training_kubedl_io_v1alpha1/training_kubedl_io_xg_boost_job_v1alpha1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestTrainingKubedlIoXGBoostJobV1Alpha1DataSource ./terratest/training_kubedl_io_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestTrainingKubedlIoXgboostJobV1Alpha1DataSource ./terratest/training_kubedl_io_v1alpha1

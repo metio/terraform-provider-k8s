@@ -34,6 +34,10 @@ spec:
                 type: string
               configCheck:
                 properties:
+                  labels:
+                    additionalProperties:
+                      type: string
+                    type: object
                   strategy:
                     type: string
                   timeoutSeconds:
@@ -5036,6 +5040,10 @@ spec:
                                 type: string
                               tag:
                                 type: string
+                            type: object
+                          labels:
+                            additionalProperties:
+                              type: string
                             type: object
                           pauseImage:
                             properties:
@@ -13986,6 +13994,8 @@ spec:
                     type: object
                   globalOptions:
                     properties:
+                      log_level:
+                        type: string
                       stats:
                         properties:
                           freq:

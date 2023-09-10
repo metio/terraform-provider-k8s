@@ -469,8 +469,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Resource) Metadata(_ context.Context
 
 func (r *CamelApacheOrgIntegrationPlatformV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "IntegrationPlatform is the resource used to drive the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. When the Camel K operator is installed in 'global' mode, you will need to specify an 'IntegrationPlatform' in each namespace where you want the Camel K operator to be executed",
-		MarkdownDescription: "IntegrationPlatform is the resource used to drive the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. When the Camel K operator is installed in 'global' mode, you will need to specify an 'IntegrationPlatform' in each namespace where you want the Camel K operator to be executed",
+		Description:         "IntegrationPlatform is the resource used to drive the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. When the Camel K operator is installed in 'global' mode, you will need to specify an 'IntegrationPlatform' in each namespace where you want the Camel K operator to be executed.",
+		MarkdownDescription: "IntegrationPlatform is the resource used to drive the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. When the Camel K operator is installed in 'global' mode, you will need to specify an 'IntegrationPlatform' in each namespace where you want the Camel K operator to be executed.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -593,8 +593,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Resource) Schema(_ context.Context, 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "IntegrationPlatformSpec defines the desired state of IntegrationPlatform",
-				MarkdownDescription: "IntegrationPlatformSpec defines the desired state of IntegrationPlatform",
+				Description:         "IntegrationPlatformSpec defines the desired state of IntegrationPlatform.",
+				MarkdownDescription: "IntegrationPlatformSpec defines the desired state of IntegrationPlatform.",
 				Attributes: map[string]schema.Attribute{
 					"build": schema.SingleNestedAttribute{
 						Description:         "specify how to build the Integration/IntegrationKits",

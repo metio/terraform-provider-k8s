@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestCiliumIoCiliumCIDRGroupV2Alpha1Manifest(t *testing.T) {
+func TestCiliumIoCiliumCidrgroupV2Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_cilium_io_cilium_cidr_group_v2alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

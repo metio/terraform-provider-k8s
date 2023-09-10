@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Manifest{}
+	_ datasource.DataSource = &SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Manifest{}
 )
 
-func NewSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Manifest() datasource.DataSource {
-	return &SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Manifest{}
+func NewSecretgeneratorMittwaldDeSshkeyPairV1Alpha1Manifest() datasource.DataSource {
+	return &SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Manifest{}
 }
 
-type SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Manifest struct{}
+type SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Manifest struct{}
 
-type SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ManifestData struct {
+type SecretgeneratorMittwaldDeSshkeyPairV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -52,11 +52,11 @@ type SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_secretgenerator_mittwald_de_ssh_key_pair_v1alpha1_manifest"
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SSHKeyPair is the Schema for the sshkeypairs API",
 		MarkdownDescription: "SSHKeyPair is the Schema for the sshkeypairs API",
@@ -186,10 +186,10 @@ func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Manifest) Schema(_ context.C
 	}
 }
 
-func (r *SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_secretgenerator_mittwald_de_ssh_key_pair_v1alpha1_manifest")
 
-	var model SecretgeneratorMittwaldDeSSHKeyPairV1Alpha1ManifestData
+	var model SecretgeneratorMittwaldDeSshkeyPairV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

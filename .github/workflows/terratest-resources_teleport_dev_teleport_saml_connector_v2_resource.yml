@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: ResourcesTeleportDevTeleportSAMLConnectorV2Resource
+name: ResourcesTeleportDevTeleportSamlconnectorV2Resource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/resources_teleport_dev_v2/resources_teleport_dev_teleport_saml_connector_v2_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestResourcesTeleportDevTeleportSAMLConnectorV2Resource ./terratest/resources_teleport_dev_v2
+        run: go test -v -timeout=120s -count=1 -run TestResourcesTeleportDevTeleportSamlconnectorV2Resource ./terratest/resources_teleport_dev_v2

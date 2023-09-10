@@ -21,16 +21,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &SourceToolkitFluxcdIoOCIRepositoryV1Beta2Manifest{}
+	_ datasource.DataSource = &SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest{}
 )
 
-func NewSourceToolkitFluxcdIoOCIRepositoryV1Beta2Manifest() datasource.DataSource {
-	return &SourceToolkitFluxcdIoOCIRepositoryV1Beta2Manifest{}
+func NewSourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest() datasource.DataSource {
+	return &SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest{}
 }
 
-type SourceToolkitFluxcdIoOCIRepositoryV1Beta2Manifest struct{}
+type SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest struct{}
 
-type SourceToolkitFluxcdIoOCIRepositoryV1Beta2ManifestData struct {
+type SourceToolkitFluxcdIoOcirepositoryV1Beta2ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -77,11 +77,11 @@ type SourceToolkitFluxcdIoOCIRepositoryV1Beta2ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_source_toolkit_fluxcd_io_oci_repository_v1beta2_manifest"
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "OCIRepository is the Schema for the ocirepositories API",
 		MarkdownDescription: "OCIRepository is the Schema for the ocirepositories API",
@@ -378,10 +378,10 @@ func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Manifest) Schema(_ context.Con
 	}
 }
 
-func (r *SourceToolkitFluxcdIoOCIRepositoryV1Beta2Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_source_toolkit_fluxcd_io_oci_repository_v1beta2_manifest")
 
-	var model SourceToolkitFluxcdIoOCIRepositoryV1Beta2ManifestData
+	var model SourceToolkitFluxcdIoOcirepositoryV1Beta2ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &OperatorTigeraIoAPIServerV1Manifest{}
+	_ datasource.DataSource = &OperatorTigeraIoApiserverV1Manifest{}
 )
 
-func NewOperatorTigeraIoAPIServerV1Manifest() datasource.DataSource {
-	return &OperatorTigeraIoAPIServerV1Manifest{}
+func NewOperatorTigeraIoApiserverV1Manifest() datasource.DataSource {
+	return &OperatorTigeraIoApiserverV1Manifest{}
 }
 
-type OperatorTigeraIoAPIServerV1Manifest struct{}
+type OperatorTigeraIoApiserverV1Manifest struct{}
 
-type OperatorTigeraIoAPIServerV1ManifestData struct {
+type OperatorTigeraIoApiserverV1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -231,11 +231,11 @@ type OperatorTigeraIoAPIServerV1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *OperatorTigeraIoAPIServerV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *OperatorTigeraIoApiserverV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_operator_tigera_io_api_server_v1_manifest"
 }
 
-func (r *OperatorTigeraIoAPIServerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *OperatorTigeraIoApiserverV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIServer installs the Tigera API server and related resources. At most one instance of this resource is supported. It must be named 'default' or 'tigera-secure'.",
 		MarkdownDescription: "APIServer installs the Tigera API server and related resources. At most one instance of this resource is supported. It must be named 'default' or 'tigera-secure'.",
@@ -1538,10 +1538,10 @@ func (r *OperatorTigeraIoAPIServerV1Manifest) Schema(_ context.Context, _ dataso
 	}
 }
 
-func (r *OperatorTigeraIoAPIServerV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *OperatorTigeraIoApiserverV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_operator_tigera_io_api_server_v1_manifest")
 
-	var model OperatorTigeraIoAPIServerV1ManifestData
+	var model OperatorTigeraIoApiserverV1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

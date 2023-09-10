@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: ExternaldnsK8SIoDNSEndpointV1Alpha1Manifest
+name: ExternaldnsK8SIoDnsendpointV1Alpha1Manifest
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/externaldns_k8s_io_v1alpha1/externaldns_k8s_io_dns_endpoint_v1alpha1_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestExternaldnsK8SIoDNSEndpointV1Alpha1Manifest ./terratest/externaldns_k8s_io_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestExternaldnsK8SIoDnsendpointV1Alpha1Manifest ./terratest/externaldns_k8s_io_v1alpha1
