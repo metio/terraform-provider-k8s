@@ -8,7 +8,7 @@ package fetcher
 import (
 	"bytes"
 	"fmt"
-	goyaml "gopkg.in/yaml.v3"
+	goyaml "gopkg.in/yaml.v2"
 	"io"
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 	clientschema "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/scheme"
