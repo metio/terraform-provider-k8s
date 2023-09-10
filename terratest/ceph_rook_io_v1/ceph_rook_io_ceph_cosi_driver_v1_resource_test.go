@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestCephRookIoCephCOSIDriverV1Resource(t *testing.T) {
+func TestCephRookIoCephCosidriverV1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_ceph_rook_io_ceph_cosi_driver_v1"
 
 	_, err := os.Stat(path)

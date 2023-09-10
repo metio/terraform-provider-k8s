@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestLoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource_ValidateSchema(t *testing.T) {
+func TestLoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	logging_banzaicloud_io_v1beta1.NewLoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	logging_banzaicloud_io_v1beta1.NewLoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestLoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource_ValidateSchema(t *tes
 	}
 }
 
-func TestLoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource_ConfigurationErrors(t *testing.T) {
+func TestLoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestLoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource_ConfigurationErrors(t
 	}
 }
 
-func TestLoggingBanzaicloudIoSyslogNGFlowV1Beta1DataSource_OfflineUsage(t *testing.T) {
+func TestLoggingBanzaicloudIoSyslogNgflowV1Beta1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

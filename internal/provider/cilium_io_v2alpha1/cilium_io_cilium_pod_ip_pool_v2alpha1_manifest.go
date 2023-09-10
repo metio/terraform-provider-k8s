@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &CiliumIoCiliumPodIPPoolV2Alpha1Manifest{}
+	_ datasource.DataSource = &CiliumIoCiliumPodIppoolV2Alpha1Manifest{}
 )
 
-func NewCiliumIoCiliumPodIPPoolV2Alpha1Manifest() datasource.DataSource {
-	return &CiliumIoCiliumPodIPPoolV2Alpha1Manifest{}
+func NewCiliumIoCiliumPodIppoolV2Alpha1Manifest() datasource.DataSource {
+	return &CiliumIoCiliumPodIppoolV2Alpha1Manifest{}
 }
 
-type CiliumIoCiliumPodIPPoolV2Alpha1Manifest struct{}
+type CiliumIoCiliumPodIppoolV2Alpha1Manifest struct{}
 
-type CiliumIoCiliumPodIPPoolV2Alpha1ManifestData struct {
+type CiliumIoCiliumPodIppoolV2Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -54,11 +54,11 @@ type CiliumIoCiliumPodIPPoolV2Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_pod_ip_pool_v2alpha1_manifest"
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAM mode).",
 		MarkdownDescription: "CiliumPodIPPool defines an IP pool that can be used for pooled IPAM (i.e. the multi-pool IPAM mode).",
@@ -195,10 +195,10 @@ func (r *CiliumIoCiliumPodIPPoolV2Alpha1Manifest) Schema(_ context.Context, _ da
 	}
 }
 
-func (r *CiliumIoCiliumPodIPPoolV2Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CiliumIoCiliumPodIppoolV2Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_cilium_io_cilium_pod_ip_pool_v2alpha1_manifest")
 
-	var model CiliumIoCiliumPodIPPoolV2Alpha1ManifestData
+	var model CiliumIoCiliumPodIppoolV2Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

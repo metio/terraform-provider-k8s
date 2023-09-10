@@ -247,8 +247,8 @@ func (r *FlowVolcanoShJobFlowV1Alpha1Resource) Schema(_ context.Context, _ resou
 																MarkdownDescription: "HTTPHeader describes a custom header to be used in HTTP probes",
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name",
-																		MarkdownDescription: "The header field name",
+																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,

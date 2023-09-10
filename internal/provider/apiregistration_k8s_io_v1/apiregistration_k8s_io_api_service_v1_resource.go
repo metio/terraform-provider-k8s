@@ -29,22 +29,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &ApiregistrationK8SIoAPIServiceV1Resource{}
-	_ resource.ResourceWithConfigure   = &ApiregistrationK8SIoAPIServiceV1Resource{}
-	_ resource.ResourceWithImportState = &ApiregistrationK8SIoAPIServiceV1Resource{}
+	_ resource.Resource                = &ApiregistrationK8SIoApiserviceV1Resource{}
+	_ resource.ResourceWithConfigure   = &ApiregistrationK8SIoApiserviceV1Resource{}
+	_ resource.ResourceWithImportState = &ApiregistrationK8SIoApiserviceV1Resource{}
 )
 
-func NewApiregistrationK8SIoAPIServiceV1Resource() resource.Resource {
-	return &ApiregistrationK8SIoAPIServiceV1Resource{}
+func NewApiregistrationK8SIoApiserviceV1Resource() resource.Resource {
+	return &ApiregistrationK8SIoApiserviceV1Resource{}
 }
 
-type ApiregistrationK8SIoAPIServiceV1Resource struct {
+type ApiregistrationK8SIoApiserviceV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type ApiregistrationK8SIoAPIServiceV1ResourceData struct {
+type ApiregistrationK8SIoApiserviceV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -74,11 +74,11 @@ type ApiregistrationK8SIoAPIServiceV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_apiregistration_k8s_io_api_service_v1"
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIService represents a server for a particular GroupVersion. Name must be 'version.group'.",
 		MarkdownDescription: "APIService represents a server for a particular GroupVersion. Name must be 'version.group'.",
@@ -284,7 +284,7 @@ func (r *ApiregistrationK8SIoAPIServiceV1Resource) Schema(_ context.Context, _ r
 	}
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -309,10 +309,10 @@ func (r *ApiregistrationK8SIoAPIServiceV1Resource) Configure(_ context.Context, 
 	}
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_apiregistration_k8s_io_api_service_v1")
 
-	var model ApiregistrationK8SIoAPIServiceV1ResourceData
+	var model ApiregistrationK8SIoApiserviceV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -369,7 +369,7 @@ func (r *ApiregistrationK8SIoAPIServiceV1Resource) Create(ctx context.Context, r
 		return
 	}
 
-	var readResponse ApiregistrationK8SIoAPIServiceV1ResourceData
+	var readResponse ApiregistrationK8SIoApiserviceV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -387,10 +387,10 @@ func (r *ApiregistrationK8SIoAPIServiceV1Resource) Create(ctx context.Context, r
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_apiregistration_k8s_io_api_service_v1")
 
-	var data ApiregistrationK8SIoAPIServiceV1ResourceData
+	var data ApiregistrationK8SIoApiserviceV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -418,7 +418,7 @@ func (r *ApiregistrationK8SIoAPIServiceV1Resource) Read(ctx context.Context, req
 		return
 	}
 
-	var readResponse ApiregistrationK8SIoAPIServiceV1ResourceData
+	var readResponse ApiregistrationK8SIoApiserviceV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -436,10 +436,10 @@ func (r *ApiregistrationK8SIoAPIServiceV1Resource) Read(ctx context.Context, req
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_apiregistration_k8s_io_api_service_v1")
 
-	var model ApiregistrationK8SIoAPIServiceV1ResourceData
+	var model ApiregistrationK8SIoApiserviceV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -495,7 +495,7 @@ func (r *ApiregistrationK8SIoAPIServiceV1Resource) Update(ctx context.Context, r
 		return
 	}
 
-	var readResponse ApiregistrationK8SIoAPIServiceV1ResourceData
+	var readResponse ApiregistrationK8SIoApiserviceV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -513,10 +513,10 @@ func (r *ApiregistrationK8SIoAPIServiceV1Resource) Update(ctx context.Context, r
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_apiregistration_k8s_io_api_service_v1")
 
-	var data ApiregistrationK8SIoAPIServiceV1ResourceData
+	var data ApiregistrationK8SIoApiserviceV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -536,7 +536,7 @@ func (r *ApiregistrationK8SIoAPIServiceV1Resource) Delete(ctx context.Context, r
 	}
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

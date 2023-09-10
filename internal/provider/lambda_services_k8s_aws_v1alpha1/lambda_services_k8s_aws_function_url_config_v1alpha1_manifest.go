@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &LambdaServicesK8SAwsFunctionURLConfigV1Alpha1Manifest{}
+	_ datasource.DataSource = &LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest{}
 )
 
-func NewLambdaServicesK8SAwsFunctionURLConfigV1Alpha1Manifest() datasource.DataSource {
-	return &LambdaServicesK8SAwsFunctionURLConfigV1Alpha1Manifest{}
+func NewLambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest() datasource.DataSource {
+	return &LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest{}
 }
 
-type LambdaServicesK8SAwsFunctionURLConfigV1Alpha1Manifest struct{}
+type LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest struct{}
 
-type LambdaServicesK8SAwsFunctionURLConfigV1Alpha1ManifestData struct {
+type LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -63,11 +63,11 @@ type LambdaServicesK8SAwsFunctionURLConfigV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *LambdaServicesK8SAwsFunctionURLConfigV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_lambda_services_k8s_aws_function_url_config_v1alpha1_manifest"
 }
 
-func (r *LambdaServicesK8SAwsFunctionURLConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "FunctionURLConfig is the Schema for the FunctionURLConfigs API",
 		MarkdownDescription: "FunctionURLConfig is the Schema for the FunctionURLConfigs API",
@@ -267,10 +267,10 @@ func (r *LambdaServicesK8SAwsFunctionURLConfigV1Alpha1Manifest) Schema(_ context
 	}
 }
 
-func (r *LambdaServicesK8SAwsFunctionURLConfigV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_lambda_services_k8s_aws_function_url_config_v1alpha1_manifest")
 
-	var model LambdaServicesK8SAwsFunctionURLConfigV1Alpha1ManifestData
+	var model LambdaServicesK8SAwsFunctionUrlconfigV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

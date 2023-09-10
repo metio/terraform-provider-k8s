@@ -78,7 +78,13 @@ type ExtensionsIstioIoWasmPluginV1Alpha1ResourceData struct {
 		Selector     *struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"selector" json:"selector,omitempty"`
-		Sha256          *string `tfsdk:"sha256" json:"sha256,omitempty"`
+		Sha256    *string `tfsdk:"sha256" json:"sha256,omitempty"`
+		TargetRef *struct {
+			Group     *string `tfsdk:"group" json:"group,omitempty"`
+			Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		Type            *string `tfsdk:"type" json:"type,omitempty"`
 		Url             *string `tfsdk:"url" json:"url,omitempty"`
 		VerificationKey *string `tfsdk:"verification_key" json:"verificationKey,omitempty"`
@@ -356,6 +362,47 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Resource) Schema(_ context.Context, 
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"target_ref": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"group": schema.StringAttribute{
+								Description:         "group is the group of the target resource.",
+								MarkdownDescription: "group is the group of the target resource.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kind": schema.StringAttribute{
+								Description:         "kind is kind of the target resource.",
+								MarkdownDescription: "kind is kind of the target resource.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "name is the name of the target resource.",
+								MarkdownDescription: "name is the name of the target resource.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"namespace": schema.StringAttribute{
+								Description:         "namespace is the namespace of the referent.",
+								MarkdownDescription: "namespace is the namespace of the referent.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"type": schema.StringAttribute{

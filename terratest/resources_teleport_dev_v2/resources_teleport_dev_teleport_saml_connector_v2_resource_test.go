@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestResourcesTeleportDevTeleportSAMLConnectorV2Resource(t *testing.T) {
+func TestResourcesTeleportDevTeleportSamlconnectorV2Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_resources_teleport_dev_teleport_saml_connector_v2"
 
 	_, err := os.Stat(path)

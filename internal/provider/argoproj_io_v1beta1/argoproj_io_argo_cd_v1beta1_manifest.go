@@ -21,16 +21,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &ArgoprojIoArgoCDV1Beta1Manifest{}
+	_ datasource.DataSource = &ArgoprojIoArgoCdV1Beta1Manifest{}
 )
 
-func NewArgoprojIoArgoCDV1Beta1Manifest() datasource.DataSource {
-	return &ArgoprojIoArgoCDV1Beta1Manifest{}
+func NewArgoprojIoArgoCdV1Beta1Manifest() datasource.DataSource {
+	return &ArgoprojIoArgoCdV1Beta1Manifest{}
 }
 
-type ArgoprojIoArgoCDV1Beta1Manifest struct{}
+type ArgoprojIoArgoCdV1Beta1Manifest struct{}
 
-type ArgoprojIoArgoCDV1Beta1ManifestData struct {
+type ArgoprojIoArgoCdV1Beta1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -79,8 +79,9 @@ type ArgoprojIoArgoCDV1Beta1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
-			Version       *string `tfsdk:"version" json:"version,omitempty"`
-			WebhookServer *struct {
+			ScmRootCAConfigMap *string `tfsdk:"scm_root_ca_config_map" json:"scmRootCAConfigMap,omitempty"`
+			Version            *string `tfsdk:"version" json:"version,omitempty"`
+			WebhookServer      *struct {
 				Host    *string `tfsdk:"host" json:"host,omitempty"`
 				Ingress *struct {
 					Annotations      *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -1275,11 +1276,11 @@ type ArgoprojIoArgoCDV1Beta1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ArgoprojIoArgoCDV1Beta1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ArgoprojIoArgoCdV1Beta1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_argoproj_io_argo_cd_v1beta1_manifest"
 }
 
-func (r *ArgoprojIoArgoCDV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ArgoprojIoArgoCdV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ArgoCD is the Schema for the argocds API",
 		MarkdownDescription: "ArgoCD is the Schema for the argocds API",
@@ -1582,6 +1583,14 @@ func (r *ArgoprojIoArgoCDV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"scm_root_ca_config_map": schema.StringAttribute{
+								Description:         "SCMRootCAConfigMap is the name of the config map that stores the Gitlab SCM Provider's TLS certificate which will be mounted on the ApplicationSet Controller (optional).",
+								MarkdownDescription: "SCMRootCAConfigMap is the name of the config map that stores the Gitlab SCM Provider's TLS certificate which will be mounted on the ApplicationSet Controller (optional).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"version": schema.StringAttribute{
@@ -9614,10 +9623,10 @@ func (r *ArgoprojIoArgoCDV1Beta1Manifest) Schema(_ context.Context, _ datasource
 	}
 }
 
-func (r *ArgoprojIoArgoCDV1Beta1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ArgoprojIoArgoCdV1Beta1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_argoproj_io_argo_cd_v1beta1_manifest")
 
-	var model ArgoprojIoArgoCDV1Beta1ManifestData
+	var model ArgoprojIoArgoCdV1Beta1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

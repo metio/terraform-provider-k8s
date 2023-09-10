@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &CiliumIoCiliumBGPPeeringPolicyV2Alpha1Manifest{}
+	_ datasource.DataSource = &CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest{}
 )
 
-func NewCiliumIoCiliumBGPPeeringPolicyV2Alpha1Manifest() datasource.DataSource {
-	return &CiliumIoCiliumBGPPeeringPolicyV2Alpha1Manifest{}
+func NewCiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest() datasource.DataSource {
+	return &CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest{}
 }
 
-type CiliumIoCiliumBGPPeeringPolicyV2Alpha1Manifest struct{}
+type CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest struct{}
 
-type CiliumIoCiliumBGPPeeringPolicyV2Alpha1ManifestData struct {
+type CiliumIoCiliumBgppeeringPolicyV2Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -83,11 +83,11 @@ type CiliumIoCiliumBGPPeeringPolicyV2Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_bgp_peering_policy_v2alpha1_manifest"
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructing Cilium's BGP control plane to create virtual BGP routers.",
 		MarkdownDescription: "CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructing Cilium's BGP control plane to create virtual BGP routers.",
@@ -462,10 +462,10 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 	}
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1_manifest")
 
-	var model CiliumIoCiliumBGPPeeringPolicyV2Alpha1ManifestData
+	var model CiliumIoCiliumBgppeeringPolicyV2Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

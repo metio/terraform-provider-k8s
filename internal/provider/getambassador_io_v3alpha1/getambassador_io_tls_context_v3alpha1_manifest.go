@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &GetambassadorIoTLSContextV3Alpha1Manifest{}
+	_ datasource.DataSource = &GetambassadorIoTlscontextV3Alpha1Manifest{}
 )
 
-func NewGetambassadorIoTLSContextV3Alpha1Manifest() datasource.DataSource {
-	return &GetambassadorIoTLSContextV3Alpha1Manifest{}
+func NewGetambassadorIoTlscontextV3Alpha1Manifest() datasource.DataSource {
+	return &GetambassadorIoTlscontextV3Alpha1Manifest{}
 }
 
-type GetambassadorIoTLSContextV3Alpha1Manifest struct{}
+type GetambassadorIoTlscontextV3Alpha1Manifest struct{}
 
-type GetambassadorIoTLSContextV3Alpha1ManifestData struct {
+type GetambassadorIoTlscontextV3Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -64,11 +64,11 @@ type GetambassadorIoTLSContextV3Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *GetambassadorIoTLSContextV3Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *GetambassadorIoTlscontextV3Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_tls_context_v3alpha1_manifest"
 }
 
-func (r *GetambassadorIoTLSContextV3Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *GetambassadorIoTlscontextV3Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TLSContext is the Schema for the tlscontexts API",
 		MarkdownDescription: "TLSContext is the Schema for the tlscontexts API",
@@ -303,10 +303,10 @@ func (r *GetambassadorIoTLSContextV3Alpha1Manifest) Schema(_ context.Context, _ 
 	}
 }
 
-func (r *GetambassadorIoTLSContextV3Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *GetambassadorIoTlscontextV3Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_getambassador_io_tls_context_v3alpha1_manifest")
 
-	var model GetambassadorIoTLSContextV3Alpha1ManifestData
+	var model GetambassadorIoTlscontextV3Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

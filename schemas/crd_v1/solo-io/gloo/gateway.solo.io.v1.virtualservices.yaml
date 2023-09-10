@@ -325,6 +325,10 @@ spec:
                                   timeout:
                                     type: string
                                 type: object
+                              metadataContextNamespaces:
+                                items:
+                                  type: string
+                                type: array
                               processingMode:
                                 properties:
                                   requestBodyMode:
@@ -351,6 +355,10 @@ spec:
                                   type: string
                                 type: array
                               responseAttributes:
+                                items:
+                                  type: string
+                                type: array
+                              typedMetadataContextNamespaces:
                                 items:
                                   type: string
                                 type: array
@@ -711,6 +719,19 @@ spec:
                         type: object
                       ratelimit:
                         properties:
+                          localRatelimit:
+                            properties:
+                              fillInterval:
+                                type: string
+                              maxTokens:
+                                format: int32
+                                type: integer
+                              tokensPerFill:
+                                maximum: 4294967295
+                                minimum: 0
+                                nullable: true
+                                type: integer
+                            type: object
                           rateLimits:
                             items:
                               properties:
@@ -906,6 +927,19 @@ spec:
                         type: object
                       ratelimitEarly:
                         properties:
+                          localRatelimit:
+                            properties:
+                              fillInterval:
+                                type: string
+                              maxTokens:
+                                format: int32
+                                type: integer
+                              tokensPerFill:
+                                maximum: 4294967295
+                                minimum: 0
+                                nullable: true
+                                type: integer
+                            type: object
                           rateLimits:
                             items:
                               properties:
@@ -1080,6 +1114,19 @@ spec:
                         type: object
                       ratelimitRegular:
                         properties:
+                          localRatelimit:
+                            properties:
+                              fillInterval:
+                                type: string
+                              maxTokens:
+                                format: int32
+                                type: integer
+                              tokensPerFill:
+                                maximum: 4294967295
+                                minimum: 0
+                                nullable: true
+                                type: integer
+                            type: object
                           rateLimits:
                             items:
                               properties:
@@ -2620,6 +2667,10 @@ spec:
                                         timeout:
                                           type: string
                                       type: object
+                                    metadataContextNamespaces:
+                                      items:
+                                        type: string
+                                      type: array
                                     processingMode:
                                       properties:
                                         requestBodyMode:
@@ -2646,6 +2697,10 @@ spec:
                                         type: string
                                       type: array
                                     responseAttributes:
+                                      items:
+                                        type: string
+                                      type: array
+                                    typedMetadataContextNamespaces:
                                       items:
                                         type: string
                                       type: array
@@ -2861,6 +2916,19 @@ spec:
                               properties:
                                 includeVhRateLimits:
                                   type: boolean
+                                localRatelimit:
+                                  properties:
+                                    fillInterval:
+                                      type: string
+                                    maxTokens:
+                                      format: int32
+                                      type: integer
+                                    tokensPerFill:
+                                      maximum: 4294967295
+                                      minimum: 0
+                                      nullable: true
+                                      type: integer
+                                  type: object
                                 rateLimits:
                                   items:
                                     properties:
@@ -3058,6 +3126,19 @@ spec:
                               properties:
                                 includeVhRateLimits:
                                   type: boolean
+                                localRatelimit:
+                                  properties:
+                                    fillInterval:
+                                      type: string
+                                    maxTokens:
+                                      format: int32
+                                      type: integer
+                                    tokensPerFill:
+                                      maximum: 4294967295
+                                      minimum: 0
+                                      nullable: true
+                                      type: integer
+                                  type: object
                                 rateLimits:
                                   items:
                                     properties:
@@ -3234,6 +3315,19 @@ spec:
                               properties:
                                 includeVhRateLimits:
                                   type: boolean
+                                localRatelimit:
+                                  properties:
+                                    fillInterval:
+                                      type: string
+                                    maxTokens:
+                                      format: int32
+                                      type: integer
+                                    tokensPerFill:
+                                      maximum: 4294967295
+                                      minimum: 0
+                                      nullable: true
+                                      type: integer
+                                  type: object
                                 rateLimits:
                                   items:
                                     properties:

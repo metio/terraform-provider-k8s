@@ -3390,7 +3390,7 @@ spec:
                       password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl,
                       zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic,
                       cruise.control.metrics.reporter.bootstrap.servers,node.id, process.roles,
-                      controller. (with the exception of: zookeeper.connection.timeout.ms,
+                      controller., metadata.log.dir (with the exception of: zookeeper.connection.timeout.ms,
                       sasl.server.max.receive.size,ssl.cipher.suites, ssl.protocol,
                       ssl.enabled.protocols, ssl.secure.random.implementation,cruise.control.metrics.topic.num.partitions,
                       cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms,cruise.control.metrics.topic.auto.create.retries,
@@ -7172,6 +7172,9 @@ spec:
                       type: string
                   type: object
                 type: array
+              kafkaVersion:
+                description: The version of Kafka currently deployed in the cluster.
+                type: string
               listeners:
                 description: Addresses of the internal and external listeners.
                 items:
@@ -7213,6 +7216,10 @@ spec:
                 description: The generation of the CRD that was last reconciled by
                   the operator.
                 type: integer
+              operatorLastSuccessfulVersion:
+                description: The version of the Strimzi Cluster Operator which performed
+                  the last successful reconciliation.
+                type: string
             type: object
         type: object
     served: true

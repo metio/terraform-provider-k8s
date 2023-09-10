@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: Apps3ScaleNetAPIcastV1Alpha1Manifest
+name: Apps3ScaleNetApicastV1Alpha1Manifest
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/apps_3scale_net_v1alpha1/apps_3scale_net_ap_icast_v1alpha1_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestApps3ScaleNetAPIcastV1Alpha1Manifest ./terratest/apps_3scale_net_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestApps3ScaleNetApicastV1Alpha1Manifest ./terratest/apps_3scale_net_v1alpha1

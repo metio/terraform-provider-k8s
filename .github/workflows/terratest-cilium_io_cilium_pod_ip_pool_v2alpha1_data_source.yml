@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: CiliumIoCiliumPodIPPoolV2Alpha1DataSource
+name: CiliumIoCiliumPodIppoolV2Alpha1DataSource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/cilium_io_v2alpha1/cilium_io_cilium_pod_ip_pool_v2alpha1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestCiliumIoCiliumPodIPPoolV2Alpha1DataSource ./terratest/cilium_io_v2alpha1
+        run: go test -v -timeout=120s -count=1 -run TestCiliumIoCiliumPodIppoolV2Alpha1DataSource ./terratest/cilium_io_v2alpha1

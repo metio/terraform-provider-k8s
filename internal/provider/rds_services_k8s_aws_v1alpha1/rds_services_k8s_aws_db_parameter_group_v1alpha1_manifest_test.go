@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestRdsServicesK8SAwsDBParameterGroupV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestRdsServicesK8SAwsDbparameterGroupV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	rds_services_k8s_aws_v1alpha1.NewRdsServicesK8SAwsDBParameterGroupV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	rds_services_k8s_aws_v1alpha1.NewRdsServicesK8SAwsDbparameterGroupV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

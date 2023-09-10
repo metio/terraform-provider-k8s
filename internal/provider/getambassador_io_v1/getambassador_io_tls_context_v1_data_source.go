@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &GetambassadorIoTLSContextV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &GetambassadorIoTLSContextV1DataSource{}
+	_ datasource.DataSource              = &GetambassadorIoTlscontextV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &GetambassadorIoTlscontextV1DataSource{}
 )
 
-func NewGetambassadorIoTLSContextV1DataSource() datasource.DataSource {
-	return &GetambassadorIoTLSContextV1DataSource{}
+func NewGetambassadorIoTlscontextV1DataSource() datasource.DataSource {
+	return &GetambassadorIoTlscontextV1DataSource{}
 }
 
-type GetambassadorIoTLSContextV1DataSource struct {
+type GetambassadorIoTlscontextV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type GetambassadorIoTLSContextV1DataSourceData struct {
+type GetambassadorIoTlscontextV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -70,11 +70,11 @@ type GetambassadorIoTLSContextV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *GetambassadorIoTLSContextV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *GetambassadorIoTlscontextV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_tls_context_v1"
 }
 
-func (r *GetambassadorIoTLSContextV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *GetambassadorIoTlscontextV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TLSContext is the Schema for the tlscontexts API",
 		MarkdownDescription: "TLSContext is the Schema for the tlscontexts API",
@@ -289,7 +289,7 @@ func (r *GetambassadorIoTLSContextV1DataSource) Schema(_ context.Context, _ data
 	}
 }
 
-func (r *GetambassadorIoTLSContextV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *GetambassadorIoTlscontextV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -312,10 +312,10 @@ func (r *GetambassadorIoTLSContextV1DataSource) Configure(_ context.Context, req
 	}
 }
 
-func (r *GetambassadorIoTLSContextV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *GetambassadorIoTlscontextV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_getambassador_io_tls_context_v1")
 
-	var data GetambassadorIoTLSContextV1DataSourceData
+	var data GetambassadorIoTlscontextV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -344,7 +344,7 @@ func (r *GetambassadorIoTLSContextV1DataSource) Read(ctx context.Context, reques
 		return
 	}
 
-	var readResponse GetambassadorIoTLSContextV1DataSourceData
+	var readResponse GetambassadorIoTlscontextV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

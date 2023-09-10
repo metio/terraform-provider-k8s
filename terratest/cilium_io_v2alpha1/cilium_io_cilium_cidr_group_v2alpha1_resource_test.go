@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestCiliumIoCiliumCIDRGroupV2Alpha1Resource(t *testing.T) {
+func TestCiliumIoCiliumCidrgroupV2Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_cilium_io_cilium_cidr_group_v2alpha1"
 
 	_, err := os.Stat(path)

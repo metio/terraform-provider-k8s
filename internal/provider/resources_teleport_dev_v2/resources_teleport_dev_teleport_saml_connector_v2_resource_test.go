@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestResourcesTeleportDevTeleportSAMLConnectorV2Resource_ValidateSchema(t *testing.T) {
+func TestResourcesTeleportDevTeleportSamlconnectorV2Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	resources_teleport_dev_v2.NewResourcesTeleportDevTeleportSAMLConnectorV2Resource().Schema(ctx, schemaRequest, schemaResponse)
+	resources_teleport_dev_v2.NewResourcesTeleportDevTeleportSamlconnectorV2Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

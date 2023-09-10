@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestHiveOpenshiftIoDNSZoneV1Manifest(t *testing.T) {
+func TestHiveOpenshiftIoDnszoneV1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_hive_openshift_io_dns_zone_v1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestApps3ScaleNetAPIcastV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestApps3ScaleNetApicastV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	apps_3scale_net_v1alpha1.NewApps3ScaleNetAPIcastV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	apps_3scale_net_v1alpha1.NewApps3ScaleNetApicastV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

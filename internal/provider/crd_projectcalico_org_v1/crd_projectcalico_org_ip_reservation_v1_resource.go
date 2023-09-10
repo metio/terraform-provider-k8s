@@ -29,22 +29,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CrdProjectcalicoOrgIPReservationV1Resource{}
-	_ resource.ResourceWithConfigure   = &CrdProjectcalicoOrgIPReservationV1Resource{}
-	_ resource.ResourceWithImportState = &CrdProjectcalicoOrgIPReservationV1Resource{}
+	_ resource.Resource                = &CrdProjectcalicoOrgIpreservationV1Resource{}
+	_ resource.ResourceWithConfigure   = &CrdProjectcalicoOrgIpreservationV1Resource{}
+	_ resource.ResourceWithImportState = &CrdProjectcalicoOrgIpreservationV1Resource{}
 )
 
-func NewCrdProjectcalicoOrgIPReservationV1Resource() resource.Resource {
-	return &CrdProjectcalicoOrgIPReservationV1Resource{}
+func NewCrdProjectcalicoOrgIpreservationV1Resource() resource.Resource {
+	return &CrdProjectcalicoOrgIpreservationV1Resource{}
 }
 
-type CrdProjectcalicoOrgIPReservationV1Resource struct {
+type CrdProjectcalicoOrgIpreservationV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CrdProjectcalicoOrgIPReservationV1ResourceData struct {
+type CrdProjectcalicoOrgIpreservationV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -64,11 +64,11 @@ type CrdProjectcalicoOrgIPReservationV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CrdProjectcalicoOrgIPReservationV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CrdProjectcalicoOrgIpreservationV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_ip_reservation_v1"
 }
 
-func (r *CrdProjectcalicoOrgIPReservationV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CrdProjectcalicoOrgIpreservationV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -199,7 +199,7 @@ func (r *CrdProjectcalicoOrgIPReservationV1Resource) Schema(_ context.Context, _
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPReservationV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CrdProjectcalicoOrgIpreservationV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -224,10 +224,10 @@ func (r *CrdProjectcalicoOrgIPReservationV1Resource) Configure(_ context.Context
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPReservationV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CrdProjectcalicoOrgIpreservationV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_crd_projectcalico_org_ip_reservation_v1")
 
-	var model CrdProjectcalicoOrgIPReservationV1ResourceData
+	var model CrdProjectcalicoOrgIpreservationV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -284,7 +284,7 @@ func (r *CrdProjectcalicoOrgIPReservationV1Resource) Create(ctx context.Context,
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgIPReservationV1ResourceData
+	var readResponse CrdProjectcalicoOrgIpreservationV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -302,10 +302,10 @@ func (r *CrdProjectcalicoOrgIPReservationV1Resource) Create(ctx context.Context,
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CrdProjectcalicoOrgIPReservationV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CrdProjectcalicoOrgIpreservationV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_crd_projectcalico_org_ip_reservation_v1")
 
-	var data CrdProjectcalicoOrgIPReservationV1ResourceData
+	var data CrdProjectcalicoOrgIpreservationV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -333,7 +333,7 @@ func (r *CrdProjectcalicoOrgIPReservationV1Resource) Read(ctx context.Context, r
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgIPReservationV1ResourceData
+	var readResponse CrdProjectcalicoOrgIpreservationV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -351,10 +351,10 @@ func (r *CrdProjectcalicoOrgIPReservationV1Resource) Read(ctx context.Context, r
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CrdProjectcalicoOrgIPReservationV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CrdProjectcalicoOrgIpreservationV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_crd_projectcalico_org_ip_reservation_v1")
 
-	var model CrdProjectcalicoOrgIPReservationV1ResourceData
+	var model CrdProjectcalicoOrgIpreservationV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -410,7 +410,7 @@ func (r *CrdProjectcalicoOrgIPReservationV1Resource) Update(ctx context.Context,
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgIPReservationV1ResourceData
+	var readResponse CrdProjectcalicoOrgIpreservationV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -428,10 +428,10 @@ func (r *CrdProjectcalicoOrgIPReservationV1Resource) Update(ctx context.Context,
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CrdProjectcalicoOrgIPReservationV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CrdProjectcalicoOrgIpreservationV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_crd_projectcalico_org_ip_reservation_v1")
 
-	var data CrdProjectcalicoOrgIPReservationV1ResourceData
+	var data CrdProjectcalicoOrgIpreservationV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -451,7 +451,7 @@ func (r *CrdProjectcalicoOrgIPReservationV1Resource) Delete(ctx context.Context,
 	}
 }
 
-func (r *CrdProjectcalicoOrgIPReservationV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CrdProjectcalicoOrgIpreservationV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

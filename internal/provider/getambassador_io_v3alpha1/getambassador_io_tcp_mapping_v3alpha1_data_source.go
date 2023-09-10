@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &GetambassadorIoTCPMappingV3Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &GetambassadorIoTCPMappingV3Alpha1DataSource{}
+	_ datasource.DataSource              = &GetambassadorIoTcpmappingV3Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &GetambassadorIoTcpmappingV3Alpha1DataSource{}
 )
 
-func NewGetambassadorIoTCPMappingV3Alpha1DataSource() datasource.DataSource {
-	return &GetambassadorIoTCPMappingV3Alpha1DataSource{}
+func NewGetambassadorIoTcpmappingV3Alpha1DataSource() datasource.DataSource {
+	return &GetambassadorIoTcpmappingV3Alpha1DataSource{}
 }
 
-type GetambassadorIoTCPMappingV3Alpha1DataSource struct {
+type GetambassadorIoTcpmappingV3Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type GetambassadorIoTCPMappingV3Alpha1DataSourceData struct {
+type GetambassadorIoTcpmappingV3Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -77,11 +77,11 @@ type GetambassadorIoTCPMappingV3Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *GetambassadorIoTCPMappingV3Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *GetambassadorIoTcpmappingV3Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_tcp_mapping_v3alpha1"
 }
 
-func (r *GetambassadorIoTCPMappingV3Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *GetambassadorIoTcpmappingV3Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TCPMapping is the Schema for the tcpmappings API",
 		MarkdownDescription: "TCPMapping is the Schema for the tcpmappings API",
@@ -337,7 +337,7 @@ func (r *GetambassadorIoTCPMappingV3Alpha1DataSource) Schema(_ context.Context, 
 	}
 }
 
-func (r *GetambassadorIoTCPMappingV3Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *GetambassadorIoTcpmappingV3Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -360,10 +360,10 @@ func (r *GetambassadorIoTCPMappingV3Alpha1DataSource) Configure(_ context.Contex
 	}
 }
 
-func (r *GetambassadorIoTCPMappingV3Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *GetambassadorIoTcpmappingV3Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_getambassador_io_tcp_mapping_v3alpha1")
 
-	var data GetambassadorIoTCPMappingV3Alpha1DataSourceData
+	var data GetambassadorIoTcpmappingV3Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -392,7 +392,7 @@ func (r *GetambassadorIoTCPMappingV3Alpha1DataSource) Read(ctx context.Context, 
 		return
 	}
 
-	var readResponse GetambassadorIoTCPMappingV3Alpha1DataSourceData
+	var readResponse GetambassadorIoTcpmappingV3Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestMetal3IoBMCEventSubscriptionV1Alpha1DataSource(t *testing.T) {
+func TestMetal3IoBmceventSubscriptionV1Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_metal3_io_bmc_event_subscription_v1alpha1"
 
 	_, err := os.Stat(path)

@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestSloKoordinatorShNodeSLOV1Alpha1Resource(t *testing.T) {
+func TestSloKoordinatorShNodeSloV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_slo_koordinator_sh_node_slo_v1alpha1"
 
 	_, err := os.Stat(path)

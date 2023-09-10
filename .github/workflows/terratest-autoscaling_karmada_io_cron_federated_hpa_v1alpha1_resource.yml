@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource
+name: AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/autoscaling_karmada_io_v1alpha1/autoscaling_karmada_io_cron_federated_hpa_v1alpha1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestAutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource ./terratest/autoscaling_karmada_io_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestAutoscalingKarmadaIoCronFederatedHpaV1Alpha1Resource ./terratest/autoscaling_karmada_io_v1alpha1

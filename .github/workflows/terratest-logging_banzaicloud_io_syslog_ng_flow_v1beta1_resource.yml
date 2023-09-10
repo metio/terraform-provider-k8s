@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource
+name: LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/logging_banzaicloud_io_v1beta1/logging_banzaicloud_io_syslog_ng_flow_v1beta1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestLoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource ./terratest/logging_banzaicloud_io_v1beta1
+        run: go test -v -timeout=120s -count=1 -run TestLoggingBanzaicloudIoSyslogNgflowV1Beta1Resource ./terratest/logging_banzaicloud_io_v1beta1

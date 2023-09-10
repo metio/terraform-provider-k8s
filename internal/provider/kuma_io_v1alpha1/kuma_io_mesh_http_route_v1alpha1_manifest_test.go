@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestKumaIoMeshHTTPRouteV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestKumaIoMeshHttprouteV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	kuma_io_v1alpha1.NewKumaIoMeshHTTPRouteV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	kuma_io_v1alpha1.NewKumaIoMeshHttprouteV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

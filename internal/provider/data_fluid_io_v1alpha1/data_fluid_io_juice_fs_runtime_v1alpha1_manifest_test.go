@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestDataFluidIoJuiceFSRuntimeV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestDataFluidIoJuiceFsruntimeV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	data_fluid_io_v1alpha1.NewDataFluidIoJuiceFSRuntimeV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	data_fluid_io_v1alpha1.NewDataFluidIoJuiceFsruntimeV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestSecretgeneratorMittwaldDeSSHKeyPairV1Alpha1Resource(t *testing.T) {
+func TestSecretgeneratorMittwaldDeSshkeyPairV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_secretgenerator_mittwald_de_ssh_key_pair_v1alpha1"
 
 	_, err := os.Stat(path)

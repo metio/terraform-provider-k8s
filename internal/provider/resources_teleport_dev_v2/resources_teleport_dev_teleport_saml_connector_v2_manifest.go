@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &ResourcesTeleportDevTeleportSAMLConnectorV2Manifest{}
+	_ datasource.DataSource = &ResourcesTeleportDevTeleportSamlconnectorV2Manifest{}
 )
 
-func NewResourcesTeleportDevTeleportSAMLConnectorV2Manifest() datasource.DataSource {
-	return &ResourcesTeleportDevTeleportSAMLConnectorV2Manifest{}
+func NewResourcesTeleportDevTeleportSamlconnectorV2Manifest() datasource.DataSource {
+	return &ResourcesTeleportDevTeleportSamlconnectorV2Manifest{}
 }
 
-type ResourcesTeleportDevTeleportSAMLConnectorV2Manifest struct{}
+type ResourcesTeleportDevTeleportSamlconnectorV2Manifest struct{}
 
-type ResourcesTeleportDevTeleportSAMLConnectorV2ManifestData struct {
+type ResourcesTeleportDevTeleportSamlconnectorV2ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -71,11 +71,11 @@ type ResourcesTeleportDevTeleportSAMLConnectorV2ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_resources_teleport_dev_teleport_saml_connector_v2_manifest"
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SAMLConnector is the Schema for the samlconnectors API",
 		MarkdownDescription: "SAMLConnector is the Schema for the samlconnectors API",
@@ -338,10 +338,10 @@ func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Manifest) Schema(_ context.C
 	}
 }
 
-func (r *ResourcesTeleportDevTeleportSAMLConnectorV2Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ResourcesTeleportDevTeleportSamlconnectorV2Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_resources_teleport_dev_teleport_saml_connector_v2_manifest")
 
-	var model ResourcesTeleportDevTeleportSAMLConnectorV2ManifestData
+	var model ResourcesTeleportDevTeleportSamlconnectorV2ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

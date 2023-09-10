@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestGraphqlGlooSoloIoGraphQLApiV1Beta1Manifest_ValidateSchema(t *testing.T) {
+func TestGraphqlGlooSoloIoGraphQlapiV1Beta1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	graphql_gloo_solo_io_v1beta1.NewGraphqlGlooSoloIoGraphQLApiV1Beta1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	graphql_gloo_solo_io_v1beta1.NewGraphqlGlooSoloIoGraphQlapiV1Beta1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestTrainingKubedlIoElasticDLJobV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestTrainingKubedlIoElasticDljobV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	training_kubedl_io_v1alpha1.NewTrainingKubedlIoElasticDLJobV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	training_kubedl_io_v1alpha1.NewTrainingKubedlIoElasticDljobV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestHiveOpenshiftIoDNSZoneV1DataSource(t *testing.T) {
+func TestHiveOpenshiftIoDnszoneV1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_hive_openshift_io_dns_zone_v1"
 
 	_, err := os.Stat(path)

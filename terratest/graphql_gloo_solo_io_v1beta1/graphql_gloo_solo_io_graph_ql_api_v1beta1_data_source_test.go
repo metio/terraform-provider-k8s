@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestGraphqlGlooSoloIoGraphQLApiV1Beta1DataSource(t *testing.T) {
+func TestGraphqlGlooSoloIoGraphQlapiV1Beta1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_graphql_gloo_solo_io_graph_ql_api_v1beta1"
 
 	_, err := os.Stat(path)

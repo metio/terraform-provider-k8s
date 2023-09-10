@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &RdsServicesK8SAwsDBInstanceV1Alpha1Manifest{}
+	_ datasource.DataSource = &RdsServicesK8SAwsDbinstanceV1Alpha1Manifest{}
 )
 
-func NewRdsServicesK8SAwsDBInstanceV1Alpha1Manifest() datasource.DataSource {
-	return &RdsServicesK8SAwsDBInstanceV1Alpha1Manifest{}
+func NewRdsServicesK8SAwsDbinstanceV1Alpha1Manifest() datasource.DataSource {
+	return &RdsServicesK8SAwsDbinstanceV1Alpha1Manifest{}
 }
 
-type RdsServicesK8SAwsDBInstanceV1Alpha1Manifest struct{}
+type RdsServicesK8SAwsDbinstanceV1Alpha1Manifest struct{}
 
-type RdsServicesK8SAwsDBInstanceV1Alpha1ManifestData struct {
+type RdsServicesK8SAwsDbinstanceV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -144,11 +144,11 @@ type RdsServicesK8SAwsDBInstanceV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_rds_services_k8s_aws_db_instance_v1alpha1_manifest"
 }
 
-func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DBInstance is the Schema for the DBInstances API",
 		MarkdownDescription: "DBInstance is the Schema for the DBInstances API",
@@ -930,10 +930,10 @@ func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Manifest) Schema(_ context.Context, 
 	}
 }
 
-func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_rds_services_k8s_aws_db_instance_v1alpha1_manifest")
 
-	var model RdsServicesK8SAwsDBInstanceV1Alpha1ManifestData
+	var model RdsServicesK8SAwsDbinstanceV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

@@ -66,17 +66,24 @@ type TestsTestkubeIoTestSuiteV3DataSourceData struct {
 		} `tfsdk:"before" json:"before,omitempty"`
 		Description      *string `tfsdk:"description" json:"description,omitempty"`
 		ExecutionRequest *struct {
-			CronJobTemplate *string            `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
-			ExecutionLabels *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
-			HttpProxy       *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
-			HttpsProxy      *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
-			Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Name            *string            `tfsdk:"name" json:"name,omitempty"`
-			Namespace       *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-			SecretUUID      *string            `tfsdk:"secret_uuid" json:"secretUUID,omitempty"`
-			Sync            *bool              `tfsdk:"sync" json:"sync,omitempty"`
-			Timeout         *int64             `tfsdk:"timeout" json:"timeout,omitempty"`
-			Variables       *struct {
+			CronJobTemplate          *string            `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
+			CronJobTemplateReference *string            `tfsdk:"cron_job_template_reference" json:"cronJobTemplateReference,omitempty"`
+			ExecutionLabels          *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
+			HttpProxy                *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
+			HttpsProxy               *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
+			JobTemplate              *string            `tfsdk:"job_template" json:"jobTemplate,omitempty"`
+			JobTemplateReference     *string            `tfsdk:"job_template_reference" json:"jobTemplateReference,omitempty"`
+			Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Name                     *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace                *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			PvcTemplate              *string            `tfsdk:"pvc_template" json:"pvcTemplate,omitempty"`
+			PvcTemplateReference     *string            `tfsdk:"pvc_template_reference" json:"pvcTemplateReference,omitempty"`
+			ScraperTemplate          *string            `tfsdk:"scraper_template" json:"scraperTemplate,omitempty"`
+			ScraperTemplateReference *string            `tfsdk:"scraper_template_reference" json:"scraperTemplateReference,omitempty"`
+			SecretUUID               *string            `tfsdk:"secret_uuid" json:"secretUUID,omitempty"`
+			Sync                     *bool              `tfsdk:"sync" json:"sync,omitempty"`
+			Timeout                  *int64             `tfsdk:"timeout" json:"timeout,omitempty"`
+			Variables                *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Type      *string `tfsdk:"type" json:"type,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -298,6 +305,14 @@ func (r *TestsTestkubeIoTestSuiteV3DataSource) Schema(_ context.Context, _ datas
 								Computed:            true,
 							},
 
+							"cron_job_template_reference": schema.StringAttribute{
+								Description:         "name of the template resource",
+								MarkdownDescription: "name of the template resource",
+								Required:            false,
+								Optional:            false,
+								Computed:            true,
+							},
+
 							"execution_labels": schema.MapAttribute{
 								Description:         "execution labels",
 								MarkdownDescription: "execution labels",
@@ -323,6 +338,22 @@ func (r *TestsTestkubeIoTestSuiteV3DataSource) Schema(_ context.Context, _ datas
 								Computed:            true,
 							},
 
+							"job_template": schema.StringAttribute{
+								Description:         "job template extensions",
+								MarkdownDescription: "job template extensions",
+								Required:            false,
+								Optional:            false,
+								Computed:            true,
+							},
+
+							"job_template_reference": schema.StringAttribute{
+								Description:         "name of the template resource",
+								MarkdownDescription: "name of the template resource",
+								Required:            false,
+								Optional:            false,
+								Computed:            true,
+							},
+
 							"labels": schema.MapAttribute{
 								Description:         "test suite labels",
 								MarkdownDescription: "test suite labels",
@@ -343,6 +374,38 @@ func (r *TestsTestkubeIoTestSuiteV3DataSource) Schema(_ context.Context, _ datas
 							"namespace": schema.StringAttribute{
 								Description:         "test kubernetes namespace ('testkube' when not set)",
 								MarkdownDescription: "test kubernetes namespace ('testkube' when not set)",
+								Required:            false,
+								Optional:            false,
+								Computed:            true,
+							},
+
+							"pvc_template": schema.StringAttribute{
+								Description:         "pvc template extensions",
+								MarkdownDescription: "pvc template extensions",
+								Required:            false,
+								Optional:            false,
+								Computed:            true,
+							},
+
+							"pvc_template_reference": schema.StringAttribute{
+								Description:         "name of the template resource",
+								MarkdownDescription: "name of the template resource",
+								Required:            false,
+								Optional:            false,
+								Computed:            true,
+							},
+
+							"scraper_template": schema.StringAttribute{
+								Description:         "scraper template extensions",
+								MarkdownDescription: "scraper template extensions",
+								Required:            false,
+								Optional:            false,
+								Computed:            true,
+							},
+
+							"scraper_template_reference": schema.StringAttribute{
+								Description:         "name of the template resource",
+								MarkdownDescription: "name of the template resource",
 								Required:            false,
 								Optional:            false,
 								Computed:            true,

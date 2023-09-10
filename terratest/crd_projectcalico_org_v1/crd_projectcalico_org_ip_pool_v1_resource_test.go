@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestCrdProjectcalicoOrgIPPoolV1Resource(t *testing.T) {
+func TestCrdProjectcalicoOrgIppoolV1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_crd_projectcalico_org_ip_pool_v1"
 
 	_, err := os.Stat(path)

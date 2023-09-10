@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestRdsServicesK8SAwsDBProxyV1Alpha1Manifest(t *testing.T) {
+func TestRdsServicesK8SAwsDbproxyV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_rds_services_k8s_aws_db_proxy_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource{}
+	_ datasource.DataSource              = &CiliumIoCiliumBgppeeringPolicyV2Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &CiliumIoCiliumBgppeeringPolicyV2Alpha1DataSource{}
 )
 
-func NewCiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource() datasource.DataSource {
-	return &CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource{}
+func NewCiliumIoCiliumBgppeeringPolicyV2Alpha1DataSource() datasource.DataSource {
+	return &CiliumIoCiliumBgppeeringPolicyV2Alpha1DataSource{}
 }
 
-type CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource struct {
+type CiliumIoCiliumBgppeeringPolicyV2Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSourceData struct {
+type CiliumIoCiliumBgppeeringPolicyV2Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -89,11 +89,11 @@ type CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_bgp_peering_policy_v2alpha1"
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructing Cilium's BGP control plane to create virtual BGP routers.",
 		MarkdownDescription: "CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructing Cilium's BGP control plane to create virtual BGP routers.",
@@ -410,7 +410,7 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource) Schema(_ context.Cont
 	}
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -433,10 +433,10 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource) Configure(_ context.C
 	}
 }
 
-func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1")
 
-	var data CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSourceData
+	var data CiliumIoCiliumBgppeeringPolicyV2Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -464,7 +464,7 @@ func (r *CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSource) Read(ctx context.Cont
 		return
 	}
 
-	var readResponse CiliumIoCiliumBGPPeeringPolicyV2Alpha1DataSourceData
+	var readResponse CiliumIoCiliumBgppeeringPolicyV2Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

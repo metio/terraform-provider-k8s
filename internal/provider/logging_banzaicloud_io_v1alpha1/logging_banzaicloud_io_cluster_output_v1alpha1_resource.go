@@ -2329,23 +2329,6 @@ type LoggingBanzaicloudIoClusterOutputV1Alpha1ResourceData struct {
 			Write_operation              *string `tfsdk:"write_operation" json:"write_operation,omitempty"`
 		} `tfsdk:"opensearch" json:"opensearch,omitempty"`
 		Oss *struct {
-			Aaccess_key_secret *struct {
-				MountFrom *struct {
-					SecretKeyRef *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-				} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
-				Value     *string `tfsdk:"value" json:"value,omitempty"`
-				ValueFrom *struct {
-					SecretKeyRef *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-			} `tfsdk:"aaccess_key_secret" json:"aaccess_key_secret,omitempty"`
 			Access_key_id *struct {
 				MountFrom *struct {
 					SecretKeyRef *struct {
@@ -2363,6 +2346,23 @@ type LoggingBanzaicloudIoClusterOutputV1Alpha1ResourceData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"access_key_id" json:"access_key_id,omitempty"`
+			Access_key_secret *struct {
+				MountFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"access_key_secret" json:"access_key_secret,omitempty"`
 			Auto_create_bucket *bool   `tfsdk:"auto_create_bucket" json:"auto_create_bucket,omitempty"`
 			Bucket             *string `tfsdk:"bucket" json:"bucket,omitempty"`
 			Buffer             *struct {
@@ -18674,7 +18674,7 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Alpha1Resource) Schema(_ context.Con
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
-							"aaccess_key_secret": schema.SingleNestedAttribute{
+							"access_key_id": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
@@ -18775,7 +18775,7 @@ func (r *LoggingBanzaicloudIoClusterOutputV1Alpha1Resource) Schema(_ context.Con
 								Computed: false,
 							},
 
-							"access_key_id": schema.SingleNestedAttribute{
+							"access_key_secret": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{

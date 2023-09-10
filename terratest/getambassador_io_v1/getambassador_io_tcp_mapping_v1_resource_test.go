@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestGetambassadorIoTCPMappingV1Resource(t *testing.T) {
+func TestGetambassadorIoTcpmappingV1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_getambassador_io_tcp_mapping_v1"
 
 	_, err := os.Stat(path)

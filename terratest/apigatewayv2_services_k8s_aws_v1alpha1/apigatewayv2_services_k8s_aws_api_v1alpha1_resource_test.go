@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestApigatewayv2ServicesK8SAwsAPIV1Alpha1Resource(t *testing.T) {
+func TestApigatewayv2ServicesK8SAwsApiV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_apigatewayv2_services_k8s_aws_api_v1alpha1"
 
 	_, err := os.Stat(path)

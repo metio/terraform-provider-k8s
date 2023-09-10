@@ -29,22 +29,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &StorageK8SIoCSINodeV1Resource{}
-	_ resource.ResourceWithConfigure   = &StorageK8SIoCSINodeV1Resource{}
-	_ resource.ResourceWithImportState = &StorageK8SIoCSINodeV1Resource{}
+	_ resource.Resource                = &StorageK8SIoCsinodeV1Resource{}
+	_ resource.ResourceWithConfigure   = &StorageK8SIoCsinodeV1Resource{}
+	_ resource.ResourceWithImportState = &StorageK8SIoCsinodeV1Resource{}
 )
 
-func NewStorageK8SIoCSINodeV1Resource() resource.Resource {
-	return &StorageK8SIoCSINodeV1Resource{}
+func NewStorageK8SIoCsinodeV1Resource() resource.Resource {
+	return &StorageK8SIoCsinodeV1Resource{}
 }
 
-type StorageK8SIoCSINodeV1Resource struct {
+type StorageK8SIoCsinodeV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type StorageK8SIoCSINodeV1ResourceData struct {
+type StorageK8SIoCsinodeV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -71,11 +71,11 @@ type StorageK8SIoCSINodeV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *StorageK8SIoCSINodeV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *StorageK8SIoCsinodeV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_storage_k8s_io_csi_node_v1"
 }
 
-func (r *StorageK8SIoCSINodeV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *StorageK8SIoCsinodeV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object.",
 		MarkdownDescription: "CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object.",
@@ -250,7 +250,7 @@ func (r *StorageK8SIoCSINodeV1Resource) Schema(_ context.Context, _ resource.Sch
 	}
 }
 
-func (r *StorageK8SIoCSINodeV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *StorageK8SIoCsinodeV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -275,10 +275,10 @@ func (r *StorageK8SIoCSINodeV1Resource) Configure(_ context.Context, request res
 	}
 }
 
-func (r *StorageK8SIoCSINodeV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *StorageK8SIoCsinodeV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_storage_k8s_io_csi_node_v1")
 
-	var model StorageK8SIoCSINodeV1ResourceData
+	var model StorageK8SIoCsinodeV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -335,7 +335,7 @@ func (r *StorageK8SIoCSINodeV1Resource) Create(ctx context.Context, request reso
 		return
 	}
 
-	var readResponse StorageK8SIoCSINodeV1ResourceData
+	var readResponse StorageK8SIoCsinodeV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -353,10 +353,10 @@ func (r *StorageK8SIoCSINodeV1Resource) Create(ctx context.Context, request reso
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *StorageK8SIoCSINodeV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *StorageK8SIoCsinodeV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_storage_k8s_io_csi_node_v1")
 
-	var data StorageK8SIoCSINodeV1ResourceData
+	var data StorageK8SIoCsinodeV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -384,7 +384,7 @@ func (r *StorageK8SIoCSINodeV1Resource) Read(ctx context.Context, request resour
 		return
 	}
 
-	var readResponse StorageK8SIoCSINodeV1ResourceData
+	var readResponse StorageK8SIoCsinodeV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -402,10 +402,10 @@ func (r *StorageK8SIoCSINodeV1Resource) Read(ctx context.Context, request resour
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *StorageK8SIoCSINodeV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *StorageK8SIoCsinodeV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_storage_k8s_io_csi_node_v1")
 
-	var model StorageK8SIoCSINodeV1ResourceData
+	var model StorageK8SIoCsinodeV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -461,7 +461,7 @@ func (r *StorageK8SIoCSINodeV1Resource) Update(ctx context.Context, request reso
 		return
 	}
 
-	var readResponse StorageK8SIoCSINodeV1ResourceData
+	var readResponse StorageK8SIoCsinodeV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -479,10 +479,10 @@ func (r *StorageK8SIoCSINodeV1Resource) Update(ctx context.Context, request reso
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *StorageK8SIoCSINodeV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *StorageK8SIoCsinodeV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_storage_k8s_io_csi_node_v1")
 
-	var data StorageK8SIoCSINodeV1ResourceData
+	var data StorageK8SIoCsinodeV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -502,7 +502,7 @@ func (r *StorageK8SIoCSINodeV1Resource) Delete(ctx context.Context, request reso
 	}
 }
 
-func (r *StorageK8SIoCSINodeV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *StorageK8SIoCsinodeV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

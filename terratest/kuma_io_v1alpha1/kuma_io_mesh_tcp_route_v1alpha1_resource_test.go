@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestKumaIoMeshTCPRouteV1Alpha1Resource(t *testing.T) {
+func TestKumaIoMeshTcprouteV1Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_kuma_io_mesh_tcp_route_v1alpha1"
 
 	_, err := os.Stat(path)

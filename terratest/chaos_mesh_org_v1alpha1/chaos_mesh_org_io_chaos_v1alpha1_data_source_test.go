@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestChaosMeshOrgIOChaosV1Alpha1DataSource(t *testing.T) {
+func TestChaosMeshOrgIochaosV1Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_chaos_mesh_org_io_chaos_v1alpha1"
 
 	_, err := os.Stat(path)

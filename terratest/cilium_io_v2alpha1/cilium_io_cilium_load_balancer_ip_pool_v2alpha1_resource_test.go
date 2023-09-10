@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestCiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource(t *testing.T) {
+func TestCiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_cilium_io_cilium_load_balancer_ip_pool_v2alpha1"
 
 	_, err := os.Stat(path)

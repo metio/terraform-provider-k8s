@@ -220,8 +220,8 @@ func (r *CamelApacheOrgKameletV1DataSource) Metadata(_ context.Context, request 
 
 func (r *CamelApacheOrgKameletV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Kamelet is the Schema for the kamelets API",
-		MarkdownDescription: "Kamelet is the Schema for the kamelets API",
+		Description:         "Kamelet is the Schema for the kamelets API.",
+		MarkdownDescription: "Kamelet is the Schema for the kamelets API.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",

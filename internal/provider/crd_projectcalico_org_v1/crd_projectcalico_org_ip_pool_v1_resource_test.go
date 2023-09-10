@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestCrdProjectcalicoOrgIPPoolV1Resource_ValidateSchema(t *testing.T) {
+func TestCrdProjectcalicoOrgIppoolV1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	crd_projectcalico_org_v1.NewCrdProjectcalicoOrgIPPoolV1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	crd_projectcalico_org_v1.NewCrdProjectcalicoOrgIppoolV1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

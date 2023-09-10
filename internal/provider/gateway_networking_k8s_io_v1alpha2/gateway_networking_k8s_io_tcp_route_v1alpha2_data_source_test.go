@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestGatewayNetworkingK8SIoTCPRouteV1Alpha2DataSource_ValidateSchema(t *testing.T) {
+func TestGatewayNetworkingK8SIoTcprouteV1Alpha2DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoTCPRouteV1Alpha2DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	gateway_networking_k8s_io_v1alpha2.NewGatewayNetworkingK8SIoTcprouteV1Alpha2DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestGatewayNetworkingK8SIoTCPRouteV1Alpha2DataSource_ValidateSchema(t *test
 	}
 }
 
-func TestGatewayNetworkingK8SIoTCPRouteV1Alpha2DataSource_ConfigurationErrors(t *testing.T) {
+func TestGatewayNetworkingK8SIoTcprouteV1Alpha2DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -75,7 +75,7 @@ func TestGatewayNetworkingK8SIoTCPRouteV1Alpha2DataSource_ConfigurationErrors(t 
 	}
 }
 
-func TestGatewayNetworkingK8SIoTCPRouteV1Alpha2DataSource_OfflineUsage(t *testing.T) {
+func TestGatewayNetworkingK8SIoTcprouteV1Alpha2DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

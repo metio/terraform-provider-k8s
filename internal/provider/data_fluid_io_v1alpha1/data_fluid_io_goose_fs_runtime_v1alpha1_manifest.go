@@ -22,16 +22,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &DataFluidIoGooseFSRuntimeV1Alpha1Manifest{}
+	_ datasource.DataSource = &DataFluidIoGooseFsruntimeV1Alpha1Manifest{}
 )
 
-func NewDataFluidIoGooseFSRuntimeV1Alpha1Manifest() datasource.DataSource {
-	return &DataFluidIoGooseFSRuntimeV1Alpha1Manifest{}
+func NewDataFluidIoGooseFsruntimeV1Alpha1Manifest() datasource.DataSource {
+	return &DataFluidIoGooseFsruntimeV1Alpha1Manifest{}
 }
 
-type DataFluidIoGooseFSRuntimeV1Alpha1Manifest struct{}
+type DataFluidIoGooseFsruntimeV1Alpha1Manifest struct{}
 
-type DataFluidIoGooseFSRuntimeV1Alpha1ManifestData struct {
+type DataFluidIoGooseFsruntimeV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -467,11 +467,11 @@ type DataFluidIoGooseFSRuntimeV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_data_fluid_io_goose_fs_runtime_v1alpha1_manifest"
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "GooseFSRuntime is the Schema for the goosefsruntimes API",
 		MarkdownDescription: "GooseFSRuntime is the Schema for the goosefsruntimes API",
@@ -3455,10 +3455,10 @@ func (r *DataFluidIoGooseFSRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 	}
 }
 
-func (r *DataFluidIoGooseFSRuntimeV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *DataFluidIoGooseFsruntimeV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_data_fluid_io_goose_fs_runtime_v1alpha1_manifest")
 
-	var model DataFluidIoGooseFSRuntimeV1Alpha1ManifestData
+	var model DataFluidIoGooseFsruntimeV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Manifest(t *testing.T) {
+func TestApigatewayv2ServicesK8SAwsVpclinkV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_apigatewayv2_services_k8s_aws_vpc_link_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

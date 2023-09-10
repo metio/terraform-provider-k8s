@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestLambdaServicesK8SAwsFunctionURLConfigV1Alpha1DataSource(t *testing.T) {
+func TestLambdaServicesK8SAwsFunctionUrlconfigV1Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_lambda_services_k8s_aws_function_url_config_v1alpha1"
 
 	_, err := os.Stat(path)

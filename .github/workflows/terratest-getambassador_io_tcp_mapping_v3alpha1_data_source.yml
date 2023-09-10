@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: GetambassadorIoTCPMappingV3Alpha1DataSource
+name: GetambassadorIoTcpmappingV3Alpha1DataSource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/getambassador_io_v3alpha1/getambassador_io_tcp_mapping_v3alpha1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestGetambassadorIoTCPMappingV3Alpha1DataSource ./terratest/getambassador_io_v3alpha1
+        run: go test -v -timeout=120s -count=1 -run TestGetambassadorIoTcpmappingV3Alpha1DataSource ./terratest/getambassador_io_v3alpha1

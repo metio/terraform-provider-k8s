@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestTraefikIoTLSStoreV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestTraefikIoTlsstoreV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	traefik_io_v1alpha1.NewTraefikIoTLSStoreV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	traefik_io_v1alpha1.NewTraefikIoTlsstoreV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

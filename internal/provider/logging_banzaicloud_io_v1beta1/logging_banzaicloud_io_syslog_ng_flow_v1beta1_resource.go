@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource{}
-	_ resource.ResourceWithConfigure   = &LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource{}
-	_ resource.ResourceWithImportState = &LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource{}
+	_ resource.Resource                = &LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource{}
+	_ resource.ResourceWithConfigure   = &LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource{}
+	_ resource.ResourceWithImportState = &LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource{}
 )
 
-func NewLoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource() resource.Resource {
-	return &LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource{}
+func NewLoggingBanzaicloudIoSyslogNgflowV1Beta1Resource() resource.Resource {
+	return &LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource{}
 }
 
-type LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource struct {
+type LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type LoggingBanzaicloudIoSyslogNGFlowV1Beta1ResourceData struct {
+type LoggingBanzaicloudIoSyslogNgflowV1Beta1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -194,11 +194,11 @@ type LoggingBanzaicloudIoSyslogNGFlowV1Beta1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_logging_banzaicloud_io_syslog_ng_flow_v1beta1"
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -1231,7 +1231,7 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Schema(_ context.Conte
 	}
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1256,10 +1256,10 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Configure(_ context.Co
 	}
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_logging_banzaicloud_io_syslog_ng_flow_v1beta1")
 
-	var model LoggingBanzaicloudIoSyslogNGFlowV1Beta1ResourceData
+	var model LoggingBanzaicloudIoSyslogNgflowV1Beta1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1317,7 +1317,7 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Create(ctx context.Con
 		return
 	}
 
-	var readResponse LoggingBanzaicloudIoSyslogNGFlowV1Beta1ResourceData
+	var readResponse LoggingBanzaicloudIoSyslogNgflowV1Beta1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1335,10 +1335,10 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Create(ctx context.Con
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_logging_banzaicloud_io_syslog_ng_flow_v1beta1")
 
-	var data LoggingBanzaicloudIoSyslogNGFlowV1Beta1ResourceData
+	var data LoggingBanzaicloudIoSyslogNgflowV1Beta1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1367,7 +1367,7 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Read(ctx context.Conte
 		return
 	}
 
-	var readResponse LoggingBanzaicloudIoSyslogNGFlowV1Beta1ResourceData
+	var readResponse LoggingBanzaicloudIoSyslogNgflowV1Beta1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1385,10 +1385,10 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Read(ctx context.Conte
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_logging_banzaicloud_io_syslog_ng_flow_v1beta1")
 
-	var model LoggingBanzaicloudIoSyslogNGFlowV1Beta1ResourceData
+	var model LoggingBanzaicloudIoSyslogNgflowV1Beta1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1445,7 +1445,7 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Update(ctx context.Con
 		return
 	}
 
-	var readResponse LoggingBanzaicloudIoSyslogNGFlowV1Beta1ResourceData
+	var readResponse LoggingBanzaicloudIoSyslogNgflowV1Beta1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1463,10 +1463,10 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Update(ctx context.Con
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_logging_banzaicloud_io_syslog_ng_flow_v1beta1")
 
-	var data LoggingBanzaicloudIoSyslogNGFlowV1Beta1ResourceData
+	var data LoggingBanzaicloudIoSyslogNgflowV1Beta1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1487,7 +1487,7 @@ func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) Delete(ctx context.Con
 	}
 }
 
-func (r *LoggingBanzaicloudIoSyslogNGFlowV1Beta1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

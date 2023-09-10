@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestGetambassadorIoTLSContextV1Manifest(t *testing.T) {
+func TestGetambassadorIoTlscontextV1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_getambassador_io_tls_context_v1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

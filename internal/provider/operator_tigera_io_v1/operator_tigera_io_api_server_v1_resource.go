@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &OperatorTigeraIoAPIServerV1Resource{}
-	_ resource.ResourceWithConfigure   = &OperatorTigeraIoAPIServerV1Resource{}
-	_ resource.ResourceWithImportState = &OperatorTigeraIoAPIServerV1Resource{}
+	_ resource.Resource                = &OperatorTigeraIoApiserverV1Resource{}
+	_ resource.ResourceWithConfigure   = &OperatorTigeraIoApiserverV1Resource{}
+	_ resource.ResourceWithImportState = &OperatorTigeraIoApiserverV1Resource{}
 )
 
-func NewOperatorTigeraIoAPIServerV1Resource() resource.Resource {
-	return &OperatorTigeraIoAPIServerV1Resource{}
+func NewOperatorTigeraIoApiserverV1Resource() resource.Resource {
+	return &OperatorTigeraIoApiserverV1Resource{}
 }
 
-type OperatorTigeraIoAPIServerV1Resource struct {
+type OperatorTigeraIoApiserverV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type OperatorTigeraIoAPIServerV1ResourceData struct {
+type OperatorTigeraIoApiserverV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -249,11 +249,11 @@ type OperatorTigeraIoAPIServerV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *OperatorTigeraIoAPIServerV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *OperatorTigeraIoApiserverV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_operator_tigera_io_api_server_v1"
 }
 
-func (r *OperatorTigeraIoAPIServerV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *OperatorTigeraIoApiserverV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIServer installs the Tigera API server and related resources. At most one instance of this resource is supported. It must be named 'default' or 'tigera-secure'.",
 		MarkdownDescription: "APIServer installs the Tigera API server and related resources. At most one instance of this resource is supported. It must be named 'default' or 'tigera-secure'.",
@@ -1601,7 +1601,7 @@ func (r *OperatorTigeraIoAPIServerV1Resource) Schema(_ context.Context, _ resour
 	}
 }
 
-func (r *OperatorTigeraIoAPIServerV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *OperatorTigeraIoApiserverV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1626,10 +1626,10 @@ func (r *OperatorTigeraIoAPIServerV1Resource) Configure(_ context.Context, reque
 	}
 }
 
-func (r *OperatorTigeraIoAPIServerV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *OperatorTigeraIoApiserverV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_operator_tigera_io_api_server_v1")
 
-	var model OperatorTigeraIoAPIServerV1ResourceData
+	var model OperatorTigeraIoApiserverV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1686,7 +1686,7 @@ func (r *OperatorTigeraIoAPIServerV1Resource) Create(ctx context.Context, reques
 		return
 	}
 
-	var readResponse OperatorTigeraIoAPIServerV1ResourceData
+	var readResponse OperatorTigeraIoApiserverV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1704,10 +1704,10 @@ func (r *OperatorTigeraIoAPIServerV1Resource) Create(ctx context.Context, reques
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *OperatorTigeraIoAPIServerV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *OperatorTigeraIoApiserverV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_operator_tigera_io_api_server_v1")
 
-	var data OperatorTigeraIoAPIServerV1ResourceData
+	var data OperatorTigeraIoApiserverV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1735,7 +1735,7 @@ func (r *OperatorTigeraIoAPIServerV1Resource) Read(ctx context.Context, request 
 		return
 	}
 
-	var readResponse OperatorTigeraIoAPIServerV1ResourceData
+	var readResponse OperatorTigeraIoApiserverV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1753,10 +1753,10 @@ func (r *OperatorTigeraIoAPIServerV1Resource) Read(ctx context.Context, request 
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *OperatorTigeraIoAPIServerV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *OperatorTigeraIoApiserverV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_operator_tigera_io_api_server_v1")
 
-	var model OperatorTigeraIoAPIServerV1ResourceData
+	var model OperatorTigeraIoApiserverV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1812,7 +1812,7 @@ func (r *OperatorTigeraIoAPIServerV1Resource) Update(ctx context.Context, reques
 		return
 	}
 
-	var readResponse OperatorTigeraIoAPIServerV1ResourceData
+	var readResponse OperatorTigeraIoApiserverV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1830,10 +1830,10 @@ func (r *OperatorTigeraIoAPIServerV1Resource) Update(ctx context.Context, reques
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *OperatorTigeraIoAPIServerV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *OperatorTigeraIoApiserverV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_operator_tigera_io_api_server_v1")
 
-	var data OperatorTigeraIoAPIServerV1ResourceData
+	var data OperatorTigeraIoApiserverV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1853,7 +1853,7 @@ func (r *OperatorTigeraIoAPIServerV1Resource) Delete(ctx context.Context, reques
 	}
 }
 
-func (r *OperatorTigeraIoAPIServerV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *OperatorTigeraIoApiserverV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

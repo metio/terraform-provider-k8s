@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: CrdProjectcalicoOrgIPAMConfigV1Resource
+name: CrdProjectcalicoOrgIpamconfigV1Resource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/crd_projectcalico_org_v1/crd_projectcalico_org_ipam_config_v1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestCrdProjectcalicoOrgIPAMConfigV1Resource ./terratest/crd_projectcalico_org_v1
+        run: go test -v -timeout=120s -count=1 -run TestCrdProjectcalicoOrgIpamconfigV1Resource ./terratest/crd_projectcalico_org_v1

@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &CrdProjectcalicoOrgBGPFilterV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &CrdProjectcalicoOrgBGPFilterV1DataSource{}
+	_ datasource.DataSource              = &CrdProjectcalicoOrgBgpfilterV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &CrdProjectcalicoOrgBgpfilterV1DataSource{}
 )
 
-func NewCrdProjectcalicoOrgBGPFilterV1DataSource() datasource.DataSource {
-	return &CrdProjectcalicoOrgBGPFilterV1DataSource{}
+func NewCrdProjectcalicoOrgBgpfilterV1DataSource() datasource.DataSource {
+	return &CrdProjectcalicoOrgBgpfilterV1DataSource{}
 }
 
-type CrdProjectcalicoOrgBGPFilterV1DataSource struct {
+type CrdProjectcalicoOrgBgpfilterV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type CrdProjectcalicoOrgBGPFilterV1DataSourceData struct {
+type CrdProjectcalicoOrgBgpfilterV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -72,11 +72,11 @@ type CrdProjectcalicoOrgBGPFilterV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_bgp_filter_v1"
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -279,7 +279,7 @@ func (r *CrdProjectcalicoOrgBGPFilterV1DataSource) Schema(_ context.Context, _ d
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -302,10 +302,10 @@ func (r *CrdProjectcalicoOrgBGPFilterV1DataSource) Configure(_ context.Context, 
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPFilterV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CrdProjectcalicoOrgBgpfilterV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_crd_projectcalico_org_bgp_filter_v1")
 
-	var data CrdProjectcalicoOrgBGPFilterV1DataSourceData
+	var data CrdProjectcalicoOrgBgpfilterV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -333,7 +333,7 @@ func (r *CrdProjectcalicoOrgBGPFilterV1DataSource) Read(ctx context.Context, req
 		return
 	}
 
-	var readResponse CrdProjectcalicoOrgBGPFilterV1DataSourceData
+	var readResponse CrdProjectcalicoOrgBgpfilterV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

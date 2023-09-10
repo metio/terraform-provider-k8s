@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &RdsServicesK8SAwsDBInstanceV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &RdsServicesK8SAwsDBInstanceV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &RdsServicesK8SAwsDBInstanceV1Alpha1Resource{}
+	_ resource.Resource                = &RdsServicesK8SAwsDbinstanceV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &RdsServicesK8SAwsDbinstanceV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &RdsServicesK8SAwsDbinstanceV1Alpha1Resource{}
 )
 
-func NewRdsServicesK8SAwsDBInstanceV1Alpha1Resource() resource.Resource {
-	return &RdsServicesK8SAwsDBInstanceV1Alpha1Resource{}
+func NewRdsServicesK8SAwsDbinstanceV1Alpha1Resource() resource.Resource {
+	return &RdsServicesK8SAwsDbinstanceV1Alpha1Resource{}
 }
 
-type RdsServicesK8SAwsDBInstanceV1Alpha1Resource struct {
+type RdsServicesK8SAwsDbinstanceV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type RdsServicesK8SAwsDBInstanceV1Alpha1ResourceData struct {
+type RdsServicesK8SAwsDbinstanceV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -162,11 +162,11 @@ type RdsServicesK8SAwsDBInstanceV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_rds_services_k8s_aws_db_instance_v1alpha1"
 }
 
-func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DBInstance is the Schema for the DBInstances API",
 		MarkdownDescription: "DBInstance is the Schema for the DBInstances API",
@@ -996,7 +996,7 @@ func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Schema(_ context.Context, 
 	}
 }
 
-func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1021,10 +1021,10 @@ func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Configure(_ context.Contex
 	}
 }
 
-func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_rds_services_k8s_aws_db_instance_v1alpha1")
 
-	var model RdsServicesK8SAwsDBInstanceV1Alpha1ResourceData
+	var model RdsServicesK8SAwsDbinstanceV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1082,7 +1082,7 @@ func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Create(ctx context.Context
 		return
 	}
 
-	var readResponse RdsServicesK8SAwsDBInstanceV1Alpha1ResourceData
+	var readResponse RdsServicesK8SAwsDbinstanceV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1100,10 +1100,10 @@ func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Create(ctx context.Context
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_rds_services_k8s_aws_db_instance_v1alpha1")
 
-	var data RdsServicesK8SAwsDBInstanceV1Alpha1ResourceData
+	var data RdsServicesK8SAwsDbinstanceV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1132,7 +1132,7 @@ func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Read(ctx context.Context, 
 		return
 	}
 
-	var readResponse RdsServicesK8SAwsDBInstanceV1Alpha1ResourceData
+	var readResponse RdsServicesK8SAwsDbinstanceV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1150,10 +1150,10 @@ func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Read(ctx context.Context, 
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_rds_services_k8s_aws_db_instance_v1alpha1")
 
-	var model RdsServicesK8SAwsDBInstanceV1Alpha1ResourceData
+	var model RdsServicesK8SAwsDbinstanceV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1210,7 +1210,7 @@ func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Update(ctx context.Context
 		return
 	}
 
-	var readResponse RdsServicesK8SAwsDBInstanceV1Alpha1ResourceData
+	var readResponse RdsServicesK8SAwsDbinstanceV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1228,10 +1228,10 @@ func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Update(ctx context.Context
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_rds_services_k8s_aws_db_instance_v1alpha1")
 
-	var data RdsServicesK8SAwsDBInstanceV1Alpha1ResourceData
+	var data RdsServicesK8SAwsDbinstanceV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1252,7 +1252,7 @@ func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) Delete(ctx context.Context
 	}
 }
 
-func (r *RdsServicesK8SAwsDBInstanceV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

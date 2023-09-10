@@ -166,6 +166,7 @@ type MonitoringCoreosComServiceMonitorV1ManifestData struct {
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"endpoints" json:"endpoints,omitempty"`
 		JobLabel              *string `tfsdk:"job_label" json:"jobLabel,omitempty"`
+		KeepDroppedTargets    *int64  `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
 		LabelLimit            *int64  `tfsdk:"label_limit" json:"labelLimit,omitempty"`
 		LabelNameLengthLimit  *int64  `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
 		LabelValueLengthLimit *int64  `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
@@ -1104,6 +1105,14 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					"job_label": schema.StringAttribute{
 						Description:         "JobLabel selects the label from the associated Kubernetes service which will be used as the 'job' label for all metrics.  For example: If in 'ServiceMonitor.spec.jobLabel: foo' and in 'Service.metadata.labels.foo: bar', then the 'job='bar'' label is added to all metrics.  If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the Kubernetes Service.",
 						MarkdownDescription: "JobLabel selects the label from the associated Kubernetes service which will be used as the 'job' label for all metrics.  For example: If in 'ServiceMonitor.spec.jobLabel: foo' and in 'Service.metadata.labels.foo: bar', then the 'job='bar'' label is added to all metrics.  If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the Kubernetes Service.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"keep_dropped_targets": schema.Int64Attribute{
+						Description:         "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
+						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

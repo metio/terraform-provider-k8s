@@ -49,6 +49,7 @@ type MonitoringCoreosComPodMonitorV1ManifestData struct {
 			Node *bool `tfsdk:"node" json:"node,omitempty"`
 		} `tfsdk:"attach_metadata" json:"attachMetadata,omitempty"`
 		JobLabel              *string `tfsdk:"job_label" json:"jobLabel,omitempty"`
+		KeepDroppedTargets    *int64  `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
 		LabelLimit            *int64  `tfsdk:"label_limit" json:"labelLimit,omitempty"`
 		LabelNameLengthLimit  *int64  `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
 		LabelValueLengthLimit *int64  `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
@@ -288,6 +289,14 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 					"job_label": schema.StringAttribute{
 						Description:         "The label to use to retrieve the job name from.",
 						MarkdownDescription: "The label to use to retrieve the job name from.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"keep_dropped_targets": schema.Int64Attribute{
+						Description:         "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
+						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

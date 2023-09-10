@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &Metal3IoBMCEventSubscriptionV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &Metal3IoBMCEventSubscriptionV1Alpha1DataSource{}
+	_ datasource.DataSource              = &Metal3IoBmceventSubscriptionV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &Metal3IoBmceventSubscriptionV1Alpha1DataSource{}
 )
 
-func NewMetal3IoBMCEventSubscriptionV1Alpha1DataSource() datasource.DataSource {
-	return &Metal3IoBMCEventSubscriptionV1Alpha1DataSource{}
+func NewMetal3IoBmceventSubscriptionV1Alpha1DataSource() datasource.DataSource {
+	return &Metal3IoBmceventSubscriptionV1Alpha1DataSource{}
 }
 
-type Metal3IoBMCEventSubscriptionV1Alpha1DataSource struct {
+type Metal3IoBmceventSubscriptionV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type Metal3IoBMCEventSubscriptionV1Alpha1DataSourceData struct {
+type Metal3IoBmceventSubscriptionV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -60,11 +60,11 @@ type Metal3IoBMCEventSubscriptionV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_metal3_io_bmc_event_subscription_v1alpha1"
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "BMCEventSubscription is the Schema for the fast eventing API",
 		MarkdownDescription: "BMCEventSubscription is the Schema for the fast eventing API",
@@ -188,7 +188,7 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1DataSource) Schema(_ context.Contex
 	}
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -211,10 +211,10 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1DataSource) Configure(_ context.Con
 	}
 }
 
-func (r *Metal3IoBMCEventSubscriptionV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *Metal3IoBmceventSubscriptionV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_metal3_io_bmc_event_subscription_v1alpha1")
 
-	var data Metal3IoBMCEventSubscriptionV1Alpha1DataSourceData
+	var data Metal3IoBmceventSubscriptionV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -243,7 +243,7 @@ func (r *Metal3IoBMCEventSubscriptionV1Alpha1DataSource) Read(ctx context.Contex
 		return
 	}
 
-	var readResponse Metal3IoBMCEventSubscriptionV1Alpha1DataSourceData
+	var readResponse Metal3IoBmceventSubscriptionV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestStorageK8SIoCSIDriverV1Manifest_ValidateSchema(t *testing.T) {
+func TestStorageK8SIoCsidriverV1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	storage_k8s_io_v1.NewStorageK8SIoCSIDriverV1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	storage_k8s_io_v1.NewStorageK8SIoCsidriverV1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

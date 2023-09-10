@@ -502,6 +502,7 @@ type MonitoringCoreosComPrometheusV1ResourceData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				Capabilities             *struct {
@@ -584,6 +585,7 @@ type MonitoringCoreosComPrometheusV1ResourceData struct {
 		EnableFeatures                *[]string `tfsdk:"enable_features" json:"enableFeatures,omitempty"`
 		EnableRemoteWriteReceiver     *bool     `tfsdk:"enable_remote_write_receiver" json:"enableRemoteWriteReceiver,omitempty"`
 		EnforcedBodySizeLimit         *string   `tfsdk:"enforced_body_size_limit" json:"enforcedBodySizeLimit,omitempty"`
+		EnforcedKeepDroppedTargets    *int64    `tfsdk:"enforced_keep_dropped_targets" json:"enforcedKeepDroppedTargets,omitempty"`
 		EnforcedLabelLimit            *int64    `tfsdk:"enforced_label_limit" json:"enforcedLabelLimit,omitempty"`
 		EnforcedLabelNameLengthLimit  *int64    `tfsdk:"enforced_label_name_length_limit" json:"enforcedLabelNameLengthLimit,omitempty"`
 		EnforcedLabelValueLengthLimit *int64    `tfsdk:"enforced_label_value_length_limit" json:"enforcedLabelValueLengthLimit,omitempty"`
@@ -771,6 +773,7 @@ type MonitoringCoreosComPrometheusV1ResourceData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				Capabilities             *struct {
@@ -848,6 +851,7 @@ type MonitoringCoreosComPrometheusV1ResourceData struct {
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"init_containers" json:"initContainers,omitempty"`
+		KeepDroppedTargets      *int64             `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
 		LabelLimit              *int64             `tfsdk:"label_limit" json:"labelLimit,omitempty"`
 		LabelNameLengthLimit    *int64             `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
 		LabelValueLengthLimit   *int64             `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
@@ -1318,10 +1322,11 @@ type MonitoringCoreosComPrometheusV1ResourceData struct {
 					VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 				} `tfsdk:"spec" json:"spec,omitempty"`
 				Status *struct {
-					AccessModes        *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
-					AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
-					Capacity           *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
-					Conditions         *[]struct {
+					AccessModes               *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
+					AllocatedResourceStatuses *map[string]string `tfsdk:"allocated_resource_statuses" json:"allocatedResourceStatuses,omitempty"`
+					AllocatedResources        *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
+					Capacity                  *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
+					Conditions                *[]struct {
 						LastProbeTime      *string `tfsdk:"last_probe_time" json:"lastProbeTime,omitempty"`
 						LastTransitionTime *string `tfsdk:"last_transition_time" json:"lastTransitionTime,omitempty"`
 						Message            *string `tfsdk:"message" json:"message,omitempty"`
@@ -1329,8 +1334,7 @@ type MonitoringCoreosComPrometheusV1ResourceData struct {
 						Status             *string `tfsdk:"status" json:"status,omitempty"`
 						Type               *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"conditions" json:"conditions,omitempty"`
-					Phase        *string `tfsdk:"phase" json:"phase,omitempty"`
-					ResizeStatus *string `tfsdk:"resize_status" json:"resizeStatus,omitempty"`
+					Phase *string `tfsdk:"phase" json:"phase,omitempty"`
 				} `tfsdk:"status" json:"status,omitempty"`
 			} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
@@ -4853,6 +4857,14 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 									Computed: false,
 								},
 
+								"restart_policy": schema.StringAttribute{
+									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"security_context": schema.SingleNestedAttribute{
 									Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 									MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
@@ -4986,8 +4998,8 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 											MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 											Attributes: map[string]schema.Attribute{
 												"localhost_profile": schema.StringAttribute{
-													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5027,8 +5039,8 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 												},
 
 												"host_process": schema.BoolAttribute{
-													Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5427,6 +5439,14 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`(^0|([0-9]*[.])?[0-9]+((K|M|G|T|E|P)i?)?B)$`), ""),
 						},
+					},
+
+					"enforced_keep_dropped_targets": schema.Int64Attribute{
+						Description:         "When defined, enforcedKeepDroppedTargets specifies a global limit on the number of targets dropped by relabeling that will be kept in memory. The value overrides any 'spec.keepDroppedTargets' set by ServiceMonitor, PodMonitor, Probe objects unless 'spec.keepDroppedTargets' is greater than zero and less than 'spec.enforcedKeepDroppedTargets'.  It requires Prometheus >= v2.47.0.",
+						MarkdownDescription: "When defined, enforcedKeepDroppedTargets specifies a global limit on the number of targets dropped by relabeling that will be kept in memory. The value overrides any 'spec.keepDroppedTargets' set by ServiceMonitor, PodMonitor, Probe objects unless 'spec.keepDroppedTargets' is greater than zero and less than 'spec.enforcedKeepDroppedTargets'.  It requires Prometheus >= v2.47.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"enforced_label_limit": schema.Int64Attribute{
@@ -6691,6 +6711,14 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 									Computed: false,
 								},
 
+								"restart_policy": schema.StringAttribute{
+									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"security_context": schema.SingleNestedAttribute{
 									Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
 									MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
@@ -6824,8 +6852,8 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 											MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 											Attributes: map[string]schema.Attribute{
 												"localhost_profile": schema.StringAttribute{
-													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6865,8 +6893,8 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 												},
 
 												"host_process": schema.BoolAttribute{
-													Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7221,6 +7249,14 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"keep_dropped_targets": schema.Int64Attribute{
+						Description:         "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
+						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"label_limit": schema.Int64Attribute{
@@ -9655,8 +9691,8 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 								MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
 								Attributes: map[string]schema.Attribute{
 									"localhost_profile": schema.StringAttribute{
-										Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+										Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -9732,8 +9768,8 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 									},
 
 									"host_process": schema.BoolAttribute{
-										Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -10453,9 +10489,18 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 												Computed:            false,
 											},
 
+											"allocated_resource_statuses": schema.MapAttribute{
+												Description:         "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+												MarkdownDescription: "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"allocated_resources": schema.MapAttribute{
-												Description:         "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-												MarkdownDescription: "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+												Description:         "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+												MarkdownDescription: "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -10539,14 +10584,6 @@ func (r *MonitoringCoreosComPrometheusV1Resource) Schema(_ context.Context, _ re
 											"phase": schema.StringAttribute{
 												Description:         "phase represents the current phase of PersistentVolumeClaim.",
 												MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"resize_status": schema.StringAttribute{
-												Description:         "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-												MarkdownDescription: "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

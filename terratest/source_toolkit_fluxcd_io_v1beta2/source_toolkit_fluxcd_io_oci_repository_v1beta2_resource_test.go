@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestSourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource(t *testing.T) {
+func TestSourceToolkitFluxcdIoOcirepositoryV1Beta2Resource(t *testing.T) {
 	path := "../../examples/resources/k8s_source_toolkit_fluxcd_io_oci_repository_v1beta2"
 
 	_, err := os.Stat(path)

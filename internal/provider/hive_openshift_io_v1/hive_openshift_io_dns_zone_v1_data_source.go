@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &HiveOpenshiftIoDNSZoneV1DataSource{}
-	_ datasource.DataSourceWithConfigure = &HiveOpenshiftIoDNSZoneV1DataSource{}
+	_ datasource.DataSource              = &HiveOpenshiftIoDnszoneV1DataSource{}
+	_ datasource.DataSourceWithConfigure = &HiveOpenshiftIoDnszoneV1DataSource{}
 )
 
-func NewHiveOpenshiftIoDNSZoneV1DataSource() datasource.DataSource {
-	return &HiveOpenshiftIoDNSZoneV1DataSource{}
+func NewHiveOpenshiftIoDnszoneV1DataSource() datasource.DataSource {
+	return &HiveOpenshiftIoDnszoneV1DataSource{}
 }
 
-type HiveOpenshiftIoDNSZoneV1DataSource struct {
+type HiveOpenshiftIoDnszoneV1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type HiveOpenshiftIoDNSZoneV1DataSourceData struct {
+type HiveOpenshiftIoDnszoneV1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -82,11 +82,11 @@ type HiveOpenshiftIoDNSZoneV1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *HiveOpenshiftIoDnszoneV1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_hive_openshift_io_dns_zone_v1"
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *HiveOpenshiftIoDnszoneV1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DNSZone is the Schema for the dnszones API",
 		MarkdownDescription: "DNSZone is the Schema for the dnszones API",
@@ -339,7 +339,7 @@ func (r *HiveOpenshiftIoDNSZoneV1DataSource) Schema(_ context.Context, _ datasou
 	}
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *HiveOpenshiftIoDnszoneV1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -362,10 +362,10 @@ func (r *HiveOpenshiftIoDNSZoneV1DataSource) Configure(_ context.Context, reques
 	}
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *HiveOpenshiftIoDnszoneV1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_hive_openshift_io_dns_zone_v1")
 
-	var data HiveOpenshiftIoDNSZoneV1DataSourceData
+	var data HiveOpenshiftIoDnszoneV1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -394,7 +394,7 @@ func (r *HiveOpenshiftIoDNSZoneV1DataSource) Read(ctx context.Context, request d
 		return
 	}
 
-	var readResponse HiveOpenshiftIoDNSZoneV1DataSourceData
+	var readResponse HiveOpenshiftIoDnszoneV1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

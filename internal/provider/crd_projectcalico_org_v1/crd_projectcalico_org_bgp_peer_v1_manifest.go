@@ -19,16 +19,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &CrdProjectcalicoOrgBGPPeerV1Manifest{}
+	_ datasource.DataSource = &CrdProjectcalicoOrgBgppeerV1Manifest{}
 )
 
-func NewCrdProjectcalicoOrgBGPPeerV1Manifest() datasource.DataSource {
-	return &CrdProjectcalicoOrgBGPPeerV1Manifest{}
+func NewCrdProjectcalicoOrgBgppeerV1Manifest() datasource.DataSource {
+	return &CrdProjectcalicoOrgBgppeerV1Manifest{}
 }
 
-type CrdProjectcalicoOrgBGPPeerV1Manifest struct{}
+type CrdProjectcalicoOrgBgppeerV1Manifest struct{}
 
-type CrdProjectcalicoOrgBGPPeerV1ManifestData struct {
+type CrdProjectcalicoOrgBgppeerV1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -64,11 +64,11 @@ type CrdProjectcalicoOrgBGPPeerV1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CrdProjectcalicoOrgBGPPeerV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CrdProjectcalicoOrgBgppeerV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_bgp_peer_v1_manifest"
 }
 
-func (r *CrdProjectcalicoOrgBGPPeerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CrdProjectcalicoOrgBgppeerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -284,10 +284,10 @@ func (r *CrdProjectcalicoOrgBGPPeerV1Manifest) Schema(_ context.Context, _ datas
 	}
 }
 
-func (r *CrdProjectcalicoOrgBGPPeerV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CrdProjectcalicoOrgBgppeerV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_crd_projectcalico_org_bgp_peer_v1_manifest")
 
-	var model CrdProjectcalicoOrgBGPPeerV1ManifestData
+	var model CrdProjectcalicoOrgBgppeerV1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

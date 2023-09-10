@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &Ec2ServicesK8SAwsElasticIPAddressV1Alpha1Manifest{}
+	_ datasource.DataSource = &Ec2ServicesK8SAwsElasticIpaddressV1Alpha1Manifest{}
 )
 
-func NewEc2ServicesK8SAwsElasticIPAddressV1Alpha1Manifest() datasource.DataSource {
-	return &Ec2ServicesK8SAwsElasticIPAddressV1Alpha1Manifest{}
+func NewEc2ServicesK8SAwsElasticIpaddressV1Alpha1Manifest() datasource.DataSource {
+	return &Ec2ServicesK8SAwsElasticIpaddressV1Alpha1Manifest{}
 }
 
-type Ec2ServicesK8SAwsElasticIPAddressV1Alpha1Manifest struct{}
+type Ec2ServicesK8SAwsElasticIpaddressV1Alpha1Manifest struct{}
 
-type Ec2ServicesK8SAwsElasticIPAddressV1Alpha1ManifestData struct {
+type Ec2ServicesK8SAwsElasticIpaddressV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -55,11 +55,11 @@ type Ec2ServicesK8SAwsElasticIPAddressV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *Ec2ServicesK8SAwsElasticIPAddressV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *Ec2ServicesK8SAwsElasticIpaddressV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_ec2_services_k8s_aws_elastic_ip_address_v1alpha1_manifest"
 }
 
-func (r *Ec2ServicesK8SAwsElasticIPAddressV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *Ec2ServicesK8SAwsElasticIpaddressV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ElasticIPAddress is the Schema for the ElasticIPAddresses API",
 		MarkdownDescription: "ElasticIPAddress is the Schema for the ElasticIPAddresses API",
@@ -207,10 +207,10 @@ func (r *Ec2ServicesK8SAwsElasticIPAddressV1Alpha1Manifest) Schema(_ context.Con
 	}
 }
 
-func (r *Ec2ServicesK8SAwsElasticIPAddressV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *Ec2ServicesK8SAwsElasticIpaddressV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_ec2_services_k8s_aws_elastic_ip_address_v1alpha1_manifest")
 
-	var model Ec2ServicesK8SAwsElasticIPAddressV1Alpha1ManifestData
+	var model Ec2ServicesK8SAwsElasticIpaddressV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

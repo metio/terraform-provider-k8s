@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &TraefikIoIngressRouteTCPV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &TraefikIoIngressRouteTCPV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &TraefikIoIngressRouteTCPV1Alpha1Resource{}
+	_ resource.Resource                = &TraefikIoIngressRouteTcpV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &TraefikIoIngressRouteTcpV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &TraefikIoIngressRouteTcpV1Alpha1Resource{}
 )
 
-func NewTraefikIoIngressRouteTCPV1Alpha1Resource() resource.Resource {
-	return &TraefikIoIngressRouteTCPV1Alpha1Resource{}
+func NewTraefikIoIngressRouteTcpV1Alpha1Resource() resource.Resource {
+	return &TraefikIoIngressRouteTcpV1Alpha1Resource{}
 }
 
-type TraefikIoIngressRouteTCPV1Alpha1Resource struct {
+type TraefikIoIngressRouteTcpV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type TraefikIoIngressRouteTCPV1Alpha1ResourceData struct {
+type TraefikIoIngressRouteTcpV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -103,11 +103,11 @@ type TraefikIoIngressRouteTCPV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_ingress_route_tcp_v1alpha1"
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "IngressRouteTCP is the CRD implementation of a Traefik TCP Router.",
 		MarkdownDescription: "IngressRouteTCP is the CRD implementation of a Traefik TCP Router.",
@@ -502,7 +502,7 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Schema(_ context.Context, _ r
 	}
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -527,10 +527,10 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Configure(_ context.Context, 
 	}
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_traefik_io_ingress_route_tcp_v1alpha1")
 
-	var model TraefikIoIngressRouteTCPV1Alpha1ResourceData
+	var model TraefikIoIngressRouteTcpV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -588,7 +588,7 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Create(ctx context.Context, r
 		return
 	}
 
-	var readResponse TraefikIoIngressRouteTCPV1Alpha1ResourceData
+	var readResponse TraefikIoIngressRouteTcpV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -606,10 +606,10 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Create(ctx context.Context, r
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_traefik_io_ingress_route_tcp_v1alpha1")
 
-	var data TraefikIoIngressRouteTCPV1Alpha1ResourceData
+	var data TraefikIoIngressRouteTcpV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -638,7 +638,7 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Read(ctx context.Context, req
 		return
 	}
 
-	var readResponse TraefikIoIngressRouteTCPV1Alpha1ResourceData
+	var readResponse TraefikIoIngressRouteTcpV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -656,10 +656,10 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Read(ctx context.Context, req
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_traefik_io_ingress_route_tcp_v1alpha1")
 
-	var model TraefikIoIngressRouteTCPV1Alpha1ResourceData
+	var model TraefikIoIngressRouteTcpV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -716,7 +716,7 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Update(ctx context.Context, r
 		return
 	}
 
-	var readResponse TraefikIoIngressRouteTCPV1Alpha1ResourceData
+	var readResponse TraefikIoIngressRouteTcpV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -734,10 +734,10 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Update(ctx context.Context, r
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_traefik_io_ingress_route_tcp_v1alpha1")
 
-	var data TraefikIoIngressRouteTCPV1Alpha1ResourceData
+	var data TraefikIoIngressRouteTcpV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -758,7 +758,7 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) Delete(ctx context.Context, r
 	}
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

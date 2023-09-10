@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &ResourcesTeleportDevTeleportOIDCConnectorV3Manifest{}
+	_ datasource.DataSource = &ResourcesTeleportDevTeleportOidcconnectorV3Manifest{}
 )
 
-func NewResourcesTeleportDevTeleportOIDCConnectorV3Manifest() datasource.DataSource {
-	return &ResourcesTeleportDevTeleportOIDCConnectorV3Manifest{}
+func NewResourcesTeleportDevTeleportOidcconnectorV3Manifest() datasource.DataSource {
+	return &ResourcesTeleportDevTeleportOidcconnectorV3Manifest{}
 }
 
-type ResourcesTeleportDevTeleportOIDCConnectorV3Manifest struct{}
+type ResourcesTeleportDevTeleportOidcconnectorV3Manifest struct{}
 
-type ResourcesTeleportDevTeleportOIDCConnectorV3ManifestData struct {
+type ResourcesTeleportDevTeleportOidcconnectorV3ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -67,11 +67,11 @@ type ResourcesTeleportDevTeleportOIDCConnectorV3ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ResourcesTeleportDevTeleportOIDCConnectorV3Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_resources_teleport_dev_teleport_oidc_connector_v3_manifest"
 }
 
-func (r *ResourcesTeleportDevTeleportOIDCConnectorV3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "OIDCConnector is the Schema for the oidcconnectors API",
 		MarkdownDescription: "OIDCConnector is the Schema for the oidcconnectors API",
@@ -318,10 +318,10 @@ func (r *ResourcesTeleportDevTeleportOIDCConnectorV3Manifest) Schema(_ context.C
 	}
 }
 
-func (r *ResourcesTeleportDevTeleportOIDCConnectorV3Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_resources_teleport_dev_teleport_oidc_connector_v3_manifest")
 
-	var model ResourcesTeleportDevTeleportOIDCConnectorV3ManifestData
+	var model ResourcesTeleportDevTeleportOidcconnectorV3ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

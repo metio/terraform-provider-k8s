@@ -31,22 +31,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &ArgoprojIoArgoCDV1Beta1Resource{}
-	_ resource.ResourceWithConfigure   = &ArgoprojIoArgoCDV1Beta1Resource{}
-	_ resource.ResourceWithImportState = &ArgoprojIoArgoCDV1Beta1Resource{}
+	_ resource.Resource                = &ArgoprojIoArgoCdV1Beta1Resource{}
+	_ resource.ResourceWithConfigure   = &ArgoprojIoArgoCdV1Beta1Resource{}
+	_ resource.ResourceWithImportState = &ArgoprojIoArgoCdV1Beta1Resource{}
 )
 
-func NewArgoprojIoArgoCDV1Beta1Resource() resource.Resource {
-	return &ArgoprojIoArgoCDV1Beta1Resource{}
+func NewArgoprojIoArgoCdV1Beta1Resource() resource.Resource {
+	return &ArgoprojIoArgoCdV1Beta1Resource{}
 }
 
-type ArgoprojIoArgoCDV1Beta1Resource struct {
+type ArgoprojIoArgoCdV1Beta1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type ArgoprojIoArgoCDV1Beta1ResourceData struct {
+type ArgoprojIoArgoCdV1Beta1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -97,8 +97,9 @@ type ArgoprojIoArgoCDV1Beta1ResourceData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
-			Version       *string `tfsdk:"version" json:"version,omitempty"`
-			WebhookServer *struct {
+			ScmRootCAConfigMap *string `tfsdk:"scm_root_ca_config_map" json:"scmRootCAConfigMap,omitempty"`
+			Version            *string `tfsdk:"version" json:"version,omitempty"`
+			WebhookServer      *struct {
 				Host    *string `tfsdk:"host" json:"host,omitempty"`
 				Ingress *struct {
 					Annotations      *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -1293,11 +1294,11 @@ type ArgoprojIoArgoCDV1Beta1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ArgoprojIoArgoCDV1Beta1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *ArgoprojIoArgoCdV1Beta1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_argoproj_io_argo_cd_v1beta1"
 }
 
-func (r *ArgoprojIoArgoCDV1Beta1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *ArgoprojIoArgoCdV1Beta1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ArgoCD is the Schema for the argocds API",
 		MarkdownDescription: "ArgoCD is the Schema for the argocds API",
@@ -1648,6 +1649,14 @@ func (r *ArgoprojIoArgoCDV1Beta1Resource) Schema(_ context.Context, _ resource.S
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"scm_root_ca_config_map": schema.StringAttribute{
+								Description:         "SCMRootCAConfigMap is the name of the config map that stores the Gitlab SCM Provider's TLS certificate which will be mounted on the ApplicationSet Controller (optional).",
+								MarkdownDescription: "SCMRootCAConfigMap is the name of the config map that stores the Gitlab SCM Provider's TLS certificate which will be mounted on the ApplicationSet Controller (optional).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"version": schema.StringAttribute{
@@ -9680,7 +9689,7 @@ func (r *ArgoprojIoArgoCDV1Beta1Resource) Schema(_ context.Context, _ resource.S
 	}
 }
 
-func (r *ArgoprojIoArgoCDV1Beta1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *ArgoprojIoArgoCdV1Beta1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -9705,10 +9714,10 @@ func (r *ArgoprojIoArgoCDV1Beta1Resource) Configure(_ context.Context, request r
 	}
 }
 
-func (r *ArgoprojIoArgoCDV1Beta1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *ArgoprojIoArgoCdV1Beta1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_argoproj_io_argo_cd_v1beta1")
 
-	var model ArgoprojIoArgoCDV1Beta1ResourceData
+	var model ArgoprojIoArgoCdV1Beta1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -9766,7 +9775,7 @@ func (r *ArgoprojIoArgoCDV1Beta1Resource) Create(ctx context.Context, request re
 		return
 	}
 
-	var readResponse ArgoprojIoArgoCDV1Beta1ResourceData
+	var readResponse ArgoprojIoArgoCdV1Beta1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -9784,10 +9793,10 @@ func (r *ArgoprojIoArgoCDV1Beta1Resource) Create(ctx context.Context, request re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *ArgoprojIoArgoCDV1Beta1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *ArgoprojIoArgoCdV1Beta1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_argoproj_io_argo_cd_v1beta1")
 
-	var data ArgoprojIoArgoCDV1Beta1ResourceData
+	var data ArgoprojIoArgoCdV1Beta1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -9816,7 +9825,7 @@ func (r *ArgoprojIoArgoCDV1Beta1Resource) Read(ctx context.Context, request reso
 		return
 	}
 
-	var readResponse ArgoprojIoArgoCDV1Beta1ResourceData
+	var readResponse ArgoprojIoArgoCdV1Beta1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -9834,10 +9843,10 @@ func (r *ArgoprojIoArgoCDV1Beta1Resource) Read(ctx context.Context, request reso
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *ArgoprojIoArgoCDV1Beta1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *ArgoprojIoArgoCdV1Beta1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_argoproj_io_argo_cd_v1beta1")
 
-	var model ArgoprojIoArgoCDV1Beta1ResourceData
+	var model ArgoprojIoArgoCdV1Beta1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -9894,7 +9903,7 @@ func (r *ArgoprojIoArgoCDV1Beta1Resource) Update(ctx context.Context, request re
 		return
 	}
 
-	var readResponse ArgoprojIoArgoCDV1Beta1ResourceData
+	var readResponse ArgoprojIoArgoCdV1Beta1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -9912,10 +9921,10 @@ func (r *ArgoprojIoArgoCDV1Beta1Resource) Update(ctx context.Context, request re
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *ArgoprojIoArgoCDV1Beta1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *ArgoprojIoArgoCdV1Beta1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_argoproj_io_argo_cd_v1beta1")
 
-	var data ArgoprojIoArgoCDV1Beta1ResourceData
+	var data ArgoprojIoArgoCdV1Beta1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -9936,7 +9945,7 @@ func (r *ArgoprojIoArgoCDV1Beta1Resource) Delete(ctx context.Context, request re
 	}
 }
 
-func (r *ArgoprojIoArgoCDV1Beta1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *ArgoprojIoArgoCdV1Beta1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

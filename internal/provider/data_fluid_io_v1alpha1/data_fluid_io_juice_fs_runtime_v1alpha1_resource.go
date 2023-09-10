@@ -32,22 +32,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &DataFluidIoJuiceFSRuntimeV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &DataFluidIoJuiceFSRuntimeV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &DataFluidIoJuiceFSRuntimeV1Alpha1Resource{}
+	_ resource.Resource                = &DataFluidIoJuiceFsruntimeV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &DataFluidIoJuiceFsruntimeV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &DataFluidIoJuiceFsruntimeV1Alpha1Resource{}
 )
 
-func NewDataFluidIoJuiceFSRuntimeV1Alpha1Resource() resource.Resource {
-	return &DataFluidIoJuiceFSRuntimeV1Alpha1Resource{}
+func NewDataFluidIoJuiceFsruntimeV1Alpha1Resource() resource.Resource {
+	return &DataFluidIoJuiceFsruntimeV1Alpha1Resource{}
 }
 
-type DataFluidIoJuiceFSRuntimeV1Alpha1Resource struct {
+type DataFluidIoJuiceFsruntimeV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type DataFluidIoJuiceFSRuntimeV1Alpha1ResourceData struct {
+type DataFluidIoJuiceFsruntimeV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -899,11 +899,11 @@ type DataFluidIoJuiceFSRuntimeV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *DataFluidIoJuiceFsruntimeV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_data_fluid_io_juice_fs_runtime_v1alpha1"
 }
 
-func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *DataFluidIoJuiceFsruntimeV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "JuiceFSRuntime is the Schema for the juicefsruntimes API",
 		MarkdownDescription: "JuiceFSRuntime is the Schema for the juicefsruntimes API",
@@ -6646,7 +6646,7 @@ func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Schema(_ context.Context, _ 
 	}
 }
 
-func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *DataFluidIoJuiceFsruntimeV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -6671,10 +6671,10 @@ func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Configure(_ context.Context,
 	}
 }
 
-func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *DataFluidIoJuiceFsruntimeV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_data_fluid_io_juice_fs_runtime_v1alpha1")
 
-	var model DataFluidIoJuiceFSRuntimeV1Alpha1ResourceData
+	var model DataFluidIoJuiceFsruntimeV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -6732,7 +6732,7 @@ func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Create(ctx context.Context, 
 		return
 	}
 
-	var readResponse DataFluidIoJuiceFSRuntimeV1Alpha1ResourceData
+	var readResponse DataFluidIoJuiceFsruntimeV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -6750,10 +6750,10 @@ func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Create(ctx context.Context, 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *DataFluidIoJuiceFsruntimeV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_data_fluid_io_juice_fs_runtime_v1alpha1")
 
-	var data DataFluidIoJuiceFSRuntimeV1Alpha1ResourceData
+	var data DataFluidIoJuiceFsruntimeV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -6782,7 +6782,7 @@ func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Read(ctx context.Context, re
 		return
 	}
 
-	var readResponse DataFluidIoJuiceFSRuntimeV1Alpha1ResourceData
+	var readResponse DataFluidIoJuiceFsruntimeV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -6800,10 +6800,10 @@ func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Read(ctx context.Context, re
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *DataFluidIoJuiceFsruntimeV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_data_fluid_io_juice_fs_runtime_v1alpha1")
 
-	var model DataFluidIoJuiceFSRuntimeV1Alpha1ResourceData
+	var model DataFluidIoJuiceFsruntimeV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -6860,7 +6860,7 @@ func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Update(ctx context.Context, 
 		return
 	}
 
-	var readResponse DataFluidIoJuiceFSRuntimeV1Alpha1ResourceData
+	var readResponse DataFluidIoJuiceFsruntimeV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -6878,10 +6878,10 @@ func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Update(ctx context.Context, 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *DataFluidIoJuiceFsruntimeV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_data_fluid_io_juice_fs_runtime_v1alpha1")
 
-	var data DataFluidIoJuiceFSRuntimeV1Alpha1ResourceData
+	var data DataFluidIoJuiceFsruntimeV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -6902,7 +6902,7 @@ func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) Delete(ctx context.Context, 
 	}
 }
 
-func (r *DataFluidIoJuiceFSRuntimeV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *DataFluidIoJuiceFsruntimeV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

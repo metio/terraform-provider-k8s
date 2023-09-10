@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-func TestLambdaServicesK8SAwsFunctionURLConfigV1Alpha1Manifest(t *testing.T) {
+func TestLambdaServicesK8SAwsFunctionUrlconfigV1Alpha1Manifest(t *testing.T) {
 	path := "../../examples/data-sources/k8s_lambda_services_k8s_aws_function_url_config_v1alpha1_manifest"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{

@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &TraefikIoIngressRouteTCPV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &TraefikIoIngressRouteTCPV1Alpha1DataSource{}
+	_ datasource.DataSource              = &TraefikIoIngressRouteTcpV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &TraefikIoIngressRouteTcpV1Alpha1DataSource{}
 )
 
-func NewTraefikIoIngressRouteTCPV1Alpha1DataSource() datasource.DataSource {
-	return &TraefikIoIngressRouteTCPV1Alpha1DataSource{}
+func NewTraefikIoIngressRouteTcpV1Alpha1DataSource() datasource.DataSource {
+	return &TraefikIoIngressRouteTcpV1Alpha1DataSource{}
 }
 
-type TraefikIoIngressRouteTCPV1Alpha1DataSource struct {
+type TraefikIoIngressRouteTcpV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type TraefikIoIngressRouteTCPV1Alpha1DataSourceData struct {
+type TraefikIoIngressRouteTcpV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -91,11 +91,11 @@ type TraefikIoIngressRouteTCPV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_ingress_route_tcp_v1alpha1"
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "IngressRouteTCP is the CRD implementation of a Traefik TCP Router.",
 		MarkdownDescription: "IngressRouteTCP is the CRD implementation of a Traefik TCP Router.",
@@ -428,7 +428,7 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1DataSource) Schema(_ context.Context, _
 	}
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -451,10 +451,10 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1DataSource) Configure(_ context.Context
 	}
 }
 
-func (r *TraefikIoIngressRouteTCPV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TraefikIoIngressRouteTcpV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_traefik_io_ingress_route_tcp_v1alpha1")
 
-	var data TraefikIoIngressRouteTCPV1Alpha1DataSourceData
+	var data TraefikIoIngressRouteTcpV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -483,7 +483,7 @@ func (r *TraefikIoIngressRouteTCPV1Alpha1DataSource) Read(ctx context.Context, r
 		return
 	}
 
-	var readResponse TraefikIoIngressRouteTCPV1Alpha1DataSourceData
+	var readResponse TraefikIoIngressRouteTcpV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

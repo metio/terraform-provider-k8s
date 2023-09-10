@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: Ec2ServicesK8SAwsVPCEndpointV1Alpha1DataSource
+name: Ec2ServicesK8SAwsVpcendpointV1Alpha1DataSource
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/ec2_services_k8s_aws_v1alpha1/ec2_services_k8s_aws_vpc_endpoint_v1alpha1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestEc2ServicesK8SAwsVPCEndpointV1Alpha1DataSource ./terratest/ec2_services_k8s_aws_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestEc2ServicesK8SAwsVpcendpointV1Alpha1DataSource ./terratest/ec2_services_k8s_aws_v1alpha1

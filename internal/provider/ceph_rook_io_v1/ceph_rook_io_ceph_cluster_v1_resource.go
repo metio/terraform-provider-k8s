@@ -411,6 +411,10 @@ type CephRookIoCephClusterV1ResourceData struct {
 			Port                      *int64  `tfsdk:"port" json:"port,omitempty"`
 		} `tfsdk:"monitoring" json:"monitoring,omitempty"`
 		Network *struct {
+			AddressRanges *struct {
+				Cluster *[]string `tfsdk:"cluster" json:"cluster,omitempty"`
+				Public  *[]string `tfsdk:"public" json:"public,omitempty"`
+			} `tfsdk:"address_ranges" json:"addressRanges,omitempty"`
 			Connections *struct {
 				Compression *struct {
 					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -3510,6 +3514,33 @@ func (r *CephRookIoCephClusterV1Resource) Schema(_ context.Context, _ resource.S
 						Description:         "Network related configuration",
 						MarkdownDescription: "Network related configuration",
 						Attributes: map[string]schema.Attribute{
+							"address_ranges": schema.SingleNestedAttribute{
+								Description:         "AddressRanges specify a list of CIDRs that Rook will apply to Ceph's 'public_network' and/or 'cluster_network' configurations. This config section may be used for the 'host' or 'multus' network providers.",
+								MarkdownDescription: "AddressRanges specify a list of CIDRs that Rook will apply to Ceph's 'public_network' and/or 'cluster_network' configurations. This config section may be used for the 'host' or 'multus' network providers.",
+								Attributes: map[string]schema.Attribute{
+									"cluster": schema.ListAttribute{
+										Description:         "Cluster defines a list of CIDRs to use for Ceph cluster network communication.",
+										MarkdownDescription: "Cluster defines a list of CIDRs to use for Ceph cluster network communication.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"public": schema.ListAttribute{
+										Description:         "Public defines a list of CIDRs to use for Ceph public network communication.",
+										MarkdownDescription: "Public defines a list of CIDRs to use for Ceph public network communication.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"connections": schema.SingleNestedAttribute{
 								Description:         "Settings for network connections such as compression and encryption across the wire.",
 								MarkdownDescription: "Settings for network connections such as compression and encryption across the wire.",
@@ -3619,11 +3650,14 @@ func (r *CephRookIoCephClusterV1Resource) Schema(_ context.Context, _ resource.S
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("", "host", "multus"),
+								},
 							},
 
 							"selectors": schema.MapAttribute{
-								Description:         "Selectors string values describe what networks will be used to connect the cluster. Meanwhile the keys describe each network respective responsibilities or any metadata storage provider decide.",
-								MarkdownDescription: "Selectors string values describe what networks will be used to connect the cluster. Meanwhile the keys describe each network respective responsibilities or any metadata storage provider decide.",
+								Description:         "Selectors define NetworkAttachmentDefinitions to be used for Ceph public and/or cluster networks when the 'multus' network provider is used. This config section is not used for other network providers.  Valid keys are 'public' and 'cluster'. Refer to Ceph networking documentation for more: https://docs.ceph.com/en/reef/rados/configuration/network-config-ref/  Refer to Multus network annotation documentation for help selecting values: https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md#run-pod-with-network-annotation  Rook will make a best-effort attempt to automatically detect CIDR address ranges for given network attachment definitions. Rook's methods are robust but may be imprecise for sufficiently complicated networks. Rook's auto-detection process obtains a new IP address lease for each CephCluster reconcile. If Rook fails to detect, incorrectly detects, only partially detects, or if underlying networks do not support reusing old IP addresses, it is best to use the 'addressRanges' config section to specify CIDR ranges for the Ceph cluster.  As a contrived example, one can use a theoretical Kubernetes-wide network for Ceph client traffic and a theoretical Rook-only network for Ceph replication traffic as shown: selectors: public: 'default/cluster-fast-net' cluster: 'rook-ceph/ceph-backend-net'",
+								MarkdownDescription: "Selectors define NetworkAttachmentDefinitions to be used for Ceph public and/or cluster networks when the 'multus' network provider is used. This config section is not used for other network providers.  Valid keys are 'public' and 'cluster'. Refer to Ceph networking documentation for more: https://docs.ceph.com/en/reef/rados/configuration/network-config-ref/  Refer to Multus network annotation documentation for help selecting values: https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md#run-pod-with-network-annotation  Rook will make a best-effort attempt to automatically detect CIDR address ranges for given network attachment definitions. Rook's methods are robust but may be imprecise for sufficiently complicated networks. Rook's auto-detection process obtains a new IP address lease for each CephCluster reconcile. If Rook fails to detect, incorrectly detects, only partially detects, or if underlying networks do not support reusing old IP addresses, it is best to use the 'addressRanges' config section to specify CIDR ranges for the Ceph cluster.  As a contrived example, one can use a theoretical Kubernetes-wide network for Ceph client traffic and a theoretical Rook-only network for Ceph replication traffic as shown: selectors: public: 'default/cluster-fast-net' cluster: 'rook-ceph/ceph-backend-net'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

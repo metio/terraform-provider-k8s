@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestTraefikIoIngressRouteTCPV1Alpha1Resource_ValidateSchema(t *testing.T) {
+func TestTraefikIoIngressRouteTcpV1Alpha1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	traefik_io_v1alpha1.NewTraefikIoIngressRouteTCPV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	traefik_io_v1alpha1.NewTraefikIoIngressRouteTcpV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

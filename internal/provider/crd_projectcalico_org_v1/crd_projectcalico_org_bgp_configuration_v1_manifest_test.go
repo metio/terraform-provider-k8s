@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestCrdProjectcalicoOrgBGPConfigurationV1Manifest_ValidateSchema(t *testing.T) {
+func TestCrdProjectcalicoOrgBgpconfigurationV1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	crd_projectcalico_org_v1.NewCrdProjectcalicoOrgBGPConfigurationV1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	crd_projectcalico_org_v1.NewCrdProjectcalicoOrgBgpconfigurationV1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CephRookIoCephCOSIDriverV1Resource{}
-	_ resource.ResourceWithConfigure   = &CephRookIoCephCOSIDriverV1Resource{}
-	_ resource.ResourceWithImportState = &CephRookIoCephCOSIDriverV1Resource{}
+	_ resource.Resource                = &CephRookIoCephCosidriverV1Resource{}
+	_ resource.ResourceWithConfigure   = &CephRookIoCephCosidriverV1Resource{}
+	_ resource.ResourceWithImportState = &CephRookIoCephCosidriverV1Resource{}
 )
 
-func NewCephRookIoCephCOSIDriverV1Resource() resource.Resource {
-	return &CephRookIoCephCOSIDriverV1Resource{}
+func NewCephRookIoCephCosidriverV1Resource() resource.Resource {
+	return &CephRookIoCephCosidriverV1Resource{}
 }
 
-type CephRookIoCephCOSIDriverV1Resource struct {
+type CephRookIoCephCosidriverV1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CephRookIoCephCOSIDriverV1ResourceData struct {
+type CephRookIoCephCosidriverV1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -222,11 +222,11 @@ type CephRookIoCephCOSIDriverV1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CephRookIoCephCOSIDriverV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CephRookIoCephCosidriverV1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_cosi_driver_v1"
 }
 
-func (r *CephRookIoCephCOSIDriverV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CephRookIoCephCosidriverV1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephCOSIDriver represents the CRD for the Ceph COSI Driver Deployment",
 		MarkdownDescription: "CephCOSIDriver represents the CRD for the Ceph COSI Driver Deployment",
@@ -1415,7 +1415,7 @@ func (r *CephRookIoCephCOSIDriverV1Resource) Schema(_ context.Context, _ resourc
 	}
 }
 
-func (r *CephRookIoCephCOSIDriverV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CephRookIoCephCosidriverV1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1440,10 +1440,10 @@ func (r *CephRookIoCephCOSIDriverV1Resource) Configure(_ context.Context, reques
 	}
 }
 
-func (r *CephRookIoCephCOSIDriverV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CephRookIoCephCosidriverV1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_ceph_rook_io_ceph_cosi_driver_v1")
 
-	var model CephRookIoCephCOSIDriverV1ResourceData
+	var model CephRookIoCephCosidriverV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1501,7 +1501,7 @@ func (r *CephRookIoCephCOSIDriverV1Resource) Create(ctx context.Context, request
 		return
 	}
 
-	var readResponse CephRookIoCephCOSIDriverV1ResourceData
+	var readResponse CephRookIoCephCosidriverV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1519,10 +1519,10 @@ func (r *CephRookIoCephCOSIDriverV1Resource) Create(ctx context.Context, request
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CephRookIoCephCOSIDriverV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CephRookIoCephCosidriverV1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_ceph_rook_io_ceph_cosi_driver_v1")
 
-	var data CephRookIoCephCOSIDriverV1ResourceData
+	var data CephRookIoCephCosidriverV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1551,7 +1551,7 @@ func (r *CephRookIoCephCOSIDriverV1Resource) Read(ctx context.Context, request r
 		return
 	}
 
-	var readResponse CephRookIoCephCOSIDriverV1ResourceData
+	var readResponse CephRookIoCephCosidriverV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1569,10 +1569,10 @@ func (r *CephRookIoCephCOSIDriverV1Resource) Read(ctx context.Context, request r
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CephRookIoCephCOSIDriverV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CephRookIoCephCosidriverV1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_ceph_rook_io_ceph_cosi_driver_v1")
 
-	var model CephRookIoCephCOSIDriverV1ResourceData
+	var model CephRookIoCephCosidriverV1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1629,7 +1629,7 @@ func (r *CephRookIoCephCOSIDriverV1Resource) Update(ctx context.Context, request
 		return
 	}
 
-	var readResponse CephRookIoCephCOSIDriverV1ResourceData
+	var readResponse CephRookIoCephCosidriverV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1647,10 +1647,10 @@ func (r *CephRookIoCephCOSIDriverV1Resource) Update(ctx context.Context, request
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CephRookIoCephCOSIDriverV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CephRookIoCephCosidriverV1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_ceph_rook_io_ceph_cosi_driver_v1")
 
-	var data CephRookIoCephCOSIDriverV1ResourceData
+	var data CephRookIoCephCosidriverV1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1671,7 +1671,7 @@ func (r *CephRookIoCephCOSIDriverV1Resource) Delete(ctx context.Context, request
 	}
 }
 
-func (r *CephRookIoCephCOSIDriverV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CephRookIoCephCosidriverV1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

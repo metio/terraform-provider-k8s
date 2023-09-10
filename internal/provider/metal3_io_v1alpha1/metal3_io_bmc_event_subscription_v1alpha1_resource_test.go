@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestMetal3IoBMCEventSubscriptionV1Alpha1Resource_ValidateSchema(t *testing.T) {
+func TestMetal3IoBmceventSubscriptionV1Alpha1Resource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwresource.SchemaRequest{}
 	schemaResponse := &fwresource.SchemaResponse{}
 
-	metal3_io_v1alpha1.NewMetal3IoBMCEventSubscriptionV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
+	metal3_io_v1alpha1.NewMetal3IoBmceventSubscriptionV1Alpha1Resource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

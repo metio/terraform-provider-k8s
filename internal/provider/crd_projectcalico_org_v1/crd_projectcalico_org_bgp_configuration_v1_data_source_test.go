@@ -13,12 +13,12 @@ import (
 	"testing"
 )
 
-func TestCrdProjectcalicoOrgBGPConfigurationV1DataSource_ValidateSchema(t *testing.T) {
+func TestCrdProjectcalicoOrgBgpconfigurationV1DataSource_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	crd_projectcalico_org_v1.NewCrdProjectcalicoOrgBGPConfigurationV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
+	crd_projectcalico_org_v1.NewCrdProjectcalicoOrgBgpconfigurationV1DataSource().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)
@@ -31,7 +31,7 @@ func TestCrdProjectcalicoOrgBGPConfigurationV1DataSource_ValidateSchema(t *testi
 	}
 }
 
-func TestCrdProjectcalicoOrgBGPConfigurationV1DataSource_ConfigurationErrors(t *testing.T) {
+func TestCrdProjectcalicoOrgBgpconfigurationV1DataSource_ConfigurationErrors(t *testing.T) {
 	testCases := map[string]testutilities.ConfigurationErrorTestCase{
 		"empty-name": {
 			Configuration: `
@@ -58,7 +58,7 @@ func TestCrdProjectcalicoOrgBGPConfigurationV1DataSource_ConfigurationErrors(t *
 	}
 }
 
-func TestCrdProjectcalicoOrgBGPConfigurationV1DataSource_OfflineUsage(t *testing.T) {
+func TestCrdProjectcalicoOrgBgpconfigurationV1DataSource_OfflineUsage(t *testing.T) {
 	configuration := `
 		metadata = {
 			name = "some"

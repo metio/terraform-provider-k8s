@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &TraefikIoMiddlewareTCPV1Alpha1Manifest{}
+	_ datasource.DataSource = &TraefikIoMiddlewareTcpV1Alpha1Manifest{}
 )
 
-func NewTraefikIoMiddlewareTCPV1Alpha1Manifest() datasource.DataSource {
-	return &TraefikIoMiddlewareTCPV1Alpha1Manifest{}
+func NewTraefikIoMiddlewareTcpV1Alpha1Manifest() datasource.DataSource {
+	return &TraefikIoMiddlewareTcpV1Alpha1Manifest{}
 }
 
-type TraefikIoMiddlewareTCPV1Alpha1Manifest struct{}
+type TraefikIoMiddlewareTcpV1Alpha1Manifest struct{}
 
-type TraefikIoMiddlewareTCPV1Alpha1ManifestData struct {
+type TraefikIoMiddlewareTcpV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -53,11 +53,11 @@ type TraefikIoMiddlewareTCPV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoMiddlewareTCPV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *TraefikIoMiddlewareTcpV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_middleware_tcp_v1alpha1_manifest"
 }
 
-func (r *TraefikIoMiddlewareTCPV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *TraefikIoMiddlewareTcpV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MiddlewareTCP is the CRD implementation of a Traefik TCP middleware. More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/",
 		MarkdownDescription: "MiddlewareTCP is the CRD implementation of a Traefik TCP middleware. More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/",
@@ -181,10 +181,10 @@ func (r *TraefikIoMiddlewareTCPV1Alpha1Manifest) Schema(_ context.Context, _ dat
 	}
 }
 
-func (r *TraefikIoMiddlewareTCPV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *TraefikIoMiddlewareTcpV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_traefik_io_middleware_tcp_v1alpha1_manifest")
 
-	var model TraefikIoMiddlewareTCPV1Alpha1ManifestData
+	var model TraefikIoMiddlewareTcpV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

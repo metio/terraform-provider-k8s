@@ -20,16 +20,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &HiveOpenshiftIoDNSZoneV1Manifest{}
+	_ datasource.DataSource = &HiveOpenshiftIoDnszoneV1Manifest{}
 )
 
-func NewHiveOpenshiftIoDNSZoneV1Manifest() datasource.DataSource {
-	return &HiveOpenshiftIoDNSZoneV1Manifest{}
+func NewHiveOpenshiftIoDnszoneV1Manifest() datasource.DataSource {
+	return &HiveOpenshiftIoDnszoneV1Manifest{}
 }
 
-type HiveOpenshiftIoDNSZoneV1Manifest struct{}
+type HiveOpenshiftIoDnszoneV1Manifest struct{}
 
-type HiveOpenshiftIoDNSZoneV1ManifestData struct {
+type HiveOpenshiftIoDnszoneV1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -76,11 +76,11 @@ type HiveOpenshiftIoDNSZoneV1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *HiveOpenshiftIoDnszoneV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_hive_openshift_io_dns_zone_v1_manifest"
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *HiveOpenshiftIoDnszoneV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DNSZone is the Schema for the dnszones API",
 		MarkdownDescription: "DNSZone is the Schema for the dnszones API",
@@ -350,10 +350,10 @@ func (r *HiveOpenshiftIoDNSZoneV1Manifest) Schema(_ context.Context, _ datasourc
 	}
 }
 
-func (r *HiveOpenshiftIoDNSZoneV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *HiveOpenshiftIoDnszoneV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_hive_openshift_io_dns_zone_v1_manifest")
 
-	var model HiveOpenshiftIoDNSZoneV1ManifestData
+	var model HiveOpenshiftIoDnszoneV1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

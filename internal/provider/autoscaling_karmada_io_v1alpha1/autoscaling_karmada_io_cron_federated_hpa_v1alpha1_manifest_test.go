@@ -12,12 +12,12 @@ import (
 	"testing"
 )
 
-func TestAutoscalingKarmadaIoCronFederatedHPAV1Alpha1Manifest_ValidateSchema(t *testing.T) {
+func TestAutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest_ValidateSchema(t *testing.T) {
 	ctx := context.Background()
 	schemaRequest := fwdatasource.SchemaRequest{}
 	schemaResponse := &fwdatasource.SchemaResponse{}
 
-	autoscaling_karmada_io_v1alpha1.NewAutoscalingKarmadaIoCronFederatedHPAV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
+	autoscaling_karmada_io_v1alpha1.NewAutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest().Schema(ctx, schemaRequest, schemaResponse)
 
 	if schemaResponse.Diagnostics.HasError() {
 		t.Fatalf("Schema method diagnostics: %+v", schemaResponse.Diagnostics)

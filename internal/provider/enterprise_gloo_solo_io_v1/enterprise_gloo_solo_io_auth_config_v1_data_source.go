@@ -243,6 +243,13 @@ type EnterpriseGlooSoloIoAuthConfigV1DataSourceData struct {
 					TokenEndpointQueryParams *map[string]string `tfsdk:"token_endpoint_query_params" json:"tokenEndpointQueryParams,omitempty"`
 				} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 				OidcAuthorizationCode *struct {
+					AccessToken *struct {
+						ClaimsToHeaders *[]struct {
+							Append *bool   `tfsdk:"append" json:"append,omitempty"`
+							Claim  *string `tfsdk:"claim" json:"claim,omitempty"`
+							Header *string `tfsdk:"header" json:"header,omitempty"`
+						} `tfsdk:"claims_to_headers" json:"claimsToHeaders,omitempty"`
+					} `tfsdk:"access_token" json:"accessToken,omitempty"`
 					AfterLogoutUrl          *string            `tfsdk:"after_logout_url" json:"afterLogoutUrl,omitempty"`
 					AppUrl                  *string            `tfsdk:"app_url" json:"appUrl,omitempty"`
 					AuthEndpointQueryParams *map[string]string `tfsdk:"auth_endpoint_query_params" json:"authEndpointQueryParams,omitempty"`
@@ -279,6 +286,13 @@ type EnterpriseGlooSoloIoAuthConfigV1DataSourceData struct {
 						IdTokenHeader                   *string `tfsdk:"id_token_header" json:"idTokenHeader,omitempty"`
 						UseBearerSchemaForAuthorization *bool   `tfsdk:"use_bearer_schema_for_authorization" json:"useBearerSchemaForAuthorization,omitempty"`
 					} `tfsdk:"headers" json:"headers,omitempty"`
+					IdentityToken *struct {
+						ClaimsToHeaders *[]struct {
+							Append *bool   `tfsdk:"append" json:"append,omitempty"`
+							Claim  *string `tfsdk:"claim" json:"claim,omitempty"`
+							Header *string `tfsdk:"header" json:"header,omitempty"`
+						} `tfsdk:"claims_to_headers" json:"claimsToHeaders,omitempty"`
+					} `tfsdk:"identity_token" json:"identityToken,omitempty"`
 					IssuerUrl              *string `tfsdk:"issuer_url" json:"issuerUrl,omitempty"`
 					JwksCacheRefreshPolicy *struct {
 						Always                      *map[string]string `tfsdk:"always" json:"always,omitempty"`
@@ -1747,6 +1761,50 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1DataSource) Schema(_ context.Context, _
 											Description:         "",
 											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
+												"access_token": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"claims_to_headers": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"append": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+
+																	"claim": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+
+																	"header": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+																},
+															},
+															Required: false,
+															Optional: false,
+															Computed: true,
+														},
+													},
+													Required: false,
+													Optional: false,
+													Computed: true,
+												},
+
 												"after_logout_url": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -2001,6 +2059,50 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1DataSource) Schema(_ context.Context, _
 															Required:            false,
 															Optional:            false,
 															Computed:            true,
+														},
+													},
+													Required: false,
+													Optional: false,
+													Computed: true,
+												},
+
+												"identity_token": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"claims_to_headers": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"append": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+
+																	"claim": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+
+																	"header": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+																},
+															},
+															Required: false,
+															Optional: false,
+															Computed: true,
 														},
 													},
 													Required: false,

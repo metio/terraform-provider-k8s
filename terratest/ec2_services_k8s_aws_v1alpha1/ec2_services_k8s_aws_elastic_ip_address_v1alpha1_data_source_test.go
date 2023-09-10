@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestEc2ServicesK8SAwsElasticIPAddressV1Alpha1DataSource(t *testing.T) {
+func TestEc2ServicesK8SAwsElasticIpaddressV1Alpha1DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_ec2_services_k8s_aws_elastic_ip_address_v1alpha1"
 
 	_, err := os.Stat(path)

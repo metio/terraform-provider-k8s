@@ -50,12 +50,13 @@ type ExecutorTestkubeIoWebhookV1DataSourceData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Events             *[]string          `tfsdk:"events" json:"events,omitempty"`
-		Headers            *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
-		PayloadObjectField *string            `tfsdk:"payload_object_field" json:"payloadObjectField,omitempty"`
-		PayloadTemplate    *string            `tfsdk:"payload_template" json:"payloadTemplate,omitempty"`
-		Selector           *string            `tfsdk:"selector" json:"selector,omitempty"`
-		Uri                *string            `tfsdk:"uri" json:"uri,omitempty"`
+		Events                   *[]string          `tfsdk:"events" json:"events,omitempty"`
+		Headers                  *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+		PayloadObjectField       *string            `tfsdk:"payload_object_field" json:"payloadObjectField,omitempty"`
+		PayloadTemplate          *string            `tfsdk:"payload_template" json:"payloadTemplate,omitempty"`
+		PayloadTemplateReference *string            `tfsdk:"payload_template_reference" json:"payloadTemplateReference,omitempty"`
+		Selector                 *string            `tfsdk:"selector" json:"selector,omitempty"`
+		Uri                      *string            `tfsdk:"uri" json:"uri,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -140,8 +141,8 @@ func (r *ExecutorTestkubeIoWebhookV1DataSource) Schema(_ context.Context, _ data
 					},
 
 					"headers": schema.MapAttribute{
-						Description:         "webhook headers",
-						MarkdownDescription: "webhook headers",
+						Description:         "webhook headers (golang template supported)",
+						MarkdownDescription: "webhook headers (golang template supported)",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            false,
@@ -164,6 +165,14 @@ func (r *ExecutorTestkubeIoWebhookV1DataSource) Schema(_ context.Context, _ data
 						Computed:            true,
 					},
 
+					"payload_template_reference": schema.StringAttribute{
+						Description:         "name of the template resource",
+						MarkdownDescription: "name of the template resource",
+						Required:            false,
+						Optional:            false,
+						Computed:            true,
+					},
+
 					"selector": schema.StringAttribute{
 						Description:         "Labels to filter for tests and test suites",
 						MarkdownDescription: "Labels to filter for tests and test suites",
@@ -173,8 +182,8 @@ func (r *ExecutorTestkubeIoWebhookV1DataSource) Schema(_ context.Context, _ data
 					},
 
 					"uri": schema.StringAttribute{
-						Description:         "Uri is address where webhook should be made",
-						MarkdownDescription: "Uri is address where webhook should be made",
+						Description:         "Uri is address where webhook should be made (golang template supported)",
+						MarkdownDescription: "Uri is address where webhook should be made (golang template supported)",
 						Required:            false,
 						Optional:            false,
 						Computed:            true,

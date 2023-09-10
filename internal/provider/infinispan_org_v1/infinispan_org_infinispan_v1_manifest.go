@@ -2266,8 +2266,8 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 													},
 
 													"suspect_events": schema.BoolAttribute{
-														Description:         "Enables the JGroups suspect events if the Gossip Router detects a connectio closed",
-														MarkdownDescription: "Enables the JGroups suspect events if the Gossip Router detects a connectio closed",
+														Description:         "Enables the JGroups suspect events if the Gossip Router detects a connection closed",
+														MarkdownDescription: "Enables the JGroups suspect events if the Gossip Router detects a connection closed",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

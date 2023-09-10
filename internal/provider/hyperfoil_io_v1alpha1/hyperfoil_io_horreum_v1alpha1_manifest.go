@@ -51,21 +51,6 @@ type HyperfoilIoHorreumV1Alpha1ManifestData struct {
 			Port   *int64  `tfsdk:"port" json:"port,omitempty"`
 			Secret *string `tfsdk:"secret" json:"secret,omitempty"`
 		} `tfsdk:"database" json:"database,omitempty"`
-		Grafana *struct {
-			AdminSecret *string `tfsdk:"admin_secret" json:"adminSecret,omitempty"`
-			External    *struct {
-				InternalUri *string `tfsdk:"internal_uri" json:"internalUri,omitempty"`
-				PublicUri   *string `tfsdk:"public_uri" json:"publicUri,omitempty"`
-			} `tfsdk:"external" json:"external,omitempty"`
-			Image *string `tfsdk:"image" json:"image,omitempty"`
-			Route *struct {
-				Host *string `tfsdk:"host" json:"host,omitempty"`
-				Tls  *string `tfsdk:"tls" json:"tls,omitempty"`
-				Type *string `tfsdk:"type" json:"type,omitempty"`
-			} `tfsdk:"route" json:"route,omitempty"`
-			ServiceType *string `tfsdk:"service_type" json:"serviceType,omitempty"`
-			Theme       *string `tfsdk:"theme" json:"theme,omitempty"`
-		} `tfsdk:"grafana" json:"grafana,omitempty"`
 		Image    *string `tfsdk:"image" json:"image,omitempty"`
 		Keycloak *struct {
 			AdminSecret *string `tfsdk:"admin_secret" json:"adminSecret,omitempty"`
@@ -228,105 +213,6 @@ func (r *HyperfoilIoHorreumV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 							"secret": schema.StringAttribute{
 								Description:         "Name of secret resource with data 'username' and 'password'. Created if does not exist.",
 								MarkdownDescription: "Name of secret resource with data 'username' and 'password'. Created if does not exist.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"grafana": schema.SingleNestedAttribute{
-						Description:         "Grafana specification",
-						MarkdownDescription: "Grafana specification",
-						Attributes: map[string]schema.Attribute{
-							"admin_secret": schema.StringAttribute{
-								Description:         "Secret used for admin access to Grafana. Created if it does not exist. Must contain keys 'username' and 'password'.",
-								MarkdownDescription: "Secret used for admin access to Grafana. Created if it does not exist. Must contain keys 'username' and 'password'.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"external": schema.SingleNestedAttribute{
-								Description:         "When this is set Grafana instance will not be deployed and Horreum will use this external instance.",
-								MarkdownDescription: "When this is set Grafana instance will not be deployed and Horreum will use this external instance.",
-								Attributes: map[string]schema.Attribute{
-									"internal_uri": schema.StringAttribute{
-										Description:         "Internal URI - Horreum will use this for communication but won't disclose that.",
-										MarkdownDescription: "Internal URI - Horreum will use this for communication but won't disclose that.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"public_uri": schema.StringAttribute{
-										Description:         "Public facing URI - Horreum will send this URI to the clients.",
-										MarkdownDescription: "Public facing URI - Horreum will send this URI to the clients.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"image": schema.StringAttribute{
-								Description:         "Custom Grafana image. Defaults to registry.redhat.io/openshift4/ose-grafana:latest",
-								MarkdownDescription: "Custom Grafana image. Defaults to registry.redhat.io/openshift4/ose-grafana:latest",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"route": schema.SingleNestedAttribute{
-								Description:         "Route for external access.",
-								MarkdownDescription: "Route for external access.",
-								Attributes: map[string]schema.Attribute{
-									"host": schema.StringAttribute{
-										Description:         "Host for the route leading to Controller REST endpoint. Example: horreum.apps.mycloud.example.com",
-										MarkdownDescription: "Host for the route leading to Controller REST endpoint. Example: horreum.apps.mycloud.example.com",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"tls": schema.StringAttribute{
-										Description:         "Optional for edge and reencrypt routes, required for passthrough; Name of the secret hosting 'tls.crt', 'tls.key' and optionally 'ca.crt'",
-										MarkdownDescription: "Optional for edge and reencrypt routes, required for passthrough; Name of the secret hosting 'tls.crt', 'tls.key' and optionally 'ca.crt'",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"type": schema.StringAttribute{
-										Description:         "Either 'http' (for plain-text routes - not recommended), 'edge', 'reencrypt' or 'passthrough'",
-										MarkdownDescription: "Either 'http' (for plain-text routes - not recommended), 'edge', 'reencrypt' or 'passthrough'",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"service_type": schema.StringAttribute{
-								Description:         "Alternative service type when routes are not available (e.g. on vanilla K8s)",
-								MarkdownDescription: "Alternative service type when routes are not available (e.g. on vanilla K8s)",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"theme": schema.StringAttribute{
-								Description:         "Default theme that should be used - one of 'dark' or 'light'. Defaults to 'light'.",
-								MarkdownDescription: "Default theme that should be used - one of 'dark' or 'light'. Defaults to 'light'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

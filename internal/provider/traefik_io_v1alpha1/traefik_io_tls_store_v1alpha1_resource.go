@@ -30,22 +30,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &TraefikIoTLSStoreV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &TraefikIoTLSStoreV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &TraefikIoTLSStoreV1Alpha1Resource{}
+	_ resource.Resource                = &TraefikIoTlsstoreV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &TraefikIoTlsstoreV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &TraefikIoTlsstoreV1Alpha1Resource{}
 )
 
-func NewTraefikIoTLSStoreV1Alpha1Resource() resource.Resource {
-	return &TraefikIoTLSStoreV1Alpha1Resource{}
+func NewTraefikIoTlsstoreV1Alpha1Resource() resource.Resource {
+	return &TraefikIoTlsstoreV1Alpha1Resource{}
 }
 
-type TraefikIoTLSStoreV1Alpha1Resource struct {
+type TraefikIoTlsstoreV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type TraefikIoTLSStoreV1Alpha1ResourceData struct {
+type TraefikIoTlsstoreV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -78,11 +78,11 @@ type TraefikIoTLSStoreV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_traefik_io_tls_store_v1alpha1"
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TLSStore is the CRD implementation of a Traefik TLS Store. For the time being, only the TLSStore named default is supported. This means that you cannot have two stores that are named default in different Kubernetes namespaces. More info: https://doc.traefik.io/traefik/v3.0/https/tls/#certificates-stores",
 		MarkdownDescription: "TLSStore is the CRD implementation of a Traefik TLS Store. For the time being, only the TLSStore named default is supported. This means that you cannot have two stores that are named default in different Kubernetes namespaces. More info: https://doc.traefik.io/traefik/v3.0/https/tls/#certificates-stores",
@@ -298,7 +298,7 @@ func (r *TraefikIoTLSStoreV1Alpha1Resource) Schema(_ context.Context, _ resource
 	}
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -323,10 +323,10 @@ func (r *TraefikIoTLSStoreV1Alpha1Resource) Configure(_ context.Context, request
 	}
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_traefik_io_tls_store_v1alpha1")
 
-	var model TraefikIoTLSStoreV1Alpha1ResourceData
+	var model TraefikIoTlsstoreV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -384,7 +384,7 @@ func (r *TraefikIoTLSStoreV1Alpha1Resource) Create(ctx context.Context, request 
 		return
 	}
 
-	var readResponse TraefikIoTLSStoreV1Alpha1ResourceData
+	var readResponse TraefikIoTlsstoreV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -402,10 +402,10 @@ func (r *TraefikIoTLSStoreV1Alpha1Resource) Create(ctx context.Context, request 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_traefik_io_tls_store_v1alpha1")
 
-	var data TraefikIoTLSStoreV1Alpha1ResourceData
+	var data TraefikIoTlsstoreV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -434,7 +434,7 @@ func (r *TraefikIoTLSStoreV1Alpha1Resource) Read(ctx context.Context, request re
 		return
 	}
 
-	var readResponse TraefikIoTLSStoreV1Alpha1ResourceData
+	var readResponse TraefikIoTlsstoreV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -452,10 +452,10 @@ func (r *TraefikIoTLSStoreV1Alpha1Resource) Read(ctx context.Context, request re
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_traefik_io_tls_store_v1alpha1")
 
-	var model TraefikIoTLSStoreV1Alpha1ResourceData
+	var model TraefikIoTlsstoreV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -512,7 +512,7 @@ func (r *TraefikIoTLSStoreV1Alpha1Resource) Update(ctx context.Context, request 
 		return
 	}
 
-	var readResponse TraefikIoTLSStoreV1Alpha1ResourceData
+	var readResponse TraefikIoTlsstoreV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -530,10 +530,10 @@ func (r *TraefikIoTLSStoreV1Alpha1Resource) Update(ctx context.Context, request 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_traefik_io_tls_store_v1alpha1")
 
-	var data TraefikIoTLSStoreV1Alpha1ResourceData
+	var data TraefikIoTlsstoreV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -554,7 +554,7 @@ func (r *TraefikIoTLSStoreV1Alpha1Resource) Delete(ctx context.Context, request 
 	}
 }
 
-func (r *TraefikIoTLSStoreV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *TraefikIoTlsstoreV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

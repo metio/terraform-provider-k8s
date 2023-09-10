@@ -19,16 +19,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &ApiregistrationK8SIoAPIServiceV1Manifest{}
+	_ datasource.DataSource = &ApiregistrationK8SIoApiserviceV1Manifest{}
 )
 
-func NewApiregistrationK8SIoAPIServiceV1Manifest() datasource.DataSource {
-	return &ApiregistrationK8SIoAPIServiceV1Manifest{}
+func NewApiregistrationK8SIoApiserviceV1Manifest() datasource.DataSource {
+	return &ApiregistrationK8SIoApiserviceV1Manifest{}
 }
 
-type ApiregistrationK8SIoAPIServiceV1Manifest struct{}
+type ApiregistrationK8SIoApiserviceV1Manifest struct{}
 
-type ApiregistrationK8SIoAPIServiceV1ManifestData struct {
+type ApiregistrationK8SIoApiserviceV1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -56,11 +56,11 @@ type ApiregistrationK8SIoAPIServiceV1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_apiregistration_k8s_io_api_service_v1_manifest"
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIService represents a server for a particular GroupVersion. Name must be 'version.group'.",
 		MarkdownDescription: "APIService represents a server for a particular GroupVersion. Name must be 'version.group'.",
@@ -221,10 +221,10 @@ func (r *ApiregistrationK8SIoAPIServiceV1Manifest) Schema(_ context.Context, _ d
 	}
 }
 
-func (r *ApiregistrationK8SIoAPIServiceV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *ApiregistrationK8SIoApiserviceV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_apiregistration_k8s_io_api_service_v1_manifest")
 
-	var model ApiregistrationK8SIoAPIServiceV1ManifestData
+	var model ApiregistrationK8SIoApiserviceV1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

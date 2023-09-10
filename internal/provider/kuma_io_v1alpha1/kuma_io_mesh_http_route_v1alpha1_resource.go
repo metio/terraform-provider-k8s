@@ -32,22 +32,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &KumaIoMeshHTTPRouteV1Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &KumaIoMeshHTTPRouteV1Alpha1Resource{}
-	_ resource.ResourceWithImportState = &KumaIoMeshHTTPRouteV1Alpha1Resource{}
+	_ resource.Resource                = &KumaIoMeshHttprouteV1Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &KumaIoMeshHttprouteV1Alpha1Resource{}
+	_ resource.ResourceWithImportState = &KumaIoMeshHttprouteV1Alpha1Resource{}
 )
 
-func NewKumaIoMeshHTTPRouteV1Alpha1Resource() resource.Resource {
-	return &KumaIoMeshHTTPRouteV1Alpha1Resource{}
+func NewKumaIoMeshHttprouteV1Alpha1Resource() resource.Resource {
+	return &KumaIoMeshHttprouteV1Alpha1Resource{}
 }
 
-type KumaIoMeshHTTPRouteV1Alpha1Resource struct {
+type KumaIoMeshHttprouteV1Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type KumaIoMeshHTTPRouteV1Alpha1ResourceData struct {
+type KumaIoMeshHttprouteV1Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -162,11 +162,11 @@ type KumaIoMeshHTTPRouteV1Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *KumaIoMeshHttprouteV1Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_kuma_io_mesh_http_route_v1alpha1"
 }
 
-func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *KumaIoMeshHttprouteV1Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
 		MarkdownDescription: "",
@@ -1017,7 +1017,7 @@ func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Schema(_ context.Context, _ resour
 	}
 }
 
-func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *KumaIoMeshHttprouteV1Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -1042,10 +1042,10 @@ func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Configure(_ context.Context, reque
 	}
 }
 
-func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *KumaIoMeshHttprouteV1Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_kuma_io_mesh_http_route_v1alpha1")
 
-	var model KumaIoMeshHTTPRouteV1Alpha1ResourceData
+	var model KumaIoMeshHttprouteV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1103,7 +1103,7 @@ func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Create(ctx context.Context, reques
 		return
 	}
 
-	var readResponse KumaIoMeshHTTPRouteV1Alpha1ResourceData
+	var readResponse KumaIoMeshHttprouteV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1121,10 +1121,10 @@ func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Create(ctx context.Context, reques
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *KumaIoMeshHttprouteV1Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_kuma_io_mesh_http_route_v1alpha1")
 
-	var data KumaIoMeshHTTPRouteV1Alpha1ResourceData
+	var data KumaIoMeshHttprouteV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1153,7 +1153,7 @@ func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Read(ctx context.Context, request 
 		return
 	}
 
-	var readResponse KumaIoMeshHTTPRouteV1Alpha1ResourceData
+	var readResponse KumaIoMeshHttprouteV1Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1171,10 +1171,10 @@ func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Read(ctx context.Context, request 
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *KumaIoMeshHttprouteV1Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_kuma_io_mesh_http_route_v1alpha1")
 
-	var model KumaIoMeshHTTPRouteV1Alpha1ResourceData
+	var model KumaIoMeshHttprouteV1Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1231,7 +1231,7 @@ func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Update(ctx context.Context, reques
 		return
 	}
 
-	var readResponse KumaIoMeshHTTPRouteV1Alpha1ResourceData
+	var readResponse KumaIoMeshHttprouteV1Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1249,10 +1249,10 @@ func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Update(ctx context.Context, reques
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *KumaIoMeshHttprouteV1Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_kuma_io_mesh_http_route_v1alpha1")
 
-	var data KumaIoMeshHTTPRouteV1Alpha1ResourceData
+	var data KumaIoMeshHttprouteV1Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -1273,7 +1273,7 @@ func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) Delete(ctx context.Context, reques
 	}
 }
 
-func (r *KumaIoMeshHTTPRouteV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *KumaIoMeshHttprouteV1Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	idParts := strings.Split(request.ID, "/")
 
 	if len(idParts) != 2 || idParts[0] == "" || idParts[1] == "" {

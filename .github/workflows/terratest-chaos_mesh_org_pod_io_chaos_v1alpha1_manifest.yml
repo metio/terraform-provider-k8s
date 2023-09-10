@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: ChaosMeshOrgPodIOChaosV1Alpha1Manifest
+name: ChaosMeshOrgPodIochaosV1Alpha1Manifest
 on:
   pull_request:
     branches: [ main ]
@@ -44,4 +44,4 @@ jobs:
         run: go test -v -timeout=120s -count=1 ./internal/provider/chaos_mesh_org_v1alpha1/chaos_mesh_org_pod_io_chaos_v1alpha1_manifest_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -run TestChaosMeshOrgPodIOChaosV1Alpha1Manifest ./terratest/chaos_mesh_org_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestChaosMeshOrgPodIochaosV1Alpha1Manifest ./terratest/chaos_mesh_org_v1alpha1

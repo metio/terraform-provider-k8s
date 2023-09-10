@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestResourcesTeleportDevTeleportOIDCConnectorV3DataSource(t *testing.T) {
+func TestResourcesTeleportDevTeleportOidcconnectorV3DataSource(t *testing.T) {
 	path := "../../examples/data-sources/k8s_resources_teleport_dev_teleport_oidc_connector_v3"
 
 	_, err := os.Stat(path)

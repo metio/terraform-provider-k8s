@@ -24,19 +24,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource{}
-	_ datasource.DataSourceWithConfigure = &RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource{}
+	_ datasource.DataSource              = &RdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSource{}
+	_ datasource.DataSourceWithConfigure = &RdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSource{}
 )
 
-func NewRdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource() datasource.DataSource {
-	return &RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource{}
+func NewRdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSource() datasource.DataSource {
+	return &RdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSource{}
 }
 
-type RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource struct {
+type RdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSource struct {
 	kubernetesClient dynamic.Interface
 }
 
-type RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSourceData struct {
+type RdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSourceData struct {
 	ID types.String `tfsdk:"id" json:"-"`
 
 	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
@@ -65,11 +65,11 @@ type RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *RdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSource) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_rds_services_k8s_aws_db_subnet_group_v1alpha1"
 }
 
-func (r *RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *RdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSource) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DBSubnetGroup is the Schema for the DBSubnetGroups API",
 		MarkdownDescription: "DBSubnetGroup is the Schema for the DBSubnetGroups API",
@@ -224,7 +224,7 @@ func (r *RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource) Schema(_ context.Cont
 	}
 }
 
-func (r *RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
+func (r *RdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSource) Configure(_ context.Context, request datasource.ConfigureRequest, response *datasource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -247,10 +247,10 @@ func (r *RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource) Configure(_ context.C
 	}
 }
 
-func (r *RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *RdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSource) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read data source k8s_rds_services_k8s_aws_db_subnet_group_v1alpha1")
 
-	var data RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSourceData
+	var data RdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSourceData
 	response.Diagnostics.Append(request.Config.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -279,7 +279,7 @@ func (r *RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSource) Read(ctx context.Cont
 		return
 	}
 
-	var readResponse RdsServicesK8SAwsDBSubnetGroupV1Alpha1DataSourceData
+	var readResponse RdsServicesK8SAwsDbsubnetGroupV1Alpha1DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(

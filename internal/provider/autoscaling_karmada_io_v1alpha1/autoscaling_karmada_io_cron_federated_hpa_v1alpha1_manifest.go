@@ -21,16 +21,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Manifest{}
+	_ datasource.DataSource = &AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest{}
 )
 
-func NewAutoscalingKarmadaIoCronFederatedHPAV1Alpha1Manifest() datasource.DataSource {
-	return &AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Manifest{}
+func NewAutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest() datasource.DataSource {
+	return &AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest{}
 }
 
-type AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Manifest struct{}
+type AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest struct{}
 
-type AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ManifestData struct {
+type AutoscalingKarmadaIoCronFederatedHpaV1Alpha1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -64,11 +64,11 @@ type AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_autoscaling_karmada_io_cron_federated_hpa_v1alpha1_manifest"
 }
 
-func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CronFederatedHPA represents a collection of repeating schedule to scale replica number of a specific workload. It can scale any resource implementing the scale subresource as well as FederatedHPA.",
 		MarkdownDescription: "CronFederatedHPA represents a collection of repeating schedule to scale replica number of a specific workload. It can scale any resource implementing the scale subresource as well as FederatedHPA.",
@@ -285,10 +285,10 @@ func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Manifest) Schema(_ context.
 	}
 }
 
-func (r *AutoscalingKarmadaIoCronFederatedHPAV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *AutoscalingKarmadaIoCronFederatedHpaV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_autoscaling_karmada_io_cron_federated_hpa_v1alpha1_manifest")
 
-	var model AutoscalingKarmadaIoCronFederatedHPAV1Alpha1ManifestData
+	var model AutoscalingKarmadaIoCronFederatedHpaV1Alpha1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return

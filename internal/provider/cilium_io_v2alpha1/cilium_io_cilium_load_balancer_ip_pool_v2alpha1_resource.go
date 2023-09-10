@@ -29,22 +29,22 @@ import (
 )
 
 var (
-	_ resource.Resource                = &CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource{}
-	_ resource.ResourceWithConfigure   = &CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource{}
-	_ resource.ResourceWithImportState = &CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource{}
+	_ resource.Resource                = &CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource{}
+	_ resource.ResourceWithConfigure   = &CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource{}
+	_ resource.ResourceWithImportState = &CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource{}
 )
 
-func NewCiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource() resource.Resource {
-	return &CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource{}
+func NewCiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource() resource.Resource {
+	return &CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource{}
 }
 
-type CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource struct {
+type CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource struct {
 	kubernetesClient dynamic.Interface
 	fieldManager     string
 	forceConflicts   bool
 }
 
-type CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ResourceData struct {
+type CiliumIoCiliumLoadBalancerIppoolV2Alpha1ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
@@ -75,11 +75,11 @@ type CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ResourceData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource) Metadata(_ context.Context, request resource.MetadataRequest, response *resource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_load_balancer_ip_pool_v2alpha1"
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumLoadBalancerIPPool is a Kubernetes third-party resource which is used to defined pools of IPs which the operator can use to to allocate and advertise IPs for Services of type LoadBalancer.",
 		MarkdownDescription: "CiliumLoadBalancerIPPool is a Kubernetes third-party resource which is used to defined pools of IPs which the operator can use to to allocate and advertise IPs for Services of type LoadBalancer.",
@@ -285,7 +285,7 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Schema(_ context.Cont
 	}
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource) Configure(_ context.Context, request resource.ConfigureRequest, response *resource.ConfigureResponse) {
 	if request.ProviderData == nil {
 		return
 	}
@@ -310,10 +310,10 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Configure(_ context.C
 	}
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource) Create(ctx context.Context, request resource.CreateRequest, response *resource.CreateResponse) {
 	tflog.Debug(ctx, "Create resource k8s_cilium_io_cilium_load_balancer_ip_pool_v2alpha1")
 
-	var model CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ResourceData
+	var model CiliumIoCiliumLoadBalancerIppoolV2Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -370,7 +370,7 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Create(ctx context.Co
 		return
 	}
 
-	var readResponse CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumLoadBalancerIppoolV2Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -388,10 +388,10 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Create(ctx context.Co
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource) Read(ctx context.Context, request resource.ReadRequest, response *resource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_cilium_io_cilium_load_balancer_ip_pool_v2alpha1")
 
-	var data CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ResourceData
+	var data CiliumIoCiliumLoadBalancerIppoolV2Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -419,7 +419,7 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Read(ctx context.Cont
 		return
 	}
 
-	var readResponse CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumLoadBalancerIppoolV2Alpha1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -437,10 +437,10 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Read(ctx context.Cont
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource) Update(ctx context.Context, request resource.UpdateRequest, response *resource.UpdateResponse) {
 	tflog.Debug(ctx, "Update resource k8s_cilium_io_cilium_load_balancer_ip_pool_v2alpha1")
 
-	var model CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ResourceData
+	var model CiliumIoCiliumLoadBalancerIppoolV2Alpha1ResourceData
 	response.Diagnostics.Append(request.Plan.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -496,7 +496,7 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Update(ctx context.Co
 		return
 	}
 
-	var readResponse CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ResourceData
+	var readResponse CiliumIoCiliumLoadBalancerIppoolV2Alpha1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -514,10 +514,10 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Update(ctx context.Co
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource) Delete(ctx context.Context, request resource.DeleteRequest, response *resource.DeleteResponse) {
 	tflog.Debug(ctx, "Delete resource k8s_cilium_io_cilium_load_balancer_ip_pool_v2alpha1")
 
-	var data CiliumIoCiliumLoadBalancerIPPoolV2Alpha1ResourceData
+	var data CiliumIoCiliumLoadBalancerIppoolV2Alpha1ResourceData
 	response.Diagnostics.Append(request.State.Get(ctx, &data)...)
 	if response.Diagnostics.HasError() {
 		return
@@ -537,7 +537,7 @@ func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) Delete(ctx context.Co
 	}
 }
 
-func (r *CiliumIoCiliumLoadBalancerIPPoolV2Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
+func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Resource) ImportState(ctx context.Context, request resource.ImportStateRequest, response *resource.ImportStateResponse) {
 	if request.ID == "" {
 		response.Diagnostics.AddError(
 			"Error importing resource",

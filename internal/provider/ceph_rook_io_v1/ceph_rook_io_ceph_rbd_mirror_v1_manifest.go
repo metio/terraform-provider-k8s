@@ -21,16 +21,16 @@ import (
 )
 
 var (
-	_ datasource.DataSource = &CephRookIoCephRBDMirrorV1Manifest{}
+	_ datasource.DataSource = &CephRookIoCephRbdmirrorV1Manifest{}
 )
 
-func NewCephRookIoCephRBDMirrorV1Manifest() datasource.DataSource {
-	return &CephRookIoCephRBDMirrorV1Manifest{}
+func NewCephRookIoCephRbdmirrorV1Manifest() datasource.DataSource {
+	return &CephRookIoCephRbdmirrorV1Manifest{}
 }
 
-type CephRookIoCephRBDMirrorV1Manifest struct{}
+type CephRookIoCephRbdmirrorV1Manifest struct{}
 
-type CephRookIoCephRBDMirrorV1ManifestData struct {
+type CephRookIoCephRbdmirrorV1ManifestData struct {
 	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
@@ -209,11 +209,11 @@ type CephRookIoCephRBDMirrorV1ManifestData struct {
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
-func (r *CephRookIoCephRBDMirrorV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+func (r *CephRookIoCephRbdmirrorV1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_rbd_mirror_v1_manifest"
 }
 
-func (r *CephRookIoCephRBDMirrorV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+func (r *CephRookIoCephRbdmirrorV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephRBDMirror represents a Ceph RBD Mirror",
 		MarkdownDescription: "CephRBDMirror represents a Ceph RBD Mirror",
@@ -1382,10 +1382,10 @@ func (r *CephRookIoCephRBDMirrorV1Manifest) Schema(_ context.Context, _ datasour
 	}
 }
 
-func (r *CephRookIoCephRBDMirrorV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+func (r *CephRookIoCephRbdmirrorV1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
 	tflog.Debug(ctx, "Read resource k8s_ceph_rook_io_ceph_rbd_mirror_v1_manifest")
 
-	var model CephRookIoCephRBDMirrorV1ManifestData
+	var model CephRookIoCephRbdmirrorV1ManifestData
 	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
 	if response.Diagnostics.HasError() {
 		return
