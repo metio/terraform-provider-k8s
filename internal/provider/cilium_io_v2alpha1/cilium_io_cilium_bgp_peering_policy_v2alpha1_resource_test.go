@@ -9,7 +9,6 @@ import (
 	"context"
 	fwresource "github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/cilium_io_v2alpha1"
-	"github.com/metio/terraform-provider-k8s/internal/testutilities"
 	"testing"
 )
 
@@ -28,32 +27,5 @@ func TestCiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource_ValidateSchema(t *testin
 
 	if diagnostics.HasError() {
 		t.Fatalf("Schema validation diagnostics: %+v", diagnostics)
-	}
-}
-
-func TestCiliumIoCiliumBGPPeeringPolicyV2Alpha1Resource_ConfigurationErrors(t *testing.T) {
-	testCases := map[string]testutilities.ConfigurationErrorTestCase{
-		"empty-name": {
-			Configuration: `
-				metadata = {
-					name      = ""
-					
-				}
-			`,
-			ErrorRegex: "Attribute metadata.name string length must be at least 1, got: 0",
-		},
-		"missing-name": {
-			Configuration: `
-				metadata = {
-					
-				}
-			`,
-			ErrorRegex: `Inappropriate value for attribute "metadata": attribute "name" is required`,
-		},
-	}
-	for name, testCase := range testCases {
-		t.Run(name, func(t *testing.T) {
-			testutilities.VerifyConfigurationErrors(t, "resource", "k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1", testCase)
-		})
 	}
 }

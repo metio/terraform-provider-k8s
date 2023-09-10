@@ -9,7 +9,6 @@ import (
 	"context"
 	fwresource "github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/crd_projectcalico_org_v1"
-	"github.com/metio/terraform-provider-k8s/internal/testutilities"
 	"testing"
 )
 
@@ -28,32 +27,5 @@ func TestCrdProjectcalicoOrgClusterInformationV1Resource_ValidateSchema(t *testi
 
 	if diagnostics.HasError() {
 		t.Fatalf("Schema validation diagnostics: %+v", diagnostics)
-	}
-}
-
-func TestCrdProjectcalicoOrgClusterInformationV1Resource_ConfigurationErrors(t *testing.T) {
-	testCases := map[string]testutilities.ConfigurationErrorTestCase{
-		"empty-name": {
-			Configuration: `
-				metadata = {
-					name      = ""
-					
-				}
-			`,
-			ErrorRegex: "Attribute metadata.name string length must be at least 1, got: 0",
-		},
-		"missing-name": {
-			Configuration: `
-				metadata = {
-					
-				}
-			`,
-			ErrorRegex: `Inappropriate value for attribute "metadata": attribute "name" is required`,
-		},
-	}
-	for name, testCase := range testCases {
-		t.Run(name, func(t *testing.T) {
-			testutilities.VerifyConfigurationErrors(t, "resource", "k8s_crd_projectcalico_org_cluster_information_v1", testCase)
-		})
 	}
 }

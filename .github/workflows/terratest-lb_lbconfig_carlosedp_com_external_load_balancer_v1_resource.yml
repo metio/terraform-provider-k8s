@@ -8,6 +8,7 @@ on:
     paths:
       - examples/resources/k8s_lb_lbconfig_carlosedp_com_external_load_balancer_v1/**
       - internal/provider/lb_lbconfig_carlosedp_com_v1/lb_lbconfig_carlosedp_com_external_load_balancer_v1_resource.go
+      - internal/provider/lb_lbconfig_carlosedp_com_v1/lb_lbconfig_carlosedp_com_external_load_balancer_v1_resource_test.go
       - terratest/lb_lbconfig_carlosedp_com_v1/lb_lbconfig_carlosedp_com_external_load_balancer_v1_resource_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/lb_lbconfig_carlosedp_com_v1/lb_lbconfig_carlosedp_com_external_load_balancer_v1_resource_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestLbLbconfigCarlosedpComExternalLoadBalancerV1Resource ./terratest/lb_lbconfig_carlosedp_com_v1
+        run: go test -v -timeout=120s -count=1 -run TestLbLbconfigCarlosedpComExternalLoadBalancerV1Resource ./terratest/lb_lbconfig_carlosedp_com_v1

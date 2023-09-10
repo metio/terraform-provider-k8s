@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/{{ .FullDataSourceTypeName }}/**
       - internal/provider/{{ .Package }}/{{ .DataSourceFile }}
+      - internal/provider/{{ .Package }}/{{ .DataSourceTestFile }}
       - terratest/{{ .Package }}/{{ .DataSourceTestFile }}
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/{{ .Package }}/{{ .DataSourceTestFile }}
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run {{ .DataSourceTypeTest }} ./terratest/{{ .Package }}
+        run: go test -v -timeout=120s -count=1 -run {{ .DataSourceTypeTest }} ./terratest/{{ .Package }}

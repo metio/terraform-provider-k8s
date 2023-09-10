@@ -10,7 +10,7 @@ import (
 )
 
 func TestParseCRDv1Files(t *testing.T) {
-	crds := parseCRDv1Files("../schemas/crd_v1/")
+	crds := ParseCRDv1Files("../../../schemas/crd_v1/")
 
 	assert.Greater(t, len(crds), 0)
 }

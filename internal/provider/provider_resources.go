@@ -9,11 +9,13 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/acid_zalan_do_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/acme_cert_manager_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/admissionregistration_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/agent_k8s_elastic_co_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apicodegen_apimatic_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apiextensions_crossplane_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apiextensions_crossplane_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apigatewayv2_services_k8s_aws_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/apiregistration_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apm_k8s_elastic_co_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apm_k8s_elastic_co_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/app_kiegroup_org_v1beta1"
@@ -29,6 +31,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/apps_kubeedge_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apps_m88i_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apps_redhat_com_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/apps_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/aquasecurity_github_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/argoproj_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/argoproj_io_v1beta1"
@@ -38,6 +41,9 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_k8s_io_v1beta2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_karmada_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_v2"
+	"github.com/metio/terraform-provider-k8s/internal/provider/batch_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/batch_volcano_sh_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/beat_k8s_elastic_co_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/binding_operators_coreos_com_v1alpha1"
@@ -52,6 +58,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/capsule_clastix_io_v1beta2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/ceph_rook_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/cert_manager_io_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/certificates_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/chaos_mesh_org_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/charts_flagsmith_com_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/charts_helm_k8s_io_v1alpha1"
@@ -70,6 +77,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/core_openfeature_dev_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/core_openfeature_dev_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/core_strimzi_io_v1beta2"
+	"github.com/metio/terraform-provider-k8s/internal/provider/core_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/couchbase_com_v2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/crd_projectcalico_org_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/data_fluid_io_v1alpha1"
@@ -77,6 +85,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/devices_kubeedge_io_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/digitalis_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/digitalis_io_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/discovery_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/dynamodb_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/ec2_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/ecr_services_k8s_aws_v1alpha1"
@@ -90,6 +99,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/enterprise_gloo_solo_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/enterprisesearch_k8s_elastic_co_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/enterprisesearch_k8s_elastic_co_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/events_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/execution_furiko_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/executor_testkube_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/expansion_gatekeeper_sh_v1alpha1"
@@ -103,6 +113,8 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/flagger_app_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/flink_apache_org_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/flow_volcano_sh_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/flowcontrol_apiserver_k8s_io_v1beta2"
+	"github.com/metio/terraform-provider-k8s/internal/provider/flowcontrol_apiserver_k8s_io_v1beta3"
 	"github.com/metio/terraform-provider-k8s/internal/provider/fossul_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/gateway_networking_k8s_io_v1alpha2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/gateway_nginx_org_v1alpha1"
@@ -182,6 +194,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/mutations_gatekeeper_sh_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/networking_istio_io_v1alpha3"
 	"github.com/metio/terraform-provider-k8s/internal/provider/networking_istio_io_v1beta1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/networking_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/networking_karmada_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/nfd_k8s_sigs_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/nodeinfo_volcano_sh_v1alpha1"
@@ -205,9 +218,11 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/pkg_crossplane_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/policy_clusterpedia_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/policy_karmada_io_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/policy_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/postgres_operator_crunchydata_com_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/prometheusservice_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/quay_redhat_com_v1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/rbac_authorization_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/rds_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/redhatcop_redhat_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/registry_apicur_io_v1"
@@ -222,6 +237,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/rules_kubeedge_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/s3_services_k8s_aws_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/sagemaker_services_k8s_aws_v1alpha1"
+	"github.com/metio/terraform-provider-k8s/internal/provider/scheduling_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/scheduling_koordinator_sh_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/scheduling_sigs_k8s_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/scheduling_volcano_sh_v1beta1"
@@ -248,6 +264,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/provider/source_toolkit_fluxcd_io_v1beta1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/source_toolkit_fluxcd_io_v1beta2"
 	"github.com/metio/terraform-provider-k8s/internal/provider/sparkoperator_k8s_io_v1beta2"
+	"github.com/metio/terraform-provider-k8s/internal/provider/storage_k8s_io_v1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/stunner_l7mp_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/telemetry_istio_io_v1alpha1"
 	"github.com/metio/terraform-provider-k8s/internal/provider/templates_gatekeeper_sh_v1"
@@ -273,6 +290,8 @@ func allResources() []func() resource.Resource {
 		acid_zalan_do_v1.NewAcidZalanDoPostgresqlV1Resource,
 		acme_cert_manager_io_v1.NewAcmeCertManagerIoChallengeV1Resource,
 		acme_cert_manager_io_v1.NewAcmeCertManagerIoOrderV1Resource,
+		admissionregistration_k8s_io_v1.NewAdmissionregistrationK8SIoMutatingWebhookConfigurationV1Resource,
+		admissionregistration_k8s_io_v1.NewAdmissionregistrationK8SIoValidatingWebhookConfigurationV1Resource,
 		agent_k8s_elastic_co_v1alpha1.NewAgentK8SElasticCoAgentV1Alpha1Resource,
 		apicodegen_apimatic_io_v1beta1.NewApicodegenApimaticIoAPIMaticV1Beta1Resource,
 		apiextensions_crossplane_io_v1.NewApiextensionsCrossplaneIoCompositeResourceDefinitionV1Resource,
@@ -286,6 +305,7 @@ func allResources() []func() resource.Resource {
 		apigatewayv2_services_k8s_aws_v1alpha1.NewApigatewayv2ServicesK8SAwsRouteV1Alpha1Resource,
 		apigatewayv2_services_k8s_aws_v1alpha1.NewApigatewayv2ServicesK8SAwsStageV1Alpha1Resource,
 		apigatewayv2_services_k8s_aws_v1alpha1.NewApigatewayv2ServicesK8SAwsVPCLinkV1Alpha1Resource,
+		apiregistration_k8s_io_v1.NewApiregistrationK8SIoAPIServiceV1Resource,
 		apm_k8s_elastic_co_v1.NewApmK8SElasticCoApmServerV1Resource,
 		apm_k8s_elastic_co_v1beta1.NewApmK8SElasticCoApmServerV1Beta1Resource,
 		app_kiegroup_org_v1beta1.NewAppKiegroupOrgKogitoBuildV1Beta1Resource,
@@ -317,6 +337,10 @@ func allResources() []func() resource.Resource {
 		apps_kubeedge_io_v1alpha1.NewAppsKubeedgeIoNodeGroupV1Alpha1Resource,
 		apps_m88i_io_v1alpha1.NewAppsM88IIoNexusV1Alpha1Resource,
 		apps_redhat_com_v1alpha1.NewAppsRedhatComClusterImpairmentV1Alpha1Resource,
+		apps_v1.NewAppsDaemonSetV1Resource,
+		apps_v1.NewAppsDeploymentV1Resource,
+		apps_v1.NewAppsReplicaSetV1Resource,
+		apps_v1.NewAppsStatefulSetV1Resource,
 		aquasecurity_github_io_v1alpha1.NewAquasecurityGithubIoAquaStarboardV1Alpha1Resource,
 		argoproj_io_v1alpha1.NewArgoprojIoAppProjectV1Alpha1Resource,
 		argoproj_io_v1alpha1.NewArgoprojIoApplicationSetV1Alpha1Resource,
@@ -333,6 +357,10 @@ func allResources() []func() resource.Resource {
 		autoscaling_k8s_io_v1beta2.NewAutoscalingK8SIoVerticalPodAutoscalerV1Beta2Resource,
 		autoscaling_karmada_io_v1alpha1.NewAutoscalingKarmadaIoCronFederatedHPAV1Alpha1Resource,
 		autoscaling_karmada_io_v1alpha1.NewAutoscalingKarmadaIoFederatedHPAV1Alpha1Resource,
+		autoscaling_v1.NewAutoscalingHorizontalPodAutoscalerV1Resource,
+		autoscaling_v2.NewAutoscalingHorizontalPodAutoscalerV2Resource,
+		batch_v1.NewBatchCronJobV1Resource,
+		batch_v1.NewBatchJobV1Resource,
 		batch_volcano_sh_v1alpha1.NewBatchVolcanoShJobV1Alpha1Resource,
 		beat_k8s_elastic_co_v1beta1.NewBeatK8SElasticCoBeatV1Beta1Resource,
 		binding_operators_coreos_com_v1alpha1.NewBindingOperatorsCoreosComServiceBindingV1Alpha1Resource,
@@ -374,6 +402,7 @@ func allResources() []func() resource.Resource {
 		cert_manager_io_v1.NewCertManagerIoCertificateV1Resource,
 		cert_manager_io_v1.NewCertManagerIoClusterIssuerV1Resource,
 		cert_manager_io_v1.NewCertManagerIoIssuerV1Resource,
+		certificates_k8s_io_v1.NewCertificatesK8SIoCertificateSigningRequestV1Resource,
 		chaos_mesh_org_v1alpha1.NewChaosMeshOrgAWSChaosV1Alpha1Resource,
 		chaos_mesh_org_v1alpha1.NewChaosMeshOrgAzureChaosV1Alpha1Resource,
 		chaos_mesh_org_v1alpha1.NewChaosMeshOrgBlockChaosV1Alpha1Resource,
@@ -431,6 +460,17 @@ func allResources() []func() resource.Resource {
 		core_openfeature_dev_v1alpha1.NewCoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Resource,
 		core_openfeature_dev_v1alpha2.NewCoreOpenfeatureDevFeatureFlagConfigurationV1Alpha2Resource,
 		core_strimzi_io_v1beta2.NewCoreStrimziIoStrimziPodSetV1Beta2Resource,
+		core_v1.NewConfigMapV1Resource,
+		core_v1.NewEndpointsV1Resource,
+		core_v1.NewLimitRangeV1Resource,
+		core_v1.NewNamespaceV1Resource,
+		core_v1.NewPersistentVolumeClaimV1Resource,
+		core_v1.NewPersistentVolumeV1Resource,
+		core_v1.NewPodV1Resource,
+		core_v1.NewReplicationControllerV1Resource,
+		core_v1.NewSecretV1Resource,
+		core_v1.NewServiceAccountV1Resource,
+		core_v1.NewServiceV1Resource,
 		couchbase_com_v2.NewCouchbaseComCouchbaseAutoscalerV2Resource,
 		couchbase_com_v2.NewCouchbaseComCouchbaseBackupRestoreV2Resource,
 		couchbase_com_v2.NewCouchbaseComCouchbaseBackupV2Resource,
@@ -479,6 +519,7 @@ func allResources() []func() resource.Resource {
 		devices_kubeedge_io_v1alpha2.NewDevicesKubeedgeIoDeviceV1Alpha2Resource,
 		digitalis_io_v1.NewDigitalisIoValsSecretV1Resource,
 		digitalis_io_v1beta1.NewDigitalisIoDbSecretV1Beta1Resource,
+		discovery_k8s_io_v1.NewDiscoveryK8SIoEndpointSliceV1Resource,
 		dynamodb_services_k8s_aws_v1alpha1.NewDynamodbServicesK8SAwsBackupV1Alpha1Resource,
 		dynamodb_services_k8s_aws_v1alpha1.NewDynamodbServicesK8SAwsGlobalTableV1Alpha1Resource,
 		dynamodb_services_k8s_aws_v1alpha1.NewDynamodbServicesK8SAwsTableV1Alpha1Resource,
@@ -515,6 +556,7 @@ func allResources() []func() resource.Resource {
 		enterprise_gloo_solo_io_v1.NewEnterpriseGlooSoloIoAuthConfigV1Resource,
 		enterprisesearch_k8s_elastic_co_v1.NewEnterprisesearchK8SElasticCoEnterpriseSearchV1Resource,
 		enterprisesearch_k8s_elastic_co_v1beta1.NewEnterprisesearchK8SElasticCoEnterpriseSearchV1Beta1Resource,
+		events_k8s_io_v1.NewEventsK8SIoEventV1Resource,
 		execution_furiko_io_v1alpha1.NewExecutionFurikoIoJobConfigV1Alpha1Resource,
 		execution_furiko_io_v1alpha1.NewExecutionFurikoIoJobV1Alpha1Resource,
 		executor_testkube_io_v1.NewExecutorTestkubeIoExecutorV1Resource,
@@ -539,6 +581,10 @@ func allResources() []func() resource.Resource {
 		flink_apache_org_v1beta1.NewFlinkApacheOrgFlinkSessionJobV1Beta1Resource,
 		flow_volcano_sh_v1alpha1.NewFlowVolcanoShJobFlowV1Alpha1Resource,
 		flow_volcano_sh_v1alpha1.NewFlowVolcanoShJobTemplateV1Alpha1Resource,
+		flowcontrol_apiserver_k8s_io_v1beta2.NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta2Resource,
+		flowcontrol_apiserver_k8s_io_v1beta2.NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta2Resource,
+		flowcontrol_apiserver_k8s_io_v1beta3.NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta3Resource,
+		flowcontrol_apiserver_k8s_io_v1beta3.NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta3Resource,
 		fossul_io_v1.NewFossulIoBackupConfigV1Resource,
 		fossul_io_v1.NewFossulIoBackupScheduleV1Resource,
 		fossul_io_v1.NewFossulIoBackupV1Resource,
@@ -864,7 +910,6 @@ func allResources() []func() resource.Resource {
 		monitoring_coreos_com_v1alpha1.NewMonitoringCoreosComScrapeConfigV1Alpha1Resource,
 		mq_services_k8s_aws_v1alpha1.NewMqServicesK8SAwsBrokerV1Alpha1Resource,
 		multicluster_x_k8s_io_v1alpha1.NewMulticlusterXK8SIoServiceImportV1Alpha1Resource,
-		multicluster_x_k8s_io_v1alpha1.NewMulticlusterXK8SIoServiceImportV1Alpha1Resource,
 		mutations_gatekeeper_sh_v1.NewMutationsGatekeeperShAssignMetadataV1Resource,
 		mutations_gatekeeper_sh_v1.NewMutationsGatekeeperShAssignV1Resource,
 		mutations_gatekeeper_sh_v1.NewMutationsGatekeeperShModifySetV1Resource,
@@ -891,6 +936,9 @@ func allResources() []func() resource.Resource {
 		networking_istio_io_v1beta1.NewNetworkingIstioIoVirtualServiceV1Beta1Resource,
 		networking_istio_io_v1beta1.NewNetworkingIstioIoWorkloadEntryV1Beta1Resource,
 		networking_istio_io_v1beta1.NewNetworkingIstioIoWorkloadGroupV1Beta1Resource,
+		networking_k8s_io_v1.NewNetworkingK8SIoIngressClassV1Resource,
+		networking_k8s_io_v1.NewNetworkingK8SIoIngressV1Resource,
+		networking_k8s_io_v1.NewNetworkingK8SIoNetworkPolicyV1Resource,
 		networking_karmada_io_v1alpha1.NewNetworkingKarmadaIoMultiClusterIngressV1Alpha1Resource,
 		networking_karmada_io_v1alpha1.NewNetworkingKarmadaIoMultiClusterServiceV1Alpha1Resource,
 		nfd_k8s_sigs_io_v1alpha1.NewNfdK8SSigsIoNodeFeatureRuleV1Alpha1Resource,
@@ -940,11 +988,16 @@ func allResources() []func() resource.Resource {
 		policy_karmada_io_v1alpha1.NewPolicyKarmadaIoFederatedResourceQuotaV1Alpha1Resource,
 		policy_karmada_io_v1alpha1.NewPolicyKarmadaIoOverridePolicyV1Alpha1Resource,
 		policy_karmada_io_v1alpha1.NewPolicyKarmadaIoPropagationPolicyV1Alpha1Resource,
+		policy_v1.NewPolicyPodDisruptionBudgetV1Resource,
 		postgres_operator_crunchydata_com_v1beta1.NewPostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource,
 		prometheusservice_services_k8s_aws_v1alpha1.NewPrometheusserviceServicesK8SAwsAlertManagerDefinitionV1Alpha1Resource,
 		prometheusservice_services_k8s_aws_v1alpha1.NewPrometheusserviceServicesK8SAwsRuleGroupsNamespaceV1Alpha1Resource,
 		prometheusservice_services_k8s_aws_v1alpha1.NewPrometheusserviceServicesK8SAwsWorkspaceV1Alpha1Resource,
 		quay_redhat_com_v1.NewQuayRedhatComQuayRegistryV1Resource,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoClusterRoleBindingV1Resource,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoClusterRoleV1Resource,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoRoleBindingV1Resource,
+		rbac_authorization_k8s_io_v1.NewRbacAuthorizationK8SIoRoleV1Resource,
 		rds_services_k8s_aws_v1alpha1.NewRdsServicesK8SAwsDBClusterParameterGroupV1Alpha1Resource,
 		rds_services_k8s_aws_v1alpha1.NewRdsServicesK8SAwsDBClusterV1Alpha1Resource,
 		rds_services_k8s_aws_v1alpha1.NewRdsServicesK8SAwsDBInstanceV1Alpha1Resource,
@@ -995,6 +1048,7 @@ func allResources() []func() resource.Resource {
 		sagemaker_services_k8s_aws_v1alpha1.NewSagemakerServicesK8SAwsTrainingJobV1Alpha1Resource,
 		sagemaker_services_k8s_aws_v1alpha1.NewSagemakerServicesK8SAwsTransformJobV1Alpha1Resource,
 		sagemaker_services_k8s_aws_v1alpha1.NewSagemakerServicesK8SAwsUserProfileV1Alpha1Resource,
+		scheduling_k8s_io_v1.NewSchedulingK8SIoPriorityClassV1Resource,
 		scheduling_koordinator_sh_v1alpha1.NewSchedulingKoordinatorShDeviceV1Alpha1Resource,
 		scheduling_koordinator_sh_v1alpha1.NewSchedulingKoordinatorShPodMigrationJobV1Alpha1Resource,
 		scheduling_koordinator_sh_v1alpha1.NewSchedulingKoordinatorShReservationV1Alpha1Resource,
@@ -1052,6 +1106,10 @@ func allResources() []func() resource.Resource {
 		source_toolkit_fluxcd_io_v1beta2.NewSourceToolkitFluxcdIoOCIRepositoryV1Beta2Resource,
 		sparkoperator_k8s_io_v1beta2.NewSparkoperatorK8SIoScheduledSparkApplicationV1Beta2Resource,
 		sparkoperator_k8s_io_v1beta2.NewSparkoperatorK8SIoSparkApplicationV1Beta2Resource,
+		storage_k8s_io_v1.NewStorageK8SIoCSIDriverV1Resource,
+		storage_k8s_io_v1.NewStorageK8SIoCSINodeV1Resource,
+		storage_k8s_io_v1.NewStorageK8SIoStorageClassV1Resource,
+		storage_k8s_io_v1.NewStorageK8SIoVolumeAttachmentV1Resource,
 		stunner_l7mp_io_v1alpha1.NewStunnerL7MpIoGatewayConfigV1Alpha1Resource,
 		telemetry_istio_io_v1alpha1.NewTelemetryIstioIoTelemetryV1Alpha1Resource,
 		templates_gatekeeper_sh_v1.NewTemplatesGatekeeperShConstraintTemplateV1Resource,

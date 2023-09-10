@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_nodeinfo_volcano_sh_numatopology_v1alpha1/**
       - internal/provider/nodeinfo_volcano_sh_v1alpha1/nodeinfo_volcano_sh_numatopology_v1alpha1_data_source.go
+      - internal/provider/nodeinfo_volcano_sh_v1alpha1/nodeinfo_volcano_sh_numatopology_v1alpha1_data_source_test.go
       - terratest/nodeinfo_volcano_sh_v1alpha1/nodeinfo_volcano_sh_numatopology_v1alpha1_data_source_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/nodeinfo_volcano_sh_v1alpha1/nodeinfo_volcano_sh_numatopology_v1alpha1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestNodeinfoVolcanoShNumatopologyV1Alpha1DataSource ./terratest/nodeinfo_volcano_sh_v1alpha1
+        run: go test -v -timeout=120s -count=1 -run TestNodeinfoVolcanoShNumatopologyV1Alpha1DataSource ./terratest/nodeinfo_volcano_sh_v1alpha1

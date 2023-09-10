@@ -8,6 +8,7 @@ on:
     paths:
       - examples/data-sources/k8s_scheduling_volcano_sh_pod_group_v1beta1/**
       - internal/provider/scheduling_volcano_sh_v1beta1/scheduling_volcano_sh_pod_group_v1beta1_data_source.go
+      - internal/provider/scheduling_volcano_sh_v1beta1/scheduling_volcano_sh_pod_group_v1beta1_data_source_test.go
       - terratest/scheduling_volcano_sh_v1beta1/scheduling_volcano_sh_pod_group_v1beta1_data_source_test.go
 jobs:
   terratest:
@@ -38,6 +39,9 @@ jobs:
       - id: install
         name: Install Provider
         run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/scheduling_volcano_sh_v1beta1/scheduling_volcano_sh_pod_group_v1beta1_data_source_test.go
       - id: terratest
         name: Run Terratest Tests
-        run: go test -v -timeout=120s -count=1 -tags testing -run TestSchedulingVolcanoShPodGroupV1Beta1DataSource ./terratest/scheduling_volcano_sh_v1beta1
+        run: go test -v -timeout=120s -count=1 -run TestSchedulingVolcanoShPodGroupV1Beta1DataSource ./terratest/scheduling_volcano_sh_v1beta1
