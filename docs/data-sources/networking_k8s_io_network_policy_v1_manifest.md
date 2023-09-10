@@ -106,9 +106,9 @@ Required:
 
 Optional:
 
-- `egress` (Attributes List) List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8 (see [below for nested schema](#nestedatt--spec--egress))
-- `ingress` (Attributes List) List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default) (see [below for nested schema](#nestedatt--spec--ingress))
-- `policy_types` (List of String) List of rule types that the NetworkPolicy relates to. Valid options are ['Ingress'], ['Egress'], or ['Ingress', 'Egress']. If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ 'Egress' ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include 'Egress' (since such a policy would not include an Egress section and would otherwise default to just [ 'Ingress' ]). This field is beta-level in 1.8
+- `egress` (Attributes List) egress is a list of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8 (see [below for nested schema](#nestedatt--spec--egress))
+- `ingress` (Attributes List) ingress is a list of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default) (see [below for nested schema](#nestedatt--spec--ingress))
+- `policy_types` (List of String) policyTypes is a list of rule types that the NetworkPolicy relates to. Valid options are ['Ingress'], ['Egress'], or ['Ingress', 'Egress']. If this field is not specified, it will default based on the existence of ingress or egress rules; policies that contain an egress section are assumed to affect egress, and all policies (whether or not they contain an ingress section) are assumed to affect ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ 'Egress' ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include 'Egress' (since such a policy would not include an egress section and would otherwise default to just [ 'Ingress' ]). This field is beta-level in 1.8
 
 <a id="nestedatt--spec--pod_selector"></a>
 ### Nested Schema for `spec.pod_selector`
@@ -137,17 +137,17 @@ Optional:
 
 Optional:
 
-- `ports` (Attributes List) List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list. (see [below for nested schema](#nestedatt--spec--egress--ports))
-- `to` (Attributes List) List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list. (see [below for nested schema](#nestedatt--spec--egress--to))
+- `ports` (Attributes List) ports is a list of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list. (see [below for nested schema](#nestedatt--spec--egress--ports))
+- `to` (Attributes List) to is a list of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list. (see [below for nested schema](#nestedatt--spec--egress--to))
 
 <a id="nestedatt--spec--egress--ports"></a>
 ### Nested Schema for `spec.egress.ports`
 
 Optional:
 
-- `end_port` (Number) If set, indicates that the range of ports from port to endPort, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.
+- `end_port` (Number) endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.
 - `port` (String) IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.
-- `protocol` (String) The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
+- `protocol` (String) protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
 
 
 <a id="nestedatt--spec--egress--to"></a>
@@ -164,11 +164,11 @@ Optional:
 
 Required:
 
-- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24' or '2001:db8::/64'
+- `cidr` (String) cidr is a string representing the IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64'
 
 Optional:
 
-- `except` (List of String) Except is a slice of CIDRs that should not be included within an IP Block Valid examples are '192.168.1.0/24' or '2001:db8::/64' Except values will be rejected if they are outside the CIDR range
+- `except` (List of String) except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range
 
 
 <a id="nestedatt--spec--egress--to--namespace_selector"></a>
@@ -222,8 +222,8 @@ Optional:
 
 Optional:
 
-- `from` (Attributes List) List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list. (see [below for nested schema](#nestedatt--spec--ingress--from))
-- `ports` (Attributes List) List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list. (see [below for nested schema](#nestedatt--spec--ingress--ports))
+- `from` (Attributes List) from is a list of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list. (see [below for nested schema](#nestedatt--spec--ingress--from))
+- `ports` (Attributes List) ports is a list of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list. (see [below for nested schema](#nestedatt--spec--ingress--ports))
 
 <a id="nestedatt--spec--ingress--from"></a>
 ### Nested Schema for `spec.ingress.from`
@@ -239,11 +239,11 @@ Optional:
 
 Required:
 
-- `cidr` (String) CIDR is a string representing the IP Block Valid examples are '192.168.1.0/24' or '2001:db8::/64'
+- `cidr` (String) cidr is a string representing the IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64'
 
 Optional:
 
-- `except` (List of String) Except is a slice of CIDRs that should not be included within an IP Block Valid examples are '192.168.1.0/24' or '2001:db8::/64' Except values will be rejected if they are outside the CIDR range
+- `except` (List of String) except is a slice of CIDRs that should not be included within an IPBlock Valid examples are '192.168.1.0/24' or '2001:db8::/64' Except values will be rejected if they are outside the cidr range
 
 
 <a id="nestedatt--spec--ingress--from--namespace_selector"></a>
@@ -296,6 +296,6 @@ Optional:
 
 Optional:
 
-- `end_port` (Number) If set, indicates that the range of ports from port to endPort, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.
+- `end_port` (Number) endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.
 - `port` (String) IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.
-- `protocol` (String) The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
+- `protocol` (String) protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
