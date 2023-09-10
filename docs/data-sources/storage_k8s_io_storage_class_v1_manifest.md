@@ -31,17 +31,17 @@ data "k8s_storage_k8s_io_storage_class_v1_manifest" "example" {
 
 ### Required
 
-- `k8s_provisioner` (String) Provisioner indicates the type of the provisioner.
+- `k8s_provisioner` (String) provisioner indicates the type of the provisioner.
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
 
 ### Optional
 
-- `allow_volume_expansion` (Boolean) AllowVolumeExpansion shows whether the storage class allow volume expand
-- `allowed_topologies` (Attributes List) Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature. (see [below for nested schema](#nestedatt--allowed_topologies))
-- `mount_options` (List of String) Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ['ro', 'soft']. Not validated - mount of the PVs will simply fail if one is invalid.
-- `parameters` (Map of String) Parameters holds the parameters for the provisioner that should create volumes of this storage class.
-- `reclaim_policy` (String) Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.
-- `volume_binding_mode` (String) VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
+- `allow_volume_expansion` (Boolean) allowVolumeExpansion shows whether the storage class allow volume expand.
+- `allowed_topologies` (Attributes List) allowedTopologies restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature. (see [below for nested schema](#nestedatt--allowed_topologies))
+- `mount_options` (List of String) mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. ['ro', 'soft']. Not validated - mount of the PVs will simply fail if one is invalid.
+- `parameters` (Map of String) parameters holds the parameters for the provisioner that should create volumes of this storage class.
+- `reclaim_policy` (String) reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete.
+- `volume_binding_mode` (String) volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
 
 ### Read-Only
 

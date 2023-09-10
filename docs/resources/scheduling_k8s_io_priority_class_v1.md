@@ -27,7 +27,7 @@ resource "k8s_scheduling_k8s_io_priority_class_v1" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `value` (Number) The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
+- `value` (Number) value represents the integer value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
 
 ### Optional
 
@@ -35,7 +35,7 @@ resource "k8s_scheduling_k8s_io_priority_class_v1" "example" {
 - `field_manager` (Boolean) The name of the manager used to track field ownership. If not specified uses the value from the provider configuration.
 - `force_conflicts` (Boolean) If `true`, server-side apply will force the changes against conflicts. If not specified uses the value from the provider configuration.
 - `global_default` (Boolean) globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as 'globalDefault'. However, if more than one PriorityClasses exists with their 'globalDefault' field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
-- `preemption_policy` (String) PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
+- `preemption_policy` (String) preemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
 - `wait_for` (Attributes List) Wait for specific conditions after create/update of resources. (see [below for nested schema](#nestedatt--wait_for))
 
 ### Read-Only

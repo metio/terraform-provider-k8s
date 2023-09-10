@@ -62,7 +62,7 @@ Optional:
 
 Optional:
 
-- `controller` (String) Controller refers to the name of the controller that should handle this class. This allows for different 'flavors' that are controlled by the same controller. For example, you may have different Parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. 'acme.io/ingress-controller'. This field is immutable.
+- `controller` (String) controller refers to the name of the controller that should handle this class. This allows for different 'flavors' that are controlled by the same controller. For example, you may have different parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. 'acme.io/ingress-controller'. This field is immutable.
 - `parameters` (Attributes) IngressClassParametersReference identifies an API object. This can be used to specify a cluster or namespace-scoped resource. (see [below for nested schema](#nestedatt--spec--parameters))
 
 <a id="nestedatt--spec--parameters"></a>
@@ -70,11 +70,11 @@ Optional:
 
 Required:
 
-- `kind` (String) Kind is the type of resource being referenced.
-- `name` (String) Name is the name of resource being referenced.
+- `kind` (String) kind is the type of resource being referenced.
+- `name` (String) name is the name of resource being referenced.
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
-- `namespace` (String) Namespace is the namespace of the resource being referenced. This field is required when scope is set to 'Namespace' and must be unset when scope is set to 'Cluster'.
-- `scope` (String) Scope represents if this refers to a cluster or namespace scoped resource. This may be set to 'Cluster' (default) or 'Namespace'.
+- `api_group` (String) apiGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `namespace` (String) namespace is the namespace of the resource being referenced. This field is required when scope is set to 'Namespace' and must be unset when scope is set to 'Cluster'.
+- `scope` (String) scope represents if this refers to a cluster or namespace scoped resource. This may be set to 'Cluster' (default) or 'Namespace'.

@@ -58,8 +58,8 @@ Optional:
 
 Required:
 
-- `attacher` (String) Attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName().
-- `node_name` (String) The node that the volume should be attached to.
+- `attacher` (String) attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName().
+- `node_name` (String) nodeName represents the node that the volume should be attached to.
 - `source` (Attributes) VolumeAttachmentSource represents a volume that should be attached. Right now only PersistenVolumes can be attached via external attacher, in future we may allow also inline volumes in pods. Exactly one member can be set. (see [below for nested schema](#nestedatt--spec--source))
 
 <a id="nestedatt--spec--source"></a>
@@ -68,7 +68,7 @@ Required:
 Optional:
 
 - `inline_volume_spec` (Attributes) PersistentVolumeSpec is the specification of a persistent volume. (see [below for nested schema](#nestedatt--spec--source--inline_volume_spec))
-- `persistent_volume_name` (String) Name of the persistent volume to attach.
+- `persistent_volume_name` (String) persistentVolumeName represents the name of the persistent volume to attach.
 
 <a id="nestedatt--spec--source--inline_volume_spec"></a>
 ### Nested Schema for `spec.source.inline_volume_spec`

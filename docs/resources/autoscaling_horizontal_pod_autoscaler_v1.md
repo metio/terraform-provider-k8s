@@ -59,25 +59,25 @@ Optional:
 
 Required:
 
-- `max_replicas` (Number) upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.
+- `max_replicas` (Number) maxReplicas is the upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.
 - `scale_target_ref` (Attributes) CrossVersionObjectReference contains enough information to let you identify the referred resource. (see [below for nested schema](#nestedatt--spec--scale_target_ref))
 
 Optional:
 
 - `min_replicas` (Number) minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
-- `target_cpu_utilization_percentage` (Number) target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used.
+- `target_cpu_utilization_percentage` (Number) targetCPUUtilizationPercentage is the target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used.
 
 <a id="nestedatt--spec--scale_target_ref"></a>
 ### Nested Schema for `spec.scale_target_ref`
 
 Required:
 
-- `kind` (String) Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
+- `kind` (String) kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 Optional:
 
-- `api_version` (String) API version of the referent
+- `api_version` (String) apiVersion is the API version of the referent
 
 
 

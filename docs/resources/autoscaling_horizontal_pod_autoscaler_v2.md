@@ -73,12 +73,12 @@ Optional:
 
 Required:
 
-- `kind` (String) Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
+- `kind` (String) kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 Optional:
 
-- `api_version` (String) API version of the referent
+- `api_version` (String) apiVersion is the API version of the referent
 
 
 <a id="nestedatt--spec--behavior"></a>
@@ -96,16 +96,16 @@ Optional:
 
 - `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--behavior--scale_down--policies))
 - `select_policy` (String) selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.
-- `stabilization_window_seconds` (Number) StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
+- `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
 <a id="nestedatt--spec--behavior--scale_down--policies"></a>
 ### Nested Schema for `spec.behavior.scale_down.stabilization_window_seconds`
 
 Required:
 
-- `period_seconds` (Number) PeriodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
-- `type` (String) Type is used to specify the scaling policy.
-- `value` (Number) Value contains the amount of change which is permitted by the policy. It must be greater than zero
+- `period_seconds` (Number) periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
+- `type` (String) type is used to specify the scaling policy.
+- `value` (Number) value contains the amount of change which is permitted by the policy. It must be greater than zero
 
 
 
@@ -116,16 +116,16 @@ Optional:
 
 - `policies` (Attributes List) policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid (see [below for nested schema](#nestedatt--spec--behavior--scale_up--policies))
 - `select_policy` (String) selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.
-- `stabilization_window_seconds` (Number) StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
+- `stabilization_window_seconds` (Number) stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
 
 <a id="nestedatt--spec--behavior--scale_up--policies"></a>
 ### Nested Schema for `spec.behavior.scale_up.stabilization_window_seconds`
 
 Required:
 
-- `period_seconds` (Number) PeriodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
-- `type` (String) Type is used to specify the scaling policy.
-- `value` (Number) Value contains the amount of change which is permitted by the policy. It must be greater than zero
+- `period_seconds` (Number) periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
+- `type` (String) type is used to specify the scaling policy.
+- `value` (Number) value contains the amount of change which is permitted by the policy. It must be greater than zero
 
 
 
@@ -240,12 +240,12 @@ Required:
 
 Required:
 
-- `kind` (String) Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
+- `kind` (String) kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+- `name` (String) name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 Optional:
 
-- `api_version` (String) API version of the referent
+- `api_version` (String) apiVersion is the API version of the referent
 
 
 <a id="nestedatt--spec--metrics--object--metric"></a>
