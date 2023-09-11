@@ -508,7 +508,8 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) Create(ctx context.Context, r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1alpha3", Resource: "Gateway"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1alpha3", Resource: "gateways"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -559,7 +560,7 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) Read(ctx context.Context, req
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1alpha3", Resource: "Gateway"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1alpha3", Resource: "gateways"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -636,7 +637,8 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) Update(ctx context.Context, r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1alpha3", Resource: "Gateway"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1alpha3", Resource: "gateways"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -687,7 +689,7 @@ func (r *NetworkingIstioIoGatewayV1Alpha3Resource) Delete(ctx context.Context, r
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1alpha3", Resource: "Gateway"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1alpha3", Resource: "gateways"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -1387,7 +1387,8 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Resource) Cre
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1alpha1", Resource: "RedisEnterpriseActiveActiveDatabase"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1alpha1", Resource: "redisenterpriseactiveactivedatabases"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -1438,7 +1439,7 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Resource) Rea
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1alpha1", Resource: "RedisEnterpriseActiveActiveDatabase"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1alpha1", Resource: "redisenterpriseactiveactivedatabases"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -1515,7 +1516,8 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Resource) Upd
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1alpha1", Resource: "RedisEnterpriseActiveActiveDatabase"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1alpha1", Resource: "redisenterpriseactiveactivedatabases"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -1566,7 +1568,7 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Resource) Del
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1alpha1", Resource: "RedisEnterpriseActiveActiveDatabase"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1alpha1", Resource: "redisenterpriseactiveactivedatabases"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -477,7 +477,8 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Resource) Create(ctx context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1beta1", Resource: "RequestAuthentication"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1beta1", Resource: "requestauthentications"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -528,7 +529,7 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Resource) Read(ctx context.C
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1beta1", Resource: "RequestAuthentication"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1beta1", Resource: "requestauthentications"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -605,7 +606,8 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Resource) Update(ctx context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1beta1", Resource: "RequestAuthentication"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1beta1", Resource: "requestauthentications"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -656,7 +658,7 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Resource) Delete(ctx context
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1beta1", Resource: "RequestAuthentication"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1beta1", Resource: "requestauthentications"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

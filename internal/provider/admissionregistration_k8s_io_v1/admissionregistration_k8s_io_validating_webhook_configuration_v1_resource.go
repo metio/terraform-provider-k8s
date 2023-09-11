@@ -605,7 +605,8 @@ func (r *AdmissionregistrationK8SIoValidatingWebhookConfigurationV1Resource) Cre
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "admissionregistration.k8s.io", Version: "v1", Resource: "ValidatingWebhookConfiguration"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "admissionregistration.k8s.io", Version: "v1", Resource: "validatingwebhookconfigurations"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -655,7 +656,7 @@ func (r *AdmissionregistrationK8SIoValidatingWebhookConfigurationV1Resource) Rea
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "admissionregistration.k8s.io", Version: "v1", Resource: "ValidatingWebhookConfiguration"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "admissionregistration.k8s.io", Version: "v1", Resource: "validatingwebhookconfigurations"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -731,7 +732,8 @@ func (r *AdmissionregistrationK8SIoValidatingWebhookConfigurationV1Resource) Upd
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "admissionregistration.k8s.io", Version: "v1", Resource: "ValidatingWebhookConfiguration"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "admissionregistration.k8s.io", Version: "v1", Resource: "validatingwebhookconfigurations"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -781,7 +783,7 @@ func (r *AdmissionregistrationK8SIoValidatingWebhookConfigurationV1Resource) Del
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "admissionregistration.k8s.io", Version: "v1", Resource: "ValidatingWebhookConfiguration"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "admissionregistration.k8s.io", Version: "v1", Resource: "validatingwebhookconfigurations"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

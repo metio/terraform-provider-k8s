@@ -260,7 +260,8 @@ func (r *KumaIoVirtualOutboundV1Alpha1Resource) Create(ctx context.Context, requ
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "VirtualOutbound"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "virtualoutbounds"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -311,7 +312,7 @@ func (r *KumaIoVirtualOutboundV1Alpha1Resource) Read(ctx context.Context, reques
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "VirtualOutbound"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "virtualoutbounds"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -388,7 +389,8 @@ func (r *KumaIoVirtualOutboundV1Alpha1Resource) Update(ctx context.Context, requ
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "VirtualOutbound"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "virtualoutbounds"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -439,7 +441,7 @@ func (r *KumaIoVirtualOutboundV1Alpha1Resource) Delete(ctx context.Context, requ
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "VirtualOutbound"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "virtualoutbounds"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

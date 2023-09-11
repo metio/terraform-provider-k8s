@@ -386,7 +386,8 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Resource) Create(
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha1", Resource: "ProfileRecording"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha1", Resource: "profilerecordings"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -437,7 +438,7 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Resource) Read(ct
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha1", Resource: "ProfileRecording"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha1", Resource: "profilerecordings"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -514,7 +515,8 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Resource) Update(
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha1", Resource: "ProfileRecording"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha1", Resource: "profilerecordings"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -565,7 +567,7 @@ func (r *SecurityProfilesOperatorXK8SIoProfileRecordingV1Alpha1Resource) Delete(
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha1", Resource: "ProfileRecording"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha1", Resource: "profilerecordings"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

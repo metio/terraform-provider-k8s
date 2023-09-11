@@ -452,7 +452,8 @@ func (r *LonghornIoReplicaV1Beta2Resource) Create(ctx context.Context, request r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "longhorn.io", Version: "v1beta2", Resource: "Replica"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "longhorn.io", Version: "v1beta2", Resource: "replicas"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -503,7 +504,7 @@ func (r *LonghornIoReplicaV1Beta2Resource) Read(ctx context.Context, request res
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "longhorn.io", Version: "v1beta2", Resource: "Replica"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "longhorn.io", Version: "v1beta2", Resource: "replicas"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -580,7 +581,8 @@ func (r *LonghornIoReplicaV1Beta2Resource) Update(ctx context.Context, request r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "longhorn.io", Version: "v1beta2", Resource: "Replica"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "longhorn.io", Version: "v1beta2", Resource: "replicas"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -631,7 +633,7 @@ func (r *LonghornIoReplicaV1Beta2Resource) Delete(ctx context.Context, request r
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "longhorn.io", Version: "v1beta2", Resource: "Replica"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "longhorn.io", Version: "v1beta2", Resource: "replicas"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

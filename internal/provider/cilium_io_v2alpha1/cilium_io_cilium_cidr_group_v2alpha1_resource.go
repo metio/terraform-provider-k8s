@@ -262,7 +262,8 @@ func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) Create(ctx context.Context, re
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2alpha1", Resource: "CiliumCIDRGroup"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2alpha1", Resource: "ciliumcidrgroups"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -312,7 +313,7 @@ func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) Read(ctx context.Context, requ
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2alpha1", Resource: "CiliumCIDRGroup"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2alpha1", Resource: "ciliumcidrgroups"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -388,7 +389,8 @@ func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) Update(ctx context.Context, re
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2alpha1", Resource: "CiliumCIDRGroup"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2alpha1", Resource: "ciliumcidrgroups"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -438,7 +440,7 @@ func (r *CiliumIoCiliumCidrgroupV2Alpha1Resource) Delete(ctx context.Context, re
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2alpha1", Resource: "CiliumCIDRGroup"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2alpha1", Resource: "ciliumcidrgroups"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

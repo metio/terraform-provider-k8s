@@ -3447,7 +3447,8 @@ func (r *OperatorKnativeDevKnativeEventingV1Beta1Resource) Create(ctx context.Co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "operator.knative.dev", Version: "v1beta1", Resource: "KnativeEventing"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.knative.dev", Version: "v1beta1", Resource: "knativeeventings"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -3498,7 +3499,7 @@ func (r *OperatorKnativeDevKnativeEventingV1Beta1Resource) Read(ctx context.Cont
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "operator.knative.dev", Version: "v1beta1", Resource: "KnativeEventing"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.knative.dev", Version: "v1beta1", Resource: "knativeeventings"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -3575,7 +3576,8 @@ func (r *OperatorKnativeDevKnativeEventingV1Beta1Resource) Update(ctx context.Co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "operator.knative.dev", Version: "v1beta1", Resource: "KnativeEventing"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.knative.dev", Version: "v1beta1", Resource: "knativeeventings"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -3626,7 +3628,7 @@ func (r *OperatorKnativeDevKnativeEventingV1Beta1Resource) Delete(ctx context.Co
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "operator.knative.dev", Version: "v1beta1", Resource: "KnativeEventing"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.knative.dev", Version: "v1beta1", Resource: "knativeeventings"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -414,7 +414,8 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Resource)
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "config.karmada.io", Version: "v1alpha1", Resource: "ResourceInterpreterWebhookConfiguration"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "config.karmada.io", Version: "v1alpha1", Resource: "resourceinterpreterwebhookconfigurations"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -464,7 +465,7 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Resource)
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "config.karmada.io", Version: "v1alpha1", Resource: "ResourceInterpreterWebhookConfiguration"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "config.karmada.io", Version: "v1alpha1", Resource: "resourceinterpreterwebhookconfigurations"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -540,7 +541,8 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Resource)
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "config.karmada.io", Version: "v1alpha1", Resource: "ResourceInterpreterWebhookConfiguration"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "config.karmada.io", Version: "v1alpha1", Resource: "resourceinterpreterwebhookconfigurations"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -590,7 +592,7 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Resource)
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "config.karmada.io", Version: "v1alpha1", Resource: "ResourceInterpreterWebhookConfiguration"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "config.karmada.io", Version: "v1alpha1", Resource: "resourceinterpreterwebhookconfigurations"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

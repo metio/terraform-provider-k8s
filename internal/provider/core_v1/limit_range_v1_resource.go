@@ -341,7 +341,8 @@ func (r *LimitRangeV1Resource) Create(ctx context.Context, request resource.Crea
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "LimitRange"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "limitranges"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -392,7 +393,7 @@ func (r *LimitRangeV1Resource) Read(ctx context.Context, request resource.ReadRe
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "LimitRange"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "limitranges"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -469,7 +470,8 @@ func (r *LimitRangeV1Resource) Update(ctx context.Context, request resource.Upda
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "LimitRange"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "limitranges"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -520,7 +522,7 @@ func (r *LimitRangeV1Resource) Delete(ctx context.Context, request resource.Dele
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "LimitRange"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "limitranges"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

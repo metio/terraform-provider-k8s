@@ -570,7 +570,8 @@ func (r *NetworkingKarmadaIoMultiClusterIngressV1Alpha1Resource) Create(ctx cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "networking.karmada.io", Version: "v1alpha1", Resource: "MultiClusterIngress"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.karmada.io", Version: "v1alpha1", Resource: "multiclusteringresses"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -621,7 +622,7 @@ func (r *NetworkingKarmadaIoMultiClusterIngressV1Alpha1Resource) Read(ctx contex
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "networking.karmada.io", Version: "v1alpha1", Resource: "MultiClusterIngress"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.karmada.io", Version: "v1alpha1", Resource: "multiclusteringresses"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -698,7 +699,8 @@ func (r *NetworkingKarmadaIoMultiClusterIngressV1Alpha1Resource) Update(ctx cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "networking.karmada.io", Version: "v1alpha1", Resource: "MultiClusterIngress"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.karmada.io", Version: "v1alpha1", Resource: "multiclusteringresses"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -749,7 +751,7 @@ func (r *NetworkingKarmadaIoMultiClusterIngressV1Alpha1Resource) Delete(ctx cont
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "networking.karmada.io", Version: "v1alpha1", Resource: "MultiClusterIngress"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.karmada.io", Version: "v1alpha1", Resource: "multiclusteringresses"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

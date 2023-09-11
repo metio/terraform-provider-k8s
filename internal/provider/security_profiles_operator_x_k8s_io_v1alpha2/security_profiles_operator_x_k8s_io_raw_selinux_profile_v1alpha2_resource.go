@@ -287,7 +287,8 @@ func (r *SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Resource) Create
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha2", Resource: "RawSelinuxProfile"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha2", Resource: "rawselinuxprofiles"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -338,7 +339,7 @@ func (r *SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Resource) Read(c
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha2", Resource: "RawSelinuxProfile"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha2", Resource: "rawselinuxprofiles"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -415,7 +416,8 @@ func (r *SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Resource) Update
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha2", Resource: "RawSelinuxProfile"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha2", Resource: "rawselinuxprofiles"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -466,7 +468,7 @@ func (r *SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Resource) Delete
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha2", Resource: "RawSelinuxProfile"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "security-profiles-operator.x-k8s.io", Version: "v1alpha2", Resource: "rawselinuxprofiles"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -260,7 +260,8 @@ func (r *KumaIoTimeoutV1Alpha1Resource) Create(ctx context.Context, request reso
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "Timeout"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "timeouts"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -311,7 +312,7 @@ func (r *KumaIoTimeoutV1Alpha1Resource) Read(ctx context.Context, request resour
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "Timeout"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "timeouts"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -388,7 +389,8 @@ func (r *KumaIoTimeoutV1Alpha1Resource) Update(ctx context.Context, request reso
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "Timeout"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "timeouts"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -439,7 +441,7 @@ func (r *KumaIoTimeoutV1Alpha1Resource) Delete(ctx context.Context, request reso
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "Timeout"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kuma.io", Version: "v1alpha1", Resource: "timeouts"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

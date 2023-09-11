@@ -11977,7 +11977,8 @@ func (r *DatabasesSchemaheroIoDatabaseV1Alpha4Resource) Create(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "databases.schemahero.io", Version: "v1alpha4", Resource: "Database"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "databases.schemahero.io", Version: "v1alpha4", Resource: "databases"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -12028,7 +12029,7 @@ func (r *DatabasesSchemaheroIoDatabaseV1Alpha4Resource) Read(ctx context.Context
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "databases.schemahero.io", Version: "v1alpha4", Resource: "Database"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "databases.schemahero.io", Version: "v1alpha4", Resource: "databases"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -12105,7 +12106,8 @@ func (r *DatabasesSchemaheroIoDatabaseV1Alpha4Resource) Update(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "databases.schemahero.io", Version: "v1alpha4", Resource: "Database"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "databases.schemahero.io", Version: "v1alpha4", Resource: "databases"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -12156,7 +12158,7 @@ func (r *DatabasesSchemaheroIoDatabaseV1Alpha4Resource) Delete(ctx context.Conte
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "databases.schemahero.io", Version: "v1alpha4", Resource: "Database"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "databases.schemahero.io", Version: "v1alpha4", Resource: "databases"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

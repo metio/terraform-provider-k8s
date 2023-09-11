@@ -521,7 +521,8 @@ func (r *DiscoveryK8SIoEndpointSliceV1Resource) Create(ctx context.Context, requ
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "discovery.k8s.io", Version: "v1", Resource: "EndpointSlice"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "discovery.k8s.io", Version: "v1", Resource: "endpointslices"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -574,7 +575,7 @@ func (r *DiscoveryK8SIoEndpointSliceV1Resource) Read(ctx context.Context, reques
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "discovery.k8s.io", Version: "v1", Resource: "EndpointSlice"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "discovery.k8s.io", Version: "v1", Resource: "endpointslices"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -653,7 +654,8 @@ func (r *DiscoveryK8SIoEndpointSliceV1Resource) Update(ctx context.Context, requ
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "discovery.k8s.io", Version: "v1", Resource: "EndpointSlice"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "discovery.k8s.io", Version: "v1", Resource: "endpointslices"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -706,7 +708,7 @@ func (r *DiscoveryK8SIoEndpointSliceV1Resource) Delete(ctx context.Context, requ
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "discovery.k8s.io", Version: "v1", Resource: "EndpointSlice"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "discovery.k8s.io", Version: "v1", Resource: "endpointslices"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -418,7 +418,8 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Resource) Create(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "StateMachine"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "statemachines"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -469,7 +470,7 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Resource) Read(ctx context.Context
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "StateMachine"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "statemachines"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -546,7 +547,8 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Resource) Update(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "StateMachine"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "statemachines"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -597,7 +599,7 @@ func (r *SfnServicesK8SAwsStateMachineV1Alpha1Resource) Delete(ctx context.Conte
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "StateMachine"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "statemachines"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

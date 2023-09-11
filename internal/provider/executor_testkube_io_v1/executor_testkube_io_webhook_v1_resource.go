@@ -334,7 +334,8 @@ func (r *ExecutorTestkubeIoWebhookV1Resource) Create(ctx context.Context, reques
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "executor.testkube.io", Version: "v1", Resource: "Webhook"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "executor.testkube.io", Version: "v1", Resource: "webhooks"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -385,7 +386,7 @@ func (r *ExecutorTestkubeIoWebhookV1Resource) Read(ctx context.Context, request 
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "executor.testkube.io", Version: "v1", Resource: "Webhook"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "executor.testkube.io", Version: "v1", Resource: "webhooks"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -462,7 +463,8 @@ func (r *ExecutorTestkubeIoWebhookV1Resource) Update(ctx context.Context, reques
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "executor.testkube.io", Version: "v1", Resource: "Webhook"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "executor.testkube.io", Version: "v1", Resource: "webhooks"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -513,7 +515,7 @@ func (r *ExecutorTestkubeIoWebhookV1Resource) Delete(ctx context.Context, reques
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "executor.testkube.io", Version: "v1", Resource: "Webhook"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "executor.testkube.io", Version: "v1", Resource: "webhooks"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

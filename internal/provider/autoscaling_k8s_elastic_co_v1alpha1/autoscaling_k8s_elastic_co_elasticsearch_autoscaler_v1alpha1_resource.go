@@ -497,7 +497,8 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) Create(
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.elastic.co", Version: "v1alpha1", Resource: "ElasticsearchAutoscaler"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.elastic.co", Version: "v1alpha1", Resource: "elasticsearchautoscalers"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -548,7 +549,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) Read(ct
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.elastic.co", Version: "v1alpha1", Resource: "ElasticsearchAutoscaler"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.elastic.co", Version: "v1alpha1", Resource: "elasticsearchautoscalers"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -625,7 +626,8 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) Update(
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.elastic.co", Version: "v1alpha1", Resource: "ElasticsearchAutoscaler"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.elastic.co", Version: "v1alpha1", Resource: "elasticsearchautoscalers"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -676,7 +678,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Resource) Delete(
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.elastic.co", Version: "v1alpha1", Resource: "ElasticsearchAutoscaler"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.elastic.co", Version: "v1alpha1", Resource: "elasticsearchautoscalers"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

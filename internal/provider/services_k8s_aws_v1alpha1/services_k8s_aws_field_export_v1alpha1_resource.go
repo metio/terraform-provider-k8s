@@ -377,7 +377,8 @@ func (r *ServicesK8SAwsFieldExportV1Alpha1Resource) Create(ctx context.Context, 
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "FieldExport"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "fieldexports"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -428,7 +429,7 @@ func (r *ServicesK8SAwsFieldExportV1Alpha1Resource) Read(ctx context.Context, re
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "FieldExport"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "fieldexports"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -505,7 +506,8 @@ func (r *ServicesK8SAwsFieldExportV1Alpha1Resource) Update(ctx context.Context, 
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "FieldExport"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "fieldexports"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -556,7 +558,7 @@ func (r *ServicesK8SAwsFieldExportV1Alpha1Resource) Delete(ctx context.Context, 
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "FieldExport"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "fieldexports"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

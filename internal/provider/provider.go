@@ -18,10 +18,8 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/tools/clientcmd"
-	"net/http"
 	"os"
 	"strconv"
-	"time"
 )
 
 type K8sProvider struct {
@@ -225,15 +223,6 @@ func (p *K8sProvider) Configure(ctx context.Context, req provider.ConfigureReque
 		)
 	}
 
-	duration, err := time.ParseDuration(fmt.Sprintf("%ss", timeout))
-	if err != nil {
-		resp.Diagnostics.AddAttributeError(
-			path.Root("timeout"),
-			"Invalid timeout value",
-			"The supplied timeout value cannot be parsed into a duration: "+err.Error(),
-		)
-	}
-
 	offlineMode, err := strconv.ParseBool(offline)
 	if err != nil {
 		resp.Diagnostics.AddAttributeError(
@@ -264,28 +253,62 @@ func (p *K8sProvider) Configure(ctx context.Context, req provider.ConfigureReque
 	} else {
 		tflog.Debug(ctx, "Creating Kubernetes client")
 
-		loadingRules := clientcmd.NewDefaultClientConfigLoadingRules()
-		if kubeconfig != "" {
-			loadingRules = &clientcmd.ClientConfigLoadingRules{ExplicitPath: kubeconfig}
-		}
-
-		configOverrides := &clientcmd.ConfigOverrides{}
-		if clientContext != "" {
-			configOverrides.CurrentContext = clientContext
-		}
-
-		kubeConfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(loadingRules, configOverrides)
-		clientConfig, err := kubeConfig.ClientConfig()
-
 		var client dynamic.Interface
 		if p.client == nil {
-			client, err = dynamic.NewForConfigAndClient(clientConfig, &http.Client{Timeout: duration})
+			loadingRules := clientcmd.NewDefaultClientConfigLoadingRules()
+			if kubeconfig != "" {
+				loadingRules = &clientcmd.ClientConfigLoadingRules{ExplicitPath: kubeconfig}
+			}
+
+			configOverrides := &clientcmd.ConfigOverrides{
+				Timeout: timeout,
+			}
+
+			if clientContext != "" {
+				configOverrides.CurrentContext = clientContext
+			}
+
+			kubeConfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(loadingRules, configOverrides)
+
+			rawConfig, err := kubeConfig.RawConfig()
 			if err != nil {
 				resp.Diagnostics.AddError(
 					"Unable to create Kubernetes client",
-					"An unexpected error occurred when creating the Kubernetes client. "+
+					fmt.Sprintf("An unexpected error occurred when creating the Kubernetes client. "+
 						"If the error is not clear, please contact the provider developers.\n\n"+
-						"Kubernetes client error: "+err.Error(),
+						"Kubernetes client error (%T): %s", err, err.Error()),
+				)
+				return
+			}
+			err = clientcmd.ConfirmUsable(rawConfig, rawConfig.CurrentContext)
+			if err != nil {
+				resp.Diagnostics.AddError(
+					"Unable to create Kubernetes client",
+					fmt.Sprintf("An unexpected error occurred when creating the Kubernetes client. "+
+						"If the error is not clear, please contact the provider developers.\n\n"+
+						"Kubernetes client error (%T): %s", err, err.Error()),
+				)
+				return
+			}
+
+			clientConfig, err := kubeConfig.ClientConfig()
+			if err != nil {
+				resp.Diagnostics.AddError(
+					"Unable to create Kubernetes client",
+					fmt.Sprintf("An unexpected error occurred when creating the Kubernetes client. "+
+						"If the error is not clear, please contact the provider developers.\n\n"+
+						"Kubernetes client error (%T): %s", err, err.Error()),
+				)
+				return
+			}
+
+			client, err = dynamic.NewForConfig(clientConfig)
+			if err != nil {
+				resp.Diagnostics.AddError(
+					"Unable to create Kubernetes client",
+					fmt.Sprintf("An unexpected error occurred when creating the Kubernetes client. "+
+						"If the error is not clear, please contact the provider developers.\n\n"+
+						"Kubernetes client error (%T): %s", err, err.Error()),
 				)
 				return
 			}

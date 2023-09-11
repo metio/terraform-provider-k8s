@@ -394,7 +394,8 @@ func (r *AppsClusternetIoLocalizationV1Alpha1Resource) Create(ctx context.Contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apps.clusternet.io", Version: "v1alpha1", Resource: "Localization"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apps.clusternet.io", Version: "v1alpha1", Resource: "localizations"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -445,7 +446,7 @@ func (r *AppsClusternetIoLocalizationV1Alpha1Resource) Read(ctx context.Context,
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apps.clusternet.io", Version: "v1alpha1", Resource: "Localization"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apps.clusternet.io", Version: "v1alpha1", Resource: "localizations"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -522,7 +523,8 @@ func (r *AppsClusternetIoLocalizationV1Alpha1Resource) Update(ctx context.Contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apps.clusternet.io", Version: "v1alpha1", Resource: "Localization"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apps.clusternet.io", Version: "v1alpha1", Resource: "localizations"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -573,7 +575,7 @@ func (r *AppsClusternetIoLocalizationV1Alpha1Resource) Delete(ctx context.Contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apps.clusternet.io", Version: "v1alpha1", Resource: "Localization"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apps.clusternet.io", Version: "v1alpha1", Resource: "localizations"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

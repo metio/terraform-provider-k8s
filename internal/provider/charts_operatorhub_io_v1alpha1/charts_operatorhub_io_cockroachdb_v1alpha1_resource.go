@@ -268,7 +268,8 @@ func (r *ChartsOperatorhubIoCockroachdbV1Alpha1Resource) Create(ctx context.Cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "charts.operatorhub.io", Version: "v1alpha1", Resource: "Cockroachdb"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "charts.operatorhub.io", Version: "v1alpha1", Resource: "cockroachdbs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -319,7 +320,7 @@ func (r *ChartsOperatorhubIoCockroachdbV1Alpha1Resource) Read(ctx context.Contex
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "charts.operatorhub.io", Version: "v1alpha1", Resource: "Cockroachdb"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "charts.operatorhub.io", Version: "v1alpha1", Resource: "cockroachdbs"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -396,7 +397,8 @@ func (r *ChartsOperatorhubIoCockroachdbV1Alpha1Resource) Update(ctx context.Cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "charts.operatorhub.io", Version: "v1alpha1", Resource: "Cockroachdb"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "charts.operatorhub.io", Version: "v1alpha1", Resource: "cockroachdbs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -447,7 +449,7 @@ func (r *ChartsOperatorhubIoCockroachdbV1Alpha1Resource) Delete(ctx context.Cont
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "charts.operatorhub.io", Version: "v1alpha1", Resource: "Cockroachdb"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "charts.operatorhub.io", Version: "v1alpha1", Resource: "cockroachdbs"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

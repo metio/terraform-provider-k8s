@@ -44,11 +44,23 @@ type TemplateData struct {
 	// ManifestWorkflowFile is the file name of the GitHub Actions workflow for the manifest data source
 	ManifestWorkflowFile string
 
-	Group       string
-	Version     string
-	Kind        string
+	// Group is API group of a Kubernetes resource
+	Group string
+
+	// Version is the API version of a Kubernetes resource
+	Version string
+
+	// Kind is the API kind of a Kubernetes resource
+	Kind string
+
+	// PluralKind is the plural form of the API kind
+	PluralKind string
+
+	// Description is the human-readable description of a Kubernetes resource
 	Description string
-	Namespaced  bool
+
+	// Namespaced is true if a Kubernetes resource is namespaced or false otherwise
+	Namespaced bool
 
 	// ResourceTypeStruct is the CamelCase version of the name used by resources for the Terraform type
 	ResourceTypeStruct string

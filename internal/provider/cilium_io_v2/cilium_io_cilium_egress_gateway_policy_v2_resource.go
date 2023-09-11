@@ -513,7 +513,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Resource) Create(ctx context.Context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumEgressGatewayPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumegressgatewaypolicies"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -563,7 +564,7 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Resource) Read(ctx context.Context, 
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumEgressGatewayPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumegressgatewaypolicies"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -639,7 +640,8 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Resource) Update(ctx context.Context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumEgressGatewayPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumegressgatewaypolicies"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -689,7 +691,7 @@ func (r *CiliumIoCiliumEgressGatewayPolicyV2Resource) Delete(ctx context.Context
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumEgressGatewayPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumegressgatewaypolicies"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

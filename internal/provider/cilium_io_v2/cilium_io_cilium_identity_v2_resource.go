@@ -251,7 +251,8 @@ func (r *CiliumIoCiliumIdentityV2Resource) Create(ctx context.Context, request r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumIdentity"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumidentities"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -301,7 +302,7 @@ func (r *CiliumIoCiliumIdentityV2Resource) Read(ctx context.Context, request res
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumIdentity"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumidentities"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -377,7 +378,8 @@ func (r *CiliumIoCiliumIdentityV2Resource) Update(ctx context.Context, request r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumIdentity"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumidentities"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -427,7 +429,7 @@ func (r *CiliumIoCiliumIdentityV2Resource) Delete(ctx context.Context, request r
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumIdentity"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumidentities"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -334,7 +334,8 @@ func (r *NetworkingIstioIoWorkloadEntryV1Beta1Resource) Create(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1beta1", Resource: "WorkloadEntry"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1beta1", Resource: "workloadentries"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -385,7 +386,7 @@ func (r *NetworkingIstioIoWorkloadEntryV1Beta1Resource) Read(ctx context.Context
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1beta1", Resource: "WorkloadEntry"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1beta1", Resource: "workloadentries"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -462,7 +463,8 @@ func (r *NetworkingIstioIoWorkloadEntryV1Beta1Resource) Update(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1beta1", Resource: "WorkloadEntry"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1beta1", Resource: "workloadentries"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -513,7 +515,7 @@ func (r *NetworkingIstioIoWorkloadEntryV1Beta1Resource) Delete(ctx context.Conte
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1beta1", Resource: "WorkloadEntry"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.istio.io", Version: "v1beta1", Resource: "workloadentries"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -262,7 +262,8 @@ func (r *NamespaceV1Resource) Create(ctx context.Context, request resource.Creat
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "Namespace"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "namespaces"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -312,7 +313,7 @@ func (r *NamespaceV1Resource) Read(ctx context.Context, request resource.ReadReq
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "Namespace"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "namespaces"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -388,7 +389,8 @@ func (r *NamespaceV1Resource) Update(ctx context.Context, request resource.Updat
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "Namespace"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "namespaces"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -438,7 +440,7 @@ func (r *NamespaceV1Resource) Delete(ctx context.Context, request resource.Delet
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "Namespace"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "namespaces"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

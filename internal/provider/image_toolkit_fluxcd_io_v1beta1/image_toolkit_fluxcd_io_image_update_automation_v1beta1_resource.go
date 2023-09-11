@@ -570,7 +570,8 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource) Create(ctx co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "image.toolkit.fluxcd.io", Version: "v1beta1", Resource: "ImageUpdateAutomation"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "image.toolkit.fluxcd.io", Version: "v1beta1", Resource: "imageupdateautomations"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -621,7 +622,7 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource) Read(ctx cont
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "image.toolkit.fluxcd.io", Version: "v1beta1", Resource: "ImageUpdateAutomation"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "image.toolkit.fluxcd.io", Version: "v1beta1", Resource: "imageupdateautomations"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -698,7 +699,8 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource) Update(ctx co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "image.toolkit.fluxcd.io", Version: "v1beta1", Resource: "ImageUpdateAutomation"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "image.toolkit.fluxcd.io", Version: "v1beta1", Resource: "imageupdateautomations"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -749,7 +751,7 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta1Resource) Delete(ctx co
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "image.toolkit.fluxcd.io", Version: "v1beta1", Resource: "ImageUpdateAutomation"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "image.toolkit.fluxcd.io", Version: "v1beta1", Resource: "imageupdateautomations"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

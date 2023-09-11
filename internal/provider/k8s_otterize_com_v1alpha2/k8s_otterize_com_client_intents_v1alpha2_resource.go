@@ -419,7 +419,8 @@ func (r *K8SOtterizeComClientIntentsV1Alpha2Resource) Create(ctx context.Context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "ClientIntents"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "clientintents"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -470,7 +471,7 @@ func (r *K8SOtterizeComClientIntentsV1Alpha2Resource) Read(ctx context.Context, 
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "ClientIntents"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "clientintents"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -547,7 +548,8 @@ func (r *K8SOtterizeComClientIntentsV1Alpha2Resource) Update(ctx context.Context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "ClientIntents"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "clientintents"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -598,7 +600,7 @@ func (r *K8SOtterizeComClientIntentsV1Alpha2Resource) Delete(ctx context.Context
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "ClientIntents"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "clientintents"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

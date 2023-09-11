@@ -347,7 +347,8 @@ func (r *LerentisUploadfilter24EuBitwardenSecretV1Beta4Resource) Create(ctx cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "BitwardenSecret"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "bitwarden-secrets"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -398,7 +399,7 @@ func (r *LerentisUploadfilter24EuBitwardenSecretV1Beta4Resource) Read(ctx contex
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "BitwardenSecret"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "bitwarden-secrets"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -475,7 +476,8 @@ func (r *LerentisUploadfilter24EuBitwardenSecretV1Beta4Resource) Update(ctx cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "BitwardenSecret"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "bitwarden-secrets"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -526,7 +528,7 @@ func (r *LerentisUploadfilter24EuBitwardenSecretV1Beta4Resource) Delete(ctx cont
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "BitwardenSecret"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "bitwarden-secrets"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

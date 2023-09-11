@@ -21491,7 +21491,8 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Resource) Create(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1", Resource: "RedisEnterpriseCluster"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1", Resource: "redisenterpriseclusters"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -21542,7 +21543,7 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Resource) Read(ctx context.Conte
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1", Resource: "RedisEnterpriseCluster"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1", Resource: "redisenterpriseclusters"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -21619,7 +21620,8 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Resource) Update(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1", Resource: "RedisEnterpriseCluster"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1", Resource: "redisenterpriseclusters"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -21670,7 +21672,7 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Resource) Delete(ctx context.Con
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1", Resource: "RedisEnterpriseCluster"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "app.redislabs.com", Version: "v1", Resource: "redisenterpriseclusters"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

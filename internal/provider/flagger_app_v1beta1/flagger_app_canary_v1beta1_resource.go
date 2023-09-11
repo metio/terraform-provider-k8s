@@ -2414,7 +2414,8 @@ func (r *FlaggerAppCanaryV1Beta1Resource) Create(ctx context.Context, request re
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "flagger.app", Version: "v1beta1", Resource: "Canary"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "flagger.app", Version: "v1beta1", Resource: "canaries"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -2465,7 +2466,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) Read(ctx context.Context, request reso
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "flagger.app", Version: "v1beta1", Resource: "Canary"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "flagger.app", Version: "v1beta1", Resource: "canaries"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -2542,7 +2543,8 @@ func (r *FlaggerAppCanaryV1Beta1Resource) Update(ctx context.Context, request re
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "flagger.app", Version: "v1beta1", Resource: "Canary"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "flagger.app", Version: "v1beta1", Resource: "canaries"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -2593,7 +2595,7 @@ func (r *FlaggerAppCanaryV1Beta1Resource) Delete(ctx context.Context, request re
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "flagger.app", Version: "v1beta1", Resource: "Canary"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "flagger.app", Version: "v1beta1", Resource: "canaries"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

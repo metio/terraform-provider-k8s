@@ -364,7 +364,8 @@ func (r *ResourcesTeleportDevTeleportGithubConnectorV3Resource) Create(ctx conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "TeleportGithubConnector"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "teleportgithubconnectors"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -415,7 +416,7 @@ func (r *ResourcesTeleportDevTeleportGithubConnectorV3Resource) Read(ctx context
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "TeleportGithubConnector"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "teleportgithubconnectors"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -492,7 +493,8 @@ func (r *ResourcesTeleportDevTeleportGithubConnectorV3Resource) Update(ctx conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "TeleportGithubConnector"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "teleportgithubconnectors"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -543,7 +545,7 @@ func (r *ResourcesTeleportDevTeleportGithubConnectorV3Resource) Delete(ctx conte
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "TeleportGithubConnector"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "teleportgithubconnectors"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -4547,7 +4547,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) Create(ctx context.
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "external-secrets.io", Version: "v1beta1", Resource: "ClusterSecretStore"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "external-secrets.io", Version: "v1beta1", Resource: "clustersecretstores"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4597,7 +4598,7 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) Read(ctx context.Co
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "external-secrets.io", Version: "v1beta1", Resource: "ClusterSecretStore"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "external-secrets.io", Version: "v1beta1", Resource: "clustersecretstores"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4673,7 +4674,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) Update(ctx context.
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "external-secrets.io", Version: "v1beta1", Resource: "ClusterSecretStore"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "external-secrets.io", Version: "v1beta1", Resource: "clustersecretstores"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4723,7 +4725,7 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Beta1Resource) Delete(ctx context.
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "external-secrets.io", Version: "v1beta1", Resource: "ClusterSecretStore"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "external-secrets.io", Version: "v1beta1", Resource: "clustersecretstores"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

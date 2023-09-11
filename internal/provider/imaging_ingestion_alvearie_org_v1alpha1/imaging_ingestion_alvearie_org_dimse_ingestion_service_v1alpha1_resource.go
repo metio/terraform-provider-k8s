@@ -401,7 +401,8 @@ func (r *ImagingIngestionAlvearieOrgDimseIngestionServiceV1Alpha1Resource) Creat
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "imaging-ingestion.alvearie.org", Version: "v1alpha1", Resource: "DimseIngestionService"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "imaging-ingestion.alvearie.org", Version: "v1alpha1", Resource: "dimseingestionservices"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -452,7 +453,7 @@ func (r *ImagingIngestionAlvearieOrgDimseIngestionServiceV1Alpha1Resource) Read(
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "imaging-ingestion.alvearie.org", Version: "v1alpha1", Resource: "DimseIngestionService"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "imaging-ingestion.alvearie.org", Version: "v1alpha1", Resource: "dimseingestionservices"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -529,7 +530,8 @@ func (r *ImagingIngestionAlvearieOrgDimseIngestionServiceV1Alpha1Resource) Updat
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "imaging-ingestion.alvearie.org", Version: "v1alpha1", Resource: "DimseIngestionService"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "imaging-ingestion.alvearie.org", Version: "v1alpha1", Resource: "dimseingestionservices"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -580,7 +582,7 @@ func (r *ImagingIngestionAlvearieOrgDimseIngestionServiceV1Alpha1Resource) Delet
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "imaging-ingestion.alvearie.org", Version: "v1alpha1", Resource: "DimseIngestionService"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "imaging-ingestion.alvearie.org", Version: "v1alpha1", Resource: "dimseingestionservices"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

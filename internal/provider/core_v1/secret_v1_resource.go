@@ -296,7 +296,8 @@ func (r *SecretV1Resource) Create(ctx context.Context, request resource.CreateRe
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "Secret"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "secrets"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -350,7 +351,7 @@ func (r *SecretV1Resource) Read(ctx context.Context, request resource.ReadReques
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "Secret"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "secrets"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -430,7 +431,8 @@ func (r *SecretV1Resource) Update(ctx context.Context, request resource.UpdateRe
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "Secret"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "secrets"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -484,7 +486,7 @@ func (r *SecretV1Resource) Delete(ctx context.Context, request resource.DeleteRe
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "Secret"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "secrets"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

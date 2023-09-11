@@ -7503,7 +7503,8 @@ func (r *InstallationMattermostComMattermostV1Beta1Resource) Create(ctx context.
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "installation.mattermost.com", Version: "v1beta1", Resource: "Mattermost"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "installation.mattermost.com", Version: "v1beta1", Resource: "mattermosts"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -7554,7 +7555,7 @@ func (r *InstallationMattermostComMattermostV1Beta1Resource) Read(ctx context.Co
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "installation.mattermost.com", Version: "v1beta1", Resource: "Mattermost"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "installation.mattermost.com", Version: "v1beta1", Resource: "mattermosts"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -7631,7 +7632,8 @@ func (r *InstallationMattermostComMattermostV1Beta1Resource) Update(ctx context.
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "installation.mattermost.com", Version: "v1beta1", Resource: "Mattermost"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "installation.mattermost.com", Version: "v1beta1", Resource: "mattermosts"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -7682,7 +7684,7 @@ func (r *InstallationMattermostComMattermostV1Beta1Resource) Delete(ctx context.
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "installation.mattermost.com", Version: "v1beta1", Resource: "Mattermost"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "installation.mattermost.com", Version: "v1beta1", Resource: "mattermosts"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

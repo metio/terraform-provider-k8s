@@ -462,7 +462,8 @@ func (r *ServicesK8SAwsAdoptedResourceV1Alpha1Resource) Create(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "AdoptedResource"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "adoptedresources"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -513,7 +514,7 @@ func (r *ServicesK8SAwsAdoptedResourceV1Alpha1Resource) Read(ctx context.Context
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "AdoptedResource"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "adoptedresources"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -590,7 +591,8 @@ func (r *ServicesK8SAwsAdoptedResourceV1Alpha1Resource) Update(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "AdoptedResource"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "adoptedresources"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -641,7 +643,7 @@ func (r *ServicesK8SAwsAdoptedResourceV1Alpha1Resource) Delete(ctx context.Conte
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "AdoptedResource"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "services.k8s.aws", Version: "v1alpha1", Resource: "adoptedresources"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -54,6 +54,7 @@ func openAPIv3AsTemplateData(definition *openapi3.SchemaRef, namespaced bool) *T
 		Group:       group,
 		Version:     version,
 		Kind:        kind,
+		PluralKind:  pluralForm(kind),
 		Namespaced:  namespaced,
 		Description: description(schema.Description),
 

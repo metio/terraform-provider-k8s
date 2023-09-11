@@ -598,7 +598,8 @@ func (r *MutationsGatekeeperShAssignImageV1Alpha1Resource) Create(ctx context.Co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "mutations.gatekeeper.sh", Version: "v1alpha1", Resource: "AssignImage"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "mutations.gatekeeper.sh", Version: "v1alpha1", Resource: "assignimage"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -648,7 +649,7 @@ func (r *MutationsGatekeeperShAssignImageV1Alpha1Resource) Read(ctx context.Cont
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "mutations.gatekeeper.sh", Version: "v1alpha1", Resource: "AssignImage"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "mutations.gatekeeper.sh", Version: "v1alpha1", Resource: "assignimage"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -724,7 +725,8 @@ func (r *MutationsGatekeeperShAssignImageV1Alpha1Resource) Update(ctx context.Co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "mutations.gatekeeper.sh", Version: "v1alpha1", Resource: "AssignImage"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "mutations.gatekeeper.sh", Version: "v1alpha1", Resource: "assignimage"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -774,7 +776,7 @@ func (r *MutationsGatekeeperShAssignImageV1Alpha1Resource) Delete(ctx context.Co
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "mutations.gatekeeper.sh", Version: "v1alpha1", Resource: "AssignImage"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "mutations.gatekeeper.sh", Version: "v1alpha1", Resource: "assignimage"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
