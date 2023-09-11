@@ -14,6 +14,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
@@ -10504,18 +10505,13 @@ func (r *KibanaK8SElasticCoKibanaV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Name, model.Metadata.Namespace))
+	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("kibana.k8s.elastic.co/v1")
 	model.Kind = pointer.String("Kibana")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal resource",
-			"An unexpected error occurred while marshalling the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"YAML Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.MarshalYamlError(err))
 		return
 	}
 	model.YAML = types.StringValue(string(y))

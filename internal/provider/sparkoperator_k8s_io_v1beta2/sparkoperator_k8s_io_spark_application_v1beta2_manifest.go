@@ -15,6 +15,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
 	"regexp"
@@ -13183,18 +13184,13 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Read(ctx context.Con
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Name, model.Metadata.Namespace))
+	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("sparkoperator.k8s.io/v1beta2")
 	model.Kind = pointer.String("SparkApplication")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal resource",
-			"An unexpected error occurred while marshalling the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"YAML Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.MarshalYamlError(err))
 		return
 	}
 	model.YAML = types.StringValue(string(y))

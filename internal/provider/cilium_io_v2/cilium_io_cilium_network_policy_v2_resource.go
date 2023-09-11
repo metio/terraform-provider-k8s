@@ -29,6 +29,7 @@ import (
 	"k8s.io/utils/pointer"
 	"regexp"
 	"strings"
+	"time"
 )
 
 var (
@@ -51,10 +52,11 @@ type CiliumIoCiliumNetworkPolicyV2ResourceData struct {
 	ID             types.String `tfsdk:"id" json:"-"`
 	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
 	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
-	WaitFor        types.List   `tfsdk:"wait_for" json:"-"`
+	WaitForUpsert  types.List   `tfsdk:"wait_for_upsert" json:"-"`
+	WaitForDelete  types.Object `tfsdk:"wait_for_delete" json:"-"`
 
-	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
-	Kind       *string `tfsdk:"kind" json:"kind"`
+	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
+	Kind       *string `tfsdk:"-" json:"kind"`
 
 	Metadata struct {
 		Name        string            `tfsdk:"name" json:"name"`
@@ -786,7 +788,7 @@ func (r *CiliumIoCiliumNetworkPolicyV2Resource) Schema(_ context.Context, _ reso
 				Computed:            true,
 			},
 
-			"wait_for": schema.ListNestedAttribute{
+			"wait_for_upsert": schema.ListNestedAttribute{
 				Description:         "Wait for specific conditions after create/update of resources.",
 				MarkdownDescription: "Wait for specific conditions after create/update of resources.",
 				Required:            false,
@@ -816,6 +818,40 @@ func (r *CiliumIoCiliumNetworkPolicyV2Resource) Schema(_ context.Context, _ reso
 							Computed:            true,
 							Default:             stringdefault.StaticString("30s"),
 						},
+						"poll_interval": schema.StringAttribute{
+							Description:         "The length of time to wait before checking again.",
+							MarkdownDescription: "The length of time to wait before checking again.",
+							Required:            false,
+							Optional:            true,
+							Computed:            true,
+							Default:             stringdefault.StaticString("5s"),
+						},
+					},
+				},
+			},
+
+			"wait_for_delete": schema.SingleNestedAttribute{
+				Description:         "Wait for deletion of resources.",
+				MarkdownDescription: "Wait for deletion of resources.",
+				Required:            false,
+				Optional:            true,
+				Computed:            true,
+				Attributes: map[string]schema.Attribute{
+					"timeout": schema.StringAttribute{
+						Description:         "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
+						MarkdownDescription: "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
+						Required:            false,
+						Optional:            true,
+						Computed:            true,
+						Default:             stringdefault.StaticString("30s"),
+					},
+					"poll_interval": schema.StringAttribute{
+						Description:         "The length of time to wait before checking again.",
+						MarkdownDescription: "The length of time to wait before checking again.",
+						Required:            false,
+						Optional:            true,
+						Computed:            true,
+						Default:             stringdefault.StaticString("5s"),
 					},
 				},
 			},
@@ -5860,21 +5896,14 @@ func (r *CiliumIoCiliumNetworkPolicyV2Resource) Configure(_ context.Context, req
 
 	if resourceData, ok := request.ProviderData.(*utilities.ResourceData); ok {
 		if resourceData.Offline {
-			response.Diagnostics.AddError(
-				"Provider in Offline Mode",
-				"This provider has offline mode enabled and thus cannot connect to a Kubernetes cluster to create resources or read any data. "+
-					"Disable offline mode to allow resource creation or remove the resource declaration from your configuration to get rid of this error.",
-			)
+			response.Diagnostics.Append(utilities.OfflineProviderError())
 		} else {
 			r.kubernetesClient = resourceData.Client
 			r.fieldManager = resourceData.FieldManager
 			r.forceConflicts = resourceData.ForceConflicts
 		}
 	} else {
-		response.Diagnostics.AddError(
-			"Unexpected Resource Configure Type",
-			fmt.Sprintf("Expected *dynamic.DynamicClient, got: %T. Please report this issue to the provider developers.", request.ProviderData),
-		)
+		response.Diagnostics.Append(utilities.UnexpectedResourceDataError(request.ProviderData))
 	}
 }
 
@@ -5887,18 +5916,13 @@ func (r *CiliumIoCiliumNetworkPolicyV2Resource) Create(ctx context.Context, requ
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Name, model.Metadata.Namespace))
+	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("cilium.io/v2")
 	model.Kind = pointer.String("CiliumNetworkPolicy")
 
 	bytes, err := json.Marshal(model)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal resource",
-			"An unexpected error occurred while marshalling the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"JSON Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.JsonMarshalError(err))
 		return
 	}
 
@@ -5921,34 +5945,20 @@ func (r *CiliumIoCiliumNetworkPolicyV2Resource) Create(ctx context.Context, requ
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to PATCH resource",
-			"An unexpected error occurred while creating the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"PATCH Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.PatchError(err))
 		return
 	}
 
 	patchBytes, err := patchResponse.MarshalJSON()
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal PATCH response",
-			"Please report this issue to the provider developers.\n\n"+
-				"Marshal Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.MarshalJsonError(err))
 		return
 	}
 
 	var readResponse CiliumIoCiliumNetworkPolicyV2ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to unmarshal response",
-			"An unexpected error occurred while unmarshalling read response. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"Unmarshal Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.JsonUnmarshalError(err))
 		return
 	}
 
@@ -5973,33 +5983,19 @@ func (r *CiliumIoCiliumNetworkPolicyV2Resource) Read(ctx context.Context, reques
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to GET resource",
-			"An unexpected error occurred while reading the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"GET Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.GetNamespacedResourceError(err, data.Metadata.Name, data.Metadata.Namespace))
 		return
 	}
 	getBytes, err := getResponse.MarshalJSON()
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal GET response",
-			"Please report this issue to the provider developers.\n\n"+
-				"Marshal Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.MarshalJsonError(err))
 		return
 	}
 
 	var readResponse CiliumIoCiliumNetworkPolicyV2ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to unmarshal resource",
-			"An unexpected error occurred while parsing the resource read response. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"JSON Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.JsonUnmarshalError(err))
 		return
 	}
 
@@ -6024,12 +6020,7 @@ func (r *CiliumIoCiliumNetworkPolicyV2Resource) Update(ctx context.Context, requ
 
 	bytes, err := json.Marshal(model)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal resource",
-			"An unexpected error occurred while marshalling the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"JSON Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.JsonMarshalError(err))
 		return
 	}
 
@@ -6052,34 +6043,20 @@ func (r *CiliumIoCiliumNetworkPolicyV2Resource) Update(ctx context.Context, requ
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to PATCH resource",
-			"An unexpected error occurred while updating the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"PATCH Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.PatchError(err))
 		return
 	}
 
 	patchBytes, err := patchResponse.MarshalJSON()
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal PATCH response",
-			"Please report this issue to the provider developers.\n\n"+
-				"Marshal Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.MarshalJsonError(err))
 		return
 	}
 
 	var readResponse CiliumIoCiliumNetworkPolicyV2ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to unmarshal response",
-			"An unexpected error occurred while unmarshalling read response. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"Unmarshal Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.JsonUnmarshalError(err))
 		return
 	}
 
@@ -6103,14 +6080,30 @@ func (r *CiliumIoCiliumNetworkPolicyV2Resource) Delete(ctx context.Context, requ
 		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumnetworkpolicies"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
-	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to DELETE resource",
-			"An unexpected error occurred while deleting the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"DELETE Error: "+err.Error(),
-		)
+	if utilities.IsDeletionError(err) {
+		response.Diagnostics.Append(utilities.DeleteError(err))
 		return
+	}
+
+	if !data.WaitForDelete.IsNull() {
+		timeout := utilities.DetermineTimeout(data.WaitForDelete.Attributes())
+		pollInterval := utilities.DeterminePollInterval(data.WaitForDelete.Attributes())
+
+		startTime := time.Now()
+		for {
+			_, err := r.kubernetesClient.
+				Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumnetworkpolicies"}).
+				Namespace(data.Metadata.Namespace).
+				Get(ctx, data.Metadata.Name, meta.GetOptions{})
+			if utilities.IsNotFound(err) || timeout == time.Second*0 {
+				break
+			}
+			if time.Now().After(startTime.Add(timeout)) {
+				response.Diagnostics.Append(utilities.WaitTimeoutExceeded())
+				return
+			}
+			time.Sleep(pollInterval)
+		}
 	}
 }
 
