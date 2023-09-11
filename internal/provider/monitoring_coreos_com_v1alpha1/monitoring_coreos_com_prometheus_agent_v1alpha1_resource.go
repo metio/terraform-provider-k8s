@@ -11758,7 +11758,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Resource) Create(ctx context.
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1alpha1", Resource: "PrometheusAgent"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1alpha1", Resource: "prometheusagents"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -11809,7 +11810,7 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Resource) Read(ctx context.Co
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1alpha1", Resource: "PrometheusAgent"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1alpha1", Resource: "prometheusagents"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -11886,7 +11887,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Resource) Update(ctx context.
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1alpha1", Resource: "PrometheusAgent"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1alpha1", Resource: "prometheusagents"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -11937,7 +11939,7 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Resource) Delete(ctx context.
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1alpha1", Resource: "PrometheusAgent"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1alpha1", Resource: "prometheusagents"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -294,7 +294,8 @@ func (r *ClusterClusterpediaIoClusterSyncResourcesV1Alpha2Resource) Create(ctx c
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "ClusterSyncResources"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "clustersyncresources"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -344,7 +345,7 @@ func (r *ClusterClusterpediaIoClusterSyncResourcesV1Alpha2Resource) Read(ctx con
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "ClusterSyncResources"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "clustersyncresources"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -420,7 +421,8 @@ func (r *ClusterClusterpediaIoClusterSyncResourcesV1Alpha2Resource) Update(ctx c
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "ClusterSyncResources"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "clustersyncresources"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -470,7 +472,7 @@ func (r *ClusterClusterpediaIoClusterSyncResourcesV1Alpha2Resource) Delete(ctx c
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "ClusterSyncResources"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "clustersyncresources"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

@@ -339,7 +339,8 @@ func (r *NodeinfoVolcanoShNumatopologyV1Alpha1Resource) Create(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "nodeinfo.volcano.sh", Version: "v1alpha1", Resource: "Numatopology"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "nodeinfo.volcano.sh", Version: "v1alpha1", Resource: "numatopologies"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -389,7 +390,7 @@ func (r *NodeinfoVolcanoShNumatopologyV1Alpha1Resource) Read(ctx context.Context
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "nodeinfo.volcano.sh", Version: "v1alpha1", Resource: "Numatopology"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "nodeinfo.volcano.sh", Version: "v1alpha1", Resource: "numatopologies"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -465,7 +466,8 @@ func (r *NodeinfoVolcanoShNumatopologyV1Alpha1Resource) Update(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "nodeinfo.volcano.sh", Version: "v1alpha1", Resource: "Numatopology"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "nodeinfo.volcano.sh", Version: "v1alpha1", Resource: "numatopologies"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -515,7 +517,7 @@ func (r *NodeinfoVolcanoShNumatopologyV1Alpha1Resource) Delete(ctx context.Conte
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "nodeinfo.volcano.sh", Version: "v1alpha1", Resource: "Numatopology"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "nodeinfo.volcano.sh", Version: "v1alpha1", Resource: "numatopologies"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

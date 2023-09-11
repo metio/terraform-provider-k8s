@@ -708,7 +708,8 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) Create(ctx context.Context, requ
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "couchbase.com", Version: "v2", Resource: "CouchbaseBackup"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "couchbase.com", Version: "v2", Resource: "couchbasebackups"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -759,7 +760,7 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) Read(ctx context.Context, reques
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "couchbase.com", Version: "v2", Resource: "CouchbaseBackup"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "couchbase.com", Version: "v2", Resource: "couchbasebackups"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -836,7 +837,8 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) Update(ctx context.Context, requ
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "couchbase.com", Version: "v2", Resource: "CouchbaseBackup"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "couchbase.com", Version: "v2", Resource: "couchbasebackups"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -887,7 +889,7 @@ func (r *CouchbaseComCouchbaseBackupV2Resource) Delete(ctx context.Context, requ
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "couchbase.com", Version: "v2", Resource: "CouchbaseBackup"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "couchbase.com", Version: "v2", Resource: "couchbasebackups"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

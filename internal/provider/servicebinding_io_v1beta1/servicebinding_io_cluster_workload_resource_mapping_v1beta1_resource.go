@@ -341,7 +341,8 @@ func (r *ServicebindingIoClusterWorkloadResourceMappingV1Beta1Resource) Create(c
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "servicebinding.io", Version: "v1beta1", Resource: "ClusterWorkloadResourceMapping"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "servicebinding.io", Version: "v1beta1", Resource: "clusterworkloadresourcemappings"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -391,7 +392,7 @@ func (r *ServicebindingIoClusterWorkloadResourceMappingV1Beta1Resource) Read(ctx
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "servicebinding.io", Version: "v1beta1", Resource: "ClusterWorkloadResourceMapping"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "servicebinding.io", Version: "v1beta1", Resource: "clusterworkloadresourcemappings"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -467,7 +468,8 @@ func (r *ServicebindingIoClusterWorkloadResourceMappingV1Beta1Resource) Update(c
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "servicebinding.io", Version: "v1beta1", Resource: "ClusterWorkloadResourceMapping"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "servicebinding.io", Version: "v1beta1", Resource: "clusterworkloadresourcemappings"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -517,7 +519,7 @@ func (r *ServicebindingIoClusterWorkloadResourceMappingV1Beta1Resource) Delete(c
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "servicebinding.io", Version: "v1beta1", Resource: "ClusterWorkloadResourceMapping"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "servicebinding.io", Version: "v1beta1", Resource: "clusterworkloadresourcemappings"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

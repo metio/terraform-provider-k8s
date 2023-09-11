@@ -4218,7 +4218,8 @@ func (r *DataFluidIoThinRuntimeProfileV1Alpha1Resource) Create(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "data.fluid.io", Version: "v1alpha1", Resource: "ThinRuntimeProfile"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "data.fluid.io", Version: "v1alpha1", Resource: "thinruntimeprofiles"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4268,7 +4269,7 @@ func (r *DataFluidIoThinRuntimeProfileV1Alpha1Resource) Read(ctx context.Context
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "data.fluid.io", Version: "v1alpha1", Resource: "ThinRuntimeProfile"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "data.fluid.io", Version: "v1alpha1", Resource: "thinruntimeprofiles"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4344,7 +4345,8 @@ func (r *DataFluidIoThinRuntimeProfileV1Alpha1Resource) Update(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "data.fluid.io", Version: "v1alpha1", Resource: "ThinRuntimeProfile"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "data.fluid.io", Version: "v1alpha1", Resource: "thinruntimeprofiles"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4394,7 +4396,7 @@ func (r *DataFluidIoThinRuntimeProfileV1Alpha1Resource) Delete(ctx context.Conte
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "data.fluid.io", Version: "v1alpha1", Resource: "ThinRuntimeProfile"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "data.fluid.io", Version: "v1alpha1", Resource: "thinruntimeprofiles"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

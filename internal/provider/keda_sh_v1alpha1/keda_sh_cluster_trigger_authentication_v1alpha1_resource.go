@@ -693,7 +693,8 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Resource) Create(ctx context.
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "keda.sh", Version: "v1alpha1", Resource: "ClusterTriggerAuthentication"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "keda.sh", Version: "v1alpha1", Resource: "clustertriggerauthentications"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -743,7 +744,7 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Resource) Read(ctx context.Co
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "keda.sh", Version: "v1alpha1", Resource: "ClusterTriggerAuthentication"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "keda.sh", Version: "v1alpha1", Resource: "clustertriggerauthentications"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -819,7 +820,8 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Resource) Update(ctx context.
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "keda.sh", Version: "v1alpha1", Resource: "ClusterTriggerAuthentication"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "keda.sh", Version: "v1alpha1", Resource: "clustertriggerauthentications"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -869,7 +871,7 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Resource) Delete(ctx context.
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "keda.sh", Version: "v1alpha1", Resource: "ClusterTriggerAuthentication"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "keda.sh", Version: "v1alpha1", Resource: "clustertriggerauthentications"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

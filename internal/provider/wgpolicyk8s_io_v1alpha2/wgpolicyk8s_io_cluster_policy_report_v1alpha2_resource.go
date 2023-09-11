@@ -701,7 +701,8 @@ func (r *Wgpolicyk8SIoClusterPolicyReportV1Alpha2Resource) Create(ctx context.Co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "wgpolicyk8s.io", Version: "v1alpha2", Resource: "ClusterPolicyReport"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "wgpolicyk8s.io", Version: "v1alpha2", Resource: "clusterpolicyreports"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -754,7 +755,7 @@ func (r *Wgpolicyk8SIoClusterPolicyReportV1Alpha2Resource) Read(ctx context.Cont
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "wgpolicyk8s.io", Version: "v1alpha2", Resource: "ClusterPolicyReport"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "wgpolicyk8s.io", Version: "v1alpha2", Resource: "clusterpolicyreports"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -833,7 +834,8 @@ func (r *Wgpolicyk8SIoClusterPolicyReportV1Alpha2Resource) Update(ctx context.Co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "wgpolicyk8s.io", Version: "v1alpha2", Resource: "ClusterPolicyReport"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "wgpolicyk8s.io", Version: "v1alpha2", Resource: "clusterpolicyreports"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -886,7 +888,7 @@ func (r *Wgpolicyk8SIoClusterPolicyReportV1Alpha2Resource) Delete(ctx context.Co
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "wgpolicyk8s.io", Version: "v1alpha2", Resource: "ClusterPolicyReport"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "wgpolicyk8s.io", Version: "v1alpha2", Resource: "clusterpolicyreports"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

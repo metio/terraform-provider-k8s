@@ -10939,7 +10939,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) Create(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "asdb.aerospike.com", Version: "v1beta1", Resource: "AerospikeCluster"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "asdb.aerospike.com", Version: "v1beta1", Resource: "aerospikeclusters"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -10990,7 +10991,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) Read(ctx context.Conte
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "asdb.aerospike.com", Version: "v1beta1", Resource: "AerospikeCluster"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "asdb.aerospike.com", Version: "v1beta1", Resource: "aerospikeclusters"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -11067,7 +11068,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) Update(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "asdb.aerospike.com", Version: "v1beta1", Resource: "AerospikeCluster"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "asdb.aerospike.com", Version: "v1beta1", Resource: "aerospikeclusters"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -11118,7 +11120,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) Delete(ctx context.Con
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "asdb.aerospike.com", Version: "v1beta1", Resource: "AerospikeCluster"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "asdb.aerospike.com", Version: "v1beta1", Resource: "aerospikeclusters"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

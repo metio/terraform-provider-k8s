@@ -351,7 +351,8 @@ func (r *ExpansionGatekeeperShExpansionTemplateV1Alpha1Resource) Create(ctx cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "expansion.gatekeeper.sh", Version: "v1alpha1", Resource: "ExpansionTemplate"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "expansion.gatekeeper.sh", Version: "v1alpha1", Resource: "expansiontemplate"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -401,7 +402,7 @@ func (r *ExpansionGatekeeperShExpansionTemplateV1Alpha1Resource) Read(ctx contex
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "expansion.gatekeeper.sh", Version: "v1alpha1", Resource: "ExpansionTemplate"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "expansion.gatekeeper.sh", Version: "v1alpha1", Resource: "expansiontemplate"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -477,7 +478,8 @@ func (r *ExpansionGatekeeperShExpansionTemplateV1Alpha1Resource) Update(ctx cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "expansion.gatekeeper.sh", Version: "v1alpha1", Resource: "ExpansionTemplate"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "expansion.gatekeeper.sh", Version: "v1alpha1", Resource: "expansiontemplate"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -527,7 +529,7 @@ func (r *ExpansionGatekeeperShExpansionTemplateV1Alpha1Resource) Delete(ctx cont
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "expansion.gatekeeper.sh", Version: "v1alpha1", Resource: "ExpansionTemplate"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "expansion.gatekeeper.sh", Version: "v1alpha1", Resource: "expansiontemplate"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

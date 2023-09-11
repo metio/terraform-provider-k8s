@@ -309,7 +309,8 @@ func (r *SfnServicesK8SAwsActivityV1Alpha1Resource) Create(ctx context.Context, 
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "Activity"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "activities"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -360,7 +361,7 @@ func (r *SfnServicesK8SAwsActivityV1Alpha1Resource) Read(ctx context.Context, re
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "Activity"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "activities"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -437,7 +438,8 @@ func (r *SfnServicesK8SAwsActivityV1Alpha1Resource) Update(ctx context.Context, 
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "Activity"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "activities"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -488,7 +490,7 @@ func (r *SfnServicesK8SAwsActivityV1Alpha1Resource) Delete(ctx context.Context, 
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "Activity"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "sfn.services.k8s.aws", Version: "v1alpha1", Resource: "activities"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

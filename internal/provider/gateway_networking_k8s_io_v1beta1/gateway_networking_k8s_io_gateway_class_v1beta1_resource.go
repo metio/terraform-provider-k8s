@@ -344,7 +344,8 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Beta1Resource) Create(ctx context.C
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "gateway.networking.k8s.io", Version: "v1beta1", Resource: "GatewayClass"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "gateway.networking.k8s.io", Version: "v1beta1", Resource: "gatewayclasses"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -394,7 +395,7 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Beta1Resource) Read(ctx context.Con
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "gateway.networking.k8s.io", Version: "v1beta1", Resource: "GatewayClass"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "gateway.networking.k8s.io", Version: "v1beta1", Resource: "gatewayclasses"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -470,7 +471,8 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Beta1Resource) Update(ctx context.C
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "gateway.networking.k8s.io", Version: "v1beta1", Resource: "GatewayClass"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "gateway.networking.k8s.io", Version: "v1beta1", Resource: "gatewayclasses"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -520,7 +522,7 @@ func (r *GatewayNetworkingK8SIoGatewayClassV1Beta1Resource) Delete(ctx context.C
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "gateway.networking.k8s.io", Version: "v1beta1", Resource: "GatewayClass"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "gateway.networking.k8s.io", Version: "v1beta1", Resource: "gatewayclasses"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

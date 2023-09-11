@@ -4491,7 +4491,8 @@ func (r *PkgCrossplaneIoControllerConfigV1Alpha1Resource) Create(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1alpha1", Resource: "ControllerConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1alpha1", Resource: "controllerconfigs"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4541,7 +4542,7 @@ func (r *PkgCrossplaneIoControllerConfigV1Alpha1Resource) Read(ctx context.Conte
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1alpha1", Resource: "ControllerConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1alpha1", Resource: "controllerconfigs"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4617,7 +4618,8 @@ func (r *PkgCrossplaneIoControllerConfigV1Alpha1Resource) Update(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1alpha1", Resource: "ControllerConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1alpha1", Resource: "controllerconfigs"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -4667,7 +4669,7 @@ func (r *PkgCrossplaneIoControllerConfigV1Alpha1Resource) Delete(ctx context.Con
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1alpha1", Resource: "ControllerConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1alpha1", Resource: "controllerconfigs"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

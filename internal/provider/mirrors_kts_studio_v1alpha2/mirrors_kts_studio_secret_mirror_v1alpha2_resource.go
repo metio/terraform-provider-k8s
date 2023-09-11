@@ -667,7 +667,8 @@ func (r *MirrorsKtsStudioSecretMirrorV1Alpha2Resource) Create(ctx context.Contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "mirrors.kts.studio", Version: "v1alpha2", Resource: "SecretMirror"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "mirrors.kts.studio", Version: "v1alpha2", Resource: "secretmirrors"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -718,7 +719,7 @@ func (r *MirrorsKtsStudioSecretMirrorV1Alpha2Resource) Read(ctx context.Context,
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "mirrors.kts.studio", Version: "v1alpha2", Resource: "SecretMirror"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "mirrors.kts.studio", Version: "v1alpha2", Resource: "secretmirrors"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -795,7 +796,8 @@ func (r *MirrorsKtsStudioSecretMirrorV1Alpha2Resource) Update(ctx context.Contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "mirrors.kts.studio", Version: "v1alpha2", Resource: "SecretMirror"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "mirrors.kts.studio", Version: "v1alpha2", Resource: "secretmirrors"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -846,7 +848,7 @@ func (r *MirrorsKtsStudioSecretMirrorV1Alpha2Resource) Delete(ctx context.Contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "mirrors.kts.studio", Version: "v1alpha2", Resource: "SecretMirror"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "mirrors.kts.studio", Version: "v1alpha2", Resource: "secretmirrors"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

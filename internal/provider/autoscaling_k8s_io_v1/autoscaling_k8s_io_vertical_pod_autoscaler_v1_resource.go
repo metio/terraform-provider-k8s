@@ -483,7 +483,8 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerV1Resource) Create(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "VerticalPodAutoscaler"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "verticalpodautoscalers"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -534,7 +535,7 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerV1Resource) Read(ctx context.Conte
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "VerticalPodAutoscaler"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "verticalpodautoscalers"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -611,7 +612,8 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerV1Resource) Update(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "VerticalPodAutoscaler"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "verticalpodautoscalers"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -662,7 +664,7 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerV1Resource) Delete(ctx context.Con
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "VerticalPodAutoscaler"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "verticalpodautoscalers"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

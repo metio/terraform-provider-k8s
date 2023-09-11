@@ -813,7 +813,8 @@ func (r *TestsTestkubeIoTestSuiteV3Resource) Create(ctx context.Context, request
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v3", Resource: "TestSuite"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v3", Resource: "testsuites"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -864,7 +865,7 @@ func (r *TestsTestkubeIoTestSuiteV3Resource) Read(ctx context.Context, request r
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v3", Resource: "TestSuite"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v3", Resource: "testsuites"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -941,7 +942,8 @@ func (r *TestsTestkubeIoTestSuiteV3Resource) Update(ctx context.Context, request
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v3", Resource: "TestSuite"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v3", Resource: "testsuites"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -992,7 +994,7 @@ func (r *TestsTestkubeIoTestSuiteV3Resource) Delete(ctx context.Context, request
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v3", Resource: "TestSuite"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v3", Resource: "testsuites"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

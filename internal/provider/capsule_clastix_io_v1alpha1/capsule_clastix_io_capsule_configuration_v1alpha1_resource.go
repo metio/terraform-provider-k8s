@@ -280,7 +280,8 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Alpha1Resource) Create(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "CapsuleConfiguration"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "capsuleconfigurations"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -330,7 +331,7 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Alpha1Resource) Read(ctx context.
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "CapsuleConfiguration"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "capsuleconfigurations"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -406,7 +407,8 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Alpha1Resource) Update(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "CapsuleConfiguration"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "capsuleconfigurations"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -456,7 +458,7 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Alpha1Resource) Delete(ctx contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "CapsuleConfiguration"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "capsuleconfigurations"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

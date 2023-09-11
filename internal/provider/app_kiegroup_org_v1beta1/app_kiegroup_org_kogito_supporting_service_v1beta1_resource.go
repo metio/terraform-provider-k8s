@@ -1301,7 +1301,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) Create(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "app.kiegroup.org", Version: "v1beta1", Resource: "KogitoSupportingService"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "app.kiegroup.org", Version: "v1beta1", Resource: "kogitosupportingservices"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -1352,7 +1353,7 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) Read(ctx context.
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "app.kiegroup.org", Version: "v1beta1", Resource: "KogitoSupportingService"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "app.kiegroup.org", Version: "v1beta1", Resource: "kogitosupportingservices"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -1429,7 +1430,8 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) Update(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "app.kiegroup.org", Version: "v1beta1", Resource: "KogitoSupportingService"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "app.kiegroup.org", Version: "v1beta1", Resource: "kogitosupportingservices"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -1480,7 +1482,7 @@ func (r *AppKiegroupOrgKogitoSupportingServiceV1Beta1Resource) Delete(ctx contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "app.kiegroup.org", Version: "v1beta1", Resource: "KogitoSupportingService"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "app.kiegroup.org", Version: "v1beta1", Resource: "kogitosupportingservices"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

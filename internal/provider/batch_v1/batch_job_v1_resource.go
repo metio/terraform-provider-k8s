@@ -10553,7 +10553,8 @@ func (r *BatchJobV1Resource) Create(ctx context.Context, request resource.Create
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "Job"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "jobs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -10604,7 +10605,7 @@ func (r *BatchJobV1Resource) Read(ctx context.Context, request resource.ReadRequ
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "Job"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "jobs"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -10681,7 +10682,8 @@ func (r *BatchJobV1Resource) Update(ctx context.Context, request resource.Update
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "Job"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "jobs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -10732,7 +10734,7 @@ func (r *BatchJobV1Resource) Delete(ctx context.Context, request resource.Delete
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "Job"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "jobs"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

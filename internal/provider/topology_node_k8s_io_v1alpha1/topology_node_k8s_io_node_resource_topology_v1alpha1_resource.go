@@ -402,7 +402,8 @@ func (r *TopologyNodeK8SIoNodeResourceTopologyV1Alpha1Resource) Create(ctx conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "topology.node.k8s.io", Version: "v1alpha1", Resource: "NodeResourceTopology"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "topology.node.k8s.io", Version: "v1alpha1", Resource: "noderesourcetopologies"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -453,7 +454,7 @@ func (r *TopologyNodeK8SIoNodeResourceTopologyV1Alpha1Resource) Read(ctx context
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "topology.node.k8s.io", Version: "v1alpha1", Resource: "NodeResourceTopology"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "topology.node.k8s.io", Version: "v1alpha1", Resource: "noderesourcetopologies"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -530,7 +531,8 @@ func (r *TopologyNodeK8SIoNodeResourceTopologyV1Alpha1Resource) Update(ctx conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "topology.node.k8s.io", Version: "v1alpha1", Resource: "NodeResourceTopology"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "topology.node.k8s.io", Version: "v1alpha1", Resource: "noderesourcetopologies"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -581,7 +583,7 @@ func (r *TopologyNodeK8SIoNodeResourceTopologyV1Alpha1Resource) Delete(ctx conte
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "topology.node.k8s.io", Version: "v1alpha1", Resource: "NodeResourceTopology"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "topology.node.k8s.io", Version: "v1alpha1", Resource: "noderesourcetopologies"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

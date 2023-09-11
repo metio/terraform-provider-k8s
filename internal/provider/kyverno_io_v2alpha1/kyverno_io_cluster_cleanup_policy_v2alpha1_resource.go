@@ -1768,7 +1768,8 @@ func (r *KyvernoIoClusterCleanupPolicyV2Alpha1Resource) Create(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "ClusterCleanupPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "clustercleanuppolicies"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1818,7 +1819,7 @@ func (r *KyvernoIoClusterCleanupPolicyV2Alpha1Resource) Read(ctx context.Context
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "ClusterCleanupPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "clustercleanuppolicies"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1894,7 +1895,8 @@ func (r *KyvernoIoClusterCleanupPolicyV2Alpha1Resource) Update(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "ClusterCleanupPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "clustercleanuppolicies"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1944,7 +1946,7 @@ func (r *KyvernoIoClusterCleanupPolicyV2Alpha1Resource) Delete(ctx context.Conte
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "ClusterCleanupPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "clustercleanuppolicies"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

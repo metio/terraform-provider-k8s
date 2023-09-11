@@ -343,7 +343,8 @@ func (r *CiliumIoCiliumClusterwideEnvoyConfigV2Resource) Create(ctx context.Cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumClusterwideEnvoyConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumclusterwideenvoyconfigs"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -393,7 +394,7 @@ func (r *CiliumIoCiliumClusterwideEnvoyConfigV2Resource) Read(ctx context.Contex
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumClusterwideEnvoyConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumclusterwideenvoyconfigs"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -469,7 +470,8 @@ func (r *CiliumIoCiliumClusterwideEnvoyConfigV2Resource) Update(ctx context.Cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumClusterwideEnvoyConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumclusterwideenvoyconfigs"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -519,7 +521,7 @@ func (r *CiliumIoCiliumClusterwideEnvoyConfigV2Resource) Delete(ctx context.Cont
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "CiliumClusterwideEnvoyConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2", Resource: "ciliumclusterwideenvoyconfigs"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

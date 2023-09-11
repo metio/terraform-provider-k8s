@@ -323,7 +323,8 @@ func (r *LerentisUploadfilter24EuRegistryCredentialV1Beta4Resource) Create(ctx c
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "RegistryCredential"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "registry-credentials"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -374,7 +375,7 @@ func (r *LerentisUploadfilter24EuRegistryCredentialV1Beta4Resource) Read(ctx con
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "RegistryCredential"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "registry-credentials"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -451,7 +452,8 @@ func (r *LerentisUploadfilter24EuRegistryCredentialV1Beta4Resource) Update(ctx c
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "RegistryCredential"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "registry-credentials"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -502,7 +504,7 @@ func (r *LerentisUploadfilter24EuRegistryCredentialV1Beta4Resource) Delete(ctx c
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "RegistryCredential"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "lerentis.uploadfilter24.eu", Version: "v1beta4", Resource: "registry-credentials"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -277,7 +277,8 @@ func (r *SchedulingK8SIoPriorityClassV1Resource) Create(ctx context.Context, req
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "scheduling.k8s.io", Version: "v1", Resource: "PriorityClass"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "scheduling.k8s.io", Version: "v1", Resource: "priorityclasses"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -330,7 +331,7 @@ func (r *SchedulingK8SIoPriorityClassV1Resource) Read(ctx context.Context, reque
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "scheduling.k8s.io", Version: "v1", Resource: "PriorityClass"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "scheduling.k8s.io", Version: "v1", Resource: "priorityclasses"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -409,7 +410,8 @@ func (r *SchedulingK8SIoPriorityClassV1Resource) Update(ctx context.Context, req
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "scheduling.k8s.io", Version: "v1", Resource: "PriorityClass"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "scheduling.k8s.io", Version: "v1", Resource: "priorityclasses"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -462,7 +464,7 @@ func (r *SchedulingK8SIoPriorityClassV1Resource) Delete(ctx context.Context, req
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "scheduling.k8s.io", Version: "v1", Resource: "PriorityClass"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "scheduling.k8s.io", Version: "v1", Resource: "priorityclasses"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

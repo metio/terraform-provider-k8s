@@ -279,7 +279,8 @@ func (r *GetambassadorIoKubernetesEndpointResolverV2Resource) Create(ctx context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v2", Resource: "KubernetesEndpointResolver"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v2", Resource: "kubernetesendpointresolvers"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -330,7 +331,7 @@ func (r *GetambassadorIoKubernetesEndpointResolverV2Resource) Read(ctx context.C
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v2", Resource: "KubernetesEndpointResolver"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v2", Resource: "kubernetesendpointresolvers"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -407,7 +408,8 @@ func (r *GetambassadorIoKubernetesEndpointResolverV2Resource) Update(ctx context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v2", Resource: "KubernetesEndpointResolver"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v2", Resource: "kubernetesendpointresolvers"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -458,7 +460,7 @@ func (r *GetambassadorIoKubernetesEndpointResolverV2Resource) Delete(ctx context
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v2", Resource: "KubernetesEndpointResolver"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v2", Resource: "kubernetesendpointresolvers"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

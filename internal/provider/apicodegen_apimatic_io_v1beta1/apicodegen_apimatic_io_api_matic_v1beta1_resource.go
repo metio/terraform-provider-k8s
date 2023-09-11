@@ -1799,7 +1799,8 @@ func (r *ApicodegenApimaticIoApimaticV1Beta1Resource) Create(ctx context.Context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apicodegen.apimatic.io", Version: "v1beta1", Resource: "APIMatic"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apicodegen.apimatic.io", Version: "v1beta1", Resource: "apimatics"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -1850,7 +1851,7 @@ func (r *ApicodegenApimaticIoApimaticV1Beta1Resource) Read(ctx context.Context, 
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apicodegen.apimatic.io", Version: "v1beta1", Resource: "APIMatic"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apicodegen.apimatic.io", Version: "v1beta1", Resource: "apimatics"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -1927,7 +1928,8 @@ func (r *ApicodegenApimaticIoApimaticV1Beta1Resource) Update(ctx context.Context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apicodegen.apimatic.io", Version: "v1beta1", Resource: "APIMatic"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apicodegen.apimatic.io", Version: "v1beta1", Resource: "apimatics"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -1978,7 +1980,7 @@ func (r *ApicodegenApimaticIoApimaticV1Beta1Resource) Delete(ctx context.Context
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apicodegen.apimatic.io", Version: "v1beta1", Resource: "APIMatic"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apicodegen.apimatic.io", Version: "v1beta1", Resource: "apimatics"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

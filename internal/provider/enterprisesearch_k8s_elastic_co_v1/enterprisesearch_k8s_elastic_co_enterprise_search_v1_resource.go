@@ -10413,7 +10413,8 @@ func (r *EnterprisesearchK8SElasticCoEnterpriseSearchV1Resource) Create(ctx cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "enterprisesearch.k8s.elastic.co", Version: "v1", Resource: "EnterpriseSearch"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "enterprisesearch.k8s.elastic.co", Version: "v1", Resource: "enterprisesearches"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -10464,7 +10465,7 @@ func (r *EnterprisesearchK8SElasticCoEnterpriseSearchV1Resource) Read(ctx contex
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "enterprisesearch.k8s.elastic.co", Version: "v1", Resource: "EnterpriseSearch"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "enterprisesearch.k8s.elastic.co", Version: "v1", Resource: "enterprisesearches"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -10541,7 +10542,8 @@ func (r *EnterprisesearchK8SElasticCoEnterpriseSearchV1Resource) Update(ctx cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "enterprisesearch.k8s.elastic.co", Version: "v1", Resource: "EnterpriseSearch"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "enterprisesearch.k8s.elastic.co", Version: "v1", Resource: "enterprisesearches"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -10592,7 +10594,7 @@ func (r *EnterprisesearchK8SElasticCoEnterpriseSearchV1Resource) Delete(ctx cont
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "enterprisesearch.k8s.elastic.co", Version: "v1", Resource: "EnterpriseSearch"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "enterprisesearch.k8s.elastic.co", Version: "v1", Resource: "enterprisesearches"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

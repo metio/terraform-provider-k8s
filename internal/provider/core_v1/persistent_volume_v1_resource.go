@@ -2041,7 +2041,8 @@ func (r *PersistentVolumeV1Resource) Create(ctx context.Context, request resourc
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "PersistentVolume"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "persistentvolumes"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -2092,7 +2093,7 @@ func (r *PersistentVolumeV1Resource) Read(ctx context.Context, request resource.
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "PersistentVolume"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "persistentvolumes"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -2169,7 +2170,8 @@ func (r *PersistentVolumeV1Resource) Update(ctx context.Context, request resourc
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "PersistentVolume"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "persistentvolumes"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -2220,7 +2222,7 @@ func (r *PersistentVolumeV1Resource) Delete(ctx context.Context, request resourc
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "PersistentVolume"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "", Version: "v1", Resource: "persistentvolumes"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

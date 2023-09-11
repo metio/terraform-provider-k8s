@@ -8,6 +8,7 @@ package networking_k8s_io_v1
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -17,10 +18,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
+	k8sErrors "k8s.io/apimachinery/pkg/api/errors"
 	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
 	k8sSchema "k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/utils/pointer"
+	"net/http"
 )
 
 var (
@@ -217,15 +220,28 @@ func (r *NetworkingK8SIoIngressClassV1DataSource) Read(ctx context.Context, requ
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "networking.k8s.io", Version: "v1", Resource: "IngressClass"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "networking.k8s.io", Version: "v1", Resource: "ingressclasses"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to GET resource",
-			"An unexpected error occurred while reading the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"GET Error: "+err.Error(),
-		)
+		var statusError *k8sErrors.StatusError
+		if errors.As(err, &statusError) {
+			if statusError.Status().Code == http.StatusNotFound {
+				response.Diagnostics.AddError(
+					"Unable to find resource",
+					fmt.Sprintf("The requested resource cannot be found. "+
+						"Make sure that it does exist in your cluster and you have set the correct name configured.\n\n"+
+						"Name: %s", data.Metadata.Name),
+				)
+				return
+			}
+		} else {
+			response.Diagnostics.AddError(
+				"Unable to GET resource",
+				fmt.Sprintf("An unexpected error occurred while reading the resource. "+
+					"Please report this issue to the provider developers.\n\n"+
+					"GET Error (%T): %s", err, err.Error()),
+			)
+		}
 		return
 	}
 	getBytes, err := getResponse.MarshalJSON()

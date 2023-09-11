@@ -281,7 +281,8 @@ func (r *HiveinternalOpenshiftIoClusterSyncLeaseV1Alpha1Resource) Create(ctx con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "hiveinternal.openshift.io", Version: "v1alpha1", Resource: "ClusterSyncLease"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "hiveinternal.openshift.io", Version: "v1alpha1", Resource: "clustersyncleases"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -332,7 +333,7 @@ func (r *HiveinternalOpenshiftIoClusterSyncLeaseV1Alpha1Resource) Read(ctx conte
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "hiveinternal.openshift.io", Version: "v1alpha1", Resource: "ClusterSyncLease"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "hiveinternal.openshift.io", Version: "v1alpha1", Resource: "clustersyncleases"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -409,7 +410,8 @@ func (r *HiveinternalOpenshiftIoClusterSyncLeaseV1Alpha1Resource) Update(ctx con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "hiveinternal.openshift.io", Version: "v1alpha1", Resource: "ClusterSyncLease"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "hiveinternal.openshift.io", Version: "v1alpha1", Resource: "clustersyncleases"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -460,7 +462,7 @@ func (r *HiveinternalOpenshiftIoClusterSyncLeaseV1Alpha1Resource) Delete(ctx con
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "hiveinternal.openshift.io", Version: "v1alpha1", Resource: "ClusterSyncLease"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "hiveinternal.openshift.io", Version: "v1alpha1", Resource: "clustersyncleases"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

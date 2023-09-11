@@ -279,7 +279,8 @@ func (r *ExternaldataGatekeeperShProviderV1Beta1Resource) Create(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "externaldata.gatekeeper.sh", Version: "v1beta1", Resource: "Provider"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "externaldata.gatekeeper.sh", Version: "v1beta1", Resource: "providers"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -329,7 +330,7 @@ func (r *ExternaldataGatekeeperShProviderV1Beta1Resource) Read(ctx context.Conte
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "externaldata.gatekeeper.sh", Version: "v1beta1", Resource: "Provider"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "externaldata.gatekeeper.sh", Version: "v1beta1", Resource: "providers"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -405,7 +406,8 @@ func (r *ExternaldataGatekeeperShProviderV1Beta1Resource) Update(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "externaldata.gatekeeper.sh", Version: "v1beta1", Resource: "Provider"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "externaldata.gatekeeper.sh", Version: "v1beta1", Resource: "providers"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -455,7 +457,7 @@ func (r *ExternaldataGatekeeperShProviderV1Beta1Resource) Delete(ctx context.Con
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "externaldata.gatekeeper.sh", Version: "v1beta1", Resource: "Provider"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "externaldata.gatekeeper.sh", Version: "v1beta1", Resource: "providers"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

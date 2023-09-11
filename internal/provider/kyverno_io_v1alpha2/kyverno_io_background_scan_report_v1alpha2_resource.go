@@ -593,7 +593,8 @@ func (r *KyvernoIoBackgroundScanReportV1Alpha2Resource) Create(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "BackgroundScanReport"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "backgroundscanreports"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -644,7 +645,7 @@ func (r *KyvernoIoBackgroundScanReportV1Alpha2Resource) Read(ctx context.Context
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "BackgroundScanReport"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "backgroundscanreports"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -721,7 +722,8 @@ func (r *KyvernoIoBackgroundScanReportV1Alpha2Resource) Update(ctx context.Conte
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "BackgroundScanReport"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "backgroundscanreports"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -772,7 +774,7 @@ func (r *KyvernoIoBackgroundScanReportV1Alpha2Resource) Delete(ctx context.Conte
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "BackgroundScanReport"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "backgroundscanreports"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

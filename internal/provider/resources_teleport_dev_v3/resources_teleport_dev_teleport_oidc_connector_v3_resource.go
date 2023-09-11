@@ -447,7 +447,8 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Resource) Create(ctx context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "TeleportOIDCConnector"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "teleportoidcconnectors"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -498,7 +499,7 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Resource) Read(ctx context.C
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "TeleportOIDCConnector"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "teleportoidcconnectors"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -575,7 +576,8 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Resource) Update(ctx context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "TeleportOIDCConnector"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "teleportoidcconnectors"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -626,7 +628,7 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Resource) Delete(ctx context
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "TeleportOIDCConnector"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v3", Resource: "teleportoidcconnectors"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

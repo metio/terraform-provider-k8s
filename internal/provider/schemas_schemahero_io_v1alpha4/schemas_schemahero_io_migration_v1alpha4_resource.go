@@ -314,7 +314,8 @@ func (r *SchemasSchemaheroIoMigrationV1Alpha4Resource) Create(ctx context.Contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "Migration"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "migrations"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -365,7 +366,7 @@ func (r *SchemasSchemaheroIoMigrationV1Alpha4Resource) Read(ctx context.Context,
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "Migration"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "migrations"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -442,7 +443,8 @@ func (r *SchemasSchemaheroIoMigrationV1Alpha4Resource) Update(ctx context.Contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "Migration"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "migrations"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -493,7 +495,7 @@ func (r *SchemasSchemaheroIoMigrationV1Alpha4Resource) Delete(ctx context.Contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "Migration"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "migrations"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

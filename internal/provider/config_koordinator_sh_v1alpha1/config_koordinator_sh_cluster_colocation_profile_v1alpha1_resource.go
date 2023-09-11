@@ -454,7 +454,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Resource) Create(ctx
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "config.koordinator.sh", Version: "v1alpha1", Resource: "ClusterColocationProfile"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "config.koordinator.sh", Version: "v1alpha1", Resource: "clustercolocationprofiles"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -504,7 +505,7 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Resource) Read(ctx c
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "config.koordinator.sh", Version: "v1alpha1", Resource: "ClusterColocationProfile"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "config.koordinator.sh", Version: "v1alpha1", Resource: "clustercolocationprofiles"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -580,7 +581,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Resource) Update(ctx
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "config.koordinator.sh", Version: "v1alpha1", Resource: "ClusterColocationProfile"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "config.koordinator.sh", Version: "v1alpha1", Resource: "clustercolocationprofiles"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -630,7 +632,7 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Resource) Delete(ctx
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "config.koordinator.sh", Version: "v1alpha1", Resource: "ClusterColocationProfile"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "config.koordinator.sh", Version: "v1alpha1", Resource: "clustercolocationprofiles"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

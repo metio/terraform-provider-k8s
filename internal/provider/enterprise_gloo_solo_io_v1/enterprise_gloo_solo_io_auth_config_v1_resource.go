@@ -2995,7 +2995,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Resource) Create(ctx context.Context, r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "enterprise.gloo.solo.io", Version: "v1", Resource: "AuthConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "enterprise.gloo.solo.io", Version: "v1", Resource: "authconfigs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -3046,7 +3047,7 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Resource) Read(ctx context.Context, req
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "enterprise.gloo.solo.io", Version: "v1", Resource: "AuthConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "enterprise.gloo.solo.io", Version: "v1", Resource: "authconfigs"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -3123,7 +3124,8 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Resource) Update(ctx context.Context, r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "enterprise.gloo.solo.io", Version: "v1", Resource: "AuthConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "enterprise.gloo.solo.io", Version: "v1", Resource: "authconfigs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -3174,7 +3176,7 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Resource) Delete(ctx context.Context, r
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "enterprise.gloo.solo.io", Version: "v1", Resource: "AuthConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "enterprise.gloo.solo.io", Version: "v1", Resource: "authconfigs"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

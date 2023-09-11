@@ -638,7 +638,8 @@ func (r *K8GbAbsaOssGslbV1Beta1Resource) Create(ctx context.Context, request res
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "k8gb.absa.oss", Version: "v1beta1", Resource: "Gslb"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "k8gb.absa.oss", Version: "v1beta1", Resource: "gslbs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -689,7 +690,7 @@ func (r *K8GbAbsaOssGslbV1Beta1Resource) Read(ctx context.Context, request resou
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "k8gb.absa.oss", Version: "v1beta1", Resource: "Gslb"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "k8gb.absa.oss", Version: "v1beta1", Resource: "gslbs"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -766,7 +767,8 @@ func (r *K8GbAbsaOssGslbV1Beta1Resource) Update(ctx context.Context, request res
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "k8gb.absa.oss", Version: "v1beta1", Resource: "Gslb"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "k8gb.absa.oss", Version: "v1beta1", Resource: "gslbs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -817,7 +819,7 @@ func (r *K8GbAbsaOssGslbV1Beta1Resource) Delete(ctx context.Context, request res
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "k8gb.absa.oss", Version: "v1beta1", Resource: "Gslb"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "k8gb.absa.oss", Version: "v1beta1", Resource: "gslbs"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -410,7 +410,8 @@ func (r *TestsTestkubeIoScriptV2Resource) Create(ctx context.Context, request re
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v2", Resource: "Script"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v2", Resource: "scripts"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -461,7 +462,7 @@ func (r *TestsTestkubeIoScriptV2Resource) Read(ctx context.Context, request reso
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v2", Resource: "Script"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v2", Resource: "scripts"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -538,7 +539,8 @@ func (r *TestsTestkubeIoScriptV2Resource) Update(ctx context.Context, request re
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v2", Resource: "Script"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v2", Resource: "scripts"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -589,7 +591,7 @@ func (r *TestsTestkubeIoScriptV2Resource) Delete(ctx context.Context, request re
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v2", Resource: "Script"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "tests.testkube.io", Version: "v2", Resource: "scripts"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

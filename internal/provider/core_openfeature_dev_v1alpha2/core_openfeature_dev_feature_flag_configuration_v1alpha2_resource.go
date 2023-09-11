@@ -684,7 +684,8 @@ func (r *CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha2Resource) Create(ctx 
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "core.openfeature.dev", Version: "v1alpha2", Resource: "FeatureFlagConfiguration"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "core.openfeature.dev", Version: "v1alpha2", Resource: "featureflagconfigurations"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -735,7 +736,7 @@ func (r *CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha2Resource) Read(ctx co
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "core.openfeature.dev", Version: "v1alpha2", Resource: "FeatureFlagConfiguration"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "core.openfeature.dev", Version: "v1alpha2", Resource: "featureflagconfigurations"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -812,7 +813,8 @@ func (r *CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha2Resource) Update(ctx 
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "core.openfeature.dev", Version: "v1alpha2", Resource: "FeatureFlagConfiguration"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "core.openfeature.dev", Version: "v1alpha2", Resource: "featureflagconfigurations"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -863,7 +865,7 @@ func (r *CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha2Resource) Delete(ctx 
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "core.openfeature.dev", Version: "v1alpha2", Resource: "FeatureFlagConfiguration"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "core.openfeature.dev", Version: "v1alpha2", Resource: "featureflagconfigurations"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -408,7 +408,8 @@ func (r *RedhatcopRedhatIoGroupConfigV1Alpha1Resource) Create(ctx context.Contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "GroupConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "groupconfigs"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -458,7 +459,7 @@ func (r *RedhatcopRedhatIoGroupConfigV1Alpha1Resource) Read(ctx context.Context,
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "GroupConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "groupconfigs"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -534,7 +535,8 @@ func (r *RedhatcopRedhatIoGroupConfigV1Alpha1Resource) Update(ctx context.Contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "GroupConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "groupconfigs"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -584,7 +586,7 @@ func (r *RedhatcopRedhatIoGroupConfigV1Alpha1Resource) Delete(ctx context.Contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "GroupConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "groupconfigs"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

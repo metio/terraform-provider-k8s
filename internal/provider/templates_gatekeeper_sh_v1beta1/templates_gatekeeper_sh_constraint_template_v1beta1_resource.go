@@ -407,7 +407,8 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Beta1Resource) Create(ctx cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "templates.gatekeeper.sh", Version: "v1beta1", Resource: "ConstraintTemplate"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "templates.gatekeeper.sh", Version: "v1beta1", Resource: "constrainttemplates"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -457,7 +458,7 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Beta1Resource) Read(ctx contex
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "templates.gatekeeper.sh", Version: "v1beta1", Resource: "ConstraintTemplate"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "templates.gatekeeper.sh", Version: "v1beta1", Resource: "constrainttemplates"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -533,7 +534,8 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Beta1Resource) Update(ctx cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "templates.gatekeeper.sh", Version: "v1beta1", Resource: "ConstraintTemplate"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "templates.gatekeeper.sh", Version: "v1beta1", Resource: "constrainttemplates"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -583,7 +585,7 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Beta1Resource) Delete(ctx cont
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "templates.gatekeeper.sh", Version: "v1beta1", Resource: "ConstraintTemplate"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "templates.gatekeeper.sh", Version: "v1beta1", Resource: "constrainttemplates"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

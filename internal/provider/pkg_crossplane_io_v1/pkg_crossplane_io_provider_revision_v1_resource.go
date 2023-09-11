@@ -394,7 +394,8 @@ func (r *PkgCrossplaneIoProviderRevisionV1Resource) Create(ctx context.Context, 
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1", Resource: "ProviderRevision"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1", Resource: "providerrevisions"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -444,7 +445,7 @@ func (r *PkgCrossplaneIoProviderRevisionV1Resource) Read(ctx context.Context, re
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1", Resource: "ProviderRevision"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1", Resource: "providerrevisions"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -520,7 +521,8 @@ func (r *PkgCrossplaneIoProviderRevisionV1Resource) Update(ctx context.Context, 
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1", Resource: "ProviderRevision"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1", Resource: "providerrevisions"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -570,7 +572,7 @@ func (r *PkgCrossplaneIoProviderRevisionV1Resource) Delete(ctx context.Context, 
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1", Resource: "ProviderRevision"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "pkg.crossplane.io", Version: "v1", Resource: "providerrevisions"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

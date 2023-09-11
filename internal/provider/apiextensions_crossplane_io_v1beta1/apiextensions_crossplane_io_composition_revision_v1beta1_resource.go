@@ -2273,7 +2273,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Resource) Create(ctx
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1beta1", Resource: "CompositionRevision"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1beta1", Resource: "compositionrevisions"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -2323,7 +2324,7 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Resource) Read(ctx c
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1beta1", Resource: "CompositionRevision"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1beta1", Resource: "compositionrevisions"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -2399,7 +2400,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Resource) Update(ctx
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1beta1", Resource: "CompositionRevision"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1beta1", Resource: "compositionrevisions"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -2449,7 +2451,7 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Resource) Delete(ctx
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1beta1", Resource: "CompositionRevision"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1beta1", Resource: "compositionrevisions"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

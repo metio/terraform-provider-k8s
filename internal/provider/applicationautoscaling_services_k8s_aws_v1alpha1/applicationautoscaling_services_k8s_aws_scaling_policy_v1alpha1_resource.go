@@ -555,7 +555,8 @@ func (r *ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1Resource) Crea
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "applicationautoscaling.services.k8s.aws", Version: "v1alpha1", Resource: "ScalingPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "applicationautoscaling.services.k8s.aws", Version: "v1alpha1", Resource: "scalingpolicies"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -606,7 +607,7 @@ func (r *ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1Resource) Read
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "applicationautoscaling.services.k8s.aws", Version: "v1alpha1", Resource: "ScalingPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "applicationautoscaling.services.k8s.aws", Version: "v1alpha1", Resource: "scalingpolicies"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -683,7 +684,8 @@ func (r *ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1Resource) Upda
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "applicationautoscaling.services.k8s.aws", Version: "v1alpha1", Resource: "ScalingPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "applicationautoscaling.services.k8s.aws", Version: "v1alpha1", Resource: "scalingpolicies"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -734,7 +736,7 @@ func (r *ApplicationautoscalingServicesK8SAwsScalingPolicyV1Alpha1Resource) Dele
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "applicationautoscaling.services.k8s.aws", Version: "v1alpha1", Resource: "ScalingPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "applicationautoscaling.services.k8s.aws", Version: "v1alpha1", Resource: "scalingpolicies"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

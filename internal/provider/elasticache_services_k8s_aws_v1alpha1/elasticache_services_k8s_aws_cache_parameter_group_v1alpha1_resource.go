@@ -358,7 +358,8 @@ func (r *ElasticacheServicesK8SAwsCacheParameterGroupV1Alpha1Resource) Create(ct
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "elasticache.services.k8s.aws", Version: "v1alpha1", Resource: "CacheParameterGroup"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "elasticache.services.k8s.aws", Version: "v1alpha1", Resource: "cacheparametergroups"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -409,7 +410,7 @@ func (r *ElasticacheServicesK8SAwsCacheParameterGroupV1Alpha1Resource) Read(ctx 
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "elasticache.services.k8s.aws", Version: "v1alpha1", Resource: "CacheParameterGroup"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "elasticache.services.k8s.aws", Version: "v1alpha1", Resource: "cacheparametergroups"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -486,7 +487,8 @@ func (r *ElasticacheServicesK8SAwsCacheParameterGroupV1Alpha1Resource) Update(ct
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "elasticache.services.k8s.aws", Version: "v1alpha1", Resource: "CacheParameterGroup"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "elasticache.services.k8s.aws", Version: "v1alpha1", Resource: "cacheparametergroups"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -537,7 +539,7 @@ func (r *ElasticacheServicesK8SAwsCacheParameterGroupV1Alpha1Resource) Delete(ct
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "elasticache.services.k8s.aws", Version: "v1alpha1", Resource: "CacheParameterGroup"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "elasticache.services.k8s.aws", Version: "v1alpha1", Resource: "cacheparametergroups"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

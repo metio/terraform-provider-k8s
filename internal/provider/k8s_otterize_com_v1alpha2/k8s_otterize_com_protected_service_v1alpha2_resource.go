@@ -278,7 +278,8 @@ func (r *K8SOtterizeComProtectedServiceV1Alpha2Resource) Create(ctx context.Cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "ProtectedService"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "protectedservices"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -329,7 +330,7 @@ func (r *K8SOtterizeComProtectedServiceV1Alpha2Resource) Read(ctx context.Contex
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "ProtectedService"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "protectedservices"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -406,7 +407,8 @@ func (r *K8SOtterizeComProtectedServiceV1Alpha2Resource) Update(ctx context.Cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "ProtectedService"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "protectedservices"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -457,7 +459,7 @@ func (r *K8SOtterizeComProtectedServiceV1Alpha2Resource) Delete(ctx context.Cont
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "ProtectedService"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "k8s.otterize.com", Version: "v1alpha2", Resource: "protectedservices"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

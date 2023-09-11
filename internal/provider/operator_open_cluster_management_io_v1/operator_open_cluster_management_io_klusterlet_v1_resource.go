@@ -564,7 +564,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Resource) Create(ctx context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "Klusterlet"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "klusterlets"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -614,7 +615,7 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Resource) Read(ctx context.C
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "Klusterlet"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "klusterlets"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -690,7 +691,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Resource) Update(ctx context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "Klusterlet"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "klusterlets"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -740,7 +742,7 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Resource) Delete(ctx context
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "Klusterlet"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "klusterlets"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

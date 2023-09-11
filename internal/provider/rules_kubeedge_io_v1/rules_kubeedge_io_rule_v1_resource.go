@@ -307,7 +307,8 @@ func (r *RulesKubeedgeIoRuleV1Resource) Create(ctx context.Context, request reso
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "rules.kubeedge.io", Version: "v1", Resource: "Rule"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "rules.kubeedge.io", Version: "v1", Resource: "rules"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -358,7 +359,7 @@ func (r *RulesKubeedgeIoRuleV1Resource) Read(ctx context.Context, request resour
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "rules.kubeedge.io", Version: "v1", Resource: "Rule"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "rules.kubeedge.io", Version: "v1", Resource: "rules"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -435,7 +436,8 @@ func (r *RulesKubeedgeIoRuleV1Resource) Update(ctx context.Context, request reso
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "rules.kubeedge.io", Version: "v1", Resource: "Rule"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "rules.kubeedge.io", Version: "v1", Resource: "rules"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -486,7 +488,7 @@ func (r *RulesKubeedgeIoRuleV1Resource) Delete(ctx context.Context, request reso
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "rules.kubeedge.io", Version: "v1", Resource: "Rule"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "rules.kubeedge.io", Version: "v1", Resource: "rules"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

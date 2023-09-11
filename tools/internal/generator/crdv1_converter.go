@@ -48,6 +48,7 @@ func crdV1AsTemplateData(crd *apiextensionsv1.CustomResourceDefinition) *Templat
 		Group:       group,
 		Version:     version.Name,
 		Kind:        kind,
+		PluralKind:  crd.Spec.Names.Plural,
 		Namespaced:  crd.Spec.Scope == apiextensionsv1.NamespaceScoped,
 		Description: description(schema.Description),
 

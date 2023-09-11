@@ -10922,7 +10922,8 @@ func (r *BatchCronJobV1Resource) Create(ctx context.Context, request resource.Cr
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "CronJob"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "cronjobs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -10973,7 +10974,7 @@ func (r *BatchCronJobV1Resource) Read(ctx context.Context, request resource.Read
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "CronJob"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "cronjobs"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -11050,7 +11051,8 @@ func (r *BatchCronJobV1Resource) Update(ctx context.Context, request resource.Up
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "CronJob"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "cronjobs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -11101,7 +11103,7 @@ func (r *BatchCronJobV1Resource) Delete(ctx context.Context, request resource.De
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "CronJob"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "batch", Version: "v1", Resource: "cronjobs"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

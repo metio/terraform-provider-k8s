@@ -564,7 +564,8 @@ func (r *BindingOperatorsCoreosComServiceBindingV1Alpha1Resource) Create(ctx con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "binding.operators.coreos.com", Version: "v1alpha1", Resource: "ServiceBinding"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "binding.operators.coreos.com", Version: "v1alpha1", Resource: "servicebindings"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -615,7 +616,7 @@ func (r *BindingOperatorsCoreosComServiceBindingV1Alpha1Resource) Read(ctx conte
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "binding.operators.coreos.com", Version: "v1alpha1", Resource: "ServiceBinding"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "binding.operators.coreos.com", Version: "v1alpha1", Resource: "servicebindings"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -692,7 +693,8 @@ func (r *BindingOperatorsCoreosComServiceBindingV1Alpha1Resource) Update(ctx con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "binding.operators.coreos.com", Version: "v1alpha1", Resource: "ServiceBinding"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "binding.operators.coreos.com", Version: "v1alpha1", Resource: "servicebindings"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -743,7 +745,7 @@ func (r *BindingOperatorsCoreosComServiceBindingV1Alpha1Resource) Delete(ctx con
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "binding.operators.coreos.com", Version: "v1alpha1", Resource: "ServiceBinding"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "binding.operators.coreos.com", Version: "v1alpha1", Resource: "servicebindings"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

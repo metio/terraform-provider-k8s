@@ -9792,7 +9792,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Resource) Create(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1beta1", Resource: "AlertmanagerConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1beta1", Resource: "alertmanagerconfigs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -9843,7 +9844,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Resource) Read(ctx context.
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1beta1", Resource: "AlertmanagerConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1beta1", Resource: "alertmanagerconfigs"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -9920,7 +9921,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Resource) Update(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1beta1", Resource: "AlertmanagerConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1beta1", Resource: "alertmanagerconfigs"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -9971,7 +9973,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Resource) Delete(ctx contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1beta1", Resource: "AlertmanagerConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1beta1", Resource: "alertmanagerconfigs"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

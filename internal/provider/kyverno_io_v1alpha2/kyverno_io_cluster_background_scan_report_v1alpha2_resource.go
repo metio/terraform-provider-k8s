@@ -576,7 +576,8 @@ func (r *KyvernoIoClusterBackgroundScanReportV1Alpha2Resource) Create(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "ClusterBackgroundScanReport"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "clusterbackgroundscanreports"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -626,7 +627,7 @@ func (r *KyvernoIoClusterBackgroundScanReportV1Alpha2Resource) Read(ctx context.
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "ClusterBackgroundScanReport"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "clusterbackgroundscanreports"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -702,7 +703,8 @@ func (r *KyvernoIoClusterBackgroundScanReportV1Alpha2Resource) Update(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "ClusterBackgroundScanReport"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "clusterbackgroundscanreports"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -752,7 +754,7 @@ func (r *KyvernoIoClusterBackgroundScanReportV1Alpha2Resource) Delete(ctx contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "ClusterBackgroundScanReport"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1alpha2", Resource: "clusterbackgroundscanreports"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

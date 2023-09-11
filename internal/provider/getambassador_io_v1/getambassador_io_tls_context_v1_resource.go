@@ -432,7 +432,8 @@ func (r *GetambassadorIoTlscontextV1Resource) Create(ctx context.Context, reques
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v1", Resource: "TLSContext"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v1", Resource: "tlscontexts"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -483,7 +484,7 @@ func (r *GetambassadorIoTlscontextV1Resource) Read(ctx context.Context, request 
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v1", Resource: "TLSContext"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v1", Resource: "tlscontexts"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -560,7 +561,8 @@ func (r *GetambassadorIoTlscontextV1Resource) Update(ctx context.Context, reques
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v1", Resource: "TLSContext"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v1", Resource: "tlscontexts"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -611,7 +613,7 @@ func (r *GetambassadorIoTlscontextV1Resource) Delete(ctx context.Context, reques
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v1", Resource: "TLSContext"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "getambassador.io", Version: "v1", Resource: "tlscontexts"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

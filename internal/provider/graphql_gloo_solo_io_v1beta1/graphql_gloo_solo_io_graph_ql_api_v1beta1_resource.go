@@ -965,7 +965,8 @@ func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1Resource) Create(ctx context.Context,
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "graphql.gloo.solo.io", Version: "v1beta1", Resource: "GraphQLApi"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "graphql.gloo.solo.io", Version: "v1beta1", Resource: "graphqlapis"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -1016,7 +1017,7 @@ func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1Resource) Read(ctx context.Context, r
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "graphql.gloo.solo.io", Version: "v1beta1", Resource: "GraphQLApi"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "graphql.gloo.solo.io", Version: "v1beta1", Resource: "graphqlapis"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -1093,7 +1094,8 @@ func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1Resource) Update(ctx context.Context,
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "graphql.gloo.solo.io", Version: "v1beta1", Resource: "GraphQLApi"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "graphql.gloo.solo.io", Version: "v1beta1", Resource: "graphqlapis"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -1144,7 +1146,7 @@ func (r *GraphqlGlooSoloIoGraphQlapiV1Beta1Resource) Delete(ctx context.Context,
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "graphql.gloo.solo.io", Version: "v1beta1", Resource: "GraphQLApi"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "graphql.gloo.solo.io", Version: "v1beta1", Resource: "graphqlapis"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

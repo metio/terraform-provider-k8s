@@ -287,7 +287,8 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerCheckpointV1Resource) Create(ctx c
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "VerticalPodAutoscalerCheckpoint"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "verticalpodautoscalercheckpoints"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -338,7 +339,7 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerCheckpointV1Resource) Read(ctx con
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "VerticalPodAutoscalerCheckpoint"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "verticalpodautoscalercheckpoints"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -415,7 +416,8 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerCheckpointV1Resource) Update(ctx c
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "VerticalPodAutoscalerCheckpoint"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "verticalpodautoscalercheckpoints"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -466,7 +468,7 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerCheckpointV1Resource) Delete(ctx c
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "VerticalPodAutoscalerCheckpoint"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "autoscaling.k8s.io", Version: "v1", Resource: "verticalpodautoscalercheckpoints"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

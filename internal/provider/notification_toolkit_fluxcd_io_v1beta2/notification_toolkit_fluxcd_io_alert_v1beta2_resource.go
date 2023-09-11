@@ -422,7 +422,8 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta2Resource) Create(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "notification.toolkit.fluxcd.io", Version: "v1beta2", Resource: "Alert"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "notification.toolkit.fluxcd.io", Version: "v1beta2", Resource: "alerts"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -473,7 +474,7 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta2Resource) Read(ctx context.Conte
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "notification.toolkit.fluxcd.io", Version: "v1beta2", Resource: "Alert"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "notification.toolkit.fluxcd.io", Version: "v1beta2", Resource: "alerts"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -550,7 +551,8 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta2Resource) Update(ctx context.Con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "notification.toolkit.fluxcd.io", Version: "v1beta2", Resource: "Alert"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "notification.toolkit.fluxcd.io", Version: "v1beta2", Resource: "alerts"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -601,7 +603,7 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta2Resource) Delete(ctx context.Con
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "notification.toolkit.fluxcd.io", Version: "v1beta2", Resource: "Alert"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "notification.toolkit.fluxcd.io", Version: "v1beta2", Resource: "alerts"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

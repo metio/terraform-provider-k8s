@@ -766,7 +766,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Resource) Create(
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1", Resource: "CompositeResourceDefinition"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1", Resource: "compositeresourcedefinitions"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -816,7 +817,7 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Resource) Read(ct
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1", Resource: "CompositeResourceDefinition"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1", Resource: "compositeresourcedefinitions"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -892,7 +893,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Resource) Update(
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1", Resource: "CompositeResourceDefinition"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1", Resource: "compositeresourcedefinitions"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -942,7 +944,7 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Resource) Delete(
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1", Resource: "CompositeResourceDefinition"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apiextensions.crossplane.io", Version: "v1", Resource: "compositeresourcedefinitions"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

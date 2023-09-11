@@ -479,7 +479,8 @@ func (r *RedhatcopRedhatIoUserConfigV1Alpha1Resource) Create(ctx context.Context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "UserConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "userconfigs"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -529,7 +530,7 @@ func (r *RedhatcopRedhatIoUserConfigV1Alpha1Resource) Read(ctx context.Context, 
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "UserConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "userconfigs"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -605,7 +606,8 @@ func (r *RedhatcopRedhatIoUserConfigV1Alpha1Resource) Update(ctx context.Context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "UserConfig"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "userconfigs"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -655,7 +657,7 @@ func (r *RedhatcopRedhatIoUserConfigV1Alpha1Resource) Delete(ctx context.Context
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "UserConfig"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "redhatcop.redhat.io", Version: "v1alpha1", Resource: "userconfigs"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

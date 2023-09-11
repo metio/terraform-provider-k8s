@@ -652,7 +652,8 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Resource) Create(ctx context.Contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1", Resource: "AuthorizationPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1", Resource: "authorizationpolicies"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -703,7 +704,7 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Resource) Read(ctx context.Context,
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1", Resource: "AuthorizationPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1", Resource: "authorizationpolicies"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -780,7 +781,8 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Resource) Update(ctx context.Contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1", Resource: "AuthorizationPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1", Resource: "authorizationpolicies"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -831,7 +833,7 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Resource) Delete(ctx context.Contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1", Resource: "AuthorizationPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "security.istio.io", Version: "v1", Resource: "authorizationpolicies"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -5987,7 +5987,8 @@ func (r *KyvernoIoClusterPolicyV1Resource) Create(ctx context.Context, request r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1", Resource: "ClusterPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1", Resource: "clusterpolicies"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -6037,7 +6038,7 @@ func (r *KyvernoIoClusterPolicyV1Resource) Read(ctx context.Context, request res
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1", Resource: "ClusterPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1", Resource: "clusterpolicies"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -6113,7 +6114,8 @@ func (r *KyvernoIoClusterPolicyV1Resource) Update(ctx context.Context, request r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1", Resource: "ClusterPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1", Resource: "clusterpolicies"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -6163,7 +6165,7 @@ func (r *KyvernoIoClusterPolicyV1Resource) Delete(ctx context.Context, request r
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1", Resource: "ClusterPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v1", Resource: "clusterpolicies"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
