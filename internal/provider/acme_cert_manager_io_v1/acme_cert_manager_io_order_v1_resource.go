@@ -357,7 +357,8 @@ func (r *AcmeCertManagerIoOrderV1Resource) Create(ctx context.Context, request r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "acme.cert-manager.io", Version: "v1", Resource: "Order"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "acme.cert-manager.io", Version: "v1", Resource: "orders"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -408,7 +409,7 @@ func (r *AcmeCertManagerIoOrderV1Resource) Read(ctx context.Context, request res
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "acme.cert-manager.io", Version: "v1", Resource: "Order"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "acme.cert-manager.io", Version: "v1", Resource: "orders"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -485,7 +486,8 @@ func (r *AcmeCertManagerIoOrderV1Resource) Update(ctx context.Context, request r
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "acme.cert-manager.io", Version: "v1", Resource: "Order"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "acme.cert-manager.io", Version: "v1", Resource: "orders"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -536,7 +538,7 @@ func (r *AcmeCertManagerIoOrderV1Resource) Delete(ctx context.Context, request r
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "acme.cert-manager.io", Version: "v1", Resource: "Order"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "acme.cert-manager.io", Version: "v1", Resource: "orders"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

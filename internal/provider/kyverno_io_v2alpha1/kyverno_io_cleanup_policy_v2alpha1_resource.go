@@ -1785,7 +1785,8 @@ func (r *KyvernoIoCleanupPolicyV2Alpha1Resource) Create(ctx context.Context, req
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "CleanupPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "cleanuppolicies"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -1836,7 +1837,7 @@ func (r *KyvernoIoCleanupPolicyV2Alpha1Resource) Read(ctx context.Context, reque
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "CleanupPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "cleanuppolicies"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -1913,7 +1914,8 @@ func (r *KyvernoIoCleanupPolicyV2Alpha1Resource) Update(ctx context.Context, req
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "CleanupPolicy"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "cleanuppolicies"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -1964,7 +1966,7 @@ func (r *KyvernoIoCleanupPolicyV2Alpha1Resource) Delete(ctx context.Context, req
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "CleanupPolicy"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kyverno.io", Version: "v2alpha1", Resource: "cleanuppolicies"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

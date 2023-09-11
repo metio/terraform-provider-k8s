@@ -6744,7 +6744,8 @@ func (r *LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1Resource) Create(ctx c
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "logging-extensions.banzaicloud.io", Version: "v1alpha1", Resource: "EventTailer"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "logging-extensions.banzaicloud.io", Version: "v1alpha1", Resource: "eventtailers"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -6794,7 +6795,7 @@ func (r *LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1Resource) Read(ctx con
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "logging-extensions.banzaicloud.io", Version: "v1alpha1", Resource: "EventTailer"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "logging-extensions.banzaicloud.io", Version: "v1alpha1", Resource: "eventtailers"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -6870,7 +6871,8 @@ func (r *LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1Resource) Update(ctx c
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "logging-extensions.banzaicloud.io", Version: "v1alpha1", Resource: "EventTailer"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "logging-extensions.banzaicloud.io", Version: "v1alpha1", Resource: "eventtailers"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -6920,7 +6922,7 @@ func (r *LoggingExtensionsBanzaicloudIoEventTailerV1Alpha1Resource) Delete(ctx c
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "logging-extensions.banzaicloud.io", Version: "v1alpha1", Resource: "EventTailer"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "logging-extensions.banzaicloud.io", Version: "v1alpha1", Resource: "eventtailers"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

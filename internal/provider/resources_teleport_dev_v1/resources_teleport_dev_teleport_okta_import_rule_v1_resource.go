@@ -373,7 +373,8 @@ func (r *ResourcesTeleportDevTeleportOktaImportRuleV1Resource) Create(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v1", Resource: "TeleportOktaImportRule"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v1", Resource: "teleportoktaimportrules"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -424,7 +425,7 @@ func (r *ResourcesTeleportDevTeleportOktaImportRuleV1Resource) Read(ctx context.
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v1", Resource: "TeleportOktaImportRule"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v1", Resource: "teleportoktaimportrules"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -501,7 +502,8 @@ func (r *ResourcesTeleportDevTeleportOktaImportRuleV1Resource) Update(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v1", Resource: "TeleportOktaImportRule"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v1", Resource: "teleportoktaimportrules"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -552,7 +554,7 @@ func (r *ResourcesTeleportDevTeleportOktaImportRuleV1Resource) Delete(ctx contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v1", Resource: "TeleportOktaImportRule"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "resources.teleport.dev", Version: "v1", Resource: "teleportoktaimportrules"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

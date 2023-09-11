@@ -279,7 +279,8 @@ func (r *ReliablesyncsKubeedgeIoClusterObjectSyncV1Alpha1Resource) Create(ctx co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "reliablesyncs.kubeedge.io", Version: "v1alpha1", Resource: "ClusterObjectSync"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "reliablesyncs.kubeedge.io", Version: "v1alpha1", Resource: "clusterobjectsyncs"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -329,7 +330,7 @@ func (r *ReliablesyncsKubeedgeIoClusterObjectSyncV1Alpha1Resource) Read(ctx cont
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "reliablesyncs.kubeedge.io", Version: "v1alpha1", Resource: "ClusterObjectSync"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "reliablesyncs.kubeedge.io", Version: "v1alpha1", Resource: "clusterobjectsyncs"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -405,7 +406,8 @@ func (r *ReliablesyncsKubeedgeIoClusterObjectSyncV1Alpha1Resource) Update(ctx co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "reliablesyncs.kubeedge.io", Version: "v1alpha1", Resource: "ClusterObjectSync"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "reliablesyncs.kubeedge.io", Version: "v1alpha1", Resource: "clusterobjectsyncs"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -455,7 +457,7 @@ func (r *ReliablesyncsKubeedgeIoClusterObjectSyncV1Alpha1Resource) Delete(ctx co
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "reliablesyncs.kubeedge.io", Version: "v1alpha1", Resource: "ClusterObjectSync"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "reliablesyncs.kubeedge.io", Version: "v1alpha1", Resource: "clusterobjectsyncs"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

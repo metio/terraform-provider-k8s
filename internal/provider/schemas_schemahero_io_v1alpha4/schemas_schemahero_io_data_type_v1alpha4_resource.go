@@ -349,7 +349,8 @@ func (r *SchemasSchemaheroIoDataTypeV1Alpha4Resource) Create(ctx context.Context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "DataType"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "datatypes"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -400,7 +401,7 @@ func (r *SchemasSchemaheroIoDataTypeV1Alpha4Resource) Read(ctx context.Context, 
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "DataType"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "datatypes"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -477,7 +478,8 @@ func (r *SchemasSchemaheroIoDataTypeV1Alpha4Resource) Update(ctx context.Context
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "DataType"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "datatypes"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -528,7 +530,7 @@ func (r *SchemasSchemaheroIoDataTypeV1Alpha4Resource) Delete(ctx context.Context
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "DataType"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "schemas.schemahero.io", Version: "v1alpha4", Resource: "datatypes"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

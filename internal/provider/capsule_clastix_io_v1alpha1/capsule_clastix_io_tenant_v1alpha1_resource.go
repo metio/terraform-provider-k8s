@@ -1276,7 +1276,8 @@ func (r *CapsuleClastixIoTenantV1Alpha1Resource) Create(ctx context.Context, req
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "Tenant"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "tenants"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1326,7 +1327,7 @@ func (r *CapsuleClastixIoTenantV1Alpha1Resource) Read(ctx context.Context, reque
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "Tenant"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "tenants"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1402,7 +1403,8 @@ func (r *CapsuleClastixIoTenantV1Alpha1Resource) Update(ctx context.Context, req
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "Tenant"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "tenants"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -1452,7 +1454,7 @@ func (r *CapsuleClastixIoTenantV1Alpha1Resource) Delete(ctx context.Context, req
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "Tenant"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "capsule.clastix.io", Version: "v1alpha1", Resource: "tenants"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

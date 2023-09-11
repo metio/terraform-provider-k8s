@@ -4550,7 +4550,8 @@ func (r *AquasecurityGithubIoAquaStarboardV1Alpha1Resource) Create(ctx context.C
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "aquasecurity.github.io", Version: "v1alpha1", Resource: "AquaStarboard"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "aquasecurity.github.io", Version: "v1alpha1", Resource: "aquastarboards"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -4601,7 +4602,7 @@ func (r *AquasecurityGithubIoAquaStarboardV1Alpha1Resource) Read(ctx context.Con
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "aquasecurity.github.io", Version: "v1alpha1", Resource: "AquaStarboard"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "aquasecurity.github.io", Version: "v1alpha1", Resource: "aquastarboards"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -4678,7 +4679,8 @@ func (r *AquasecurityGithubIoAquaStarboardV1Alpha1Resource) Update(ctx context.C
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "aquasecurity.github.io", Version: "v1alpha1", Resource: "AquaStarboard"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "aquasecurity.github.io", Version: "v1alpha1", Resource: "aquastarboards"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -4729,7 +4731,7 @@ func (r *AquasecurityGithubIoAquaStarboardV1Alpha1Resource) Delete(ctx context.C
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "aquasecurity.github.io", Version: "v1alpha1", Resource: "AquaStarboard"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "aquasecurity.github.io", Version: "v1alpha1", Resource: "aquastarboards"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

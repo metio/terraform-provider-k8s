@@ -618,7 +618,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Resource) Create(ctx con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "ClusterManager"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "clustermanagers"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -668,7 +669,7 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Resource) Read(ctx conte
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "ClusterManager"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "clustermanagers"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -744,7 +745,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Resource) Update(ctx con
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "ClusterManager"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "clustermanagers"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -794,7 +796,7 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Resource) Delete(ctx con
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "ClusterManager"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "operator.open-cluster-management.io", Version: "v1", Resource: "clustermanagers"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

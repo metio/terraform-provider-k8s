@@ -2374,7 +2374,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Resource) Create(ctx context.Context, re
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "slo.koordinator.sh", Version: "v1alpha1", Resource: "NodeSLO"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "slo.koordinator.sh", Version: "v1alpha1", Resource: "nodeslos"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -2424,7 +2425,7 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Resource) Read(ctx context.Context, requ
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "slo.koordinator.sh", Version: "v1alpha1", Resource: "NodeSLO"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "slo.koordinator.sh", Version: "v1alpha1", Resource: "nodeslos"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -2500,7 +2501,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Resource) Update(ctx context.Context, re
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "slo.koordinator.sh", Version: "v1alpha1", Resource: "NodeSLO"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "slo.koordinator.sh", Version: "v1alpha1", Resource: "nodeslos"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -2550,7 +2552,7 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Resource) Delete(ctx context.Context, re
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "slo.koordinator.sh", Version: "v1alpha1", Resource: "NodeSLO"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "slo.koordinator.sh", Version: "v1alpha1", Resource: "nodeslos"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

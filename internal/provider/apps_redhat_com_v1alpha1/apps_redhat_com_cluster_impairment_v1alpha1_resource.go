@@ -691,7 +691,8 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Resource) Create(ctx context.Cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apps.redhat.com", Version: "v1alpha1", Resource: "ClusterImpairment"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apps.redhat.com", Version: "v1alpha1", Resource: "clusterimpairments"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -741,7 +742,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Resource) Read(ctx context.Contex
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apps.redhat.com", Version: "v1alpha1", Resource: "ClusterImpairment"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apps.redhat.com", Version: "v1alpha1", Resource: "clusterimpairments"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -817,7 +818,8 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Resource) Update(ctx context.Cont
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apps.redhat.com", Version: "v1alpha1", Resource: "ClusterImpairment"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apps.redhat.com", Version: "v1alpha1", Resource: "clusterimpairments"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -867,7 +869,7 @@ func (r *AppsRedhatComClusterImpairmentV1Alpha1Resource) Delete(ctx context.Cont
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apps.redhat.com", Version: "v1alpha1", Resource: "ClusterImpairment"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apps.redhat.com", Version: "v1alpha1", Resource: "clusterimpairments"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(

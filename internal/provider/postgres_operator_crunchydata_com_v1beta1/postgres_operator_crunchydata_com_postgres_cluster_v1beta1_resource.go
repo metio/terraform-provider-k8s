@@ -17905,7 +17905,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) Create(ct
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "postgres-operator.crunchydata.com", Version: "v1beta1", Resource: "PostgresCluster"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "postgres-operator.crunchydata.com", Version: "v1beta1", Resource: "postgresclusters"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -17956,7 +17957,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) Read(ctx 
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "postgres-operator.crunchydata.com", Version: "v1beta1", Resource: "PostgresCluster"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "postgres-operator.crunchydata.com", Version: "v1beta1", Resource: "postgresclusters"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -18033,7 +18034,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) Update(ct
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "postgres-operator.crunchydata.com", Version: "v1beta1", Resource: "PostgresCluster"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "postgres-operator.crunchydata.com", Version: "v1beta1", Resource: "postgresclusters"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -18084,7 +18086,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Resource) Delete(ct
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "postgres-operator.crunchydata.com", Version: "v1beta1", Resource: "PostgresCluster"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "postgres-operator.crunchydata.com", Version: "v1beta1", Resource: "postgresclusters"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

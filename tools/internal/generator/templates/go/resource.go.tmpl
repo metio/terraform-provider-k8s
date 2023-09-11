@@ -301,7 +301,8 @@ func (r *{{ .ResourceTypeStruct }}) Create(ctx context.Context, request resource
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "{{ .Group }}", Version: "{{ .Version }}", Resource: "{{ .Kind }}"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "{{ .Group }}", Version: "{{ .Version }}", Resource: "{{ .PluralKind }}"}).
 		{{ if .Namespaced -}}
 		Namespace(model.Metadata.Namespace).
 		{{ end -}}
@@ -356,7 +357,7 @@ func (r *{{ .ResourceTypeStruct }}) Read(ctx context.Context, request resource.R
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "{{ .Group }}", Version: "{{ .Version }}", Resource: "{{ .Kind }}"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "{{ .Group }}", Version: "{{ .Version }}", Resource: "{{ .PluralKind }}"}).
 		{{ if .Namespaced -}}
 		Namespace(data.Metadata.Namespace).
 		{{ end -}}
@@ -437,7 +438,8 @@ func (r *{{ .ResourceTypeStruct }}) Update(ctx context.Context, request resource
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "{{ .Group }}", Version: "{{ .Version }}", Resource: "{{ .Kind }}"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "{{ .Group }}", Version: "{{ .Version }}", Resource: "{{ .PluralKind }}"}).
 		{{ if .Namespaced -}}
 		Namespace(model.Metadata.Namespace).
 		{{ end -}}
@@ -492,7 +494,7 @@ func (r *{{ .ResourceTypeStruct }}) Delete(ctx context.Context, request resource
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "{{ .Group }}", Version: "{{ .Version }}", Resource: "{{ .Kind }}"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "{{ .Group }}", Version: "{{ .Version }}", Resource: "{{ .PluralKind }}"}).
 		{{ if .Namespaced -}}
 		Namespace(data.Metadata.Namespace).
 		{{ end -}}

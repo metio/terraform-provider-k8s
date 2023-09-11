@@ -469,7 +469,8 @@ func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Resource) Create(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "lb.lbconfig.carlosedp.com", Version: "v1", Resource: "ExternalLoadBalancer"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "lb.lbconfig.carlosedp.com", Version: "v1", Resource: "externalloadbalancers"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -520,7 +521,7 @@ func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Resource) Read(ctx context.
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "lb.lbconfig.carlosedp.com", Version: "v1", Resource: "ExternalLoadBalancer"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "lb.lbconfig.carlosedp.com", Version: "v1", Resource: "externalloadbalancers"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -597,7 +598,8 @@ func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Resource) Update(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "lb.lbconfig.carlosedp.com", Version: "v1", Resource: "ExternalLoadBalancer"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "lb.lbconfig.carlosedp.com", Version: "v1", Resource: "externalloadbalancers"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -648,7 +650,7 @@ func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Resource) Delete(ctx contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "lb.lbconfig.carlosedp.com", Version: "v1", Resource: "ExternalLoadBalancer"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "lb.lbconfig.carlosedp.com", Version: "v1", Resource: "externalloadbalancers"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

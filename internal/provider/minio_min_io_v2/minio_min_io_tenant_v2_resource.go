@@ -14313,7 +14313,8 @@ func (r *MinioMinIoTenantV2Resource) Create(ctx context.Context, request resourc
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "minio.min.io", Version: "v2", Resource: "Tenant"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "minio.min.io", Version: "v2", Resource: "tenants"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -14365,7 +14366,7 @@ func (r *MinioMinIoTenantV2Resource) Read(ctx context.Context, request resource.
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "minio.min.io", Version: "v2", Resource: "Tenant"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "minio.min.io", Version: "v2", Resource: "tenants"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -14443,7 +14444,8 @@ func (r *MinioMinIoTenantV2Resource) Update(ctx context.Context, request resourc
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "minio.min.io", Version: "v2", Resource: "Tenant"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "minio.min.io", Version: "v2", Resource: "tenants"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -14495,7 +14497,7 @@ func (r *MinioMinIoTenantV2Resource) Delete(ctx context.Context, request resourc
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "minio.min.io", Version: "v2", Resource: "Tenant"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "minio.min.io", Version: "v2", Resource: "tenants"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

@@ -288,7 +288,8 @@ func (r *PrometheusserviceServicesK8SAwsWorkspaceV1Alpha1Resource) Create(ctx co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "prometheusservice.services.k8s.aws", Version: "v1alpha1", Resource: "Workspace"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "prometheusservice.services.k8s.aws", Version: "v1alpha1", Resource: "workspaces"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -339,7 +340,7 @@ func (r *PrometheusserviceServicesK8SAwsWorkspaceV1Alpha1Resource) Read(ctx cont
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "prometheusservice.services.k8s.aws", Version: "v1alpha1", Resource: "Workspace"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "prometheusservice.services.k8s.aws", Version: "v1alpha1", Resource: "workspaces"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -416,7 +417,8 @@ func (r *PrometheusserviceServicesK8SAwsWorkspaceV1Alpha1Resource) Update(ctx co
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "prometheusservice.services.k8s.aws", Version: "v1alpha1", Resource: "Workspace"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "prometheusservice.services.k8s.aws", Version: "v1alpha1", Resource: "workspaces"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -467,7 +469,7 @@ func (r *PrometheusserviceServicesK8SAwsWorkspaceV1Alpha1Resource) Delete(ctx co
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "prometheusservice.services.k8s.aws", Version: "v1alpha1", Resource: "Workspace"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "prometheusservice.services.k8s.aws", Version: "v1alpha1", Resource: "workspaces"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

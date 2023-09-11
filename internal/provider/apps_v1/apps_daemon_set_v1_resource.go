@@ -10488,7 +10488,8 @@ func (r *AppsDaemonSetV1Resource) Create(ctx context.Context, request resource.C
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "DaemonSet"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "daemonsets"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -10539,7 +10540,7 @@ func (r *AppsDaemonSetV1Resource) Read(ctx context.Context, request resource.Rea
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "DaemonSet"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "daemonsets"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -10616,7 +10617,8 @@ func (r *AppsDaemonSetV1Resource) Update(ctx context.Context, request resource.U
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "DaemonSet"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "daemonsets"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -10667,7 +10669,7 @@ func (r *AppsDaemonSetV1Resource) Delete(ctx context.Context, request resource.D
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "DaemonSet"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "daemonsets"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

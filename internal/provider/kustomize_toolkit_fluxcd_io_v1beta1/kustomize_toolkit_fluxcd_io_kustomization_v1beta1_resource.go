@@ -924,7 +924,8 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) Create(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kustomize.toolkit.fluxcd.io", Version: "v1beta1", Resource: "Kustomization"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kustomize.toolkit.fluxcd.io", Version: "v1beta1", Resource: "kustomizations"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -975,7 +976,7 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) Read(ctx context.
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kustomize.toolkit.fluxcd.io", Version: "v1beta1", Resource: "Kustomization"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kustomize.toolkit.fluxcd.io", Version: "v1beta1", Resource: "kustomizations"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
@@ -1052,7 +1053,8 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) Update(ctx contex
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "kustomize.toolkit.fluxcd.io", Version: "v1beta1", Resource: "Kustomization"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "kustomize.toolkit.fluxcd.io", Version: "v1beta1", Resource: "kustomizations"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
@@ -1103,7 +1105,7 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Beta1Resource) Delete(ctx contex
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "kustomize.toolkit.fluxcd.io", Version: "v1beta1", Resource: "Kustomization"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "kustomize.toolkit.fluxcd.io", Version: "v1beta1", Resource: "kustomizations"}).
 		Namespace(data.Metadata.Namespace).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {

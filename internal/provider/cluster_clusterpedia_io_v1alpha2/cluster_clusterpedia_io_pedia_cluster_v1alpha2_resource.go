@@ -381,7 +381,8 @@ func (r *ClusterClusterpediaIoPediaClusterV1Alpha2Resource) Create(ctx context.C
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "PediaCluster"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "pediaclusters"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -431,7 +432,7 @@ func (r *ClusterClusterpediaIoPediaClusterV1Alpha2Resource) Read(ctx context.Con
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "PediaCluster"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "pediaclusters"}).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -507,7 +508,8 @@ func (r *ClusterClusterpediaIoPediaClusterV1Alpha2Resource) Update(ctx context.C
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "PediaCluster"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "pediaclusters"}).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -557,7 +559,7 @@ func (r *ClusterClusterpediaIoPediaClusterV1Alpha2Resource) Delete(ctx context.C
 	}
 
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "PediaCluster"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "cluster.clusterpedia.io", Version: "v1alpha2", Resource: "pediaclusters"}).
 		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
 	if err != nil {
 		response.Diagnostics.AddError(
