@@ -8,7 +8,6 @@ package security_profiles_operator_x_k8s_io_v1alpha2
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -18,12 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	k8sErrors "k8s.io/apimachinery/pkg/api/errors"
 	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
 	k8sSchema "k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/utils/pointer"
-	"net/http"
 )
 
 var (
@@ -70,6 +67,22 @@ func (r *SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2DataSource) Sche
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
 				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
+				Required:            false,
+				Optional:            false,
+				Computed:            true,
+			},
+
+			"api_version": schema.StringAttribute{
+				Description:         "The API group of the requested resource.",
+				MarkdownDescription: "The API group of the requested resource.",
+				Required:            false,
+				Optional:            false,
+				Computed:            true,
+			},
+
+			"kind": schema.StringAttribute{
+				Description:         "The type of the requested resource.",
+				MarkdownDescription: "The type of the requested resource.",
 				Required:            false,
 				Optional:            false,
 				Computed:            true,
@@ -160,19 +173,12 @@ func (r *SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2DataSource) Conf
 
 	if dataSourceData, ok := request.ProviderData.(*utilities.DataSourceData); ok {
 		if dataSourceData.Offline {
-			response.Diagnostics.AddError(
-				"Provider in Offline Mode",
-				"This provider has offline mode enabled and thus cannot connect to a Kubernetes cluster to create resources or read any data. "+
-					"Disable offline mode to allow resource creation or remove the resource declaration from your configuration to get rid of this error.",
-			)
+			response.Diagnostics.Append(utilities.OfflineProviderError())
 		} else {
 			r.kubernetesClient = dataSourceData.Client
 		}
 	} else {
-		response.Diagnostics.AddError(
-			"Unexpected Data Source Configure Type",
-			fmt.Sprintf("Expected *provider.DataSourceData, got: %T. Please report this issue to the provider developers.", request.ProviderData),
-		)
+		response.Diagnostics.Append(utilities.UnexpectedDataSourceDataError(request.ProviderData))
 	}
 }
 
@@ -190,51 +196,23 @@ func (r *SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2DataSource) Read
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
-		var statusError *k8sErrors.StatusError
-		if errors.As(err, &statusError) {
-			if statusError.Status().Code == http.StatusNotFound {
-				response.Diagnostics.AddError(
-					"Unable to find resource",
-					fmt.Sprintf("The requested resource cannot be found. "+
-						"Make sure that it does exist in your cluster and you have set the correct name and namespace configured.\n\n"+
-						"Namespace: %s\n"+
-						"Name: %s", data.Metadata.Namespace, data.Metadata.Name),
-				)
-				return
-			}
-		} else {
-			response.Diagnostics.AddError(
-				"Unable to GET resource",
-				fmt.Sprintf("An unexpected error occurred while reading the resource. "+
-					"Please report this issue to the provider developers.\n\n"+
-					"GET Error (%T): %s", err, err.Error()),
-			)
-		}
+		response.Diagnostics.Append(utilities.GetNamespacedResourceError(err, data.Metadata.Name, data.Metadata.Namespace))
 		return
 	}
 	getBytes, err := getResponse.MarshalJSON()
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal GET response",
-			"Please report this issue to the provider developers.\n\n"+
-				"Marshal Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.MarshalJsonError(err))
 		return
 	}
 
 	var readResponse SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2DataSourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to unmarshal resource",
-			"An unexpected error occurred while parsing the resource read response. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"JSON Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.JsonUnmarshalError(err))
 		return
 	}
 
-	data.ID = types.StringValue(fmt.Sprintf("%s/%s", data.Metadata.Name, data.Metadata.Namespace))
+	data.ID = types.StringValue(fmt.Sprintf("%s/%s", data.Metadata.Namespace, data.Metadata.Name))
 	data.ApiVersion = pointer.String("security-profiles-operator.x-k8s.io/v1alpha2")
 	data.Kind = pointer.String("RawSelinuxProfile")
 	data.Metadata = readResponse.Metadata
