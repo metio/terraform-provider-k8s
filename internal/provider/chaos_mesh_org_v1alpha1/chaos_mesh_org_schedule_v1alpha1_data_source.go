@@ -2364,6 +2364,10 @@ type ChaosMeshOrgScheduleV1Alpha1DataSourceData struct {
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 							TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 						} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+						ResizePolicy *[]struct {
+							ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+							RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+						} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 						Resources *struct {
 							Claims *[]struct {
 								Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -2371,6 +2375,7 @@ type ChaosMeshOrgScheduleV1Alpha1DataSourceData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 							Capabilities             *struct {
@@ -19017,8 +19022,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1DataSource) Schema(_ context.Context, _ dat
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -19269,8 +19274,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1DataSource) Schema(_ context.Context, _ dat
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -19431,6 +19436,33 @@ func (r *ChaosMeshOrgScheduleV1Alpha1DataSource) Schema(_ context.Context, _ dat
 															Computed: true,
 														},
 
+														"resize_policy": schema.ListNestedAttribute{
+															Description:         "Resources resize policy for the container.",
+															MarkdownDescription: "Resources resize policy for the container.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"resource_name": schema.StringAttribute{
+																		Description:         "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+																		MarkdownDescription: "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+
+																	"restart_policy": schema.StringAttribute{
+																		Description:         "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+																		MarkdownDescription: "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+																		Required:            false,
+																		Optional:            false,
+																		Computed:            true,
+																	},
+																},
+															},
+															Required: false,
+															Optional: false,
+															Computed: true,
+														},
+
 														"resources": schema.SingleNestedAttribute{
 															Description:         "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 															MarkdownDescription: "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -19464,8 +19496,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1DataSource) Schema(_ context.Context, _ dat
 																},
 
 																"requests": schema.MapAttribute{
-																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            false,
@@ -19475,6 +19507,14 @@ func (r *ChaosMeshOrgScheduleV1Alpha1DataSource) Schema(_ context.Context, _ dat
 															Required: false,
 															Optional: false,
 															Computed: true,
+														},
+
+														"restart_policy": schema.StringAttribute{
+															Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															Required:            false,
+															Optional:            false,
+															Computed:            true,
 														},
 
 														"security_context": schema.SingleNestedAttribute{
@@ -19610,8 +19650,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1DataSource) Schema(_ context.Context, _ dat
 																	MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 																	Attributes: map[string]schema.Attribute{
 																		"localhost_profile": schema.StringAttribute{
-																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																			Required:            false,
 																			Optional:            false,
 																			Computed:            true,
@@ -19651,8 +19691,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1DataSource) Schema(_ context.Context, _ dat
 																		},
 
 																		"host_process": schema.BoolAttribute{
-																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																			Required:            false,
 																			Optional:            false,
 																			Computed:            true,
@@ -19707,8 +19747,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1DataSource) Schema(_ context.Context, _ dat
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -20503,8 +20543,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1DataSource) Schema(_ context.Context, _ dat
 																	},
 
 																	"size_limit": schema.StringAttribute{
-																		Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
-																		MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
+																		Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																		MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 																		Required:            false,
 																		Optional:            false,
 																		Computed:            true,
@@ -20652,8 +20692,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1DataSource) Schema(_ context.Context, _ dat
 																							},
 
 																							"requests": schema.MapAttribute{
-																								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            false,

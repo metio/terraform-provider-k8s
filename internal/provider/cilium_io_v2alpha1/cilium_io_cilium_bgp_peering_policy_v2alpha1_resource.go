@@ -11,11 +11,12 @@ import (
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64default"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -47,11 +48,12 @@ type CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource struct {
 }
 
 type CiliumIoCiliumBgppeeringPolicyV2Alpha1ResourceData struct {
-	ID             types.String `tfsdk:"id" json:"-"`
-	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
-	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
-	WaitForUpsert  types.List   `tfsdk:"wait_for_upsert" json:"-"`
-	WaitForDelete  types.Object `tfsdk:"wait_for_delete" json:"-"`
+	ID                  types.String `tfsdk:"id" json:"-"`
+	ForceConflicts      types.Bool   `tfsdk:"force_conflicts" json:"-"`
+	FieldManager        types.String `tfsdk:"field_manager" json:"-"`
+	DeletionPropagation types.String `tfsdk:"deletion_propagation" json:"-"`
+	WaitForUpsert       types.List   `tfsdk:"wait_for_upsert" json:"-"`
+	WaitForDelete       types.Object `tfsdk:"wait_for_delete" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
 	Kind       *string `tfsdk:"-" json:"kind"`
@@ -75,6 +77,22 @@ type CiliumIoCiliumBgppeeringPolicyV2Alpha1ResourceData struct {
 			ExportPodCIDR *bool  `tfsdk:"export_pod_cidr" json:"exportPodCIDR,omitempty"`
 			LocalASN      *int64 `tfsdk:"local_asn" json:"localASN,omitempty"`
 			Neighbors     *[]struct {
+				AdvertisedPathAttributes *[]struct {
+					Communities *struct {
+						Large    *[]string `tfsdk:"large" json:"large,omitempty"`
+						Standard *[]string `tfsdk:"standard" json:"standard,omitempty"`
+					} `tfsdk:"communities" json:"communities,omitempty"`
+					LocalPreference *int64 `tfsdk:"local_preference" json:"localPreference,omitempty"`
+					Selector        *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"selector" json:"selector,omitempty"`
+					SelectorType *string `tfsdk:"selector_type" json:"selectorType,omitempty"`
+				} `tfsdk:"advertised_path_attributes" json:"advertisedPathAttributes,omitempty"`
 				ConnectRetryTimeSeconds *int64 `tfsdk:"connect_retry_time_seconds" json:"connectRetryTimeSeconds,omitempty"`
 				EBGPMultihopTTL         *int64 `tfsdk:"e_bgp_multihop_ttl" json:"eBGPMultihopTTL,omitempty"`
 				Families                *[]struct {
@@ -128,12 +146,26 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Schema(_ context.Contex
 				Computed:            true,
 			},
 
-			"field_manager": schema.BoolAttribute{
+			"field_manager": schema.StringAttribute{
 				Description:         "The name of the manager used to track field ownership. If not specified uses the value from the provider configuration.",
 				MarkdownDescription: "The name of the manager used to track field ownership. If not specified uses the value from the provider configuration.",
 				Required:            false,
 				Optional:            true,
 				Computed:            true,
+				Validators: []validator.String{
+					stringvalidator.LengthAtLeast(1),
+				},
+			},
+
+			"deletion_propagation": schema.StringAttribute{
+				Description:         "Decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.",
+				MarkdownDescription: "Decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.",
+				Required:            false,
+				Optional:            true,
+				Computed:            true,
+				Validators: []validator.String{
+					stringvalidator.OneOfCaseInsensitive("Orphan", "Background", "Foreground"),
+				},
 			},
 
 			"wait_for_upsert": schema.ListNestedAttribute{
@@ -158,21 +190,27 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Schema(_ context.Contex
 							Optional:            true,
 							Computed:            true,
 						},
-						"timeout": schema.StringAttribute{
-							Description:         "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
-							MarkdownDescription: "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
+						"timeout": schema.Int64Attribute{
+							Description:         "The number of seconds to wait before giving up. Zero means check once and don't wait.",
+							MarkdownDescription: "The number of seconds to wait before giving up. Zero means check once and don't wait.",
 							Required:            false,
 							Optional:            true,
 							Computed:            true,
-							Default:             stringdefault.StaticString("30s"),
+							Default:             int64default.StaticInt64(30),
+							Validators: []validator.Int64{
+								int64validator.AtLeast(0),
+							},
 						},
-						"poll_interval": schema.StringAttribute{
-							Description:         "The length of time to wait before checking again.",
-							MarkdownDescription: "The length of time to wait before checking again.",
+						"poll_interval": schema.Int64Attribute{
+							Description:         "The number of seconds to wait before checking again.",
+							MarkdownDescription: "The number of seconds to wait before checking again.",
 							Required:            false,
 							Optional:            true,
 							Computed:            true,
-							Default:             stringdefault.StaticString("5s"),
+							Default:             int64default.StaticInt64(5),
+							Validators: []validator.Int64{
+								int64validator.AtLeast(0),
+							},
 						},
 					},
 				},
@@ -185,21 +223,27 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Schema(_ context.Contex
 				Optional:            true,
 				Computed:            true,
 				Attributes: map[string]schema.Attribute{
-					"timeout": schema.StringAttribute{
-						Description:         "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
-						MarkdownDescription: "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
+					"timeout": schema.Int64Attribute{
+						Description:         "The number of seconds to wait before giving up. Zero means check once and don't wait.",
+						MarkdownDescription: "The number of seconds to wait before giving up. Zero means check once and don't wait.",
 						Required:            false,
 						Optional:            true,
 						Computed:            true,
-						Default:             stringdefault.StaticString("30s"),
+						Default:             int64default.StaticInt64(30),
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
 					},
-					"poll_interval": schema.StringAttribute{
-						Description:         "The length of time to wait before checking again.",
-						MarkdownDescription: "The length of time to wait before checking again.",
+					"poll_interval": schema.Int64Attribute{
+						Description:         "The number of seconds to wait before checking again.",
+						MarkdownDescription: "The number of seconds to wait before checking again.",
 						Required:            false,
 						Optional:            true,
 						Computed:            true,
-						Default:             stringdefault.StaticString("5s"),
+						Default:             int64default.StaticInt64(5),
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
 					},
 				},
 			},
@@ -342,6 +386,124 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Schema(_ context.Contex
 									MarkdownDescription: "Neighbors is a list of neighboring BGP peers for this virtual router",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
+											"advertised_path_attributes": schema.ListNestedAttribute{
+												Description:         "AdvertisedPathAttributes can be used to apply additional path attributes to selected routes when advertising them to the peer. If empty / nil, no additional path attributes are advertised.",
+												MarkdownDescription: "AdvertisedPathAttributes can be used to apply additional path attributes to selected routes when advertising them to the peer. If empty / nil, no additional path attributes are advertised.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"communities": schema.SingleNestedAttribute{
+															Description:         "Communities defines a set of community values advertised in the supported BGP Communities path attributes. If nil / not set, no BGP Communities path attribute will be advertised.",
+															MarkdownDescription: "Communities defines a set of community values advertised in the supported BGP Communities path attributes. If nil / not set, no BGP Communities path attribute will be advertised.",
+															Attributes: map[string]schema.Attribute{
+																"large": schema.ListAttribute{
+																	Description:         "Large holds a list of the BGP Large Communities Attribute (RFC 8092) values.",
+																	MarkdownDescription: "Large holds a list of the BGP Large Communities Attribute (RFC 8092) values.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"standard": schema.ListAttribute{
+																	Description:         "Standard holds a list of 'standard' 32-bit BGP Communities Attribute (RFC 1997) values.",
+																	MarkdownDescription: "Standard holds a list of 'standard' 32-bit BGP Communities Attribute (RFC 1997) values.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"local_preference": schema.Int64Attribute{
+															Description:         "LocalPreference defines the preference value advertised in the BGP Local Preference path attribute. As Local Preference is only valid for iBGP peers, this value will be ignored for eBGP peers (no Local Preference path attribute will be advertised). If nil / not set, the default Local Preference of 100 will be advertised in the Local Preference path attribute for iBGP peers.",
+															MarkdownDescription: "LocalPreference defines the preference value advertised in the BGP Local Preference path attribute. As Local Preference is only valid for iBGP peers, this value will be ignored for eBGP peers (no Local Preference path attribute will be advertised). If nil / not set, the default Local Preference of 100 will be advertised in the Local Preference path attribute for iBGP peers.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+																int64validator.AtMost(4.294967295e+09),
+															},
+														},
+
+														"selector": schema.SingleNestedAttribute{
+															Description:         "Selector selects a group of objects of the SelectorType resulting into routes that will be announced with the configured Attributes. If nil / not set, all objects of the SelectorType are selected.",
+															MarkdownDescription: "Selector selects a group of objects of the SelectorType resulting into routes that will be announced with the configured Attributes. If nil / not set, all objects of the SelectorType are selected.",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																				Validators: []validator.String{
+																					stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																				},
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_labels": schema.MapAttribute{
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"selector_type": schema.StringAttribute{
+															Description:         "SelectorType defines the object type on which the Selector applies: - For 'PodCIDR' the Selector matches k8s CiliumNode resources (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes. Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs. - For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools).",
+															MarkdownDescription: "SelectorType defines the object type on which the Selector applies: - For 'PodCIDR' the Selector matches k8s CiliumNode resources (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes. Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs. - For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools).",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("PodCIDR", "CiliumLoadBalancerIPPool"),
+															},
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"connect_retry_time_seconds": schema.Int64Attribute{
 												Description:         "ConnectRetryTimeSeconds defines the initial value for the BGP ConnectRetryTimer (RFC 4271, Section 8).",
 												MarkdownDescription: "ConnectRetryTimeSeconds defines the initial value for the BGP ConnectRetryTimer (RFC 4271, Section 8).",
@@ -635,6 +797,31 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Create(ctx context.Cont
 
 	model.Metadata = readResponse.Metadata
 	model.Spec = readResponse.Spec
+	if model.ForceConflicts.IsUnknown() {
+		model.ForceConflicts = types.BoolNull()
+	}
+	if model.FieldManager.IsUnknown() {
+		model.FieldManager = types.StringNull()
+	}
+	if model.DeletionPropagation.IsUnknown() {
+		model.DeletionPropagation = types.StringNull()
+	}
+	if model.WaitForUpsert.IsUnknown() {
+		model.WaitForUpsert = types.ListNull(types.ObjectType{
+			AttrTypes: map[string]attr.Type{
+				"jsonpath":      types.StringType,
+				"value":         types.StringType,
+				"timeout":       types.Int64Type,
+				"poll_interval": types.Int64Type,
+			},
+		})
+	}
+	if model.WaitForDelete.IsUnknown() {
+		model.WaitForDelete = types.ObjectNull(map[string]attr.Type{
+			"timeout":       types.Int64Type,
+			"poll_interval": types.Int64Type,
+		})
+	}
 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
@@ -670,6 +857,31 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Read(ctx context.Contex
 
 	data.Metadata = readResponse.Metadata
 	data.Spec = readResponse.Spec
+	if data.ForceConflicts.IsUnknown() {
+		data.ForceConflicts = types.BoolNull()
+	}
+	if data.FieldManager.IsUnknown() {
+		data.FieldManager = types.StringNull()
+	}
+	if data.DeletionPropagation.IsUnknown() {
+		data.DeletionPropagation = types.StringNull()
+	}
+	if data.WaitForUpsert.IsUnknown() {
+		data.WaitForUpsert = types.ListNull(types.ObjectType{
+			AttrTypes: map[string]attr.Type{
+				"jsonpath":      types.StringType,
+				"value":         types.StringType,
+				"timeout":       types.Int64Type,
+				"poll_interval": types.Int64Type,
+			},
+		})
+	}
+	if data.WaitForDelete.IsUnknown() {
+		data.WaitForDelete = types.ObjectNull(map[string]attr.Type{
+			"timeout":       types.Int64Type,
+			"poll_interval": types.Int64Type,
+		})
+	}
 
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
@@ -742,15 +954,20 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Delete(ctx context.Cont
 		return
 	}
 
+	deleteOptions := meta.DeleteOptions{}
+	if !data.DeletionPropagation.IsNull() && !data.DeletionPropagation.IsUnknown() {
+		deleteOptions.PropagationPolicy = utilities.MapDeletionPropagation(data.DeletionPropagation.ValueString())
+	}
+
 	err := r.kubernetesClient.
 		Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2alpha1", Resource: "ciliumbgppeeringpolicies"}).
-		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
+		Delete(ctx, data.Metadata.Name, deleteOptions)
 	if utilities.IsDeletionError(err) {
 		response.Diagnostics.Append(utilities.DeleteError(err))
 		return
 	}
 
-	if !data.WaitForDelete.IsNull() {
+	if !data.WaitForDelete.IsNull() && !data.WaitForDelete.IsUnknown() {
 		timeout := utilities.DetermineTimeout(data.WaitForDelete.Attributes())
 		pollInterval := utilities.DeterminePollInterval(data.WaitForDelete.Attributes())
 
@@ -759,7 +976,7 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Resource) Delete(ctx context.Cont
 			_, err := r.kubernetesClient.
 				Resource(k8sSchema.GroupVersionResource{Group: "cilium.io", Version: "v2alpha1", Resource: "ciliumbgppeeringpolicies"}).
 				Get(ctx, data.Metadata.Name, meta.GetOptions{})
-			if utilities.IsNotFound(err) || timeout == time.Second*0 {
+			if utilities.IsNotFound(err) || timeout.Milliseconds() == 0 {
 				break
 			}
 			if time.Now().After(startTime.Add(timeout)) {

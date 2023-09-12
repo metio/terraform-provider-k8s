@@ -11,11 +11,12 @@ import (
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64default"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -48,11 +49,12 @@ type ChaosMeshOrgScheduleV1Alpha1Resource struct {
 }
 
 type ChaosMeshOrgScheduleV1Alpha1ResourceData struct {
-	ID             types.String `tfsdk:"id" json:"-"`
-	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
-	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
-	WaitForUpsert  types.List   `tfsdk:"wait_for_upsert" json:"-"`
-	WaitForDelete  types.Object `tfsdk:"wait_for_delete" json:"-"`
+	ID                  types.String `tfsdk:"id" json:"-"`
+	ForceConflicts      types.Bool   `tfsdk:"force_conflicts" json:"-"`
+	FieldManager        types.String `tfsdk:"field_manager" json:"-"`
+	DeletionPropagation types.String `tfsdk:"deletion_propagation" json:"-"`
+	WaitForUpsert       types.List   `tfsdk:"wait_for_upsert" json:"-"`
+	WaitForDelete       types.Object `tfsdk:"wait_for_delete" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
 	Kind       *string `tfsdk:"-" json:"kind"`
@@ -2379,6 +2381,10 @@ type ChaosMeshOrgScheduleV1Alpha1ResourceData struct {
 							TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 							TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 						} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+						ResizePolicy *[]struct {
+							ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+							RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+						} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 						Resources *struct {
 							Claims *[]struct {
 								Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -2386,6 +2392,7 @@ type ChaosMeshOrgScheduleV1Alpha1ResourceData struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 							Capabilities             *struct {
@@ -2810,12 +2817,26 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 				Computed:            true,
 			},
 
-			"field_manager": schema.BoolAttribute{
+			"field_manager": schema.StringAttribute{
 				Description:         "The name of the manager used to track field ownership. If not specified uses the value from the provider configuration.",
 				MarkdownDescription: "The name of the manager used to track field ownership. If not specified uses the value from the provider configuration.",
 				Required:            false,
 				Optional:            true,
 				Computed:            true,
+				Validators: []validator.String{
+					stringvalidator.LengthAtLeast(1),
+				},
+			},
+
+			"deletion_propagation": schema.StringAttribute{
+				Description:         "Decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.",
+				MarkdownDescription: "Decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.",
+				Required:            false,
+				Optional:            true,
+				Computed:            true,
+				Validators: []validator.String{
+					stringvalidator.OneOfCaseInsensitive("Orphan", "Background", "Foreground"),
+				},
 			},
 
 			"wait_for_upsert": schema.ListNestedAttribute{
@@ -2840,21 +2861,27 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 							Optional:            true,
 							Computed:            true,
 						},
-						"timeout": schema.StringAttribute{
-							Description:         "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
-							MarkdownDescription: "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
+						"timeout": schema.Int64Attribute{
+							Description:         "The number of seconds to wait before giving up. Zero means check once and don't wait.",
+							MarkdownDescription: "The number of seconds to wait before giving up. Zero means check once and don't wait.",
 							Required:            false,
 							Optional:            true,
 							Computed:            true,
-							Default:             stringdefault.StaticString("30s"),
+							Default:             int64default.StaticInt64(30),
+							Validators: []validator.Int64{
+								int64validator.AtLeast(0),
+							},
 						},
-						"poll_interval": schema.StringAttribute{
-							Description:         "The length of time to wait before checking again.",
-							MarkdownDescription: "The length of time to wait before checking again.",
+						"poll_interval": schema.Int64Attribute{
+							Description:         "The number of seconds to wait before checking again.",
+							MarkdownDescription: "The number of seconds to wait before checking again.",
 							Required:            false,
 							Optional:            true,
 							Computed:            true,
-							Default:             stringdefault.StaticString("5s"),
+							Default:             int64default.StaticInt64(5),
+							Validators: []validator.Int64{
+								int64validator.AtLeast(0),
+							},
 						},
 					},
 				},
@@ -2867,21 +2894,27 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 				Optional:            true,
 				Computed:            true,
 				Attributes: map[string]schema.Attribute{
-					"timeout": schema.StringAttribute{
-						Description:         "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
-						MarkdownDescription: "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
+					"timeout": schema.Int64Attribute{
+						Description:         "The number of seconds to wait before giving up. Zero means check once and don't wait.",
+						MarkdownDescription: "The number of seconds to wait before giving up. Zero means check once and don't wait.",
 						Required:            false,
 						Optional:            true,
 						Computed:            true,
-						Default:             stringdefault.StaticString("30s"),
+						Default:             int64default.StaticInt64(30),
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
 					},
-					"poll_interval": schema.StringAttribute{
-						Description:         "The length of time to wait before checking again.",
-						MarkdownDescription: "The length of time to wait before checking again.",
+					"poll_interval": schema.Int64Attribute{
+						Description:         "The number of seconds to wait before checking again.",
+						MarkdownDescription: "The number of seconds to wait before checking again.",
 						Required:            false,
 						Optional:            true,
 						Computed:            true,
-						Default:             stringdefault.StaticString("5s"),
+						Default:             int64default.StaticInt64(5),
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
 					},
 				},
 			},
@@ -19542,8 +19575,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -19794,8 +19827,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -19956,6 +19989,33 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 															Computed: false,
 														},
 
+														"resize_policy": schema.ListNestedAttribute{
+															Description:         "Resources resize policy for the container.",
+															MarkdownDescription: "Resources resize policy for the container.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"resource_name": schema.StringAttribute{
+																		Description:         "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+																		MarkdownDescription: "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"restart_policy": schema.StringAttribute{
+																		Description:         "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+																		MarkdownDescription: "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"resources": schema.SingleNestedAttribute{
 															Description:         "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 															MarkdownDescription: "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -19989,8 +20049,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 																},
 
 																"requests": schema.MapAttribute{
-																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -20000,6 +20060,14 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"restart_policy": schema.StringAttribute{
+															Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"security_context": schema.SingleNestedAttribute{
@@ -20135,8 +20203,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 																	MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 																	Attributes: map[string]schema.Attribute{
 																		"localhost_profile": schema.StringAttribute{
-																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -20176,8 +20244,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 																		},
 
 																		"host_process": schema.BoolAttribute{
-																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
-																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -20232,8 +20300,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 																},
 
 																"grpc": schema.SingleNestedAttribute{
-																	Description:         "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-																	MarkdownDescription: "GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+																	Description:         "GRPC specifies an action involving a GRPC port.",
+																	MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 																	Attributes: map[string]schema.Attribute{
 																		"port": schema.Int64Attribute{
 																			Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -21028,8 +21096,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 																	},
 
 																	"size_limit": schema.StringAttribute{
-																		Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
-																		MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
+																		Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																		MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -21177,8 +21245,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Schema(_ context.Context, _ resou
 																							},
 
 																							"requests": schema.MapAttribute{
-																								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																								ElementType:         types.StringType,
 																								Required:            false,
 																								Optional:            true,
@@ -22761,6 +22829,31 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Create(ctx context.Context, reque
 
 	model.Metadata = readResponse.Metadata
 	model.Spec = readResponse.Spec
+	if model.ForceConflicts.IsUnknown() {
+		model.ForceConflicts = types.BoolNull()
+	}
+	if model.FieldManager.IsUnknown() {
+		model.FieldManager = types.StringNull()
+	}
+	if model.DeletionPropagation.IsUnknown() {
+		model.DeletionPropagation = types.StringNull()
+	}
+	if model.WaitForUpsert.IsUnknown() {
+		model.WaitForUpsert = types.ListNull(types.ObjectType{
+			AttrTypes: map[string]attr.Type{
+				"jsonpath":      types.StringType,
+				"value":         types.StringType,
+				"timeout":       types.Int64Type,
+				"poll_interval": types.Int64Type,
+			},
+		})
+	}
+	if model.WaitForDelete.IsUnknown() {
+		model.WaitForDelete = types.ObjectNull(map[string]attr.Type{
+			"timeout":       types.Int64Type,
+			"poll_interval": types.Int64Type,
+		})
+	}
 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
@@ -22797,6 +22890,31 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Read(ctx context.Context, request
 
 	data.Metadata = readResponse.Metadata
 	data.Spec = readResponse.Spec
+	if data.ForceConflicts.IsUnknown() {
+		data.ForceConflicts = types.BoolNull()
+	}
+	if data.FieldManager.IsUnknown() {
+		data.FieldManager = types.StringNull()
+	}
+	if data.DeletionPropagation.IsUnknown() {
+		data.DeletionPropagation = types.StringNull()
+	}
+	if data.WaitForUpsert.IsUnknown() {
+		data.WaitForUpsert = types.ListNull(types.ObjectType{
+			AttrTypes: map[string]attr.Type{
+				"jsonpath":      types.StringType,
+				"value":         types.StringType,
+				"timeout":       types.Int64Type,
+				"poll_interval": types.Int64Type,
+			},
+		})
+	}
+	if data.WaitForDelete.IsUnknown() {
+		data.WaitForDelete = types.ObjectNull(map[string]attr.Type{
+			"timeout":       types.Int64Type,
+			"poll_interval": types.Int64Type,
+		})
+	}
 
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
@@ -22870,16 +22988,21 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Delete(ctx context.Context, reque
 		return
 	}
 
+	deleteOptions := meta.DeleteOptions{}
+	if !data.DeletionPropagation.IsNull() && !data.DeletionPropagation.IsUnknown() {
+		deleteOptions.PropagationPolicy = utilities.MapDeletionPropagation(data.DeletionPropagation.ValueString())
+	}
+
 	err := r.kubernetesClient.
 		Resource(k8sSchema.GroupVersionResource{Group: "chaos-mesh.org", Version: "v1alpha1", Resource: "schedules"}).
 		Namespace(data.Metadata.Namespace).
-		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
+		Delete(ctx, data.Metadata.Name, deleteOptions)
 	if utilities.IsDeletionError(err) {
 		response.Diagnostics.Append(utilities.DeleteError(err))
 		return
 	}
 
-	if !data.WaitForDelete.IsNull() {
+	if !data.WaitForDelete.IsNull() && !data.WaitForDelete.IsUnknown() {
 		timeout := utilities.DetermineTimeout(data.WaitForDelete.Attributes())
 		pollInterval := utilities.DeterminePollInterval(data.WaitForDelete.Attributes())
 
@@ -22889,7 +23012,7 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Resource) Delete(ctx context.Context, reque
 				Resource(k8sSchema.GroupVersionResource{Group: "chaos-mesh.org", Version: "v1alpha1", Resource: "schedules"}).
 				Namespace(data.Metadata.Namespace).
 				Get(ctx, data.Metadata.Name, meta.GetOptions{})
-			if utilities.IsNotFound(err) || timeout == time.Second*0 {
+			if utilities.IsNotFound(err) || timeout.Milliseconds() == 0 {
 				break
 			}
 			if time.Now().After(startTime.Add(timeout)) {

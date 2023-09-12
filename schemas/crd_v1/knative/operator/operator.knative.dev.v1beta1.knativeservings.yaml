@@ -1288,6 +1288,8 @@ spec:
                         type: integer
                       https-port:
                         type: integer
+                      service-load-balancer-ip:
+                        type: string
                       service-type:
                         type: string
                     type: object

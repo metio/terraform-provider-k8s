@@ -1208,6 +1208,7 @@ type MariadbMmontesIoMariaDbV1Alpha1ManifestData struct {
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
 			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 		} `tfsdk:"password_secret_key_ref" json:"passwordSecretKeyRef,omitempty"`
+		PodAnnotations      *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
 		PodDisruptionBudget *struct {
 			MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
 			MinAvailable   *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
@@ -1262,8 +1263,13 @@ type MariadbMmontesIoMariaDbV1Alpha1ManifestData struct {
 			ServiceName *string `tfsdk:"service_name" json:"serviceName,omitempty"`
 		} `tfsdk:"primary_connection" json:"primaryConnection,omitempty"`
 		PrimaryService *struct {
-			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-			Type        *string            `tfsdk:"type" json:"type,omitempty"`
+			Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+			Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
+			LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+			SessionAffinity          *string            `tfsdk:"session_affinity" json:"sessionAffinity,omitempty"`
+			Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"primary_service" json:"primaryService,omitempty"`
 		ReadinessProbe *struct {
 			Exec *struct {
@@ -1345,8 +1351,13 @@ type MariadbMmontesIoMariaDbV1Alpha1ManifestData struct {
 			ServiceName *string `tfsdk:"service_name" json:"serviceName,omitempty"`
 		} `tfsdk:"secondary_connection" json:"secondaryConnection,omitempty"`
 		SecondaryService *struct {
-			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-			Type        *string            `tfsdk:"type" json:"type,omitempty"`
+			Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+			Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
+			LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+			SessionAffinity          *string            `tfsdk:"session_affinity" json:"sessionAffinity,omitempty"`
+			Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"secondary_service" json:"secondaryService,omitempty"`
 		SecurityContext *struct {
 			AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -1378,8 +1389,13 @@ type MariadbMmontesIoMariaDbV1Alpha1ManifestData struct {
 			} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 		} `tfsdk:"security_context" json:"securityContext,omitempty"`
 		Service *struct {
-			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-			Type        *string            `tfsdk:"type" json:"type,omitempty"`
+			Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+			Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
+			LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+			SessionAffinity          *string            `tfsdk:"session_affinity" json:"sessionAffinity,omitempty"`
+			Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"service" json:"service,omitempty"`
 		Tolerations *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
@@ -9545,6 +9561,15 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Computed: false,
 					},
 
+					"pod_annotations": schema.MapAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"pod_disruption_budget": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -9920,6 +9945,48 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"external_traffic_policy": schema.StringAttribute{
+								Description:         "Service External Traffic Policy Type string",
+								MarkdownDescription: "Service External Traffic Policy Type string",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_ip": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_source_ranges": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"session_affinity": schema.StringAttribute{
+								Description:         "Session Affinity Type string",
+								MarkdownDescription: "Session Affinity Type string",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -10486,6 +10553,48 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Computed:            false,
 							},
 
+							"external_traffic_policy": schema.StringAttribute{
+								Description:         "Service External Traffic Policy Type string",
+								MarkdownDescription: "Service External Traffic Policy Type string",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_ip": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_source_ranges": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"session_affinity": schema.StringAttribute{
+								Description:         "Session Affinity Type string",
+								MarkdownDescription: "Session Affinity Type string",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"type": schema.StringAttribute{
 								Description:         "Service Type string describes ingress methods for a service",
 								MarkdownDescription: "Service Type string describes ingress methods for a service",
@@ -10706,6 +10815,48 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"external_traffic_policy": schema.StringAttribute{
+								Description:         "Service External Traffic Policy Type string",
+								MarkdownDescription: "Service External Traffic Policy Type string",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_ip": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_source_ranges": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"session_affinity": schema.StringAttribute{
+								Description:         "Session Affinity Type string",
+								MarkdownDescription: "Session Affinity Type string",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

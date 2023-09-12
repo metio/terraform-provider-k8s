@@ -108,6 +108,10 @@ type ResourcesTeleportDevTeleportProvisionTokenV2DataSourceData struct {
 			Allow *[]struct {
 				Service_account *string `tfsdk:"service_account" json:"service_account,omitempty"`
 			} `tfsdk:"allow" json:"allow,omitempty"`
+			Static_jwks *struct {
+				Jwks *string `tfsdk:"jwks" json:"jwks,omitempty"`
+			} `tfsdk:"static_jwks" json:"static_jwks,omitempty"`
+			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"kubernetes" json:"kubernetes,omitempty"`
 		Roles                          *[]string          `tfsdk:"roles" json:"roles,omitempty"`
 		Suggested_agent_matcher_labels *map[string]string `tfsdk:"suggested_agent_matcher_labels" json:"suggested_agent_matcher_labels,omitempty"`
@@ -595,6 +599,31 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2DataSource) Schema(_ contex
 								Required: false,
 								Optional: false,
 								Computed: true,
+							},
+
+							"static_jwks": schema.SingleNestedAttribute{
+								Description:         "StaticJWKS is the configuration specific to the 'static_jwks' type.",
+								MarkdownDescription: "StaticJWKS is the configuration specific to the 'static_jwks' type.",
+								Attributes: map[string]schema.Attribute{
+									"jwks": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            false,
+										Computed:            true,
+									},
+								},
+								Required: false,
+								Optional: false,
+								Computed: true,
+							},
+
+							"type": schema.StringAttribute{
+								Description:         "Type controls which behavior should be used for validating the Kubernetes Service Account token. Support values: - 'in_cluster' - 'static_jwks' If unset, this defaults to 'in_cluster'.",
+								MarkdownDescription: "Type controls which behavior should be used for validating the Kubernetes Service Account token. Support values: - 'in_cluster' - 'static_jwks' If unset, this defaults to 'in_cluster'.",
+								Required:            false,
+								Optional:            false,
+								Computed:            true,
 							},
 						},
 						Required: false,
