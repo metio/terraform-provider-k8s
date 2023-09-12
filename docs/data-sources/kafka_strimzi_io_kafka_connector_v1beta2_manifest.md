@@ -68,3 +68,4 @@ Optional:
 Optional:
 
 - `enabled` (Boolean) Whether automatic restart for failed connectors and tasks should be enabled or disabled.
+- `max_restarts` (Number) The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.

@@ -31,7 +31,9 @@ data "k8s_external_secrets_io_secret_store_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) SecretStoreSpec defines the desired state of SecretStore. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

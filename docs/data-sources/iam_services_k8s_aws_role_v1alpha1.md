@@ -31,7 +31,9 @@ data "k8s_iam_services_k8s_aws_role_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) RoleSpec defines the desired state of Role.  Contains information about an IAM role. This structure is returned as a response element in several API operations that interact with roles. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

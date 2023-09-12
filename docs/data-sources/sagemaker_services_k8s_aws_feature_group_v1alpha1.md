@@ -31,7 +31,9 @@ data "k8s_sagemaker_services_k8s_aws_feature_group_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) FeatureGroupSpec defines the desired state of FeatureGroup.  Amazon SageMaker Feature Store stores features in a collection called Feature Group. A Feature Group can be visualized as a table which has rows, with a unique identifier for each row where each column in the table is a feature. In principle, a Feature Group is composed of features and values per features. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

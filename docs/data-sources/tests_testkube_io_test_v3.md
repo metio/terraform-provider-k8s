@@ -31,7 +31,9 @@ data "k8s_tests_testkube_io_test_v3" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) TestSpec defines the desired state of Test (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -119,6 +121,7 @@ Read-Only:
 - `artifact_request` (Attributes) artifact request body with test artifacts (see [below for nested schema](#nestedatt--spec--execution_request--artifact_request))
 - `command` (List of String) executor binary command
 - `cron_job_template` (String) cron job template extensions
+- `cron_job_template_reference` (String) name of the template resource
 - `env_config_maps` (Attributes List) config map references (see [below for nested schema](#nestedatt--spec--execution_request--env_config_maps))
 - `env_secrets` (Attributes List) secret references (see [below for nested schema](#nestedatt--spec--execution_request--env_secrets))
 - `envs` (Map of String) Environment variables passed to executor. Deprecated: use Basic Variables instead
@@ -129,13 +132,17 @@ Read-Only:
 - `image_pull_secrets` (Attributes List) container executor image pull secrets (see [below for nested schema](#nestedatt--spec--execution_request--image_pull_secrets))
 - `is_variables_file_uploaded` (Boolean)
 - `job_template` (String) job template extensions
+- `job_template_reference` (String) name of the template resource
 - `name` (String) test execution custom name
 - `namespace` (String) test kubernetes namespace ('testkube' when not set)
 - `negative_test` (Boolean) negative test will fail the execution if it is a success and it will succeed if it is a failure
 - `number` (Number) test execution number
 - `post_run_script` (String) script to run after test execution
 - `pre_run_script` (String) script to run before test execution
+- `pvc_template` (String) pvc template extensions
+- `pvc_template_reference` (String) name of the template resource
 - `scraper_template` (String) scraper template extensions
+- `scraper_template_reference` (String) name of the template resource
 - `secret_envs` (Map of String) Execution variables passed to executor from secrets. Deprecated: use Secret Variables instead
 - `sync` (Boolean) whether to start execution sync or async
 - `test_secret_uuid` (String) test secret uuid

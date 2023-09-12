@@ -31,7 +31,9 @@ data "k8s_elasticache_services_k8s_aws_replication_group_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ReplicationGroupSpec defines the desired state of ReplicationGroup.  Contains all of the attributes of a specific Redis replication group. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

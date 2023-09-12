@@ -31,7 +31,9 @@ data "k8s_ceph_rook_io_ceph_filesystem_sub_volume_group_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Spec represents the specification of a Ceph Filesystem SubVolumeGroup (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

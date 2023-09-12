@@ -3,12 +3,12 @@
 page_title: "k8s_gateway_networking_k8s_io_gateway_class_v1alpha2 Data Source - terraform-provider-k8s"
 subcategory: "gateway.networking.k8s.io"
 description: |-
-  GatewayClass describes a class of Gateways available to the user for creating Gateway resources.  It is recommended that this resource be used as a template for Gateways. This means that a Gateway is based on the state of the GatewayClass at the time it was created and changes to the GatewayClass or associated parameters are not propagated down to existing Gateways. This recommendation is intended to limit the blast radius of changes to GatewayClass or associated parameters. If implementations choose to propagate GatewayClass changes to existing Gateways, that MUST be clearly documented by the implementation.  Whenever one or more Gateways are using a GatewayClass, implementations MUST add the 'gateway-exists-finalizer.gateway.networking.k8s.io' finalizer on the associated GatewayClass. This ensures that a GatewayClass associated with a Gateway is not deleted while in use.  GatewayClass is a Cluster level resource.
+  GatewayClass describes a class of Gateways available to the user for creating Gateway resources.  It is recommended that this resource be used as a template for Gateways. This means that a Gateway is based on the state of the GatewayClass at the time it was created and changes to the GatewayClass or associated parameters are not propagated down to existing Gateways. This recommendation is intended to limit the blast radius of changes to GatewayClass or associated parameters. If implementations choose to propagate GatewayClass changes to existing Gateways, that MUST be clearly documented by the implementation.  Whenever one or more Gateways are using a GatewayClass, implementations SHOULD add the 'gateway-exists-finalizer.gateway.networking.k8s.io' finalizer on the associated GatewayClass. This ensures that a GatewayClass associated with a Gateway is not deleted while in use.  GatewayClass is a Cluster level resource.
 ---
 
 # k8s_gateway_networking_k8s_io_gateway_class_v1alpha2 (Data Source)
 
-GatewayClass describes a class of Gateways available to the user for creating Gateway resources.  It is recommended that this resource be used as a template for Gateways. This means that a Gateway is based on the state of the GatewayClass at the time it was created and changes to the GatewayClass or associated parameters are not propagated down to existing Gateways. This recommendation is intended to limit the blast radius of changes to GatewayClass or associated parameters. If implementations choose to propagate GatewayClass changes to existing Gateways, that MUST be clearly documented by the implementation.  Whenever one or more Gateways are using a GatewayClass, implementations MUST add the 'gateway-exists-finalizer.gateway.networking.k8s.io' finalizer on the associated GatewayClass. This ensures that a GatewayClass associated with a Gateway is not deleted while in use.  GatewayClass is a Cluster level resource.
+GatewayClass describes a class of Gateways available to the user for creating Gateway resources.  It is recommended that this resource be used as a template for Gateways. This means that a Gateway is based on the state of the GatewayClass at the time it was created and changes to the GatewayClass or associated parameters are not propagated down to existing Gateways. This recommendation is intended to limit the blast radius of changes to GatewayClass or associated parameters. If implementations choose to propagate GatewayClass changes to existing Gateways, that MUST be clearly documented by the implementation.  Whenever one or more Gateways are using a GatewayClass, implementations SHOULD add the 'gateway-exists-finalizer.gateway.networking.k8s.io' finalizer on the associated GatewayClass. This ensures that a GatewayClass associated with a Gateway is not deleted while in use.  GatewayClass is a Cluster level resource.
 
 ## Example Usage
 
@@ -30,7 +30,9 @@ data "k8s_gateway_networking_k8s_io_gateway_class_v1alpha2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Spec defines the desired state of GatewayClass. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -53,7 +55,7 @@ Read-Only:
 
 - `controller_name` (String) ControllerName is the name of the controller that is managing Gateways of this class. The value of this field MUST be a domain prefixed path.  Example: 'example.net/gateway-controller'.  This field is not mutable and cannot be empty.  Support: Core
 - `description` (String) Description helps describe a GatewayClass with more details.
-- `parameters_ref` (Attributes) ParametersRef is a reference to a resource that contains the configuration parameters corresponding to the GatewayClass. This is optional if the controller does not require any additional configuration.  ParametersRef can reference a standard Kubernetes resource, i.e. ConfigMap, or an implementation-specific custom resource. The resource can be cluster-scoped or namespace-scoped.  If the referent cannot be found, the GatewayClass's 'InvalidParameters' status condition will be true.  Support: Custom (see [below for nested schema](#nestedatt--spec--parameters_ref))
+- `parameters_ref` (Attributes) ParametersRef is a reference to a resource that contains the configuration parameters corresponding to the GatewayClass. This is optional if the controller does not require any additional configuration.  ParametersRef can reference a standard Kubernetes resource, i.e. ConfigMap, or an implementation-specific custom resource. The resource can be cluster-scoped or namespace-scoped.  If the referent cannot be found, the GatewayClass's 'InvalidParameters' status condition will be true.  Support: Implementation-specific (see [below for nested schema](#nestedatt--spec--parameters_ref))
 
 <a id="nestedatt--spec--parameters_ref"></a>
 ### Nested Schema for `spec.parameters_ref`

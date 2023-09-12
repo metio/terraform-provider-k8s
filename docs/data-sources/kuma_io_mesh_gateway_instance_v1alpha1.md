@@ -31,7 +31,9 @@ data "k8s_kuma_io_mesh_gateway_instance_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) MeshGatewayInstanceSpec specifies the options available for a GatewayDataplane. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

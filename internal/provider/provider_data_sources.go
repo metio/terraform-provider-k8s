@@ -1717,6 +1717,8 @@ func allDataSources() []func() datasource.DataSource {
 		monitoring_coreos_com_v1.NewMonitoringCoreosComAlertmanagerV1Manifest,
 		monitoring_coreos_com_v1.NewMonitoringCoreosComPodMonitorV1DataSource,
 		monitoring_coreos_com_v1.NewMonitoringCoreosComPodMonitorV1Manifest,
+		monitoring_coreos_com_v1.NewMonitoringCoreosComProbeV1DataSource,
+		monitoring_coreos_com_v1.NewMonitoringCoreosComProbeV1Manifest,
 		monitoring_coreos_com_v1.NewMonitoringCoreosComPrometheusRuleV1DataSource,
 		monitoring_coreos_com_v1.NewMonitoringCoreosComPrometheusRuleV1Manifest,
 		monitoring_coreos_com_v1.NewMonitoringCoreosComPrometheusV1DataSource,

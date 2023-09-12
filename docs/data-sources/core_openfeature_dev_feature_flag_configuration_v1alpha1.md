@@ -31,7 +31,9 @@ data "k8s_core_openfeature_dev_feature_flag_configuration_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) FeatureFlagConfigurationSpec defines the desired state of FeatureFlagConfiguration (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

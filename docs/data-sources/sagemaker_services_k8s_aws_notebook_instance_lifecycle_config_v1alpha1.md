@@ -31,7 +31,9 @@ data "k8s_sagemaker_services_k8s_aws_notebook_instance_lifecycle_config_v1alpha1
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) NotebookInstanceLifecycleConfigSpec defines the desired state of NotebookInstanceLifecycleConfig. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

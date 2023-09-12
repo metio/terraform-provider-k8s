@@ -31,7 +31,9 @@ data "k8s_kyverno_io_cleanup_policy_v2alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Spec declares policy behaviors. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

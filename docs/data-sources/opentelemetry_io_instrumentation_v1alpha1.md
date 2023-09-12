@@ -31,7 +31,9 @@ data "k8s_opentelemetry_io_instrumentation_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) InstrumentationSpec defines the desired state of OpenTelemetry SDK and instrumentation. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -77,6 +79,7 @@ Read-Only:
 - `image` (String) Image is a container image with Apache SDK and auto-instrumentation.
 - `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--apache_httpd--resource_requirements))
 - `version` (String) Apache HTTPD server version. One of 2.4 or 2.2. Default is 2.4
+- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
 
 <a id="nestedatt--spec--apache_httpd--attrs"></a>
 ### Nested Schema for `spec.apache_httpd.attrs`
@@ -225,6 +228,7 @@ Read-Only:
 - `env` (Attributes List) Env defines DotNet specific env vars. (see [below for nested schema](#nestedatt--spec--dotnet--env))
 - `image` (String) Image is a container image with DotNet SDK and auto-instrumentation.
 - `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--dotnet--resource_requirements))
+- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
 
 <a id="nestedatt--spec--dotnet--env"></a>
 ### Nested Schema for `spec.dotnet.env`
@@ -381,6 +385,7 @@ Read-Only:
 - `env` (Attributes List) Env defines Go specific env vars. (see [below for nested schema](#nestedatt--spec--go--env))
 - `image` (String) Image is a container image with Go SDK and auto-instrumentation.
 - `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--go--resource_requirements))
+- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
 
 <a id="nestedatt--spec--go--env"></a>
 ### Nested Schema for `spec.go.env`
@@ -469,6 +474,7 @@ Read-Only:
 - `env` (Attributes List) Env defines java specific env vars. (see [below for nested schema](#nestedatt--spec--java--env))
 - `image` (String) Image is a container image with javaagent auto-instrumentation JAR.
 - `resources` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--java--resources))
+- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
 
 <a id="nestedatt--spec--java--env"></a>
 ### Nested Schema for `spec.java.env`
@@ -559,6 +565,7 @@ Read-Only:
 - `env` (Attributes List) Env defines Nginx specific env vars. (see [below for nested schema](#nestedatt--spec--nginx--env))
 - `image` (String) Image is a container image with Nginx SDK and auto-instrumentation.
 - `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--nginx--resource_requirements))
+- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
 
 <a id="nestedatt--spec--nginx--attrs"></a>
 ### Nested Schema for `spec.nginx.attrs`
@@ -707,6 +714,7 @@ Read-Only:
 - `env` (Attributes List) Env defines nodejs specific env vars. (see [below for nested schema](#nestedatt--spec--nodejs--env))
 - `image` (String) Image is a container image with NodeJS SDK and auto-instrumentation.
 - `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--nodejs--resource_requirements))
+- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
 
 <a id="nestedatt--spec--nodejs--env"></a>
 ### Nested Schema for `spec.nodejs.env`
@@ -795,6 +803,7 @@ Read-Only:
 - `env` (Attributes List) Env defines python specific env vars. (see [below for nested schema](#nestedatt--spec--python--env))
 - `image` (String) Image is a container image with Python SDK and auto-instrumentation.
 - `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--python--resource_requirements))
+- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
 
 <a id="nestedatt--spec--python--env"></a>
 ### Nested Schema for `spec.python.env`

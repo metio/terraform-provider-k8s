@@ -31,7 +31,9 @@ data "k8s_rds_services_k8s_aws_db_proxy_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) DBProxySpec defines the desired state of DBProxy.  The data structure representing a proxy managed by the RDS Proxy.  This data type is used as a response element in the DescribeDBProxies action. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

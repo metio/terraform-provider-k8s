@@ -30,7 +30,9 @@ data "k8s_cilium_io_cilium_clusterwide_network_policy_v2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Spec is the desired Cilium specific rule specification. (see [below for nested schema](#nestedatt--spec))
 - `specs` (Attributes List) Specs is a list of desired Cilium specific rule specification. (see [below for nested schema](#nestedatt--specs))
 

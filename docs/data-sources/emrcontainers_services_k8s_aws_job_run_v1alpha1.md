@@ -31,7 +31,9 @@ data "k8s_emrcontainers_services_k8s_aws_job_run_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) JobRunSpec defines the desired state of JobRun.  This entity describes a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

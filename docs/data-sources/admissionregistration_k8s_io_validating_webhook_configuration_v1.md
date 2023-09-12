@@ -30,7 +30,9 @@ data "k8s_admissionregistration_k8s_io_validating_webhook_configuration_v1" "exa
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `webhooks` (Attributes List) Webhooks is a list of webhooks and the affected resources and operations. (see [below for nested schema](#nestedatt--webhooks))
 
 <a id="nestedatt--metadata"></a>

@@ -31,7 +31,9 @@ data "k8s_clusters_clusternet_io_managed_cluster_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ManagedClusterSpec defines the desired state of ManagedCluster (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

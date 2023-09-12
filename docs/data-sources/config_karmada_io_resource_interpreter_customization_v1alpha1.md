@@ -30,7 +30,9 @@ data "k8s_config_karmada_io_resource_interpreter_customization_v1alpha1" "exampl
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Spec describes the configuration in detail. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -72,7 +74,7 @@ Read-Only:
 
 Read-Only:
 
-- `lua_script` (String) LuaScript holds the Lua script that is used to interpret the dependencies of a specific resource. The script should implement a function as follows: luaScript: > function GetDependencies(desiredObj) dependencies = {} if desiredObj.spec.serviceAccountName ~= '' and desiredObj.spec.serviceAccountName ~= 'default' then dependency = {} dependency.apiVersion = 'v1' dependency.kind = 'ServiceAccount' dependency.name = desiredObj.spec.serviceAccountName dependency.namespace = desiredObj.namespace dependencies[1] = {} dependencies[1] = dependency end return dependencies end  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster.  The returned value should be expressed by a slice of DependentObjectReference.
+- `lua_script` (String) LuaScript holds the Lua script that is used to interpret the dependencies of a specific resource. The script should implement a function as follows: luaScript: > function GetDependencies(desiredObj) dependencies = {} if desiredObj.spec.serviceAccountName ~= nil and desiredObj.spec.serviceAccountName ~= 'default' then dependency = {} dependency.apiVersion = 'v1' dependency.kind = 'ServiceAccount' dependency.name = desiredObj.spec.serviceAccountName dependency.namespace = desiredObj.namespace dependencies[1] = {} dependencies[1] = dependency end return dependencies end  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster.  The returned value should be expressed by a slice of DependentObjectReference.
 
 
 <a id="nestedatt--spec--customizations--health_interpretation"></a>

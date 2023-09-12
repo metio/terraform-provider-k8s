@@ -31,7 +31,9 @@ data "k8s_executor_testkube_io_webhook_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) WebhookSpec defines the desired state of Webhook (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -54,8 +56,9 @@ Read-Only:
 Read-Only:
 
 - `events` (List of String) Events declare list if events on which webhook should be called
-- `headers` (Map of String) webhook headers
+- `headers` (Map of String) webhook headers (golang template supported)
 - `payload_object_field` (String) will load the generated payload for notification inside the object
 - `payload_template` (String) golang based template for notification payload
+- `payload_template_reference` (String) name of the template resource
 - `selector` (String) Labels to filter for tests and test suites
-- `uri` (String) Uri is address where webhook should be made
+- `uri` (String) Uri is address where webhook should be made (golang template supported)

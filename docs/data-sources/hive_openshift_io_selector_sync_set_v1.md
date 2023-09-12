@@ -30,7 +30,9 @@ data "k8s_hive_openshift_io_selector_sync_set_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) SelectorSyncSetSpec defines the SyncSetCommonSpec resources and patches to sync along with a ClusterDeploymentSelector indicating which clusters the SelectorSyncSet applies to in any namespace. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

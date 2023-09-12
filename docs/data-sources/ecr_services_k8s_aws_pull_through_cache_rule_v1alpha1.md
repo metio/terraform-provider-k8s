@@ -31,7 +31,9 @@ data "k8s_ecr_services_k8s_aws_pull_through_cache_rule_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) PullThroughCacheRuleSpec defines the desired state of PullThroughCacheRule.  The details of a pull through cache rule. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

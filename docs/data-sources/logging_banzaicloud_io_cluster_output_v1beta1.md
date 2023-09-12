@@ -31,7 +31,9 @@ data "k8s_logging_banzaicloud_io_cluster_output_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -176,6 +178,7 @@ Read-Only:
 - `time_precision` (String)
 - `type_name` (String)
 - `unrecoverable_error_types` (String)
+- `use_legacy_template` (Boolean)
 - `user` (String)
 - `utc_index` (Boolean)
 - `validate_client_version` (Boolean)
@@ -1482,6 +1485,7 @@ Read-Only:
 - `time_precision` (String)
 - `type_name` (String)
 - `unrecoverable_error_types` (String)
+- `use_legacy_template` (Boolean)
 - `user` (String)
 - `utc_index` (Boolean)
 - `validate_client_version` (Boolean)
@@ -4643,8 +4647,8 @@ Read-Only:
 
 Read-Only:
 
-- `aaccess_key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--aaccess_key_secret))
 - `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_id))
+- `access_key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret))
 - `auto_create_bucket` (Boolean)
 - `bucket` (String)
 - `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--buffer))
@@ -4665,52 +4669,6 @@ Read-Only:
 - `store_as` (String)
 - `upload_crc_enable` (Boolean)
 - `warn_for_delay` (String)
-
-<a id="nestedatt--spec--oss--aaccess_key_secret"></a>
-### Nested Schema for `spec.oss.aaccess_key_secret`
-
-Read-Only:
-
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--aaccess_key_secret--mount_from))
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--aaccess_key_secret--value_from))
-
-<a id="nestedatt--spec--oss--aaccess_key_secret--mount_from"></a>
-### Nested Schema for `spec.oss.aaccess_key_secret.value_from`
-
-Read-Only:
-
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--aaccess_key_secret--value_from--secret_key_ref))
-
-<a id="nestedatt--spec--oss--aaccess_key_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.oss.aaccess_key_secret.value_from.secret_key_ref`
-
-Read-Only:
-
-- `key` (String)
-- `name` (String)
-- `optional` (Boolean)
-
-
-
-<a id="nestedatt--spec--oss--aaccess_key_secret--value_from"></a>
-### Nested Schema for `spec.oss.aaccess_key_secret.value_from`
-
-Read-Only:
-
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--aaccess_key_secret--value_from--secret_key_ref))
-
-<a id="nestedatt--spec--oss--aaccess_key_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.oss.aaccess_key_secret.value_from.secret_key_ref`
-
-Read-Only:
-
-- `key` (String)
-- `name` (String)
-- `optional` (Boolean)
-
-
-
 
 <a id="nestedatt--spec--oss--access_key_id"></a>
 ### Nested Schema for `spec.oss.access_key_id`
@@ -4748,6 +4706,52 @@ Read-Only:
 
 <a id="nestedatt--spec--oss--access_key_id--value_from--secret_key_ref"></a>
 ### Nested Schema for `spec.oss.access_key_id.value_from.secret_key_ref`
+
+Read-Only:
+
+- `key` (String)
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--oss--access_key_secret"></a>
+### Nested Schema for `spec.oss.access_key_secret`
+
+Read-Only:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret--value_from))
+
+<a id="nestedatt--spec--oss--access_key_secret--mount_from"></a>
+### Nested Schema for `spec.oss.access_key_secret.value_from`
+
+Read-Only:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--oss--access_key_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.oss.access_key_secret.value_from.secret_key_ref`
+
+Read-Only:
+
+- `key` (String)
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--oss--access_key_secret--value_from"></a>
+### Nested Schema for `spec.oss.access_key_secret.value_from`
+
+Read-Only:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--oss--access_key_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.oss.access_key_secret.value_from.secret_key_ref`
 
 Read-Only:
 

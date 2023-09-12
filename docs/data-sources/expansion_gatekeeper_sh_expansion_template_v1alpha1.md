@@ -30,7 +30,9 @@ data "k8s_expansion_gatekeeper_sh_expansion_template_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ExpansionTemplateSpec defines the desired state of ExpansionTemplate. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

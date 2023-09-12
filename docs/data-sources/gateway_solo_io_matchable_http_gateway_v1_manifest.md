@@ -91,7 +91,9 @@ Optional:
 - `gzip` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--gzip))
 - `health_check` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--health_check))
 - `http_connection_manager_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings))
+- `http_local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_local_ratelimit))
 - `leftmost_xff_address` (Boolean)
+- `network_local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--network_local_ratelimit))
 - `proxy_latency` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--proxy_latency))
 - `ratelimit_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ratelimit_server))
 - `router` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--router))
@@ -549,11 +551,13 @@ Optional:
 - `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service))
 - `max_message_timeout` (String)
 - `message_timeout` (String)
+- `metadata_context_namespaces` (List of String)
 - `mutation_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules))
 - `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--processing_mode))
 - `request_attributes` (List of String)
 - `response_attributes` (List of String)
 - `stat_prefix` (String)
+- `typed_metadata_context_namespaces` (List of String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--filter_stage"></a>
 ### Nested Schema for `spec.http_gateway.options.wasm.filter_stage`
@@ -1201,6 +1205,36 @@ Optional:
 - `pack_trace_reason` (Boolean)
 - `use_request_id_for_trace_sampling` (Boolean)
 
+
+
+<a id="nestedatt--spec--http_gateway--options--http_local_ratelimit"></a>
+### Nested Schema for `spec.http_gateway.options.wasm`
+
+Optional:
+
+- `default_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--default_limit))
+- `enable_x_ratelimit_headers` (Boolean)
+- `local_rate_limit_per_downstream_connection` (Boolean)
+
+<a id="nestedatt--spec--http_gateway--options--wasm--default_limit"></a>
+### Nested Schema for `spec.http_gateway.options.wasm.default_limit`
+
+Optional:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
+
+
+<a id="nestedatt--spec--http_gateway--options--network_local_ratelimit"></a>
+### Nested Schema for `spec.http_gateway.options.wasm`
+
+Optional:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
 
 
 <a id="nestedatt--spec--http_gateway--options--proxy_latency"></a>

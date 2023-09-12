@@ -31,7 +31,9 @@ data "k8s_operator_aquasec_com_aqua_enforcer_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) AquaEnforcerSpec defines the desired state of AquaEnforcer (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

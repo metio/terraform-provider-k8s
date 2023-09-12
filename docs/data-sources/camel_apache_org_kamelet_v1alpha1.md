@@ -3,12 +3,12 @@
 page_title: "k8s_camel_apache_org_kamelet_v1alpha1 Data Source - terraform-provider-k8s"
 subcategory: "camel.apache.org"
 description: |-
-  Kamelet is the Schema for the kamelets API
+  Kamelet is the Schema for the kamelets API.
 ---
 
 # k8s_camel_apache_org_kamelet_v1alpha1 (Data Source)
 
-Kamelet is the Schema for the kamelets API
+Kamelet is the Schema for the kamelets API.
 
 ## Example Usage
 
@@ -31,8 +31,10 @@ data "k8s_camel_apache_org_kamelet_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
-- `spec` (Attributes) the desired specification (see [below for nested schema](#nestedatt--spec))
+- `kind` (String) The type of the requested resource.
+- `spec` (Attributes) the desired specification. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
 ### Nested Schema for `metadata`

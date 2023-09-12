@@ -32,8 +32,10 @@ data "k8s_storage_k8s_io_storage_class_v1" "example" {
 
 - `allow_volume_expansion` (Boolean) allowVolumeExpansion shows whether the storage class allow volume expand.
 - `allowed_topologies` (Attributes List) allowedTopologies restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature. (see [below for nested schema](#nestedatt--allowed_topologies))
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
 - `k8s_provisioner` (String) provisioner indicates the type of the provisioner.
+- `kind` (String) The type of the requested resource.
 - `mount_options` (List of String) mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. ['ro', 'soft']. Not validated - mount of the PVs will simply fail if one is invalid.
 - `parameters` (Map of String) parameters holds the parameters for the provisioner that should create volumes of this storage class.
 - `reclaim_policy` (String) reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete.

@@ -31,7 +31,9 @@ data "k8s_schemas_schemahero_io_migration_v1alpha4" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) MigrationSpec defines the desired state of Migration (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

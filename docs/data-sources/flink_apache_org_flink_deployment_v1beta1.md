@@ -31,7 +31,9 @@ data "k8s_flink_apache_org_flink_deployment_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -550,6 +552,7 @@ Read-Only:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--startup_probe))
@@ -895,6 +898,15 @@ Read-Only:
 
 
 
+<a id="nestedatt--spec--job_manager--pod_template--status--containers--resize_policy"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+
+Read-Only:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--resources"></a>
 ### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
 
@@ -1093,6 +1105,7 @@ Read-Only:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--startup_probe))
@@ -1439,6 +1452,15 @@ Read-Only:
 
 
 
+<a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--resize_policy"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+
+Read-Only:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--resources"></a>
 ### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
 
@@ -1635,6 +1657,7 @@ Read-Only:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--startup_probe))
@@ -1978,6 +2001,15 @@ Read-Only:
 - `host` (String)
 - `port` (String)
 
+
+
+<a id="nestedatt--spec--job_manager--pod_template--status--init_containers--resize_policy"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+
+Read-Only:
+
+- `resource_name` (String)
+- `restart_policy` (String)
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--resources"></a>
@@ -3011,6 +3043,7 @@ Read-Only:
 - `pod_ip` (String)
 - `qos_class` (String)
 - `reason` (String)
+- `resize` (String)
 - `start_time` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--conditions"></a>
@@ -3031,12 +3064,14 @@ Read-Only:
 
 Read-Only:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--state))
@@ -3079,6 +3114,24 @@ Read-Only:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--resources"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state`
+
+Read-Only:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--state--claims"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.requests`
+
+Read-Only:
+
+- `name` (String)
 
 
 
@@ -3129,12 +3182,14 @@ Read-Only:
 
 Read-Only:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state))
@@ -3177,6 +3232,24 @@ Read-Only:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--resources"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state`
+
+Read-Only:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state--claims"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.requests`
+
+Read-Only:
+
+- `name` (String)
 
 
 
@@ -3227,12 +3300,14 @@ Read-Only:
 
 Read-Only:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state))
@@ -3275,6 +3350,24 @@ Read-Only:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--resources"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state`
+
+Read-Only:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state--claims"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.requests`
+
+Read-Only:
+
+- `name` (String)
 
 
 
@@ -3788,6 +3881,7 @@ Read-Only:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--startup_probe))
@@ -4133,6 +4227,15 @@ Read-Only:
 
 
 
+<a id="nestedatt--spec--pod_template--spec--volumes--resize_policy"></a>
+### Nested Schema for `spec.pod_template.spec.volumes.resize_policy`
+
+Read-Only:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--pod_template--spec--volumes--resources"></a>
 ### Nested Schema for `spec.pod_template.spec.volumes.resources`
 
@@ -4331,6 +4434,7 @@ Read-Only:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--startup_probe))
@@ -4677,6 +4781,15 @@ Read-Only:
 
 
 
+<a id="nestedatt--spec--pod_template--spec--volumes--resize_policy"></a>
+### Nested Schema for `spec.pod_template.spec.volumes.resize_policy`
+
+Read-Only:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--pod_template--spec--volumes--resources"></a>
 ### Nested Schema for `spec.pod_template.spec.volumes.resources`
 
@@ -4873,6 +4986,7 @@ Read-Only:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--startup_probe))
@@ -5216,6 +5330,15 @@ Read-Only:
 - `host` (String)
 - `port` (String)
 
+
+
+<a id="nestedatt--spec--pod_template--spec--volumes--resize_policy"></a>
+### Nested Schema for `spec.pod_template.spec.volumes.resize_policy`
+
+Read-Only:
+
+- `resource_name` (String)
+- `restart_policy` (String)
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--resources"></a>
@@ -6249,6 +6372,7 @@ Read-Only:
 - `pod_ip` (String)
 - `qos_class` (String)
 - `reason` (String)
+- `resize` (String)
 - `start_time` (String)
 
 <a id="nestedatt--spec--pod_template--status--conditions"></a>
@@ -6269,12 +6393,14 @@ Read-Only:
 
 Read-Only:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--state))
@@ -6317,6 +6443,24 @@ Read-Only:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources`
+
+Read-Only:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources--claims"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources.requests`
+
+Read-Only:
+
+- `name` (String)
 
 
 
@@ -6367,12 +6511,14 @@ Read-Only:
 
 Read-Only:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--state))
@@ -6415,6 +6561,24 @@ Read-Only:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources`
+
+Read-Only:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources--claims"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources.requests`
+
+Read-Only:
+
+- `name` (String)
 
 
 
@@ -6465,12 +6629,14 @@ Read-Only:
 
 Read-Only:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--state))
@@ -6513,6 +6679,24 @@ Read-Only:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources`
+
+Read-Only:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources--claims"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources.requests`
+
+Read-Only:
+
+- `name` (String)
 
 
 
@@ -7024,6 +7208,7 @@ Read-Only:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--startup_probe))
@@ -7369,6 +7554,15 @@ Read-Only:
 
 
 
+<a id="nestedatt--spec--task_manager--pod_template--status--containers--resize_policy"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+
+Read-Only:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--resources"></a>
 ### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
 
@@ -7567,6 +7761,7 @@ Read-Only:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--startup_probe))
@@ -7913,6 +8108,15 @@ Read-Only:
 
 
 
+<a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--resize_policy"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+
+Read-Only:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--resources"></a>
 ### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
 
@@ -8109,6 +8313,7 @@ Read-Only:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--startup_probe))
@@ -8452,6 +8657,15 @@ Read-Only:
 - `host` (String)
 - `port` (String)
 
+
+
+<a id="nestedatt--spec--task_manager--pod_template--status--init_containers--resize_policy"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+
+Read-Only:
+
+- `resource_name` (String)
+- `restart_policy` (String)
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--resources"></a>
@@ -9485,6 +9699,7 @@ Read-Only:
 - `pod_ip` (String)
 - `qos_class` (String)
 - `reason` (String)
+- `resize` (String)
 - `start_time` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--conditions"></a>
@@ -9505,12 +9720,14 @@ Read-Only:
 
 Read-Only:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--state))
@@ -9553,6 +9770,24 @@ Read-Only:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--resources"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state`
+
+Read-Only:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--state--claims"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.requests`
+
+Read-Only:
+
+- `name` (String)
 
 
 
@@ -9603,12 +9838,14 @@ Read-Only:
 
 Read-Only:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state))
@@ -9651,6 +9888,24 @@ Read-Only:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--resources"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state`
+
+Read-Only:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state--claims"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.requests`
+
+Read-Only:
+
+- `name` (String)
 
 
 
@@ -9701,12 +9956,14 @@ Read-Only:
 
 Read-Only:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state))
@@ -9749,6 +10006,24 @@ Read-Only:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--resources"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state`
+
+Read-Only:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state--claims"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.requests`
+
+Read-Only:
+
+- `name` (String)
 
 
 

@@ -31,7 +31,9 @@ data "k8s_tests_testkube_io_test_suite_v2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) TestSuiteSpec defines the desired state of TestSuite (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

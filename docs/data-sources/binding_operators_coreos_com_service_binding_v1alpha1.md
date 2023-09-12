@@ -31,7 +31,9 @@ data "k8s_binding_operators_coreos_com_service_binding_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ServiceBindingSpec defines the desired state of ServiceBinding. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

@@ -29,7 +29,9 @@ data "k8s_crd_projectcalico_org_kube_controllers_configuration_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) KubeControllersConfigurationSpec contains the values of the Kubernetes controllers configuration. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

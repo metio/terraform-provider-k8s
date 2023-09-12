@@ -31,7 +31,9 @@ data "k8s_lambda_services_k8s_aws_function_url_config_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) FunctionUrlConfigSpec defines the desired state of FunctionUrlConfig.  Details about a Lambda function URL. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

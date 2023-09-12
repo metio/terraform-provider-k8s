@@ -59,9 +59,12 @@ Optional:
 <a id="nestedatt--spec--devices"></a>
 ### Nested Schema for `spec.devices`
 
-Optional:
+Required:
 
 - `health` (Boolean) Health indicates whether the device is normal
+
+Optional:
+
 - `id` (String) UUID represents the UUID of device
 - `labels` (Map of String) Labels represents the device properties that can be used to organize and categorize (scope and select) objects
 - `minor` (Number) Minor represents the Minor number of Device, starting from 0

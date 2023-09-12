@@ -412,23 +412,25 @@ Optional:
 
 - `async_mode` (Boolean)
 - `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--overrides--grpc_service))
+- `metadata_context_namespaces` (List of String)
 - `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--overrides--processing_mode))
 - `request_attributes` (List of String)
 - `response_attributes` (List of String)
+- `typed_metadata_context_namespaces` (List of String)
 
 <a id="nestedatt--spec--routes--options--waf--overrides--grpc_service"></a>
-### Nested Schema for `spec.routes.options.waf.overrides.response_attributes`
+### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces`
 
 Optional:
 
 - `authority` (String)
-- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--overrides--response_attributes--ext_proc_server_ref))
-- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--overrides--response_attributes--initial_metadata))
-- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--overrides--response_attributes--retry_policy))
+- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--overrides--typed_metadata_context_namespaces--ext_proc_server_ref))
+- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--overrides--typed_metadata_context_namespaces--initial_metadata))
+- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--overrides--typed_metadata_context_namespaces--retry_policy))
 - `timeout` (String)
 
-<a id="nestedatt--spec--routes--options--waf--overrides--response_attributes--ext_proc_server_ref"></a>
-### Nested Schema for `spec.routes.options.waf.overrides.response_attributes.timeout`
+<a id="nestedatt--spec--routes--options--waf--overrides--typed_metadata_context_namespaces--ext_proc_server_ref"></a>
+### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces.timeout`
 
 Optional:
 
@@ -436,8 +438,8 @@ Optional:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--routes--options--waf--overrides--response_attributes--initial_metadata"></a>
-### Nested Schema for `spec.routes.options.waf.overrides.response_attributes.timeout`
+<a id="nestedatt--spec--routes--options--waf--overrides--typed_metadata_context_namespaces--initial_metadata"></a>
+### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces.timeout`
 
 Optional:
 
@@ -445,16 +447,16 @@ Optional:
 - `value` (String)
 
 
-<a id="nestedatt--spec--routes--options--waf--overrides--response_attributes--retry_policy"></a>
-### Nested Schema for `spec.routes.options.waf.overrides.response_attributes.timeout`
+<a id="nestedatt--spec--routes--options--waf--overrides--typed_metadata_context_namespaces--retry_policy"></a>
+### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces.timeout`
 
 Optional:
 
 - `num_retries` (Number)
-- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--overrides--response_attributes--timeout--retry_back_off))
+- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--overrides--typed_metadata_context_namespaces--timeout--retry_back_off))
 
-<a id="nestedatt--spec--routes--options--waf--overrides--response_attributes--timeout--retry_back_off"></a>
-### Nested Schema for `spec.routes.options.waf.overrides.response_attributes.timeout.retry_back_off`
+<a id="nestedatt--spec--routes--options--waf--overrides--typed_metadata_context_namespaces--timeout--retry_back_off"></a>
+### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces.timeout.retry_back_off`
 
 Optional:
 
@@ -465,7 +467,7 @@ Optional:
 
 
 <a id="nestedatt--spec--routes--options--waf--overrides--processing_mode"></a>
-### Nested Schema for `spec.routes.options.waf.overrides.response_attributes`
+### Nested Schema for `spec.routes.options.waf.overrides.typed_metadata_context_namespaces`
 
 Optional:
 
@@ -754,7 +756,18 @@ Optional:
 Optional:
 
 - `include_vh_rate_limits` (Boolean)
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--rate_limits))
+
+<a id="nestedatt--spec--routes--options--waf--local_ratelimit"></a>
+### Nested Schema for `spec.routes.options.waf.local_ratelimit`
+
+Optional:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits"></a>
 ### Nested Schema for `spec.routes.options.waf.rate_limits`
@@ -985,7 +998,18 @@ Optional:
 Optional:
 
 - `include_vh_rate_limits` (Boolean)
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--rate_limits))
+
+<a id="nestedatt--spec--routes--options--waf--local_ratelimit"></a>
+### Nested Schema for `spec.routes.options.waf.local_ratelimit`
+
+Optional:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits"></a>
 ### Nested Schema for `spec.routes.options.waf.rate_limits`
@@ -1189,7 +1213,18 @@ Optional:
 Optional:
 
 - `include_vh_rate_limits` (Boolean)
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--waf--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--waf--rate_limits))
+
+<a id="nestedatt--spec--routes--options--waf--local_ratelimit"></a>
+### Nested Schema for `spec.routes.options.waf.local_ratelimit`
+
+Optional:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--routes--options--waf--rate_limits"></a>
 ### Nested Schema for `spec.routes.options.waf.rate_limits`

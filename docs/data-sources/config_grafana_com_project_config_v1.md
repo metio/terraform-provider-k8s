@@ -31,12 +31,14 @@ data "k8s_config_grafana_com_project_config_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `cache_namespace` (String) CacheNamespace if specified restricts the manager's cache to watch objects in the desired namespace Defaults to all namespaces  Note: If a namespace is specified, controllers can still Watch for a cluster-scoped resource (e.g Node).  For namespaced resources the cache will only hold objects from the desired namespace.
 - `controller` (Attributes) Controller contains global configuration options for controllers registered within this manager. (see [below for nested schema](#nestedatt--controller))
 - `feature_flags` (Attributes) FeatureFlags is a set of operator feature flags. (see [below for nested schema](#nestedatt--feature_flags))
 - `graceful_shut_down` (String) GracefulShutdownTimeout is the duration given to runnable to stop before the manager actually returns on stop. To disable graceful shutdown, set to time.Duration(0) To use graceful shutdown without timeout, set to a negative duration, e.G. time.Duration(-1) The graceful shutdown is skipped for safety reasons in case the leader election lease is lost.
 - `health` (Attributes) Health contains the controller health configuration (see [below for nested schema](#nestedatt--health))
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `leader_election` (Attributes) LeaderElection is the LeaderElection config to be used when configuring the manager.Manager leader election (see [below for nested schema](#nestedatt--leader_election))
 - `metrics` (Attributes) Metrics contains thw controller metrics configuration (see [below for nested schema](#nestedatt--metrics))
 - `sync_period` (String) SyncPeriod determines the minimum frequency at which watched resources are reconciled. A lower period will correct entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing. Defaults to 10 hours if unset. there will a 10 percent jitter between the SyncPeriod of all controllers so that all controllers will not send list requests simultaneously.

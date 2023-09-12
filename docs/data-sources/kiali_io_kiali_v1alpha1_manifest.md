@@ -387,7 +387,7 @@ Optional:
 - `component_status` (Attributes) Istio components whose status will be monitored by Kiali. (see [below for nested schema](#nestedatt--spec--external_services--istio--component_status))
 - `config_map_name` (String) The name of the istio control plane config map.
 - `envoy_admin_local_port` (Number) The port which kiali will open to fetch envoy config data information.
-- `gateway_api_class_name` (String) The K8s Gateway API GatewayClass's Name used in Istio. If empty, the default value 'istio' is used.
+- `gateway_api_classes` (Attributes List) A list declaring all the Gateways used in Istio. If left empty or undefined, the default is a single list item whose name is 'Istio' and class_name is 'istio'. (see [below for nested schema](#nestedatt--spec--external_services--istio--gateway_api_classes))
 - `istio_api_enabled` (Boolean) Indicates if Kiali has access to istiod. true by default.
 - `istio_canary_revision` (Attributes) These values are used in Canary upgrade/downgrade functionality when 'istio_upgrade_action' is true. (see [below for nested schema](#nestedatt--spec--external_services--istio--istio_canary_revision))
 - `istio_identity_domain` (String) The annotation used by Istio to identify domains.
@@ -417,6 +417,15 @@ Optional:
 - `is_proxy` (Boolean) Whether the component is a native Envoy proxy.
 - `namespace` (String) The namespace where the component is installed. It defaults to the Istio control plane namespace (e.g. 'istio_namespace') setting. Note that the Istio documentation suggests you install the ingress and egress to different namespaces, so you most likely will want to explicitly set this namespace value for the ingress and egress components.
 
+
+
+<a id="nestedatt--spec--external_services--istio--gateway_api_classes"></a>
+### Nested Schema for `spec.external_services.istio.url_service_version`
+
+Optional:
+
+- `class_name` (String) The name of the GatewayClass.
+- `name` (String) The name of the Gateway API implementation.
 
 
 <a id="nestedatt--spec--external_services--istio--istio_canary_revision"></a>

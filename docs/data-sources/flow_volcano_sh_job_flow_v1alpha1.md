@@ -31,7 +31,9 @@ data "k8s_flow_volcano_sh_job_flow_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) JobFlowSpec defines the desired state of JobFlow (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -96,7 +98,7 @@ Read-Only:
 
 Read-Only:
 
-- `name` (String) The header field name
+- `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
 

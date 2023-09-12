@@ -60,6 +60,7 @@ Required:
 
 Optional:
 
+- `base_domain` (String) BaseDomain is the DNS base domain.
 - `cluster_id` (String) ClusterID is a globally unique identifier for the cluster to deprovision. It will be used if specified.
 - `cluster_name` (String) ClusterName is the friendly name of the cluster. It is used for subdomains, some resource tagging, and other instances where a friendly name for the cluster is useful.
 - `platform` (Attributes) Platform contains platform-specific configuration for a ClusterDeprovision (see [below for nested schema](#nestedatt--spec--platform))
@@ -83,7 +84,7 @@ Optional:
 
 Required:
 
-- `base_domain` (String) BaseDomain is the DNS base domain
+- `base_domain` (String) BaseDomain is the DNS base domain. TODO: Use the non-platform-specific BaseDomain field.
 - `credentials_secret_ref` (Attributes) CredentialsSecretRef is the Alibaba account credentials to use for deprovisioning the cluster (see [below for nested schema](#nestedatt--spec--platform--alibabacloud--credentials_secret_ref))
 - `region` (String) Region is the Alibaba region for this deprovision
 
@@ -173,7 +174,7 @@ Optional:
 
 Required:
 
-- `base_domain` (String) BaseDomain is the DNS base domain
+- `base_domain` (String) BaseDomain is the DNS base domain. TODO: Use the non-platform-specific BaseDomain field.
 - `credentials_secret_ref` (Attributes) CredentialsSecretRef is the IBM Cloud credentials to use for deprovisioning the cluster (see [below for nested schema](#nestedatt--spec--platform--ibmcloud--credentials_secret_ref))
 - `region` (String) Region specifies the IBM Cloud region
 

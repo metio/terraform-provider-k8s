@@ -30,7 +30,9 @@ data "k8s_apps_kubeedge_io_node_group_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Spec represents the specification of the desired behavior of member nodegroup. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

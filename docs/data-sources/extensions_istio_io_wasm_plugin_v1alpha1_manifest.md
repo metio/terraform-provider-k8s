@@ -66,6 +66,7 @@ Optional:
 - `priority` (Number) Determines ordering of 'WasmPlugins' in the same 'phase'.
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--selector))
 - `sha256` (String) SHA256 checksum that will be used to verify Wasm module or OCI container.
+- `target_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--target_ref))
 - `type` (String) Specifies the type of Wasm Extension to be used.
 - `url` (String) URL of a Wasm module or OCI container.
 - `verification_key` (String)
@@ -94,6 +95,17 @@ Optional:
 Optional:
 
 - `match_labels` (Map of String)
+
+
+<a id="nestedatt--spec--target_ref"></a>
+### Nested Schema for `spec.target_ref`
+
+Optional:
+
+- `group` (String) group is the group of the target resource.
+- `kind` (String) kind is kind of the target resource.
+- `name` (String) name is the name of the target resource.
+- `namespace` (String) namespace is the namespace of the referent.
 
 
 <a id="nestedatt--spec--vm_config"></a>

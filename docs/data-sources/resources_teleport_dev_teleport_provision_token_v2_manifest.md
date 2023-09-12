@@ -187,6 +187,8 @@ Optional:
 Optional:
 
 - `allow` (Attributes List) Allow is a list of Rules, nodes using this token must match one allow rule to use this token. (see [below for nested schema](#nestedatt--spec--kubernetes--allow))
+- `static_jwks` (Attributes) StaticJWKS is the configuration specific to the 'static_jwks' type. (see [below for nested schema](#nestedatt--spec--kubernetes--static_jwks))
+- `type` (String) Type controls which behavior should be used for validating the Kubernetes Service Account token. Support values: - 'in_cluster' - 'static_jwks' If unset, this defaults to 'in_cluster'.
 
 <a id="nestedatt--spec--kubernetes--allow"></a>
 ### Nested Schema for `spec.kubernetes.allow`
@@ -194,3 +196,11 @@ Optional:
 Optional:
 
 - `service_account` (String)
+
+
+<a id="nestedatt--spec--kubernetes--static_jwks"></a>
+### Nested Schema for `spec.kubernetes.static_jwks`
+
+Optional:
+
+- `jwks` (String)

@@ -31,7 +31,9 @@ data "k8s_scylla_scylladb_com_scylla_cluster_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) spec defines the desired state of this scylla cluster. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -63,6 +65,7 @@ Read-Only:
 - `developer_mode` (Boolean) developerMode determines if the cluster runs in developer-mode.
 - `dns_domains` (List of String) dnsDomains is a list of DNS domains this cluster is reachable by. These domains are used when setting up the infrastructure, like certificates. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.
 - `expose_options` (Attributes) exposeOptions specifies options for exposing ScyllaCluster services. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field. (see [below for nested schema](#nestedatt--spec--expose_options))
+- `external_seeds` (List of String) externalSeeds specifies the external seeds to propagate to ScyllaDB binary on startup as 'seeds' parameter of seed-provider.
 - `force_redeployment_reason` (String) forceRedeploymentReason can be used to force a rolling update of all racks by providing a unique string.
 - `generic_upgrade` (Attributes) genericUpgrade allows to configure behavior of generic upgrade logic. (see [below for nested schema](#nestedatt--spec--generic_upgrade))
 - `image_pull_secrets` (Attributes List) imagePullSecrets is an optional list of references to secrets in the same namespace used for pulling Scylla and Agent images. (see [below for nested schema](#nestedatt--spec--image_pull_secrets))

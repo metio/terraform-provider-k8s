@@ -30,7 +30,9 @@ data "k8s_apiregistration_k8s_io_api_service_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) APIServiceSpec contains information for locating and communicating with a server. Only https is supported, though you are able to disable certificate verification. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

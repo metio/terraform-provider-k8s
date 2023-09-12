@@ -30,7 +30,9 @@ data "k8s_hive_openshift_io_cluster_image_set_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ClusterImageSetSpec defines the desired state of ClusterImageSet (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

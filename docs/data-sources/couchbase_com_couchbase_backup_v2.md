@@ -31,7 +31,9 @@ data "k8s_couchbase_com_couchbase_backup_v2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) CouchbaseBackupSpec is allows the specification of how a Couchbase backup is configured, including when backups are performed, how long they are retained for, and where they are backed up to. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

@@ -688,6 +688,7 @@ Optional:
 - `enabled` (Boolean)
 - `http_port` (Number)
 - `https_port` (Number)
+- `service_load_balancer_ip` (String)
 - `service_type` (String)
 
 

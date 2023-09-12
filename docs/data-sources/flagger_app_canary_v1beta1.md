@@ -31,7 +31,9 @@ data "k8s_flagger_app_canary_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) CanarySpec defines the desired state of a Canary. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -114,6 +116,7 @@ Read-Only:
 Read-Only:
 
 - `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--analysis--match--headers))
+- `query_params` (Attributes) Query parameters for matching. (see [below for nested schema](#nestedatt--spec--analysis--match--query_params))
 - `source_labels` (Map of String) Applicable only when the 'mesh' gateway is included in the service.gateways list
 
 <a id="nestedatt--spec--analysis--match--headers"></a>
@@ -125,6 +128,16 @@ Read-Only:
 - `prefix` (String)
 - `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax)
 - `suffix` (String)
+
+
+<a id="nestedatt--spec--analysis--match--query_params"></a>
+### Nested Schema for `spec.analysis.match.source_labels`
+
+Read-Only:
+
+- `exact` (String)
+- `prefix` (String)
+- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
 
 
 

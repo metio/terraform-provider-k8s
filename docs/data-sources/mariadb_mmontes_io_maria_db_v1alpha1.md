@@ -31,7 +31,9 @@ data "k8s_mariadb_mmontes_io_maria_db_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) MariaDBSpec defines the desired state of MariaDB (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -72,6 +74,7 @@ Read-Only:
 - `my_cnf_config_map_key_ref` (Attributes) Selects a key from a ConfigMap. (see [below for nested schema](#nestedatt--spec--my_cnf_config_map_key_ref))
 - `node_selector` (Map of String)
 - `password_secret_key_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
+- `pod_annotations` (Map of String)
 - `pod_disruption_budget` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_disruption_budget))
 - `pod_security_context` (Attributes) PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext. (see [below for nested schema](#nestedatt--spec--pod_security_context))
 - `port` (Number)
@@ -2852,6 +2855,11 @@ Read-Only:
 Read-Only:
 
 - `annotations` (Map of String)
+- `external_traffic_policy` (String) Service External Traffic Policy Type string
+- `labels` (Map of String)
+- `load_balancer_ip` (String)
+- `load_balancer_source_ranges` (List of String)
+- `session_affinity` (String) Session Affinity Type string
 - `type` (String) Service Type string describes ingress methods for a service
 
 
@@ -3024,6 +3032,11 @@ Read-Only:
 Read-Only:
 
 - `annotations` (Map of String)
+- `external_traffic_policy` (String) Service External Traffic Policy Type string
+- `labels` (Map of String)
+- `load_balancer_ip` (String)
+- `load_balancer_source_ranges` (List of String)
+- `session_affinity` (String) Session Affinity Type string
 - `type` (String) Service Type string describes ingress methods for a service
 
 
@@ -3091,6 +3104,11 @@ Read-Only:
 Read-Only:
 
 - `annotations` (Map of String)
+- `external_traffic_policy` (String) Service External Traffic Policy Type string
+- `labels` (Map of String)
+- `load_balancer_ip` (String)
+- `load_balancer_source_ranges` (List of String)
+- `session_affinity` (String) Session Affinity Type string
 - `type` (String) Service Type string describes ingress methods for a service
 
 

@@ -30,7 +30,9 @@ data "k8s_flowcontrol_apiserver_k8s_io_priority_level_configuration_v1beta2" "ex
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) PriorityLevelConfigurationSpec specifies the configuration of a priority level. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

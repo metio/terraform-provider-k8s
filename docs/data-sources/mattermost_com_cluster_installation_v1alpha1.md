@@ -31,7 +31,9 @@ data "k8s_mattermost_com_cluster_installation_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Specification of the desired behavior of the Mattermost cluster. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

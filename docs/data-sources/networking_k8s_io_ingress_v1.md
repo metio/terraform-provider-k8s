@@ -31,7 +31,9 @@ data "k8s_networking_k8s_io_ingress_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) IngressSpec describes the Ingress the user wishes to exist. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

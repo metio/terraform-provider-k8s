@@ -30,7 +30,9 @@ data "k8s_capsule_clastix_io_tenant_v1beta2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) TenantSpec defines the desired state of Tenant. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

@@ -31,7 +31,9 @@ data "k8s_security_profiles_operator_x_k8s_io_security_profiles_operator_daemon_
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) SPODStatus defines the desired state of SPOD. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

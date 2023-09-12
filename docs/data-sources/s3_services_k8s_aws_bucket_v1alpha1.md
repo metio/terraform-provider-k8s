@@ -31,7 +31,9 @@ data "k8s_s3_services_k8s_aws_bucket_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) BucketSpec defines the desired state of Bucket.  In terms of implementation, a Bucket is a resource. An Amazon S3 bucket name is globally unique, and the namespace is shared by all Amazon Web Services accounts. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

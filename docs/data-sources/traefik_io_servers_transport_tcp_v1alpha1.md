@@ -31,7 +31,9 @@ data "k8s_traefik_io_servers_transport_tcp_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ServersTransportTCPSpec defines the desired state of a ServersTransportTCP. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

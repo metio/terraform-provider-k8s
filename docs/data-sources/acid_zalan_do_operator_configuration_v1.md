@@ -30,8 +30,10 @@ data "k8s_acid_zalan_do_operator_configuration_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `configuration` (Attributes) (see [below for nested schema](#nestedatt--configuration))
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 
 <a id="nestedatt--metadata"></a>
 ### Nested Schema for `metadata`
@@ -160,6 +162,7 @@ Read-Only:
 - `node_readiness_label_merge` (String)
 - `oauth_token_secret_name` (String)
 - `pdb_name_format` (String)
+- `persistent_volume_claim_retention_policy` (Attributes) (see [below for nested schema](#nestedatt--configuration--kubernetes--persistent_volume_claim_retention_policy))
 - `pod_antiaffinity_preferred_during_scheduling` (Boolean)
 - `pod_antiaffinity_topology_key` (String)
 - `pod_environment_configmap` (String)
@@ -195,6 +198,15 @@ Read-Only:
 - `secretname` (String)
 - `template` (Boolean)
 - `userkey` (String)
+
+
+<a id="nestedatt--configuration--kubernetes--persistent_volume_claim_retention_policy"></a>
+### Nested Schema for `configuration.kubernetes.persistent_volume_claim_retention_policy`
+
+Read-Only:
+
+- `when_deleted` (String)
+- `when_scaled` (String)
 
 
 

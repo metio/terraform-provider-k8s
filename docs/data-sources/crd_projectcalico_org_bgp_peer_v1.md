@@ -30,7 +30,9 @@ data "k8s_crd_projectcalico_org_bgp_peer_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) BGPPeerSpec contains the specification for a BGPPeer resource. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

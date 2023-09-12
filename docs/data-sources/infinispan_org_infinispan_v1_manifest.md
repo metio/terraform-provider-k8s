@@ -871,7 +871,7 @@ Optional:
 - `heartbeats` (Attributes) Configures the Gossip Router heartbeats to keep the connection open (see [below for nested schema](#nestedatt--spec--service--sites--locations--discovery--heartbeats))
 - `launch_gossip_router` (Boolean) Enables (default) or disables the Gossip Router pod and cross-site services
 - `memory` (String) Memory resource request for Gossip Router if enabled
-- `suspect_events` (Boolean) Enables the JGroups suspect events if the Gossip Router detects a connectio closed
+- `suspect_events` (Boolean) Enables the JGroups suspect events if the Gossip Router detects a connection closed
 - `type` (String) Configures the discovery mode for cross-site replication
 
 <a id="nestedatt--spec--service--sites--locations--discovery--heartbeats"></a>

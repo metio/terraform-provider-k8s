@@ -31,7 +31,9 @@ data "k8s_minio_min_io_tenant_v2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `scheduler` (Attributes) (see [below for nested schema](#nestedatt--scheduler))
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 
@@ -62,6 +64,8 @@ Read-Only:
 
 Read-Only:
 
+- `additional_volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volume_mounts))
+- `additional_volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volumes))
 - `buckets` (Attributes List) (see [below for nested schema](#nestedatt--spec--buckets))
 - `cert_config` (Attributes) (see [below for nested schema](#nestedatt--spec--cert_config))
 - `configuration` (Attributes) (see [below for nested schema](#nestedatt--spec--configuration))
@@ -93,6 +97,687 @@ Read-Only:
 - `startup` (Attributes) (see [below for nested schema](#nestedatt--spec--startup))
 - `sub_path` (String)
 - `users` (Attributes List) (see [below for nested schema](#nestedatt--spec--users))
+
+<a id="nestedatt--spec--additional_volume_mounts"></a>
+### Nested Schema for `spec.additional_volume_mounts`
+
+Read-Only:
+
+- `mount_path` (String)
+- `mount_propagation` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `sub_path` (String)
+- `sub_path_expr` (String)
+
+
+<a id="nestedatt--spec--additional_volumes"></a>
+### Nested Schema for `spec.additional_volumes`
+
+Read-Only:
+
+- `aws_elastic_block_store` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--aws_elastic_block_store))
+- `azure_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--azure_disk))
+- `azure_file` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--azure_file))
+- `cephfs` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--cephfs))
+- `cinder` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--cinder))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--config_map))
+- `csi` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--csi))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--downward_api))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--empty_dir))
+- `ephemeral` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--ephemeral))
+- `fc` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--fc))
+- `flex_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--flex_volume))
+- `flocker` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--flocker))
+- `gce_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--gce_persistent_disk))
+- `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--git_repo))
+- `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--glusterfs))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--host_path))
+- `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--iscsi))
+- `name` (String)
+- `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--nfs))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--persistent_volume_claim))
+- `photon_persistent_disk` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--photon_persistent_disk))
+- `portworx_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--portworx_volume))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--projected))
+- `quobyte` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--quobyte))
+- `rbd` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--rbd))
+- `scale_io` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--scale_io))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--secret))
+- `storageos` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--storageos))
+- `vsphere_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--vsphere_volume))
+
+<a id="nestedatt--spec--additional_volumes--aws_elastic_block_store"></a>
+### Nested Schema for `spec.additional_volumes.aws_elastic_block_store`
+
+Read-Only:
+
+- `fs_type` (String)
+- `partition` (Number)
+- `read_only` (Boolean)
+- `volume_id` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--azure_disk"></a>
+### Nested Schema for `spec.additional_volumes.azure_disk`
+
+Read-Only:
+
+- `caching_mode` (String)
+- `disk_name` (String)
+- `disk_uri` (String)
+- `fs_type` (String)
+- `kind` (String)
+- `read_only` (Boolean)
+
+
+<a id="nestedatt--spec--additional_volumes--azure_file"></a>
+### Nested Schema for `spec.additional_volumes.azure_file`
+
+Read-Only:
+
+- `read_only` (Boolean)
+- `secret_name` (String)
+- `share_name` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--cephfs"></a>
+### Nested Schema for `spec.additional_volumes.cephfs`
+
+Read-Only:
+
+- `monitors` (List of String)
+- `path` (String)
+- `read_only` (Boolean)
+- `secret_file` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--cephfs--secret_ref))
+- `user` (String)
+
+<a id="nestedatt--spec--additional_volumes--cephfs--secret_ref"></a>
+### Nested Schema for `spec.additional_volumes.cephfs.user`
+
+Read-Only:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--cinder"></a>
+### Nested Schema for `spec.additional_volumes.cinder`
+
+Read-Only:
+
+- `fs_type` (String)
+- `read_only` (Boolean)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--cinder--secret_ref))
+- `volume_id` (String)
+
+<a id="nestedatt--spec--additional_volumes--cinder--secret_ref"></a>
+### Nested Schema for `spec.additional_volumes.cinder.volume_id`
+
+Read-Only:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--config_map"></a>
+### Nested Schema for `spec.additional_volumes.config_map`
+
+Read-Only:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volumes--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--additional_volumes--config_map--items"></a>
+### Nested Schema for `spec.additional_volumes.config_map.optional`
+
+Read-Only:
+
+- `key` (String)
+- `mode` (Number)
+- `path` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--csi"></a>
+### Nested Schema for `spec.additional_volumes.csi`
+
+Read-Only:
+
+- `driver` (String)
+- `fs_type` (String)
+- `node_publish_secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--csi--node_publish_secret_ref))
+- `read_only` (Boolean)
+- `volume_attributes` (Map of String)
+
+<a id="nestedatt--spec--additional_volumes--csi--node_publish_secret_ref"></a>
+### Nested Schema for `spec.additional_volumes.csi.volume_attributes`
+
+Read-Only:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--downward_api"></a>
+### Nested Schema for `spec.additional_volumes.downward_api`
+
+Read-Only:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volumes--downward_api--items))
+
+<a id="nestedatt--spec--additional_volumes--downward_api--items"></a>
+### Nested Schema for `spec.additional_volumes.downward_api.items`
+
+Read-Only:
+
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--downward_api--items--field_ref))
+- `mode` (Number)
+- `path` (String)
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--downward_api--items--resource_field_ref))
+
+<a id="nestedatt--spec--additional_volumes--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.additional_volumes.downward_api.items.field_ref`
+
+Read-Only:
+
+- `api_version` (String)
+- `field_path` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.additional_volumes.downward_api.items.resource_field_ref`
+
+Read-Only:
+
+- `container_name` (String)
+- `divisor` (String)
+- `resource` (String)
+
+
+
+
+<a id="nestedatt--spec--additional_volumes--empty_dir"></a>
+### Nested Schema for `spec.additional_volumes.empty_dir`
+
+Read-Only:
+
+- `medium` (String)
+- `size_limit` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--ephemeral"></a>
+### Nested Schema for `spec.additional_volumes.ephemeral`
+
+Read-Only:
+
+- `volume_claim_template` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--ephemeral--volume_claim_template))
+
+<a id="nestedatt--spec--additional_volumes--ephemeral--volume_claim_template"></a>
+### Nested Schema for `spec.additional_volumes.ephemeral.volume_claim_template`
+
+Read-Only:
+
+- `metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--metadata))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec))
+
+<a id="nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--metadata"></a>
+### Nested Schema for `spec.additional_volumes.ephemeral.volume_claim_template.metadata`
+
+Read-Only:
+
+- `annotations` (Map of String)
+- `finalizers` (List of String)
+- `labels` (Map of String)
+- `name` (String)
+- `namespace` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec"></a>
+### Nested Schema for `spec.additional_volumes.ephemeral.volume_claim_template.spec`
+
+Read-Only:
+
+- `access_modes` (List of String)
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--selector))
+- `storage_class_name` (String)
+- `volume_mode` (String)
+- `volume_name` (String)
+
+<a id="nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.additional_volumes.ephemeral.volume_claim_template.spec.volume_name`
+
+Read-Only:
+
+- `api_group` (String)
+- `kind` (String)
+- `name` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.additional_volumes.ephemeral.volume_claim_template.spec.volume_name`
+
+Read-Only:
+
+- `api_group` (String)
+- `kind` (String)
+- `name` (String)
+- `namespace` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.additional_volumes.ephemeral.volume_claim_template.spec.volume_name`
+
+Read-Only:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--volume_name--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--volume_name--claims"></a>
+### Nested Schema for `spec.additional_volumes.ephemeral.volume_claim_template.spec.volume_name.requests`
+
+Read-Only:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.additional_volumes.ephemeral.volume_claim_template.spec.volume_name`
+
+Read-Only:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--volume_name--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--additional_volumes--ephemeral--volume_claim_template--spec--volume_name--match_expressions"></a>
+### Nested Schema for `spec.additional_volumes.ephemeral.volume_claim_template.spec.volume_name.match_labels`
+
+Read-Only:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+
+<a id="nestedatt--spec--additional_volumes--fc"></a>
+### Nested Schema for `spec.additional_volumes.fc`
+
+Read-Only:
+
+- `fs_type` (String)
+- `lun` (Number)
+- `read_only` (Boolean)
+- `target_ww_ns` (List of String)
+- `wwids` (List of String)
+
+
+<a id="nestedatt--spec--additional_volumes--flex_volume"></a>
+### Nested Schema for `spec.additional_volumes.flex_volume`
+
+Read-Only:
+
+- `driver` (String)
+- `fs_type` (String)
+- `options` (Map of String)
+- `read_only` (Boolean)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--flex_volume--secret_ref))
+
+<a id="nestedatt--spec--additional_volumes--flex_volume--secret_ref"></a>
+### Nested Schema for `spec.additional_volumes.flex_volume.secret_ref`
+
+Read-Only:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--flocker"></a>
+### Nested Schema for `spec.additional_volumes.flocker`
+
+Read-Only:
+
+- `dataset_name` (String)
+- `dataset_uuid` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--gce_persistent_disk"></a>
+### Nested Schema for `spec.additional_volumes.gce_persistent_disk`
+
+Read-Only:
+
+- `fs_type` (String)
+- `partition` (Number)
+- `pd_name` (String)
+- `read_only` (Boolean)
+
+
+<a id="nestedatt--spec--additional_volumes--git_repo"></a>
+### Nested Schema for `spec.additional_volumes.git_repo`
+
+Read-Only:
+
+- `directory` (String)
+- `repository` (String)
+- `revision` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--glusterfs"></a>
+### Nested Schema for `spec.additional_volumes.glusterfs`
+
+Read-Only:
+
+- `endpoints` (String)
+- `path` (String)
+- `read_only` (Boolean)
+
+
+<a id="nestedatt--spec--additional_volumes--host_path"></a>
+### Nested Schema for `spec.additional_volumes.host_path`
+
+Read-Only:
+
+- `path` (String)
+- `type` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--iscsi"></a>
+### Nested Schema for `spec.additional_volumes.iscsi`
+
+Read-Only:
+
+- `chap_auth_discovery` (Boolean)
+- `chap_auth_session` (Boolean)
+- `fs_type` (String)
+- `initiator_name` (String)
+- `iqn` (String)
+- `iscsi_interface` (String)
+- `lun` (Number)
+- `portals` (List of String)
+- `read_only` (Boolean)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--iscsi--secret_ref))
+- `target_portal` (String)
+
+<a id="nestedatt--spec--additional_volumes--iscsi--secret_ref"></a>
+### Nested Schema for `spec.additional_volumes.iscsi.target_portal`
+
+Read-Only:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--nfs"></a>
+### Nested Schema for `spec.additional_volumes.nfs`
+
+Read-Only:
+
+- `path` (String)
+- `read_only` (Boolean)
+- `server` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.additional_volumes.persistent_volume_claim`
+
+Read-Only:
+
+- `claim_name` (String)
+- `read_only` (Boolean)
+
+
+<a id="nestedatt--spec--additional_volumes--photon_persistent_disk"></a>
+### Nested Schema for `spec.additional_volumes.photon_persistent_disk`
+
+Read-Only:
+
+- `fs_type` (String)
+- `pd_id` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--portworx_volume"></a>
+### Nested Schema for `spec.additional_volumes.portworx_volume`
+
+Read-Only:
+
+- `fs_type` (String)
+- `read_only` (Boolean)
+- `volume_id` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--projected"></a>
+### Nested Schema for `spec.additional_volumes.projected`
+
+Read-Only:
+
+- `default_mode` (Number)
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volumes--projected--sources))
+
+<a id="nestedatt--spec--additional_volumes--projected--sources"></a>
+### Nested Schema for `spec.additional_volumes.projected.sources`
+
+Read-Only:
+
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--additional_volumes--projected--sources--config_map"></a>
+### Nested Schema for `spec.additional_volumes.projected.sources.config_map`
+
+Read-Only:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volumes--projected--sources--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--additional_volumes--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.additional_volumes.projected.sources.config_map.optional`
+
+Read-Only:
+
+- `key` (String)
+- `mode` (Number)
+- `path` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--projected--sources--downward_api"></a>
+### Nested Schema for `spec.additional_volumes.projected.sources.downward_api`
+
+Read-Only:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volumes--projected--sources--downward_api--items))
+
+<a id="nestedatt--spec--additional_volumes--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.additional_volumes.projected.sources.downward_api.items`
+
+Read-Only:
+
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--projected--sources--downward_api--items--field_ref))
+- `mode` (Number)
+- `path` (String)
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--projected--sources--downward_api--items--resource_field_ref))
+
+<a id="nestedatt--spec--additional_volumes--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.additional_volumes.projected.sources.downward_api.items.resource_field_ref`
+
+Read-Only:
+
+- `api_version` (String)
+- `field_path` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.additional_volumes.projected.sources.downward_api.items.resource_field_ref`
+
+Read-Only:
+
+- `container_name` (String)
+- `divisor` (String)
+- `resource` (String)
+
+
+
+
+<a id="nestedatt--spec--additional_volumes--projected--sources--secret"></a>
+### Nested Schema for `spec.additional_volumes.projected.sources.secret`
+
+Read-Only:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volumes--projected--sources--secret--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--additional_volumes--projected--sources--secret--items"></a>
+### Nested Schema for `spec.additional_volumes.projected.sources.secret.optional`
+
+Read-Only:
+
+- `key` (String)
+- `mode` (Number)
+- `path` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.additional_volumes.projected.sources.service_account_token`
+
+Read-Only:
+
+- `audience` (String)
+- `expiration_seconds` (Number)
+- `path` (String)
+
+
+
+
+<a id="nestedatt--spec--additional_volumes--quobyte"></a>
+### Nested Schema for `spec.additional_volumes.quobyte`
+
+Read-Only:
+
+- `group` (String)
+- `read_only` (Boolean)
+- `registry` (String)
+- `tenant` (String)
+- `user` (String)
+- `volume` (String)
+
+
+<a id="nestedatt--spec--additional_volumes--rbd"></a>
+### Nested Schema for `spec.additional_volumes.rbd`
+
+Read-Only:
+
+- `fs_type` (String)
+- `image` (String)
+- `keyring` (String)
+- `monitors` (List of String)
+- `pool` (String)
+- `read_only` (Boolean)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--rbd--secret_ref))
+- `user` (String)
+
+<a id="nestedatt--spec--additional_volumes--rbd--secret_ref"></a>
+### Nested Schema for `spec.additional_volumes.rbd.user`
+
+Read-Only:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--scale_io"></a>
+### Nested Schema for `spec.additional_volumes.scale_io`
+
+Read-Only:
+
+- `fs_type` (String)
+- `gateway` (String)
+- `protection_domain` (String)
+- `read_only` (Boolean)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--scale_io--secret_ref))
+- `ssl_enabled` (Boolean)
+- `storage_mode` (String)
+- `storage_pool` (String)
+- `system` (String)
+- `volume_name` (String)
+
+<a id="nestedatt--spec--additional_volumes--scale_io--secret_ref"></a>
+### Nested Schema for `spec.additional_volumes.scale_io.volume_name`
+
+Read-Only:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--secret"></a>
+### Nested Schema for `spec.additional_volumes.secret`
+
+Read-Only:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--additional_volumes--secret--items))
+- `optional` (Boolean)
+- `secret_name` (String)
+
+<a id="nestedatt--spec--additional_volumes--secret--items"></a>
+### Nested Schema for `spec.additional_volumes.secret.secret_name`
+
+Read-Only:
+
+- `key` (String)
+- `mode` (Number)
+- `path` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--storageos"></a>
+### Nested Schema for `spec.additional_volumes.storageos`
+
+Read-Only:
+
+- `fs_type` (String)
+- `read_only` (Boolean)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--additional_volumes--storageos--secret_ref))
+- `volume_name` (String)
+- `volume_namespace` (String)
+
+<a id="nestedatt--spec--additional_volumes--storageos--secret_ref"></a>
+### Nested Schema for `spec.additional_volumes.storageos.volume_namespace`
+
+Read-Only:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--additional_volumes--vsphere_volume"></a>
+### Nested Schema for `spec.additional_volumes.vsphere_volume`
+
+Read-Only:
+
+- `fs_type` (String)
+- `storage_policy_id` (String)
+- `storage_policy_name` (String)
+- `volume_path` (String)
+
+
 
 <a id="nestedatt--spec--buckets"></a>
 ### Nested Schema for `spec.buckets`
@@ -2149,6 +2834,7 @@ Read-Only:
 Read-Only:
 
 - `containers` (Attributes List) (see [below for nested schema](#nestedatt--spec--side_cars--containers))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--side_cars--resources))
 - `volume_claim_templates` (Attributes List) (see [below for nested schema](#nestedatt--spec--side_cars--volume_claim_templates))
 - `volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--side_cars--volumes))
 
@@ -2673,6 +3359,24 @@ Read-Only:
 - `read_only` (Boolean)
 - `sub_path` (String)
 - `sub_path_expr` (String)
+
+
+
+<a id="nestedatt--spec--side_cars--resources"></a>
+### Nested Schema for `spec.side_cars.resources`
+
+Read-Only:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--side_cars--resources--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--side_cars--resources--claims"></a>
+### Nested Schema for `spec.side_cars.resources.requests`
+
+Read-Only:
+
+- `name` (String)
 
 
 

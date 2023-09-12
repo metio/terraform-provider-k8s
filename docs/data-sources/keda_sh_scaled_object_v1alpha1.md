@@ -31,7 +31,9 @@ data "k8s_keda_sh_scaled_object_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ScaledObjectSpec is the spec for a ScaledObject resource (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

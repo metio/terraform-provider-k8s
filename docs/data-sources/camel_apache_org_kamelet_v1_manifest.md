@@ -3,12 +3,12 @@
 page_title: "k8s_camel_apache_org_kamelet_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "camel.apache.org"
 description: |-
-  Kamelet is the Schema for the kamelets API
+  Kamelet is the Schema for the kamelets API.
 ---
 
 # k8s_camel_apache_org_kamelet_v1_manifest (Data Source)
 
-Kamelet is the Schema for the kamelets API
+Kamelet is the Schema for the kamelets API.
 
 ## Example Usage
 

@@ -31,7 +31,9 @@ data "k8s_schemas_schemahero_io_table_v1alpha4" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) TableSpec defines the desired state of Table (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

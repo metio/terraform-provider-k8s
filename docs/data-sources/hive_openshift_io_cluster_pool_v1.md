@@ -31,7 +31,9 @@ data "k8s_hive_openshift_io_cluster_pool_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ClusterPoolSpec defines the desired state of the ClusterPool. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

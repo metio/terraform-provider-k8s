@@ -288,9 +288,11 @@ Optional:
 
 - `async_mode` (Boolean)
 - `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ext_proc--overrides--grpc_service))
+- `metadata_context_namespaces` (List of String)
 - `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ext_proc--overrides--processing_mode))
 - `request_attributes` (List of String)
 - `response_attributes` (List of String)
+- `typed_metadata_context_namespaces` (List of String)
 
 <a id="nestedatt--spec--options--ext_proc--overrides--grpc_service"></a>
 ### Nested Schema for `spec.options.ext_proc.overrides.grpc_service`
@@ -801,7 +803,18 @@ Optional:
 
 Optional:
 
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits))
+
+<a id="nestedatt--spec--options--ratelimit--local_ratelimit"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits`
+
+Optional:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--options--ratelimit--rate_limits"></a>
 ### Nested Schema for `spec.options.ratelimit.rate_limits`
@@ -1031,7 +1044,18 @@ Optional:
 
 Optional:
 
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits))
+
+<a id="nestedatt--spec--options--ratelimit_early--local_ratelimit"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits`
+
+Optional:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--options--ratelimit_early--rate_limits"></a>
 ### Nested Schema for `spec.options.ratelimit_early.rate_limits`
@@ -1234,7 +1258,18 @@ Optional:
 
 Optional:
 
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits))
+
+<a id="nestedatt--spec--options--ratelimit_regular--local_ratelimit"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits`
+
+Optional:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--options--ratelimit_regular--rate_limits"></a>
 ### Nested Schema for `spec.options.ratelimit_regular.rate_limits`

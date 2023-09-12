@@ -109,6 +109,7 @@ Optional:
 - `image` (String) Image is the Argo CD ApplicationSet image (optional)
 - `log_level` (String) LogLevel describes the log level that should be used by the ApplicationSet controller. Defaults to ArgoCDDefaultLogLevel if not set.  Valid options are debug,info, error, and warn.
 - `resources` (Attributes) Resources defines the Compute Resources required by the container for ApplicationSet. (see [below for nested schema](#nestedatt--spec--application_set--resources))
+- `scm_root_ca_config_map` (String) SCMRootCAConfigMap is the name of the config map that stores the Gitlab SCM Provider's TLS certificate which will be mounted on the ApplicationSet Controller (optional).
 - `version` (String) Version is the Argo CD ApplicationSet image tag. (optional)
 - `webhook_server` (Attributes) WebhookServerSpec defines the options for the ApplicationSet Webhook Server component. (see [below for nested schema](#nestedatt--spec--application_set--webhook_server))
 

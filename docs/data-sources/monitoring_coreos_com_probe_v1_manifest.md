@@ -59,6 +59,7 @@ Optional:
 - `bearer_token_secret` (Attributes) Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the probe and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--bearer_token_secret))
 - `interval` (String) Interval at which targets are probed using the configured prober. If not specified Prometheus' global scrape interval is used.
 - `job_name` (String) The job name assigned to scraped metrics by default.
+- `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.
 - `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
 - `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
 - `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.

@@ -31,7 +31,9 @@ data "k8s_longhorn_io_backup_v1beta2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) BackupSpec defines the desired state of the Longhorn backup (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

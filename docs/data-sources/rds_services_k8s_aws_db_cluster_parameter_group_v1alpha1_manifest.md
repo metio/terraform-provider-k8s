@@ -62,8 +62,8 @@ Required:
 
 Optional:
 
-- `parameter_overrides` (Map of String) These are ONLY user-defined parameter overrides for the DB cluster parameter group. This does not contain default or system parameters.
-- `parameters` (Attributes List) A list of parameters in the DB cluster parameter group to modify.  Valid Values (for the application method): immediate | pending-reboot  You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters.  When the application method is immediate, changes to dynamic parameters are applied immediately to the DB clusters associated with the parameter group. When the application method is pending-reboot, changes to dynamic and static parameters are applied after a reboot without failover to the DB clusters associated with the parameter group.  DEPRECATED - do not use.  Prefer ParameterOverrides instead. (see [below for nested schema](#nestedatt--spec--parameters))
+- `parameter_overrides` (Map of String)
+- `parameters` (Attributes List) A list of parameters in the DB cluster parameter group to modify.  Valid Values (for the application method): immediate | pending-reboot  You can use the immediate value with dynamic parameters only. You can use the pending-reboot value for both dynamic and static parameters.  When the application method is immediate, changes to dynamic parameters are applied immediately to the DB clusters associated with the parameter group. When the application method is pending-reboot, changes to dynamic and static parameters are applied after a reboot without failover to the DB clusters associated with the parameter group. (see [below for nested schema](#nestedatt--spec--parameters))
 - `tags` (Attributes List) Tags to assign to the DB cluster parameter group. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--parameters"></a>

@@ -31,7 +31,9 @@ data "k8s_applicationautoscaling_services_k8s_aws_scaling_policy_v1alpha1" "exam
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ScalingPolicySpec defines the desired state of ScalingPolicy.  Represents a scaling policy to use with Application Auto Scaling.  For more information about configuring scaling policies for a specific service, see Getting started with Application Auto Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/getting-started.html) in the Application Auto Scaling User Guide. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

@@ -31,7 +31,9 @@ data "k8s_couchbase_com_couchbase_autoscaler_v2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) CouchbaseAutoscalerSpec allows control over an autoscaling group. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

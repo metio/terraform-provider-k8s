@@ -30,7 +30,9 @@ data "k8s_mutations_gatekeeper_sh_assign_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) AssignSpec defines the desired state of Assign. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

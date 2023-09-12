@@ -31,7 +31,9 @@ data "k8s_hive_openshift_io_cluster_state_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Map of String) ClusterStateSpec defines the desired state of ClusterState
 
 <a id="nestedatt--metadata"></a>

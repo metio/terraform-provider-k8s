@@ -31,7 +31,9 @@ data "k8s_ec2_services_k8s_aws_subnet_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) SubnetSpec defines the desired state of Subnet.  Describes a subnet. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

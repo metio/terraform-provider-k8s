@@ -336,5 +336,6 @@ func (p *K8sProvider) DataSources(_ context.Context) []func() datasource.DataSou
 }
 
 func (p *K8sProvider) Resources(_ context.Context) []func() resource.Resource {
-	return allResources()
+	return []func() resource.Resource{}
+	//return allResources()
 }

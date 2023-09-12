@@ -9,12 +9,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64default"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -28,6 +30,7 @@ import (
 	"k8s.io/utils/pointer"
 	"regexp"
 	"strings"
+	"time"
 )
 
 var (
@@ -47,13 +50,15 @@ type MonitoringCoreosComProbeV1Resource struct {
 }
 
 type MonitoringCoreosComProbeV1ResourceData struct {
-	ID             types.String `tfsdk:"id" json:"-"`
-	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
-	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
-	WaitFor        types.List   `tfsdk:"wait_for" json:"-"`
+	ID                  types.String `tfsdk:"id" json:"-"`
+	ForceConflicts      types.Bool   `tfsdk:"force_conflicts" json:"-"`
+	FieldManager        types.String `tfsdk:"field_manager" json:"-"`
+	DeletionPropagation types.String `tfsdk:"deletion_propagation" json:"-"`
+	WaitForUpsert       types.List   `tfsdk:"wait_for_upsert" json:"-"`
+	WaitForDelete       types.Object `tfsdk:"wait_for_delete" json:"-"`
 
-	ApiVersion *string `tfsdk:"api_version" json:"apiVersion"`
-	Kind       *string `tfsdk:"kind" json:"kind"`
+	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
+	Kind       *string `tfsdk:"-" json:"kind"`
 
 	Metadata struct {
 		Name        string            `tfsdk:"name" json:"name"`
@@ -90,6 +95,7 @@ type MonitoringCoreosComProbeV1ResourceData struct {
 		} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
 		Interval              *string `tfsdk:"interval" json:"interval,omitempty"`
 		JobName               *string `tfsdk:"job_name" json:"jobName,omitempty"`
+		KeepDroppedTargets    *int64  `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
 		LabelLimit            *int64  `tfsdk:"label_limit" json:"labelLimit,omitempty"`
 		LabelNameLengthLimit  *int64  `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
 		LabelValueLengthLimit *int64  `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
@@ -233,15 +239,29 @@ func (r *MonitoringCoreosComProbeV1Resource) Schema(_ context.Context, _ resourc
 				Computed:            true,
 			},
 
-			"field_manager": schema.BoolAttribute{
+			"field_manager": schema.StringAttribute{
 				Description:         "The name of the manager used to track field ownership. If not specified uses the value from the provider configuration.",
 				MarkdownDescription: "The name of the manager used to track field ownership. If not specified uses the value from the provider configuration.",
 				Required:            false,
 				Optional:            true,
 				Computed:            true,
+				Validators: []validator.String{
+					stringvalidator.LengthAtLeast(1),
+				},
 			},
 
-			"wait_for": schema.ListNestedAttribute{
+			"deletion_propagation": schema.StringAttribute{
+				Description:         "Decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.",
+				MarkdownDescription: "Decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.",
+				Required:            false,
+				Optional:            true,
+				Computed:            true,
+				Validators: []validator.String{
+					stringvalidator.OneOfCaseInsensitive("Orphan", "Background", "Foreground"),
+				},
+			},
+
+			"wait_for_upsert": schema.ListNestedAttribute{
 				Description:         "Wait for specific conditions after create/update of resources.",
 				MarkdownDescription: "Wait for specific conditions after create/update of resources.",
 				Required:            false,
@@ -263,13 +283,59 @@ func (r *MonitoringCoreosComProbeV1Resource) Schema(_ context.Context, _ resourc
 							Optional:            true,
 							Computed:            true,
 						},
-						"timeout": schema.StringAttribute{
-							Description:         "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
-							MarkdownDescription: "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
+						"timeout": schema.Int64Attribute{
+							Description:         "The number of seconds to wait before giving up. Zero means check once and don't wait.",
+							MarkdownDescription: "The number of seconds to wait before giving up. Zero means check once and don't wait.",
 							Required:            false,
 							Optional:            true,
 							Computed:            true,
-							Default:             stringdefault.StaticString("30s"),
+							Default:             int64default.StaticInt64(30),
+							Validators: []validator.Int64{
+								int64validator.AtLeast(0),
+							},
+						},
+						"poll_interval": schema.Int64Attribute{
+							Description:         "The number of seconds to wait before checking again.",
+							MarkdownDescription: "The number of seconds to wait before checking again.",
+							Required:            false,
+							Optional:            true,
+							Computed:            true,
+							Default:             int64default.StaticInt64(5),
+							Validators: []validator.Int64{
+								int64validator.AtLeast(0),
+							},
+						},
+					},
+				},
+			},
+
+			"wait_for_delete": schema.SingleNestedAttribute{
+				Description:         "Wait for deletion of resources.",
+				MarkdownDescription: "Wait for deletion of resources.",
+				Required:            false,
+				Optional:            true,
+				Computed:            true,
+				Attributes: map[string]schema.Attribute{
+					"timeout": schema.Int64Attribute{
+						Description:         "The number of seconds to wait before giving up. Zero means check once and don't wait.",
+						MarkdownDescription: "The number of seconds to wait before giving up. Zero means check once and don't wait.",
+						Required:            false,
+						Optional:            true,
+						Computed:            true,
+						Default:             int64default.StaticInt64(30),
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
+					},
+					"poll_interval": schema.Int64Attribute{
+						Description:         "The number of seconds to wait before checking again.",
+						MarkdownDescription: "The number of seconds to wait before checking again.",
+						Required:            false,
+						Optional:            true,
+						Computed:            true,
+						Default:             int64default.StaticInt64(5),
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
 						},
 					},
 				},
@@ -513,6 +579,14 @@ func (r *MonitoringCoreosComProbeV1Resource) Schema(_ context.Context, _ resourc
 					"job_name": schema.StringAttribute{
 						Description:         "The job name assigned to scraped metrics by default.",
 						MarkdownDescription: "The job name assigned to scraped metrics by default.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"keep_dropped_targets": schema.Int64Attribute{
+						Description:         "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
+						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1328,21 +1402,14 @@ func (r *MonitoringCoreosComProbeV1Resource) Configure(_ context.Context, reques
 
 	if resourceData, ok := request.ProviderData.(*utilities.ResourceData); ok {
 		if resourceData.Offline {
-			response.Diagnostics.AddError(
-				"Provider in Offline Mode",
-				"This provider has offline mode enabled and thus cannot connect to a Kubernetes cluster to create resources or read any data. "+
-					"Disable offline mode to allow resource creation or remove the resource declaration from your configuration to get rid of this error.",
-			)
+			response.Diagnostics.Append(utilities.OfflineProviderError())
 		} else {
 			r.kubernetesClient = resourceData.Client
 			r.fieldManager = resourceData.FieldManager
 			r.forceConflicts = resourceData.ForceConflicts
 		}
 	} else {
-		response.Diagnostics.AddError(
-			"Unexpected Resource Configure Type",
-			fmt.Sprintf("Expected *dynamic.DynamicClient, got: %T. Please report this issue to the provider developers.", request.ProviderData),
-		)
+		response.Diagnostics.Append(utilities.UnexpectedResourceDataError(request.ProviderData))
 	}
 }
 
@@ -1355,18 +1422,13 @@ func (r *MonitoringCoreosComProbeV1Resource) Create(ctx context.Context, request
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Name, model.Metadata.Namespace))
+	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("monitoring.coreos.com/v1")
 	model.Kind = pointer.String("Probe")
 
 	bytes, err := json.Marshal(model)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal resource",
-			"An unexpected error occurred while marshalling the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"JSON Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.JsonMarshalError(err))
 		return
 	}
 
@@ -1384,43 +1446,55 @@ func (r *MonitoringCoreosComProbeV1Resource) Create(ctx context.Context, request
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1", Resource: "Probe"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1", Resource: "probes"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to PATCH resource",
-			"An unexpected error occurred while creating the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"PATCH Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.PatchError(err))
 		return
 	}
 
 	patchBytes, err := patchResponse.MarshalJSON()
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal PATCH response",
-			"Please report this issue to the provider developers.\n\n"+
-				"Marshal Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.MarshalJsonError(err))
 		return
 	}
 
 	var readResponse MonitoringCoreosComProbeV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to unmarshal response",
-			"An unexpected error occurred while unmarshalling read response. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"Unmarshal Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.JsonUnmarshalError(err))
 		return
 	}
 
 	model.Metadata = readResponse.Metadata
 	model.Spec = readResponse.Spec
+	if model.ForceConflicts.IsUnknown() {
+		model.ForceConflicts = types.BoolNull()
+	}
+	if model.FieldManager.IsUnknown() {
+		model.FieldManager = types.StringNull()
+	}
+	if model.DeletionPropagation.IsUnknown() {
+		model.DeletionPropagation = types.StringNull()
+	}
+	if model.WaitForUpsert.IsUnknown() {
+		model.WaitForUpsert = types.ListNull(types.ObjectType{
+			AttrTypes: map[string]attr.Type{
+				"jsonpath":      types.StringType,
+				"value":         types.StringType,
+				"timeout":       types.Int64Type,
+				"poll_interval": types.Int64Type,
+			},
+		})
+	}
+	if model.WaitForDelete.IsUnknown() {
+		model.WaitForDelete = types.ObjectNull(map[string]attr.Type{
+			"timeout":       types.Int64Type,
+			"poll_interval": types.Int64Type,
+		})
+	}
 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
@@ -1435,42 +1509,53 @@ func (r *MonitoringCoreosComProbeV1Resource) Read(ctx context.Context, request r
 	}
 
 	getResponse, err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1", Resource: "Probe"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1", Resource: "probes"}).
 		Namespace(data.Metadata.Namespace).
 		Get(ctx, data.Metadata.Name, meta.GetOptions{})
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to GET resource",
-			"An unexpected error occurred while reading the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"GET Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.GetNamespacedResourceError(err, data.Metadata.Name, data.Metadata.Namespace))
 		return
 	}
 	getBytes, err := getResponse.MarshalJSON()
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal GET response",
-			"Please report this issue to the provider developers.\n\n"+
-				"Marshal Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.MarshalJsonError(err))
 		return
 	}
 
 	var readResponse MonitoringCoreosComProbeV1ResourceData
 	err = json.Unmarshal(getBytes, &readResponse)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to unmarshal resource",
-			"An unexpected error occurred while parsing the resource read response. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"JSON Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.JsonUnmarshalError(err))
 		return
 	}
 
 	data.Metadata = readResponse.Metadata
 	data.Spec = readResponse.Spec
+	if data.ForceConflicts.IsUnknown() {
+		data.ForceConflicts = types.BoolNull()
+	}
+	if data.FieldManager.IsUnknown() {
+		data.FieldManager = types.StringNull()
+	}
+	if data.DeletionPropagation.IsUnknown() {
+		data.DeletionPropagation = types.StringNull()
+	}
+	if data.WaitForUpsert.IsUnknown() {
+		data.WaitForUpsert = types.ListNull(types.ObjectType{
+			AttrTypes: map[string]attr.Type{
+				"jsonpath":      types.StringType,
+				"value":         types.StringType,
+				"timeout":       types.Int64Type,
+				"poll_interval": types.Int64Type,
+			},
+		})
+	}
+	if data.WaitForDelete.IsUnknown() {
+		data.WaitForDelete = types.ObjectNull(map[string]attr.Type{
+			"timeout":       types.Int64Type,
+			"poll_interval": types.Int64Type,
+		})
+	}
 
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
@@ -1489,12 +1574,7 @@ func (r *MonitoringCoreosComProbeV1Resource) Update(ctx context.Context, request
 
 	bytes, err := json.Marshal(model)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal resource",
-			"An unexpected error occurred while marshalling the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"JSON Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.JsonMarshalError(err))
 		return
 	}
 
@@ -1512,38 +1592,25 @@ func (r *MonitoringCoreosComProbeV1Resource) Update(ctx context.Context, request
 		FieldValidation: "Strict",
 	}
 
-	patchResponse, err := r.kubernetesClient.Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1", Resource: "Probe"}).
+	patchResponse, err := r.kubernetesClient.
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1", Resource: "probes"}).
 		Namespace(model.Metadata.Namespace).
 		Patch(ctx, model.Metadata.Name, k8sTypes.ApplyPatchType, bytes, patchOptions)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to PATCH resource",
-			"An unexpected error occurred while updating the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"PATCH Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.PatchError(err))
 		return
 	}
 
 	patchBytes, err := patchResponse.MarshalJSON()
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal PATCH response",
-			"Please report this issue to the provider developers.\n\n"+
-				"Marshal Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.MarshalJsonError(err))
 		return
 	}
 
 	var readResponse MonitoringCoreosComProbeV1ResourceData
 	err = json.Unmarshal(patchBytes, &readResponse)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to unmarshal response",
-			"An unexpected error occurred while unmarshalling read response. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"Unmarshal Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.JsonUnmarshalError(err))
 		return
 	}
 
@@ -1562,18 +1629,39 @@ func (r *MonitoringCoreosComProbeV1Resource) Delete(ctx context.Context, request
 		return
 	}
 
+	deleteOptions := meta.DeleteOptions{}
+	if !data.DeletionPropagation.IsNull() && !data.DeletionPropagation.IsUnknown() {
+		deleteOptions.PropagationPolicy = utilities.MapDeletionPropagation(data.DeletionPropagation.ValueString())
+	}
+
 	err := r.kubernetesClient.
-		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1", Resource: "Probe"}).
+		Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1", Resource: "probes"}).
 		Namespace(data.Metadata.Namespace).
-		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
-	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to DELETE resource",
-			"An unexpected error occurred while deleting the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"DELETE Error: "+err.Error(),
-		)
+		Delete(ctx, data.Metadata.Name, deleteOptions)
+	if utilities.IsDeletionError(err) {
+		response.Diagnostics.Append(utilities.DeleteError(err))
 		return
+	}
+
+	if !data.WaitForDelete.IsNull() && !data.WaitForDelete.IsUnknown() {
+		timeout := utilities.DetermineTimeout(data.WaitForDelete.Attributes())
+		pollInterval := utilities.DeterminePollInterval(data.WaitForDelete.Attributes())
+
+		startTime := time.Now()
+		for {
+			_, err := r.kubernetesClient.
+				Resource(k8sSchema.GroupVersionResource{Group: "monitoring.coreos.com", Version: "v1", Resource: "probes"}).
+				Namespace(data.Metadata.Namespace).
+				Get(ctx, data.Metadata.Name, meta.GetOptions{})
+			if utilities.IsNotFound(err) || timeout.Milliseconds() == 0 {
+				break
+			}
+			if time.Now().After(startTime.Add(timeout)) {
+				response.Diagnostics.Append(utilities.WaitTimeoutExceeded())
+				return
+			}
+			time.Sleep(pollInterval)
+		}
 	}
 }
 

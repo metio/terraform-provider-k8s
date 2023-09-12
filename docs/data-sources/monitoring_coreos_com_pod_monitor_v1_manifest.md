@@ -73,6 +73,7 @@ Optional:
 
 - `attach_metadata` (Attributes) Attaches node metadata to discovered targets. Requires Prometheus v2.35.0 and above. (see [below for nested schema](#nestedatt--spec--attach_metadata))
 - `job_label` (String) The label to use to retrieve the job name from.
+- `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.
 - `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
 - `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
 - `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.

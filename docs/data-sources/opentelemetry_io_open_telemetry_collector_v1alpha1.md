@@ -31,7 +31,9 @@ data "k8s_opentelemetry_io_open_telemetry_collector_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) OpenTelemetryCollectorSpec defines the desired state of OpenTelemetryCollector. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -74,12 +76,12 @@ Read-Only:
 - `node_selector` (Map of String) NodeSelector to schedule OpenTelemetry Collector pods. This is only relevant to daemonset, statefulset, and deployment mode
 - `observability` (Attributes) ObservabilitySpec defines how telemetry data gets handled. (see [below for nested schema](#nestedatt--spec--observability))
 - `pod_annotations` (Map of String) PodAnnotations is the set of annotations that will be attached to Collector and Target Allocator pods.
-- `pod_security_context` (Attributes) PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container. (see [below for nested schema](#nestedatt--spec--pod_security_context))
+- `pod_security_context` (Attributes) PodSecurityContext configures the pod security context for the opentelemetry-collector pod, when running as a deployment, daemonset, or statefulset. (see [below for nested schema](#nestedatt--spec--pod_security_context))
 - `ports` (Attributes List) Ports allows a set of ports to be exposed by the underlying v1.Service. By default, the operator will attempt to infer the required ports by parsing the .Spec. (see [below for nested schema](#nestedatt--spec--ports))
 - `priority_class_name` (String) If specified, indicates the pod's priority. If not specified, the pod priority will be default or zero if there is no default.
 - `replicas` (Number) Replicas is the number of pod instances for the underlying OpenTelemetry Collector. Set this if your are not using autoscaling
 - `resources` (Attributes) Resources to set on the OpenTelemetry Collector pods. (see [below for nested schema](#nestedatt--spec--resources))
-- `security_context` (Attributes) SecurityContext will be set as the container security context. (see [below for nested schema](#nestedatt--spec--security_context))
+- `security_context` (Attributes) SecurityContext configures the container security context for the opentelemetry-collector container. (see [below for nested schema](#nestedatt--spec--security_context))
 - `service_account` (String) ServiceAccount indicates the name of an existing service account to use with this instance. When set, the operator will not automatically create a ServiceAccount for the collector.
 - `target_allocator` (Attributes) TargetAllocator indicates a value which determines whether to spawn a target allocation resource or not. (see [below for nested schema](#nestedatt--spec--target_allocator))
 - `termination_grace_period_seconds` (Number) Duration in seconds the pod needs to terminate gracefully upon probe failure.

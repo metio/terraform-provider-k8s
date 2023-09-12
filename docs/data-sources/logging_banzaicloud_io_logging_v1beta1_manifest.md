@@ -81,6 +81,7 @@ Optional:
 
 Optional:
 
+- `labels` (Map of String)
 - `strategy` (String)
 - `timeout_seconds` (Number)
 
@@ -4648,6 +4649,7 @@ Optional:
 - `delete_volume` (Boolean)
 - `enabled` (Boolean)
 - `image` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--scaling--replicas--image))
+- `labels` (Map of String)
 - `pause_image` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--scaling--replicas--pause_image))
 
 <a id="nestedatt--spec--fluentd--scaling--replicas--image"></a>
@@ -13411,6 +13413,7 @@ Optional:
 
 Optional:
 
+- `log_level` (String)
 - `stats` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--global_options--stats))
 - `stats_freq` (Number)
 - `stats_level` (Number)

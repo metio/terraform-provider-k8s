@@ -31,7 +31,9 @@ data "k8s_autoscaling_horizontal_pod_autoscaler_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) specification of a horizontal pod autoscaler. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

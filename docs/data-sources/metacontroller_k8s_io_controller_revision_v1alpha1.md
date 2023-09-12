@@ -31,8 +31,10 @@ data "k8s_metacontroller_k8s_io_controller_revision_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `children` (Attributes List) (see [below for nested schema](#nestedatt--children))
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `parent_patch` (Map of String)
 
 <a id="nestedatt--metadata"></a>

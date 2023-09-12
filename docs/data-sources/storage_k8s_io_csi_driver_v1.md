@@ -30,7 +30,9 @@ data "k8s_storage_k8s_io_csi_driver_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) CSIDriverSpec is the specification of a CSIDriver. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

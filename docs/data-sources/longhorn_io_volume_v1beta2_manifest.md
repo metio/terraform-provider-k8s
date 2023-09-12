@@ -76,8 +76,9 @@ Optional:
 - `number_of_replicas` (Number)
 - `offline_replica_rebuilding` (String) OfflineReplicaRebuilding is used to determine if the offline replica rebuilding feature is enabled or not
 - `replica_auto_balance` (String)
-- `replica_soft_anti_affinity` (String) Replica soft anti affinity of the volume. Set enabled to allow replicas to be scheduled on the same node
-- `replica_zone_soft_anti_affinity` (String) Replica zone soft anti affinity of the volume. Set enabled to allow replicas to be scheduled in the same zone
+- `replica_disk_soft_anti_affinity` (String) Replica disk soft anti affinity of the volume. Set enabled to allow replicas to be scheduled in the same disk.
+- `replica_soft_anti_affinity` (String) Replica soft anti affinity of the volume. Set enabled to allow replicas to be scheduled on the same node.
+- `replica_zone_soft_anti_affinity` (String) Replica zone soft anti affinity of the volume. Set enabled to allow replicas to be scheduled in the same zone.
 - `restore_volume_recurring_job` (String)
 - `revision_counter_disabled` (Boolean)
 - `size` (String)

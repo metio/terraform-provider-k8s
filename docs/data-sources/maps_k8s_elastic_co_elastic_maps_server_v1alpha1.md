@@ -31,7 +31,9 @@ data "k8s_maps_k8s_elastic_co_elastic_maps_server_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) MapsSpec holds the specification of an Elastic Maps Server instance. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

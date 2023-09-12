@@ -31,7 +31,9 @@ data "k8s_apigatewayv2_services_k8s_aws_deployment_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) DeploymentSpec defines the desired state of Deployment.  An immutable representation of an API that can be called by users. A Deployment must be associated with a Stage for it to be callable over the internet. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

@@ -31,7 +31,9 @@ data "k8s_kubevious_io_workload_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `scale` (Attributes) (see [below for nested schema](#nestedatt--scale))
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 

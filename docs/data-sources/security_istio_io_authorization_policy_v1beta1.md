@@ -31,7 +31,9 @@ data "k8s_security_istio_io_authorization_policy_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Configuration for access control on workloads. See more details at: https://istio.io/docs/reference/config/security/authorization-policy.html (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -57,6 +59,7 @@ Read-Only:
 - `provider` (Attributes) Specifies detailed configuration of the CUSTOM action. (see [below for nested schema](#nestedatt--spec--provider))
 - `rules` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--rules))
 - `selector` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--selector))
+- `target_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--target_ref))
 
 <a id="nestedatt--spec--provider"></a>
 ### Nested Schema for `spec.provider`
@@ -140,3 +143,14 @@ Read-Only:
 Read-Only:
 
 - `match_labels` (Map of String)
+
+
+<a id="nestedatt--spec--target_ref"></a>
+### Nested Schema for `spec.target_ref`
+
+Read-Only:
+
+- `group` (String) group is the group of the target resource.
+- `kind` (String) kind is kind of the target resource.
+- `name` (String) name is the name of the target resource.
+- `namespace` (String) namespace is the namespace of the referent.

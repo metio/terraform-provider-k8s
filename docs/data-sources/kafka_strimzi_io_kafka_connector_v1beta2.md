@@ -31,7 +31,9 @@ data "k8s_kafka_strimzi_io_kafka_connector_v1beta2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) The specification of the Kafka Connector. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -65,3 +67,4 @@ Read-Only:
 Read-Only:
 
 - `enabled` (Boolean) Whether automatic restart for failed connectors and tasks should be enabled or disabled.
+- `max_restarts` (Number) The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.

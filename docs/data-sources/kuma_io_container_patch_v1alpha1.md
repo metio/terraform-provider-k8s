@@ -31,7 +31,9 @@ data "k8s_kuma_io_container_patch_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `mesh` (String)
 - `spec` (Attributes) ContainerPatchSpec specifies the options available for a ContainerPatch (see [below for nested schema](#nestedatt--spec))
 

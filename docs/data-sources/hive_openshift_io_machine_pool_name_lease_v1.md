@@ -31,7 +31,9 @@ data "k8s_hive_openshift_io_machine_pool_name_lease_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Map of String) MachinePoolNameLeaseSpec is a minimal resource for obtaining unique machine pool names of a limited length.
 
 <a id="nestedatt--metadata"></a>

@@ -31,7 +31,9 @@ data "k8s_couchbase_com_couchbase_backup_restore_v2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) CouchbaseBackupRestoreSpec allows the specification of data restoration to be configured.  This includes the backup and repository to restore data from, and the time range of data to be restored. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

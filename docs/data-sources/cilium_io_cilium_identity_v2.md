@@ -30,7 +30,9 @@ data "k8s_cilium_io_cilium_identity_v2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `security_labels` (Map of String) SecurityLabels is the source-of-truth set of labels for this identity.
 
 <a id="nestedatt--metadata"></a>

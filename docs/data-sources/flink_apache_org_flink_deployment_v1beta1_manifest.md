@@ -553,6 +553,7 @@ Optional:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--containers--startup_probe))
@@ -898,6 +899,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--job_manager--pod_template--status--containers--resize_policy"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
+
+Optional:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--job_manager--pod_template--status--containers--resources"></a>
 ### Nested Schema for `spec.job_manager.pod_template.status.containers.working_dir`
 
@@ -1096,6 +1106,7 @@ Optional:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--startup_probe))
@@ -1442,6 +1453,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--resize_policy"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
+
+Optional:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_containers--resources"></a>
 ### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_containers.working_dir`
 
@@ -1638,6 +1658,7 @@ Optional:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_containers--startup_probe))
@@ -1981,6 +2002,15 @@ Optional:
 - `host` (String)
 - `port` (String)
 
+
+
+<a id="nestedatt--spec--job_manager--pod_template--status--init_containers--resize_policy"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.init_containers.working_dir`
+
+Optional:
+
+- `resource_name` (String)
+- `restart_policy` (String)
 
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_containers--resources"></a>
@@ -3014,6 +3044,7 @@ Optional:
 - `pod_ip` (String)
 - `qos_class` (String)
 - `reason` (String)
+- `resize` (String)
 - `start_time` (String)
 
 <a id="nestedatt--spec--job_manager--pod_template--status--conditions"></a>
@@ -3034,12 +3065,14 @@ Optional:
 
 Optional:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--state))
@@ -3082,6 +3115,24 @@ Optional:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--resources"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--state--claims"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.state.requests`
+
+Optional:
+
+- `name` (String)
 
 
 
@@ -3132,12 +3183,14 @@ Optional:
 
 Optional:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state))
@@ -3180,6 +3233,24 @@ Optional:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--resources"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state--claims"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.state.requests`
+
+Optional:
+
+- `name` (String)
 
 
 
@@ -3230,12 +3301,14 @@ Optional:
 
 Optional:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state))
@@ -3278,6 +3351,24 @@ Optional:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--resources"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state--claims"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.state.requests`
+
+Optional:
+
+- `name` (String)
 
 
 
@@ -3791,6 +3882,7 @@ Optional:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--startup_probe))
@@ -4136,6 +4228,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--pod_template--spec--volumes--resize_policy"></a>
+### Nested Schema for `spec.pod_template.spec.volumes.resize_policy`
+
+Optional:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--pod_template--spec--volumes--resources"></a>
 ### Nested Schema for `spec.pod_template.spec.volumes.resources`
 
@@ -4334,6 +4435,7 @@ Optional:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--startup_probe))
@@ -4680,6 +4782,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--pod_template--spec--volumes--resize_policy"></a>
+### Nested Schema for `spec.pod_template.spec.volumes.resize_policy`
+
+Optional:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--pod_template--spec--volumes--resources"></a>
 ### Nested Schema for `spec.pod_template.spec.volumes.resources`
 
@@ -4876,6 +4987,7 @@ Optional:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--startup_probe))
@@ -5219,6 +5331,15 @@ Optional:
 - `host` (String)
 - `port` (String)
 
+
+
+<a id="nestedatt--spec--pod_template--spec--volumes--resize_policy"></a>
+### Nested Schema for `spec.pod_template.spec.volumes.resize_policy`
+
+Optional:
+
+- `resource_name` (String)
+- `restart_policy` (String)
 
 
 <a id="nestedatt--spec--pod_template--spec--volumes--resources"></a>
@@ -6252,6 +6373,7 @@ Optional:
 - `pod_ip` (String)
 - `qos_class` (String)
 - `reason` (String)
+- `resize` (String)
 - `start_time` (String)
 
 <a id="nestedatt--spec--pod_template--status--conditions"></a>
@@ -6272,12 +6394,14 @@ Optional:
 
 Optional:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--state))
@@ -6320,6 +6444,24 @@ Optional:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources--claims"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources.requests`
+
+Optional:
+
+- `name` (String)
 
 
 
@@ -6370,12 +6512,14 @@ Optional:
 
 Optional:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--state))
@@ -6418,6 +6562,24 @@ Optional:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources--claims"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources.requests`
+
+Optional:
+
+- `name` (String)
 
 
 
@@ -6468,12 +6630,14 @@ Optional:
 
 Optional:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--state))
@@ -6516,6 +6680,24 @@ Optional:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--status--start_time--resources--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--pod_template--status--start_time--resources--claims"></a>
+### Nested Schema for `spec.pod_template.status.start_time.resources.requests`
+
+Optional:
+
+- `name` (String)
 
 
 
@@ -7027,6 +7209,7 @@ Optional:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--containers--startup_probe))
@@ -7372,6 +7555,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--task_manager--pod_template--status--containers--resize_policy"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
+
+Optional:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--task_manager--pod_template--status--containers--resources"></a>
 ### Nested Schema for `spec.task_manager.pod_template.status.containers.working_dir`
 
@@ -7570,6 +7762,7 @@ Optional:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--startup_probe))
@@ -7916,6 +8109,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--resize_policy"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
+
+Optional:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_containers--resources"></a>
 ### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_containers.working_dir`
 
@@ -8112,6 +8314,7 @@ Optional:
 - `name` (String)
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--resources))
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_containers--startup_probe))
@@ -8455,6 +8658,15 @@ Optional:
 - `host` (String)
 - `port` (String)
 
+
+
+<a id="nestedatt--spec--task_manager--pod_template--status--init_containers--resize_policy"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.init_containers.working_dir`
+
+Optional:
+
+- `resource_name` (String)
+- `restart_policy` (String)
 
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_containers--resources"></a>
@@ -9488,6 +9700,7 @@ Optional:
 - `pod_ip` (String)
 - `qos_class` (String)
 - `reason` (String)
+- `resize` (String)
 - `start_time` (String)
 
 <a id="nestedatt--spec--task_manager--pod_template--status--conditions"></a>
@@ -9508,12 +9721,14 @@ Optional:
 
 Optional:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--state))
@@ -9556,6 +9771,24 @@ Optional:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--resources"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--state--claims"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.state.requests`
+
+Optional:
+
+- `name` (String)
 
 
 
@@ -9606,12 +9839,14 @@ Optional:
 
 Optional:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state))
@@ -9654,6 +9889,24 @@ Optional:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--resources"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state--claims"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.state.requests`
+
+Optional:
+
+- `name` (String)
 
 
 
@@ -9704,12 +9957,14 @@ Optional:
 
 Optional:
 
+- `allocated_resources` (Map of String)
 - `container_id` (String)
 - `image` (String)
 - `image_id` (String)
 - `last_state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--last_state))
 - `name` (String)
 - `ready` (Boolean)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--resources))
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state))
@@ -9752,6 +10007,24 @@ Optional:
 
 - `message` (String)
 - `reason` (String)
+
+
+
+<a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--resources"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state--claims"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.state.requests`
+
+Optional:
+
+- `name` (String)
 
 
 

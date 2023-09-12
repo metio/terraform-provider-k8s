@@ -31,7 +31,9 @@ data "k8s_traefik_io_ingress_route_udp_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) IngressRouteUDPSpec defines the desired state of a IngressRouteUDP. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

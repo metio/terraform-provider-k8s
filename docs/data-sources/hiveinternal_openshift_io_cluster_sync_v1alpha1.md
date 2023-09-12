@@ -31,7 +31,9 @@ data "k8s_hiveinternal_openshift_io_cluster_sync_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Map of String) ClusterSyncSpec defines the desired state of ClusterSync
 
 <a id="nestedatt--metadata"></a>

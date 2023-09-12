@@ -31,7 +31,9 @@ data "k8s_gateway_solo_io_gateway_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -96,7 +98,9 @@ Read-Only:
 - `gzip` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--gzip))
 - `health_check` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--health_check))
 - `http_connection_manager_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_connection_manager_settings))
+- `http_local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--http_local_ratelimit))
 - `leftmost_xff_address` (Boolean)
+- `network_local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--network_local_ratelimit))
 - `proxy_latency` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--proxy_latency))
 - `ratelimit_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ratelimit_server))
 - `router` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--router))
@@ -554,11 +558,13 @@ Read-Only:
 - `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service))
 - `max_message_timeout` (String)
 - `message_timeout` (String)
+- `metadata_context_namespaces` (List of String)
 - `mutation_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--mutation_rules))
 - `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--processing_mode))
 - `request_attributes` (List of String)
 - `response_attributes` (List of String)
 - `stat_prefix` (String)
+- `typed_metadata_context_namespaces` (List of String)
 
 <a id="nestedatt--spec--http_gateway--options--wasm--filter_stage"></a>
 ### Nested Schema for `spec.http_gateway.options.wasm.filter_stage`
@@ -1206,6 +1212,36 @@ Read-Only:
 - `pack_trace_reason` (Boolean)
 - `use_request_id_for_trace_sampling` (Boolean)
 
+
+
+<a id="nestedatt--spec--http_gateway--options--http_local_ratelimit"></a>
+### Nested Schema for `spec.http_gateway.options.wasm`
+
+Read-Only:
+
+- `default_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--default_limit))
+- `enable_x_ratelimit_headers` (Boolean)
+- `local_rate_limit_per_downstream_connection` (Boolean)
+
+<a id="nestedatt--spec--http_gateway--options--wasm--default_limit"></a>
+### Nested Schema for `spec.http_gateway.options.wasm.default_limit`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
+
+
+<a id="nestedatt--spec--http_gateway--options--network_local_ratelimit"></a>
+### Nested Schema for `spec.http_gateway.options.wasm`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
 
 
 <a id="nestedatt--spec--http_gateway--options--proxy_latency"></a>
@@ -1864,7 +1900,9 @@ Read-Only:
 - `gzip` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--gzip))
 - `health_check` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--health_check))
 - `http_connection_manager_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--http_connection_manager_settings))
+- `http_local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--http_local_ratelimit))
 - `leftmost_xff_address` (Boolean)
+- `network_local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--network_local_ratelimit))
 - `proxy_latency` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--proxy_latency))
 - `ratelimit_server` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--ratelimit_server))
 - `router` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--router))
@@ -2322,14 +2360,16 @@ Read-Only:
 - `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--grpc_service))
 - `max_message_timeout` (String)
 - `message_timeout` (String)
+- `metadata_context_namespaces` (List of String)
 - `mutation_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--mutation_rules))
 - `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--processing_mode))
 - `request_attributes` (List of String)
 - `response_attributes` (List of String)
 - `stat_prefix` (String)
+- `typed_metadata_context_namespaces` (List of String)
 
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--filter_stage"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix`
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces`
 
 Read-Only:
 
@@ -2338,41 +2378,41 @@ Read-Only:
 
 
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--forward_rules"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix`
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces`
 
 Read-Only:
 
-- `allowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--allowed_headers))
-- `disallowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers))
+- `allowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--allowed_headers))
+- `disallowed_headers` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--allowed_headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallowed_headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--allowed_headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers`
 
 Read-Only:
 
-- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns))
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallowed_headers.patterns`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns`
 
 Read-Only:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallowed_headers.patterns.suffix`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--safe_regex"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns.suffix`
 
 Read-Only:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--suffix--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallowed_headers.patterns.suffix.regex`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--suffix--google_re2"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns.suffix.regex`
 
 Read-Only:
 
@@ -2382,34 +2422,34 @@ Read-Only:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallowed_headers`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers`
 
 Read-Only:
 
-- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns))
+- `patterns` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallowed_headers.patterns`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns`
 
 Read-Only:
 
 - `exact` (String)
 - `ignore_case` (Boolean)
 - `prefix` (String)
-- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns--safe_regex))
+- `safe_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--safe_regex))
 - `suffix` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns--safe_regex"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallowed_headers.patterns.suffix`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--safe_regex"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns.suffix`
 
 Read-Only:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns--suffix--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--suffix--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallowed_headers--patterns--suffix--google_re2"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallowed_headers.patterns.suffix.regex`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallowed_headers--patterns--suffix--google_re2"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallowed_headers.patterns.suffix.regex`
 
 Read-Only:
 
@@ -2421,18 +2461,18 @@ Read-Only:
 
 
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--grpc_service"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix`
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces`
 
 Read-Only:
 
 - `authority` (String)
-- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--ext_proc_server_ref))
-- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--initial_metadata))
-- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--retry_policy))
+- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--ext_proc_server_ref))
+- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--initial_metadata))
+- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--retry_policy))
 - `timeout` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--ext_proc_server_ref"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.timeout`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--ext_proc_server_ref"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.timeout`
 
 Read-Only:
 
@@ -2440,8 +2480,8 @@ Read-Only:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--initial_metadata"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.timeout`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--initial_metadata"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.timeout`
 
 Read-Only:
 
@@ -2449,16 +2489,16 @@ Read-Only:
 - `value` (String)
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--retry_policy"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.timeout`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--retry_policy"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.timeout`
 
 Read-Only:
 
 - `num_retries` (Number)
-- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--timeout--retry_back_off))
+- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--timeout--retry_back_off))
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--timeout--retry_back_off"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.timeout.retry_back_off`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--timeout--retry_back_off"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.timeout.retry_back_off`
 
 Read-Only:
 
@@ -2469,28 +2509,28 @@ Read-Only:
 
 
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--mutation_rules"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix`
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces`
 
 Read-Only:
 
 - `allow_all_routing` (Boolean)
 - `allow_envoy` (Boolean)
-- `allow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--allow_expression))
+- `allow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--allow_expression))
 - `disallow_all` (Boolean)
-- `disallow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallow_expression))
+- `disallow_expression` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_expression))
 - `disallow_is_error` (Boolean)
 - `disallow_system` (Boolean)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--allow_expression"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallow_system`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--allow_expression"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallow_system`
 
 Read-Only:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallow_system--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_system--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallow_system--google_re2"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallow_system.google_re2`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_system--google_re2"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallow_system.google_re2`
 
 Read-Only:
 
@@ -2498,16 +2538,16 @@ Read-Only:
 
 
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallow_expression"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallow_system`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_expression"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallow_system`
 
 Read-Only:
 
-- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallow_system--google_re2))
+- `google_re2` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_system--google_re2))
 - `regex` (String)
 
-<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--stat_prefix--disallow_system--google_re2"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix.disallow_system.google_re2`
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--typed_metadata_context_namespaces--disallow_system--google_re2"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces.disallow_system.google_re2`
 
 Read-Only:
 
@@ -2517,7 +2557,7 @@ Read-Only:
 
 
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--processing_mode"></a>
-### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.stat_prefix`
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.typed_metadata_context_namespaces`
 
 Read-Only:
 
@@ -2976,6 +3016,36 @@ Read-Only:
 
 
 
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--http_local_ratelimit"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm`
+
+Read-Only:
+
+- `default_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--default_limit))
+- `enable_x_ratelimit_headers` (Boolean)
+- `local_rate_limit_per_downstream_connection` (Boolean)
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--default_limit"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.local_rate_limit_per_downstream_connection`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
+
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--network_local_ratelimit"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
+
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--proxy_latency"></a>
 ### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm`
 
@@ -3251,6 +3321,7 @@ Read-Only:
 Read-Only:
 
 - `connection_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--connection_limit))
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--local_ratelimit))
 - `tcp_proxy_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--tcp_proxy_settings))
 
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--connection_limit"></a>
@@ -3260,6 +3331,16 @@ Read-Only:
 
 - `delay_before_close` (String)
 - `max_active_connections` (Number)
+
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--local_ratelimit"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.tcp_proxy_settings`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
 
 
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--tcp_proxy_settings"></a>
@@ -5398,6 +5479,7 @@ Read-Only:
 Read-Only:
 
 - `connection_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--options--connection_limit))
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--options--local_ratelimit))
 - `tcp_proxy_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp_gateway--options--tcp_proxy_settings))
 
 <a id="nestedatt--spec--tcp_gateway--options--connection_limit"></a>
@@ -5407,6 +5489,16 @@ Read-Only:
 
 - `delay_before_close` (String)
 - `max_active_connections` (Number)
+
+
+<a id="nestedatt--spec--tcp_gateway--options--local_ratelimit"></a>
+### Nested Schema for `spec.tcp_gateway.options.tcp_proxy_settings`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
 
 
 <a id="nestedatt--spec--tcp_gateway--options--tcp_proxy_settings"></a>

@@ -14,6 +14,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
 	"regexp"
@@ -72,6 +73,7 @@ type MonitoringCoreosComProbeV1ManifestData struct {
 		} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
 		Interval              *string `tfsdk:"interval" json:"interval,omitempty"`
 		JobName               *string `tfsdk:"job_name" json:"jobName,omitempty"`
+		KeepDroppedTargets    *int64  `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
 		LabelLimit            *int64  `tfsdk:"label_limit" json:"labelLimit,omitempty"`
 		LabelNameLengthLimit  *int64  `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
 		LabelValueLengthLimit *int64  `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
@@ -447,6 +449,14 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 					"job_name": schema.StringAttribute{
 						Description:         "The job name assigned to scraped metrics by default.",
 						MarkdownDescription: "The job name assigned to scraped metrics by default.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"keep_dropped_targets": schema.Int64Attribute{
+						Description:         "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
+						MarkdownDescription: "Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1264,18 +1274,13 @@ func (r *MonitoringCoreosComProbeV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Name, model.Metadata.Namespace))
+	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("monitoring.coreos.com/v1")
 	model.Kind = pointer.String("Probe")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {
-		response.Diagnostics.AddError(
-			"Unable to marshal resource",
-			"An unexpected error occurred while marshalling the resource. "+
-				"Please report this issue to the provider developers.\n\n"+
-				"YAML Error: "+err.Error(),
-		)
+		response.Diagnostics.Append(utilities.MarshalYamlError(err))
 		return
 	}
 	model.YAML = types.StringValue(string(y))
