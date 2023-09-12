@@ -31,7 +31,9 @@ data "k8s_data_fluid_io_goose_fs_runtime_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) GooseFSRuntimeSpec defines the desired state of GooseFSRuntime (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

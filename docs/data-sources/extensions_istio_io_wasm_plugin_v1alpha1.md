@@ -31,7 +31,9 @@ data "k8s_extensions_istio_io_wasm_plugin_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Extend the functionality provided by the Istio proxy through WebAssembly filters. See more details at: https://istio.io/docs/reference/config/proxy_extensions/wasm-plugin.html (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -63,6 +65,7 @@ Read-Only:
 - `priority` (Number) Determines ordering of 'WasmPlugins' in the same 'phase'.
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--selector))
 - `sha256` (String) SHA256 checksum that will be used to verify Wasm module or OCI container.
+- `target_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--target_ref))
 - `type` (String) Specifies the type of Wasm Extension to be used.
 - `url` (String) URL of a Wasm module or OCI container.
 - `verification_key` (String)
@@ -91,6 +94,17 @@ Read-Only:
 Read-Only:
 
 - `match_labels` (Map of String)
+
+
+<a id="nestedatt--spec--target_ref"></a>
+### Nested Schema for `spec.target_ref`
+
+Read-Only:
+
+- `group` (String) group is the group of the target resource.
+- `kind` (String) kind is kind of the target resource.
+- `name` (String) name is the name of the target resource.
+- `namespace` (String) namespace is the namespace of the referent.
 
 
 <a id="nestedatt--spec--vm_config"></a>

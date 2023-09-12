@@ -30,7 +30,9 @@ data "k8s_servicebinding_io_cluster_workload_resource_mapping_v1alpha3" "example
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ClusterWorkloadResourceMappingSpec defines the desired state of ClusterWorkloadResourceMapping (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

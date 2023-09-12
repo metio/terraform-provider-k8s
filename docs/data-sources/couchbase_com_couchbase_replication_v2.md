@@ -31,8 +31,10 @@ data "k8s_couchbase_com_couchbase_replication_v2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `explicit_mapping` (Attributes) The explicit mappings to use for replication which are optional. For Scopes and Collection replication support we can specify a set of implicit and explicit mappings to use. If none is specified then it is assumed to be existing bucket level replication. https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.html#explicit-mapping (see [below for nested schema](#nestedatt--explicit_mapping))
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) CouchbaseReplicationSpec allows configuration of an XDCR replication. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

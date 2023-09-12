@@ -31,7 +31,9 @@ data "k8s_lambda_services_k8s_aws_code_signing_config_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) CodeSigningConfigSpec defines the desired state of CodeSigningConfig.  Details about a Code signing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html). (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

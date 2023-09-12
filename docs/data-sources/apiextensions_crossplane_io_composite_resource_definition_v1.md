@@ -30,7 +30,9 @@ data "k8s_apiextensions_crossplane_io_composite_resource_definition_v1" "example
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) CompositeResourceDefinitionSpec specifies the desired state of the definition. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

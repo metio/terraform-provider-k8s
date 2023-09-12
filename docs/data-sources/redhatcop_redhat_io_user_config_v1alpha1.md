@@ -30,7 +30,9 @@ data "k8s_redhatcop_redhat_io_user_config_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) UserConfigSpec defines the desired state of UserConfig There are four selectors: 'labelSelector', 'annotationSelector', 'identityExtraFieldSelector' and 'providerName'. labelSelector and annoationSelector are matches against the User object identityExtraFieldSelector and providerName are matched against any of the Identities associated with User Selectors are considered in AND, so if multiple are defined tthey must all be true for a User to be selected. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

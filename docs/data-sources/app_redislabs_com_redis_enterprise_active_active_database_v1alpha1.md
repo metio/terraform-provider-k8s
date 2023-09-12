@@ -31,7 +31,9 @@ data "k8s_app_redislabs_com_redis_enterprise_active_active_database_v1alpha1" "e
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) RedisEnterpriseActiveActiveDatabaseSpec defines the desired state of RedisEnterpriseActiveActiveDatabase (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

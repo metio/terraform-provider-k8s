@@ -31,7 +31,9 @@ data "k8s_getambassador_io_kubernetes_service_resolver_v2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) KubernetesServiceResolver tells Ambassador to use Kubernetes Service resources to resolve services. It actually has no spec other than the AmbassadorID. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

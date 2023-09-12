@@ -31,7 +31,9 @@ data "k8s_ec2_services_k8s_aws_security_group_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) SecurityGroupSpec defines the desired state of SecurityGroup.  Describes a security group. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

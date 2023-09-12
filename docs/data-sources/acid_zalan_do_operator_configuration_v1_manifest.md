@@ -163,6 +163,7 @@ Optional:
 - `node_readiness_label_merge` (String)
 - `oauth_token_secret_name` (String)
 - `pdb_name_format` (String)
+- `persistent_volume_claim_retention_policy` (Attributes) (see [below for nested schema](#nestedatt--configuration--kubernetes--persistent_volume_claim_retention_policy))
 - `pod_antiaffinity_preferred_during_scheduling` (Boolean)
 - `pod_antiaffinity_topology_key` (String)
 - `pod_environment_configmap` (String)
@@ -201,6 +202,15 @@ Optional:
 - `details` (String)
 - `rolekey` (String)
 - `template` (Boolean)
+
+
+<a id="nestedatt--configuration--kubernetes--persistent_volume_claim_retention_policy"></a>
+### Nested Schema for `configuration.kubernetes.persistent_volume_claim_retention_policy`
+
+Optional:
+
+- `when_deleted` (String)
+- `when_scaled` (String)
 
 
 

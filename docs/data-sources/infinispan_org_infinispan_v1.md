@@ -31,7 +31,9 @@ data "k8s_infinispan_org_infinispan_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) InfinispanSpec defines the desired state of Infinispan (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -763,7 +765,7 @@ Read-Only:
 - `heartbeats` (Attributes) Configures the Gossip Router heartbeats to keep the connection open (see [below for nested schema](#nestedatt--spec--service--sites--locations--discovery--heartbeats))
 - `launch_gossip_router` (Boolean) Enables (default) or disables the Gossip Router pod and cross-site services
 - `memory` (String) Memory resource request for Gossip Router if enabled
-- `suspect_events` (Boolean) Enables the JGroups suspect events if the Gossip Router detects a connectio closed
+- `suspect_events` (Boolean) Enables the JGroups suspect events if the Gossip Router detects a connection closed
 - `type` (String) Configures the discovery mode for cross-site replication
 
 <a id="nestedatt--spec--service--sites--locations--discovery--heartbeats"></a>

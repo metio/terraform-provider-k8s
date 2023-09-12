@@ -31,7 +31,9 @@ data "k8s_networking_istio_io_destination_rule_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Configuration affecting load balancing, outlier detection, etc. See more details at: https://istio.io/docs/reference/config/networking/destination-rule.html (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

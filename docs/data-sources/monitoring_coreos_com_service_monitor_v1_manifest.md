@@ -73,6 +73,7 @@ Optional:
 
 - `attach_metadata` (Attributes) Attaches node metadata to discovered targets. Requires Prometheus v2.37.0 and above. (see [below for nested schema](#nestedatt--spec--attach_metadata))
 - `job_label` (String) JobLabel selects the label from the associated Kubernetes service which will be used as the 'job' label for all metrics.  For example: If in 'ServiceMonitor.spec.jobLabel: foo' and in 'Service.metadata.labels.foo: bar', then the 'job='bar'' label is added to all metrics.  If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the Kubernetes Service.
+- `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.
 - `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
 - `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
 - `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.

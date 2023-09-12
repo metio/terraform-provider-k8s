@@ -30,8 +30,10 @@ data "k8s_cilium_io_cilium_endpoint_slice_v2alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `endpoints` (Attributes List) Endpoints is a list of coreCEPs packed in a CiliumEndpointSlice (see [below for nested schema](#nestedatt--endpoints))
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `namespace` (String) Namespace indicate as CiliumEndpointSlice namespace. All the CiliumEndpoints within the same namespace are put together in CiliumEndpointSlice.
 
 <a id="nestedatt--metadata"></a>

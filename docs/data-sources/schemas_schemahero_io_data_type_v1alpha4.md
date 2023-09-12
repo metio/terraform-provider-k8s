@@ -31,7 +31,9 @@ data "k8s_schemas_schemahero_io_data_type_v1alpha4" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) DataTypeSpec defines the desired state of Type (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

@@ -30,7 +30,9 @@ data "k8s_apiextensions_crossplane_io_composition_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) CompositionSpec specifies desired state of a composition. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -73,6 +75,7 @@ Read-Only:
 
 Read-Only:
 
+- `default_data` (Map of String) DefaultData statically defines the initial state of the environment. It has the same schema-less structure as the data field in environment configs. It is overwritten by the selected environment configs.
 - `environment_configs` (Attributes List) EnvironmentConfigs selects a list of 'EnvironmentConfig's. The resolved resources are stored in the composite resource at 'spec.environmentConfigRefs' and is only updated if it is null.  The list of references is used to compute an in-memory environment at compose time. The data of all object is merged in the order they are listed, meaning the values of EnvironmentConfigs with a larger index take priority over ones with smaller indices.  The computed environment can be accessed in a composition using 'FromEnvironmentFieldPath' and 'CombineFromEnvironment' patches. (see [below for nested schema](#nestedatt--spec--environment--environment_configs))
 - `patches` (Attributes List) Patches is a list of environment patches that are executed before a composition's resources are composed. (see [below for nested schema](#nestedatt--spec--environment--patches))
 - `policy` (Attributes) Policy represents the Resolve and Resolution policies which apply to all EnvironmentSourceReferences in EnvironmentConfigs list. (see [below for nested schema](#nestedatt--spec--environment--policy))
@@ -109,6 +112,7 @@ Read-Only:
 
 Read-Only:
 
+- `from_field_path_policy` (String) FromFieldPathPolicy specifies the policy for the valueFromFieldPath. The default is Required, meaning that an error will be returned if the field is not found in the composite resource. Optional means that if the field is not found in the composite resource, that label pair will just be skipped. N.B. other specified label matchers will still be used to retrieve the desired environment config, if any.
 - `key` (String) Key of the label to match.
 - `type` (String) Type specifies where the value for a label comes from.
 - `value` (String) Value specifies a literal label value.

@@ -31,7 +31,9 @@ data "k8s_org_eclipse_che_che_cluster_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Desired configuration of the Che installation. Based on these settings, the  Operator automatically creates and maintains several ConfigMaps that will contain the appropriate environment variables the various components of the Che installation. These generated ConfigMaps must NOT be updated manually. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

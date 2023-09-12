@@ -31,7 +31,9 @@ data "k8s_ceph_rook_io_ceph_block_pool_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) NamedBlockPoolSpec allows a block pool to be created with a non-default name. This is more specific than the NamedPoolSpec so we get schema validation on the allowed pool names that can be specified. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

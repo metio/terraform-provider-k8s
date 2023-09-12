@@ -30,7 +30,9 @@ data "k8s_hive_openshift_io_selector_sync_identity_provider_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) SelectorSyncIdentityProviderSpec defines the SyncIdentityProviderCommonSpec to sync to ClusterDeploymentSelector indicating which clusters the SelectorSyncIdentityProvider applies to in any namespace. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

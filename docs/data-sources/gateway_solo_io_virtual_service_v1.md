@@ -31,7 +31,9 @@ data "k8s_gateway_solo_io_virtual_service_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -375,23 +377,25 @@ Read-Only:
 
 - `async_mode` (Boolean)
 - `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--overrides--grpc_service))
+- `metadata_context_namespaces` (List of String)
 - `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--overrides--processing_mode))
 - `request_attributes` (List of String)
 - `response_attributes` (List of String)
+- `typed_metadata_context_namespaces` (List of String)
 
 <a id="nestedatt--spec--virtual_host--options--waf--overrides--grpc_service"></a>
-### Nested Schema for `spec.virtual_host.options.waf.overrides.response_attributes`
+### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces`
 
 Read-Only:
 
 - `authority` (String)
-- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--overrides--response_attributes--ext_proc_server_ref))
-- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--overrides--response_attributes--initial_metadata))
-- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--overrides--response_attributes--retry_policy))
+- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--overrides--typed_metadata_context_namespaces--ext_proc_server_ref))
+- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--overrides--typed_metadata_context_namespaces--initial_metadata))
+- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--overrides--typed_metadata_context_namespaces--retry_policy))
 - `timeout` (String)
 
-<a id="nestedatt--spec--virtual_host--options--waf--overrides--response_attributes--ext_proc_server_ref"></a>
-### Nested Schema for `spec.virtual_host.options.waf.overrides.response_attributes.timeout`
+<a id="nestedatt--spec--virtual_host--options--waf--overrides--typed_metadata_context_namespaces--ext_proc_server_ref"></a>
+### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces.timeout`
 
 Read-Only:
 
@@ -399,8 +403,8 @@ Read-Only:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--virtual_host--options--waf--overrides--response_attributes--initial_metadata"></a>
-### Nested Schema for `spec.virtual_host.options.waf.overrides.response_attributes.timeout`
+<a id="nestedatt--spec--virtual_host--options--waf--overrides--typed_metadata_context_namespaces--initial_metadata"></a>
+### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces.timeout`
 
 Read-Only:
 
@@ -408,16 +412,16 @@ Read-Only:
 - `value` (String)
 
 
-<a id="nestedatt--spec--virtual_host--options--waf--overrides--response_attributes--retry_policy"></a>
-### Nested Schema for `spec.virtual_host.options.waf.overrides.response_attributes.timeout`
+<a id="nestedatt--spec--virtual_host--options--waf--overrides--typed_metadata_context_namespaces--retry_policy"></a>
+### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces.timeout`
 
 Read-Only:
 
 - `num_retries` (Number)
-- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--overrides--response_attributes--timeout--retry_back_off))
+- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--overrides--typed_metadata_context_namespaces--timeout--retry_back_off))
 
-<a id="nestedatt--spec--virtual_host--options--waf--overrides--response_attributes--timeout--retry_back_off"></a>
-### Nested Schema for `spec.virtual_host.options.waf.overrides.response_attributes.timeout.retry_back_off`
+<a id="nestedatt--spec--virtual_host--options--waf--overrides--typed_metadata_context_namespaces--timeout--retry_back_off"></a>
+### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces.timeout.retry_back_off`
 
 Read-Only:
 
@@ -428,7 +432,7 @@ Read-Only:
 
 
 <a id="nestedatt--spec--virtual_host--options--waf--overrides--processing_mode"></a>
-### Nested Schema for `spec.virtual_host.options.waf.overrides.response_attributes`
+### Nested Schema for `spec.virtual_host.options.waf.overrides.typed_metadata_context_namespaces`
 
 Read-Only:
 
@@ -888,7 +892,18 @@ Read-Only:
 
 Read-Only:
 
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--rate_limits))
+
+<a id="nestedatt--spec--virtual_host--options--waf--local_ratelimit"></a>
+### Nested Schema for `spec.virtual_host.options.waf.local_ratelimit`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits"></a>
 ### Nested Schema for `spec.virtual_host.options.waf.rate_limits`
@@ -1118,7 +1133,18 @@ Read-Only:
 
 Read-Only:
 
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--rate_limits))
+
+<a id="nestedatt--spec--virtual_host--options--waf--local_ratelimit"></a>
+### Nested Schema for `spec.virtual_host.options.waf.local_ratelimit`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits"></a>
 ### Nested Schema for `spec.virtual_host.options.waf.rate_limits`
@@ -1321,7 +1347,18 @@ Read-Only:
 
 Read-Only:
 
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--options--waf--rate_limits))
+
+<a id="nestedatt--spec--virtual_host--options--waf--local_ratelimit"></a>
+### Nested Schema for `spec.virtual_host.options.waf.local_ratelimit`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--virtual_host--options--waf--rate_limits"></a>
 ### Nested Schema for `spec.virtual_host.options.waf.rate_limits`
@@ -3082,23 +3119,25 @@ Read-Only:
 
 - `async_mode` (Boolean)
 - `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--grpc_service))
+- `metadata_context_namespaces` (List of String)
 - `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--processing_mode))
 - `request_attributes` (List of String)
 - `response_attributes` (List of String)
+- `typed_metadata_context_namespaces` (List of String)
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--grpc_service"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.response_attributes`
+### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces`
 
 Read-Only:
 
 - `authority` (String)
-- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--response_attributes--ext_proc_server_ref))
-- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--response_attributes--initial_metadata))
-- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--response_attributes--retry_policy))
+- `ext_proc_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--typed_metadata_context_namespaces--ext_proc_server_ref))
+- `initial_metadata` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--typed_metadata_context_namespaces--initial_metadata))
+- `retry_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--typed_metadata_context_namespaces--retry_policy))
 - `timeout` (String)
 
-<a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--response_attributes--ext_proc_server_ref"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.response_attributes.timeout`
+<a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--typed_metadata_context_namespaces--ext_proc_server_ref"></a>
+### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces.timeout`
 
 Read-Only:
 
@@ -3106,8 +3145,8 @@ Read-Only:
 - `namespace` (String)
 
 
-<a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--response_attributes--initial_metadata"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.response_attributes.timeout`
+<a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--typed_metadata_context_namespaces--initial_metadata"></a>
+### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces.timeout`
 
 Read-Only:
 
@@ -3115,16 +3154,16 @@ Read-Only:
 - `value` (String)
 
 
-<a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--response_attributes--retry_policy"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.response_attributes.timeout`
+<a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--typed_metadata_context_namespaces--retry_policy"></a>
+### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces.timeout`
 
 Read-Only:
 
 - `num_retries` (Number)
-- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--response_attributes--timeout--retry_back_off))
+- `retry_back_off` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--typed_metadata_context_namespaces--timeout--retry_back_off))
 
-<a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--response_attributes--timeout--retry_back_off"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.response_attributes.timeout.retry_back_off`
+<a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--typed_metadata_context_namespaces--timeout--retry_back_off"></a>
+### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces.timeout.retry_back_off`
 
 Read-Only:
 
@@ -3135,7 +3174,7 @@ Read-Only:
 
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ext_proc--overrides--processing_mode"></a>
-### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.response_attributes`
+### Nested Schema for `spec.virtual_host.routes.route_action.ext_proc.overrides.typed_metadata_context_namespaces`
 
 Read-Only:
 
@@ -3424,7 +3463,18 @@ Read-Only:
 Read-Only:
 
 - `include_vh_rate_limits` (Boolean)
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits))
+
+<a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--local_ratelimit"></a>
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit--rate_limits"></a>
 ### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit.rate_limits`
@@ -3655,7 +3705,18 @@ Read-Only:
 Read-Only:
 
 - `include_vh_rate_limits` (Boolean)
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits))
+
+<a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--local_ratelimit"></a>
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_early--rate_limits"></a>
 ### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_early.rate_limits`
@@ -3859,7 +3920,18 @@ Read-Only:
 Read-Only:
 
 - `include_vh_rate_limits` (Boolean)
+- `local_ratelimit` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--local_ratelimit))
 - `rate_limits` (Attributes List) (see [below for nested schema](#nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits))
+
+<a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--local_ratelimit"></a>
+### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits`
+
+Read-Only:
+
+- `fill_interval` (String)
+- `max_tokens` (Number)
+- `tokens_per_fill` (Number)
+
 
 <a id="nestedatt--spec--virtual_host--routes--route_action--ratelimit_regular--rate_limits"></a>
 ### Nested Schema for `spec.virtual_host.routes.route_action.ratelimit_regular.rate_limits`

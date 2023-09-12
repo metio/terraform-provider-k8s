@@ -30,7 +30,9 @@ data "k8s_logging_banzaicloud_io_logging_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Map of String)
 
 <a id="nestedatt--metadata"></a>

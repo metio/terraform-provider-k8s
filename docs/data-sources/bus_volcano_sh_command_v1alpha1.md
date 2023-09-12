@@ -32,7 +32,9 @@ data "k8s_bus_volcano_sh_command_v1alpha1" "example" {
 ### Read-Only
 
 - `action` (String) Action defines the action that will be took to the target object.
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `message` (String) Human-readable message indicating details of this command.
 - `reason` (String) Unique, one-word, CamelCase reason for this command.
 - `target` (Attributes) TargetObject defines the target object of this command. (see [below for nested schema](#nestedatt--target))
@@ -60,5 +62,5 @@ Read-Only:
 - `block_owner_deletion` (Boolean) If true, AND if the owner has the 'foregroundDeletion' finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs 'delete' permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
 - `controller` (Boolean) If true, this reference points to the managing controller.
 - `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names
-- `uid` (String) UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids

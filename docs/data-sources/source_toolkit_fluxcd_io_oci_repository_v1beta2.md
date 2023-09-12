@@ -31,7 +31,9 @@ data "k8s_source_toolkit_fluxcd_io_oci_repository_v1beta2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) OCIRepositorySpec defines the desired state of OCIRepository (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

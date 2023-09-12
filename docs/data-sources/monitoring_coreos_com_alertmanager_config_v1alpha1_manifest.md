@@ -154,6 +154,7 @@ Optional:
 - `sns_configs` (Attributes List) List of SNS configurations (see [below for nested schema](#nestedatt--spec--receivers--sns_configs))
 - `telegram_configs` (Attributes List) List of Telegram configurations. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs))
 - `victorops_configs` (Attributes List) List of VictorOps configurations. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs))
+- `webex_configs` (Attributes List) List of Webex configurations. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs))
 - `webhook_configs` (Attributes List) List of webhook configurations. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs))
 - `wechat_configs` (Attributes List) List of WeChat configurations. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs))
 
@@ -2115,7 +2116,8 @@ Optional:
 Optional:
 
 - `api_url` (String) The Telegram API URL i.e. https://api.telegram.org. If not specified, default API URL will be used.
-- `bot_token` (Attributes) Telegram bot token The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--bot_token))
+- `bot_token` (Attributes) Telegram bot token. It is mutually exclusive with 'botTokenFile'. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.  Either 'botToken' or 'botTokenFile' is required. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--bot_token))
+- `bot_token_file` (String) File to read the Telegram bot token from. It is mutually exclusive with 'botToken'. Either 'botToken' or 'botTokenFile' is required.  It requires Alertmanager >= v0.26.0.
 - `chat_id` (Number) The Telegram chat ID.
 - `disable_notifications` (Boolean) Disable telegram notifications
 - `http_config` (Attributes) HTTP client configuration. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--http_config))
@@ -2646,6 +2648,263 @@ Optional:
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--tls_config--key_secret"></a>
 ### Nested Schema for `spec.receivers.victorops_configs.state_message.tls_config.server_name`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+
+<a id="nestedatt--spec--receivers--webex_configs"></a>
+### Nested Schema for `spec.receivers.webex_configs`
+
+Required:
+
+- `room_id` (String) ID of the Webex Teams room where to send the messages.
+
+Optional:
+
+- `api_url` (String) The Webex Teams API URL i.e. https://webexapis.com/v1/messages Provide if different from the default API URL.
+- `http_config` (Attributes) The HTTP client's configuration. You must supply the bot token via the 'httpConfig.authorization' field. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--http_config))
+- `message` (String) Message template
+- `send_resolved` (Boolean) Whether to notify about resolved alerts.
+
+<a id="nestedatt--spec--receivers--webex_configs--http_config"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved`
+
+Optional:
+
+- `authorization` (Attributes) Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--authorization))
+- `basic_auth` (Attributes) BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--bearer_token_secret))
+- `follow_redirects` (Boolean) FollowRedirects specifies whether the client should follow HTTP 3xx redirects.
+- `oauth2` (Attributes) OAuth2 client credentials used to fetch a token for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--oauth2))
+- `proxy_url` (String) Optional proxy URL.
+- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config))
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--authorization"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.authorization`
+
+Optional:
+
+- `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--authorization--credentials))
+- `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--authorization--credentials"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.authorization.type`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.basic_auth`
+
+Optional:
+
+- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--password))
+- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--username))
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--password"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.basic_auth.username`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--username"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.basic_auth.username`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--bearer_token_secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.bearer_token_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--oauth2"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2`
+
+Required:
+
+- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--client_id))
+- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--client_secret))
+- `token_url` (String) The URL to fetch the token from
+
+Optional:
+
+- `endpoint_params` (Map of String) Parameters to append to the token URL
+- `scopes` (List of String) OAuth2 scopes used for the token request
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--client_id"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2.scopes`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--scopes--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--scopes--secret))
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--scopes--config_map"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2.scopes.secret`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--scopes--secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2.scopes.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--client_secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2.scopes`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--cert))
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--key_secret))
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--ca"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--secret))
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--config_map"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.secret`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--cert"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--secret))
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--config_map"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.secret`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--server_name--secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--webex_configs--send_resolved--tls_config--key_secret"></a>
+### Nested Schema for `spec.receivers.webex_configs.send_resolved.tls_config.server_name`
 
 Required:
 

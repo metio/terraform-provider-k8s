@@ -31,7 +31,9 @@ data "k8s_chaos_mesh_org_pod_http_chaos_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) PodHttpChaosSpec defines the desired state of PodHttpChaos. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

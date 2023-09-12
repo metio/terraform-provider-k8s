@@ -31,7 +31,9 @@ data "k8s_operator_aquasec_com_aqua_gateway_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) AquaGatewaySpec defines the desired state of AquaGateway (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

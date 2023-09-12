@@ -31,7 +31,9 @@ data "k8s_sagemaker_services_k8s_aws_processing_job_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ProcessingJobSpec defines the desired state of ProcessingJob.  An Amazon SageMaker processing job that is used to analyze data and evaluate models. For more information, see Process Data and Evaluate Models (https://docs.aws.amazon.com/sagemaker/latest/dg/processing-job.html). (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

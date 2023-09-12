@@ -31,7 +31,9 @@ data "k8s_sematext_com_sematext_agent_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Your account data (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

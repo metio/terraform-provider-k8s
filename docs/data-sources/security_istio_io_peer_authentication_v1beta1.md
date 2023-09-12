@@ -31,7 +31,9 @@ data "k8s_security_istio_io_peer_authentication_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) PeerAuthentication defines how traffic will be tunneled (or not) to the sidecar. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

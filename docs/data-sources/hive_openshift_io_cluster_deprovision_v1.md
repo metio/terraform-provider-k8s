@@ -31,7 +31,9 @@ data "k8s_hive_openshift_io_cluster_deprovision_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ClusterDeprovisionSpec defines the desired state of ClusterDeprovision (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -53,6 +55,7 @@ Read-Only:
 
 Read-Only:
 
+- `base_domain` (String) BaseDomain is the DNS base domain.
 - `cluster_id` (String) ClusterID is a globally unique identifier for the cluster to deprovision. It will be used if specified.
 - `cluster_name` (String) ClusterName is the friendly name of the cluster. It is used for subdomains, some resource tagging, and other instances where a friendly name for the cluster is useful.
 - `infra_id` (String) InfraID is the identifier generated during installation for a cluster. It is used for tagging/naming resources in cloud providers.
@@ -77,7 +80,7 @@ Read-Only:
 
 Read-Only:
 
-- `base_domain` (String) BaseDomain is the DNS base domain
+- `base_domain` (String) BaseDomain is the DNS base domain. TODO: Use the non-platform-specific BaseDomain field.
 - `credentials_secret_ref` (Attributes) CredentialsSecretRef is the Alibaba account credentials to use for deprovisioning the cluster (see [below for nested schema](#nestedatt--spec--platform--alibabacloud--credentials_secret_ref))
 - `region` (String) Region is the Alibaba region for this deprovision
 
@@ -158,7 +161,7 @@ Read-Only:
 
 Read-Only:
 
-- `base_domain` (String) BaseDomain is the DNS base domain
+- `base_domain` (String) BaseDomain is the DNS base domain. TODO: Use the non-platform-specific BaseDomain field.
 - `credentials_secret_ref` (Attributes) CredentialsSecretRef is the IBM Cloud credentials to use for deprovisioning the cluster (see [below for nested schema](#nestedatt--spec--platform--ibmcloud--credentials_secret_ref))
 - `region` (String) Region specifies the IBM Cloud region
 

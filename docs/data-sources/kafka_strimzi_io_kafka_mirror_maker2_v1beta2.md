@@ -31,7 +31,9 @@ data "k8s_kafka_strimzi_io_kafka_mirror_maker2_v1beta2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) The specification of the Kafka MirrorMaker 2 cluster. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -419,6 +421,7 @@ Read-Only:
 Read-Only:
 
 - `enabled` (Boolean) Whether automatic restart for failed connectors and tasks should be enabled or disabled.
+- `max_restarts` (Number) The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.
 
 
 
@@ -438,6 +441,7 @@ Read-Only:
 Read-Only:
 
 - `enabled` (Boolean) Whether automatic restart for failed connectors and tasks should be enabled or disabled.
+- `max_restarts` (Number) The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.
 
 
 
@@ -457,6 +461,7 @@ Read-Only:
 Read-Only:
 
 - `enabled` (Boolean) Whether automatic restart for failed connectors and tasks should be enabled or disabled.
+- `max_restarts` (Number) The maximum number of connector restarts that the operator will try. If the connector remains in a failed state after reaching this limit, it must be restarted manually by the user. Defaults to an unlimited number of restarts.
 
 
 
@@ -1879,4 +1884,4 @@ Read-Only:
 
 Read-Only:
 
-- `type` (String) Type of the tracing used. Currently the only supported types are 'jaeger' for OpenTracing (Jaeger) tracing and 'opentelemetry' for OpenTelemetry tracing. The OpenTracing (Jaeger) tracing is deprecated.
+- `type` (String) Type of the tracing used. Currently the only supported type is 'opentelemetry' for OpenTelemetry tracing. As of Strimzi 0.37.0, 'jaeger' type is not supported anymore and this option is ignored.

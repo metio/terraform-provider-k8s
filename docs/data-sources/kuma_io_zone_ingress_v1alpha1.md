@@ -31,7 +31,9 @@ data "k8s_kuma_io_zone_ingress_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `mesh` (String) Mesh is the name of the Kuma mesh this resource belongs to. It may be omitted for cluster-scoped resources.
 - `spec` (Map of String) Spec is the specification of the Kuma ZoneIngress resource.
 

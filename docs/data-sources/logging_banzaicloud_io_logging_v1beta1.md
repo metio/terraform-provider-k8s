@@ -30,7 +30,9 @@ data "k8s_logging_banzaicloud_io_logging_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -75,6 +77,7 @@ Read-Only:
 
 Read-Only:
 
+- `labels` (Map of String)
 - `strategy` (String)
 - `timeout_seconds` (Number)
 
@@ -4255,6 +4258,7 @@ Read-Only:
 - `delete_volume` (Boolean)
 - `enabled` (Boolean)
 - `image` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--scaling--replicas--image))
+- `labels` (Map of String)
 - `pause_image` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--scaling--replicas--pause_image))
 
 <a id="nestedatt--spec--fluentd--scaling--replicas--image"></a>
@@ -12133,6 +12137,7 @@ Read-Only:
 
 Read-Only:
 
+- `log_level` (String)
 - `stats` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--global_options--stats))
 - `stats_freq` (Number)
 - `stats_level` (Number)

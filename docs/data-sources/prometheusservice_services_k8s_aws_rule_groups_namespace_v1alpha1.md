@@ -31,7 +31,9 @@ data "k8s_prometheusservice_services_k8s_aws_rule_groups_namespace_v1alpha1" "ex
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) RuleGroupsNamespaceSpec defines the desired state of RuleGroupsNamespace. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

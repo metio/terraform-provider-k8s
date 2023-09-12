@@ -30,7 +30,9 @@ data "k8s_apps_clusternet_io_globalization_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) GlobalizationSpec defines the desired state of Globalization (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

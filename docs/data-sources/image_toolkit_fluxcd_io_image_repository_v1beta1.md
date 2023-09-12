@@ -31,7 +31,9 @@ data "k8s_image_toolkit_fluxcd_io_image_repository_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ImageRepositorySpec defines the parameters for scanning an image repository, e.g., 'fluxcd/flux'. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

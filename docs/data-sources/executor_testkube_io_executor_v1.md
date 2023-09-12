@@ -31,7 +31,9 @@ data "k8s_executor_testkube_io_executor_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ExecutorSpec defines the desired state of Executor (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -61,6 +63,7 @@ Read-Only:
 - `image` (String) Image for kube-job
 - `image_pull_secrets` (Attributes List) container executor default image pull secrets (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `job_template` (String) Job template to launch executor
+- `job_template_reference` (String) name of the template resource
 - `meta` (Attributes) Meta data about executor (see [below for nested schema](#nestedatt--spec--meta))
 - `types` (List of String) Types defines what types can be handled by executor e.g. 'postman/collection', ':curl/command' etc
 - `uri` (String) URI for rest based executors

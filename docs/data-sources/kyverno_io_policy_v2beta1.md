@@ -31,7 +31,9 @@ data "k8s_kyverno_io_policy_v2beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Spec defines policy behaviors and contains one or more rules. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -1285,7 +1287,7 @@ Read-Only:
 
 - `attestors` (Attributes List) Attestors specify the required attestors (i.e. authorities) (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors))
 - `conditions` (Attributes List) Conditions are used to verify attributes within a Predicate. If no Conditions are specified the attestation check is satisfied as long there are predicates that match the predicate type. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions))
-- `predicate_type` (String) PredicateType defines the type of Predicate contained within the Statement. Deprecated in favour of 'Type', to be removed soon
+- `predicate_type` (String) Deprecated in favour of 'Type', to be removed soon
 - `type` (String) Type defines the type of attestation contained within the Statement.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors"></a>

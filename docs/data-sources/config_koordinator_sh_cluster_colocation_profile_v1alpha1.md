@@ -30,7 +30,9 @@ data "k8s_config_koordinator_sh_cluster_colocation_profile_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ClusterColocationProfileSpec is a description of a ClusterColocationProfile. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

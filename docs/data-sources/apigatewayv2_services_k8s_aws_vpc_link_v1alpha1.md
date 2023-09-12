@@ -31,7 +31,9 @@ data "k8s_apigatewayv2_services_k8s_aws_vpc_link_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) VpcLinkSpec defines the desired state of VpcLink.  Represents a VPC link. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
