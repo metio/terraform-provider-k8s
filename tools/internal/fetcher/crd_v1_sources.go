@@ -854,7 +854,6 @@ var CRDv1Sources = []UpstreamSource{
 			"https://github.com/koordinator-sh/koordinator/blob/main/config/crd/bases/scheduling.sigs.k8s.io_podgroups.yaml",
 			"https://github.com/koordinator-sh/koordinator/blob/main/config/crd/bases/slo.koordinator.sh_nodemetrics.yaml",
 			"https://github.com/koordinator-sh/koordinator/blob/main/config/crd/bases/slo.koordinator.sh_nodeslos.yaml",
-			"https://github.com/koordinator-sh/koordinator/blob/main/config/crd/bases/topology.node.k8s.io_noderesourcetopologies.yaml",
 		},
 	},
 	{
