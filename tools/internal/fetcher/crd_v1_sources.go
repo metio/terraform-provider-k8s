@@ -884,6 +884,16 @@ var CRDv1Sources = []UpstreamSource{
 		},
 	},
 	{
+		ProjectName: "kubean-io/kubean",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubean-io/kubean/blob/main/charts/kubean/crds/kubean.io_clusteroperations.yaml",
+			"https://github.com/kubean-io/kubean/blob/main/charts/kubean/crds/kubean.io_clusters.yaml",
+			"https://github.com/kubean-io/kubean/blob/main/charts/kubean/crds/kubean.io_localartifactsets.yaml",
+			"https://github.com/kubean-io/kubean/blob/main/charts/kubean/crds/kubean.io_manifests.yaml",
+		},
+	},
+	{
 		ProjectName: "kubedl-io/kubedl",
 		License:     apacheV2,
 		URLs: []string{
