@@ -929,11 +929,93 @@ var CRDv1Sources = []UpstreamSource{
 		},
 	},
 	{
+		ProjectName: "kubernetes-sigs/about-api",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/about-api/blob/master/config/crd/about.k8s.io_clusterproperties.yaml",
+		},
+	},
+	{
 		ProjectName: "kubernetes-sigs/aws-load-balancer-controller",
 		License:     apacheV2,
 		URLs: []string{
 			"https://github.com/kubernetes-sigs/aws-load-balancer-controller/blob/main/config/crd/bases/elbv2.k8s.aws_ingressclassparams.yaml",
 			"https://github.com/kubernetes-sigs/aws-load-balancer-controller/blob/main/config/crd/bases/elbv2.k8s.aws_targetgroupbindings.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/boskos",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/boskos/blob/master/deployments/base/crd.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/cluster-api",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/addons.cluster.x-k8s.io_clusterresourcesetbindings.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/addons.cluster.x-k8s.io_clusterresourcesets.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/cluster.x-k8s.io_clusterclasses.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/cluster.x-k8s.io_clusters.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/cluster.x-k8s.io_machinedeployments.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/cluster.x-k8s.io_machinehealthchecks.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/cluster.x-k8s.io_machinepools.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/cluster.x-k8s.io_machines.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/cluster.x-k8s.io_machinesets.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/ipam.cluster.x-k8s.io_ipaddressclaims.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/ipam.cluster.x-k8s.io_ipaddresses.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/runtime.cluster.x-k8s.io_extensionconfigs.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/cluster-api-operator",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/cluster-api-operator/blob/main/config/crd/bases/operator.cluster.x-k8s.io_addonproviders.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-operator/blob/main/config/crd/bases/operator.cluster.x-k8s.io_bootstrapproviders.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-operator/blob/main/config/crd/bases/operator.cluster.x-k8s.io_controlplaneproviders.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-operator/blob/main/config/crd/bases/operator.cluster.x-k8s.io_coreproviders.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-operator/blob/main/config/crd/bases/operator.cluster.x-k8s.io_infrastructureproviders.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/cluster-api-provider-ibmcloud",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/cluster-api-provider-ibmcloud/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_ibmpowervsclusters.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-ibmcloud/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_ibmpowervsclustertemplates.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-ibmcloud/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_ibmpowervsimages.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-ibmcloud/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_ibmpowervsmachines.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-ibmcloud/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_ibmpowervsmachinetemplates.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-ibmcloud/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_ibmvpcclusters.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-ibmcloud/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_ibmvpcmachines.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-ibmcloud/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_ibmvpcmachinetemplates.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/cluster-api-provider-kubevirt",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/cluster-api-provider-kubevirt/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_kubevirtclusters.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-kubevirt/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_kubevirtclustertemplates.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-kubevirt/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_kubevirtmachines.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-kubevirt/blob/main/config/crd/bases/infrastructure.cluster.x-k8s.io_kubevirtmachinetemplates.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/cluster-api-provider-vsphere",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/cluster-api-provider-vsphere/blob/main/config/default/crd/bases/infrastructure.cluster.x-k8s.io_haproxyloadbalancers.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-vsphere/blob/main/config/default/crd/bases/infrastructure.cluster.x-k8s.io_vsphereclusteridentities.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-vsphere/blob/main/config/default/crd/bases/infrastructure.cluster.x-k8s.io_vsphereclusters.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-vsphere/blob/main/config/default/crd/bases/infrastructure.cluster.x-k8s.io_vsphereclustertemplates.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-vsphere/blob/main/config/default/crd/bases/infrastructure.cluster.x-k8s.io_vspheredeploymentzones.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-vsphere/blob/main/config/default/crd/bases/infrastructure.cluster.x-k8s.io_vspherefailuredomains.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-vsphere/blob/main/config/default/crd/bases/infrastructure.cluster.x-k8s.io_vspheremachines.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-vsphere/blob/main/config/default/crd/bases/infrastructure.cluster.x-k8s.io_vspheremachinetemplates.yaml",
+			"https://github.com/kubernetes-sigs/cluster-api-provider-vsphere/blob/main/config/default/crd/bases/infrastructure.cluster.x-k8s.io_vspherevms.yaml",
 		},
 	},
 	{
@@ -951,17 +1033,81 @@ var CRDv1Sources = []UpstreamSource{
 		},
 	},
 	{
+		ProjectName: "kubernetes-sigs/hierarchical-namespaces",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/hierarchical-namespaces/blob/master/config/crd/bases/hnc.x-k8s.io_hierarchicalresourcequotas.yaml",
+			"https://github.com/kubernetes-sigs/hierarchical-namespaces/blob/master/config/crd/bases/hnc.x-k8s.io_hierarchyconfigurations.yaml",
+			"https://github.com/kubernetes-sigs/hierarchical-namespaces/blob/master/config/crd/bases/hnc.x-k8s.io_hncconfigurations.yaml",
+			"https://github.com/kubernetes-sigs/hierarchical-namespaces/blob/master/config/crd/bases/hnc.x-k8s.io_subnamespaceanchors.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/jobset",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/jobset/blob/main/config/components/crd/bases/jobset.x-k8s.io_jobsets.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/kueue",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/kueue/blob/main/config/components/crd/bases/kueue.x-k8s.io_admissionchecks.yaml",
+			"https://github.com/kubernetes-sigs/kueue/blob/main/config/components/crd/bases/kueue.x-k8s.io_clusterqueues.yaml",
+			"https://github.com/kubernetes-sigs/kueue/blob/main/config/components/crd/bases/kueue.x-k8s.io_localqueues.yaml",
+			"https://github.com/kubernetes-sigs/kueue/blob/main/config/components/crd/bases/kueue.x-k8s.io_resourceflavors.yaml",
+			"https://github.com/kubernetes-sigs/kueue/blob/main/config/components/crd/bases/kueue.x-k8s.io_workloads.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/network-policy-api",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/network-policy-api/blob/main/config/crd/policy.networking.k8s.io_adminnetworkpolicies.yaml",
+			"https://github.com/kubernetes-sigs/network-policy-api/blob/main/config/crd/policy.networking.k8s.io_baselineadminnetworkpolicies.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/node-feature-discovery-operator",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/node-feature-discovery-operator/blob/master/config/crd/bases/nfd.kubernetes.io_nodefeaturediscoveries.yaml",
+			"https://github.com/kubernetes-sigs/node-feature-discovery-operator/blob/master/config/crd/bases/nfd.kubernetes.io_v1alpha1_nodefeaturerules.yaml",
+			"https://github.com/kubernetes-sigs/node-feature-discovery-operator/blob/master/config/crd/bases/node.k8s.io_v1alpha1_noderesourcetopologies.yaml",
+		},
+	},
+	{
 		ProjectName: "kubernetes-sigs/security-profiles-operator",
 		License:     apacheV2,
 		URLs: []string{
 			"https://github.com/kubernetes-sigs/security-profiles-operator/blob/main/deploy/base-crds/crds/apparmorprofile.yaml",
 			"https://github.com/kubernetes-sigs/security-profiles-operator/blob/main/deploy/base-crds/crds/profilebinding.yaml",
 			"https://github.com/kubernetes-sigs/security-profiles-operator/blob/main/deploy/base-crds/crds/profilerecording.yaml",
+			"https://github.com/kubernetes-sigs/security-profiles-operator/blob/main/deploy/base-crds/crds/seccompprofile.yaml",
 			"https://github.com/kubernetes-sigs/security-profiles-operator/blob/main/deploy/base-crds/crds/securityprofilenodestatus.yaml",
 			"https://github.com/kubernetes-sigs/security-profiles-operator/blob/main/deploy/base-crds/crds/securityprofilesoperatordaemon.yaml",
 			"https://github.com/kubernetes-sigs/security-profiles-operator/blob/main/deploy/base-crds/crds/selinuxpolicy.yaml",
-			"https://github.com/kubernetes-sigs/security-profiles-operator/blob/main/deploy/base-crds/crds/selinuxpolicy.yaml",
-			"https://github.com/kubernetes-sigs/security-profiles-operator/blob/main/deploy/base-crds/crds/seccompprofile.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/wg-policy-prototypes",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/wg-policy-prototypes/blob/master/policy-report/crd/v1alpha1/wgpolicyk8s.io_clusterpolicyreports.yaml",
+			"https://github.com/kubernetes-sigs/wg-policy-prototypes/blob/master/policy-report/crd/v1alpha1/wgpolicyk8s.io_policyreports.yaml",
+			"https://github.com/kubernetes-sigs/wg-policy-prototypes/blob/master/policy-report/crd/v1alpha2/wgpolicyk8s.io_clusterpolicyreports.yaml",
+			"https://github.com/kubernetes-sigs/wg-policy-prototypes/blob/master/policy-report/crd/v1alpha2/wgpolicyk8s.io_policyreports.yaml",
+			"https://github.com/kubernetes-sigs/wg-policy-prototypes/blob/master/policy-report/crd/v1beta1/wgpolicyk8s.io_clusterpolicyreports.yaml",
+			"https://github.com/kubernetes-sigs/wg-policy-prototypes/blob/master/policy-report/crd/v1beta1/wgpolicyk8s.io_policyreports.yaml",
+		},
+	},
+	{
+		ProjectName: "kubernetes-sigs/work-api",
+		License:     apacheV2,
+		URLs: []string{
+			"https://github.com/kubernetes-sigs/work-api/blob/master/config/crd/multicluster.x-k8s.io_appliedworks.yaml",
+			"https://github.com/kubernetes-sigs/work-api/blob/master/config/crd/multicluster.x-k8s.io_works.yaml",
 		},
 	},
 	{
@@ -1056,8 +1202,6 @@ var CRDv1Sources = []UpstreamSource{
 			"https://github.com/kyverno/kyverno/blob/main/config/crds/kyverno.io_policies.yaml",
 			"https://github.com/kyverno/kyverno/blob/main/config/crds/kyverno.io_policyexceptions.yaml",
 			"https://github.com/kyverno/kyverno/blob/main/config/crds/kyverno.io_updaterequests.yaml",
-			"https://github.com/kyverno/kyverno/blob/main/config/crds/wgpolicyk8s.io_clusterpolicyreports.yaml",
-			"https://github.com/kyverno/kyverno/blob/main/config/crds/wgpolicyk8s.io_policyreports.yaml",
 		},
 	},
 	{
