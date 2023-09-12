@@ -8,7 +8,6 @@ package infrastructure_cluster_x_k8s_io_v1beta1
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
