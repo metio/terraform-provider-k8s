@@ -162,6 +162,7 @@ type CrdProjectcalicoOrgNetworkPolicyV1ManifestData struct {
 			} `tfsdk:"source" json:"source,omitempty"`
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
 		Order                  *float64  `tfsdk:"order" json:"order,omitempty"`
+		PerformanceHints       *[]string `tfsdk:"performance_hints" json:"performanceHints,omitempty"`
 		Selector               *string   `tfsdk:"selector" json:"selector,omitempty"`
 		ServiceAccountSelector *string   `tfsdk:"service_account_selector" json:"serviceAccountSelector,omitempty"`
 		Types                  *[]string `tfsdk:"types" json:"types,omitempty"`
@@ -1048,6 +1049,15 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 					"order": schema.Float64Attribute{
 						Description:         "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name'.",
 						MarkdownDescription: "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"performance_hints": schema.ListAttribute{
+						Description:         "PerformanceHints contains a list of hints to Calico's policy engine to help process the policy more efficiently.  Hints never change the enforcement behaviour of the policy.  Currently, the only available hint is 'AssumeNeededOnEveryNode'.  When that hint is set on a policy, Felix will act as if the policy matches a local endpoint even if it does not. This is useful for 'preloading' any large static policies that are known to be used on every node. If the policy is _not_ used on a particular node then the work done to preload the policy (and to maintain it) is wasted.",
+						MarkdownDescription: "PerformanceHints contains a list of hints to Calico's policy engine to help process the policy more efficiently.  Hints never change the enforcement behaviour of the policy.  Currently, the only available hint is 'AssumeNeededOnEveryNode'.  When that hint is set on a policy, Felix will act as if the policy matches a local endpoint even if it does not. This is useful for 'preloading' any large static policies that are known to be used on every node. If the policy is _not_ used on a particular node then the work done to preload the policy (and to maintain it) is wasted.",
+						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

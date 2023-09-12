@@ -12,18 +12,20 @@ import (
 	"strings"
 )
 
-func newJSONPathParser(jsonPathExpression string) (*jsonpath.JSONPath, error) {
-	j := jsonpath.New("wait")
-	if jsonPathExpression == "" {
-		return nil, errors.New("jsonpath expression cannot be empty")
-	}
-	if err := j.Parse(jsonPathExpression); err != nil {
+func NewJSONPathParser(relaxedExpression string) (*jsonpath.JSONPath, error) {
+	jsonPath := jsonpath.New("Parser").AllowMissingKeys(true)
+	jsonPathExpression, err := cmdget.RelaxedJSONPathExpression(relaxedExpression)
+	if err != nil {
 		return nil, err
 	}
-	return j, nil
+	err = jsonPath.Parse(jsonPathExpression)
+	if err != nil {
+		return nil, err
+	}
+	return jsonPath, nil
 }
 
-func processJSONPathInput(jsonPathExpression, jsonPathCond string) (string, string, error) {
+func ProcessJSONPathInput(jsonPathExpression, jsonPathCond string) (string, string, error) {
 	relaxedJSONPathExp, err := cmdget.RelaxedJSONPathExpression(jsonPathExpression)
 	if err != nil {
 		return "", "", err
