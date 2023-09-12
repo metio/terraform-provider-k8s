@@ -9,12 +9,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64default"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -47,11 +49,12 @@ type MariadbMmontesIoMariaDbV1Alpha1Resource struct {
 }
 
 type MariadbMmontesIoMariaDbV1Alpha1ResourceData struct {
-	ID             types.String `tfsdk:"id" json:"-"`
-	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
-	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
-	WaitForUpsert  types.List   `tfsdk:"wait_for_upsert" json:"-"`
-	WaitForDelete  types.Object `tfsdk:"wait_for_delete" json:"-"`
+	ID                  types.String `tfsdk:"id" json:"-"`
+	ForceConflicts      types.Bool   `tfsdk:"force_conflicts" json:"-"`
+	FieldManager        types.String `tfsdk:"field_manager" json:"-"`
+	DeletionPropagation types.String `tfsdk:"deletion_propagation" json:"-"`
+	WaitForUpsert       types.List   `tfsdk:"wait_for_upsert" json:"-"`
+	WaitForDelete       types.Object `tfsdk:"wait_for_delete" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
 	Kind       *string `tfsdk:"-" json:"kind"`
@@ -1227,6 +1230,7 @@ type MariadbMmontesIoMariaDbV1Alpha1ResourceData struct {
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
 			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 		} `tfsdk:"password_secret_key_ref" json:"passwordSecretKeyRef,omitempty"`
+		PodAnnotations      *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
 		PodDisruptionBudget *struct {
 			MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
 			MinAvailable   *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
@@ -1281,8 +1285,13 @@ type MariadbMmontesIoMariaDbV1Alpha1ResourceData struct {
 			ServiceName *string `tfsdk:"service_name" json:"serviceName,omitempty"`
 		} `tfsdk:"primary_connection" json:"primaryConnection,omitempty"`
 		PrimaryService *struct {
-			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-			Type        *string            `tfsdk:"type" json:"type,omitempty"`
+			Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+			Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
+			LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+			SessionAffinity          *string            `tfsdk:"session_affinity" json:"sessionAffinity,omitempty"`
+			Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"primary_service" json:"primaryService,omitempty"`
 		ReadinessProbe *struct {
 			Exec *struct {
@@ -1364,8 +1373,13 @@ type MariadbMmontesIoMariaDbV1Alpha1ResourceData struct {
 			ServiceName *string `tfsdk:"service_name" json:"serviceName,omitempty"`
 		} `tfsdk:"secondary_connection" json:"secondaryConnection,omitempty"`
 		SecondaryService *struct {
-			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-			Type        *string            `tfsdk:"type" json:"type,omitempty"`
+			Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+			Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
+			LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+			SessionAffinity          *string            `tfsdk:"session_affinity" json:"sessionAffinity,omitempty"`
+			Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"secondary_service" json:"secondaryService,omitempty"`
 		SecurityContext *struct {
 			AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -1397,8 +1411,13 @@ type MariadbMmontesIoMariaDbV1Alpha1ResourceData struct {
 			} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 		} `tfsdk:"security_context" json:"securityContext,omitempty"`
 		Service *struct {
-			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-			Type        *string            `tfsdk:"type" json:"type,omitempty"`
+			Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+			Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
+			LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+			SessionAffinity          *string            `tfsdk:"session_affinity" json:"sessionAffinity,omitempty"`
+			Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"service" json:"service,omitempty"`
 		Tolerations *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
@@ -1768,12 +1787,26 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Schema(_ context.Context, _ re
 				Computed:            true,
 			},
 
-			"field_manager": schema.BoolAttribute{
+			"field_manager": schema.StringAttribute{
 				Description:         "The name of the manager used to track field ownership. If not specified uses the value from the provider configuration.",
 				MarkdownDescription: "The name of the manager used to track field ownership. If not specified uses the value from the provider configuration.",
 				Required:            false,
 				Optional:            true,
 				Computed:            true,
+				Validators: []validator.String{
+					stringvalidator.LengthAtLeast(1),
+				},
+			},
+
+			"deletion_propagation": schema.StringAttribute{
+				Description:         "Decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.",
+				MarkdownDescription: "Decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.",
+				Required:            false,
+				Optional:            true,
+				Computed:            true,
+				Validators: []validator.String{
+					stringvalidator.OneOfCaseInsensitive("Orphan", "Background", "Foreground"),
+				},
 			},
 
 			"wait_for_upsert": schema.ListNestedAttribute{
@@ -1798,21 +1831,27 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Schema(_ context.Context, _ re
 							Optional:            true,
 							Computed:            true,
 						},
-						"timeout": schema.StringAttribute{
-							Description:         "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
-							MarkdownDescription: "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
+						"timeout": schema.Int64Attribute{
+							Description:         "The number of seconds to wait before giving up. Zero means check once and don't wait.",
+							MarkdownDescription: "The number of seconds to wait before giving up. Zero means check once and don't wait.",
 							Required:            false,
 							Optional:            true,
 							Computed:            true,
-							Default:             stringdefault.StaticString("30s"),
+							Default:             int64default.StaticInt64(30),
+							Validators: []validator.Int64{
+								int64validator.AtLeast(0),
+							},
 						},
-						"poll_interval": schema.StringAttribute{
-							Description:         "The length of time to wait before checking again.",
-							MarkdownDescription: "The length of time to wait before checking again.",
+						"poll_interval": schema.Int64Attribute{
+							Description:         "The number of seconds to wait before checking again.",
+							MarkdownDescription: "The number of seconds to wait before checking again.",
 							Required:            false,
 							Optional:            true,
 							Computed:            true,
-							Default:             stringdefault.StaticString("5s"),
+							Default:             int64default.StaticInt64(5),
+							Validators: []validator.Int64{
+								int64validator.AtLeast(0),
+							},
 						},
 					},
 				},
@@ -1825,21 +1864,27 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Schema(_ context.Context, _ re
 				Optional:            true,
 				Computed:            true,
 				Attributes: map[string]schema.Attribute{
-					"timeout": schema.StringAttribute{
-						Description:         "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
-						MarkdownDescription: "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
+					"timeout": schema.Int64Attribute{
+						Description:         "The number of seconds to wait before giving up. Zero means check once and don't wait.",
+						MarkdownDescription: "The number of seconds to wait before giving up. Zero means check once and don't wait.",
 						Required:            false,
 						Optional:            true,
 						Computed:            true,
-						Default:             stringdefault.StaticString("30s"),
+						Default:             int64default.StaticInt64(30),
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
 					},
-					"poll_interval": schema.StringAttribute{
-						Description:         "The length of time to wait before checking again.",
-						MarkdownDescription: "The length of time to wait before checking again.",
+					"poll_interval": schema.Int64Attribute{
+						Description:         "The number of seconds to wait before checking again.",
+						MarkdownDescription: "The number of seconds to wait before checking again.",
 						Required:            false,
 						Optional:            true,
 						Computed:            true,
-						Default:             stringdefault.StaticString("5s"),
+						Default:             int64default.StaticInt64(5),
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
 					},
 				},
 			},
@@ -9646,6 +9691,15 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Schema(_ context.Context, _ re
 						Computed: false,
 					},
 
+					"pod_annotations": schema.MapAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"pod_disruption_budget": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -10021,6 +10075,48 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Schema(_ context.Context, _ re
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"external_traffic_policy": schema.StringAttribute{
+								Description:         "Service External Traffic Policy Type string",
+								MarkdownDescription: "Service External Traffic Policy Type string",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_ip": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_source_ranges": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"session_affinity": schema.StringAttribute{
+								Description:         "Session Affinity Type string",
+								MarkdownDescription: "Session Affinity Type string",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -10587,6 +10683,48 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Schema(_ context.Context, _ re
 								Computed:            false,
 							},
 
+							"external_traffic_policy": schema.StringAttribute{
+								Description:         "Service External Traffic Policy Type string",
+								MarkdownDescription: "Service External Traffic Policy Type string",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_ip": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_source_ranges": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"session_affinity": schema.StringAttribute{
+								Description:         "Session Affinity Type string",
+								MarkdownDescription: "Session Affinity Type string",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"type": schema.StringAttribute{
 								Description:         "Service Type string describes ingress methods for a service",
 								MarkdownDescription: "Service Type string describes ingress methods for a service",
@@ -10807,6 +10945,48 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Schema(_ context.Context, _ re
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"external_traffic_policy": schema.StringAttribute{
+								Description:         "Service External Traffic Policy Type string",
+								MarkdownDescription: "Service External Traffic Policy Type string",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_ip": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"load_balancer_source_ranges": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"session_affinity": schema.StringAttribute{
+								Description:         "Session Affinity Type string",
+								MarkdownDescription: "Session Affinity Type string",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -13182,6 +13362,31 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Create(ctx context.Context, re
 
 	model.Metadata = readResponse.Metadata
 	model.Spec = readResponse.Spec
+	if model.ForceConflicts.IsUnknown() {
+		model.ForceConflicts = types.BoolNull()
+	}
+	if model.FieldManager.IsUnknown() {
+		model.FieldManager = types.StringNull()
+	}
+	if model.DeletionPropagation.IsUnknown() {
+		model.DeletionPropagation = types.StringNull()
+	}
+	if model.WaitForUpsert.IsUnknown() {
+		model.WaitForUpsert = types.ListNull(types.ObjectType{
+			AttrTypes: map[string]attr.Type{
+				"jsonpath":      types.StringType,
+				"value":         types.StringType,
+				"timeout":       types.Int64Type,
+				"poll_interval": types.Int64Type,
+			},
+		})
+	}
+	if model.WaitForDelete.IsUnknown() {
+		model.WaitForDelete = types.ObjectNull(map[string]attr.Type{
+			"timeout":       types.Int64Type,
+			"poll_interval": types.Int64Type,
+		})
+	}
 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
@@ -13218,6 +13423,31 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Read(ctx context.Context, requ
 
 	data.Metadata = readResponse.Metadata
 	data.Spec = readResponse.Spec
+	if data.ForceConflicts.IsUnknown() {
+		data.ForceConflicts = types.BoolNull()
+	}
+	if data.FieldManager.IsUnknown() {
+		data.FieldManager = types.StringNull()
+	}
+	if data.DeletionPropagation.IsUnknown() {
+		data.DeletionPropagation = types.StringNull()
+	}
+	if data.WaitForUpsert.IsUnknown() {
+		data.WaitForUpsert = types.ListNull(types.ObjectType{
+			AttrTypes: map[string]attr.Type{
+				"jsonpath":      types.StringType,
+				"value":         types.StringType,
+				"timeout":       types.Int64Type,
+				"poll_interval": types.Int64Type,
+			},
+		})
+	}
+	if data.WaitForDelete.IsUnknown() {
+		data.WaitForDelete = types.ObjectNull(map[string]attr.Type{
+			"timeout":       types.Int64Type,
+			"poll_interval": types.Int64Type,
+		})
+	}
 
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
@@ -13291,16 +13521,21 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Delete(ctx context.Context, re
 		return
 	}
 
+	deleteOptions := meta.DeleteOptions{}
+	if !data.DeletionPropagation.IsNull() && !data.DeletionPropagation.IsUnknown() {
+		deleteOptions.PropagationPolicy = utilities.MapDeletionPropagation(data.DeletionPropagation.ValueString())
+	}
+
 	err := r.kubernetesClient.
 		Resource(k8sSchema.GroupVersionResource{Group: "mariadb.mmontes.io", Version: "v1alpha1", Resource: "mariadbs"}).
 		Namespace(data.Metadata.Namespace).
-		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
+		Delete(ctx, data.Metadata.Name, deleteOptions)
 	if utilities.IsDeletionError(err) {
 		response.Diagnostics.Append(utilities.DeleteError(err))
 		return
 	}
 
-	if !data.WaitForDelete.IsNull() {
+	if !data.WaitForDelete.IsNull() && !data.WaitForDelete.IsUnknown() {
 		timeout := utilities.DetermineTimeout(data.WaitForDelete.Attributes())
 		pollInterval := utilities.DeterminePollInterval(data.WaitForDelete.Attributes())
 
@@ -13310,7 +13545,7 @@ func (r *MariadbMmontesIoMariaDbV1Alpha1Resource) Delete(ctx context.Context, re
 				Resource(k8sSchema.GroupVersionResource{Group: "mariadb.mmontes.io", Version: "v1alpha1", Resource: "mariadbs"}).
 				Namespace(data.Metadata.Namespace).
 				Get(ctx, data.Metadata.Name, meta.GetOptions{})
-			if utilities.IsNotFound(err) || timeout == time.Second*0 {
+			if utilities.IsNotFound(err) || timeout.Milliseconds() == 0 {
 				break
 			}
 			if time.Now().After(startTime.Add(timeout)) {

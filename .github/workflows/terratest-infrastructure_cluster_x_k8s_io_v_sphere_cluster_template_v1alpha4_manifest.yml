@@ -1,0 +1,47 @@
+# SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+# SPDX-License-Identifier: 0BSD
+
+name: InfrastructureClusterXK8SIoVsphereClusterTemplateV1Alpha4Manifest
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - examples/data-sources/k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_template_v1alpha4_manifest/**
+      - internal/provider/infrastructure_cluster_x_k8s_io_v1alpha4/infrastructure_cluster_x_k8s_io_v_sphere_cluster_template_v1alpha4_manifest.go
+      - internal/provider/infrastructure_cluster_x_k8s_io_v1alpha4/infrastructure_cluster_x_k8s_io_v_sphere_cluster_template_v1alpha4_manifest_test.go
+      - terratest/infrastructure_cluster_x_k8s_io_v1alpha4/infrastructure_cluster_x_k8s_io_v_sphere_cluster_template_v1alpha4_manifest_test.go
+jobs:
+  terratest:
+    name: Test with Terraform ${{ matrix.terraform }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        terraform:
+          - 1.4.*
+          - 1.5.*
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v3
+      - id: setup_go
+        name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: go.mod
+          cache: true
+      - id: setup_terraform
+        name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ matrix.terraform }}
+          terraform_wrapper: false
+      - id: install
+        name: Install Provider
+        run: make install
+      - id: tests
+        name: Run Unit Tests
+        run: go test -v -timeout=120s -count=1 ./internal/provider/infrastructure_cluster_x_k8s_io_v1alpha4/infrastructure_cluster_x_k8s_io_v_sphere_cluster_template_v1alpha4_manifest_test.go
+      - id: terratest
+        name: Run Terratest Tests
+        run: go test -v -timeout=120s -count=1 -run TestInfrastructureClusterXK8SIoVsphereClusterTemplateV1Alpha4Manifest ./terratest/infrastructure_cluster_x_k8s_io_v1alpha4

@@ -193,8 +193,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 							"access": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 							},
 
@@ -250,8 +250,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 							"name": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 							},
 
@@ -275,8 +275,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 							"type": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 							},
 
@@ -291,8 +291,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 							"url": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 							},
 
@@ -304,8 +304,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDatasourceV1Beta1Manifest) Schema(_ context
 								Computed:            false,
 							},
 						},
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 

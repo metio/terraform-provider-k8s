@@ -371,6 +371,10 @@ Files: schemas/crd_v1/kube-logging/logging-operator/*
 Copyright: The kube-logging/logging-operator Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/kubean-io/kubean/*
+Copyright: The kubean-io/kubean Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/kubedl-io/kubedl/*
 Copyright: The kubedl-io/kubedl Authors
 License: Apache-2.0
@@ -379,16 +383,72 @@ Files: schemas/crd_v1/kubeedge/kubeedge/*
 Copyright: The kubeedge/kubeedge Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/kubernetes-sigs/about-api/*
+Copyright: The kubernetes-sigs/about-api Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/kubernetes-sigs/aws-load-balancer-controller/*
 Copyright: The kubernetes-sigs/aws-load-balancer-controller Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/boskos/*
+Copyright: The kubernetes-sigs/boskos Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/cluster-api/*
+Copyright: The kubernetes-sigs/cluster-api Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/cluster-api-operator/*
+Copyright: The kubernetes-sigs/cluster-api-operator Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/cluster-api-provider-ibmcloud/*
+Copyright: The kubernetes-sigs/cluster-api-provider-ibmcloud Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/cluster-api-provider-kubevirt/*
+Copyright: The kubernetes-sigs/cluster-api-provider-kubevirt Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/cluster-api-provider-vsphere/*
+Copyright: The kubernetes-sigs/cluster-api-provider-vsphere Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/kubernetes-sigs/gateway-api/*
 Copyright: The kubernetes-sigs/gateway-api Authors
 License: Apache-2.0
 
+Files: schemas/crd_v1/kubernetes-sigs/hierarchical-namespaces/*
+Copyright: The kubernetes-sigs/hierarchical-namespaces Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/jobset/*
+Copyright: The kubernetes-sigs/jobset Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/kueue/*
+Copyright: The kubernetes-sigs/kueue Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/network-policy-api/*
+Copyright: The kubernetes-sigs/network-policy-api Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/node-feature-discovery-operator/*
+Copyright: The kubernetes-sigs/node-feature-discovery-operator Authors
+License: Apache-2.0
+
 Files: schemas/crd_v1/kubernetes-sigs/security-profiles-operator/*
 Copyright: The kubernetes-sigs/security-profiles-operator Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/wg-policy-prototypes/*
+Copyright: The kubernetes-sigs/wg-policy-prototypes Authors
+License: Apache-2.0
+
+Files: schemas/crd_v1/kubernetes-sigs/work-api/*
+Copyright: The kubernetes-sigs/work-api Authors
 License: Apache-2.0
 
 Files: schemas/crd_v1/kubernetes/autoscaler/*

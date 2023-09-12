@@ -411,6 +411,7 @@ type LoggingBanzaicloudIoOutputV1Beta1DataSourceData struct {
 			Time_precision               *string `tfsdk:"time_precision" json:"time_precision,omitempty"`
 			Type_name                    *string `tfsdk:"type_name" json:"type_name,omitempty"`
 			Unrecoverable_error_types    *string `tfsdk:"unrecoverable_error_types" json:"unrecoverable_error_types,omitempty"`
+			Use_legacy_template          *bool   `tfsdk:"use_legacy_template" json:"use_legacy_template,omitempty"`
 			User                         *string `tfsdk:"user" json:"user,omitempty"`
 			Utc_index                    *bool   `tfsdk:"utc_index" json:"utc_index,omitempty"`
 			Validate_client_version      *bool   `tfsdk:"validate_client_version" json:"validate_client_version,omitempty"`
@@ -929,6 +930,7 @@ type LoggingBanzaicloudIoOutputV1Beta1DataSourceData struct {
 			Time_precision               *string `tfsdk:"time_precision" json:"time_precision,omitempty"`
 			Type_name                    *string `tfsdk:"type_name" json:"type_name,omitempty"`
 			Unrecoverable_error_types    *string `tfsdk:"unrecoverable_error_types" json:"unrecoverable_error_types,omitempty"`
+			Use_legacy_template          *bool   `tfsdk:"use_legacy_template" json:"use_legacy_template,omitempty"`
 			User                         *string `tfsdk:"user" json:"user,omitempty"`
 			Utc_index                    *bool   `tfsdk:"utc_index" json:"utc_index,omitempty"`
 			Validate_client_version      *bool   `tfsdk:"validate_client_version" json:"validate_client_version,omitempty"`
@@ -5513,6 +5515,14 @@ func (r *LoggingBanzaicloudIoOutputV1Beta1DataSource) Schema(_ context.Context, 
 								Computed:            true,
 							},
 
+							"use_legacy_template": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            false,
+								Computed:            true,
+							},
+
 							"user": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -9132,6 +9142,14 @@ func (r *LoggingBanzaicloudIoOutputV1Beta1DataSource) Schema(_ context.Context, 
 							},
 
 							"unrecoverable_error_types": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            false,
+								Computed:            true,
+							},
+
+							"use_legacy_template": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

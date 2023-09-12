@@ -269,11 +269,12 @@ type OperatorKnativeDevKnativeServingV1Beta1DataSourceData struct {
 				} `tfsdk:"knative_local_gateway" json:"knative-local-gateway,omitempty"`
 			} `tfsdk:"istio" json:"istio,omitempty"`
 			Kourier *struct {
-				Bootstrap_configmap *string `tfsdk:"bootstrap_configmap" json:"bootstrap-configmap,omitempty"`
-				Enabled             *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-				Http_port           *int64  `tfsdk:"http_port" json:"http-port,omitempty"`
-				Https_port          *int64  `tfsdk:"https_port" json:"https-port,omitempty"`
-				Service_type        *string `tfsdk:"service_type" json:"service-type,omitempty"`
+				Bootstrap_configmap      *string `tfsdk:"bootstrap_configmap" json:"bootstrap-configmap,omitempty"`
+				Enabled                  *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+				Http_port                *int64  `tfsdk:"http_port" json:"http-port,omitempty"`
+				Https_port               *int64  `tfsdk:"https_port" json:"https-port,omitempty"`
+				Service_load_balancer_ip *string `tfsdk:"service_load_balancer_ip" json:"service-load-balancer-ip,omitempty"`
+				Service_type             *string `tfsdk:"service_type" json:"service-type,omitempty"`
 			} `tfsdk:"kourier" json:"kourier,omitempty"`
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
 		Manifests *[]struct {
@@ -2046,6 +2047,14 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1DataSource) Schema(_ context.Con
 									},
 
 									"https_port": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            false,
+										Computed:            true,
+									},
+
+									"service_load_balancer_ip": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

@@ -9,12 +9,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64default"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -46,11 +48,12 @@ type CrdProjectcalicoOrgGlobalNetworkPolicyV1Resource struct {
 }
 
 type CrdProjectcalicoOrgGlobalNetworkPolicyV1ResourceData struct {
-	ID             types.String `tfsdk:"id" json:"-"`
-	ForceConflicts types.Bool   `tfsdk:"force_conflicts" json:"-"`
-	FieldManager   types.String `tfsdk:"field_manager" json:"-"`
-	WaitForUpsert  types.List   `tfsdk:"wait_for_upsert" json:"-"`
-	WaitForDelete  types.Object `tfsdk:"wait_for_delete" json:"-"`
+	ID                  types.String `tfsdk:"id" json:"-"`
+	ForceConflicts      types.Bool   `tfsdk:"force_conflicts" json:"-"`
+	FieldManager        types.String `tfsdk:"field_manager" json:"-"`
+	DeletionPropagation types.String `tfsdk:"deletion_propagation" json:"-"`
+	WaitForUpsert       types.List   `tfsdk:"wait_for_upsert" json:"-"`
+	WaitForDelete       types.Object `tfsdk:"wait_for_delete" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
 	Kind       *string `tfsdk:"-" json:"kind"`
@@ -182,6 +185,7 @@ type CrdProjectcalicoOrgGlobalNetworkPolicyV1ResourceData struct {
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
 		NamespaceSelector      *string   `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 		Order                  *float64  `tfsdk:"order" json:"order,omitempty"`
+		PerformanceHints       *[]string `tfsdk:"performance_hints" json:"performanceHints,omitempty"`
 		PreDNAT                *bool     `tfsdk:"pre_dnat" json:"preDNAT,omitempty"`
 		Selector               *string   `tfsdk:"selector" json:"selector,omitempty"`
 		ServiceAccountSelector *string   `tfsdk:"service_account_selector" json:"serviceAccountSelector,omitempty"`
@@ -214,12 +218,26 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Resource) Schema(_ context.Cont
 				Computed:            true,
 			},
 
-			"field_manager": schema.BoolAttribute{
+			"field_manager": schema.StringAttribute{
 				Description:         "The name of the manager used to track field ownership. If not specified uses the value from the provider configuration.",
 				MarkdownDescription: "The name of the manager used to track field ownership. If not specified uses the value from the provider configuration.",
 				Required:            false,
 				Optional:            true,
 				Computed:            true,
+				Validators: []validator.String{
+					stringvalidator.LengthAtLeast(1),
+				},
+			},
+
+			"deletion_propagation": schema.StringAttribute{
+				Description:         "Decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.",
+				MarkdownDescription: "Decides if a deletion will propagate to the dependents of the object, and how the garbage collector will handle the propagation.",
+				Required:            false,
+				Optional:            true,
+				Computed:            true,
+				Validators: []validator.String{
+					stringvalidator.OneOfCaseInsensitive("Orphan", "Background", "Foreground"),
+				},
 			},
 
 			"wait_for_upsert": schema.ListNestedAttribute{
@@ -244,21 +262,27 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Resource) Schema(_ context.Cont
 							Optional:            true,
 							Computed:            true,
 						},
-						"timeout": schema.StringAttribute{
-							Description:         "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
-							MarkdownDescription: "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
+						"timeout": schema.Int64Attribute{
+							Description:         "The number of seconds to wait before giving up. Zero means check once and don't wait.",
+							MarkdownDescription: "The number of seconds to wait before giving up. Zero means check once and don't wait.",
 							Required:            false,
 							Optional:            true,
 							Computed:            true,
-							Default:             stringdefault.StaticString("30s"),
+							Default:             int64default.StaticInt64(30),
+							Validators: []validator.Int64{
+								int64validator.AtLeast(0),
+							},
 						},
-						"poll_interval": schema.StringAttribute{
-							Description:         "The length of time to wait before checking again.",
-							MarkdownDescription: "The length of time to wait before checking again.",
+						"poll_interval": schema.Int64Attribute{
+							Description:         "The number of seconds to wait before checking again.",
+							MarkdownDescription: "The number of seconds to wait before checking again.",
 							Required:            false,
 							Optional:            true,
 							Computed:            true,
-							Default:             stringdefault.StaticString("5s"),
+							Default:             int64default.StaticInt64(5),
+							Validators: []validator.Int64{
+								int64validator.AtLeast(0),
+							},
 						},
 					},
 				},
@@ -271,21 +295,27 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Resource) Schema(_ context.Cont
 				Optional:            true,
 				Computed:            true,
 				Attributes: map[string]schema.Attribute{
-					"timeout": schema.StringAttribute{
-						Description:         "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
-						MarkdownDescription: "The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.",
+					"timeout": schema.Int64Attribute{
+						Description:         "The number of seconds to wait before giving up. Zero means check once and don't wait.",
+						MarkdownDescription: "The number of seconds to wait before giving up. Zero means check once and don't wait.",
 						Required:            false,
 						Optional:            true,
 						Computed:            true,
-						Default:             stringdefault.StaticString("30s"),
+						Default:             int64default.StaticInt64(30),
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
 					},
-					"poll_interval": schema.StringAttribute{
-						Description:         "The length of time to wait before checking again.",
-						MarkdownDescription: "The length of time to wait before checking again.",
+					"poll_interval": schema.Int64Attribute{
+						Description:         "The number of seconds to wait before checking again.",
+						MarkdownDescription: "The number of seconds to wait before checking again.",
 						Required:            false,
 						Optional:            true,
 						Computed:            true,
-						Default:             stringdefault.StaticString("5s"),
+						Default:             int64default.StaticInt64(5),
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
 					},
 				},
 			},
@@ -1165,6 +1195,15 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Resource) Schema(_ context.Cont
 						Computed:            false,
 					},
 
+					"performance_hints": schema.ListAttribute{
+						Description:         "PerformanceHints contains a list of hints to Calico's policy engine to help process the policy more efficiently.  Hints never change the enforcement behaviour of the policy.  Currently, the only available hint is 'AssumeNeededOnEveryNode'.  When that hint is set on a policy, Felix will act as if the policy matches a local endpoint even if it does not. This is useful for 'preloading' any large static policies that are known to be used on every node. If the policy is _not_ used on a particular node then the work done to preload the policy (and to maintain it) is wasted.",
+						MarkdownDescription: "PerformanceHints contains a list of hints to Calico's policy engine to help process the policy more efficiently.  Hints never change the enforcement behaviour of the policy.  Currently, the only available hint is 'AssumeNeededOnEveryNode'.  When that hint is set on a policy, Felix will act as if the policy matches a local endpoint even if it does not. This is useful for 'preloading' any large static policies that are known to be used on every node. If the policy is _not_ used on a particular node then the work done to preload the policy (and to maintain it) is wasted.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"pre_dnat": schema.BoolAttribute{
 						Description:         "PreDNAT indicates to apply the rules in this policy before any DNAT.",
 						MarkdownDescription: "PreDNAT indicates to apply the rules in this policy before any DNAT.",
@@ -1280,6 +1319,31 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Resource) Create(ctx context.Co
 
 	model.Metadata = readResponse.Metadata
 	model.Spec = readResponse.Spec
+	if model.ForceConflicts.IsUnknown() {
+		model.ForceConflicts = types.BoolNull()
+	}
+	if model.FieldManager.IsUnknown() {
+		model.FieldManager = types.StringNull()
+	}
+	if model.DeletionPropagation.IsUnknown() {
+		model.DeletionPropagation = types.StringNull()
+	}
+	if model.WaitForUpsert.IsUnknown() {
+		model.WaitForUpsert = types.ListNull(types.ObjectType{
+			AttrTypes: map[string]attr.Type{
+				"jsonpath":      types.StringType,
+				"value":         types.StringType,
+				"timeout":       types.Int64Type,
+				"poll_interval": types.Int64Type,
+			},
+		})
+	}
+	if model.WaitForDelete.IsUnknown() {
+		model.WaitForDelete = types.ObjectNull(map[string]attr.Type{
+			"timeout":       types.Int64Type,
+			"poll_interval": types.Int64Type,
+		})
+	}
 
 	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
 }
@@ -1315,6 +1379,31 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Resource) Read(ctx context.Cont
 
 	data.Metadata = readResponse.Metadata
 	data.Spec = readResponse.Spec
+	if data.ForceConflicts.IsUnknown() {
+		data.ForceConflicts = types.BoolNull()
+	}
+	if data.FieldManager.IsUnknown() {
+		data.FieldManager = types.StringNull()
+	}
+	if data.DeletionPropagation.IsUnknown() {
+		data.DeletionPropagation = types.StringNull()
+	}
+	if data.WaitForUpsert.IsUnknown() {
+		data.WaitForUpsert = types.ListNull(types.ObjectType{
+			AttrTypes: map[string]attr.Type{
+				"jsonpath":      types.StringType,
+				"value":         types.StringType,
+				"timeout":       types.Int64Type,
+				"poll_interval": types.Int64Type,
+			},
+		})
+	}
+	if data.WaitForDelete.IsUnknown() {
+		data.WaitForDelete = types.ObjectNull(map[string]attr.Type{
+			"timeout":       types.Int64Type,
+			"poll_interval": types.Int64Type,
+		})
+	}
 
 	response.Diagnostics.Append(response.State.Set(ctx, &data)...)
 }
@@ -1387,15 +1476,20 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Resource) Delete(ctx context.Co
 		return
 	}
 
+	deleteOptions := meta.DeleteOptions{}
+	if !data.DeletionPropagation.IsNull() && !data.DeletionPropagation.IsUnknown() {
+		deleteOptions.PropagationPolicy = utilities.MapDeletionPropagation(data.DeletionPropagation.ValueString())
+	}
+
 	err := r.kubernetesClient.
 		Resource(k8sSchema.GroupVersionResource{Group: "crd.projectcalico.org", Version: "v1", Resource: "globalnetworkpolicies"}).
-		Delete(ctx, data.Metadata.Name, meta.DeleteOptions{})
+		Delete(ctx, data.Metadata.Name, deleteOptions)
 	if utilities.IsDeletionError(err) {
 		response.Diagnostics.Append(utilities.DeleteError(err))
 		return
 	}
 
-	if !data.WaitForDelete.IsNull() {
+	if !data.WaitForDelete.IsNull() && !data.WaitForDelete.IsUnknown() {
 		timeout := utilities.DetermineTimeout(data.WaitForDelete.Attributes())
 		pollInterval := utilities.DeterminePollInterval(data.WaitForDelete.Attributes())
 
@@ -1404,7 +1498,7 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Resource) Delete(ctx context.Co
 			_, err := r.kubernetesClient.
 				Resource(k8sSchema.GroupVersionResource{Group: "crd.projectcalico.org", Version: "v1", Resource: "globalnetworkpolicies"}).
 				Get(ctx, data.Metadata.Name, meta.GetOptions{})
-			if utilities.IsNotFound(err) || timeout == time.Second*0 {
+			if utilities.IsNotFound(err) || timeout.Milliseconds() == 0 {
 				break
 			}
 			if time.Now().After(startTime.Add(timeout)) {

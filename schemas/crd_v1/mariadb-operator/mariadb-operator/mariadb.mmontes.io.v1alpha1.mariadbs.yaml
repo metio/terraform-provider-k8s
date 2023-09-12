@@ -6063,6 +6063,10 @@ spec:
                 - key
                 type: object
                 x-kubernetes-map-type: atomic
+              podAnnotations:
+                additionalProperties:
+                  type: string
+                type: object
               podDisruptionBudget:
                 properties:
                   maxUnavailable:
@@ -6295,6 +6299,22 @@ spec:
                     additionalProperties:
                       type: string
                     type: object
+                  externalTrafficPolicy:
+                    description: Service External Traffic Policy Type string
+                    type: string
+                  labels:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  loadBalancerIP:
+                    type: string
+                  loadBalancerSourceRanges:
+                    items:
+                      type: string
+                    type: array
+                  sessionAffinity:
+                    description: Session Affinity Type string
+                    type: string
                   type:
                     description: Service Type string describes ingress methods for
                       a service
@@ -6617,6 +6637,22 @@ spec:
                     additionalProperties:
                       type: string
                     type: object
+                  externalTrafficPolicy:
+                    description: Service External Traffic Policy Type string
+                    type: string
+                  labels:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  loadBalancerIP:
+                    type: string
+                  loadBalancerSourceRanges:
+                    items:
+                      type: string
+                    type: array
+                  sessionAffinity:
+                    description: Session Affinity Type string
+                    type: string
                   type:
                     description: Service Type string describes ingress methods for
                       a service
@@ -6790,6 +6826,22 @@ spec:
                     additionalProperties:
                       type: string
                     type: object
+                  externalTrafficPolicy:
+                    description: Service External Traffic Policy Type string
+                    type: string
+                  labels:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  loadBalancerIP:
+                    type: string
+                  loadBalancerSourceRanges:
+                    items:
+                      type: string
+                    type: array
+                  sessionAffinity:
+                    description: Session Affinity Type string
+                    type: string
                   type:
                     description: Service Type string describes ingress methods for
                       a service

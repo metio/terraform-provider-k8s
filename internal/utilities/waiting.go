@@ -13,14 +13,8 @@ import (
 
 func DetermineTimeout(attributes map[string]attr.Value) time.Duration {
 	if value, exists := attributes["timeout"]; exists {
-		if valueString, typed := value.(types.String); typed {
-			timeout, err := time.ParseDuration(valueString.ValueString())
-			if err == nil {
-				if timeout > time.Second*0 {
-					return timeout
-				}
-				return time.Hour * 168
-			}
+		if valueInt, typed := value.(types.Int64); typed {
+			return time.Second * time.Duration(valueInt.ValueInt64())
 		}
 	}
 	return time.Second * 30
@@ -28,11 +22,8 @@ func DetermineTimeout(attributes map[string]attr.Value) time.Duration {
 
 func DeterminePollInterval(attributes map[string]attr.Value) time.Duration {
 	if value, exists := attributes["poll_interval"]; exists {
-		if valueString, typed := value.(types.String); typed {
-			timeout, err := time.ParseDuration(valueString.ValueString())
-			if err == nil {
-				return timeout
-			}
+		if valueInt, typed := value.(types.Int64); typed {
+			return time.Second * time.Duration(valueInt.ValueInt64())
 		}
 	}
 	return time.Second * 5

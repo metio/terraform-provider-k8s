@@ -201,6 +201,10 @@ type GatewayNetworkingK8SIoHttprouteV1Alpha2DataSourceData struct {
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"query_params" json:"queryParams,omitempty"`
 			} `tfsdk:"matches" json:"matches,omitempty"`
+			Timeouts *struct {
+				BackendRequest *string `tfsdk:"backend_request" json:"backendRequest,omitempty"`
+				Request        *string `tfsdk:"request" json:"request,omitempty"`
+			} `tfsdk:"timeouts" json:"timeouts,omitempty"`
 		} `tfsdk:"rules" json:"rules,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -1287,6 +1291,31 @@ func (r *GatewayNetworkingK8SIoHttprouteV1Alpha2DataSource) Schema(_ context.Con
 												Optional: false,
 												Computed: true,
 											},
+										},
+									},
+									Required: false,
+									Optional: false,
+									Computed: true,
+								},
+
+								"timeouts": schema.SingleNestedAttribute{
+									Description:         "Timeouts defines the timeouts that can be configured for an HTTP request.  Support: Extended  ",
+									MarkdownDescription: "Timeouts defines the timeouts that can be configured for an HTTP request.  Support: Extended  ",
+									Attributes: map[string]schema.Attribute{
+										"backend_request": schema.StringAttribute{
+											Description:         "BackendRequest specifies a timeout for an individual request from the gateway to a backend. This covers the time from when the request first starts being sent from the gateway to when the full response has been received from the backend.  An entire client HTTP transaction with a gateway, covered by the Request timeout, may result in more than one call from the gateway to the destination backend, for example, if automatic retries are supported.  Because the Request timeout encompasses the BackendRequest timeout, the value of BackendRequest must be <= the value of Request timeout.  Support: Extended",
+											MarkdownDescription: "BackendRequest specifies a timeout for an individual request from the gateway to a backend. This covers the time from when the request first starts being sent from the gateway to when the full response has been received from the backend.  An entire client HTTP transaction with a gateway, covered by the Request timeout, may result in more than one call from the gateway to the destination backend, for example, if automatic retries are supported.  Because the Request timeout encompasses the BackendRequest timeout, the value of BackendRequest must be <= the value of Request timeout.  Support: Extended",
+											Required:            false,
+											Optional:            false,
+											Computed:            true,
+										},
+
+										"request": schema.StringAttribute{
+											Description:         "Request specifies the maximum duration for a gateway to respond to an HTTP request. If the gateway has not been able to respond before this deadline is met, the gateway MUST return a timeout error.  For example, setting the 'rules.timeouts.request' field to the value '10s' in an 'HTTPRoute' will cause a timeout if a client request is taking longer than 10 seconds to complete.  This timeout is intended to cover as close to the whole request-response transaction as possible although an implementation MAY choose to start the timeout after the entire request stream has been received instead of immediately after the transaction is initiated by the client.  When this field is unspecified, request timeout behavior is implementation-specific.  Support: Extended",
+											MarkdownDescription: "Request specifies the maximum duration for a gateway to respond to an HTTP request. If the gateway has not been able to respond before this deadline is met, the gateway MUST return a timeout error.  For example, setting the 'rules.timeouts.request' field to the value '10s' in an 'HTTPRoute' will cause a timeout if a client request is taking longer than 10 seconds to complete.  This timeout is intended to cover as close to the whole request-response transaction as possible although an implementation MAY choose to start the timeout after the entire request stream has been received instead of immediately after the transaction is initiated by the client.  When this field is unspecified, request timeout behavior is implementation-specific.  Support: Extended",
+											Required:            false,
+											Optional:            false,
+											Computed:            true,
 										},
 									},
 									Required: false,
