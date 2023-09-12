@@ -60,6 +60,7 @@ Optional:
 - `provider` (Attributes) Specifies detailed configuration of the CUSTOM action. (see [below for nested schema](#nestedatt--spec--provider))
 - `rules` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--rules))
 - `selector` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--selector))
+- `target_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--target_ref))
 
 <a id="nestedatt--spec--provider"></a>
 ### Nested Schema for `spec.provider`
@@ -143,3 +144,14 @@ Optional:
 Optional:
 
 - `match_labels` (Map of String)
+
+
+<a id="nestedatt--spec--target_ref"></a>
+### Nested Schema for `spec.target_ref`
+
+Optional:
+
+- `group` (String) group is the group of the target resource.
+- `kind` (String) kind is kind of the target resource.
+- `name` (String) name is the name of the target resource.
+- `namespace` (String) namespace is the namespace of the referent.

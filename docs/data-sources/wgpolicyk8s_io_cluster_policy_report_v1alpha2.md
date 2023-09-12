@@ -30,7 +30,9 @@ data "k8s_wgpolicyk8s_io_cluster_policy_report_v1alpha2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `results` (Attributes List) PolicyReportResult provides result details (see [below for nested schema](#nestedatt--results))
 - `scope` (Attributes) Scope is an optional reference to the report scope (e.g. a Deployment, Namespace, or Node) (see [below for nested schema](#nestedatt--scope))
 - `scope_selector` (Attributes) ScopeSelector is an optional selector for multiple scopes (e.g. Pods). Either one of, or none of, but not both of, Scope or ScopeSelector should be specified. (see [below for nested schema](#nestedatt--scope_selector))

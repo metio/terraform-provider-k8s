@@ -31,7 +31,9 @@ data "k8s_infinispan_org_backup_v2alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) BackupSpec defines the desired state of Backup (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

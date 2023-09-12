@@ -31,7 +31,9 @@ data "k8s_cilium_io_cilium_node_config_v2alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Spec is the desired Cilium configuration overrides for a given node (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

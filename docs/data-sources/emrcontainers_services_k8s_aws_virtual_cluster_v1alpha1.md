@@ -31,7 +31,9 @@ data "k8s_emrcontainers_services_k8s_aws_virtual_cluster_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) VirtualClusterSpec defines the desired state of VirtualCluster.  This entity describes a virtual cluster. A virtual cluster is a Kubernetes namespace that Amazon EMR is registered with. Amazon EMR uses virtual clusters to run jobs and host endpoints. Multiple virtual clusters can be backed by the same physical cluster. However, each virtual cluster maps to one namespace on an EKS cluster. Virtual clusters do not create any active resources that contribute to your bill or that require lifecycle management outside the service. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

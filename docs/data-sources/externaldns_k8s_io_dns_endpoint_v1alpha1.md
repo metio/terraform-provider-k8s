@@ -31,7 +31,9 @@ data "k8s_externaldns_k8s_io_dns_endpoint_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) DNSEndpointSpec defines the desired state of DNSEndpoint (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

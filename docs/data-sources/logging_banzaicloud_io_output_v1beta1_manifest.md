@@ -178,6 +178,7 @@ Optional:
 - `time_precision` (String)
 - `type_name` (String)
 - `unrecoverable_error_types` (String)
+- `use_legacy_template` (Boolean)
 - `user` (String)
 - `utc_index` (Boolean)
 - `validate_client_version` (Boolean)
@@ -1613,6 +1614,7 @@ Optional:
 - `time_precision` (String)
 - `type_name` (String)
 - `unrecoverable_error_types` (String)
+- `use_legacy_template` (Boolean)
 - `user` (String)
 - `utc_index` (Boolean)
 - `validate_client_version` (Boolean)
@@ -5095,8 +5097,8 @@ Optional:
 
 Required:
 
-- `aaccess_key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--aaccess_key_secret))
 - `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_id))
+- `access_key_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret))
 - `bucket` (String)
 - `endpoint` (String)
 
@@ -5120,58 +5122,6 @@ Optional:
 - `store_as` (String)
 - `upload_crc_enable` (Boolean)
 - `warn_for_delay` (String)
-
-<a id="nestedatt--spec--oss--aaccess_key_secret"></a>
-### Nested Schema for `spec.oss.aaccess_key_secret`
-
-Optional:
-
-- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--aaccess_key_secret--mount_from))
-- `value` (String)
-- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--aaccess_key_secret--value_from))
-
-<a id="nestedatt--spec--oss--aaccess_key_secret--mount_from"></a>
-### Nested Schema for `spec.oss.aaccess_key_secret.value_from`
-
-Optional:
-
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--aaccess_key_secret--value_from--secret_key_ref))
-
-<a id="nestedatt--spec--oss--aaccess_key_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.oss.aaccess_key_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-
-<a id="nestedatt--spec--oss--aaccess_key_secret--value_from"></a>
-### Nested Schema for `spec.oss.aaccess_key_secret.value_from`
-
-Optional:
-
-- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--aaccess_key_secret--value_from--secret_key_ref))
-
-<a id="nestedatt--spec--oss--aaccess_key_secret--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.oss.aaccess_key_secret.value_from.secret_key_ref`
-
-Required:
-
-- `key` (String)
-
-Optional:
-
-- `name` (String)
-- `optional` (Boolean)
-
-
-
 
 <a id="nestedatt--spec--oss--access_key_id"></a>
 ### Nested Schema for `spec.oss.access_key_id`
@@ -5212,6 +5162,58 @@ Optional:
 
 <a id="nestedatt--spec--oss--access_key_id--value_from--secret_key_ref"></a>
 ### Nested Schema for `spec.oss.access_key_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--oss--access_key_secret"></a>
+### Nested Schema for `spec.oss.access_key_secret`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret--value_from))
+
+<a id="nestedatt--spec--oss--access_key_secret--mount_from"></a>
+### Nested Schema for `spec.oss.access_key_secret.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--oss--access_key_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.oss.access_key_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--oss--access_key_secret--value_from"></a>
+### Nested Schema for `spec.oss.access_key_secret.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--oss--access_key_secret--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--oss--access_key_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.oss.access_key_secret.value_from.secret_key_ref`
 
 Required:
 

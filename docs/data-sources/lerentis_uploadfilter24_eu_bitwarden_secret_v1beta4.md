@@ -31,7 +31,9 @@ data "k8s_lerentis_uploadfilter24_eu_bitwarden_secret_v1beta4" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

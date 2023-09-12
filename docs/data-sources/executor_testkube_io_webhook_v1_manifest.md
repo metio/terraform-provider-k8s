@@ -57,8 +57,9 @@ Optional:
 Optional:
 
 - `events` (List of String) Events declare list if events on which webhook should be called
-- `headers` (Map of String) webhook headers
+- `headers` (Map of String) webhook headers (golang template supported)
 - `payload_object_field` (String) will load the generated payload for notification inside the object
 - `payload_template` (String) golang based template for notification payload
+- `payload_template_reference` (String) name of the template resource
 - `selector` (String) Labels to filter for tests and test suites
-- `uri` (String) Uri is address where webhook should be made
+- `uri` (String) Uri is address where webhook should be made (golang template supported)

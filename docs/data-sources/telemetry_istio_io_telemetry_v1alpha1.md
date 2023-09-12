@@ -31,7 +31,9 @@ data "k8s_telemetry_istio_io_telemetry_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Telemetry configuration for workloads. See more details at: https://istio.io/docs/reference/config/telemetry.html (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -56,6 +58,7 @@ Read-Only:
 - `access_logging` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--access_logging))
 - `metrics` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--metrics))
 - `selector` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--selector))
+- `target_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--target_ref))
 - `tracing` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--tracing))
 
 <a id="nestedatt--spec--access_logging"></a>
@@ -146,6 +149,17 @@ Read-Only:
 Read-Only:
 
 - `match_labels` (Map of String)
+
+
+<a id="nestedatt--spec--target_ref"></a>
+### Nested Schema for `spec.target_ref`
+
+Read-Only:
+
+- `group` (String) group is the group of the target resource.
+- `kind` (String) kind is kind of the target resource.
+- `name` (String) name is the name of the target resource.
+- `namespace` (String) namespace is the namespace of the referent.
 
 
 <a id="nestedatt--spec--tracing"></a>

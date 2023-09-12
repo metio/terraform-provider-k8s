@@ -59,6 +59,7 @@ Optional:
 - `access_logging` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--access_logging))
 - `metrics` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--metrics))
 - `selector` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--selector))
+- `target_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--target_ref))
 - `tracing` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--tracing))
 
 <a id="nestedatt--spec--access_logging"></a>
@@ -149,6 +150,17 @@ Optional:
 Optional:
 
 - `match_labels` (Map of String)
+
+
+<a id="nestedatt--spec--target_ref"></a>
+### Nested Schema for `spec.target_ref`
+
+Optional:
+
+- `group` (String) group is the group of the target resource.
+- `kind` (String) kind is kind of the target resource.
+- `name` (String) name is the name of the target resource.
+- `namespace` (String) namespace is the namespace of the referent.
 
 
 <a id="nestedatt--spec--tracing"></a>

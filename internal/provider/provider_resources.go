@@ -1014,6 +1014,7 @@ func allResources() []func() resource.Resource {
 		model_kubedl_io_v1alpha1.NewModelKubedlIoModelVersionV1Alpha1Resource,
 		monitoring_coreos_com_v1.NewMonitoringCoreosComAlertmanagerV1Resource,
 		monitoring_coreos_com_v1.NewMonitoringCoreosComPodMonitorV1Resource,
+		monitoring_coreos_com_v1.NewMonitoringCoreosComProbeV1Resource,
 		monitoring_coreos_com_v1.NewMonitoringCoreosComPrometheusRuleV1Resource,
 		monitoring_coreos_com_v1.NewMonitoringCoreosComPrometheusV1Resource,
 		monitoring_coreos_com_v1.NewMonitoringCoreosComServiceMonitorV1Resource,

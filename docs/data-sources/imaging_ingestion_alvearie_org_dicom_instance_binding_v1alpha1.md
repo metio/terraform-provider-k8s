@@ -31,7 +31,9 @@ data "k8s_imaging_ingestion_alvearie_org_dicom_instance_binding_v1alpha1" "examp
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) DicomInstanceBindingSpec defines the desired state of DicomInstanceBinding (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

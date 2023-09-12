@@ -62,7 +62,7 @@ Required:
 
 Optional:
 
-- `parameter_overrides` (Map of String) These are ONLY user-defined parameter overrides for the DB parameter group. This does not contain default or system parameters.
+- `parameter_overrides` (Map of String)
 - `tags` (Attributes List) Tags to assign to the DB parameter group. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--tags"></a>

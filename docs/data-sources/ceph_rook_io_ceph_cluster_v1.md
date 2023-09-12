@@ -31,7 +31,9 @@ data "k8s_ceph_rook_io_ceph_cluster_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ClusterSpec represents the specification of Ceph Cluster (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -828,13 +830,23 @@ Read-Only:
 
 Read-Only:
 
+- `address_ranges` (Attributes) AddressRanges specify a list of CIDRs that Rook will apply to Ceph's 'public_network' and/or 'cluster_network' configurations. This config section may be used for the 'host' or 'multus' network providers. (see [below for nested schema](#nestedatt--spec--network--address_ranges))
 - `connections` (Attributes) Settings for network connections such as compression and encryption across the wire. (see [below for nested schema](#nestedatt--spec--network--connections))
 - `dual_stack` (Boolean) DualStack determines whether Ceph daemons should listen on both IPv4 and IPv6
 - `host_network` (Boolean) HostNetwork to enable host network
 - `ip_family` (String) IPFamily is the single stack IPv6 or IPv4 protocol
 - `multi_cluster_service` (Attributes) Enable multiClusterService to export the Services between peer clusters (see [below for nested schema](#nestedatt--spec--network--multi_cluster_service))
 - `provider` (String) Provider is what provides network connectivity to the cluster e.g. 'host' or 'multus'
-- `selectors` (Map of String) Selectors string values describe what networks will be used to connect the cluster. Meanwhile the keys describe each network respective responsibilities or any metadata storage provider decide.
+- `selectors` (Map of String) Selectors define NetworkAttachmentDefinitions to be used for Ceph public and/or cluster networks when the 'multus' network provider is used. This config section is not used for other network providers.  Valid keys are 'public' and 'cluster'. Refer to Ceph networking documentation for more: https://docs.ceph.com/en/reef/rados/configuration/network-config-ref/  Refer to Multus network annotation documentation for help selecting values: https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md#run-pod-with-network-annotation  Rook will make a best-effort attempt to automatically detect CIDR address ranges for given network attachment definitions. Rook's methods are robust but may be imprecise for sufficiently complicated networks. Rook's auto-detection process obtains a new IP address lease for each CephCluster reconcile. If Rook fails to detect, incorrectly detects, only partially detects, or if underlying networks do not support reusing old IP addresses, it is best to use the 'addressRanges' config section to specify CIDR ranges for the Ceph cluster.  As a contrived example, one can use a theoretical Kubernetes-wide network for Ceph client traffic and a theoretical Rook-only network for Ceph replication traffic as shown: selectors: public: 'default/cluster-fast-net' cluster: 'rook-ceph/ceph-backend-net'
+
+<a id="nestedatt--spec--network--address_ranges"></a>
+### Nested Schema for `spec.network.address_ranges`
+
+Read-Only:
+
+- `cluster` (List of String) Cluster defines a list of CIDRs to use for Ceph cluster network communication.
+- `public` (List of String) Public defines a list of CIDRs to use for Ceph public network communication.
+
 
 <a id="nestedatt--spec--network--connections"></a>
 ### Nested Schema for `spec.network.connections`

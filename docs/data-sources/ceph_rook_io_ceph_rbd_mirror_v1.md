@@ -31,7 +31,9 @@ data "k8s_ceph_rook_io_ceph_rbd_mirror_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) RBDMirroringSpec represents the specification of an RBD mirror daemon (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

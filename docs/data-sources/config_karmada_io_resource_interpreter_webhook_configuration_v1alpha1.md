@@ -30,7 +30,9 @@ data "k8s_config_karmada_io_resource_interpreter_webhook_configuration_v1alpha1"
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `webhooks` (Attributes List) Webhooks is a list of webhooks and the affected resources and operations. (see [below for nested schema](#nestedatt--webhooks))
 
 <a id="nestedatt--metadata"></a>

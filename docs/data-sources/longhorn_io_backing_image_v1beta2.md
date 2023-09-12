@@ -31,7 +31,9 @@ data "k8s_longhorn_io_backing_image_v1beta2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) BackingImageSpec defines the desired state of the Longhorn backing image (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

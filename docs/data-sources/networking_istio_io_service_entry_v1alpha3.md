@@ -31,7 +31,9 @@ data "k8s_networking_istio_io_service_entry_v1alpha3" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Configuration affecting service registry. See more details at: https://istio.io/docs/reference/config/networking/service-entry.html (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

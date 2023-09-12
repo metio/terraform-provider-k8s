@@ -31,7 +31,9 @@ data "k8s_argoproj_io_application_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `operation` (Attributes) Operation contains information about a requested or running operation (see [below for nested schema](#nestedatt--operation))
 - `spec` (Attributes) ApplicationSpec represents desired application state. Contains link to repository with application definition and additional parameters link definition revision. (see [below for nested schema](#nestedatt--spec))
 

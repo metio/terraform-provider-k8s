@@ -3,12 +3,12 @@
 page_title: "k8s_camel_apache_org_integration_platform_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "camel.apache.org"
 description: |-
-  IntegrationPlatform is the resource used to drive the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. When the Camel K operator is installed in 'global' mode, you will need to specify an 'IntegrationPlatform' in each namespace where you want the Camel K operator to be executed
+  IntegrationPlatform is the resource used to drive the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. When the Camel K operator is installed in 'global' mode, you will need to specify an 'IntegrationPlatform' in each namespace where you want the Camel K operator to be executed.
 ---
 
 # k8s_camel_apache_org_integration_platform_v1_manifest (Data Source)
 
-IntegrationPlatform is the resource used to drive the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. When the Camel K operator is installed in 'global' mode, you will need to specify an 'IntegrationPlatform' in each namespace where you want the Camel K operator to be executed
+IntegrationPlatform is the resource used to drive the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. When the Camel K operator is installed in 'global' mode, you will need to specify an 'IntegrationPlatform' in each namespace where you want the Camel K operator to be executed.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_camel_apache_org_integration_platform_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) IntegrationPlatformSpec defines the desired state of IntegrationPlatform (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) IntegrationPlatformSpec defines the desired state of IntegrationPlatform. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

@@ -31,7 +31,9 @@ data "k8s_source_toolkit_fluxcd_io_bucket_v1beta2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) BucketSpec specifies the required configuration to produce an Artifact for an object storage bucket. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

@@ -31,7 +31,9 @@ data "k8s_rds_services_k8s_aws_global_cluster_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) GlobalClusterSpec defines the desired state of GlobalCluster.  A data type representing an Aurora global database. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

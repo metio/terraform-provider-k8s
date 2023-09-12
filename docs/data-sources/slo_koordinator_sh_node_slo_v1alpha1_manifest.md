@@ -56,6 +56,7 @@ Optional:
 
 - `cpu_burst_strategy` (Attributes) CPU Burst Strategy (see [below for nested schema](#nestedatt--spec--cpu_burst_strategy))
 - `extensions` (Map of String) Third party extensions for NodeSLO
+- `host_applications` (Attributes List) QoS management for out-of-band applications (see [below for nested schema](#nestedatt--spec--host_applications))
 - `resource_qos_strategy` (Attributes) QoS config strategy for pods of different qos-class (see [below for nested schema](#nestedatt--spec--resource_qos_strategy))
 - `resource_used_threshold_with_be` (Attributes) BE pods will be limited if node resource usage overload (see [below for nested schema](#nestedatt--spec--resource_used_threshold_with_be))
 - `system_strategy` (Attributes) node global system config (see [below for nested schema](#nestedatt--spec--system_strategy))
@@ -70,6 +71,28 @@ Optional:
 - `cpu_burst_percent` (Number) cpu burst percentage for setting cpu.cfs_burst_us, legal range: [0, 10000], default as 1000 (1000%)
 - `policy` (String)
 - `share_pool_threshold_percent` (Number) scale down cfs quota if node cpu overload, default = 50
+
+
+<a id="nestedatt--spec--host_applications"></a>
+### Nested Schema for `spec.host_applications`
+
+Optional:
+
+- `cgroup_path` (Attributes) Optional, defines the host cgroup configuration, use default if not specified according to priority and qos (see [below for nested schema](#nestedatt--spec--host_applications--cgroup_path))
+- `name` (String)
+- `priority` (String) Priority class of the application
+- `qos` (String) QoS class of the application
+- `strategy` (Map of String) QoS Strategy of host application
+
+<a id="nestedatt--spec--host_applications--cgroup_path"></a>
+### Nested Schema for `spec.host_applications.cgroup_path`
+
+Optional:
+
+- `base` (String) cgroup base dir, the format is various across cgroup drivers
+- `parent_dir` (String) cgroup parent path under base dir
+- `relative_path` (String) cgroup relative path under parent dir
+
 
 
 <a id="nestedatt--spec--resource_qos_strategy"></a>

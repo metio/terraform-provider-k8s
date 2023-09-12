@@ -3,12 +3,12 @@
 page_title: "k8s_camel_apache_org_build_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "camel.apache.org"
 description: |-
-  Build is the Schema for the builds API
+  Build is the Schema for the builds API.
 ---
 
 # k8s_camel_apache_org_build_v1_manifest (Data Source)
 
-Build is the Schema for the builds API
+Build is the Schema for the builds API.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_camel_apache_org_build_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropiate to think it as pipeline. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropriate to think it as pipeline. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -85,7 +85,7 @@ Optional:
 
 - `buildah` (Attributes) a BuildahTask, for Buildah strategy (see [below for nested schema](#nestedatt--spec--tasks--buildah))
 - `builder` (Attributes) a BuilderTask, used to generate and package the project (see [below for nested schema](#nestedatt--spec--tasks--builder))
-- `custom` (Attributes) UserTask is used to execute any generic custom operation (see [below for nested schema](#nestedatt--spec--tasks--custom))
+- `custom` (Attributes) UserTask is used to execute any generic custom operation. (see [below for nested schema](#nestedatt--spec--tasks--custom))
 - `jib` (Attributes) a JibTask, for Jib strategy (see [below for nested schema](#nestedatt--spec--tasks--jib))
 - `kaniko` (Attributes) a KanikoTask, for Kaniko strategy (see [below for nested schema](#nestedatt--spec--tasks--kaniko))
 - `s2i` (Attributes) a S2iTask, for S2I strategy (see [below for nested schema](#nestedatt--spec--tasks--s2i))

@@ -30,7 +30,9 @@ data "k8s_pkg_crossplane_io_configuration_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ConfigurationSpec specifies details about a request to install a configuration to Crossplane. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

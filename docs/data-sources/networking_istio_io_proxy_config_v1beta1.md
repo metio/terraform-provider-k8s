@@ -31,7 +31,9 @@ data "k8s_networking_istio_io_proxy_config_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Provides configuration for individual workloads. See more details at: https://istio.io/docs/reference/config/networking/proxy-config.html (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

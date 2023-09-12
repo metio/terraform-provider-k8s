@@ -31,7 +31,9 @@ data "k8s_chaos_mesh_org_workflow_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Spec defines the behavior of a workflow (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -2779,7 +2781,9 @@ Read-Only:
 - `name` (String) Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.
 - `ports` (Attributes List) List of ports to expose from the container. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.0' address inside a container will be accessible from the network. Modifying this array with strategic merge patch may corrupt the data. For more information See https://github.com/kubernetes/kubernetes/issues/108255. Cannot be updated. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--ports))
 - `readiness_probe` (Attributes) Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--templates--task--volumes--readiness_probe))
+- `resize_policy` (Attributes List) Resources resize policy for the container. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--resize_policy))
 - `resources` (Attributes) Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--templates--task--volumes--resources))
+- `restart_policy` (String) RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.
 - `security_context` (Attributes) SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--templates--task--volumes--security_context))
 - `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--templates--task--volumes--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
@@ -2991,7 +2995,7 @@ Read-Only:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--liveness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--liveness_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--liveness_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--liveness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
@@ -3067,7 +3071,7 @@ Read-Only:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--readiness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--readiness_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--readiness_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--readiness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
@@ -3124,6 +3128,15 @@ Read-Only:
 
 
 
+<a id="nestedatt--spec--templates--task--volumes--resize_policy"></a>
+### Nested Schema for `spec.templates.task.volumes.resize_policy`
+
+Read-Only:
+
+- `resource_name` (String) Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.
+- `restart_policy` (String) Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.
+
+
 <a id="nestedatt--spec--templates--task--volumes--resources"></a>
 ### Nested Schema for `spec.templates.task.volumes.resources`
 
@@ -3131,7 +3144,7 @@ Read-Only:
 
 - `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--templates--task--volumes--resources--claims"></a>
 ### Nested Schema for `spec.templates.task.volumes.resources.requests`
@@ -3184,7 +3197,7 @@ Read-Only:
 
 Read-Only:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 - `type` (String) type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
 
 
@@ -3195,7 +3208,7 @@ Read-Only:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -3207,7 +3220,7 @@ Read-Only:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--startup_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--startup_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--startup_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--startup_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
@@ -3483,7 +3496,7 @@ Read-Only:
 Read-Only:
 
 - `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
 
 
 <a id="nestedatt--spec--templates--task--volumes--ephemeral"></a>
@@ -3543,7 +3556,7 @@ Read-Only:
 
 - `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--templates--task--volumes--ephemeral--volume_claim_template--spec--volume_name--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--templates--task--volumes--ephemeral--volume_claim_template--spec--volume_name--claims"></a>
 ### Nested Schema for `spec.templates.task.volumes.ephemeral.volume_claim_template.spec.volume_name.claims`

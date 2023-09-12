@@ -56,15 +56,39 @@ Optional:
 
 Required:
 
+- `datasource` (Attributes) (see [below for nested schema](#nestedatt--spec--datasource))
 - `instance_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--instance_selector))
 
 Optional:
 
 - `allow_cross_namespace_import` (Boolean)
-- `datasource` (Attributes) (see [below for nested schema](#nestedatt--spec--datasource))
 - `plugins` (Attributes List) (see [below for nested schema](#nestedatt--spec--plugins))
 - `resync_period` (String)
 - `values_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--values_from))
+
+<a id="nestedatt--spec--datasource"></a>
+### Nested Schema for `spec.datasource`
+
+Required:
+
+- `access` (String)
+- `name` (String)
+- `type` (String)
+- `url` (String)
+
+Optional:
+
+- `basic_auth` (Boolean)
+- `basic_auth_user` (String)
+- `database` (String)
+- `editable` (Boolean)
+- `is_default` (Boolean)
+- `json_data` (Map of String)
+- `org_id` (Number)
+- `secure_json_data` (Map of String)
+- `uid` (String)
+- `user` (String)
+
 
 <a id="nestedatt--spec--instance_selector"></a>
 ### Nested Schema for `spec.instance_selector`
@@ -86,27 +110,6 @@ Optional:
 
 - `values` (List of String)
 
-
-
-<a id="nestedatt--spec--datasource"></a>
-### Nested Schema for `spec.datasource`
-
-Optional:
-
-- `access` (String)
-- `basic_auth` (Boolean)
-- `basic_auth_user` (String)
-- `database` (String)
-- `editable` (Boolean)
-- `is_default` (Boolean)
-- `json_data` (Map of String)
-- `name` (String)
-- `org_id` (Number)
-- `secure_json_data` (Map of String)
-- `type` (String)
-- `uid` (String)
-- `url` (String)
-- `user` (String)
 
 
 <a id="nestedatt--spec--plugins"></a>

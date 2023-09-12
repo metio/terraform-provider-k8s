@@ -31,7 +31,9 @@ data "k8s_kustomize_toolkit_fluxcd_io_kustomization_v1beta2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) KustomizationSpec defines the configuration to calculate the desired state from a Source using Kustomize. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

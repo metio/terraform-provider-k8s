@@ -31,7 +31,9 @@ data "k8s_k8s_otterize_com_client_intents_v1alpha2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) IntentsSpec defines the desired state of ClientIntents (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

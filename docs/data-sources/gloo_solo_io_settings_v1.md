@@ -31,7 +31,9 @@ data "k8s_gloo_solo_io_settings_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -291,11 +293,13 @@ Read-Only:
 - `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--grpc_service))
 - `max_message_timeout` (String)
 - `message_timeout` (String)
+- `metadata_context_namespaces` (List of String)
 - `mutation_rules` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--mutation_rules))
 - `processing_mode` (Attributes) (see [below for nested schema](#nestedatt--spec--ext_proc--processing_mode))
 - `request_attributes` (List of String)
 - `response_attributes` (List of String)
 - `stat_prefix` (String)
+- `typed_metadata_context_namespaces` (List of String)
 
 <a id="nestedatt--spec--ext_proc--filter_stage"></a>
 ### Nested Schema for `spec.ext_proc.filter_stage`

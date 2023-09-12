@@ -31,7 +31,9 @@ data "k8s_kyverno_io_policy_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Spec defines policy behaviors and contains one or more rules. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -1341,20 +1343,20 @@ Read-Only:
 
 Read-Only:
 
-- `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing. Deprecated.
-- `annotations` (Map of String) Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs. Deprecated. Use annotations per Attestor instead.
+- `additional_extensions` (Map of String) Deprecated.
+- `annotations` (Map of String) Deprecated. Use annotations per Attestor instead.
 - `attestations` (Attributes List) Attestations are optional checks for signed in-toto Statements used to verify the image. See https://github.com/in-toto/attestation. Kyverno fetches signed attestations from the OCI registry and decodes them into a list of Statement declarations. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations))
 - `attestors` (Attributes List) Attestors specified the required attestors (i.e. authorities) (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors))
-- `image` (String) Image is the image name consisting of the registry address, repository, image, and tag. Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images. Deprecated. Use ImageReferences instead.
+- `image` (String) Deprecated. Use ImageReferences instead.
 - `image_references` (List of String) ImageReferences is a list of matching image reference patterns. At least one pattern in the list must match the image for the rule to apply. Each image reference consists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest). Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
 - `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--verify_images--image_registry_credentials))
-- `issuer` (String) Issuer is the certificate issuer used for keyless signing. Deprecated. Use KeylessAttestor instead.
-- `key` (String) Key is the PEM encoded public key that the image or attestation is signed with. Deprecated. Use StaticKeyAttestor instead.
+- `issuer` (String) Deprecated. Use KeylessAttestor instead.
+- `key` (String) Deprecated. Use StaticKeyAttestor instead.
 - `mutate_digest` (Boolean) MutateDigest enables replacement of image tags with digests. Defaults to true.
 - `repository` (String) Repository is an optional alternate OCI repository to use for image signatures and attestations that match this rule. If specified Repository will override the default OCI image repository configured for the installation. The repository can also be overridden per Attestor or Attestation.
 - `required` (Boolean) Required validates that images are verified i.e. have matched passed a signature or attestation check.
-- `roots` (String) Roots is the PEM encoded Root certificate chain used for keyless signing Deprecated. Use KeylessAttestor instead.
-- `subject` (String) Subject is the identity used for keyless signing, for example an email address Deprecated. Use KeylessAttestor instead.
+- `roots` (String) Deprecated. Use KeylessAttestor instead.
+- `subject` (String) Deprecated. Use KeylessAttestor instead.
 - `type` (String) Type specifies the method of signature validation. The allowed options are Cosign and Notary. By default Cosign is used if a type is not specified.
 - `use_cache` (Boolean) UseCache enables caching of image verify responses for this rule
 - `verify_digest` (Boolean) VerifyDigest validates that images have a digest.
@@ -1366,7 +1368,7 @@ Read-Only:
 
 - `attestors` (Attributes List) Attestors specify the required attestors (i.e. authorities) (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors))
 - `conditions` (Attributes List) Conditions are used to verify attributes within a Predicate. If no Conditions are specified the attestation check is satisfied as long there are predicates that match the predicate type. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions))
-- `predicate_type` (String) PredicateType defines the type of Predicate contained within the Statement. Deprecated in favour of 'Type', to be removed soon
+- `predicate_type` (String) Deprecated in favour of 'Type', to be removed soon
 - `type` (String) Type defines the type of attestation contained within the Statement.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors"></a>

@@ -126,6 +126,7 @@ Optional:
 Optional:
 
 - `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--analysis--match--headers))
+- `query_params` (Attributes) Query parameters for matching. (see [below for nested schema](#nestedatt--spec--analysis--match--query_params))
 - `source_labels` (Map of String) Applicable only when the 'mesh' gateway is included in the service.gateways list
 
 <a id="nestedatt--spec--analysis--match--headers"></a>
@@ -137,6 +138,16 @@ Optional:
 - `prefix` (String)
 - `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax)
 - `suffix` (String)
+
+
+<a id="nestedatt--spec--analysis--match--query_params"></a>
+### Nested Schema for `spec.analysis.match.source_labels`
+
+Optional:
+
+- `exact` (String)
+- `prefix` (String)
+- `regex` (String) RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).
 
 
 

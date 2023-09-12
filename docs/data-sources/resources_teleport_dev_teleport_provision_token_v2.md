@@ -31,7 +31,9 @@ data "k8s_resources_teleport_dev_teleport_provision_token_v2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ProvisionToken resource definition v2 from Teleport (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -184,6 +186,8 @@ Read-Only:
 Read-Only:
 
 - `allow` (Attributes List) Allow is a list of Rules, nodes using this token must match one allow rule to use this token. (see [below for nested schema](#nestedatt--spec--kubernetes--allow))
+- `static_jwks` (Attributes) StaticJWKS is the configuration specific to the 'static_jwks' type. (see [below for nested schema](#nestedatt--spec--kubernetes--static_jwks))
+- `type` (String) Type controls which behavior should be used for validating the Kubernetes Service Account token. Support values: - 'in_cluster' - 'static_jwks' If unset, this defaults to 'in_cluster'.
 
 <a id="nestedatt--spec--kubernetes--allow"></a>
 ### Nested Schema for `spec.kubernetes.allow`
@@ -191,3 +195,11 @@ Read-Only:
 Read-Only:
 
 - `service_account` (String)
+
+
+<a id="nestedatt--spec--kubernetes--static_jwks"></a>
+### Nested Schema for `spec.kubernetes.static_jwks`
+
+Read-Only:
+
+- `jwks` (String)

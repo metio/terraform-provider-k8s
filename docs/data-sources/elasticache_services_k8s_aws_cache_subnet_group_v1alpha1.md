@@ -31,7 +31,9 @@ data "k8s_elasticache_services_k8s_aws_cache_subnet_group_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) CacheSubnetGroupSpec defines the desired state of CacheSubnetGroup.  Represents the output of one of the following operations:  * CreateCacheSubnetGroup  * ModifyCacheSubnetGroup (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

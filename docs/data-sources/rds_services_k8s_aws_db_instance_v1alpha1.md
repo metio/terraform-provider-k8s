@@ -31,7 +31,9 @@ data "k8s_rds_services_k8s_aws_db_instance_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) DBInstanceSpec defines the desired state of DBInstance.  Contains the details of an Amazon RDS DB instance.  This data type is used as a response element in the operations CreateDBInstance, CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance, PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3, RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

@@ -31,7 +31,9 @@ data "k8s_enterprise_gloo_solo_io_auth_config_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
@@ -498,6 +500,7 @@ Read-Only:
 
 Read-Only:
 
+- `access_token` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--access_token))
 - `after_logout_url` (String)
 - `app_url` (String)
 - `auth_endpoint_query_params` (Map of String)
@@ -511,6 +514,7 @@ Read-Only:
 - `dynamic_metadata_from_claims` (Map of String)
 - `end_session_properties` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--end_session_properties))
 - `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--headers))
+- `identity_token` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--identity_token))
 - `issuer_url` (String)
 - `jwks_cache_refresh_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--jwks_cache_refresh_policy))
 - `logout_path` (String)
@@ -519,6 +523,24 @@ Read-Only:
 - `session` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--session))
 - `session_id_header_name` (String)
 - `token_endpoint_query_params` (Map of String)
+
+<a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--access_token"></a>
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.access_token`
+
+Read-Only:
+
+- `claims_to_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--access_token--claims_to_headers))
+
+<a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--access_token--claims_to_headers"></a>
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.access_token.claims_to_headers`
+
+Read-Only:
+
+- `append` (Boolean)
+- `claim` (String)
+- `header` (String)
+
+
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--auto_map_from_metadata"></a>
 ### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.auto_map_from_metadata`
@@ -571,6 +593,24 @@ Read-Only:
 - `access_token_header` (String)
 - `id_token_header` (String)
 - `use_bearer_schema_for_authorization` (Boolean)
+
+
+<a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--identity_token"></a>
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.identity_token`
+
+Read-Only:
+
+- `claims_to_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--identity_token--claims_to_headers))
+
+<a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--identity_token--claims_to_headers"></a>
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.identity_token.claims_to_headers`
+
+Read-Only:
+
+- `append` (Boolean)
+- `claim` (String)
+- `header` (String)
+
 
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--jwks_cache_refresh_policy"></a>

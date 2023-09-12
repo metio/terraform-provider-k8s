@@ -32,12 +32,14 @@ data "k8s_events_k8s_io_event_v1" "example" {
 ### Read-Only
 
 - `action` (String) action is what action was taken/failed regarding to the regarding object. It is machine-readable. This field cannot be empty for new Events and it can have at most 128 characters.
+- `api_version` (String) The API group of the requested resource.
 - `deprecated_count` (Number) deprecatedCount is the deprecated field assuring backward compatibility with core.v1 Event type.
 - `deprecated_first_timestamp` (String) Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.
 - `deprecated_last_timestamp` (String) Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.
 - `deprecated_source` (Attributes) EventSource contains information for an event. (see [below for nested schema](#nestedatt--deprecated_source))
 - `event_time` (String) MicroTime is version of Time with microsecond level precision.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `note` (String) note is a human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.
 - `reason` (String) reason is why the action was taken. It is human-readable. This field cannot be empty for new Events and it can have at most 128 characters.
 - `regarding` (Attributes) ObjectReference contains enough information to let you inspect or modify the referred object. (see [below for nested schema](#nestedatt--regarding))

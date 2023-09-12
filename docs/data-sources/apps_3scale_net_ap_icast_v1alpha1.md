@@ -31,7 +31,9 @@ data "k8s_apps_3scale_net_ap_icast_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) APIcastSpec defines the desired state of APIcast. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

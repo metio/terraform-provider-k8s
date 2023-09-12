@@ -30,7 +30,9 @@ data "k8s_secrets_crossplane_io_store_config_v1alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) A StoreConfigSpec defines the desired state of a StoreConfig. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

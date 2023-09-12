@@ -31,7 +31,9 @@ data "k8s_getambassador_io_tracing_service_v3alpha1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) TracingServiceSpec defines the desired state of TracingService (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

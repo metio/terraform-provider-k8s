@@ -61,8 +61,8 @@ Required:
 
 - `api_version` (String) API version of the referent.
 - `kind` (String) Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-- `name` (String) Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names
-- `uid` (String) UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+- `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
 
 Optional:
 

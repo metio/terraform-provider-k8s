@@ -60,7 +60,10 @@ Optional:
 - `logging_ref` (String)
 - `loggly` (Attributes) (see [below for nested schema](#nestedatt--spec--loggly))
 - `logscale` (Attributes) (see [below for nested schema](#nestedatt--spec--logscale))
+- `mongodb` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb))
 - `mqtt` (Attributes) (see [below for nested schema](#nestedatt--spec--mqtt))
+- `redis` (Attributes) (see [below for nested schema](#nestedatt--spec--redis))
+- `splunk_hec_event` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event))
 - `sumologic_http` (Attributes) (see [below for nested schema](#nestedatt--spec--sumologic_http))
 - `sumologic_syslog` (Attributes) (see [below for nested schema](#nestedatt--spec--sumologic_syslog))
 - `syslog` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog))
@@ -1204,6 +1207,101 @@ Optional:
 
 
 
+<a id="nestedatt--spec--mongodb"></a>
+### Nested Schema for `spec.mongodb`
+
+Required:
+
+- `collection` (String)
+- `compaction` (Boolean)
+
+Optional:
+
+- `batch_bytes` (Number)
+- `batch_lines` (Number)
+- `batch_timeout` (Number)
+- `bulk` (Boolean)
+- `bulk_bypass_validation` (Boolean)
+- `bulk_unordered` (Boolean)
+- `dir` (String)
+- `disk_buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--disk_buffer))
+- `log_fifo_size` (Number)
+- `persist_name` (String)
+- `retries` (Number)
+- `time_reopen` (Number)
+- `uri` (String)
+- `value_pairs` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--value_pairs))
+- `write_concern` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--write_concern))
+
+<a id="nestedatt--spec--mongodb--disk_buffer"></a>
+### Nested Schema for `spec.mongodb.disk_buffer`
+
+Required:
+
+- `disk_buf_size` (Number)
+- `reliable` (Boolean)
+
+Optional:
+
+- `compaction` (Boolean)
+- `dir` (String)
+- `mem_buf_length` (Number)
+- `mem_buf_size` (Number)
+- `q_out_size` (Number)
+
+
+<a id="nestedatt--spec--mongodb--value_pairs"></a>
+### Nested Schema for `spec.mongodb.value_pairs`
+
+Optional:
+
+- `exclude` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--value_pairs--exclude))
+- `key` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--value_pairs--key))
+- `pair` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--value_pairs--pair))
+- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--value_pairs--scope))
+
+<a id="nestedatt--spec--mongodb--value_pairs--exclude"></a>
+### Nested Schema for `spec.mongodb.value_pairs.scope`
+
+Optional:
+
+- `raw_string` (String)
+
+
+<a id="nestedatt--spec--mongodb--value_pairs--key"></a>
+### Nested Schema for `spec.mongodb.value_pairs.scope`
+
+Optional:
+
+- `raw_string` (String)
+
+
+<a id="nestedatt--spec--mongodb--value_pairs--pair"></a>
+### Nested Schema for `spec.mongodb.value_pairs.scope`
+
+Optional:
+
+- `raw_string` (String)
+
+
+<a id="nestedatt--spec--mongodb--value_pairs--scope"></a>
+### Nested Schema for `spec.mongodb.value_pairs.scope`
+
+Optional:
+
+- `raw_string` (String)
+
+
+
+<a id="nestedatt--spec--mongodb--write_concern"></a>
+### Nested Schema for `spec.mongodb.write_concern`
+
+Optional:
+
+- `raw_string` (String)
+
+
+
 <a id="nestedatt--spec--mqtt"></a>
 ### Nested Schema for `spec.mqtt`
 
@@ -1214,6 +1312,491 @@ Optional:
 - `qos` (Number)
 - `template` (String)
 - `topic` (String)
+
+
+<a id="nestedatt--spec--redis"></a>
+### Nested Schema for `spec.redis`
+
+Optional:
+
+- `auth` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--auth))
+- `batch_bytes` (Number)
+- `batch_lines` (Number)
+- `batch_timeout` (Number)
+- `command` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--command))
+- `command_and_arguments` (List of String)
+- `disk_buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--disk_buffer))
+- `host` (String)
+- `log_fifo_size` (Number)
+- `persist_name` (String)
+- `port` (Number)
+- `retries` (Number)
+- `throttle` (Number)
+- `time_reopen` (Number)
+- `workers` (Number)
+
+<a id="nestedatt--spec--redis--auth"></a>
+### Nested Schema for `spec.redis.auth`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--auth--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--auth--value_from))
+
+<a id="nestedatt--spec--redis--auth--mount_from"></a>
+### Nested Schema for `spec.redis.auth.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--auth--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--redis--auth--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.redis.auth.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--redis--auth--value_from"></a>
+### Nested Schema for `spec.redis.auth.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--redis--auth--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--redis--auth--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.redis.auth.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--redis--command"></a>
+### Nested Schema for `spec.redis.command`
+
+Optional:
+
+- `string_list` (List of String)
+
+
+<a id="nestedatt--spec--redis--disk_buffer"></a>
+### Nested Schema for `spec.redis.disk_buffer`
+
+Required:
+
+- `disk_buf_size` (Number)
+- `reliable` (Boolean)
+
+Optional:
+
+- `compaction` (Boolean)
+- `dir` (String)
+- `mem_buf_length` (Number)
+- `mem_buf_size` (Number)
+- `q_out_size` (Number)
+
+
+
+<a id="nestedatt--spec--splunk_hec_event"></a>
+### Nested Schema for `spec.splunk_hec_event`
+
+Optional:
+
+- `batch_bytes` (Number)
+- `batch_lines` (Number)
+- `batch_timeout` (Number)
+- `body` (String)
+- `body_prefix` (String)
+- `body_suffix` (String)
+- `content_type` (String)
+- `default_index` (String)
+- `default_source` (String)
+- `default_sourcetype` (String)
+- `delimiter` (String)
+- `disk_buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--disk_buffer))
+- `event` (String)
+- `extra_headers` (List of String)
+- `extra_queries` (List of String)
+- `fields` (String)
+- `headers` (List of String)
+- `host` (String)
+- `index` (String)
+- `log_fifo_size` (Number)
+- `method` (String)
+- `password` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--password))
+- `persist_name` (String)
+- `response_action` (Map of String)
+- `retries` (Number)
+- `source` (String)
+- `sourcetype` (String)
+- `time` (String)
+- `time_reopen` (Number)
+- `timeout` (Number)
+- `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls))
+- `token` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--token))
+- `url` (String)
+- `user` (String)
+- `user_agent` (String)
+- `workers` (Number)
+
+<a id="nestedatt--spec--splunk_hec_event--disk_buffer"></a>
+### Nested Schema for `spec.splunk_hec_event.disk_buffer`
+
+Required:
+
+- `disk_buf_size` (Number)
+- `reliable` (Boolean)
+
+Optional:
+
+- `compaction` (Boolean)
+- `dir` (String)
+- `mem_buf_length` (Number)
+- `mem_buf_size` (Number)
+- `q_out_size` (Number)
+
+
+<a id="nestedatt--spec--splunk_hec_event--password"></a>
+### Nested Schema for `spec.splunk_hec_event.password`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--password--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--password--value_from))
+
+<a id="nestedatt--spec--splunk_hec_event--password--mount_from"></a>
+### Nested Schema for `spec.splunk_hec_event.password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.password.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--splunk_hec_event--password--value_from"></a>
+### Nested Schema for `spec.splunk_hec_event.password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.password.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--splunk_hec_event--tls"></a>
+### Nested Schema for `spec.splunk_hec_event.tls`
+
+Optional:
+
+- `ca_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--ca_dir))
+- `ca_file` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--ca_file))
+- `cert_file` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--cert_file))
+- `cipher_suite` (String)
+- `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--key_file))
+- `peer_verify` (Boolean)
+- `use_system_cert_store` (Boolean)
+
+<a id="nestedatt--spec--splunk_hec_event--tls--ca_dir"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--splunk_hec_event--tls--ca_file"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--splunk_hec_event--tls--cert_file"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--splunk_hec_event--tls--key_file"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--tls--use_system_cert_store--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.tls.use_system_cert_store.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+
+<a id="nestedatt--spec--splunk_hec_event--token"></a>
+### Nested Schema for `spec.splunk_hec_event.token`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--token--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--token--value_from))
+
+<a id="nestedatt--spec--splunk_hec_event--token--mount_from"></a>
+### Nested Schema for `spec.splunk_hec_event.token.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--token--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--token--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.token.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--splunk_hec_event--token--value_from"></a>
+### Nested Schema for `spec.splunk_hec_event.token.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--token--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--splunk_hec_event--token--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.splunk_hec_event.token.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
 
 
 <a id="nestedatt--spec--sumologic_http"></a>

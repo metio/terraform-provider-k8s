@@ -31,7 +31,9 @@ data "k8s_couchbase_com_couchbase_migration_replication_v2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `migration_mapping` (Attributes) The migration mappings to use, should never be empty as that is just an implicit bucket-to-bucket replication then. (see [below for nested schema](#nestedatt--migration_mapping))
 - `spec` (Attributes) CouchbaseReplicationSpec allows configuration of an XDCR replication. (see [below for nested schema](#nestedatt--spec))
 

@@ -31,7 +31,9 @@ data "k8s_ceph_rook_io_ceph_bucket_topic_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) BucketTopicSpec represent the spec of a Bucket Topic (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

@@ -31,7 +31,9 @@ data "k8s_devices_kubeedge_io_device_model_v1alpha2" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) DeviceModelSpec defines the model / template for a device.It is a blueprint which describes the device capabilities and access mechanism via property visitors. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

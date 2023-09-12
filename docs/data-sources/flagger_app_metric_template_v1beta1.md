@@ -31,7 +31,9 @@ data "k8s_flagger_app_metric_template_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) MetricTemplateSpec defines the desired state of a MetricTemplate. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

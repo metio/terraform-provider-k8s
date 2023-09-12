@@ -30,7 +30,9 @@ data "k8s_pkg_crossplane_io_lock_v1beta1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `packages` (Attributes List) (see [below for nested schema](#nestedatt--packages))
 
 <a id="nestedatt--metadata"></a>

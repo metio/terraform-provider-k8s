@@ -30,7 +30,9 @@ data "k8s_rbac_authorization_k8s_io_cluster_role_binding_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `role_ref` (Attributes) RoleRef contains information that points to the role being used (see [below for nested schema](#nestedatt--role_ref))
 - `subjects` (Attributes List) Subjects holds references to the objects the role applies to. (see [below for nested schema](#nestedatt--subjects))
 

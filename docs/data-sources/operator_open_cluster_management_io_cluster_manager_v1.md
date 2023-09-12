@@ -30,7 +30,9 @@ data "k8s_operator_open_cluster_management_io_cluster_manager_v1" "example" {
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) Spec represents a desired deployment configuration of controllers that govern registration and work distribution for attached Klusterlets. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>

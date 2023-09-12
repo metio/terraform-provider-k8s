@@ -56,14 +56,17 @@ Optional:
 - `authorization` (Attributes) Authorization header to use on every scrape request. (see [below for nested schema](#nestedatt--spec--authorization))
 - `basic_auth` (Attributes) BasicAuth information to use on every scrape request. (see [below for nested schema](#nestedatt--spec--basic_auth))
 - `consul_sd_configs` (Attributes List) ConsulSDConfigs defines a list of Consul service discovery configurations. (see [below for nested schema](#nestedatt--spec--consul_sd_configs))
+- `dns_sd_configs` (Attributes List) DNSSDConfigs defines a list of DNS service discovery configurations. (see [below for nested schema](#nestedatt--spec--dns_sd_configs))
 - `file_sd_configs` (Attributes List) FileSDConfigs defines a list of file service discovery configurations. (see [below for nested schema](#nestedatt--spec--file_sd_configs))
 - `honor_labels` (Boolean) HonorLabels chooses the metric's labels on collisions with target labels.
 - `honor_timestamps` (Boolean) HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.
 - `http_sd_configs` (Attributes List) HTTPSDConfigs defines a list of HTTP service discovery configurations. (see [below for nested schema](#nestedatt--spec--http_sd_configs))
+- `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.  It requires Prometheus >= v2.47.0.
 - `kubernetes_sd_configs` (Attributes List) KubernetesSDConfigs defines a list of Kubernetes service discovery configurations. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs))
 - `label_limit` (Number) Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
 - `label_name_length_limit` (Number) Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
 - `label_value_length_limit` (Number) Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.
+- `metric_relabelings` (Attributes List) MetricRelabelConfigs to apply to samples before ingestion. (see [below for nested schema](#nestedatt--spec--metric_relabelings))
 - `metrics_path` (String) MetricsPath HTTP path to scrape for metrics. If empty, Prometheus uses the default value (e.g. /metrics).
 - `params` (Map of List of String) Optional HTTP URL parameters
 - `relabelings` (Attributes List) RelabelConfigs defines how to rewrite the target's labels before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--relabelings))
@@ -405,6 +408,20 @@ Optional:
 
 
 
+<a id="nestedatt--spec--dns_sd_configs"></a>
+### Nested Schema for `spec.dns_sd_configs`
+
+Required:
+
+- `names` (List of String) A list of DNS domain names to be queried.
+
+Optional:
+
+- `port` (Number) The port number used if the query type is not SRV Ignored for SRV records
+- `refresh_interval` (String) RefreshInterval configures the time after which the provided names are refreshed. If not set, Prometheus uses its default value.
+- `type` (String) The type of DNS query to perform. One of SRV, A, AAAA or MX. If not set, Prometheus uses its default value.
+
+
 <a id="nestedatt--spec--file_sd_configs"></a>
 ### Nested Schema for `spec.file_sd_configs`
 
@@ -590,6 +607,20 @@ Optional:
 Required:
 
 - `role` (String) Role of the Kubernetes entities that should be discovered. Currently the only supported role is 'Node'.
+
+
+<a id="nestedatt--spec--metric_relabelings"></a>
+### Nested Schema for `spec.metric_relabelings`
+
+Optional:
+
+- `action` (String) Action to perform based on the regex matching.  'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0. 'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.  Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values.  Only applicable when the action is 'HashMod'.
+- `regex` (String) Regular expression against which the extracted value is matched.
+- `replacement` (String) Replacement value against which a Replace action is performed if the regular expression matches.  Regex capture groups are available.
+- `separator` (String) Separator is the string between concatenated SourceLabels.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement.  It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase', 'KeepEqual' and 'DropEqual' actions.  Regex capture groups are available.
 
 
 <a id="nestedatt--spec--relabelings"></a>

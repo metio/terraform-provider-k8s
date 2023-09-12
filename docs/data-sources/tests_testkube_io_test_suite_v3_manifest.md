@@ -112,12 +112,19 @@ Optional:
 Optional:
 
 - `cron_job_template` (String) cron job template extensions
+- `cron_job_template_reference` (String) name of the template resource
 - `execution_labels` (Map of String) execution labels
 - `http_proxy` (String) http proxy for executor containers
 - `https_proxy` (String) https proxy for executor containers
+- `job_template` (String) job template extensions
+- `job_template_reference` (String) name of the template resource
 - `labels` (Map of String) test suite labels
 - `name` (String) test execution custom name
 - `namespace` (String) test kubernetes namespace ('testkube' when not set)
+- `pvc_template` (String) pvc template extensions
+- `pvc_template_reference` (String) name of the template resource
+- `scraper_template` (String) scraper template extensions
+- `scraper_template_reference` (String) name of the template resource
 - `secret_uuid` (String) secret uuid
 - `sync` (Boolean) whether to start execution sync or async
 - `timeout` (Number) timeout for test suite execution

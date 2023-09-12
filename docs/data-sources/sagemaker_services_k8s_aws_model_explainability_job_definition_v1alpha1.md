@@ -31,7 +31,9 @@ data "k8s_sagemaker_services_k8s_aws_model_explainability_job_definition_v1alpha
 
 ### Read-Only
 
+- `api_version` (String) The API group of the requested resource.
 - `id` (String) Contains the value `metadata.namespace/metadata.name`.
+- `kind` (String) The type of the requested resource.
 - `spec` (Attributes) ModelExplainabilityJobDefinitionSpec defines the desired state of ModelExplainabilityJobDefinition. (see [below for nested schema](#nestedatt--spec))
 
 <a id="nestedatt--metadata"></a>
