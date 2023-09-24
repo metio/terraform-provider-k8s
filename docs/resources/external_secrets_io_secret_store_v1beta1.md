@@ -768,7 +768,7 @@ Required:
 - `privatekey` (Attributes) PrivateKey is the user's API Signing Key in PEM format, used for authentication. (see [below for nested schema](#nestedatt--spec--provider--oracle--auth--secret_ref--privatekey))
 
 <a id="nestedatt--spec--provider--oracle--auth--secret_ref--fingerprint"></a>
-### Nested Schema for `spec.provider.oracle.auth.secret_ref.privatekey`
+### Nested Schema for `spec.provider.oracle.auth.secret_ref.fingerprint`
 
 Optional:
 
