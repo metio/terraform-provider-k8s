@@ -336,6 +336,8 @@ type KialiIoKialiV1Alpha1GoModel struct {
 
 				Envoy_admin_local_port *int64 `tfsdk:"envoy_admin_local_port" yaml:"envoy_admin_local_port,omitempty"`
 
+				Gateway_api_class_name *string `tfsdk:"gateway_api_class_name" yaml:"gateway_api_class_name,omitempty"`
+
 				Istio_canary_revision *struct {
 					Current *string `tfsdk:"current" yaml:"current,omitempty"`
 
@@ -2295,6 +2297,17 @@ func (r *KialiIoKialiV1Alpha1Resource) GetSchema(_ context.Context) (tfsdk.Schem
 										MarkdownDescription: "The port which kiali will open to fetch envoy config data information.",
 
 										Type: types.Int64Type,
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"gateway_api_class_name": {
+										Description:         "The K8s Gateway API GatewayClass's Name used in Istio. If empty, the default value 'istio' is used.",
+										MarkdownDescription: "The K8s Gateway API GatewayClass's Name used in Istio. If empty, the default value 'istio' is used.",
+
+										Type: types.StringType,
 
 										Required: false,
 										Optional: true,

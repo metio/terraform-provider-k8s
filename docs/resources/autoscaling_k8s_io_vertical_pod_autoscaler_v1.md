@@ -32,7 +32,7 @@ resource "k8s_autoscaling_k8s_io_vertical_pod_autoscaler_v1" "minimal" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) Specification of the behavior of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Specification of the behavior of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

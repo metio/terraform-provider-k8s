@@ -1381,6 +1381,8 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 						WipeMethod *string `tfsdk:"wipe_method" yaml:"wipeMethod,omitempty"`
 					} `tfsdk:"block_volume_policy" yaml:"blockVolumePolicy,omitempty"`
 
+					CleanupThreads *int64 `tfsdk:"cleanup_threads" yaml:"cleanupThreads,omitempty"`
+
 					FilesystemVolumePolicy *struct {
 						CascadeDelete *bool `tfsdk:"cascade_delete" yaml:"cascadeDelete,omitempty"`
 
@@ -1743,6 +1745,8 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 						WipeMethod *string `tfsdk:"wipe_method" yaml:"wipeMethod,omitempty"`
 					} `tfsdk:"block_volume_policy" yaml:"blockVolumePolicy,omitempty"`
 
+					CleanupThreads *int64 `tfsdk:"cleanup_threads" yaml:"cleanupThreads,omitempty"`
+
 					FilesystemVolumePolicy *struct {
 						CascadeDelete *bool `tfsdk:"cascade_delete" yaml:"cascadeDelete,omitempty"`
 
@@ -1922,6 +1926,8 @@ type AsdbAerospikeComAerospikeClusterV1Beta1GoModel struct {
 
 				WipeMethod *string `tfsdk:"wipe_method" yaml:"wipeMethod,omitempty"`
 			} `tfsdk:"block_volume_policy" yaml:"blockVolumePolicy,omitempty"`
+
+			CleanupThreads *int64 `tfsdk:"cleanup_threads" yaml:"cleanupThreads,omitempty"`
 
 			FilesystemVolumePolicy *struct {
 				CascadeDelete *bool `tfsdk:"cascade_delete" yaml:"cascadeDelete,omitempty"`
@@ -9702,6 +9708,17 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 												Computed: false,
 											},
 
+											"cleanup_threads": {
+												Description:         "CleanupThreads contains maximum number of cleanup threads(dd or blkdis",
+												MarkdownDescription: "CleanupThreads contains maximum number of cleanup threads(dd or blkdis",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"filesystem_volume_policy": {
 												Description:         "FileSystemVolumePolicy contains default policies for filesystem volume",
 												MarkdownDescription: "FileSystemVolumePolicy contains default policies for filesystem volume",
@@ -11809,6 +11826,17 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 												Computed: false,
 											},
 
+											"cleanup_threads": {
+												Description:         "CleanupThreads contains maximum number of cleanup threads(dd or blkdis",
+												MarkdownDescription: "CleanupThreads contains maximum number of cleanup threads(dd or blkdis",
+
+												Type: types.Int64Type,
+
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"filesystem_volume_policy": {
 												Description:         "FileSystemVolumePolicy contains default policies for filesystem volume",
 												MarkdownDescription: "FileSystemVolumePolicy contains default policies for filesystem volume",
@@ -12895,6 +12923,17 @@ func (r *AsdbAerospikeComAerospikeClusterV1Beta1Resource) GetSchema(_ context.Co
 										},
 									},
 								}),
+
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"cleanup_threads": {
+								Description:         "CleanupThreads contains maximum number of cleanup threads(dd or blkdis",
+								MarkdownDescription: "CleanupThreads contains maximum number of cleanup threads(dd or blkdis",
+
+								Type: types.Int64Type,
 
 								Required: false,
 								Optional: true,

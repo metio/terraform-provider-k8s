@@ -12,6 +12,9 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/schemavalidator"
+	"github.com/hashicorp/terraform-plugin-framework/path"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/tfsdk"
@@ -103,8 +106,6 @@ type HazelcastComHazelcastV1Alpha1GoModel struct {
 		Persistence *struct {
 			AutoForceStart *bool `tfsdk:"auto_force_start" yaml:"autoForceStart,omitempty"`
 
-			BackupType *string `tfsdk:"backup_type" yaml:"backupType,omitempty"`
-
 			BaseDir *string `tfsdk:"base_dir" yaml:"baseDir,omitempty"`
 
 			ClusterDataRecoveryPolicy *string `tfsdk:"cluster_data_recovery_policy" yaml:"clusterDataRecoveryPolicy,omitempty"`
@@ -122,9 +123,13 @@ type HazelcastComHazelcastV1Alpha1GoModel struct {
 			} `tfsdk:"pvc" yaml:"pvc,omitempty"`
 
 			Restore *struct {
-				BucketURI *string `tfsdk:"bucket_uri" yaml:"bucketURI,omitempty"`
+				BucketConfig *struct {
+					BucketURI *string `tfsdk:"bucket_uri" yaml:"bucketURI,omitempty"`
 
-				Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
+					Secret *string `tfsdk:"secret" yaml:"secret,omitempty"`
+				} `tfsdk:"bucket_config" yaml:"bucketConfig,omitempty"`
+
+				HotBackupResourceName *string `tfsdk:"hot_backup_resource_name" yaml:"hotBackupResourceName,omitempty"`
 			} `tfsdk:"restore" yaml:"restore,omitempty"`
 		} `tfsdk:"persistence" yaml:"persistence,omitempty"`
 
@@ -738,22 +743,6 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 								Computed: false,
 							},
 
-							"backup_type": {
-								Description:         "BackupType represents the storage options for the HotBackup",
-								MarkdownDescription: "BackupType represents the storage options for the HotBackup",
-
-								Type: types.StringType,
-
-								Required: false,
-								Optional: true,
-								Computed: false,
-
-								Validators: []tfsdk.AttributeValidator{
-
-									stringvalidator.OneOf("External", "Local"),
-								},
-							},
-
 							"base_dir": {
 								Description:         "Persistence base directory.",
 								MarkdownDescription: "Persistence base directory.",
@@ -854,35 +843,68 @@ func (r *HazelcastComHazelcastV1Alpha1Resource) GetSchema(_ context.Context) (tf
 
 								Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-									"bucket_uri": {
-										Description:         "Full path to blob storage bucket.",
-										MarkdownDescription: "Full path to blob storage bucket.",
+									"bucket_config": {
+										Description:         "Bucket Configuration from which the backup will be downloaded.",
+										MarkdownDescription: "Bucket Configuration from which the backup will be downloaded.",
 
-										Type: types.StringType,
+										Attributes: tfsdk.SingleNestedAttributes(map[string]tfsdk.Attribute{
 
-										Required: true,
-										Optional: false,
+											"bucket_uri": {
+												Description:         "Full path to blob storage bucket.",
+												MarkdownDescription: "Full path to blob storage bucket.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(6),
+												},
+											},
+
+											"secret": {
+												Description:         "Name of the secret with credentials for cloud providers.",
+												MarkdownDescription: "Name of the secret with credentials for cloud providers.",
+
+												Type: types.StringType,
+
+												Required: true,
+												Optional: false,
+												Computed: false,
+
+												Validators: []tfsdk.AttributeValidator{
+
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+										}),
+
+										Required: false,
+										Optional: true,
 										Computed: false,
 
 										Validators: []tfsdk.AttributeValidator{
 
-											stringvalidator.LengthAtLeast(6),
+											schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("hot_backup_resource_name")),
 										},
 									},
 
-									"secret": {
-										Description:         "Name of the secret with credentials for cloud providers.",
-										MarkdownDescription: "Name of the secret with credentials for cloud providers.",
+									"hot_backup_resource_name": {
+										Description:         "Name of the HotBackup resource from which backup will be fetched.",
+										MarkdownDescription: "Name of the HotBackup resource from which backup will be fetched.",
 
 										Type: types.StringType,
 
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
 
 										Validators: []tfsdk.AttributeValidator{
 
-											stringvalidator.LengthAtLeast(1),
+											schemavalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("bucket_config")),
 										},
 									},
 								}),

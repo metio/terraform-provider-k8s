@@ -66,6 +66,7 @@ Optional:
 - `cluster_tolerations` (Attributes List) ClusterTolerations tolerates any matched taints of ManagedCluster. (see [below for nested schema](#nestedatt--spec--cluster_tolerations))
 - `dividing_scheduling` (Attributes) Dividing scheduling config params. Present only if SchedulingStrategy = Dividing. (see [below for nested schema](#nestedatt--spec--dividing_scheduling))
 - `scheduler_name` (String) If specified, the Subscription will be handled by specified scheduler. If not specified, the Subscription will be handled by default scheduler.
+- `scheduling_by_sub_group` (Boolean) If specified, the Subscription will be handled with SchedulingBySubGroup. Used together with SubGroupStrategy in every Subscriber. Can work with all supported SchedulingStrategy, such as Replication, Dividing.
 - `scheduling_strategy` (String) If specified, the Subscription will be handled with specified SchedulingStrategy. Otherwise, with generic SchedulingStrategy.
 
 <a id="nestedatt--spec--feeds"></a>
@@ -91,6 +92,7 @@ Required:
 
 Optional:
 
+- `sub_group_strategy` (Attributes) SubGroupStrategy defines the subgroup strategy for the clusters matched by this subscriber. During the scheduling, all the matching clusters will be treated as a subgroup instead of individual clusters. With subgroup, we can describe clusters with different regions, zones, etc. Present only when SchedulingBySubGroup is set. (see [below for nested schema](#nestedatt--spec--subscribers--sub_group_strategy))
 - `weight` (Number) Static weight of subscriber when dividing replicas. Present only for static divided scheduling.
 
 <a id="nestedatt--spec--subscribers--cluster_affinity"></a>
@@ -113,6 +115,14 @@ Optional:
 
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
+
+
+<a id="nestedatt--spec--subscribers--sub_group_strategy"></a>
+### Nested Schema for `spec.subscribers.sub_group_strategy`
+
+Optional:
+
+- `min_clusters` (Number) MinClusters is the minimum number of clusters to be selected in this subgroup. If this value is more than the total number of clusters in this subgroup, then all clusters will be selected.
 
 
 

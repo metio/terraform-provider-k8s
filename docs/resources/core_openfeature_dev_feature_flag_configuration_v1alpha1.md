@@ -68,6 +68,7 @@ Optional:
 Optional:
 
 - `envs` (Attributes List) (see [below for nested schema](#nestedatt--spec--flag_d_spec--envs))
+- `metrics_port` (Number)
 
 <a id="nestedatt--spec--flag_d_spec--envs"></a>
 ### Nested Schema for `spec.flag_d_spec.envs`

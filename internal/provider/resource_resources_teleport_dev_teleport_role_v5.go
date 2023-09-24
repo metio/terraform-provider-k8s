@@ -146,6 +146,8 @@ type ResourcesTeleportDevTeleportRoleV5GoModel struct {
 					Value *string `tfsdk:"value" yaml:"value,omitempty"`
 				} `tfsdk:"claims_to_roles" yaml:"claims_to_roles,omitempty"`
 
+				Preview_as_roles *[]string `tfsdk:"preview_as_roles" yaml:"preview_as_roles,omitempty"`
+
 				Roles *[]string `tfsdk:"roles" yaml:"roles,omitempty"`
 
 				Where *string `tfsdk:"where" yaml:"where,omitempty"`
@@ -261,6 +263,8 @@ type ResourcesTeleportDevTeleportRoleV5GoModel struct {
 
 					Value *string `tfsdk:"value" yaml:"value,omitempty"`
 				} `tfsdk:"claims_to_roles" yaml:"claims_to_roles,omitempty"`
+
+				Preview_as_roles *[]string `tfsdk:"preview_as_roles" yaml:"preview_as_roles,omitempty"`
 
 				Roles *[]string `tfsdk:"roles" yaml:"roles,omitempty"`
 
@@ -762,8 +766,8 @@ func (r *ResourcesTeleportDevTeleportRoleV5Resource) GetSchema(_ context.Context
 									},
 
 									"search_as_roles": {
-										Description:         "SearchAsRoles is a list of roles which the user should be able to 'assume' while searching for resources, and should be able to request with a search-based access request.",
-										MarkdownDescription: "SearchAsRoles is a list of roles which the user should be able to 'assume' while searching for resources, and should be able to request with a search-based access request.",
+										Description:         "SearchAsRoles is a list of extra roles which should apply to a user while they are searching for resources as part of a Resource Access Request, and defines the underlying roles which will be requested as part of any Resource Access Request.",
+										MarkdownDescription: "SearchAsRoles is a list of extra roles which should apply to a user while they are searching for resources as part of a Resource Access Request, and defines the underlying roles which will be requested as part of any Resource Access Request.",
 
 										Type: types.ListType{ElemType: types.StringType},
 
@@ -968,6 +972,17 @@ func (r *ResourcesTeleportDevTeleportRoleV5Resource) GetSchema(_ context.Context
 												Computed: false,
 											},
 										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"preview_as_roles": {
+										Description:         "PreviewAsRoles is a list of extra roles which should apply to a reviewer while they are viewing a Resource Access Request for the purposes of viewing details such as the hostname and labels of requested resources.",
+										MarkdownDescription: "PreviewAsRoles is a list of extra roles which should apply to a reviewer while they are viewing a Resource Access Request for the purposes of viewing details such as the hostname and labels of requested resources.",
+
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,
@@ -1410,8 +1425,8 @@ func (r *ResourcesTeleportDevTeleportRoleV5Resource) GetSchema(_ context.Context
 									},
 
 									"search_as_roles": {
-										Description:         "SearchAsRoles is a list of roles which the user should be able to 'assume' while searching for resources, and should be able to request with a search-based access request.",
-										MarkdownDescription: "SearchAsRoles is a list of roles which the user should be able to 'assume' while searching for resources, and should be able to request with a search-based access request.",
+										Description:         "SearchAsRoles is a list of extra roles which should apply to a user while they are searching for resources as part of a Resource Access Request, and defines the underlying roles which will be requested as part of any Resource Access Request.",
+										MarkdownDescription: "SearchAsRoles is a list of extra roles which should apply to a user while they are searching for resources as part of a Resource Access Request, and defines the underlying roles which will be requested as part of any Resource Access Request.",
 
 										Type: types.ListType{ElemType: types.StringType},
 
@@ -1616,6 +1631,17 @@ func (r *ResourcesTeleportDevTeleportRoleV5Resource) GetSchema(_ context.Context
 												Computed: false,
 											},
 										}),
+
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"preview_as_roles": {
+										Description:         "PreviewAsRoles is a list of extra roles which should apply to a reviewer while they are viewing a Resource Access Request for the purposes of viewing details such as the hostname and labels of requested resources.",
+										MarkdownDescription: "PreviewAsRoles is a list of extra roles which should apply to a reviewer while they are viewing a Resource Access Request for the purposes of viewing details such as the hostname and labels of requested resources.",
+
+										Type: types.ListType{ElemType: types.StringType},
 
 										Required: false,
 										Optional: true,

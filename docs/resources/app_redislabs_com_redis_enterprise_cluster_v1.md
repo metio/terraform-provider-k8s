@@ -99,7 +99,7 @@ Optional:
 - `container_timezone` (Attributes) Container timezone configuration. While the default timezone on all containers is UTC, this setting can be used to set the timezone on services rigger/bootstrapper/RS containers. Currently the only supported value is to propagate the host timezone to all containers. (see [below for nested schema](#nestedatt--spec--container_timezone))
 - `create_service_account` (Boolean) Whether to create service account
 - `data_internode_encryption` (Boolean) Internode encryption (INE) cluster wide policy. An optional boolean setting. Specifies if INE should be on/off for new created REDBs. May be overridden for specific REDB via similar setting, please view the similar setting for REDB for more info.
-- `encrypt_pkeys` (Boolean) Private key encryption - in order to enable, first need to mount ${ephemeralconfdir}/secrets/pem/passphrase and add the passphrase and then set fields value to ''true'' Possible values: true/false'. Note: this feature is currently unsupported.
+- `encrypt_pkeys` (Boolean) Private key encryption Possible values: true/false
 - `enforce_i_pv4` (Boolean) Sets ENFORCE_IPV4 environment variable
 - `extra_labels` (Map of String) Labels that the user defines for their convenience
 - `host_aliases` (Attributes List) (see [below for nested schema](#nestedatt--spec--host_aliases))
@@ -108,7 +108,7 @@ Optional:
 - `license_secret_name` (String) K8s secret or Vault Secret Name/Path to use for Cluster License. When left blank, the license is read from the 'license' field. Note that you can't specify non-empty values in both 'license' and 'licenseSecretName', only one of these fields can be used to pass the license string. The license needs to be stored under the key 'license'.
 - `node_selector` (Map of String) Selector for nodes that could fit Redis Enterprise pod
 - `nodes` (Number) Number of Redis Enterprise nodes (pods)
-- `ocsp_configuration` (Attributes) An API object that represents the cluster's OCSP configuration. To enable OCSP, the cluster's proxy certificate should contain the OCSP responder URL. Note - This is an ALPHA Feature. For this feature to take effect, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map. (see [below for nested schema](#nestedatt--spec--ocsp_configuration))
+- `ocsp_configuration` (Attributes) An API object that represents the cluster's OCSP configuration. To enable OCSP, the cluster's proxy certificate should contain the OCSP responder URL. (see [below for nested schema](#nestedatt--spec--ocsp_configuration))
 - `persistent_spec` (Attributes) Specification for Redis Enterprise Cluster persistence (see [below for nested schema](#nestedatt--spec--persistent_spec))
 - `pod_annotations` (Map of String) pod annotations
 - `pod_anti_affinity` (Attributes) Override for the default anti-affinity rules of the Redis Enterprise pods. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#an-example-of-a-pod-that-uses-pod-affinity (see [below for nested schema](#nestedatt--spec--pod_anti_affinity))
@@ -126,14 +126,14 @@ Optional:
 - `redis_enterprise_services_rigger_resources` (Attributes) Compute resource requirements for Services Rigger pod (see [below for nested schema](#nestedatt--spec--redis_enterprise_services_rigger_resources))
 - `redis_enterprise_termination_grace_period_seconds` (Number) The TerminationGracePeriodSeconds value for the (STS created) REC pods
 - `redis_enterprise_volume_mounts` (Attributes List) additional volume mounts within the redis enterprise containers. More info: https://kubernetes.io/docs/concepts/storage/volumes/ (see [below for nested schema](#nestedatt--spec--redis_enterprise_volume_mounts))
-- `redis_on_flash_spec` (Attributes) Stores configurations specific to redis on flash. If provided, the cluster will be capable of creating redis on flash databases. Note - This is an ALPHA Feature. For this feature to take effect, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map. (see [below for nested schema](#nestedatt--spec--redis_on_flash_spec))
+- `redis_on_flash_spec` (Attributes) Stores configurations specific to redis on flash. If provided, the cluster will be capable of creating redis on flash databases. (see [below for nested schema](#nestedatt--spec--redis_on_flash_spec))
 - `redis_upgrade_policy` (String) Redis upgrade policy to be set on the Redis Enterprise Cluster. Possible values: major/latest This value is used by the cluster to choose the Redis version of the database when an upgrade is performed. The Redis Enterprise Cluster includes multiple versions of OSS Redis that can be used for databases.
 - `service_account_name` (String) Name of the service account to use
-- `services` (Attributes) Redis-Enterprise-Operator services specifications. (see [below for nested schema](#nestedatt--spec--services))
+- `services` (Attributes) Customization options for operator-managed service resources created for Redis Enterprise clusters and databases (see [below for nested schema](#nestedatt--spec--services))
 - `services_rigger_spec` (Attributes) Specification for service rigger (see [below for nested schema](#nestedatt--spec--services_rigger_spec))
 - `side_containers_spec` (Attributes List) (see [below for nested schema](#nestedatt--spec--side_containers_spec))
 - `slave_ha` (Attributes) Slave high availability mechanism configuration. (see [below for nested schema](#nestedatt--spec--slave_ha))
-- `ui_annotations` (Map of String) Annotations for Redis Enterprise UI service. This annotations will override the overlapping global annotations set under spec.services.servicesAnnotations Note - The specified annotations will not override annotations that already exists and didn't originated from the operator except for the following reserved annotation name redis.io/last-keys.
+- `ui_annotations` (Map of String) Annotations for Redis Enterprise UI service. This annotations will override the overlapping global annotations set under spec.services.servicesAnnotations The specified annotations will not override annotations that already exist and didn't originate from the operator, except for the 'redis.io/last-keys' annotation which is reserved.
 - `ui_service_type` (String) Type of service used to expose Redis Enterprise UI (https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
 - `upgrade_spec` (Attributes) Specification for upgrades of Redis Enterprise (see [below for nested schema](#nestedatt--spec--upgrade_spec))
 - `username` (String) Username for the admin user of Redis Enterprise
@@ -2953,7 +2953,16 @@ Optional:
 
 Optional:
 
-- `services_annotations` (Map of String) Global additional annotations to set on service resources created by the operator. Note - The specified annotations will not override annotations that already exists and didn't originated from the operator.
+- `api_service` (Attributes) Customization options for the REC API service. (see [below for nested schema](#nestedatt--spec--services--api_service))
+- `services_annotations` (Map of String) Global additional annotations to set on service resources created by the operator. The specified annotations will not override annotations that already exist and didn't originate from the operator.
+
+<a id="nestedatt--spec--services--api_service"></a>
+### Nested Schema for `spec.services.api_service`
+
+Optional:
+
+- `type` (String) Type of service to create for the REC API service. Defaults to ClusterIP service, if not specified otherwise.
+
 
 
 <a id="nestedatt--spec--services_rigger_spec"></a>
