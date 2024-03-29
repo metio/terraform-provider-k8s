@@ -1,1 +1,0 @@
-- remove `.AdditionalImports.StringValidator` because `github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator` is now always used by `metadata.name`
