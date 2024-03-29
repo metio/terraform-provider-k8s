@@ -81,6 +81,7 @@ Optional:
 - `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--components--overrides--env))
 - `labels` (Map of String)
 - `replicas` (Number)
+- `resources` (Attributes) Resources describes the resource limits and requests for a component. (see [below for nested schema](#nestedatt--spec--components--overrides--resources))
 - `volume_size` (String)
 
 <a id="nestedatt--spec--components--overrides--affinity"></a>
@@ -214,8 +215,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--components--overrides--volume_size--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.components.overrides.volume_size.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
@@ -273,8 +274,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--components--overrides--volume_size--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.components.overrides.volume_size.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
@@ -348,8 +349,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--components--overrides--volume_size--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.components.overrides.volume_size.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
@@ -407,8 +408,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--components--overrides--volume_size--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--components--overrides--volume_size--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.components.overrides.volume_size.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
@@ -528,3 +529,14 @@ Optional:
 
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--components--overrides--resources"></a>
+### Nested Schema for `spec.components.overrides.volume_size`
+
+Optional:
+
+- `limits` (Map of String) ResourceList is a set of (resource name, quantity) pairs.
+- `requests` (Map of String) ResourceList is a set of (resource name, quantity) pairs.

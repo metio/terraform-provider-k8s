@@ -130,9 +130,10 @@ Optional:
 
 Optional:
 
+- `alternate_names` (List of String) A list of alternate Linux device names of the disk, e.g. '/dev/sda'. Note that this list is not exhaustive, and names may not be stable across reboots.
 - `hctl` (String) The SCSI location of the device
 - `model` (String) Hardware model
-- `name` (String) The Linux device name of the disk, e.g. '/dev/sda'. Note that this may not be stable across reboots.
+- `name` (String) A Linux device name of the disk, e.g. '/dev/disk/by-path/pci-0000:01:00.0-scsi-0:2:0:0'. This will be a name that is stable across reboots if one is available.
 - `rotational` (Boolean) Whether this disk represents rotational storage. This field is not recommended for usage, please prefer using 'Type' field instead, this field will be deprecated eventually.
 - `serial_number` (String) The serial number of the device
 - `size_bytes` (Number) The size of the disk in Bytes

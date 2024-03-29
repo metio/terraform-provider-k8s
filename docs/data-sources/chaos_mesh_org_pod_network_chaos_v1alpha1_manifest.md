@@ -115,6 +115,7 @@ Optional:
 - `duplicate` (Attributes) DuplicateSpec represents the detail about loss action (see [below for nested schema](#nestedatt--spec--tcs--duplicate))
 - `ipset` (String) The name of target ipset
 - `loss` (Attributes) Loss represents the detail about loss action (see [below for nested schema](#nestedatt--spec--tcs--loss))
+- `rate` (Attributes) Rate represents the detail about rate control action (see [below for nested schema](#nestedatt--spec--tcs--rate))
 
 <a id="nestedatt--spec--tcs--bandwidth"></a>
 ### Nested Schema for `spec.tcs.bandwidth`
@@ -192,3 +193,11 @@ Required:
 Optional:
 
 - `correlation` (String)
+
+
+<a id="nestedatt--spec--tcs--rate"></a>
+### Nested Schema for `spec.tcs.rate`
+
+Required:
+
+- `rate` (String) Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.

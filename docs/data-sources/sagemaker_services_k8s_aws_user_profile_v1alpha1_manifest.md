@@ -61,9 +61,9 @@ Required:
 
 Optional:
 
-- `single_sign_on_user_identifier` (String) A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is 'UserName'. If the Domain's AuthMode is IAM Identity Center, this field is required. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified.
-- `single_sign_on_user_value` (String) The username of the associated Amazon Web Services Single Sign-On User for this UserProfile. If the Domain's AuthMode is IAM Identity Center, this field is required, and must match a valid username of a user in your directory. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified.
-- `tags` (Attributes List) Each tag consists of a key and an optional value. Tag keys must be unique per resource.  Tags that you specify for the User Profile are also added to all Apps that the User Profile launches. (see [below for nested schema](#nestedatt--spec--tags))
+- `single_sign_on_user_identifier` (String) A specifier for the type of value specified in SingleSignOnUserValue. Currently,the only supported value is 'UserName'. If the Domain's AuthMode is IAM IdentityCenter, this field is required. If the Domain's AuthMode is not IAM IdentityCenter, this field cannot be specified.
+- `single_sign_on_user_value` (String) The username of the associated Amazon Web Services Single Sign-On User forthis UserProfile. If the Domain's AuthMode is IAM Identity Center, this fieldis required, and must match a valid username of a user in your directory.If the Domain's AuthMode is not IAM Identity Center, this field cannot bespecified.
+- `tags` (Attributes List) Each tag consists of a key and an optional value. Tag keys must be uniqueper resource.Tags that you specify for the User Profile are also added to all Apps thatthe User Profile launches. (see [below for nested schema](#nestedatt--spec--tags))
 - `user_settings` (Attributes) A collection of settings. (see [below for nested schema](#nestedatt--spec--user_settings))
 
 <a id="nestedatt--spec--tags"></a>
@@ -80,20 +80,106 @@ Optional:
 
 Optional:
 
+- `code_editor_app_settings` (Attributes) The Code Editor application settings.For more information about Code Editor, see Get started with Code Editorin Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/code-editor.html). (see [below for nested schema](#nestedatt--spec--user_settings--code_editor_app_settings))
+- `custom_file_system_configs` (Attributes List) (see [below for nested schema](#nestedatt--spec--user_settings--custom_file_system_configs))
+- `custom_posix_user_config` (Attributes) Details about the POSIX identity that is used for file system operations. (see [below for nested schema](#nestedatt--spec--user_settings--custom_posix_user_config))
+- `default_landing_uri` (String)
 - `execution_role` (String)
+- `jupyter_lab_app_settings` (Attributes) The settings for the JupyterLab application. (see [below for nested schema](#nestedatt--spec--user_settings--jupyter_lab_app_settings))
 - `jupyter_server_app_settings` (Attributes) The JupyterServer app settings. (see [below for nested schema](#nestedatt--spec--user_settings--jupyter_server_app_settings))
 - `kernel_gateway_app_settings` (Attributes) The KernelGateway app settings. (see [below for nested schema](#nestedatt--spec--user_settings--kernel_gateway_app_settings))
-- `r_studio_server_pro_app_settings` (Attributes) A collection of settings that configure user interaction with the RStudioServerPro app. RStudioServerProAppSettings cannot be updated. The RStudioServerPro app must be deleted and a new one created to make any changes. (see [below for nested schema](#nestedatt--spec--user_settings--r_studio_server_pro_app_settings))
+- `r_studio_server_pro_app_settings` (Attributes) A collection of settings that configure user interaction with the RStudioServerProapp. (see [below for nested schema](#nestedatt--spec--user_settings--r_studio_server_pro_app_settings))
 - `security_groups` (List of String)
-- `sharing_settings` (Attributes) Specifies options for sharing SageMaker Studio notebooks. These settings are specified as part of DefaultUserSettings when the CreateDomain API is called, and as part of UserSettings when the CreateUserProfile API is called. When SharingSettings is not specified, notebook sharing isn't allowed. (see [below for nested schema](#nestedatt--spec--user_settings--sharing_settings))
+- `sharing_settings` (Attributes) Specifies options for sharing Amazon SageMaker Studio notebooks. These settingsare specified as part of DefaultUserSettings when the CreateDomain API iscalled, and as part of UserSettings when the CreateUserProfile API is called.When SharingSettings is not specified, notebook sharing isn't allowed. (see [below for nested schema](#nestedatt--spec--user_settings--sharing_settings))
+- `space_storage_settings` (Attributes) The default storage settings for a private space. (see [below for nested schema](#nestedatt--spec--user_settings--space_storage_settings))
+- `studio_web_portal` (String)
 - `tensor_board_app_settings` (Attributes) The TensorBoard app settings. (see [below for nested schema](#nestedatt--spec--user_settings--tensor_board_app_settings))
+
+<a id="nestedatt--spec--user_settings--code_editor_app_settings"></a>
+### Nested Schema for `spec.user_settings.code_editor_app_settings`
+
+Optional:
+
+- `default_resource_spec` (Attributes) Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on. (see [below for nested schema](#nestedatt--spec--user_settings--code_editor_app_settings--default_resource_spec))
+- `lifecycle_config_ar_ns` (List of String)
+
+<a id="nestedatt--spec--user_settings--code_editor_app_settings--default_resource_spec"></a>
+### Nested Schema for `spec.user_settings.code_editor_app_settings.lifecycle_config_ar_ns`
+
+Optional:
+
+- `instance_type` (String)
+- `lifecycle_config_arn` (String)
+- `sage_maker_image_arn` (String)
+- `sage_maker_image_version_alias` (String)
+- `sage_maker_image_version_arn` (String)
+
+
+
+<a id="nestedatt--spec--user_settings--custom_file_system_configs"></a>
+### Nested Schema for `spec.user_settings.custom_file_system_configs`
+
+Optional:
+
+- `efs_file_system_config` (Attributes) The settings for assigning a custom Amazon EFS file system to a user profileor space for an Amazon SageMaker Domain. (see [below for nested schema](#nestedatt--spec--user_settings--custom_file_system_configs--efs_file_system_config))
+
+<a id="nestedatt--spec--user_settings--custom_file_system_configs--efs_file_system_config"></a>
+### Nested Schema for `spec.user_settings.custom_file_system_configs.efs_file_system_config`
+
+Optional:
+
+- `file_system_id` (String)
+- `file_system_path` (String)
+
+
+
+<a id="nestedatt--spec--user_settings--custom_posix_user_config"></a>
+### Nested Schema for `spec.user_settings.custom_posix_user_config`
+
+Optional:
+
+- `gid` (Number)
+- `uid` (Number)
+
+
+<a id="nestedatt--spec--user_settings--jupyter_lab_app_settings"></a>
+### Nested Schema for `spec.user_settings.jupyter_lab_app_settings`
+
+Optional:
+
+- `custom_images` (Attributes List) (see [below for nested schema](#nestedatt--spec--user_settings--jupyter_lab_app_settings--custom_images))
+- `default_resource_spec` (Attributes) Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on. (see [below for nested schema](#nestedatt--spec--user_settings--jupyter_lab_app_settings--default_resource_spec))
+- `lifecycle_config_ar_ns` (List of String)
+
+<a id="nestedatt--spec--user_settings--jupyter_lab_app_settings--custom_images"></a>
+### Nested Schema for `spec.user_settings.jupyter_lab_app_settings.lifecycle_config_ar_ns`
+
+Optional:
+
+- `app_image_config_name` (String)
+- `image_name` (String)
+- `image_version_number` (Number)
+
+
+<a id="nestedatt--spec--user_settings--jupyter_lab_app_settings--default_resource_spec"></a>
+### Nested Schema for `spec.user_settings.jupyter_lab_app_settings.lifecycle_config_ar_ns`
+
+Optional:
+
+- `instance_type` (String)
+- `lifecycle_config_arn` (String)
+- `sage_maker_image_arn` (String)
+- `sage_maker_image_version_alias` (String)
+- `sage_maker_image_version_arn` (String)
+
+
 
 <a id="nestedatt--spec--user_settings--jupyter_server_app_settings"></a>
 ### Nested Schema for `spec.user_settings.jupyter_server_app_settings`
 
 Optional:
 
-- `default_resource_spec` (Attributes) Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on. (see [below for nested schema](#nestedatt--spec--user_settings--jupyter_server_app_settings--default_resource_spec))
+- `default_resource_spec` (Attributes) Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on. (see [below for nested schema](#nestedatt--spec--user_settings--jupyter_server_app_settings--default_resource_spec))
 - `lifecycle_config_ar_ns` (List of String)
 
 <a id="nestedatt--spec--user_settings--jupyter_server_app_settings--default_resource_spec"></a>
@@ -104,6 +190,7 @@ Optional:
 - `instance_type` (String)
 - `lifecycle_config_arn` (String)
 - `sage_maker_image_arn` (String)
+- `sage_maker_image_version_alias` (String)
 - `sage_maker_image_version_arn` (String)
 
 
@@ -114,7 +201,7 @@ Optional:
 Optional:
 
 - `custom_images` (Attributes List) (see [below for nested schema](#nestedatt--spec--user_settings--kernel_gateway_app_settings--custom_images))
-- `default_resource_spec` (Attributes) Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on. (see [below for nested schema](#nestedatt--spec--user_settings--kernel_gateway_app_settings--default_resource_spec))
+- `default_resource_spec` (Attributes) Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on. (see [below for nested schema](#nestedatt--spec--user_settings--kernel_gateway_app_settings--default_resource_spec))
 - `lifecycle_config_ar_ns` (List of String)
 
 <a id="nestedatt--spec--user_settings--kernel_gateway_app_settings--custom_images"></a>
@@ -135,6 +222,7 @@ Optional:
 - `instance_type` (String)
 - `lifecycle_config_arn` (String)
 - `sage_maker_image_arn` (String)
+- `sage_maker_image_version_alias` (String)
 - `sage_maker_image_version_arn` (String)
 
 
@@ -158,12 +246,29 @@ Optional:
 - `s3_output_path` (String)
 
 
+<a id="nestedatt--spec--user_settings--space_storage_settings"></a>
+### Nested Schema for `spec.user_settings.space_storage_settings`
+
+Optional:
+
+- `default_ebs_storage_settings` (Attributes) A collection of default EBS storage settings that applies to private spacescreated within a domain or user profile. (see [below for nested schema](#nestedatt--spec--user_settings--space_storage_settings--default_ebs_storage_settings))
+
+<a id="nestedatt--spec--user_settings--space_storage_settings--default_ebs_storage_settings"></a>
+### Nested Schema for `spec.user_settings.space_storage_settings.default_ebs_storage_settings`
+
+Optional:
+
+- `default_ebs_volume_size_in_gb` (Number)
+- `maximum_ebs_volume_size_in_gb` (Number)
+
+
+
 <a id="nestedatt--spec--user_settings--tensor_board_app_settings"></a>
 ### Nested Schema for `spec.user_settings.tensor_board_app_settings`
 
 Optional:
 
-- `default_resource_spec` (Attributes) Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on. (see [below for nested schema](#nestedatt--spec--user_settings--tensor_board_app_settings--default_resource_spec))
+- `default_resource_spec` (Attributes) Specifies the ARN's of a SageMaker image and SageMaker image version, andthe instance type that the version runs on. (see [below for nested schema](#nestedatt--spec--user_settings--tensor_board_app_settings--default_resource_spec))
 
 <a id="nestedatt--spec--user_settings--tensor_board_app_settings--default_resource_spec"></a>
 ### Nested Schema for `spec.user_settings.tensor_board_app_settings.default_resource_spec`
@@ -173,4 +278,5 @@ Optional:
 - `instance_type` (String)
 - `lifecycle_config_arn` (String)
 - `sage_maker_image_arn` (String)
+- `sage_maker_image_version_alias` (String)
 - `sage_maker_image_version_arn` (String)

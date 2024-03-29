@@ -147,8 +147,8 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Manifest) Schema(_ context.Co
 				MarkdownDescription: "ReceiverSpec defines the desired state of Receiver",
 				Attributes: map[string]schema.Attribute{
 					"events": schema.ListAttribute{
-						Description:         "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
-						MarkdownDescription: "A list of events to handle, e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
+						Description:         "A list of events to handle,e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
+						MarkdownDescription: "A list of events to handle,e.g. 'push' for GitHub or 'Push Hook' for GitLab.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -180,8 +180,8 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Manifest) Schema(_ context.Co
 								},
 
 								"match_labels": schema.MapAttribute{
-									Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-									MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+									MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -219,8 +219,8 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Manifest) Schema(_ context.Co
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "Secret reference containing the token used to validate the payload authenticity",
-						MarkdownDescription: "Secret reference containing the token used to validate the payload authenticity",
+						Description:         "Secret reference containing the token usedto validate the payload authenticity",
+						MarkdownDescription: "Secret reference containing the token usedto validate the payload authenticity",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -236,16 +236,16 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Manifest) Schema(_ context.Co
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
-						MarkdownDescription: "This flag tells the controller to suspend subsequent events handling. Defaults to false.",
+						Description:         "This flag tells the controller to suspend subsequent events handling.Defaults to false.",
+						MarkdownDescription: "This flag tells the controller to suspend subsequent events handling.Defaults to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
-						MarkdownDescription: "Type of webhook sender, used to determine the validation procedure and payload deserialization.",
+						Description:         "Type of webhook sender, used to determinethe validation procedure and payload deserialization.",
+						MarkdownDescription: "Type of webhook sender, used to determinethe validation procedure and payload deserialization.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

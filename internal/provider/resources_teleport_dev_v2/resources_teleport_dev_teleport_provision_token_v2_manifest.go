@@ -85,16 +85,26 @@ type ResourcesTeleportDevTeleportProvisionTokenV2ManifestData struct {
 				Workflow         *string `tfsdk:"workflow" json:"workflow,omitempty"`
 			} `tfsdk:"allow" json:"allow,omitempty"`
 			Enterprise_server_host *string `tfsdk:"enterprise_server_host" json:"enterprise_server_host,omitempty"`
+			Enterprise_slug        *string `tfsdk:"enterprise_slug" json:"enterprise_slug,omitempty"`
 		} `tfsdk:"github" json:"github,omitempty"`
 		Gitlab *struct {
 			Allow *[]struct {
-				Environment     *string `tfsdk:"environment" json:"environment,omitempty"`
-				Namespace_path  *string `tfsdk:"namespace_path" json:"namespace_path,omitempty"`
-				Pipeline_source *string `tfsdk:"pipeline_source" json:"pipeline_source,omitempty"`
-				Project_path    *string `tfsdk:"project_path" json:"project_path,omitempty"`
-				Ref             *string `tfsdk:"ref" json:"ref,omitempty"`
-				Ref_type        *string `tfsdk:"ref_type" json:"ref_type,omitempty"`
-				Sub             *string `tfsdk:"sub" json:"sub,omitempty"`
+				Ci_config_ref_uri     *string `tfsdk:"ci_config_ref_uri" json:"ci_config_ref_uri,omitempty"`
+				Ci_config_sha         *string `tfsdk:"ci_config_sha" json:"ci_config_sha,omitempty"`
+				Deployment_tier       *string `tfsdk:"deployment_tier" json:"deployment_tier,omitempty"`
+				Environment           *string `tfsdk:"environment" json:"environment,omitempty"`
+				Environment_protected *bool   `tfsdk:"environment_protected" json:"environment_protected,omitempty"`
+				Namespace_path        *string `tfsdk:"namespace_path" json:"namespace_path,omitempty"`
+				Pipeline_source       *string `tfsdk:"pipeline_source" json:"pipeline_source,omitempty"`
+				Project_path          *string `tfsdk:"project_path" json:"project_path,omitempty"`
+				Project_visibility    *string `tfsdk:"project_visibility" json:"project_visibility,omitempty"`
+				Ref                   *string `tfsdk:"ref" json:"ref,omitempty"`
+				Ref_protected         *bool   `tfsdk:"ref_protected" json:"ref_protected,omitempty"`
+				Ref_type              *string `tfsdk:"ref_type" json:"ref_type,omitempty"`
+				Sub                   *string `tfsdk:"sub" json:"sub,omitempty"`
+				User_email            *string `tfsdk:"user_email" json:"user_email,omitempty"`
+				User_id               *string `tfsdk:"user_id" json:"user_id,omitempty"`
+				User_login            *string `tfsdk:"user_login" json:"user_login,omitempty"`
 			} `tfsdk:"allow" json:"allow,omitempty"`
 			Domain *string `tfsdk:"domain" json:"domain,omitempty"`
 		} `tfsdk:"gitlab" json:"gitlab,omitempty"`
@@ -108,7 +118,16 @@ type ResourcesTeleportDevTeleportProvisionTokenV2ManifestData struct {
 			} `tfsdk:"static_jwks" json:"static_jwks,omitempty"`
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"kubernetes" json:"kubernetes,omitempty"`
-		Roles                          *[]string          `tfsdk:"roles" json:"roles,omitempty"`
+		Roles     *[]string `tfsdk:"roles" json:"roles,omitempty"`
+		Spacelift *struct {
+			Allow *[]struct {
+				Caller_id   *string `tfsdk:"caller_id" json:"caller_id,omitempty"`
+				Caller_type *string `tfsdk:"caller_type" json:"caller_type,omitempty"`
+				Scope       *string `tfsdk:"scope" json:"scope,omitempty"`
+				Space_id    *string `tfsdk:"space_id" json:"space_id,omitempty"`
+			} `tfsdk:"allow" json:"allow,omitempty"`
+			Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
+		} `tfsdk:"spacelift" json:"spacelift,omitempty"`
 		Suggested_agent_matcher_labels *map[string]string `tfsdk:"suggested_agent_matcher_labels" json:"suggested_agent_matcher_labels,omitempty"`
 		Suggested_labels               *map[string]string `tfsdk:"suggested_labels" json:"suggested_labels,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -473,6 +492,14 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"enterprise_slug": schema.StringAttribute{
+								Description:         "EnterpriseSlug allows the slug of a GitHub Enterprise organisation to be included in the expected issuer of the OIDC tokens. This is for compatibility with the 'include_enterprise_slug' option in GHE.  This field should be set to the slug of your enterprise if this is enabled. If this is not enabled, then this field must be left empty. This field cannot be specified if 'enterprise_server_host' is specified.  See https://docs.github.com/en/enterprise-cloud@latest/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#customizing-the-issuer-value-for-an-enterprise for more information about customized issuer values.",
+								MarkdownDescription: "EnterpriseSlug allows the slug of a GitHub Enterprise organisation to be included in the expected issuer of the OIDC tokens. This is for compatibility with the 'include_enterprise_slug' option in GHE.  This field should be set to the slug of your enterprise if this is enabled. If this is not enabled, then this field must be left empty. This field cannot be specified if 'enterprise_server_host' is specified.  See https://docs.github.com/en/enterprise-cloud@latest/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#customizing-the-issuer-value-for-an-enterprise for more information about customized issuer values.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -488,7 +515,39 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 								MarkdownDescription: "Allow is a list of TokenRules, nodes using this token must match one allow rule to use this token.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"ci_config_ref_uri": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ci_config_sha": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"deployment_tier": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"environment": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"environment_protected": schema.BoolAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -520,7 +579,23 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 											Computed:            false,
 										},
 
+										"project_visibility": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"ref": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ref_protected": schema.BoolAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -537,6 +612,30 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 										},
 
 										"sub": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"user_email": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"user_id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"user_login": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -631,6 +730,66 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"spacelift": schema.SingleNestedAttribute{
+						Description:         "Spacelift allows the configuration of options specific to the 'spacelift' join method.",
+						MarkdownDescription: "Spacelift allows the configuration of options specific to the 'spacelift' join method.",
+						Attributes: map[string]schema.Attribute{
+							"allow": schema.ListNestedAttribute{
+								Description:         "Allow is a list of Rules, nodes using this token must match one allow rule to use this token.",
+								MarkdownDescription: "Allow is a list of Rules, nodes using this token must match one allow rule to use this token.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"caller_id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"caller_type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"scope": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"space_id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"hostname": schema.StringAttribute{
+								Description:         "Hostname is the hostname of the Spacelift tenant that tokens will originate from. E.g 'example.app.spacelift.io'",
+								MarkdownDescription: "Hostname is the hostname of the Spacelift tenant that tokens will originate from. E.g 'example.app.spacelift.io'",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"suggested_agent_matcher_labels": schema.MapAttribute{

@@ -210,7 +210,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -610,7 +612,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -720,7 +724,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -851,7 +857,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -1017,7 +1025,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -1127,7 +1137,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -1258,7 +1270,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -1380,7 +1394,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -1490,7 +1506,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 

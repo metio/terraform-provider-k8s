@@ -89,6 +89,14 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 						Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
 						TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 					} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
@@ -103,6 +111,14 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					NamespaceSelector *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 					Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
 					TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 				} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
@@ -118,6 +134,14 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 						Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
 						TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 					} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
@@ -132,6 +156,14 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					NamespaceSelector *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 					Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
 					TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 				} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
@@ -234,6 +266,14 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 							Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
 							TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 						} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
@@ -248,6 +288,14 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 						Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
 						TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
@@ -263,6 +311,14 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 							Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
 							TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 						} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
@@ -277,6 +333,14 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 						Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
 						TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 					} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
@@ -304,7 +368,28 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 		} `tfsdk:"security" json:"security,omitempty"`
 		Service *struct {
 			Container *struct {
-				EphemeralStorage *bool   `tfsdk:"ephemeral_storage" json:"ephemeralStorage,omitempty"`
+				EphemeralStorage *bool `tfsdk:"ephemeral_storage" json:"ephemeralStorage,omitempty"`
+				LivenessProbe    *struct {
+					FailureThreshold    *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+					PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+					TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
+				ReadinessProbe *struct {
+					FailureThreshold    *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+					PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+					TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+				StartupProbe *struct {
+					FailureThreshold    *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+					PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+					TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 				Storage          *string `tfsdk:"storage" json:"storage,omitempty"`
 				StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
 			} `tfsdk:"container" json:"container,omitempty"`
@@ -726,9 +811,63 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 															Computed: false,
 														},
 
+														"namespace_selector": schema.SingleNestedAttribute{
+															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_labels": schema.MapAttribute{
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-															MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -821,9 +960,63 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 													Computed: false,
 												},
 
+												"namespace_selector": schema.SingleNestedAttribute{
+													Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+													MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+													Attributes: map[string]schema.Attribute{
+														"match_expressions": schema.ListNestedAttribute{
+															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "key is the label key that the selector applies to.",
+																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_labels": schema.MapAttribute{
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"namespaces": schema.ListAttribute{
-													Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-													MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+													Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+													MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -916,9 +1109,63 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 															Computed: false,
 														},
 
+														"namespace_selector": schema.SingleNestedAttribute{
+															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_labels": schema.MapAttribute{
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-															MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1011,9 +1258,63 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 													Computed: false,
 												},
 
+												"namespace_selector": schema.SingleNestedAttribute{
+													Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+													MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+													Attributes: map[string]schema.Attribute{
+														"match_expressions": schema.ListNestedAttribute{
+															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "key is the label key that the selector applies to.",
+																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_labels": schema.MapAttribute{
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"namespaces": schema.ListAttribute{
-													Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-													MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+													Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+													MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1094,8 +1395,8 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"cloud_events": schema.SingleNestedAttribute{
-						Description:         "InfinispanCloudEvents describes how Infinispan is connected with Cloud Event, see Kafka docs for more info",
-						MarkdownDescription: "InfinispanCloudEvents describes how Infinispan is connected with Cloud Event, see Kafka docs for more info",
+						Description:         "Deprecated. Has no effect starting with Infinispan 15.0.0 servers",
+						MarkdownDescription: "Deprecated. Has no effect starting with Infinispan 15.0.0 servers",
 						Attributes: map[string]schema.Attribute{
 							"acks": schema.StringAttribute{
 								Description:         "Acks configuration for the producer ack-value",
@@ -1696,9 +1997,63 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 																	Computed: false,
 																},
 
+																"namespace_selector": schema.SingleNestedAttribute{
+																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Attributes: map[string]schema.Attribute{
+																		"match_expressions": schema.ListNestedAttribute{
+																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "key is the label key that the selector applies to.",
+																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"operator": schema.StringAttribute{
+																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"values": schema.ListAttribute{
+																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_labels": schema.MapAttribute{
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-																	MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1791,9 +2146,63 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 															Computed: false,
 														},
 
+														"namespace_selector": schema.SingleNestedAttribute{
+															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_labels": schema.MapAttribute{
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-															MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1886,9 +2295,63 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 																	Computed: false,
 																},
 
+																"namespace_selector": schema.SingleNestedAttribute{
+																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Attributes: map[string]schema.Attribute{
+																		"match_expressions": schema.ListNestedAttribute{
+																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "key is the label key that the selector applies to.",
+																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"operator": schema.StringAttribute{
+																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"values": schema.ListAttribute{
+																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_labels": schema.MapAttribute{
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-																	MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1981,9 +2444,63 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 															Computed: false,
 														},
 
+														"namespace_selector": schema.SingleNestedAttribute{
+															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_labels": schema.MapAttribute{
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
-															MarkdownDescription: "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2166,6 +2683,153 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"liveness_probe": schema.SingleNestedAttribute{
+										Description:         "Periodic probe of container liveness. Container will be restarted if the probe fails.",
+										MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails.",
+										Attributes: map[string]schema.Attribute{
+											"failure_threshold": schema.Int64Attribute{
+												Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
+												MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"initial_delay_seconds": schema.Int64Attribute{
+												Description:         "Number of seconds after the container has started before liveness probes are initiated.",
+												MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"period_seconds": schema.Int64Attribute{
+												Description:         "How often (in seconds) to perform the probe.",
+												MarkdownDescription: "How often (in seconds) to perform the probe.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"success_threshold": schema.Int64Attribute{
+												Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.",
+												MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Number of seconds after which the probe times out.",
+												MarkdownDescription: "Number of seconds after which the probe times out.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"readiness_probe": schema.SingleNestedAttribute{
+										Description:         "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails.",
+										MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails.",
+										Attributes: map[string]schema.Attribute{
+											"failure_threshold": schema.Int64Attribute{
+												Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
+												MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"initial_delay_seconds": schema.Int64Attribute{
+												Description:         "Number of seconds after the container has started before liveness probes are initiated.",
+												MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"period_seconds": schema.Int64Attribute{
+												Description:         "How often (in seconds) to perform the probe.",
+												MarkdownDescription: "How often (in seconds) to perform the probe.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"success_threshold": schema.Int64Attribute{
+												Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.",
+												MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Number of seconds after which the probe times out.",
+												MarkdownDescription: "Number of seconds after which the probe times out.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"startup_probe": schema.SingleNestedAttribute{
+										Description:         "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation.",
+										MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation.",
+										Attributes: map[string]schema.Attribute{
+											"failure_threshold": schema.Int64Attribute{
+												Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
+												MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"initial_delay_seconds": schema.Int64Attribute{
+												Description:         "Number of seconds after the container has started before liveness probes are initiated.",
+												MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"period_seconds": schema.Int64Attribute{
+												Description:         "How often (in seconds) to perform the probe.",
+												MarkdownDescription: "How often (in seconds) to perform the probe.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"success_threshold": schema.Int64Attribute{
+												Description:         "Minimum consecutive successes for the probe to be considered successful after having failed.",
+												MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Number of seconds after which the probe times out.",
+												MarkdownDescription: "Number of seconds after which the probe times out.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"storage": schema.StringAttribute{

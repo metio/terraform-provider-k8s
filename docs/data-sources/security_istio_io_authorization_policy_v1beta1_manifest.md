@@ -56,11 +56,11 @@ Optional:
 
 Optional:
 
-- `action` (String) Optional.
+- `action` (String) Optional.Valid Options: ALLOW, DENY, AUDIT, CUSTOM
 - `provider` (Attributes) Specifies detailed configuration of the CUSTOM action. (see [below for nested schema](#nestedatt--spec--provider))
 - `rules` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--rules))
 - `selector` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--selector))
-- `target_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 <a id="nestedatt--spec--provider"></a>
 ### Nested Schema for `spec.provider`
@@ -130,9 +130,12 @@ Optional:
 <a id="nestedatt--spec--rules--when"></a>
 ### Nested Schema for `spec.rules.when`
 
-Optional:
+Required:
 
 - `key` (String) The name of an Istio attribute.
+
+Optional:
+
 - `not_values` (List of String) Optional.
 - `values` (List of String) Optional.
 
@@ -143,7 +146,7 @@ Optional:
 
 Optional:
 
-- `match_labels` (Map of String)
+- `match_labels` (Map of String) One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.
 
 
 <a id="nestedatt--spec--target_ref"></a>

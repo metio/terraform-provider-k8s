@@ -50,17 +50,19 @@ type KumaIoMeshTrafficPermissionV1Alpha1ManifestData struct {
 				Action *string `tfsdk:"action" json:"action,omitempty"`
 			} `tfsdk:"default" json:"default,omitempty"`
 			TargetRef *struct {
-				Kind *string            `tfsdk:"kind" json:"kind,omitempty"`
-				Mesh *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-				Name *string            `tfsdk:"name" json:"name,omitempty"`
-				Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+				Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+				Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+				Name       *string            `tfsdk:"name" json:"name,omitempty"`
+				ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+				Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		} `tfsdk:"from" json:"from,omitempty"`
 		TargetRef *struct {
-			Kind *string            `tfsdk:"kind" json:"kind,omitempty"`
-			Mesh *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-			Name *string            `tfsdk:"name" json:"name,omitempty"`
-			Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+			Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+			Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+			Name       *string            `tfsdk:"name" json:"name,omitempty"`
+			ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+			Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -156,8 +158,8 @@ func (r *KumaIoMeshTrafficPermissionV1Alpha1Manifest) Schema(_ context.Context, 
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.SingleNestedAttribute{
-									Description:         "Default is a configuration specific to the group of clients referenced in 'targetRef'",
-									MarkdownDescription: "Default is a configuration specific to the group of clients referenced in 'targetRef'",
+									Description:         "Default is a configuration specific to the group of clients referenced in'targetRef'",
+									MarkdownDescription: "Default is a configuration specific to the group of clients referenced in'targetRef'",
 									Attributes: map[string]schema.Attribute{
 										"action": schema.StringAttribute{
 											Description:         "Action defines a behavior for the specified group of clients:",
@@ -176,8 +178,8 @@ func (r *KumaIoMeshTrafficPermissionV1Alpha1Manifest) Schema(_ context.Context, 
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group of clients.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of clients.",
+									Description:         "TargetRef is a reference to the resource that represents a group ofclients.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofclients.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -199,16 +201,25 @@ func (r *KumaIoMeshTrafficPermissionV1Alpha1Manifest) Schema(_ context.Context, 
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_types": schema.ListAttribute{
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -227,8 +238,8 @@ func (r *KumaIoMeshTrafficPermissionV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
-						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
+						Description:         "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
+						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
@@ -250,16 +261,25 @@ func (r *KumaIoMeshTrafficPermissionV1Alpha1Manifest) Schema(_ context.Context, 
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
-								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_types": schema.ListAttribute{
+								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tags": schema.MapAttribute{
-								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
-								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

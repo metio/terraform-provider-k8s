@@ -46,22 +46,30 @@ type CrdProjectcalicoOrgBgpfilterV1ManifestData struct {
 		ExportV4 *[]struct {
 			Action        *string `tfsdk:"action" json:"action,omitempty"`
 			Cidr          *string `tfsdk:"cidr" json:"cidr,omitempty"`
+			Interface     *string `tfsdk:"interface" json:"interface,omitempty"`
 			MatchOperator *string `tfsdk:"match_operator" json:"matchOperator,omitempty"`
+			Source        *string `tfsdk:"source" json:"source,omitempty"`
 		} `tfsdk:"export_v4" json:"exportV4,omitempty"`
 		ExportV6 *[]struct {
 			Action        *string `tfsdk:"action" json:"action,omitempty"`
 			Cidr          *string `tfsdk:"cidr" json:"cidr,omitempty"`
+			Interface     *string `tfsdk:"interface" json:"interface,omitempty"`
 			MatchOperator *string `tfsdk:"match_operator" json:"matchOperator,omitempty"`
+			Source        *string `tfsdk:"source" json:"source,omitempty"`
 		} `tfsdk:"export_v6" json:"exportV6,omitempty"`
 		ImportV4 *[]struct {
 			Action        *string `tfsdk:"action" json:"action,omitempty"`
 			Cidr          *string `tfsdk:"cidr" json:"cidr,omitempty"`
+			Interface     *string `tfsdk:"interface" json:"interface,omitempty"`
 			MatchOperator *string `tfsdk:"match_operator" json:"matchOperator,omitempty"`
+			Source        *string `tfsdk:"source" json:"source,omitempty"`
 		} `tfsdk:"import_v4" json:"importV4,omitempty"`
 		ImportV6 *[]struct {
 			Action        *string `tfsdk:"action" json:"action,omitempty"`
 			Cidr          *string `tfsdk:"cidr" json:"cidr,omitempty"`
+			Interface     *string `tfsdk:"interface" json:"interface,omitempty"`
 			MatchOperator *string `tfsdk:"match_operator" json:"matchOperator,omitempty"`
+			Source        *string `tfsdk:"source" json:"source,omitempty"`
 		} `tfsdk:"import_v6" json:"importV6,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -155,16 +163,32 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 								"cidr": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"interface": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 
 								"match_operator": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"source": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 							},
@@ -190,16 +214,32 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 								"cidr": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"interface": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 
 								"match_operator": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"source": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 							},
@@ -225,16 +265,32 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 								"cidr": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"interface": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 
 								"match_operator": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"source": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 							},
@@ -260,16 +316,32 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 								"cidr": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"interface": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 
 								"match_operator": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"source": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 							},

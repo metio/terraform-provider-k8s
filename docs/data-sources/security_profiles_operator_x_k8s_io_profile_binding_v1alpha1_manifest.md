@@ -63,7 +63,7 @@ Optional:
 
 Required:
 
-- `image` (String) Image name within pod containers to match to the profile.
+- `image` (String) Image name within pod containers to match to the profile.Use the '*' string to bind the profile to all pods.
 - `profile_ref` (Attributes) ProfileRef references a SeccompProfile or other profile type in the current namespace. (see [below for nested schema](#nestedatt--spec--profile_ref))
 
 <a id="nestedatt--spec--profile_ref"></a>

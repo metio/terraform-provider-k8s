@@ -30,7 +30,7 @@ data "k8s_longhorn_io_instance_manager_v1beta2_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) InstanceManagerSpec defines the desired state of the Longhorn instancer manager (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) InstanceManagerSpec defines the desired state of the Longhorn instance manager (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,6 +56,7 @@ Optional:
 
 Optional:
 
+- `data_engine` (String)
 - `image` (String)
 - `node_id` (String)
 - `type` (String)

@@ -74,15 +74,25 @@ Optional:
 
 Required:
 
-- `network` (Attributes) Network is the reference to the Network to use for this cluster. (see [below for nested schema](#nestedatt--spec--template--spec--network))
-- `service_instance_id` (String) ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed.
+- `network` (Attributes) Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist network will be created by DHCP service. Network.RegEx is not yet supported and system will ignore the value. (see [below for nested schema](#nestedatt--spec--template--spec--network))
+- `service_instance_id` (String) ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed. Deprecated: use ServiceInstance instead
 
 Optional:
 
 - `control_plane_endpoint` (Attributes) ControlPlaneEndpoint represents the endpoint used to communicate with the control plane. (see [below for nested schema](#nestedatt--spec--template--spec--control_plane_endpoint))
+- `cos_instance` (Attributes) cosInstance contains options to configure a supporting IBM Cloud COS bucket for this cluster - currently used for nodes requiring Ignition (https://coreos.github.io/ignition/) for bootstrapping (requires BootstrapFormatIgnition feature flag to be enabled). when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource and Ignition is set, then 1. CosInstance.Name should be set not setting will result in webhook error. 2. CosInstance.BucketName should be set not setting will result in webhook error. 3. CosInstance.BucketRegion should be set not setting will result in webhook error. (see [below for nested schema](#nestedatt--spec--template--spec--cos_instance))
+- `dhcp_server` (Attributes) dhcpServer is contains the configuration to be used while creating a new DHCP server in PowerVS workspace. when the field is omitted, CLUSTER_NAME will be used as DHCPServer.Name and DHCP server will be created. it will automatically create network with name DHCPSERVER<DHCPServer.Name>_Private in PowerVS workspace. (see [below for nested schema](#nestedatt--spec--template--spec--dhcp_server))
+- `ignition` (Attributes) Ignition defined options related to the bootstrapping systems where Ignition is used. (see [below for nested schema](#nestedatt--spec--template--spec--ignition))
+- `load_balancers` (Attributes List) loadBalancers is optional configuration for configuring loadbalancers to control plane or data plane nodes. when omitted system will create a default public loadbalancer with name CLUSTER_NAME-loadbalancer. when specified a vpc loadbalancer will be created and controlPlaneEndpoint will be set with associated hostname of loadbalancer. ControlPlaneEndpoint will be set with associated hostname of public loadbalancer. when LoadBalancers[].ID is set, its expected that there exist a loadbalancer with ID or else system will give error. when LoadBalancers[].Name is set, system will first check for loadbalancer with Name, if not exist system will create new loadbalancer. For each loadbalancer a default backed pool and front listener will be configured with port 6443. (see [below for nested schema](#nestedatt--spec--template--spec--load_balancers))
+- `resource_group` (Attributes) resourceGroup name under which the resources will be created. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, 1. it is expected to set the ResourceGroup.Name, not setting will result in webhook error. ServiceInstance.ID and ServiceInstance.Regex is not yet supported and system will ignore the value. (see [below for nested schema](#nestedatt--spec--template--spec--resource_group))
+- `service_instance` (Attributes) serviceInstance is the reference to the Power VS server workspace on which the server instance(VM) will be created. Power VS server workspace is a container for all Power VS instances at a specific geographic region. serviceInstance can be created via IBM Cloud catalog or CLI. supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli. More detail about Power VS service instance. https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server when omitted system will dynamically create the service instance with name CLUSTER_NAME-serviceInstance. when ServiceInstance.ID is set, its expected that there exist a service instance in PowerVS workspace with id or else system will give error. when ServiceInstance.Name is set, system will first check for service instance with Name in PowerVS workspace, if not exist system will create new instance. ServiceInstance.Regex is not yet supported not yet supported and system will ignore the value. (see [below for nested schema](#nestedatt--spec--template--spec--service_instance))
+- `transit_gateway` (Attributes) transitGateway contains information about IBM Cloud TransitGateway IBM Cloud TransitGateway helps in establishing network connectivity between IBM Cloud Power VS and VPC infrastructure more information about TransitGateway can be found here https://www.ibm.com/products/transit-gateway. when TransitGateway.ID is set, its expected that there exist a TransitGateway with ID or else system will give error. when TransitGateway.Name is set, system will first check for TransitGateway with Name, if not exist system will create new TransitGateway. (see [below for nested schema](#nestedatt--spec--template--spec--transit_gateway))
+- `vpc` (Attributes) vpc contains information about IBM Cloud VPC resources. when omitted system will dynamically create the VPC with name CLUSTER_NAME-vpc. when VPC.ID is set, its expected that there exist a VPC with ID or else system will give error. when VPC.Name is set, system will first check for VPC with Name, if not exist system will create new VPC. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, 1. it is expected to set the VPC.Region, not setting will result in webhook error. (see [below for nested schema](#nestedatt--spec--template--spec--vpc))
+- `vpc_subnets` (Attributes List) vpcSubnets contains information about IBM Cloud VPC Subnet resources. when omitted system will create the subnets in all the zone corresponding to VPC.Region, with name CLUSTER_NAME-vpcsubnet-ZONE_NAME. possible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server. when VPCSubnets[].ID is set, its expected that there exist a subnet with ID or else system will give error. when VPCSubnets[].Zone is not set, a random zone is picked from available zones of VPC.Region. when VPCSubnets[].Name is not set, system will set name as CLUSTER_NAME-vpcsubnet-INDEX. if subnet with name VPCSubnets[].Name not found, system will create new subnet in VPCSubnets[].Zone. (see [below for nested schema](#nestedatt--spec--template--spec--vpc_subnets))
+- `zone` (String) zone is the name of Power VS zone where the cluster will be created possible values can be found here https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, 1. it is expected to set the zone, not setting will result in webhook error. 2. the zone should have PER capabilities, or else system will give error.
 
 <a id="nestedatt--spec--template--spec--network"></a>
-### Nested Schema for `spec.template.spec.control_plane_endpoint`
+### Nested Schema for `spec.template.spec.zone`
 
 Optional:
 
@@ -92,12 +102,111 @@ Optional:
 
 
 <a id="nestedatt--spec--template--spec--control_plane_endpoint"></a>
-### Nested Schema for `spec.template.spec.control_plane_endpoint`
+### Nested Schema for `spec.template.spec.zone`
 
 Required:
 
 - `host` (String) The hostname on which the API server is serving.
 - `port` (Number) The port on which the API server is serving.
+
+
+<a id="nestedatt--spec--template--spec--cos_instance"></a>
+### Nested Schema for `spec.template.spec.zone`
+
+Optional:
+
+- `bucket_name` (String) bucketName is IBM cloud COS bucket name
+- `bucket_region` (String) bucketRegion is IBM cloud COS bucket region
+- `name` (String) name defines name of IBM cloud COS instance to be created. when IBMPowerVSCluster.Ignition is set
+
+
+<a id="nestedatt--spec--template--spec--dhcp_server"></a>
+### Nested Schema for `spec.template.spec.zone`
+
+Optional:
+
+- `cidr` (String) Optional cidr for DHCP private network
+- `dns_server` (String) Optional DNS Server for DHCP service
+- `id` (String) Optional id of the existing DHCPServer
+- `name` (String) Optional name of DHCP Service. Only alphanumeric characters and dashes are allowed.
+- `snat` (Boolean) Optional indicates if SNAT will be enabled for DHCP service
+
+
+<a id="nestedatt--spec--template--spec--ignition"></a>
+### Nested Schema for `spec.template.spec.zone`
+
+Optional:
+
+- `version` (String) Version defines which version of Ignition will be used to generate bootstrap data.
+
+
+<a id="nestedatt--spec--template--spec--load_balancers"></a>
+### Nested Schema for `spec.template.spec.zone`
+
+Optional:
+
+- `additional_listeners` (Attributes List) AdditionalListeners sets the additional listeners for the control plane load balancer. (see [below for nested schema](#nestedatt--spec--template--spec--zone--additional_listeners))
+- `id` (String) id of the loadbalancer
+- `name` (String) Name sets the name of the VPC load balancer.
+- `public` (Boolean) public indicates that load balancer is public or private
+
+<a id="nestedatt--spec--template--spec--zone--additional_listeners"></a>
+### Nested Schema for `spec.template.spec.zone.additional_listeners`
+
+Required:
+
+- `port` (Number) Port sets the port for the additional listener.
+
+
+
+<a id="nestedatt--spec--template--spec--resource_group"></a>
+### Nested Schema for `spec.template.spec.zone`
+
+Optional:
+
+- `id` (String) ID of resource
+- `name` (String) Name of resource
+- `regex` (String) Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected
+
+
+<a id="nestedatt--spec--template--spec--service_instance"></a>
+### Nested Schema for `spec.template.spec.zone`
+
+Optional:
+
+- `id` (String) ID of resource
+- `name` (String) Name of resource
+- `regex` (String) Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected
+
+
+<a id="nestedatt--spec--template--spec--transit_gateway"></a>
+### Nested Schema for `spec.template.spec.zone`
+
+Optional:
+
+- `id` (String) id of resource.
+- `name` (String) name of resource.
+
+
+<a id="nestedatt--spec--template--spec--vpc"></a>
+### Nested Schema for `spec.template.spec.zone`
+
+Optional:
+
+- `id` (String) id of resource.
+- `name` (String) name of resource.
+- `region` (String) region of IBM Cloud VPC. when powervs.cluster.x-k8s.io/create-infra=true annotation is set on IBMPowerVSCluster resource, it is expected to set the region, not setting will result in webhook error.
+
+
+<a id="nestedatt--spec--template--spec--vpc_subnets"></a>
+### Nested Schema for `spec.template.spec.zone`
+
+Optional:
+
+- `cidr` (String)
+- `id` (String)
+- `name` (String)
+- `zone` (String)
 
 
 

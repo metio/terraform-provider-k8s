@@ -172,8 +172,8 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Manifest) Schema(_ context.Context
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"address": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Address associated with the network endpoint without the port.",
+									MarkdownDescription: "Address associated with the network endpoint without the port.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -197,8 +197,8 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Manifest) Schema(_ context.Context
 								},
 
 								"network": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Network enables Istio to group endpoints resident in the same L3 domain/network.",
+									MarkdownDescription: "Network enables Istio to group endpoints resident in the same L3 domain/network.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -214,8 +214,8 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Manifest) Schema(_ context.Context
 								},
 
 								"service_account": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The service account associated with the workload if a sidecar is present in the workload.",
+									MarkdownDescription: "The service account associated with the workload if a sidecar is present in the workload.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -248,14 +248,14 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Manifest) Schema(_ context.Context
 						Description:         "The hosts associated with the ServiceEntry.",
 						MarkdownDescription: "The hosts associated with the ServiceEntry.",
 						ElementType:         types.StringType,
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 					},
 
 					"location": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Specify whether the service should be considered external to the mesh or part of the mesh.Valid Options: MESH_EXTERNAL, MESH_INTERNAL",
+						MarkdownDescription: "Specify whether the service should be considered external to the mesh or part of the mesh.Valid Options: MESH_EXTERNAL, MESH_INTERNAL",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -272,16 +272,16 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Manifest) Schema(_ context.Context
 								"name": schema.StringAttribute{
 									Description:         "Label assigned to the port.",
 									MarkdownDescription: "Label assigned to the port.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 
 								"number": schema.Int64Attribute{
 									Description:         "A valid non-negative integer port number.",
 									MarkdownDescription: "A valid non-negative integer port number.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 
@@ -294,8 +294,8 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Manifest) Schema(_ context.Context
 								},
 
 								"target_port": schema.Int64Attribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The port number on the endpoint where the traffic will be received.",
+									MarkdownDescription: "The port number on the endpoint where the traffic will be received.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -308,8 +308,8 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Manifest) Schema(_ context.Context
 					},
 
 					"resolution": schema.StringAttribute{
-						Description:         "Service resolution mode for the hosts.",
-						MarkdownDescription: "Service resolution mode for the hosts.",
+						Description:         "Service resolution mode for the hosts.Valid Options: NONE, STATIC, DNS, DNS_ROUND_ROBIN",
+						MarkdownDescription: "Service resolution mode for the hosts.Valid Options: NONE, STATIC, DNS, DNS_ROUND_ROBIN",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -319,8 +319,8 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Manifest) Schema(_ context.Context
 					},
 
 					"subject_alt_names": schema.ListAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "If specified, the proxy will verify that the server certificate's subject alternate name matches one of the specified values.",
+						MarkdownDescription: "If specified, the proxy will verify that the server certificate's subject alternate name matches one of the specified values.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -332,8 +332,8 @@ func (r *NetworkingIstioIoServiceEntryV1Alpha3Manifest) Schema(_ context.Context
 						MarkdownDescription: "Applicable only for MESH_INTERNAL services.",
 						Attributes: map[string]schema.Attribute{
 							"labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "One or more labels that indicate a specific set of pods/VMs on which the configuration should be applied.",
+								MarkdownDescription: "One or more labels that indicate a specific set of pods/VMs on which the configuration should be applied.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

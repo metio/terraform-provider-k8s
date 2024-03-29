@@ -70,6 +70,12 @@ type KedaShScaledObjectV1Alpha1ManifestData struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"horizontal_pod_autoscaler_config" json:"horizontalPodAutoscalerConfig,omitempty"`
 			RestoreToOriginalReplicaCount *bool `tfsdk:"restore_to_original_replica_count" json:"restoreToOriginalReplicaCount,omitempty"`
+			ScalingModifiers              *struct {
+				ActivationTarget *string `tfsdk:"activation_target" json:"activationTarget,omitempty"`
+				Formula          *string `tfsdk:"formula" json:"formula,omitempty"`
+				MetricType       *string `tfsdk:"metric_type" json:"metricType,omitempty"`
+				Target           *string `tfsdk:"target" json:"target,omitempty"`
+			} `tfsdk:"scaling_modifiers" json:"scalingModifiers,omitempty"`
 		} `tfsdk:"advanced" json:"advanced,omitempty"`
 		CooldownPeriod *int64 `tfsdk:"cooldown_period" json:"cooldownPeriod,omitempty"`
 		Fallback       *struct {
@@ -194,21 +200,21 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								MarkdownDescription: "HorizontalPodAutoscalerConfig specifies horizontal scale config",
 								Attributes: map[string]schema.Attribute{
 									"behavior": schema.SingleNestedAttribute{
-										Description:         "HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).",
-										MarkdownDescription: "HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).",
+										Description:         "HorizontalPodAutoscalerBehavior configures the scaling behavior of the targetin both Up and Down directions (scaleUp and scaleDown fields respectively).",
+										MarkdownDescription: "HorizontalPodAutoscalerBehavior configures the scaling behavior of the targetin both Up and Down directions (scaleUp and scaleDown fields respectively).",
 										Attributes: map[string]schema.Attribute{
 											"scale_down": schema.SingleNestedAttribute{
-												Description:         "scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used).",
-												MarkdownDescription: "scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used).",
+												Description:         "scaleDown is scaling policy for scaling Down.If not set, the default value is to allow to scale down to minReplicas pods, with a300 second stabilization window (i.e., the highest recommendation forthe last 300sec is used).",
+												MarkdownDescription: "scaleDown is scaling policy for scaling Down.If not set, the default value is to allow to scale down to minReplicas pods, with a300 second stabilization window (i.e., the highest recommendation forthe last 300sec is used).",
 												Attributes: map[string]schema.Attribute{
 													"policies": schema.ListNestedAttribute{
-														Description:         "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
-														MarkdownDescription: "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+														Description:         "policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+														MarkdownDescription: "policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"period_seconds": schema.Int64Attribute{
-																	Description:         "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
-																	MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+																	Description:         "periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+																	MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -223,8 +229,8 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 																},
 
 																"value": schema.Int64Attribute{
-																	Description:         "value contains the amount of change which is permitted by the policy. It must be greater than zero",
-																	MarkdownDescription: "value contains the amount of change which is permitted by the policy. It must be greater than zero",
+																	Description:         "value contains the amount of change which is permitted by the policy.It must be greater than zero",
+																	MarkdownDescription: "value contains the amount of change which is permitted by the policy.It must be greater than zero",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -237,16 +243,16 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 													},
 
 													"select_policy": schema.StringAttribute{
-														Description:         "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
-														MarkdownDescription: "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
+														Description:         "selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.",
+														MarkdownDescription: "selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"stabilization_window_seconds": schema.Int64Attribute{
-														Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
-														MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+														Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+														MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -258,17 +264,17 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"scale_up": schema.SingleNestedAttribute{
-												Description:         "scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of: * increase no more than 4 pods per 60 seconds * double the number of pods per 60 seconds No stabilization is used.",
-												MarkdownDescription: "scaleUp is scaling policy for scaling Up. If not set, the default value is the higher of: * increase no more than 4 pods per 60 seconds * double the number of pods per 60 seconds No stabilization is used.",
+												Description:         "scaleUp is scaling policy for scaling Up.If not set, the default value is the higher of:  * increase no more than 4 pods per 60 seconds  * double the number of pods per 60 secondsNo stabilization is used.",
+												MarkdownDescription: "scaleUp is scaling policy for scaling Up.If not set, the default value is the higher of:  * increase no more than 4 pods per 60 seconds  * double the number of pods per 60 secondsNo stabilization is used.",
 												Attributes: map[string]schema.Attribute{
 													"policies": schema.ListNestedAttribute{
-														Description:         "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
-														MarkdownDescription: "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+														Description:         "policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+														MarkdownDescription: "policies is a list of potential scaling polices which can be used during scaling.At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"period_seconds": schema.Int64Attribute{
-																	Description:         "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
-																	MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+																	Description:         "periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+																	MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true.PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -283,8 +289,8 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 																},
 
 																"value": schema.Int64Attribute{
-																	Description:         "value contains the amount of change which is permitted by the policy. It must be greater than zero",
-																	MarkdownDescription: "value contains the amount of change which is permitted by the policy. It must be greater than zero",
+																	Description:         "value contains the amount of change which is permitted by the policy.It must be greater than zero",
+																	MarkdownDescription: "value contains the amount of change which is permitted by the policy.It must be greater than zero",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -297,16 +303,16 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 													},
 
 													"select_policy": schema.StringAttribute{
-														Description:         "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
-														MarkdownDescription: "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
+														Description:         "selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.",
+														MarkdownDescription: "selectPolicy is used to specify which policy should be used.If not set, the default value Max is used.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"stabilization_window_seconds": schema.Int64Attribute{
-														Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
-														MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+														Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
+														MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should beconsidered while scaling up or scaling down.StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour).If not set, use the default values:- For scale up: 0 (i.e. no stabilization is done).- For scale down: 300 (i.e. the stabilization window is 300 seconds long).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -341,6 +347,47 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"scaling_modifiers": schema.SingleNestedAttribute{
+								Description:         "ScalingModifiers describes advanced scaling logic options like formula",
+								MarkdownDescription: "ScalingModifiers describes advanced scaling logic options like formula",
+								Attributes: map[string]schema.Attribute{
+									"activation_target": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"formula": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"metric_type": schema.StringAttribute{
+										Description:         "MetricTargetType specifies the type of metric being targeted, and should be either'Value', 'AverageValue', or 'Utilization'",
+										MarkdownDescription: "MetricTargetType specifies the type of metric being targeted, and should be either'Value', 'AverageValue', or 'Utilization'",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"target": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,
@@ -460,8 +507,8 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authentication_ref": schema.SingleNestedAttribute{
-									Description:         "AuthenticationRef points to the TriggerAuthentication or ClusterTriggerAuthentication object that is used to authenticate the scaler with the environment",
-									MarkdownDescription: "AuthenticationRef points to the TriggerAuthentication or ClusterTriggerAuthentication object that is used to authenticate the scaler with the environment",
+									Description:         "AuthenticationRef points to the TriggerAuthentication or ClusterTriggerAuthentication object thatis used to authenticate the scaler with the environment",
+									MarkdownDescription: "AuthenticationRef points to the TriggerAuthentication or ClusterTriggerAuthentication object thatis used to authenticate the scaler with the environment",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the resource being referred to. Defaults to TriggerAuthentication.",
@@ -494,8 +541,8 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								},
 
 								"metric_type": schema.StringAttribute{
-									Description:         "MetricTargetType specifies the type of metric being targeted, and should be either 'Value', 'AverageValue', or 'Utilization'",
-									MarkdownDescription: "MetricTargetType specifies the type of metric being targeted, and should be either 'Value', 'AverageValue', or 'Utilization'",
+									Description:         "MetricTargetType specifies the type of metric being targeted, and should be either'Value', 'AverageValue', or 'Utilization'",
+									MarkdownDescription: "MetricTargetType specifies the type of metric being targeted, and should be either'Value', 'AverageValue', or 'Utilization'",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

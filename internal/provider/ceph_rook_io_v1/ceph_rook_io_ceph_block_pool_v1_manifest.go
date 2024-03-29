@@ -47,6 +47,7 @@ type CephRookIoCephBlockPoolV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		Application     *string `tfsdk:"application" json:"application,omitempty"`
 		CompressionMode *string `tfsdk:"compression_mode" json:"compressionMode,omitempty"`
 		CrushRoot       *string `tfsdk:"crush_root" json:"crushRoot,omitempty"`
 		DeviceClass     *string `tfsdk:"device_class" json:"deviceClass,omitempty"`
@@ -182,6 +183,14 @@ func (r *CephRookIoCephBlockPoolV1Manifest) Schema(_ context.Context, _ datasour
 				Description:         "NamedBlockPoolSpec allows a block pool to be created with a non-default name. This is more specific than the NamedPoolSpec so we get schema validation on the allowed pool names that can be specified.",
 				MarkdownDescription: "NamedBlockPoolSpec allows a block pool to be created with a non-default name. This is more specific than the NamedPoolSpec so we get schema validation on the allowed pool names that can be specified.",
 				Attributes: map[string]schema.Attribute{
+					"application": schema.StringAttribute{
+						Description:         "The application name to set on the pool. Only expected to be set for rgw pools.",
+						MarkdownDescription: "The application name to set on the pool. Only expected to be set for rgw pools.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"compression_mode": schema.StringAttribute{
 						Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
 						MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
@@ -349,7 +358,7 @@ func (r *CephRookIoCephBlockPoolV1Manifest) Schema(_ context.Context, _ datasour
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("device_health_metrics", ".nfs", ".mgr"),
+							stringvalidator.OneOf(".rgw.root", ".nfs", ".mgr"),
 						},
 					},
 

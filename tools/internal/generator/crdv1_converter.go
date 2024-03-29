@@ -90,6 +90,9 @@ func crdV1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 	props := make([]*Property, 0)
 
 	for name, prop := range schema.Properties {
+		if name == "" || name == "-" {
+			continue
+		}
 		propPath := propertyPath(path, name)
 		if ignored, ok := ignoredAttributes[terraformResourceName]; ok {
 			if slices.Contains(ignored, propPath) {
@@ -153,10 +156,13 @@ func crdV1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 						pathExpressions = append(pathExpressions, fmt.Sprintf(`path.MatchRelative().AtParent().AtName("%s")`, inner.TerraformAttributeName))
 					}
 				}
-				validator := fmt.Sprintf(`%s.ExactlyOneOf(%v)`, outer.ValidatorsPackage, strings.Join(pathExpressions, ", "))
-				outer.Validators = append(outer.Validators, validator)
-				addValidatorImports(outer, imports)
-				imports.Path = true
+				joinedPaths := strings.Join(pathExpressions, ", ")
+				if joinedPaths != "" {
+					validator := fmt.Sprintf(`%s.ExactlyOneOf(%v)`, outer.ValidatorsPackage, joinedPaths)
+					outer.Validators = append(outer.Validators, validator)
+					addValidatorImports(outer, imports)
+					imports.Path = true
+				}
 			}
 		}
 	} else if schema.MinProperties != nil && schema.MaxProperties == nil {
@@ -170,10 +176,13 @@ func crdV1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 						pathExpressions = append(pathExpressions, fmt.Sprintf(`path.MatchRelative().AtParent().AtName("%s")`, inner.TerraformAttributeName))
 					}
 				}
-				validator := fmt.Sprintf(`%s.AtLeastOneOf(%v)`, outer.ValidatorsPackage, strings.Join(pathExpressions, ", "))
-				outer.Validators = append(outer.Validators, validator)
-				addValidatorImports(outer, imports)
-				imports.Path = true
+				joinedPaths := strings.Join(pathExpressions, ", ")
+				if joinedPaths != "" {
+					validator := fmt.Sprintf(`%s.AtLeastOneOf(%v)`, outer.ValidatorsPackage, joinedPaths)
+					outer.Validators = append(outer.Validators, validator)
+					addValidatorImports(outer, imports)
+					imports.Path = true
+				}
 			}
 		} else if min > 1 && min == int64(len(props)) {
 			for _, prop := range props {

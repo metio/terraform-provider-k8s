@@ -57,7 +57,6 @@ Optional:
 Required:
 
 - `kafka` (Attributes) Configuration of the Kafka cluster. (see [below for nested schema](#nestedatt--spec--kafka))
-- `zookeeper` (Attributes) Configuration of the ZooKeeper cluster. (see [below for nested schema](#nestedatt--spec--zookeeper))
 
 Optional:
 
@@ -68,6 +67,7 @@ Optional:
 - `jmx_trans` (Attributes) As of Strimzi 0.35.0, JMXTrans is not supported anymore and this option is ignored. (see [below for nested schema](#nestedatt--spec--jmx_trans))
 - `kafka_exporter` (Attributes) Configuration of the Kafka Exporter. Kafka Exporter can provide additional metrics, for example lag of consumer group at topic/partition. (see [below for nested schema](#nestedatt--spec--kafka_exporter))
 - `maintenance_time_windows` (List of String) A list of time windows for maintenance tasks (that is, certificates renewal). Each time window is defined by a cron expression.
+- `zookeeper` (Attributes) Configuration of the ZooKeeper cluster. This section is required when running a ZooKeeper-based Apache Kafka cluster. (see [below for nested schema](#nestedatt--spec--zookeeper))
 
 <a id="nestedatt--spec--kafka"></a>
 ### Nested Schema for `spec.kafka`
@@ -75,25 +75,27 @@ Optional:
 Required:
 
 - `listeners` (Attributes List) Configures listeners of Kafka brokers. (see [below for nested schema](#nestedatt--spec--kafka--listeners))
-- `replicas` (Number) The number of pods in the cluster.
-- `storage` (Attributes) Storage configuration (disk). Cannot be updated. (see [below for nested schema](#nestedatt--spec--kafka--storage))
 
 Optional:
 
 - `authorization` (Attributes) Authorization configuration for Kafka brokers. (see [below for nested schema](#nestedatt--spec--kafka--authorization))
 - `broker_rack_init_image` (String) The image of the init container used for initializing the 'broker.rack'.
-- `config` (Map of String) Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers,node.id, process.roles, controller., metadata.log.dir (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size,ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation,cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms,cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms,cruise.control.metrics.topic.min.insync.replicas,controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).
-- `image` (String) The docker image for the pods. The default value depends on the configured 'Kafka.spec.kafka.version'.
+- `config` (Map of String) Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers, node.id, process.roles, controller., metadata.log.dir, zookeeper.metadata.migration.enable (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation, cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms, cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms, cruise.control.metrics.topic.min.insync.replicas, controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).
+- `image` (String) The container image used for Kafka pods. If the property is not set, the default Kafka image version is determined based on the 'version' configuration. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration. Changing the Kafka image version does not automatically update the image versions for other components, such as Kafka Exporter.
 - `jmx_options` (Attributes) JMX Options for Kafka brokers. (see [below for nested schema](#nestedatt--spec--kafka--jmx_options))
 - `jvm_options` (Attributes) JVM Options for pods. (see [below for nested schema](#nestedatt--spec--kafka--jvm_options))
 - `liveness_probe` (Attributes) Pod liveness checking. (see [below for nested schema](#nestedatt--spec--kafka--liveness_probe))
 - `logging` (Attributes) Logging configuration for Kafka. (see [below for nested schema](#nestedatt--spec--kafka--logging))
+- `metadata_version` (String) The KRaft metadata version used by the Kafka cluster. This property is ignored when running in ZooKeeper mode. If the property is not set, it defaults to the metadata version that corresponds to the 'version' property.
 - `metrics_config` (Attributes) Metrics configuration. (see [below for nested schema](#nestedatt--spec--kafka--metrics_config))
 - `rack` (Attributes) Configuration of the 'broker.rack' broker config. (see [below for nested schema](#nestedatt--spec--kafka--rack))
 - `readiness_probe` (Attributes) Pod readiness checking. (see [below for nested schema](#nestedatt--spec--kafka--readiness_probe))
+- `replicas` (Number) The number of pods in the cluster. This property is required when node pools are not used.
 - `resources` (Attributes) CPU and memory resources to reserve. (see [below for nested schema](#nestedatt--spec--kafka--resources))
+- `storage` (Attributes) Storage configuration (disk). Cannot be updated. This property is required when node pools are not used. (see [below for nested schema](#nestedatt--spec--kafka--storage))
 - `template` (Attributes) Template for Kafka cluster resources. The template allows users to specify how the Kubernetes resources are generated. (see [below for nested schema](#nestedatt--spec--kafka--template))
-- `version` (String) The kafka broker version. Defaults to {DefaultKafkaVersion}. Consult the user documentation to understand the process required to upgrade or downgrade the version.
+- `tiered_storage` (Attributes) Configure the tiered storage feature for Kafka brokers. (see [below for nested schema](#nestedatt--spec--kafka--tiered_storage))
+- `version` (String) The Kafka broker version. Defaults to the latest version. Consult the user documentation to understand the process required to upgrade or downgrade the version.
 
 <a id="nestedatt--spec--kafka--listeners"></a>
 ### Nested Schema for `spec.kafka.listeners`
@@ -103,7 +105,7 @@ Required:
 - `name` (String) Name of the listener. The name will be used to identify the listener and the related Kubernetes objects. The name has to be unique within given a Kafka cluster. The name can consist of lowercase characters and numbers and be up to 11 characters long.
 - `port` (Number) Port number used by the listener inside Kafka. The port number has to be unique within a given Kafka cluster. Allowed port numbers are 9092 and higher with the exception of ports 9404 and 9999, which are already used for Prometheus and JMX. Depending on the listener type, the port number might not be the same as the port number that connects Kafka clients.
 - `tls` (Boolean) Enables TLS encryption on the listener. This is a required property.
-- `type` (String) Type of the listener. Currently the supported types are 'internal', 'route', 'loadbalancer', 'nodeport' and 'ingress'. * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka with TLS passthrough.* 'cluster-ip' type uses a per-broker 'ClusterIP' service.
+- `type` (String) Type of the listener. The supported types are as follows: * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka with TLS passthrough.* 'cluster-ip' type uses a per-broker 'ClusterIP' service.
 
 Optional:
 
@@ -142,6 +144,7 @@ Optional:
 - `groups_claim_delimiter` (String) A delimiter used to parse groups when they are extracted as a single String value rather than a JSON array. Default value is ',' (comma).
 - `http_retries` (Number) The maximum number of retries to attempt if an initial HTTP request fails. If not set, the default is to not attempt any retries.
 - `http_retry_pause_ms` (Number) The pause to take before retrying a failed HTTP request. If not set, the default is to not pause at all but to immediately repeat a request.
+- `include_accept_header` (Boolean) Whether the Accept header should be set in requests to the authorization servers. The default value is 'true'.
 - `introspection_endpoint_uri` (String) URI of the token introspection endpoint which can be used to validate opaque non-JWT tokens.
 - `jwks_endpoint_uri` (String) URI of the JWKS certificate endpoint, which can be used for local JWT validation.
 - `jwks_expiry_seconds` (Number) Configures how often are the JWKS certificates considered valid. The expiry interval has to be at least 60 seconds longer then the refresh interval specified in 'jwksRefreshSeconds'. Defaults to 360 seconds.
@@ -308,67 +311,12 @@ Optional:
 
 
 
-<a id="nestedatt--spec--kafka--storage"></a>
-### Nested Schema for `spec.kafka.storage`
-
-Required:
-
-- `type` (String) Storage type, must be either 'ephemeral', 'persistent-claim', or 'jbod'.
-
-Optional:
-
-- `class` (String) The storage class to use for dynamic volume allocation.
-- `delete_claim` (Boolean) Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed.
-- `id` (Number) Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.
-- `overrides` (Attributes List) Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers. (see [below for nested schema](#nestedatt--spec--kafka--storage--overrides))
-- `selector` (Map of String) Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume.
-- `size` (String) When type=persistent-claim, defines the size of the persistent volume claim (i.e 1Gi). Mandatory when type=persistent-claim.
-- `size_limit` (String) When type=ephemeral, defines the total amount of local storage required for this EmptyDir volume (for example 1Gi).
-- `volumes` (Attributes List) List of volumes as Storage objects representing the JBOD disks array. (see [below for nested schema](#nestedatt--spec--kafka--storage--volumes))
-
-<a id="nestedatt--spec--kafka--storage--overrides"></a>
-### Nested Schema for `spec.kafka.storage.volumes`
-
-Optional:
-
-- `broker` (Number) Id of the kafka broker (broker identifier).
-- `class` (String) The storage class to use for dynamic volume allocation for this broker.
-
-
-<a id="nestedatt--spec--kafka--storage--volumes"></a>
-### Nested Schema for `spec.kafka.storage.volumes`
-
-Required:
-
-- `type` (String) Storage type, must be either 'ephemeral' or 'persistent-claim'.
-
-Optional:
-
-- `class` (String) The storage class to use for dynamic volume allocation.
-- `delete_claim` (Boolean) Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed.
-- `id` (Number) Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.
-- `overrides` (Attributes List) Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers. (see [below for nested schema](#nestedatt--spec--kafka--storage--volumes--overrides))
-- `selector` (Map of String) Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume.
-- `size` (String) When type=persistent-claim, defines the size of the persistent volume claim (i.e 1Gi). Mandatory when type=persistent-claim.
-- `size_limit` (String) When type=ephemeral, defines the total amount of local storage required for this EmptyDir volume (for example 1Gi).
-
-<a id="nestedatt--spec--kafka--storage--volumes--overrides"></a>
-### Nested Schema for `spec.kafka.storage.volumes.overrides`
-
-Optional:
-
-- `broker` (Number) Id of the kafka broker (broker identifier).
-- `class` (String) The storage class to use for dynamic volume allocation for this broker.
-
-
-
-
 <a id="nestedatt--spec--kafka--authorization"></a>
 ### Nested Schema for `spec.kafka.authorization`
 
 Required:
 
-- `type` (String) Authorization type. Currently, the supported types are 'simple', 'keycloak', 'opa' and 'custom'. 'simple' authorization type uses Kafka's 'kafka.security.authorizer.AclAuthorizer' class for authorization. 'keycloak' authorization type uses Keycloak Authorization Services for authorization. 'opa' authorization type uses Open Policy Agent based authorization.'custom' authorization type uses user-provided implementation for authorization.
+- `type` (String) Authorization type. Currently, the supported types are 'simple', 'keycloak', 'opa' and 'custom'. 'simple' authorization type uses Kafka's built-in authorizer for authorization. 'keycloak' authorization type uses Keycloak Authorization Services for authorization. 'opa' authorization type uses Open Policy Agent based authorization.'custom' authorization type uses user-provided implementation for authorization.
 
 Optional:
 
@@ -386,6 +334,7 @@ Optional:
 - `grants_refresh_period_seconds` (Number) The time between two consecutive grants refresh runs in seconds. The default value is 60.
 - `grants_refresh_pool_size` (Number) The number of threads to use to refresh grants for active sessions. The more threads, the more parallelism, so the sooner the job completes. However, using more threads places a heavier load on the authorization server. The default value is 5.
 - `http_retries` (Number) The maximum number of retries to attempt if an initial HTTP request fails. If not set, the default is to not attempt any retries.
+- `include_accept_header` (Boolean) Whether the Accept header should be set in requests to the authorization servers. The default value is 'true'.
 - `initial_cache_capacity` (Number) Initial capacity of the local cache used by the authorizer to avoid querying the Open Policy Agent for every request Defaults to '5000'.
 - `maximum_cache_size` (Number) Maximum capacity of the local cache used by the authorizer to avoid querying the Open Policy Agent for every request. Defaults to '50000'.
 - `read_timeout_seconds` (Number) The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds.
@@ -491,7 +440,7 @@ Optional:
 Required:
 
 - `type` (String) Metrics type. Only 'jmxPrometheusExporter' supported currently.
-- `value_from` (Attributes) ConfigMap entry where the Prometheus JMX Exporter configuration is stored. For details of the structure of this configuration, see the {JMXExporter}. (see [below for nested schema](#nestedatt--spec--kafka--metrics_config--value_from))
+- `value_from` (Attributes) ConfigMap entry where the Prometheus JMX Exporter configuration is stored. (see [below for nested schema](#nestedatt--spec--kafka--metrics_config--value_from))
 
 <a id="nestedatt--spec--kafka--metrics_config--value_from"></a>
 ### Nested Schema for `spec.kafka.metrics_config.value_from`
@@ -547,6 +496,61 @@ Optional:
 Optional:
 
 - `name` (String)
+
+
+
+<a id="nestedatt--spec--kafka--storage"></a>
+### Nested Schema for `spec.kafka.storage`
+
+Required:
+
+- `type` (String) Storage type, must be either 'ephemeral', 'persistent-claim', or 'jbod'.
+
+Optional:
+
+- `class` (String) The storage class to use for dynamic volume allocation.
+- `delete_claim` (Boolean) Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed.
+- `id` (Number) Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.
+- `overrides` (Attributes List) Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers. (see [below for nested schema](#nestedatt--spec--kafka--storage--overrides))
+- `selector` (Map of String) Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume.
+- `size` (String) When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.
+- `size_limit` (String) When type=ephemeral, defines the total amount of local storage required for this EmptyDir volume (for example 1Gi).
+- `volumes` (Attributes List) List of volumes as Storage objects representing the JBOD disks array. (see [below for nested schema](#nestedatt--spec--kafka--storage--volumes))
+
+<a id="nestedatt--spec--kafka--storage--overrides"></a>
+### Nested Schema for `spec.kafka.storage.volumes`
+
+Optional:
+
+- `broker` (Number) Id of the kafka broker (broker identifier).
+- `class` (String) The storage class to use for dynamic volume allocation for this broker.
+
+
+<a id="nestedatt--spec--kafka--storage--volumes"></a>
+### Nested Schema for `spec.kafka.storage.volumes`
+
+Required:
+
+- `type` (String) Storage type, must be either 'ephemeral' or 'persistent-claim'.
+
+Optional:
+
+- `class` (String) The storage class to use for dynamic volume allocation.
+- `delete_claim` (Boolean) Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed.
+- `id` (Number) Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.
+- `overrides` (Attributes List) Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers. (see [below for nested schema](#nestedatt--spec--kafka--storage--volumes--overrides))
+- `selector` (Map of String) Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume.
+- `size` (String) When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.
+- `size_limit` (String) When type=ephemeral, defines the total amount of local storage required for this EmptyDir volume (for example 1Gi).
+
+<a id="nestedatt--spec--kafka--storage--volumes--overrides"></a>
+### Nested Schema for `spec.kafka.storage.volumes.overrides`
+
+Optional:
+
+- `broker` (Number) Id of the kafka broker (broker identifier).
+- `class` (String) The storage class to use for dynamic volume allocation for this broker.
+
 
 
 
@@ -945,7 +949,7 @@ Optional:
 - `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--host_aliases))
 - `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--image_pull_secrets))
 - `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--metadata))
-- `priority_class_name` (String) The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.
+- `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
 - `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
@@ -1068,6 +1072,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -1118,6 +1124,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -1184,6 +1192,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -1234,6 +1244,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka--template--statefulset--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -1480,898 +1492,25 @@ Optional:
 
 
 
-
-<a id="nestedatt--spec--zookeeper"></a>
-### Nested Schema for `spec.zookeeper`
-
-Required:
-
-- `replicas` (Number) The number of pods in the cluster.
-- `storage` (Attributes) Storage configuration (disk). Cannot be updated. (see [below for nested schema](#nestedatt--spec--zookeeper--storage))
-
-Optional:
-
-- `config` (Map of String) The ZooKeeper broker config. Properties with the following prefixes cannot be set: server., dataDir, dataLogDir, clientPort, authProvider, quorum.auth, requireClientAuthScheme, snapshot.trust.empty, standaloneEnabled, reconfigEnabled, 4lw.commands.whitelist, secureClientPort, ssl., serverCnxnFactory, sslQuorum (with the exception of: ssl.protocol, ssl.quorum.protocol, ssl.enabledProtocols, ssl.quorum.enabledProtocols, ssl.ciphersuites, ssl.quorum.ciphersuites, ssl.hostnameVerification, ssl.quorum.hostnameVerification).
-- `image` (String) The docker image for the pods.
-- `jmx_options` (Attributes) JMX Options for Zookeeper nodes. (see [below for nested schema](#nestedatt--spec--zookeeper--jmx_options))
-- `jvm_options` (Attributes) JVM Options for pods. (see [below for nested schema](#nestedatt--spec--zookeeper--jvm_options))
-- `liveness_probe` (Attributes) Pod liveness checking. (see [below for nested schema](#nestedatt--spec--zookeeper--liveness_probe))
-- `logging` (Attributes) Logging configuration for ZooKeeper. (see [below for nested schema](#nestedatt--spec--zookeeper--logging))
-- `metrics_config` (Attributes) Metrics configuration. (see [below for nested schema](#nestedatt--spec--zookeeper--metrics_config))
-- `readiness_probe` (Attributes) Pod readiness checking. (see [below for nested schema](#nestedatt--spec--zookeeper--readiness_probe))
-- `resources` (Attributes) CPU and memory resources to reserve. (see [below for nested schema](#nestedatt--spec--zookeeper--resources))
-- `template` (Attributes) Template for ZooKeeper cluster resources. The template allows users to specify how the Kubernetes resources are generated. (see [below for nested schema](#nestedatt--spec--zookeeper--template))
-
-<a id="nestedatt--spec--zookeeper--storage"></a>
-### Nested Schema for `spec.zookeeper.storage`
+<a id="nestedatt--spec--kafka--tiered_storage"></a>
+### Nested Schema for `spec.kafka.tiered_storage`
 
 Required:
 
-- `type` (String) Storage type, must be either 'ephemeral' or 'persistent-claim'.
+- `type` (String) Storage type, only 'custom' is supported at the moment.
 
 Optional:
 
-- `class` (String) The storage class to use for dynamic volume allocation.
-- `delete_claim` (Boolean) Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed.
-- `id` (Number) Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.
-- `overrides` (Attributes List) Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers. (see [below for nested schema](#nestedatt--spec--zookeeper--storage--overrides))
-- `selector` (Map of String) Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume.
-- `size` (String) When type=persistent-claim, defines the size of the persistent volume claim (i.e 1Gi). Mandatory when type=persistent-claim.
-- `size_limit` (String) When type=ephemeral, defines the total amount of local storage required for this EmptyDir volume (for example 1Gi).
+- `remote_storage_manager` (Attributes) Configuration for the Remote Storage Manager. (see [below for nested schema](#nestedatt--spec--kafka--tiered_storage--remote_storage_manager))
 
-<a id="nestedatt--spec--zookeeper--storage--overrides"></a>
-### Nested Schema for `spec.zookeeper.storage.size_limit`
+<a id="nestedatt--spec--kafka--tiered_storage--remote_storage_manager"></a>
+### Nested Schema for `spec.kafka.tiered_storage.remote_storage_manager`
 
 Optional:
 
-- `broker` (Number) Id of the kafka broker (broker identifier).
-- `class` (String) The storage class to use for dynamic volume allocation for this broker.
-
-
-
-<a id="nestedatt--spec--zookeeper--jmx_options"></a>
-### Nested Schema for `spec.zookeeper.jmx_options`
-
-Optional:
-
-- `authentication` (Attributes) Authentication configuration for connecting to the JMX port. (see [below for nested schema](#nestedatt--spec--zookeeper--jmx_options--authentication))
-
-<a id="nestedatt--spec--zookeeper--jmx_options--authentication"></a>
-### Nested Schema for `spec.zookeeper.jmx_options.authentication`
-
-Required:
-
-- `type` (String) Authentication type. Currently the only supported types are 'password'.'password' type creates a username and protected port with no TLS.
-
-
-
-<a id="nestedatt--spec--zookeeper--jvm_options"></a>
-### Nested Schema for `spec.zookeeper.jvm_options`
-
-Optional:
-
-- `gc_logging_enabled` (Boolean) Specifies whether the Garbage Collection logging is enabled. The default is false.
-- `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--zookeeper--jvm_options--java_system_properties))
-- `xms` (String) -Xms option to to the JVM.
-- `xmx` (String) -Xmx option to to the JVM.
-- `xx` (Map of String) A map of -XX options to the JVM.
-
-<a id="nestedatt--spec--zookeeper--jvm_options--java_system_properties"></a>
-### Nested Schema for `spec.zookeeper.jvm_options.xx`
-
-Optional:
-
-- `name` (String) The system property name.
-- `value` (String) The system property value.
-
-
-
-<a id="nestedatt--spec--zookeeper--liveness_probe"></a>
-### Nested Schema for `spec.zookeeper.liveness_probe`
-
-Optional:
-
-- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `initial_delay_seconds` (Number) The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0.
-- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
-- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.
-- `timeout_seconds` (Number) The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1.
-
-
-<a id="nestedatt--spec--zookeeper--logging"></a>
-### Nested Schema for `spec.zookeeper.logging`
-
-Required:
-
-- `type` (String) Logging type, must be either 'inline' or 'external'.
-
-Optional:
-
-- `loggers` (Map of String) A Map from logger name to logger level.
-- `value_from` (Attributes) 'ConfigMap' entry where the logging configuration is stored. (see [below for nested schema](#nestedatt--spec--zookeeper--logging--value_from))
-
-<a id="nestedatt--spec--zookeeper--logging--value_from"></a>
-### Nested Schema for `spec.zookeeper.logging.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) Reference to the key in the ConfigMap containing the configuration. (see [below for nested schema](#nestedatt--spec--zookeeper--logging--value_from--config_map_key_ref))
-
-<a id="nestedatt--spec--zookeeper--logging--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.zookeeper.logging.value_from.config_map_key_ref`
-
-Optional:
-
-- `key` (String)
-- `name` (String)
-- `optional` (Boolean)
-
-
-
-
-<a id="nestedatt--spec--zookeeper--metrics_config"></a>
-### Nested Schema for `spec.zookeeper.metrics_config`
-
-Required:
-
-- `type` (String) Metrics type. Only 'jmxPrometheusExporter' supported currently.
-- `value_from` (Attributes) ConfigMap entry where the Prometheus JMX Exporter configuration is stored. For details of the structure of this configuration, see the {JMXExporter}. (see [below for nested schema](#nestedatt--spec--zookeeper--metrics_config--value_from))
-
-<a id="nestedatt--spec--zookeeper--metrics_config--value_from"></a>
-### Nested Schema for `spec.zookeeper.metrics_config.value_from`
-
-Optional:
-
-- `config_map_key_ref` (Attributes) Reference to the key in the ConfigMap containing the configuration. (see [below for nested schema](#nestedatt--spec--zookeeper--metrics_config--value_from--config_map_key_ref))
-
-<a id="nestedatt--spec--zookeeper--metrics_config--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.zookeeper.metrics_config.value_from.config_map_key_ref`
-
-Optional:
-
-- `key` (String)
-- `name` (String)
-- `optional` (Boolean)
-
-
-
-
-<a id="nestedatt--spec--zookeeper--readiness_probe"></a>
-### Nested Schema for `spec.zookeeper.readiness_probe`
-
-Optional:
-
-- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
-- `initial_delay_seconds` (Number) The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0.
-- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
-- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.
-- `timeout_seconds` (Number) The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1.
-
-
-<a id="nestedatt--spec--zookeeper--resources"></a>
-### Nested Schema for `spec.zookeeper.resources`
-
-Optional:
-
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--resources--claims))
-- `limits` (Map of String)
-- `requests` (Map of String)
-
-<a id="nestedatt--spec--zookeeper--resources--claims"></a>
-### Nested Schema for `spec.zookeeper.resources.requests`
-
-Optional:
-
-- `name` (String)
-
-
-
-<a id="nestedatt--spec--zookeeper--template"></a>
-### Nested Schema for `spec.zookeeper.template`
-
-Optional:
-
-- `client_service` (Attributes) Template for ZooKeeper client 'Service'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--client_service))
-- `jmx_secret` (Attributes) Template for Secret of the Zookeeper Cluster JMX authentication. (see [below for nested schema](#nestedatt--spec--zookeeper--template--jmx_secret))
-- `nodes_service` (Attributes) Template for ZooKeeper nodes 'Service'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--nodes_service))
-- `persistent_volume_claim` (Attributes) Template for all ZooKeeper 'PersistentVolumeClaims'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--persistent_volume_claim))
-- `pod` (Attributes) Template for ZooKeeper 'Pods'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod))
-- `pod_disruption_budget` (Attributes) Template for ZooKeeper 'PodDisruptionBudget'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod_disruption_budget))
-- `pod_set` (Attributes) Template for ZooKeeper 'StrimziPodSet' resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod_set))
-- `service_account` (Attributes) Template for the ZooKeeper service account. (see [below for nested schema](#nestedatt--spec--zookeeper--template--service_account))
-- `statefulset` (Attributes) Template for ZooKeeper 'StatefulSet'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--statefulset))
-- `zookeeper_container` (Attributes) Template for the ZooKeeper container. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container))
-
-<a id="nestedatt--spec--zookeeper--template--client_service"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container`
-
-Optional:
-
-- `ip_families` (List of String) Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6'. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting.
-- `ip_family_policy` (String) Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type.
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
-
-Optional:
-
-- `annotations` (Map of String) Annotations added to the Kubernetes resource.
-- `labels` (Map of String) Labels added to the Kubernetes resource.
-
-
-
-<a id="nestedatt--spec--zookeeper--template--jmx_secret"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container`
-
-Optional:
-
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
-
-Optional:
-
-- `annotations` (Map of String) Annotations added to the Kubernetes resource.
-- `labels` (Map of String) Labels added to the Kubernetes resource.
-
-
-
-<a id="nestedatt--spec--zookeeper--template--nodes_service"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container`
-
-Optional:
-
-- `ip_families` (List of String) Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6'. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting.
-- `ip_family_policy` (String) Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type.
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
-
-Optional:
-
-- `annotations` (Map of String) Annotations added to the Kubernetes resource.
-- `labels` (Map of String) Labels added to the Kubernetes resource.
-
-
-
-<a id="nestedatt--spec--zookeeper--template--persistent_volume_claim"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container`
-
-Optional:
-
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
-
-Optional:
-
-- `annotations` (Map of String) Annotations added to the Kubernetes resource.
-- `labels` (Map of String) Labels added to the Kubernetes resource.
-
-
-
-<a id="nestedatt--spec--zookeeper--template--pod"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container`
-
-Optional:
-
-- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity))
-- `enable_service_links` (Boolean) Indicates whether information about services should be injected into Pod's environment variables.
-- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--host_aliases))
-- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--image_pull_secrets))
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
-- `priority_class_name` (String) The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.
-- `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
-- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context))
-- `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
-- `tmp_dir_size_limit` (String) Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.
-- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--tolerations))
-- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity`
-
-Optional:
-
-- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--node_affinity))
-- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_affinity))
-- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--node_affinity"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
-- `weight` (Number)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_affinity"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
-
-Optional:
-
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String)
-- `topology_key` (String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String)
-- `topology_key` (String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity`
-
-Optional:
-
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
-
-Optional:
-
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String)
-- `topology_key` (String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
-
-Optional:
-
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String)
-- `topology_key` (String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--host_aliases"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.host_aliases`
-
-Optional:
-
-- `hostnames` (List of String)
-- `ip` (String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--image_pull_secrets"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.image_pull_secrets`
-
-Optional:
-
-- `name` (String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
-
-Optional:
-
-- `annotations` (Map of String) Annotations added to the Kubernetes resource.
-- `labels` (Map of String) Labels added to the Kubernetes resource.
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context`
-
-Optional:
-
-- `fs_group` (Number)
-- `fs_group_change_policy` (String)
-- `run_as_group` (Number)
-- `run_as_non_root` (Boolean)
-- `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--seccomp_profile))
-- `supplemental_groups` (List of String)
-- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--sysctls))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--windows_options))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--se_linux_options"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
-
-Optional:
-
-- `level` (String)
-- `role` (String)
-- `type` (String)
-- `user` (String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
-
-Optional:
-
-- `localhost_profile` (String)
-- `type` (String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--sysctls"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
-
-Optional:
-
-- `name` (String)
-- `value` (String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--windows_options"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
-
-Optional:
-
-- `gmsa_credential_spec` (String)
-- `gmsa_credential_spec_name` (String)
-- `host_process` (Boolean)
-- `run_as_user_name` (String)
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--tolerations"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.tolerations`
-
-Optional:
-
-- `effect` (String)
-- `key` (String)
-- `operator` (String)
-- `toleration_seconds` (Number)
-- `value` (String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.topology_spread_constraints`
-
-Optional:
-
-- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--label_selector))
-- `match_label_keys` (List of String)
-- `max_skew` (Number)
-- `min_domains` (Number)
-- `node_affinity_policy` (String)
-- `node_taints_policy` (String)
-- `topology_key` (String)
-- `when_unsatisfiable` (String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.topology_spread_constraints.when_unsatisfiable`
-
-Optional:
-
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--when_unsatisfiable--match_expressions))
-- `match_labels` (Map of String)
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.topology_spread_constraints.when_unsatisfiable.match_labels`
-
-Optional:
-
-- `key` (String)
-- `operator` (String)
-- `values` (List of String)
-
-
-
-
-
-<a id="nestedatt--spec--zookeeper--template--pod_disruption_budget"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container`
-
-Optional:
-
-- `max_unavailable` (Number) Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the 'maxUnavailable' number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1.
-- `metadata` (Attributes) Metadata to apply to the 'PodDisruptionBudgetTemplate' resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
-
-Optional:
-
-- `annotations` (Map of String) Annotations added to the Kubernetes resource.
-- `labels` (Map of String) Labels added to the Kubernetes resource.
-
-
-
-<a id="nestedatt--spec--zookeeper--template--pod_set"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container`
-
-Optional:
-
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
-
-Optional:
-
-- `annotations` (Map of String) Annotations added to the Kubernetes resource.
-- `labels` (Map of String) Labels added to the Kubernetes resource.
-
-
-
-<a id="nestedatt--spec--zookeeper--template--service_account"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container`
-
-Optional:
-
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
-
-Optional:
-
-- `annotations` (Map of String) Annotations added to the Kubernetes resource.
-- `labels` (Map of String) Labels added to the Kubernetes resource.
-
-
-
-<a id="nestedatt--spec--zookeeper--template--statefulset"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container`
-
-Optional:
-
-- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
-- `pod_management_policy` (String) PodManagementPolicy which will be used for this StatefulSet. Valid values are 'Parallel' and 'OrderedReady'. Defaults to 'Parallel'.
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
-
-Optional:
-
-- `annotations` (Map of String) Annotations added to the Kubernetes resource.
-- `labels` (Map of String) Labels added to the Kubernetes resource.
-
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container`
-
-Optional:
-
-- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--env))
-- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--env"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.env`
-
-Optional:
-
-- `name` (String) The environment variable key.
-- `value` (String) The environment variable value.
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context`
-
-Optional:
-
-- `allow_privilege_escalation` (Boolean)
-- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--capabilities))
-- `privileged` (Boolean)
-- `proc_mount` (String)
-- `read_only_root_filesystem` (Boolean)
-- `run_as_group` (Number)
-- `run_as_non_root` (Boolean)
-- `run_as_user` (Number)
-- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--seccomp_profile))
-- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--windows_options))
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--capabilities"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
-
-Optional:
-
-- `add` (List of String)
-- `drop` (List of String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--se_linux_options"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
-
-Optional:
-
-- `level` (String)
-- `role` (String)
-- `type` (String)
-- `user` (String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--seccomp_profile"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
-
-Optional:
-
-- `localhost_profile` (String)
-- `type` (String)
-
-
-<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--windows_options"></a>
-### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
-
-Optional:
-
-- `gmsa_credential_spec` (String)
-- `gmsa_credential_spec_name` (String)
-- `host_process` (Boolean)
-- `run_as_user_name` (String)
-
-
+- `class_name` (String) The class name for the 'RemoteStorageManager' implementation.
+- `class_path` (String) The class path for the 'RemoteStorageManager' implementation.
+- `config` (Map of String) The additional configuration map for the 'RemoteStorageManager' implementation. Keys will be automatically prefixed with 'rsm.config.', and added to Kafka broker configuration.
 
 
 
@@ -2407,7 +1546,7 @@ Optional:
 
 - `broker_capacity` (Attributes) The Cruise Control 'brokerCapacity' configuration. (see [below for nested schema](#nestedatt--spec--cruise_control--broker_capacity))
 - `config` (Map of String) The Cruise Control configuration. For a full list of configuration options refer to https://github.com/linkedin/cruise-control/wiki/Configurations. Note that properties with the following prefixes cannot be set: bootstrap.servers, client.id, zookeeper., network., security., failed.brokers.zk.path,webserver.http., webserver.api.urlprefix, webserver.session.path, webserver.accesslog., two.step., request.reason.required,metric.reporter.sampler.bootstrap.servers, capacity.config.file, self.healing., ssl., kafka.broker.failure.detection.enable, topic.config.provider.class (with the exception of: ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, webserver.http.cors.enabled, webserver.http.cors.origin, webserver.http.cors.exposeheaders, webserver.security.enable, webserver.ssl.enable).
-- `image` (String) The docker image for the pods.
+- `image` (String) The container image used for Cruise Control pods. If no image name is explicitly specified, the image name corresponds to the name specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used.
 - `jvm_options` (Attributes) JVM Options for the Cruise Control container. (see [below for nested schema](#nestedatt--spec--cruise_control--jvm_options))
 - `liveness_probe` (Attributes) Pod liveness checking for the Cruise Control container. (see [below for nested schema](#nestedatt--spec--cruise_control--liveness_probe))
 - `logging` (Attributes) Logging configuration (Log4j 2) for Cruise Control. (see [below for nested schema](#nestedatt--spec--cruise_control--logging))
@@ -2514,7 +1653,7 @@ Optional:
 Required:
 
 - `type` (String) Metrics type. Only 'jmxPrometheusExporter' supported currently.
-- `value_from` (Attributes) ConfigMap entry where the Prometheus JMX Exporter configuration is stored. For details of the structure of this configuration, see the {JMXExporter}. (see [below for nested schema](#nestedatt--spec--cruise_control--metrics_config--value_from))
+- `value_from` (Attributes) ConfigMap entry where the Prometheus JMX Exporter configuration is stored. (see [below for nested schema](#nestedatt--spec--cruise_control--metrics_config--value_from))
 
 <a id="nestedatt--spec--cruise_control--metrics_config--value_from"></a>
 ### Nested Schema for `spec.cruise_control.metrics_config.value_from`
@@ -2701,7 +1840,7 @@ Optional:
 - `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--host_aliases))
 - `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--image_pull_secrets))
 - `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--metadata))
-- `priority_class_name` (String) The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.
+- `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
 - `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
@@ -2824,6 +1963,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -2874,6 +2015,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -2940,6 +2083,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -2990,6 +2135,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--cruise_control--template--tls_sidecar_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -3402,7 +2549,7 @@ Optional:
 - `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--host_aliases))
 - `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--image_pull_secrets))
 - `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--metadata))
-- `priority_class_name` (String) The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.
+- `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
 - `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
@@ -3525,6 +2672,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -3575,6 +2724,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -3641,6 +2792,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -3691,6 +2844,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--entity_operator--template--user_operator_role_binding--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -4609,7 +3764,7 @@ Optional:
 - `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--host_aliases))
 - `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--image_pull_secrets))
 - `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--metadata))
-- `priority_class_name` (String) The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.
+- `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
 - `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
@@ -4732,6 +3887,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -4782,6 +3939,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -4848,6 +4007,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -4898,6 +4059,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--jmx_trans--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -5100,11 +4263,12 @@ Optional:
 - `enable_sarama_logging` (Boolean) Enable Sarama logging, a Go client library used by the Kafka Exporter.
 - `group_exclude_regex` (String) Regular expression to specify which consumer groups to exclude.
 - `group_regex` (String) Regular expression to specify which consumer groups to collect. Default value is '.*'.
-- `image` (String) The docker image for the pods.
+- `image` (String) The container image used for the Kafka Exporter pods. If no image name is explicitly specified, the image name corresponds to the version specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used.
 - `liveness_probe` (Attributes) Pod liveness check. (see [below for nested schema](#nestedatt--spec--kafka_exporter--liveness_probe))
 - `logging` (String) Only log messages with the given severity or above. Valid levels: ['info', 'debug', 'trace']. Default log level is 'info'.
 - `readiness_probe` (Attributes) Pod readiness check. (see [below for nested schema](#nestedatt--spec--kafka_exporter--readiness_probe))
 - `resources` (Attributes) CPU and memory resources to reserve. (see [below for nested schema](#nestedatt--spec--kafka_exporter--resources))
+- `show_all_offsets` (Boolean) Whether show the offset/lag for all consumer group, otherwise, only show connected consumer groups.
 - `template` (Attributes) Customization of deployment templates and pods. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template))
 - `topic_exclude_regex` (String) Regular expression to specify which topics to exclude.
 - `topic_regex` (String) Regular expression to specify which topics to collect. Default value is '.*'.
@@ -5266,7 +4430,7 @@ Optional:
 - `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--host_aliases))
 - `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--image_pull_secrets))
 - `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--metadata))
-- `priority_class_name` (String) The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.
+- `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
 - `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
@@ -5389,6 +4553,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -5439,6 +4605,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -5505,6 +4673,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -5555,6 +4725,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka_exporter--template--service_account--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -5761,3 +4933,905 @@ Optional:
 
 - `annotations` (Map of String) Annotations added to the Kubernetes resource.
 - `labels` (Map of String) Labels added to the Kubernetes resource.
+
+
+
+
+
+<a id="nestedatt--spec--zookeeper"></a>
+### Nested Schema for `spec.zookeeper`
+
+Required:
+
+- `replicas` (Number) The number of pods in the cluster.
+- `storage` (Attributes) Storage configuration (disk). Cannot be updated. (see [below for nested schema](#nestedatt--spec--zookeeper--storage))
+
+Optional:
+
+- `config` (Map of String) The ZooKeeper broker config. Properties with the following prefixes cannot be set: server., dataDir, dataLogDir, clientPort, authProvider, quorum.auth, requireClientAuthScheme, snapshot.trust.empty, standaloneEnabled, reconfigEnabled, 4lw.commands.whitelist, secureClientPort, ssl., serverCnxnFactory, sslQuorum (with the exception of: ssl.protocol, ssl.quorum.protocol, ssl.enabledProtocols, ssl.quorum.enabledProtocols, ssl.ciphersuites, ssl.quorum.ciphersuites, ssl.hostnameVerification, ssl.quorum.hostnameVerification).
+- `image` (String) The container image used for ZooKeeper pods. If no image name is explicitly specified, it is determined based on the Kafka version set in 'spec.kafka.version'. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration.
+- `jmx_options` (Attributes) JMX Options for Zookeeper nodes. (see [below for nested schema](#nestedatt--spec--zookeeper--jmx_options))
+- `jvm_options` (Attributes) JVM Options for pods. (see [below for nested schema](#nestedatt--spec--zookeeper--jvm_options))
+- `liveness_probe` (Attributes) Pod liveness checking. (see [below for nested schema](#nestedatt--spec--zookeeper--liveness_probe))
+- `logging` (Attributes) Logging configuration for ZooKeeper. (see [below for nested schema](#nestedatt--spec--zookeeper--logging))
+- `metrics_config` (Attributes) Metrics configuration. (see [below for nested schema](#nestedatt--spec--zookeeper--metrics_config))
+- `readiness_probe` (Attributes) Pod readiness checking. (see [below for nested schema](#nestedatt--spec--zookeeper--readiness_probe))
+- `resources` (Attributes) CPU and memory resources to reserve. (see [below for nested schema](#nestedatt--spec--zookeeper--resources))
+- `template` (Attributes) Template for ZooKeeper cluster resources. The template allows users to specify how the Kubernetes resources are generated. (see [below for nested schema](#nestedatt--spec--zookeeper--template))
+
+<a id="nestedatt--spec--zookeeper--storage"></a>
+### Nested Schema for `spec.zookeeper.storage`
+
+Required:
+
+- `type` (String) Storage type, must be either 'ephemeral' or 'persistent-claim'.
+
+Optional:
+
+- `class` (String) The storage class to use for dynamic volume allocation.
+- `delete_claim` (Boolean) Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed.
+- `id` (Number) Storage identification number. It is mandatory only for storage volumes defined in a storage of type 'jbod'.
+- `overrides` (Attributes List) Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers. (see [below for nested schema](#nestedatt--spec--zookeeper--storage--overrides))
+- `selector` (Map of String) Specifies a specific persistent volume to use. It contains key:value pairs representing labels for selecting such a volume.
+- `size` (String) When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.
+- `size_limit` (String) When type=ephemeral, defines the total amount of local storage required for this EmptyDir volume (for example 1Gi).
+
+<a id="nestedatt--spec--zookeeper--storage--overrides"></a>
+### Nested Schema for `spec.zookeeper.storage.size_limit`
+
+Optional:
+
+- `broker` (Number) Id of the kafka broker (broker identifier).
+- `class` (String) The storage class to use for dynamic volume allocation for this broker.
+
+
+
+<a id="nestedatt--spec--zookeeper--jmx_options"></a>
+### Nested Schema for `spec.zookeeper.jmx_options`
+
+Optional:
+
+- `authentication` (Attributes) Authentication configuration for connecting to the JMX port. (see [below for nested schema](#nestedatt--spec--zookeeper--jmx_options--authentication))
+
+<a id="nestedatt--spec--zookeeper--jmx_options--authentication"></a>
+### Nested Schema for `spec.zookeeper.jmx_options.authentication`
+
+Required:
+
+- `type` (String) Authentication type. Currently the only supported types are 'password'.'password' type creates a username and protected port with no TLS.
+
+
+
+<a id="nestedatt--spec--zookeeper--jvm_options"></a>
+### Nested Schema for `spec.zookeeper.jvm_options`
+
+Optional:
+
+- `gc_logging_enabled` (Boolean) Specifies whether the Garbage Collection logging is enabled. The default is false.
+- `java_system_properties` (Attributes List) A map of additional system properties which will be passed using the '-D' option to the JVM. (see [below for nested schema](#nestedatt--spec--zookeeper--jvm_options--java_system_properties))
+- `xms` (String) -Xms option to to the JVM.
+- `xmx` (String) -Xmx option to to the JVM.
+- `xx` (Map of String) A map of -XX options to the JVM.
+
+<a id="nestedatt--spec--zookeeper--jvm_options--java_system_properties"></a>
+### Nested Schema for `spec.zookeeper.jvm_options.xx`
+
+Optional:
+
+- `name` (String) The system property name.
+- `value` (String) The system property value.
+
+
+
+<a id="nestedatt--spec--zookeeper--liveness_probe"></a>
+### Nested Schema for `spec.zookeeper.liveness_probe`
+
+Optional:
+
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+- `initial_delay_seconds` (Number) The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0.
+- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.
+- `timeout_seconds` (Number) The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1.
+
+
+<a id="nestedatt--spec--zookeeper--logging"></a>
+### Nested Schema for `spec.zookeeper.logging`
+
+Required:
+
+- `type` (String) Logging type, must be either 'inline' or 'external'.
+
+Optional:
+
+- `loggers` (Map of String) A Map from logger name to logger level.
+- `value_from` (Attributes) 'ConfigMap' entry where the logging configuration is stored. (see [below for nested schema](#nestedatt--spec--zookeeper--logging--value_from))
+
+<a id="nestedatt--spec--zookeeper--logging--value_from"></a>
+### Nested Schema for `spec.zookeeper.logging.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Reference to the key in the ConfigMap containing the configuration. (see [below for nested schema](#nestedatt--spec--zookeeper--logging--value_from--config_map_key_ref))
+
+<a id="nestedatt--spec--zookeeper--logging--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.zookeeper.logging.value_from.config_map_key_ref`
+
+Optional:
+
+- `key` (String)
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--zookeeper--metrics_config"></a>
+### Nested Schema for `spec.zookeeper.metrics_config`
+
+Required:
+
+- `type` (String) Metrics type. Only 'jmxPrometheusExporter' supported currently.
+- `value_from` (Attributes) ConfigMap entry where the Prometheus JMX Exporter configuration is stored. (see [below for nested schema](#nestedatt--spec--zookeeper--metrics_config--value_from))
+
+<a id="nestedatt--spec--zookeeper--metrics_config--value_from"></a>
+### Nested Schema for `spec.zookeeper.metrics_config.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Reference to the key in the ConfigMap containing the configuration. (see [below for nested schema](#nestedatt--spec--zookeeper--metrics_config--value_from--config_map_key_ref))
+
+<a id="nestedatt--spec--zookeeper--metrics_config--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.zookeeper.metrics_config.value_from.config_map_key_ref`
+
+Optional:
+
+- `key` (String)
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--zookeeper--readiness_probe"></a>
+### Nested Schema for `spec.zookeeper.readiness_probe`
+
+Optional:
+
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+- `initial_delay_seconds` (Number) The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0.
+- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.
+- `timeout_seconds` (Number) The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1.
+
+
+<a id="nestedatt--spec--zookeeper--resources"></a>
+### Nested Schema for `spec.zookeeper.resources`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--resources--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--zookeeper--resources--claims"></a>
+### Nested Schema for `spec.zookeeper.resources.requests`
+
+Optional:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--zookeeper--template"></a>
+### Nested Schema for `spec.zookeeper.template`
+
+Optional:
+
+- `client_service` (Attributes) Template for ZooKeeper client 'Service'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--client_service))
+- `jmx_secret` (Attributes) Template for Secret of the Zookeeper Cluster JMX authentication. (see [below for nested schema](#nestedatt--spec--zookeeper--template--jmx_secret))
+- `nodes_service` (Attributes) Template for ZooKeeper nodes 'Service'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--nodes_service))
+- `persistent_volume_claim` (Attributes) Template for all ZooKeeper 'PersistentVolumeClaims'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--persistent_volume_claim))
+- `pod` (Attributes) Template for ZooKeeper 'Pods'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod))
+- `pod_disruption_budget` (Attributes) Template for ZooKeeper 'PodDisruptionBudget'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod_disruption_budget))
+- `pod_set` (Attributes) Template for ZooKeeper 'StrimziPodSet' resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--pod_set))
+- `service_account` (Attributes) Template for the ZooKeeper service account. (see [below for nested schema](#nestedatt--spec--zookeeper--template--service_account))
+- `statefulset` (Attributes) Template for ZooKeeper 'StatefulSet'. (see [below for nested schema](#nestedatt--spec--zookeeper--template--statefulset))
+- `zookeeper_container` (Attributes) Template for the ZooKeeper container. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container))
+
+<a id="nestedatt--spec--zookeeper--template--client_service"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container`
+
+Optional:
+
+- `ip_families` (List of String) Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6'. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting.
+- `ip_family_policy` (String) Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type.
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations added to the Kubernetes resource.
+- `labels` (Map of String) Labels added to the Kubernetes resource.
+
+
+
+<a id="nestedatt--spec--zookeeper--template--jmx_secret"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container`
+
+Optional:
+
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations added to the Kubernetes resource.
+- `labels` (Map of String) Labels added to the Kubernetes resource.
+
+
+
+<a id="nestedatt--spec--zookeeper--template--nodes_service"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container`
+
+Optional:
+
+- `ip_families` (List of String) Specifies the IP Families used by the service. Available options are 'IPv4' and 'IPv6'. If unspecified, Kubernetes will choose the default value based on the 'ipFamilyPolicy' setting.
+- `ip_family_policy` (String) Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type.
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations added to the Kubernetes resource.
+- `labels` (Map of String) Labels added to the Kubernetes resource.
+
+
+
+<a id="nestedatt--spec--zookeeper--template--persistent_volume_claim"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container`
+
+Optional:
+
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations added to the Kubernetes resource.
+- `labels` (Map of String) Labels added to the Kubernetes resource.
+
+
+
+<a id="nestedatt--spec--zookeeper--template--pod"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container`
+
+Optional:
+
+- `affinity` (Attributes) The pod's affinity rules. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity))
+- `enable_service_links` (Boolean) Indicates whether information about services should be injected into Pod's environment variables.
+- `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--host_aliases))
+- `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--image_pull_secrets))
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+- `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
+- `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
+- `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context))
+- `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
+- `tmp_dir_size_limit` (String) Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.
+- `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--tolerations))
+- `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity`
+
+Optional:
+
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--node_affinity"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_affinity"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String)
+- `topology_key` (String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
+- `topology_key` (String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String)
+- `topology_key` (String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.label_selector.match_labels`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespace_selector.match_labels`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
+- `topology_key` (String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--topology_key--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.topology_key.match_expressions`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--host_aliases"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.host_aliases`
+
+Optional:
+
+- `hostnames` (List of String)
+- `ip` (String)
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--image_pull_secrets"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.image_pull_secrets`
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations added to the Kubernetes resource.
+- `labels` (Map of String) Labels added to the Kubernetes resource.
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context`
+
+Optional:
+
+- `fs_group` (Number)
+- `fs_group_change_policy` (String)
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--seccomp_profile))
+- `supplemental_groups` (List of String)
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--windows_options))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
+
+Optional:
+
+- `level` (String)
+- `role` (String)
+- `type` (String)
+- `user` (String)
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--sysctls"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--windows_options"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String)
+- `gmsa_credential_spec_name` (String)
+- `host_process` (Boolean)
+- `run_as_user_name` (String)
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--tolerations"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.tolerations`
+
+Optional:
+
+- `effect` (String)
+- `key` (String)
+- `operator` (String)
+- `toleration_seconds` (Number)
+- `value` (String)
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.topology_spread_constraints`
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
+- `max_skew` (Number)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
+- `topology_key` (String)
+- `when_unsatisfiable` (String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.topology_spread_constraints.when_unsatisfiable`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--when_unsatisfiable--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--topology_spread_constraints--when_unsatisfiable--match_expressions"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.topology_spread_constraints.when_unsatisfiable.match_labels`
+
+Optional:
+
+- `key` (String)
+- `operator` (String)
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--zookeeper--template--pod_disruption_budget"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container`
+
+Optional:
+
+- `max_unavailable` (Number) Maximum number of unavailable pods to allow automatic Pod eviction. A Pod eviction is allowed when the 'maxUnavailable' number of pods or fewer are unavailable after the eviction. Setting this value to 0 prevents all voluntary evictions, so the pods must be evicted manually. Defaults to 1.
+- `metadata` (Attributes) Metadata to apply to the 'PodDisruptionBudgetTemplate' resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations added to the Kubernetes resource.
+- `labels` (Map of String) Labels added to the Kubernetes resource.
+
+
+
+<a id="nestedatt--spec--zookeeper--template--pod_set"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container`
+
+Optional:
+
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations added to the Kubernetes resource.
+- `labels` (Map of String) Labels added to the Kubernetes resource.
+
+
+
+<a id="nestedatt--spec--zookeeper--template--service_account"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container`
+
+Optional:
+
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations added to the Kubernetes resource.
+- `labels` (Map of String) Labels added to the Kubernetes resource.
+
+
+
+<a id="nestedatt--spec--zookeeper--template--statefulset"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container`
+
+Optional:
+
+- `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--metadata))
+- `pod_management_policy` (String) PodManagementPolicy which will be used for this StatefulSet. Valid values are 'Parallel' and 'OrderedReady'. Defaults to 'Parallel'.
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--metadata"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations added to the Kubernetes resource.
+- `labels` (Map of String) Labels added to the Kubernetes resource.
+
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container`
+
+Optional:
+
+- `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--env))
+- `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--env"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.env`
+
+Optional:
+
+- `name` (String) The environment variable key.
+- `value` (String) The environment variable value.
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context`
+
+Optional:
+
+- `allow_privilege_escalation` (Boolean)
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--capabilities))
+- `privileged` (Boolean)
+- `proc_mount` (String)
+- `read_only_root_filesystem` (Boolean)
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--zookeeper--template--zookeeper_container--security_context--windows_options))
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--capabilities"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
+
+Optional:
+
+- `add` (List of String)
+- `drop` (List of String)
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--se_linux_options"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
+
+Optional:
+
+- `level` (String)
+- `role` (String)
+- `type` (String)
+- `user` (String)
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
+
+<a id="nestedatt--spec--zookeeper--template--zookeeper_container--security_context--windows_options"></a>
+### Nested Schema for `spec.zookeeper.template.zookeeper_container.security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String)
+- `gmsa_credential_spec_name` (String)
+- `host_process` (Boolean)
+- `run_as_user_name` (String)

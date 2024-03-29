@@ -44,10 +44,11 @@ type PolicyKarmadaIoClusterPropagationPolicyV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Association        *bool     `tfsdk:"association" json:"association,omitempty"`
-		ConflictResolution *string   `tfsdk:"conflict_resolution" json:"conflictResolution,omitempty"`
-		DependentOverrides *[]string `tfsdk:"dependent_overrides" json:"dependentOverrides,omitempty"`
-		Failover           *struct {
+		ActivationPreference *string   `tfsdk:"activation_preference" json:"activationPreference,omitempty"`
+		Association          *bool     `tfsdk:"association" json:"association,omitempty"`
+		ConflictResolution   *string   `tfsdk:"conflict_resolution" json:"conflictResolution,omitempty"`
+		DependentOverrides   *[]string `tfsdk:"dependent_overrides" json:"dependentOverrides,omitempty"`
+		Failover             *struct {
 			Application *struct {
 				DecisionConditions *struct {
 					TolerationSeconds *int64 `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
@@ -233,6 +234,17 @@ func (r *PolicyKarmadaIoClusterPropagationPolicyV1Alpha1Manifest) Schema(_ conte
 				Description:         "Spec represents the desired behavior of ClusterPropagationPolicy.",
 				MarkdownDescription: "Spec represents the desired behavior of ClusterPropagationPolicy.",
 				Attributes: map[string]schema.Attribute{
+					"activation_preference": schema.StringAttribute{
+						Description:         "ActivationPreference indicates how the referencing resource template will be propagated, in case of policy changes.  If empty, the resource template will respond to policy changes immediately, in other words, any policy changes will drive the resource template to be propagated immediately as per the current propagation rules.  If the value is 'Lazy' means the policy changes will not take effect for now but defer to the resource template changes, in other words, the resource template will not be propagated as per the current propagation rules until there is an update on it. This is an experimental feature that might help in a scenario where a policy manages huge amount of resource templates, changes to a policy typically affect numerous applications simultaneously. A minor misconfiguration could lead to widespread failures. With this feature, the change can be gradually rolled out through iterative modifications of resource templates.",
+						MarkdownDescription: "ActivationPreference indicates how the referencing resource template will be propagated, in case of policy changes.  If empty, the resource template will respond to policy changes immediately, in other words, any policy changes will drive the resource template to be propagated immediately as per the current propagation rules.  If the value is 'Lazy' means the policy changes will not take effect for now but defer to the resource template changes, in other words, the resource template will not be propagated as per the current propagation rules until there is an update on it. This is an experimental feature that might help in a scenario where a policy manages huge amount of resource templates, changes to a policy typically affect numerous applications simultaneously. A minor misconfiguration could lead to widespread failures. With this feature, the change can be gradually rolled out through iterative modifications of resource templates.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Lazy"),
+						},
+					},
+
 					"association": schema.BoolAttribute{
 						Description:         "Association tells if relevant resources should be selected automatically. e.g. a ConfigMap referred by a Deployment. default false. Deprecated: in favor of PropagateDeps.",
 						MarkdownDescription: "Association tells if relevant resources should be selected automatically. e.g. a ConfigMap referred by a Deployment. default false. Deprecated: in favor of PropagateDeps.",

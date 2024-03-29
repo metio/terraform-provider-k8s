@@ -16,6 +16,7 @@ GlobalNetworkSet contains a set of arbitrary IP sub-networks/CIDRs that share la
 data "k8s_crd_projectcalico_org_global_network_set_v1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```

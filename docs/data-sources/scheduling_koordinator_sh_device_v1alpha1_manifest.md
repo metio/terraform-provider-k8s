@@ -16,6 +16,7 @@ description: |-
 data "k8s_scheduling_koordinator_sh_device_v1alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -79,13 +80,13 @@ Optional:
 
 Required:
 
-- `node_id` (Number)
-- `pcie_id` (Number)
-- `socket_id` (Number)
+- `node_id` (Number) NodeID is the ID of NUMA Node to which the device belongs, it should be unique across different CPU Sockets
+- `pcie_id` (String) PCIEID is the ID of PCIE Switch to which the device is connected, it should be unique across difference NUMANodes
+- `socket_id` (Number) SocketID is the ID of CPU Socket to which the device belongs
 
 Optional:
 
-- `bus_id` (String)
+- `bus_id` (String) BusID is the domain:bus:device.function formatted identifier of PCI/PCIE device
 
 
 <a id="nestedatt--spec--devices--vf_groups"></a>
@@ -93,16 +94,16 @@ Optional:
 
 Optional:
 
-- `labels` (Map of String)
-- `vfs` (Attributes List) (see [below for nested schema](#nestedatt--spec--devices--vf_groups--vfs))
+- `labels` (Map of String) Labels represents the Virtual Function properties that can be used to organize and categorize (scope and select) objects
+- `vfs` (Attributes List) VFs are the virtual function devices which belong to the group (see [below for nested schema](#nestedatt--spec--devices--vf_groups--vfs))
 
 <a id="nestedatt--spec--devices--vf_groups--vfs"></a>
 ### Nested Schema for `spec.devices.vf_groups.vfs`
 
 Required:
 
-- `minor` (Number)
+- `minor` (Number) Minor represents the Minor number of VirtualFunction, starting from 0, used to identify virtual function.
 
 Optional:
 
-- `bus_id` (String)
+- `bus_id` (String) BusID is the domain:bus:device.function formatted identifier of PCI/PCIE virtual function device

@@ -2089,6 +2089,14 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1ManifestData struct {
 				} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 			} `tfsdk:"pg_bouncer" json:"pgBouncer,omitempty"`
 		} `tfsdk:"proxy" json:"proxy,omitempty"`
+		ReplicaService *struct {
+			Metadata *struct {
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			} `tfsdk:"metadata" json:"metadata,omitempty"`
+			NodePort *int64  `tfsdk:"node_port" json:"nodePort,omitempty"`
+			Type     *string `tfsdk:"type" json:"type,omitempty"`
+		} `tfsdk:"replica_service" json:"replicaService,omitempty"`
 		Service *struct {
 			Metadata *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -4853,8 +4861,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "The name of the the repository",
-													MarkdownDescription: "The name of the the repository",
+													Description:         "The name of the repository",
+													MarkdownDescription: "The name of the repository",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -6570,8 +6578,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 						MarkdownDescription: "Specifies a data source for bootstrapping the PostgreSQL cluster.",
 						Attributes: map[string]schema.Attribute{
 							"pgbackrest": schema.SingleNestedAttribute{
-								Description:         "Defines a pgBackRest cloud-based data source that can be used to pre-populate the the PostgreSQL data directory for a new PostgreSQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new PostgreSQL cluster",
-								MarkdownDescription: "Defines a pgBackRest cloud-based data source that can be used to pre-populate the the PostgreSQL data directory for a new PostgreSQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new PostgreSQL cluster",
+								Description:         "Defines a pgBackRest cloud-based data source that can be used to pre-populate the PostgreSQL data directory for a new PostgreSQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new PostgreSQL cluster",
+								MarkdownDescription: "Defines a pgBackRest cloud-based data source that can be used to pre-populate the PostgreSQL data directory for a new PostgreSQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new PostgreSQL cluster",
 								Attributes: map[string]schema.Attribute{
 									"affinity": schema.SingleNestedAttribute{
 										Description:         "Scheduling constraints of the pgBackRest restore Job. More info: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node",
@@ -7702,8 +7710,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "The name of the the repository",
-												MarkdownDescription: "The name of the the repository",
+												Description:         "The name of the repository",
+												MarkdownDescription: "The name of the repository",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -12928,7 +12936,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 						Computed:            false,
 						Validators: []validator.Int64{
 							int64validator.AtLeast(10),
-							int64validator.AtMost(15),
+							int64validator.AtMost(16),
 						},
 					},
 
@@ -15972,6 +15980,61 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 								Required: true,
 								Optional: false,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"replica_service": schema.SingleNestedAttribute{
+						Description:         "Specification of the service that exposes PostgreSQL replica instances",
+						MarkdownDescription: "Specification of the service that exposes PostgreSQL replica instances",
+						Attributes: map[string]schema.Attribute{
+							"metadata": schema.SingleNestedAttribute{
+								Description:         "Metadata contains metadata for custom resources",
+								MarkdownDescription: "Metadata contains metadata for custom resources",
+								Attributes: map[string]schema.Attribute{
+									"annotations": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"labels": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"node_port": schema.Int64Attribute{
+								Description:         "The port on which this service is exposed when type is NodePort or LoadBalancer. Value must be in-range and not in use or the operation will fail. If unspecified, a port will be allocated if this Service requires one. - https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport",
+								MarkdownDescription: "The port on which this service is exposed when type is NodePort or LoadBalancer. Value must be in-range and not in use or the operation will fail. If unspecified, a port will be allocated if this Service requires one. - https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"type": schema.StringAttribute{
+								Description:         "More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
+								MarkdownDescription: "More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("ClusterIP", "NodePort", "LoadBalancer"),
+								},
 							},
 						},
 						Required: false,

@@ -81,8 +81,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Beta1Manifest) Metad
 
 func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereClusterTemplate is the Schema for the vsphereclustertemplates API",
-		MarkdownDescription: "VSphereClusterTemplate is the Schema for the vsphereclustertemplates API",
+		Description:         "VSphereClusterTemplate is the Schema for the vsphereclustertemplates API.",
+		MarkdownDescription: "VSphereClusterTemplate is the Schema for the vsphereclustertemplates API.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -157,16 +157,16 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterTemplateV1Beta1Manifest) Schem
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "VSphereClusterTemplateSpec defines the desired state of VSphereClusterTemplate",
-				MarkdownDescription: "VSphereClusterTemplateSpec defines the desired state of VSphereClusterTemplate",
+				Description:         "VSphereClusterTemplateSpec defines the desired state of VSphereClusterTemplate.",
+				MarkdownDescription: "VSphereClusterTemplateSpec defines the desired state of VSphereClusterTemplate.",
 				Attributes: map[string]schema.Attribute{
 					"template": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "VSphereClusterTemplateResource describes the data for creating a VSphereCluster from a template.",
+						MarkdownDescription: "VSphereClusterTemplateResource describes the data for creating a VSphereCluster from a template.",
 						Attributes: map[string]schema.Attribute{
 							"spec": schema.SingleNestedAttribute{
-								Description:         "VSphereClusterSpec defines the desired state of VSphereCluster",
-								MarkdownDescription: "VSphereClusterSpec defines the desired state of VSphereCluster",
+								Description:         "VSphereClusterSpec defines the desired state of VSphereCluster.",
+								MarkdownDescription: "VSphereClusterSpec defines the desired state of VSphereCluster.",
 								Attributes: map[string]schema.Attribute{
 									"cluster_modules": schema.ListNestedAttribute{
 										Description:         "ClusterModules hosts information regarding the anti-affinity vSphere constructs for each of the objects responsible for creation of VM objects belonging to the cluster.",

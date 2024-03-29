@@ -51,7 +51,9 @@ type TestsTestkubeIoTestExecutionV1ManifestData struct {
 			ArgsMode              *string   `tfsdk:"args_mode" json:"argsMode,omitempty"`
 			ArtifactRequest       *struct {
 				Dirs                   *[]string `tfsdk:"dirs" json:"dirs,omitempty"`
+				Masks                  *[]string `tfsdk:"masks" json:"masks,omitempty"`
 				OmitFolderPerExecution *bool     `tfsdk:"omit_folder_per_execution" json:"omitFolderPerExecution,omitempty"`
+				SharedBetweenPods      *bool     `tfsdk:"shared_between_pods" json:"sharedBetweenPods,omitempty"`
 				StorageBucket          *string   `tfsdk:"storage_bucket" json:"storageBucket,omitempty"`
 				StorageClassName       *string   `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
 				VolumeMountPath        *string   `tfsdk:"volume_mount_path" json:"volumeMountPath,omitempty"`
@@ -74,12 +76,14 @@ type TestsTestkubeIoTestExecutionV1ManifestData struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"reference" json:"reference,omitempty"`
 			} `tfsdk:"env_secrets" json:"envSecrets,omitempty"`
-			Envs             *map[string]string `tfsdk:"envs" json:"envs,omitempty"`
-			ExecutionLabels  *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
-			HttpProxy        *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
-			HttpsProxy       *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
-			Image            *string            `tfsdk:"image" json:"image,omitempty"`
-			ImagePullSecrets *[]struct {
+			Envs                               *map[string]string `tfsdk:"envs" json:"envs,omitempty"`
+			ExecutePostRunScriptBeforeScraping *bool              `tfsdk:"execute_post_run_script_before_scraping" json:"executePostRunScriptBeforeScraping,omitempty"`
+			ExecutionLabels                    *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
+			ExecutionNamespace                 *string            `tfsdk:"execution_namespace" json:"executionNamespace,omitempty"`
+			HttpProxy                          *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
+			HttpsProxy                         *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
+			Image                              *string            `tfsdk:"image" json:"image,omitempty"`
+			ImagePullSecrets                   *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 			IsVariablesFileUploaded *bool   `tfsdk:"is_variables_file_uploaded" json:"isVariablesFileUploaded,omitempty"`
@@ -94,12 +98,27 @@ type TestsTestkubeIoTestExecutionV1ManifestData struct {
 				Context *string `tfsdk:"context" json:"context,omitempty"`
 				Type    *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"running_context" json:"runningContext,omitempty"`
-			ScraperTemplate     *string            `tfsdk:"scraper_template" json:"scraperTemplate,omitempty"`
-			SecretEnvs          *map[string]string `tfsdk:"secret_envs" json:"secretEnvs,omitempty"`
-			Sync                *bool              `tfsdk:"sync" json:"sync,omitempty"`
-			TestSecretUUID      *string            `tfsdk:"test_secret_uuid" json:"testSecretUUID,omitempty"`
-			TestSuiteName       *string            `tfsdk:"test_suite_name" json:"testSuiteName,omitempty"`
-			TestSuiteSecretUUID *string            `tfsdk:"test_suite_secret_uuid" json:"testSuiteSecretUUID,omitempty"`
+			ScraperTemplate *string            `tfsdk:"scraper_template" json:"scraperTemplate,omitempty"`
+			SecretEnvs      *map[string]string `tfsdk:"secret_envs" json:"secretEnvs,omitempty"`
+			SlavePodRequest *struct {
+				PodTemplate          *string `tfsdk:"pod_template" json:"podTemplate,omitempty"`
+				PodTemplateReference *string `tfsdk:"pod_template_reference" json:"podTemplateReference,omitempty"`
+				Resources            *struct {
+					Limits *struct {
+						Cpu    *string `tfsdk:"cpu" json:"cpu,omitempty"`
+						Memory *string `tfsdk:"memory" json:"memory,omitempty"`
+					} `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *struct {
+						Cpu    *string `tfsdk:"cpu" json:"cpu,omitempty"`
+						Memory *string `tfsdk:"memory" json:"memory,omitempty"`
+					} `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
+			} `tfsdk:"slave_pod_request" json:"slavePodRequest,omitempty"`
+			SourceScripts       *bool   `tfsdk:"source_scripts" json:"sourceScripts,omitempty"`
+			Sync                *bool   `tfsdk:"sync" json:"sync,omitempty"`
+			TestSecretUUID      *string `tfsdk:"test_secret_uuid" json:"testSecretUUID,omitempty"`
+			TestSuiteName       *string `tfsdk:"test_suite_name" json:"testSuiteName,omitempty"`
+			TestSuiteSecretUUID *string `tfsdk:"test_suite_secret_uuid" json:"testSuiteSecretUUID,omitempty"`
 			Variables           *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Type      *string `tfsdk:"type" json:"type,omitempty"`
@@ -248,7 +267,7 @@ func (r *TestsTestkubeIoTestExecutionV1Manifest) Schema(_ context.Context, _ dat
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("append", "override"),
+									stringvalidator.OneOf("append", "override", "replace"),
 								},
 							},
 
@@ -265,9 +284,26 @@ func (r *TestsTestkubeIoTestExecutionV1Manifest) Schema(_ context.Context, _ dat
 										Computed:            false,
 									},
 
+									"masks": schema.ListAttribute{
+										Description:         "regexp to filter scraped artifacts, single or comma separated",
+										MarkdownDescription: "regexp to filter scraped artifacts, single or comma separated",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"omit_folder_per_execution": schema.BoolAttribute{
 										Description:         "don't use a separate folder for execution artifacts",
 										MarkdownDescription: "don't use a separate folder for execution artifacts",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"shared_between_pods": schema.BoolAttribute{
+										Description:         "whether to share volume between pods",
+										MarkdownDescription: "whether to share volume between pods",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -432,10 +468,26 @@ func (r *TestsTestkubeIoTestExecutionV1Manifest) Schema(_ context.Context, _ dat
 								Computed:            false,
 							},
 
+							"execute_post_run_script_before_scraping": schema.BoolAttribute{
+								Description:         "execute post run script before scraping (prebuilt executor only)",
+								MarkdownDescription: "execute post run script before scraping (prebuilt executor only)",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"execution_labels": schema.MapAttribute{
 								Description:         "test execution labels",
 								MarkdownDescription: "test execution labels",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"execution_namespace": schema.StringAttribute{
+								Description:         "namespace for test execution (Pro edition only)",
+								MarkdownDescription: "namespace for test execution (Pro edition only)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -588,6 +640,98 @@ func (r *TestsTestkubeIoTestExecutionV1Manifest) Schema(_ context.Context, _ dat
 								Description:         "Execution variables passed to executor from secrets. Deprecated: use Secret Variables instead",
 								MarkdownDescription: "Execution variables passed to executor from secrets. Deprecated: use Secret Variables instead",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"slave_pod_request": schema.SingleNestedAttribute{
+								Description:         "pod request body",
+								MarkdownDescription: "pod request body",
+								Attributes: map[string]schema.Attribute{
+									"pod_template": schema.StringAttribute{
+										Description:         "pod template extensions",
+										MarkdownDescription: "pod template extensions",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"pod_template_reference": schema.StringAttribute{
+										Description:         "name of the template resource",
+										MarkdownDescription: "name of the template resource",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"resources": schema.SingleNestedAttribute{
+										Description:         "pod resources request specification",
+										MarkdownDescription: "pod resources request specification",
+										Attributes: map[string]schema.Attribute{
+											"limits": schema.SingleNestedAttribute{
+												Description:         "resource request specification",
+												MarkdownDescription: "resource request specification",
+												Attributes: map[string]schema.Attribute{
+													"cpu": schema.StringAttribute{
+														Description:         "requested cpu units",
+														MarkdownDescription: "requested cpu units",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"memory": schema.StringAttribute{
+														Description:         "requested memory units",
+														MarkdownDescription: "requested memory units",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"requests": schema.SingleNestedAttribute{
+												Description:         "resource request specification",
+												MarkdownDescription: "resource request specification",
+												Attributes: map[string]schema.Attribute{
+													"cpu": schema.StringAttribute{
+														Description:         "requested cpu units",
+														MarkdownDescription: "requested cpu units",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"memory": schema.StringAttribute{
+														Description:         "requested memory units",
+														MarkdownDescription: "requested memory units",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"source_scripts": schema.BoolAttribute{
+								Description:         "run scripts using source command (container executor only)",
+								MarkdownDescription: "run scripts using source command (container executor only)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

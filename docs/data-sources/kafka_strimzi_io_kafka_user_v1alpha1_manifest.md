@@ -105,7 +105,7 @@ Optional:
 Required:
 
 - `acls` (Attributes List) List of ACL rules which should be applied to this user. (see [below for nested schema](#nestedatt--spec--authorization--acls))
-- `type` (String) Authorization type. Currently the only supported type is 'simple'. 'simple' authorization type uses Kafka's 'kafka.security.authorizer.AclAuthorizer' class for authorization.
+- `type` (String) Authorization type. Currently the only supported type is 'simple'. 'simple' authorization type uses the Kafka Admin API for managing the ACL rules.
 
 <a id="nestedatt--spec--authorization--acls"></a>
 ### Nested Schema for `spec.authorization.acls`

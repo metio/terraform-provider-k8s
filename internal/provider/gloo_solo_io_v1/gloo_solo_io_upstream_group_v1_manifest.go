@@ -95,10 +95,12 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 							} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 							EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 							Extractors       *struct {
-								Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-								Header   *string            `tfsdk:"header" json:"header,omitempty"`
-								Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-								Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+								Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+								Header          *string            `tfsdk:"header" json:"header,omitempty"`
+								Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+								Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+								ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+								Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 							} `tfsdk:"extractors" json:"extractors,omitempty"`
 							Headers *struct {
 								Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -245,10 +247,12 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -290,10 +294,12 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -344,10 +350,12 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -416,10 +424,12 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -461,10 +471,12 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -515,10 +527,12 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -565,10 +579,12 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 							} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 							EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 							Extractors       *struct {
-								Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-								Header   *string            `tfsdk:"header" json:"header,omitempty"`
-								Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-								Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+								Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+								Header          *string            `tfsdk:"header" json:"header,omitempty"`
+								Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+								Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+								ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+								Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 							} `tfsdk:"extractors" json:"extractors,omitempty"`
 							Headers *struct {
 								Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -610,10 +626,12 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 							} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 							EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 							Extractors       *struct {
-								Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-								Header   *string            `tfsdk:"header" json:"header,omitempty"`
-								Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-								Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+								Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+								Header          *string            `tfsdk:"header" json:"header,omitempty"`
+								Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+								Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+								ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+								Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 							} `tfsdk:"extractors" json:"extractors,omitempty"`
 							Headers *struct {
 								Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1060,7 +1078,23 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																			Computed:            false,
 																		},
 
+																		"mode": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"regex": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"replacement_text": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -2013,7 +2047,23 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -2304,7 +2354,23 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -2657,7 +2723,23 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -3137,7 +3219,23 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -3428,7 +3526,23 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -3781,7 +3895,23 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -4100,7 +4230,23 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																			Computed:            false,
 																		},
 
+																		"mode": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"regex": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"replacement_text": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -4391,7 +4537,23 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																			Computed:            false,
 																		},
 
+																		"mode": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"regex": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"replacement_text": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,

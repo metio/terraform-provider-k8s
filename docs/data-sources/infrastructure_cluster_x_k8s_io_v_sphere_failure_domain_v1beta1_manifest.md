@@ -3,12 +3,12 @@
 page_title: "k8s_infrastructure_cluster_x_k8s_io_v_sphere_failure_domain_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "infrastructure.cluster.x-k8s.io"
 description: |-
-  VSphereFailureDomain is the Schema for the vspherefailuredomains API
+  VSphereFailureDomain is the Schema for the vspherefailuredomains API.
 ---
 
 # k8s_infrastructure_cluster_x_k8s_io_v_sphere_failure_domain_v1beta1_manifest (Data Source)
 
-VSphereFailureDomain is the Schema for the vspherefailuredomains API
+VSphereFailureDomain is the Schema for the vspherefailuredomains API.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_infrastructure_cluster_x_k8s_io_v_sphere_failure_domain_v1beta1_manife
 
 ### Optional
 
-- `spec` (Attributes) VSphereFailureDomainSpec defines the desired state of VSphereFailureDomain (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) VSphereFailureDomainSpec defines the desired state of VSphereFailureDomain. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

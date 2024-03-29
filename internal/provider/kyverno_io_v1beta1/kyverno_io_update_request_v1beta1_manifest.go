@@ -106,6 +106,7 @@ type KyvernoIoUpdateRequestV1Beta1ManifestData struct {
 			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name       *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Uid        *string `tfsdk:"uid" json:"uid,omitempty"`
 		} `tfsdk:"resource" json:"resource,omitempty"`
 		Rule        *string `tfsdk:"rule" json:"rule,omitempty"`
 		Synchronize *bool   `tfsdk:"synchronize" json:"synchronize,omitempty"`
@@ -618,6 +619,14 @@ func (r *KyvernoIoUpdateRequestV1Beta1Manifest) Schema(_ context.Context, _ data
 							"namespace": schema.StringAttribute{
 								Description:         "Namespace specifies resource namespace.",
 								MarkdownDescription: "Namespace specifies resource namespace.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"uid": schema.StringAttribute{
+								Description:         "UID specifies the resource uid.",
+								MarkdownDescription: "UID specifies the resource uid.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

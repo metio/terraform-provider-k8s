@@ -63,6 +63,7 @@ Optional:
 - `ingress` (Attributes) (see [below for nested schema](#nestedatt--spec--ingress))
 - `jsonnet` (Attributes) (see [below for nested schema](#nestedatt--spec--jsonnet))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--persistent_volume_claim))
+- `preferences` (Attributes) (see [below for nested schema](#nestedatt--spec--preferences))
 - `route` (Attributes) (see [below for nested schema](#nestedatt--spec--route))
 - `service` (Attributes) (see [below for nested schema](#nestedatt--spec--service))
 - `service_account` (Attributes) (see [below for nested schema](#nestedatt--spec--service_account))
@@ -338,6 +339,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -397,6 +400,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -472,6 +477,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -531,6 +538,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -732,6 +741,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
@@ -764,6 +774,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.spec.template.spec.volumes.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
@@ -786,6 +804,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
@@ -818,6 +837,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.spec.template.spec.volumes.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
@@ -1353,6 +1380,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
@@ -1385,6 +1413,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.spec.template.spec.volumes.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
@@ -1407,6 +1443,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
@@ -1439,6 +1476,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.spec.template.spec.volumes.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
@@ -1971,6 +2016,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
@@ -2003,6 +2049,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.spec.template.spec.volumes.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
@@ -2025,6 +2079,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--exec"></a>
@@ -2057,6 +2112,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.spec.template.spec.volumes.working_dir.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--working_dir--pre_stop--tcp_socket"></a>
@@ -2810,6 +2873,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--volume_claim_template--spec--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--volume_claim_template--spec--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -2845,17 +2909,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--volume_claim_template--spec--volume_name--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
-
-<a id="nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--volume_claim_template--spec--volume_name--claims"></a>
-### Nested Schema for `spec.deployment.spec.template.spec.volumes.vsphere_volume.volume_claim_template.spec.volume_name.requests`
-
-Required:
-
-- `name` (String)
-
 
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--volume_claim_template--spec--selector"></a>
@@ -3071,10 +3126,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle))
 - `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--sources--config_map))
 - `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--sources--downward_api))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--sources--secret))
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--sources--service_account_token))
+
+<a id="nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.deployment.spec.template.spec.volumes.vsphere_volume.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.deployment.spec.template.spec.volumes.vsphere_volume.sources.cluster_trust_bundle.signer_name`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle--signer_name--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle--signer_name--match_expressions"></a>
+### Nested Schema for `spec.deployment.spec.template.spec.volumes.vsphere_volume.sources.cluster_trust_bundle.signer_name.match_labels`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--deployment--spec--template--spec--volumes--vsphere_volume--sources--config_map"></a>
 ### Nested Schema for `spec.deployment.spec.template.spec.volumes.vsphere_volume.sources.config_map`
@@ -3651,6 +3744,14 @@ Optional:
 
 
 
+
+
+<a id="nestedatt--spec--preferences"></a>
+### Nested Schema for `spec.preferences`
+
+Optional:
+
+- `home_dashboard_uid` (String)
 
 
 <a id="nestedatt--spec--route"></a>

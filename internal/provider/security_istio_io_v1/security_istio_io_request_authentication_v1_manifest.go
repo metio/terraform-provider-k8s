@@ -48,6 +48,7 @@ type SecurityIstioIoRequestAuthenticationV1ManifestData struct {
 		JwtRules *[]struct {
 			Audiences            *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
 			ForwardOriginalToken *bool     `tfsdk:"forward_original_token" json:"forwardOriginalToken,omitempty"`
+			FromCookies          *[]string `tfsdk:"from_cookies" json:"fromCookies,omitempty"`
 			FromHeaders          *[]struct {
 				Name   *string `tfsdk:"name" json:"name,omitempty"`
 				Prefix *string `tfsdk:"prefix" json:"prefix,omitempty"`
@@ -61,6 +62,7 @@ type SecurityIstioIoRequestAuthenticationV1ManifestData struct {
 				Header *string `tfsdk:"header" json:"header,omitempty"`
 			} `tfsdk:"output_claim_to_headers" json:"outputClaimToHeaders,omitempty"`
 			OutputPayloadToHeader *string `tfsdk:"output_payload_to_header" json:"outputPayloadToHeader,omitempty"`
+			Timeout               *string `tfsdk:"timeout" json:"timeout,omitempty"`
 		} `tfsdk:"jwt_rules" json:"jwtRules,omitempty"`
 		Selector *struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
@@ -156,8 +158,8 @@ func (r *SecurityIstioIoRequestAuthenticationV1Manifest) Schema(_ context.Contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "RequestAuthentication defines what request authentication methods are supported by a workload.",
-				MarkdownDescription: "RequestAuthentication defines what request authentication methods are supported by a workload.",
+				Description:         "Request authentication configuration for workloads. See more details at: https://istio.io/docs/reference/config/security/request_authentication.html",
+				MarkdownDescription: "Request authentication configuration for workloads. See more details at: https://istio.io/docs/reference/config/security/request_authentication.html",
 				Attributes: map[string]schema.Attribute{
 					"jwt_rules": schema.ListNestedAttribute{
 						Description:         "Define the list of JWTs that can be validated at the selected workloads' proxy.",
@@ -165,8 +167,8 @@ func (r *SecurityIstioIoRequestAuthenticationV1Manifest) Schema(_ context.Contex
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"audiences": schema.ListAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The list of JWT [audiences](https://tools.ietf.org/html/rfc7519#section-4.1.3) that are allowed to access.",
+									MarkdownDescription: "The list of JWT [audiences](https://tools.ietf.org/html/rfc7519#section-4.1.3) that are allowed to access.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -181,6 +183,15 @@ func (r *SecurityIstioIoRequestAuthenticationV1Manifest) Schema(_ context.Contex
 									Computed:            false,
 								},
 
+								"from_cookies": schema.ListAttribute{
+									Description:         "List of cookie names from which JWT is expected.",
+									MarkdownDescription: "List of cookie names from which JWT is expected.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"from_headers": schema.ListNestedAttribute{
 									Description:         "List of header locations from which JWT is expected.",
 									MarkdownDescription: "List of header locations from which JWT is expected.",
@@ -189,8 +200,8 @@ func (r *SecurityIstioIoRequestAuthenticationV1Manifest) Schema(_ context.Contex
 											"name": schema.StringAttribute{
 												Description:         "The HTTP header name.",
 												MarkdownDescription: "The HTTP header name.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -220,8 +231,8 @@ func (r *SecurityIstioIoRequestAuthenticationV1Manifest) Schema(_ context.Contex
 								"issuer": schema.StringAttribute{
 									Description:         "Identifies the issuer that issued the JWT.",
 									MarkdownDescription: "Identifies the issuer that issued the JWT.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 
@@ -234,8 +245,8 @@ func (r *SecurityIstioIoRequestAuthenticationV1Manifest) Schema(_ context.Contex
 								},
 
 								"jwks_uri": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "URL of the provider's public key set to validate signature of the JWT.",
+									MarkdownDescription: "URL of the provider's public key set to validate signature of the JWT.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -269,8 +280,16 @@ func (r *SecurityIstioIoRequestAuthenticationV1Manifest) Schema(_ context.Contex
 								},
 
 								"output_payload_to_header": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "This field specifies the header name to output a successfully verified JWT payload to the backend.",
+									MarkdownDescription: "This field specifies the header name to output a successfully verified JWT payload to the backend.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"timeout": schema.StringAttribute{
+									Description:         "The maximum amount of time that the resolver, determined by the PILOT_JWT_ENABLE_REMOTE_JWKS environment variable, will spend waiting for the JWKS to be fetched.",
+									MarkdownDescription: "The maximum amount of time that the resolver, determined by the PILOT_JWT_ENABLE_REMOTE_JWKS environment variable, will spend waiting for the JWKS to be fetched.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -287,8 +306,8 @@ func (r *SecurityIstioIoRequestAuthenticationV1Manifest) Schema(_ context.Contex
 						MarkdownDescription: "Optional.",
 						Attributes: map[string]schema.Attribute{
 							"match_labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
+								MarkdownDescription: "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -301,8 +320,8 @@ func (r *SecurityIstioIoRequestAuthenticationV1Manifest) Schema(_ context.Contex
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Optional.",
+						MarkdownDescription: "Optional.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "group is the group of the target resource.",

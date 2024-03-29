@@ -202,16 +202,16 @@ func (r *TestsTestkubeIoTestSourceV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"path": schema.StringAttribute{
-								Description:         "if needed we can checkout particular path (dir or file) in case of BIG/mono repositories",
-								MarkdownDescription: "if needed we can checkout particular path (dir or file) in case of BIG/mono repositories",
+								Description:         "If specified, does a sparse checkout of the repository at the given path",
+								MarkdownDescription: "If specified, does a sparse checkout of the repository at the given path",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"token_secret": schema.SingleNestedAttribute{
-								Description:         "Testkube internal reference for secret storage in Kubernetes secrets",
-								MarkdownDescription: "Testkube internal reference for secret storage in Kubernetes secrets",
+								Description:         "SecretRef is the Testkube internal reference for secret storage in Kubernetes secrets",
+								MarkdownDescription: "SecretRef is the Testkube internal reference for secret storage in Kubernetes secrets",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "object key",
@@ -251,8 +251,8 @@ func (r *TestsTestkubeIoTestSourceV1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"username_secret": schema.SingleNestedAttribute{
-								Description:         "Testkube internal reference for secret storage in Kubernetes secrets",
-								MarkdownDescription: "Testkube internal reference for secret storage in Kubernetes secrets",
+								Description:         "SecretRef is the Testkube internal reference for secret storage in Kubernetes secrets",
+								MarkdownDescription: "SecretRef is the Testkube internal reference for secret storage in Kubernetes secrets",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "object key",

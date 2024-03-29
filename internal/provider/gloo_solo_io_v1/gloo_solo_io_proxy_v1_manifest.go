@@ -168,7 +168,8 @@ type GlooSoloIoProxyV1ManifestData struct {
 				} `tfsdk:"socket_options" json:"socketOptions,omitempty"`
 			} `tfsdk:"options" json:"options,omitempty"`
 			RouteOptions *struct {
-				MaxDirectResponseBodySizeBytes *int64 `tfsdk:"max_direct_response_body_size_bytes" json:"maxDirectResponseBodySizeBytes,omitempty"`
+				MaxDirectResponseBodySizeBytes  *int64 `tfsdk:"max_direct_response_body_size_bytes" json:"maxDirectResponseBodySizeBytes,omitempty"`
+				MostSpecificHeaderMutationsWins *bool  `tfsdk:"most_specific_header_mutations_wins" json:"mostSpecificHeaderMutationsWins,omitempty"`
 			} `tfsdk:"route_options" json:"routeOptions,omitempty"`
 			SslConfigurations *[]struct {
 				AlpnProtocols               *[]string `tfsdk:"alpn_protocols" json:"alpnProtocols,omitempty"`
@@ -1105,6 +1106,14 @@ func (r *GlooSoloIoProxyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												int64validator.AtLeast(0),
 												int64validator.AtMost(4.294967295e+09),
 											},
+										},
+
+										"most_specific_header_mutations_wins": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 									},
 									Required: false,

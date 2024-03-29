@@ -66,7 +66,7 @@ Optional:
 - `consumer` (Attributes) Kafka consumer related configuration. (see [below for nested schema](#nestedatt--spec--consumer))
 - `enable_metrics` (Boolean) Enable the metrics for the Kafka Bridge. Default is false.
 - `http` (Attributes) The HTTP related configuration. (see [below for nested schema](#nestedatt--spec--http))
-- `image` (String) The docker image for the pods.
+- `image` (String) The container image used for Kafka Bridge pods. If no image name is explicitly specified, the image name corresponds to the image specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used.
 - `jvm_options` (Attributes) **Currently not supported** JVM Options for pods. (see [below for nested schema](#nestedatt--spec--jvm_options))
 - `liveness_probe` (Attributes) Pod liveness checking. (see [below for nested schema](#nestedatt--spec--liveness_probe))
 - `logging` (Attributes) Logging configuration for Kafka Bridge. (see [below for nested schema](#nestedatt--spec--logging))
@@ -107,6 +107,7 @@ Optional:
 - `enable_metrics` (Boolean) Enable or disable OAuth metrics. Default value is 'false'.
 - `http_retries` (Number) The maximum number of retries to attempt if an initial HTTP request fails. If not set, the default is to not attempt any retries.
 - `http_retry_pause_ms` (Number) The pause to take before retrying a failed HTTP request. If not set, the default is to not pause at all but to immediately repeat a request.
+- `include_accept_header` (Boolean) Whether the Accept header should be set in requests to the authorization servers. The default value is 'true'.
 - `max_token_expiry_seconds` (Number) Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.
 - `password_secret` (Attributes) Reference to the 'Secret' which holds the password. (see [below for nested schema](#nestedatt--spec--authentication--password_secret))
 - `read_timeout_seconds` (Number) The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds.
@@ -538,7 +539,7 @@ Optional:
 - `host_aliases` (Attributes List) The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified. (see [below for nested schema](#nestedatt--spec--template--pod--host_aliases))
 - `image_pull_secrets` (Attributes List) List of references to secrets in the same namespace to use for pulling any of the images used by this Pod. When the 'STRIMZI_IMAGE_PULL_SECRETS' environment variable in Cluster Operator and the 'imagePullSecrets' option are specified, only the 'imagePullSecrets' variable is used and the 'STRIMZI_IMAGE_PULL_SECRETS' variable is ignored. (see [below for nested schema](#nestedatt--spec--template--pod--image_pull_secrets))
 - `metadata` (Attributes) Metadata applied to the resource. (see [below for nested schema](#nestedatt--spec--template--pod--metadata))
-- `priority_class_name` (String) The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.
+- `priority_class_name` (String) The name of the priority class used to assign priority to the pods.
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
 - `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--template--pod--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
@@ -661,6 +662,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -711,6 +714,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -777,6 +782,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -827,6 +834,8 @@ Optional:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)

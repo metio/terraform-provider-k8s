@@ -65,8 +65,8 @@ func (r *GatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest) Metadata(_ contex
 
 func (r *GatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ReferenceGrant identifies kinds of resources in other namespaces that are trusted to reference the specified kinds of resources in the same namespace as the policy.  Each ReferenceGrant can be used to represent a unique trust relationship. Additional Reference Grants can be used to add to the set of trusted sources of inbound references for the namespace they are defined within.  A ReferenceGrant is required for all cross-namespace references in Gateway API (with the exception of cross-namespace Route-Gateway attachment, which is governed by the AllowedRoutes configuration on the Gateway, and cross-namespace Service ParentRefs on a 'consumer' mesh Route, which defines routing rules applicable only to workloads in the Route namespace). ReferenceGrants allowing a reference from a Route to a Service are only applicable to BackendRefs.  ReferenceGrant is a form of runtime verification allowing users to assert which cross-namespace object references are permitted. Implementations that support ReferenceGrant MUST NOT permit cross-namespace references which have no grant, and MUST respond to the removal of a grant by revoking the access that the grant allowed.",
-		MarkdownDescription: "ReferenceGrant identifies kinds of resources in other namespaces that are trusted to reference the specified kinds of resources in the same namespace as the policy.  Each ReferenceGrant can be used to represent a unique trust relationship. Additional Reference Grants can be used to add to the set of trusted sources of inbound references for the namespace they are defined within.  A ReferenceGrant is required for all cross-namespace references in Gateway API (with the exception of cross-namespace Route-Gateway attachment, which is governed by the AllowedRoutes configuration on the Gateway, and cross-namespace Service ParentRefs on a 'consumer' mesh Route, which defines routing rules applicable only to workloads in the Route namespace). ReferenceGrants allowing a reference from a Route to a Service are only applicable to BackendRefs.  ReferenceGrant is a form of runtime verification allowing users to assert which cross-namespace object references are permitted. Implementations that support ReferenceGrant MUST NOT permit cross-namespace references which have no grant, and MUST respond to the removal of a grant by revoking the access that the grant allowed.",
+		Description:         "ReferenceGrant identifies kinds of resources in other namespaces that aretrusted to reference the specified kinds of resources in the same namespaceas the policy.Each ReferenceGrant can be used to represent a unique trust relationship.Additional Reference Grants can be used to add to the set of trustedsources of inbound references for the namespace they are defined within.A ReferenceGrant is required for all cross-namespace references in Gateway API(with the exception of cross-namespace Route-Gateway attachment, which isgoverned by the AllowedRoutes configuration on the Gateway, and cross-namespaceService ParentRefs on a 'consumer' mesh Route, which defines routing rulesapplicable only to workloads in the Route namespace). ReferenceGrants allowinga reference from a Route to a Service are only applicable to BackendRefs.ReferenceGrant is a form of runtime verification allowing users to assertwhich cross-namespace object references are permitted. Implementations thatsupport ReferenceGrant MUST NOT permit cross-namespace references which haveno grant, and MUST respond to the removal of a grant by revoking the accessthat the grant allowed.",
+		MarkdownDescription: "ReferenceGrant identifies kinds of resources in other namespaces that aretrusted to reference the specified kinds of resources in the same namespaceas the policy.Each ReferenceGrant can be used to represent a unique trust relationship.Additional Reference Grants can be used to add to the set of trustedsources of inbound references for the namespace they are defined within.A ReferenceGrant is required for all cross-namespace references in Gateway API(with the exception of cross-namespace Route-Gateway attachment, which isgoverned by the AllowedRoutes configuration on the Gateway, and cross-namespaceService ParentRefs on a 'consumer' mesh Route, which defines routing rulesapplicable only to workloads in the Route namespace). ReferenceGrants allowinga reference from a Route to a Service are only applicable to BackendRefs.ReferenceGrant is a form of runtime verification allowing users to assertwhich cross-namespace object references are permitted. Implementations thatsupport ReferenceGrant MUST NOT permit cross-namespace references which haveno grant, and MUST respond to the removal of a grant by revoking the accessthat the grant allowed.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -145,13 +145,13 @@ func (r *GatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest) Schema(_ context.
 				MarkdownDescription: "Spec defines the desired state of ReferenceGrant.",
 				Attributes: map[string]schema.Attribute{
 					"from": schema.ListNestedAttribute{
-						Description:         "From describes the trusted namespaces and kinds that can reference the resources described in 'To'. Each entry in this list MUST be considered to be an additional place that references can be valid from, or to put this another way, entries MUST be combined using OR.  Support: Core",
-						MarkdownDescription: "From describes the trusted namespaces and kinds that can reference the resources described in 'To'. Each entry in this list MUST be considered to be an additional place that references can be valid from, or to put this another way, entries MUST be combined using OR.  Support: Core",
+						Description:         "From describes the trusted namespaces and kinds that can reference theresources described in 'To'. Each entry in this list MUST be consideredto be an additional place that references can be valid from, or to putthis another way, entries MUST be combined using OR.Support: Core",
+						MarkdownDescription: "From describes the trusted namespaces and kinds that can reference theresources described in 'To'. Each entry in this list MUST be consideredto be an additional place that references can be valid from, or to putthis another way, entries MUST be combined using OR.Support: Core",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"group": schema.StringAttribute{
-									Description:         "Group is the group of the referent. When empty, the Kubernetes core API group is inferred.  Support: Core",
-									MarkdownDescription: "Group is the group of the referent. When empty, the Kubernetes core API group is inferred.  Support: Core",
+									Description:         "Group is the group of the referent.When empty, the Kubernetes core API group is inferred.Support: Core",
+									MarkdownDescription: "Group is the group of the referent.When empty, the Kubernetes core API group is inferred.Support: Core",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -162,8 +162,8 @@ func (r *GatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest) Schema(_ context.
 								},
 
 								"kind": schema.StringAttribute{
-									Description:         "Kind is the kind of the referent. Although implementations may support additional resources, the following types are part of the 'Core' support level for this field.  When used to permit a SecretObjectReference:  * Gateway  When used to permit a BackendObjectReference:  * GRPCRoute * HTTPRoute * TCPRoute * TLSRoute * UDPRoute",
-									MarkdownDescription: "Kind is the kind of the referent. Although implementations may support additional resources, the following types are part of the 'Core' support level for this field.  When used to permit a SecretObjectReference:  * Gateway  When used to permit a BackendObjectReference:  * GRPCRoute * HTTPRoute * TCPRoute * TLSRoute * UDPRoute",
+									Description:         "Kind is the kind of the referent. Although implementations may supportadditional resources, the following types are part of the 'Core'support level for this field.When used to permit a SecretObjectReference:* GatewayWhen used to permit a BackendObjectReference:* GRPCRoute* HTTPRoute* TCPRoute* TLSRoute* UDPRoute",
+									MarkdownDescription: "Kind is the kind of the referent. Although implementations may supportadditional resources, the following types are part of the 'Core'support level for this field.When used to permit a SecretObjectReference:* GatewayWhen used to permit a BackendObjectReference:* GRPCRoute* HTTPRoute* TCPRoute* TLSRoute* UDPRoute",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -175,8 +175,8 @@ func (r *GatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest) Schema(_ context.
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Namespace is the namespace of the referent.  Support: Core",
-									MarkdownDescription: "Namespace is the namespace of the referent.  Support: Core",
+									Description:         "Namespace is the namespace of the referent.Support: Core",
+									MarkdownDescription: "Namespace is the namespace of the referent.Support: Core",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -194,13 +194,13 @@ func (r *GatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest) Schema(_ context.
 					},
 
 					"to": schema.ListNestedAttribute{
-						Description:         "To describes the resources that may be referenced by the resources described in 'From'. Each entry in this list MUST be considered to be an additional place that references can be valid to, or to put this another way, entries MUST be combined using OR.  Support: Core",
-						MarkdownDescription: "To describes the resources that may be referenced by the resources described in 'From'. Each entry in this list MUST be considered to be an additional place that references can be valid to, or to put this another way, entries MUST be combined using OR.  Support: Core",
+						Description:         "To describes the resources that may be referenced by the resourcesdescribed in 'From'. Each entry in this list MUST be considered to be anadditional place that references can be valid to, or to put this anotherway, entries MUST be combined using OR.Support: Core",
+						MarkdownDescription: "To describes the resources that may be referenced by the resourcesdescribed in 'From'. Each entry in this list MUST be considered to be anadditional place that references can be valid to, or to put this anotherway, entries MUST be combined using OR.Support: Core",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"group": schema.StringAttribute{
-									Description:         "Group is the group of the referent. When empty, the Kubernetes core API group is inferred.  Support: Core",
-									MarkdownDescription: "Group is the group of the referent. When empty, the Kubernetes core API group is inferred.  Support: Core",
+									Description:         "Group is the group of the referent.When empty, the Kubernetes core API group is inferred.Support: Core",
+									MarkdownDescription: "Group is the group of the referent.When empty, the Kubernetes core API group is inferred.Support: Core",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -211,8 +211,8 @@ func (r *GatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest) Schema(_ context.
 								},
 
 								"kind": schema.StringAttribute{
-									Description:         "Kind is the kind of the referent. Although implementations may support additional resources, the following types are part of the 'Core' support level for this field:  * Secret when used to permit a SecretObjectReference * Service when used to permit a BackendObjectReference",
-									MarkdownDescription: "Kind is the kind of the referent. Although implementations may support additional resources, the following types are part of the 'Core' support level for this field:  * Secret when used to permit a SecretObjectReference * Service when used to permit a BackendObjectReference",
+									Description:         "Kind is the kind of the referent. Although implementations may supportadditional resources, the following types are part of the 'Core'support level for this field:* Secret when used to permit a SecretObjectReference* Service when used to permit a BackendObjectReference",
+									MarkdownDescription: "Kind is the kind of the referent. Although implementations may supportadditional resources, the following types are part of the 'Core'support level for this field:* Secret when used to permit a SecretObjectReference* Service when used to permit a BackendObjectReference",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -224,8 +224,8 @@ func (r *GatewayNetworkingK8SIoReferenceGrantV1Alpha2Manifest) Schema(_ context.
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name is the name of the referent. When unspecified, this policy refers to all resources of the specified Group and Kind in the local namespace.",
-									MarkdownDescription: "Name is the name of the referent. When unspecified, this policy refers to all resources of the specified Group and Kind in the local namespace.",
+									Description:         "Name is the name of the referent. When unspecified, this policyrefers to all resources of the specified Group and Kind in the localnamespace.",
+									MarkdownDescription: "Name is the name of the referent. When unspecified, this policyrefers to all resources of the specified Group and Kind in the localnamespace.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

@@ -16,6 +16,7 @@ CiliumCIDRGroup is a list of external CIDRs (i.e: CIDRs selecting peers outside 
 data "k8s_cilium_io_cilium_cidr_group_v2alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```

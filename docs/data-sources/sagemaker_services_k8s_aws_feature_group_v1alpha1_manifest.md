@@ -30,7 +30,7 @@ data "k8s_sagemaker_services_k8s_aws_feature_group_v1alpha1_manifest" "example" 
 
 ### Optional
 
-- `spec` (Attributes) FeatureGroupSpec defines the desired state of FeatureGroup.  Amazon SageMaker Feature Store stores features in a collection called Feature Group. A Feature Group can be visualized as a table which has rows, with a unique identifier for each row where each column in the table is a feature. In principle, a Feature Group is composed of features and values per features. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) FeatureGroupSpec defines the desired state of FeatureGroup.Amazon SageMaker Feature Store stores features in a collection called FeatureGroup. A Feature Group can be visualized as a table which has rows, witha unique identifier for each row where each column in the table is a feature.In principle, a Feature Group is composed of features and values per features. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,26 +56,45 @@ Optional:
 
 Required:
 
-- `event_time_feature_name` (String) The name of the feature that stores the EventTime of a Record in a FeatureGroup.  An EventTime is a point in time when a new event occurs that corresponds to the creation or update of a Record in a FeatureGroup. All Records in the FeatureGroup must have a corresponding EventTime.  An EventTime can be a String or Fractional.  * Fractional: EventTime feature values must be a Unix timestamp in seconds.  * String: EventTime feature values must be an ISO-8601 string in the format. The following formats are supported yyyy-MM-dd'T'HH:mm:ssZ and yyyy-MM-dd'T'HH:mm:ss.SSSZ where yyyy, MM, and dd represent the year, month, and day respectively and HH, mm, ss, and if applicable, SSS represent the hour, month, second and milliseconds respsectively. 'T' and Z are constants.
-- `feature_definitions` (Attributes List) A list of Feature names and types. Name and Type is compulsory per Feature.  Valid feature FeatureTypes are Integral, Fractional and String.  FeatureNames cannot be any of the following: is_deleted, write_time, api_invocation_time  You can create up to 2,500 FeatureDefinitions per FeatureGroup. (see [below for nested schema](#nestedatt--spec--feature_definitions))
-- `feature_group_name` (String) The name of the FeatureGroup. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. The name:  * Must start and end with an alphanumeric character.  * Can only contain alphanumeric character and hyphens. Spaces are not allowed.
-- `record_identifier_feature_name` (String) The name of the Feature whose value uniquely identifies a Record defined in the FeatureStore. Only the latest record per identifier value will be stored in the OnlineStore. RecordIdentifierFeatureName must be one of feature definitions' names.  You use the RecordIdentifierFeatureName to access data in a FeatureStore.  This name:  * Must start and end with an alphanumeric character.  * Can only contains alphanumeric characters, hyphens, underscores. Spaces are not allowed.
+- `event_time_feature_name` (String) The name of the feature that stores the EventTime of a Record in a FeatureGroup.An EventTime is a point in time when a new event occurs that correspondsto the creation or update of a Record in a FeatureGroup. All Records in theFeatureGroup must have a corresponding EventTime.An EventTime can be a String or Fractional.   * Fractional: EventTime feature values must be a Unix timestamp in seconds.   * String: EventTime feature values must be an ISO-8601 string in the format.   The following formats are supported yyyy-MM-dd'T'HH:mm:ssZ and yyyy-MM-dd'T'HH:mm:ss.SSSZ   where yyyy, MM, and dd represent the year, month, and day respectively   and HH, mm, ss, and if applicable, SSS represent the hour, month, second   and milliseconds respsectively. 'T' and Z are constants.
+- `feature_definitions` (Attributes List) A list of Feature names and types. Name and Type is compulsory per Feature.Valid feature FeatureTypes are Integral, Fractional and String.FeatureNames cannot be any of the following: is_deleted, write_time, api_invocation_timeYou can create up to 2,500 FeatureDefinitions per FeatureGroup. (see [below for nested schema](#nestedatt--spec--feature_definitions))
+- `feature_group_name` (String) The name of the FeatureGroup. The name must be unique within an Amazon WebServices Region in an Amazon Web Services account. The name:   * Must start and end with an alphanumeric character.   * Can only contain alphanumeric character and hyphens. Spaces are not   allowed.
+- `record_identifier_feature_name` (String) The name of the Feature whose value uniquely identifies a Record definedin the FeatureStore. Only the latest record per identifier value will bestored in the OnlineStore. RecordIdentifierFeatureName must be one of featuredefinitions' names.You use the RecordIdentifierFeatureName to access data in a FeatureStore.This name:   * Must start and end with an alphanumeric character.   * Can only contains alphanumeric characters, hyphens, underscores. Spaces   are not allowed.
 
 Optional:
 
 - `description` (String) A free-form description of a FeatureGroup.
-- `offline_store_config` (Attributes) Use this to configure an OfflineFeatureStore. This parameter allows you to specify:  * The Amazon Simple Storage Service (Amazon S3) location of an OfflineStore.  * A configuration for an Amazon Web Services Glue or Amazon Web Services Hive data catalog.  * An KMS encryption key to encrypt the Amazon S3 location used for OfflineStore. If KMS encryption key is not specified, by default we encrypt all data at rest using Amazon Web Services KMS key. By defining your bucket-level key (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html) for SSE, you can reduce Amazon Web Services KMS requests costs by up to 99 percent.  * Format for the offline store table. Supported formats are Glue (Default) and Apache Iceberg (https://iceberg.apache.org/).  To learn more about this parameter, see OfflineStoreConfig. (see [below for nested schema](#nestedatt--spec--offline_store_config))
-- `online_store_config` (Attributes) You can turn the OnlineStore on or off by specifying True for the EnableOnlineStore flag in OnlineStoreConfig; the default value is False.  You can also include an Amazon Web Services KMS key ID (KMSKeyId) for at-rest encryption of the OnlineStore. (see [below for nested schema](#nestedatt--spec--online_store_config))
-- `role_arn` (String) The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the OfflineStore if an OfflineStoreConfig is provided.
+- `offline_store_config` (Attributes) Use this to configure an OfflineFeatureStore. This parameter allows you tospecify:   * The Amazon Simple Storage Service (Amazon S3) location of an OfflineStore.   * A configuration for an Amazon Web Services Glue or Amazon Web Services   Hive data catalog.   * An KMS encryption key to encrypt the Amazon S3 location used for OfflineStore.   If KMS encryption key is not specified, by default we encrypt all data   at rest using Amazon Web Services KMS key. By defining your bucket-level   key (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html)   for SSE, you can reduce Amazon Web Services KMS requests costs by up to   99 percent.   * Format for the offline store table. Supported formats are Glue (Default)   and Apache Iceberg (https://iceberg.apache.org/).To learn more about this parameter, see OfflineStoreConfig (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_OfflineStoreConfig.html). (see [below for nested schema](#nestedatt--spec--offline_store_config))
+- `online_store_config` (Attributes) You can turn the OnlineStore on or off by specifying True for the EnableOnlineStoreflag in OnlineStoreConfig.You can also include an Amazon Web Services KMS key ID (KMSKeyId) for at-restencryption of the OnlineStore.The default value is False. (see [below for nested schema](#nestedatt--spec--online_store_config))
+- `role_arn` (String) The Amazon Resource Name (ARN) of the IAM execution role used to persistdata into the OfflineStore if an OfflineStoreConfig is provided.
 - `tags` (Attributes List) Tags used to identify Features in each FeatureGroup. (see [below for nested schema](#nestedatt--spec--tags))
+- `throughput_config` (Attributes) Used to set feature group throughput configuration. There are two modes:ON_DEMAND and PROVISIONED. With on-demand mode, you are charged for datareads and writes that your application performs on your feature group. Youdo not need to specify read and write throughput because Feature Store accommodatesyour workloads as they ramp up and down. You can switch a feature group toon-demand only once in a 24 hour period. With provisioned throughput mode,you specify the read and write capacity per second that you expect your applicationto require, and you are billed based on those limits. Exceeding provisionedthroughput will result in your requests being throttled.Note: PROVISIONED throughput mode is supported only for feature groups thatare offline-only, or use the Standard (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_OnlineStoreConfig.html#sagemaker-Type-OnlineStoreConfig-StorageType)tier online store. (see [below for nested schema](#nestedatt--spec--throughput_config))
 
 <a id="nestedatt--spec--feature_definitions"></a>
 ### Nested Schema for `spec.feature_definitions`
 
 Optional:
 
+- `collection_config` (Attributes) Configuration for your collection. (see [below for nested schema](#nestedatt--spec--feature_definitions--collection_config))
+- `collection_type` (String)
 - `feature_name` (String)
 - `feature_type` (String)
+
+<a id="nestedatt--spec--feature_definitions--collection_config"></a>
+### Nested Schema for `spec.feature_definitions.collection_config`
+
+Optional:
+
+- `vector_config` (Attributes) Configuration for your vector collection type. (see [below for nested schema](#nestedatt--spec--feature_definitions--collection_config--vector_config))
+
+<a id="nestedatt--spec--feature_definitions--collection_config--vector_config"></a>
+### Nested Schema for `spec.feature_definitions.collection_config.vector_config`
+
+Optional:
+
+- `dimension` (Number)
+
+
 
 
 <a id="nestedatt--spec--offline_store_config"></a>
@@ -85,7 +104,7 @@ Optional:
 
 - `data_catalog_config` (Attributes) The meta data of the Glue table which serves as data catalog for the OfflineStore. (see [below for nested schema](#nestedatt--spec--offline_store_config--data_catalog_config))
 - `disable_glue_table_creation` (Boolean)
-- `s3_storage_config` (Attributes) The Amazon Simple Storage (Amazon S3) location and and security configuration for OfflineStore. (see [below for nested schema](#nestedatt--spec--offline_store_config--s3_storage_config))
+- `s3_storage_config` (Attributes) The Amazon Simple Storage (Amazon S3) location and and security configurationfor OfflineStore. (see [below for nested schema](#nestedatt--spec--offline_store_config--s3_storage_config))
 
 <a id="nestedatt--spec--offline_store_config--data_catalog_config"></a>
 ### Nested Schema for `spec.offline_store_config.data_catalog_config`
@@ -115,6 +134,8 @@ Optional:
 
 - `enable_online_store` (Boolean)
 - `security_config` (Attributes) The security configuration for OnlineStore. (see [below for nested schema](#nestedatt--spec--online_store_config--security_config))
+- `storage_type` (String)
+- `ttl_duration` (Attributes) Time to live duration, where the record is hard deleted after the expirationtime is reached; ExpiresAt = EventTime + TtlDuration. For information onHardDelete, see the DeleteRecord (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_DeleteRecord.html)API in the Amazon SageMaker API Reference guide. (see [below for nested schema](#nestedatt--spec--online_store_config--ttl_duration))
 
 <a id="nestedatt--spec--online_store_config--security_config"></a>
 ### Nested Schema for `spec.online_store_config.security_config`
@@ -122,6 +143,15 @@ Optional:
 Optional:
 
 - `kms_key_id` (String)
+
+
+<a id="nestedatt--spec--online_store_config--ttl_duration"></a>
+### Nested Schema for `spec.online_store_config.ttl_duration`
+
+Optional:
+
+- `unit` (String)
+- `value` (Number)
 
 
 
@@ -132,3 +162,13 @@ Optional:
 
 - `key` (String)
 - `value` (String)
+
+
+<a id="nestedatt--spec--throughput_config"></a>
+### Nested Schema for `spec.throughput_config`
+
+Optional:
+
+- `provisioned_read_capacity_units` (Number)
+- `provisioned_write_capacity_units` (Number)
+- `throughput_mode` (String)

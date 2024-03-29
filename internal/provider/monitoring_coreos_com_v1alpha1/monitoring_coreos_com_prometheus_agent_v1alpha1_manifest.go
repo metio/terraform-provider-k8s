@@ -99,6 +99,8 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -121,6 +123,8 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+					MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
 							Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -144,6 +148,8 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -166,6 +172,8 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+					MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
 							Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -302,6 +310,9 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -321,6 +332,9 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -567,6 +581,9 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -586,6 +603,9 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -747,19 +767,24 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"init_containers" json:"initContainers,omitempty"`
-		KeepDroppedTargets      *int64             `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
-		LabelLimit              *int64             `tfsdk:"label_limit" json:"labelLimit,omitempty"`
-		LabelNameLengthLimit    *int64             `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
-		LabelValueLengthLimit   *int64             `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
-		ListenLocal             *bool              `tfsdk:"listen_local" json:"listenLocal,omitempty"`
-		LogFormat               *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
-		LogLevel                *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
-		MinReadySeconds         *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
-		NodeSelector            *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-		OverrideHonorLabels     *bool              `tfsdk:"override_honor_labels" json:"overrideHonorLabels,omitempty"`
-		OverrideHonorTimestamps *bool              `tfsdk:"override_honor_timestamps" json:"overrideHonorTimestamps,omitempty"`
-		Paused                  *bool              `tfsdk:"paused" json:"paused,omitempty"`
-		PodMetadata             *struct {
+		KeepDroppedTargets                   *int64             `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
+		LabelLimit                           *int64             `tfsdk:"label_limit" json:"labelLimit,omitempty"`
+		LabelNameLengthLimit                 *int64             `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
+		LabelValueLengthLimit                *int64             `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
+		ListenLocal                          *bool              `tfsdk:"listen_local" json:"listenLocal,omitempty"`
+		LogFormat                            *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
+		LogLevel                             *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
+		MaximumStartupDurationSeconds        *int64             `tfsdk:"maximum_startup_duration_seconds" json:"maximumStartupDurationSeconds,omitempty"`
+		MinReadySeconds                      *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		NodeSelector                         *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+		OverrideHonorLabels                  *bool              `tfsdk:"override_honor_labels" json:"overrideHonorLabels,omitempty"`
+		OverrideHonorTimestamps              *bool              `tfsdk:"override_honor_timestamps" json:"overrideHonorTimestamps,omitempty"`
+		Paused                               *bool              `tfsdk:"paused" json:"paused,omitempty"`
+		PersistentVolumeClaimRetentionPolicy *struct {
+			WhenDeleted *string `tfsdk:"when_deleted" json:"whenDeleted,omitempty"`
+			WhenScaled  *string `tfsdk:"when_scaled" json:"whenScaled,omitempty"`
+		} `tfsdk:"persistent_volume_claim_retention_policy" json:"persistentVolumeClaimRetentionPolicy,omitempty"`
+		PodMetadata *struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Name        *string            `tfsdk:"name" json:"name,omitempty"`
@@ -800,6 +825,7 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"probe_selector" json:"probeSelector,omitempty"`
 		PrometheusExternalLabelName *string `tfsdk:"prometheus_external_label_name" json:"prometheusExternalLabelName,omitempty"`
+		ReloadStrategy              *string `tfsdk:"reload_strategy" json:"reloadStrategy,omitempty"`
 		RemoteWrite                 *[]struct {
 			Authorization *struct {
 				Credentials *struct {
@@ -810,6 +836,21 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 				CredentialsFile *string `tfsdk:"credentials_file" json:"credentialsFile,omitempty"`
 				Type            *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"authorization" json:"authorization,omitempty"`
+			AzureAd *struct {
+				Cloud           *string `tfsdk:"cloud" json:"cloud,omitempty"`
+				ManagedIdentity *struct {
+					ClientId *string `tfsdk:"client_id" json:"clientId,omitempty"`
+				} `tfsdk:"managed_identity" json:"managedIdentity,omitempty"`
+				Oauth *struct {
+					ClientId     *string `tfsdk:"client_id" json:"clientId,omitempty"`
+					ClientSecret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+					TenantId *string `tfsdk:"tenant_id" json:"tenantId,omitempty"`
+				} `tfsdk:"oauth" json:"oauth,omitempty"`
+			} `tfsdk:"azure_ad" json:"azureAd,omitempty"`
 			BasicAuth *struct {
 				Password *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -824,6 +865,7 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 			} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
 			BearerToken     *string            `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
 			BearerTokenFile *string            `tfsdk:"bearer_token_file" json:"bearerTokenFile,omitempty"`
+			EnableHTTP2     *bool              `tfsdk:"enable_http2" json:"enableHTTP2,omitempty"`
 			Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
 			MetadataConfig  *struct {
 				Send         *bool   `tfsdk:"send" json:"send,omitempty"`
@@ -863,6 +905,7 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 				MinBackoff        *string `tfsdk:"min_backoff" json:"minBackoff,omitempty"`
 				MinShards         *int64  `tfsdk:"min_shards" json:"minShards,omitempty"`
 				RetryOnRateLimit  *bool   `tfsdk:"retry_on_rate_limit" json:"retryOnRateLimit,omitempty"`
+				SampleAgeLimit    *string `tfsdk:"sample_age_limit" json:"sampleAgeLimit,omitempty"`
 			} `tfsdk:"queue_config" json:"queueConfig,omitempty"`
 			RemoteTimeout        *string `tfsdk:"remote_timeout" json:"remoteTimeout,omitempty"`
 			SendExemplars        *bool   `tfsdk:"send_exemplars" json:"sendExemplars,omitempty"`
@@ -938,8 +981,48 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
-		RoutePrefix                   *string `tfsdk:"route_prefix" json:"routePrefix,omitempty"`
-		SampleLimit                   *int64  `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
+		RoutePrefix   *string `tfsdk:"route_prefix" json:"routePrefix,omitempty"`
+		SampleLimit   *int64  `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
+		ScrapeClasses *[]struct {
+			Default   *bool   `tfsdk:"default" json:"default,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			TlsConfig *struct {
+				Ca *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"ca" json:"ca,omitempty"`
+				CaFile *string `tfsdk:"ca_file" json:"caFile,omitempty"`
+				Cert   *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"cert" json:"cert,omitempty"`
+				CertFile           *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+				InsecureSkipVerify *bool   `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+				KeyFile            *string `tfsdk:"key_file" json:"keyFile,omitempty"`
+				KeySecret          *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+		} `tfsdk:"scrape_classes" json:"scrapeClasses,omitempty"`
 		ScrapeConfigNamespaceSelector *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -957,6 +1040,7 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"scrape_config_selector" json:"scrapeConfigSelector,omitempty"`
 		ScrapeInterval  *string   `tfsdk:"scrape_interval" json:"scrapeInterval,omitempty"`
+		ScrapeProtocols *[]string `tfsdk:"scrape_protocols" json:"scrapeProtocols,omitempty"`
 		ScrapeTimeout   *string   `tfsdk:"scrape_timeout" json:"scrapeTimeout,omitempty"`
 		Secrets         *[]string `tfsdk:"secrets" json:"secrets,omitempty"`
 		SecurityContext *struct {
@@ -1028,9 +1112,6 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 						Resources *struct {
-							Claims *[]struct {
-								Name *string `tfsdk:"name" json:"name,omitempty"`
-							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1042,9 +1123,10 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"selector" json:"selector,omitempty"`
-						StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-						VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-						VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+						StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+						VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+						VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+						VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 					} `tfsdk:"spec" json:"spec,omitempty"`
 				} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 			} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -1070,9 +1152,6 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 					Resources *struct {
-						Claims *[]struct {
-							Name *string `tfsdk:"name" json:"name,omitempty"`
-						} `tfsdk:"claims" json:"claims,omitempty"`
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1084,9 +1163,10 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"selector" json:"selector,omitempty"`
-					StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-					VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-					VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+					StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+					VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+					VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+					VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 				} `tfsdk:"spec" json:"spec,omitempty"`
 				Status *struct {
 					AccessModes               *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
@@ -1101,6 +1181,11 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 						Status             *string `tfsdk:"status" json:"status,omitempty"`
 						Type               *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"conditions" json:"conditions,omitempty"`
+					CurrentVolumeAttributesClassName *string `tfsdk:"current_volume_attributes_class_name" json:"currentVolumeAttributesClassName,omitempty"`
+					ModifyVolumeStatus               *struct {
+						Status                          *string `tfsdk:"status" json:"status,omitempty"`
+						TargetVolumeAttributesClassName *string `tfsdk:"target_volume_attributes_class_name" json:"targetVolumeAttributesClassName,omitempty"`
+					} `tfsdk:"modify_volume_status" json:"modifyVolumeStatus,omitempty"`
 					Phase *string `tfsdk:"phase" json:"phase,omitempty"`
 				} `tfsdk:"status" json:"status,omitempty"`
 			} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
@@ -1114,7 +1199,8 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 			Value             *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		TopologySpreadConstraints *[]struct {
-			LabelSelector *struct {
+			AdditionalLabelSelectors *string `tfsdk:"additional_label_selectors" json:"additionalLabelSelectors,omitempty"`
+			LabelSelector            *struct {
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
 					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -1278,9 +1364,6 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 						Resources *struct {
-							Claims *[]struct {
-								Name *string `tfsdk:"name" json:"name,omitempty"`
-							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1292,9 +1375,10 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"selector" json:"selector,omitempty"`
-						StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-						VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-						VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+						StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+						VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+						VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+						VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 					} `tfsdk:"spec" json:"spec,omitempty"`
 				} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 			} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -1375,6 +1459,20 @@ type MonitoringCoreosComPrometheusAgentV1Alpha1ManifestData struct {
 			Projected *struct {
 				DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 				Sources     *[]struct {
+					ClusterTrustBundle *struct {
+						LabelSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						Name       *string `tfsdk:"name" json:"name,omitempty"`
+						Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						Path       *string `tfsdk:"path" json:"path,omitempty"`
+						SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+					} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 					ConfigMap *struct {
 						Items *[]struct {
 							Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1897,8 +1995,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over a set of resources, in this case pods.",
-															MarkdownDescription: "A label query over a set of resources, in this case pods.",
+															Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+															MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1948,6 +2046,24 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"match_label_keys": schema.ListAttribute{
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
@@ -2046,8 +2162,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"label_selector": schema.SingleNestedAttribute{
-													Description:         "A label query over a set of resources, in this case pods.",
-													MarkdownDescription: "A label query over a set of resources, in this case pods.",
+													Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+													MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2097,6 +2213,24 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"match_label_keys": schema.ListAttribute{
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mismatch_label_keys": schema.ListAttribute{
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"namespace_selector": schema.SingleNestedAttribute{
@@ -2195,8 +2329,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over a set of resources, in this case pods.",
-															MarkdownDescription: "A label query over a set of resources, in this case pods.",
+															Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+															MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2246,6 +2380,24 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"match_label_keys": schema.ListAttribute{
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
@@ -2344,8 +2496,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"label_selector": schema.SingleNestedAttribute{
-													Description:         "A label query over a set of resources, in this case pods.",
-													MarkdownDescription: "A label query over a set of resources, in this case pods.",
+													Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+													MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2395,6 +2547,24 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"match_label_keys": schema.ListAttribute{
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mismatch_label_keys": schema.ListAttribute{
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"namespace_selector": schema.SingleNestedAttribute{
@@ -2551,8 +2721,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 								MarkdownDescription: "BasicAuth configuration for the API server.  Cannot be set at the same time as 'authorization', 'bearerToken', or 'bearerTokenFile'.",
 								Attributes: map[string]schema.Attribute{
 									"password": schema.SingleNestedAttribute{
-										Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-										MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+										Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+										MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2584,8 +2754,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 									},
 
 									"username": schema.SingleNestedAttribute{
-										Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-										MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+										Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+										MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2622,16 +2792,16 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"bearer_token": schema.StringAttribute{
-								Description:         "*Warning: this field shouldn't be used because the token value appears in clear-text. Prefer using 'authorization'.*  *Deprecated: this will be removed in a future release.*",
-								MarkdownDescription: "*Warning: this field shouldn't be used because the token value appears in clear-text. Prefer using 'authorization'.*  *Deprecated: this will be removed in a future release.*",
+								Description:         "*Warning: this field shouldn't be used because the token value appears in clear-text. Prefer using 'authorization'.*  Deprecated: this will be removed in a future release.",
+								MarkdownDescription: "*Warning: this field shouldn't be used because the token value appears in clear-text. Prefer using 'authorization'.*  Deprecated: this will be removed in a future release.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"bearer_token_file": schema.StringAttribute{
-								Description:         "File to read bearer token for accessing apiserver.  Cannot be set at the same time as 'basicAuth', 'authorization', or 'bearerToken'.  *Deprecated: this will be removed in a future release. Prefer using 'authorization'.*",
-								MarkdownDescription: "File to read bearer token for accessing apiserver.  Cannot be set at the same time as 'basicAuth', 'authorization', or 'bearerToken'.  *Deprecated: this will be removed in a future release. Prefer using 'authorization'.*",
+								Description:         "File to read bearer token for accessing apiserver.  Cannot be set at the same time as 'basicAuth', 'authorization', or 'bearerToken'.  Deprecated: this will be removed in a future release. Prefer using 'authorization'.",
+								MarkdownDescription: "File to read bearer token for accessing apiserver.  Cannot be set at the same time as 'basicAuth', 'authorization', or 'bearerToken'.  Deprecated: this will be removed in a future release. Prefer using 'authorization'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3281,6 +3451,23 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													Computed: false,
 												},
 
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "Seconds is the number of seconds to sleep.",
+															MarkdownDescription: "Seconds is the number of seconds to sleep.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"tcp_socket": schema.SingleNestedAttribute{
 													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -3393,6 +3580,23 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 															MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 															Required:            false,
 															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "Seconds is the number of seconds to sleep.",
+															MarkdownDescription: "Seconds is the number of seconds to sleep.",
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 														},
 													},
@@ -4684,8 +4888,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"ignore_namespace_selectors": schema.BoolAttribute{
-						Description:         "When true, 'spec.namespaceSelector' from all PodMonitor, ServiceMonitor and Probe objects will be ignored. They will only discover targets within the namespace of the PodMonitor, ServiceMonitor and Probe objec.",
-						MarkdownDescription: "When true, 'spec.namespaceSelector' from all PodMonitor, ServiceMonitor and Probe objects will be ignored. They will only discover targets within the namespace of the PodMonitor, ServiceMonitor and Probe objec.",
+						Description:         "When true, 'spec.namespaceSelector' from all PodMonitor, ServiceMonitor and Probe objects will be ignored. They will only discover targets within the namespace of the PodMonitor, ServiceMonitor and Probe object.",
+						MarkdownDescription: "When true, 'spec.namespaceSelector' from all PodMonitor, ServiceMonitor and Probe objects will be ignored. They will only discover targets within the namespace of the PodMonitor, ServiceMonitor and Probe object.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -5091,6 +5295,23 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													Computed: false,
 												},
 
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "Seconds is the number of seconds to sleep.",
+															MarkdownDescription: "Seconds is the number of seconds to sleep.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"tcp_socket": schema.SingleNestedAttribute{
 													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -5203,6 +5424,23 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 															MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 															Required:            false,
 															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "Seconds is the number of seconds to sleep.",
+															MarkdownDescription: "Seconds is the number of seconds to sleep.",
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 														},
 													},
@@ -6366,6 +6604,17 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 						},
 					},
 
+					"maximum_startup_duration_seconds": schema.Int64Attribute{
+						Description:         "Defines the maximum time that the 'prometheus' container's startup probe will wait before being considered failed. The startup probe will return success after the WAL replay is complete. If set, the value should be greater than 60 (seconds). Otherwise it will be equal to 600 seconds (15 minutes).",
+						MarkdownDescription: "Defines the maximum time that the 'prometheus' container's startup probe will wait before being considered failed. The startup probe will return success after the WAL replay is complete. If set, the value should be greater than 60 (seconds). Otherwise it will be equal to 600 seconds (15 minutes).",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.Int64{
+							int64validator.AtLeast(60),
+						},
+					},
+
 					"min_ready_seconds": schema.Int64Attribute{
 						Description:         "Minimum number of seconds for which a newly created Pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)  This is an alpha field from kubernetes 1.22 until 1.24 which requires enabling the StatefulSetMinReadySeconds feature gate.",
 						MarkdownDescription: "Minimum number of seconds for which a newly created Pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)  This is an alpha field from kubernetes 1.22 until 1.24 which requires enabling the StatefulSetMinReadySeconds feature gate.",
@@ -6407,9 +6656,34 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 						Computed:            false,
 					},
 
+					"persistent_volume_claim_retention_policy": schema.SingleNestedAttribute{
+						Description:         "The field controls if and how PVCs are deleted during the lifecycle of a StatefulSet. The default behavior is all PVCs are retained. This is an alpha field from kubernetes 1.23 until 1.26 and a beta field from 1.26. It requires enabling the StatefulSetAutoDeletePVC feature gate.",
+						MarkdownDescription: "The field controls if and how PVCs are deleted during the lifecycle of a StatefulSet. The default behavior is all PVCs are retained. This is an alpha field from kubernetes 1.23 until 1.26 and a beta field from 1.26. It requires enabling the StatefulSetAutoDeletePVC feature gate.",
+						Attributes: map[string]schema.Attribute{
+							"when_deleted": schema.StringAttribute{
+								Description:         "WhenDeleted specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is deleted. The default policy of 'Retain' causes PVCs to not be affected by StatefulSet deletion. The 'Delete' policy causes those PVCs to be deleted.",
+								MarkdownDescription: "WhenDeleted specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is deleted. The default policy of 'Retain' causes PVCs to not be affected by StatefulSet deletion. The 'Delete' policy causes those PVCs to be deleted.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"when_scaled": schema.StringAttribute{
+								Description:         "WhenScaled specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is scaled down. The default policy of 'Retain' causes PVCs to not be affected by a scaledown. The 'Delete' policy causes the associated PVCs for any excess pods above the replica count to be deleted.",
+								MarkdownDescription: "WhenScaled specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is scaled down. The default policy of 'Retain' causes PVCs to not be affected by a scaledown. The 'Delete' policy causes the associated PVCs for any excess pods above the replica count to be deleted.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"pod_metadata": schema.SingleNestedAttribute{
-						Description:         "PodMetadata configures labels and annotations which are propagated to the Prometheus pods.",
-						MarkdownDescription: "PodMetadata configures labels and annotations which are propagated to the Prometheus pods.",
+						Description:         "PodMetadata configures labels and annotations which are propagated to the Prometheus pods.  The following items are reserved and cannot be overridden: * 'prometheus' label, set to the name of the Prometheus object. * 'app.kubernetes.io/instance' label, set to the name of the Prometheus object. * 'app.kubernetes.io/managed-by' label, set to 'prometheus-operator'. * 'app.kubernetes.io/name' label, set to 'prometheus'. * 'app.kubernetes.io/version' label, set to the Prometheus version. * 'operator.prometheus.io/name' label, set to the name of the Prometheus object. * 'operator.prometheus.io/shard' label, set to the shard number of the Prometheus object. * 'kubectl.kubernetes.io/default-container' annotation, set to 'prometheus'.",
+						MarkdownDescription: "PodMetadata configures labels and annotations which are propagated to the Prometheus pods.  The following items are reserved and cannot be overridden: * 'prometheus' label, set to the name of the Prometheus object. * 'app.kubernetes.io/instance' label, set to the name of the Prometheus object. * 'app.kubernetes.io/managed-by' label, set to 'prometheus-operator'. * 'app.kubernetes.io/name' label, set to 'prometheus'. * 'app.kubernetes.io/version' label, set to the Prometheus version. * 'operator.prometheus.io/name' label, set to the name of the Prometheus object. * 'operator.prometheus.io/shard' label, set to the shard number of the Prometheus object. * 'kubectl.kubernetes.io/default-container' annotation, set to 'prometheus'.",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
 								Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
@@ -6691,14 +6965,25 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 						Computed:            false,
 					},
 
+					"reload_strategy": schema.StringAttribute{
+						Description:         "Defines the strategy used to reload the Prometheus configuration. If not specified, the configuration is reloaded using the /-/reload HTTP endpoint.",
+						MarkdownDescription: "Defines the strategy used to reload the Prometheus configuration. If not specified, the configuration is reloaded using the /-/reload HTTP endpoint.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("HTTP", "ProcessSignal"),
+						},
+					},
+
 					"remote_write": schema.ListNestedAttribute{
 						Description:         "Defines the list of remote write configurations.",
 						MarkdownDescription: "Defines the list of remote write configurations.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authorization": schema.SingleNestedAttribute{
-									Description:         "Authorization section for the URL.  It requires Prometheus >= v2.26.0.  Cannot be set at the same time as 'sigv4', 'basicAuth', or 'oauth2'.",
-									MarkdownDescription: "Authorization section for the URL.  It requires Prometheus >= v2.26.0.  Cannot be set at the same time as 'sigv4', 'basicAuth', or 'oauth2'.",
+									Description:         "Authorization section for the URL.  It requires Prometheus >= v2.26.0.  Cannot be set at the same time as 'sigv4', 'basicAuth', 'oauth2', or 'azureAd'.",
+									MarkdownDescription: "Authorization section for the URL.  It requires Prometheus >= v2.26.0.  Cannot be set at the same time as 'sigv4', 'basicAuth', 'oauth2', or 'azureAd'.",
 									Attributes: map[string]schema.Attribute{
 										"credentials": schema.SingleNestedAttribute{
 											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -6754,13 +7039,115 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 									Computed: false,
 								},
 
+								"azure_ad": schema.SingleNestedAttribute{
+									Description:         "AzureAD for the URL.  It requires Prometheus >= v2.45.0.  Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'sigv4'.",
+									MarkdownDescription: "AzureAD for the URL.  It requires Prometheus >= v2.45.0.  Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'sigv4'.",
+									Attributes: map[string]schema.Attribute{
+										"cloud": schema.StringAttribute{
+											Description:         "The Azure Cloud. Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.",
+											MarkdownDescription: "The Azure Cloud. Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("AzureChina", "AzureGovernment", "AzurePublic"),
+											},
+										},
+
+										"managed_identity": schema.SingleNestedAttribute{
+											Description:         "ManagedIdentity defines the Azure User-assigned Managed identity. Cannot be set at the same time as 'oauth'.",
+											MarkdownDescription: "ManagedIdentity defines the Azure User-assigned Managed identity. Cannot be set at the same time as 'oauth'.",
+											Attributes: map[string]schema.Attribute{
+												"client_id": schema.StringAttribute{
+													Description:         "The client id",
+													MarkdownDescription: "The client id",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"oauth": schema.SingleNestedAttribute{
+											Description:         "OAuth defines the oauth config that is being used to authenticate. Cannot be set at the same time as 'managedIdentity'.  It requires Prometheus >= v2.48.0.",
+											MarkdownDescription: "OAuth defines the oauth config that is being used to authenticate. Cannot be set at the same time as 'managedIdentity'.  It requires Prometheus >= v2.48.0.",
+											Attributes: map[string]schema.Attribute{
+												"client_id": schema.StringAttribute{
+													Description:         "'clientID' is the clientId of the Azure Active Directory application that is being used to authenticate.",
+													MarkdownDescription: "'clientID' is the clientId of the Azure Active Directory application that is being used to authenticate.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+													},
+												},
+
+												"client_secret": schema.SingleNestedAttribute{
+													Description:         "'clientSecret' specifies a key of a Secret containing the client secret of the Azure Active Directory application that is being used to authenticate.",
+													MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the client secret of the Azure Active Directory application that is being used to authenticate.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+
+												"tenant_id": schema.StringAttribute{
+													Description:         "'tenantID' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
+													MarkdownDescription: "'tenantID' is the tenant ID of the Azure Active Directory application that is being used to authenticate.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9a-zA-Z-.]+$`), ""),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"basic_auth": schema.SingleNestedAttribute{
-									Description:         "BasicAuth configuration for the URL.  Cannot be set at the same time as 'sigv4', 'authorization', or 'oauth2'.",
-									MarkdownDescription: "BasicAuth configuration for the URL.  Cannot be set at the same time as 'sigv4', 'authorization', or 'oauth2'.",
+									Description:         "BasicAuth configuration for the URL.  Cannot be set at the same time as 'sigv4', 'authorization', 'oauth2', or 'azureAd'.",
+									MarkdownDescription: "BasicAuth configuration for the URL.  Cannot be set at the same time as 'sigv4', 'authorization', 'oauth2', or 'azureAd'.",
 									Attributes: map[string]schema.Attribute{
 										"password": schema.SingleNestedAttribute{
-											Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-											MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+											Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+											MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6792,8 +7179,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"username": schema.SingleNestedAttribute{
-											Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-											MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+											Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+											MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6830,16 +7217,24 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 								},
 
 								"bearer_token": schema.StringAttribute{
-									Description:         "*Warning: this field shouldn't be used because the token value appears in clear-text. Prefer using 'authorization'.*  *Deprecated: this will be removed in a future release.*",
-									MarkdownDescription: "*Warning: this field shouldn't be used because the token value appears in clear-text. Prefer using 'authorization'.*  *Deprecated: this will be removed in a future release.*",
+									Description:         "*Warning: this field shouldn't be used because the token value appears in clear-text. Prefer using 'authorization'.*  Deprecated: this will be removed in a future release.",
+									MarkdownDescription: "*Warning: this field shouldn't be used because the token value appears in clear-text. Prefer using 'authorization'.*  Deprecated: this will be removed in a future release.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"bearer_token_file": schema.StringAttribute{
-									Description:         "File from which to read bearer token for the URL.  *Deprecated: this will be removed in a future release. Prefer using 'authorization'.*",
-									MarkdownDescription: "File from which to read bearer token for the URL.  *Deprecated: this will be removed in a future release. Prefer using 'authorization'.*",
+									Description:         "File from which to read bearer token for the URL.  Deprecated: this will be removed in a future release. Prefer using 'authorization'.",
+									MarkdownDescription: "File from which to read bearer token for the URL.  Deprecated: this will be removed in a future release. Prefer using 'authorization'.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"enable_http2": schema.BoolAttribute{
+									Description:         "Whether to enable HTTP2.",
+									MarkdownDescription: "Whether to enable HTTP2.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -6891,12 +7286,12 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 								},
 
 								"oauth2": schema.SingleNestedAttribute{
-									Description:         "OAuth2 configuration for the URL.  It requires Prometheus >= v2.27.0.  Cannot be set at the same time as 'sigv4', 'authorization', or 'basicAuth'.",
-									MarkdownDescription: "OAuth2 configuration for the URL.  It requires Prometheus >= v2.27.0.  Cannot be set at the same time as 'sigv4', 'authorization', or 'basicAuth'.",
+									Description:         "OAuth2 configuration for the URL.  It requires Prometheus >= v2.27.0.  Cannot be set at the same time as 'sigv4', 'authorization', 'basicAuth', or 'azureAd'.",
+									MarkdownDescription: "OAuth2 configuration for the URL.  It requires Prometheus >= v2.27.0.  Cannot be set at the same time as 'sigv4', 'authorization', 'basicAuth', or 'azureAd'.",
 									Attributes: map[string]schema.Attribute{
 										"client_id": schema.SingleNestedAttribute{
-											Description:         "The secret or configmap containing the OAuth2 client id",
-											MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 											Attributes: map[string]schema.Attribute{
 												"config_map": schema.SingleNestedAttribute{
 													Description:         "ConfigMap containing data to use for the targets.",
@@ -6970,8 +7365,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"client_secret": schema.SingleNestedAttribute{
-											Description:         "The secret containing the OAuth2 client secret",
-											MarkdownDescription: "The secret containing the OAuth2 client secret",
+											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7003,8 +7398,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"endpoint_params": schema.MapAttribute{
-											Description:         "Parameters to append to the token URL",
-											MarkdownDescription: "Parameters to append to the token URL",
+											Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7012,8 +7407,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"scopes": schema.ListAttribute{
-											Description:         "OAuth2 scopes used for the token request",
-											MarkdownDescription: "OAuth2 scopes used for the token request",
+											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7021,8 +7416,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"token_url": schema.StringAttribute{
-											Description:         "The URL to fetch the token from",
-											MarkdownDescription: "The URL to fetch the token from",
+											Description:         "'tokenURL' configures the URL to fetch the token from.",
+											MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -7054,6 +7449,9 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+											},
 										},
 
 										"capacity": schema.Int64Attribute{
@@ -7070,6 +7468,9 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+											},
 										},
 
 										"max_retries": schema.Int64Attribute{
@@ -7102,6 +7503,9 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+											},
 										},
 
 										"min_shards": schema.Int64Attribute{
@@ -7118,6 +7522,17 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"sample_age_limit": schema.StringAttribute{
+											Description:         "SampleAgeLimit drops samples older than the limit. It requires Prometheus >= v2.50.0.",
+											MarkdownDescription: "SampleAgeLimit drops samples older than the limit. It requires Prometheus >= v2.50.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+											},
 										},
 									},
 									Required: false,
@@ -7153,8 +7568,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 								},
 
 								"sigv4": schema.SingleNestedAttribute{
-									Description:         "Sigv4 allows to configures AWS's Signature Verification 4 for the URL.  It requires Prometheus >= v2.26.0.  Cannot be set at the same time as 'authorization', 'basicAuth', or 'oauth2'.",
-									MarkdownDescription: "Sigv4 allows to configures AWS's Signature Verification 4 for the URL.  It requires Prometheus >= v2.26.0.  Cannot be set at the same time as 'authorization', 'basicAuth', or 'oauth2'.",
+									Description:         "Sigv4 allows to configures AWS's Signature Verification 4 for the URL.  It requires Prometheus >= v2.26.0.  Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'azureAd'.",
+									MarkdownDescription: "Sigv4 allows to configures AWS's Signature Verification 4 for the URL.  It requires Prometheus >= v2.26.0.  Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'azureAd'.",
 									Attributes: map[string]schema.Attribute{
 										"access_key": schema.SingleNestedAttribute{
 											Description:         "AccessKey is the AWS API key. If not specified, the environment variable 'AWS_ACCESS_KEY_ID' is used.",
@@ -7646,6 +8061,268 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 						Computed:            false,
 					},
 
+					"scrape_classes": schema.ListNestedAttribute{
+						Description:         "EXPERIMENTAL List of scrape classes to expose to monitors and other scrape configs. This is experimental feature and might change in the future.",
+						MarkdownDescription: "EXPERIMENTAL List of scrape classes to expose to monitors and other scrape configs. This is experimental feature and might change in the future.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"default": schema.BoolAttribute{
+									Description:         "Default indicates that the scrape applies to all scrape objects that don't configure an explicit scrape class name.  Only one scrape class can be set as default.",
+									MarkdownDescription: "Default indicates that the scrape applies to all scrape objects that don't configure an explicit scrape class name.  Only one scrape class can be set as default.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name of the scrape class.",
+									MarkdownDescription: "Name of the scrape class.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
+								},
+
+								"tls_config": schema.SingleNestedAttribute{
+									Description:         "TLSConfig section for scrapes.",
+									MarkdownDescription: "TLSConfig section for scrapes.",
+									Attributes: map[string]schema.Attribute{
+										"ca": schema.SingleNestedAttribute{
+											Description:         "Certificate authority used when verifying server certificates.",
+											MarkdownDescription: "Certificate authority used when verifying server certificates.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"ca_file": schema.StringAttribute{
+											Description:         "Path to the CA cert in the Prometheus container to use for the targets.",
+											MarkdownDescription: "Path to the CA cert in the Prometheus container to use for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"cert": schema.SingleNestedAttribute{
+											Description:         "Client certificate to present when doing client-authentication.",
+											MarkdownDescription: "Client certificate to present when doing client-authentication.",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap containing data to use for the targets.",
+													MarkdownDescription: "ConfigMap containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing data to use for the targets.",
+													MarkdownDescription: "Secret containing data to use for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"cert_file": schema.StringAttribute{
+											Description:         "Path to the client cert file in the Prometheus container for the targets.",
+											MarkdownDescription: "Path to the client cert file in the Prometheus container for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"insecure_skip_verify": schema.BoolAttribute{
+											Description:         "Disable target certificate validation.",
+											MarkdownDescription: "Disable target certificate validation.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key_file": schema.StringAttribute{
+											Description:         "Path to the client key file in the Prometheus container for the targets.",
+											MarkdownDescription: "Path to the client key file in the Prometheus container for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key_secret": schema.SingleNestedAttribute{
+											Description:         "Secret containing the client key file for the targets.",
+											MarkdownDescription: "Secret containing the client key file for the targets.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from.  Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"server_name": schema.StringAttribute{
+											Description:         "Used to verify the hostname for the targets.",
+											MarkdownDescription: "Used to verify the hostname for the targets.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"scrape_config_namespace_selector": schema.SingleNestedAttribute{
 						Description:         "Namespaces to match for ScrapeConfig discovery. An empty label selector matches all namespaces. A null label selector matches the current current namespace only.",
 						MarkdownDescription: "Namespaces to match for ScrapeConfig discovery. An empty label selector matches all namespaces. A null label selector matches the current current namespace only.",
@@ -7763,6 +8440,15 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
 						},
+					},
+
+					"scrape_protocols": schema.ListAttribute{
+						Description:         "The protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
+						MarkdownDescription: "The protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"scrape_timeout": schema.StringAttribute{
@@ -8106,8 +8792,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 						MarkdownDescription: "Storage defines the storage used by Prometheus.",
 						Attributes: map[string]schema.Attribute{
 							"disable_mount_sub_path": schema.BoolAttribute{
-								Description:         "*Deprecated: subPath usage will be removed in a future release.*",
-								MarkdownDescription: "*Deprecated: subPath usage will be removed in a future release.*",
+								Description:         "Deprecated: subPath usage will be removed in a future release.",
+								MarkdownDescription: "Deprecated: subPath usage will be removed in a future release.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -8246,25 +8932,6 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 														MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 														Attributes: map[string]schema.Attribute{
-															"claims": schema.ListNestedAttribute{
-																Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																NestedObject: schema.NestedAttributeObject{
-																	Attributes: map[string]schema.Attribute{
-																		"name": schema.StringAttribute{
-																			Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																			MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"limits": schema.MapAttribute{
 																Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -8345,6 +9012,14 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 													"storage_class_name": schema.StringAttribute{
 														Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 														MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"volume_attributes_class_name": schema.StringAttribute{
+														Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+														MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -8527,25 +9202,6 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 												MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 												Attributes: map[string]schema.Attribute{
-													"claims": schema.ListNestedAttribute{
-														Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-														MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-														NestedObject: schema.NestedAttributeObject{
-															Attributes: map[string]schema.Attribute{
-																"name": schema.StringAttribute{
-																	Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																	MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																	Required:            true,
-																	Optional:            false,
-																	Computed:            false,
-																},
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
 													"limits": schema.MapAttribute{
 														Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -8631,6 +9287,14 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												Computed:            false,
 											},
 
+											"volume_attributes_class_name": schema.StringAttribute{
+												Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+												MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"volume_mode": schema.StringAttribute{
 												Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 												MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
@@ -8653,8 +9317,8 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 									},
 
 									"status": schema.SingleNestedAttribute{
-										Description:         "*Deprecated: this field is never set.*",
-										MarkdownDescription: "*Deprecated: this field is never set.*",
+										Description:         "Deprecated: this field is never set.",
+										MarkdownDescription: "Deprecated: this field is never set.",
 										Attributes: map[string]schema.Attribute{
 											"access_modes": schema.ListAttribute{
 												Description:         "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
@@ -8757,6 +9421,39 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 												Computed: false,
 											},
 
+											"current_volume_attributes_class_name": schema.StringAttribute{
+												Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
+												MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"modify_volume_status": schema.SingleNestedAttribute{
+												Description:         "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
+												MarkdownDescription: "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature.",
+												Attributes: map[string]schema.Attribute{
+													"status": schema.StringAttribute{
+														Description:         "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
+														MarkdownDescription: "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"target_volume_attributes_class_name": schema.StringAttribute{
+														Description:         "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
+														MarkdownDescription: "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"phase": schema.StringAttribute{
 												Description:         "phase represents the current phase of PersistentVolumeClaim.",
 												MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
@@ -8844,6 +9541,17 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 						MarkdownDescription: "Defines the pod's topology spread constraints if specified.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"additional_label_selectors": schema.StringAttribute{
+									Description:         "Defines what Prometheus Operator managed labels should be added to labelSelector on the topologySpreadConstraint.",
+									MarkdownDescription: "Defines what Prometheus Operator managed labels should be added to labelSelector on the topologySpreadConstraint.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("OnResource", "OnShard"),
+									},
+								},
+
 								"label_selector": schema.SingleNestedAttribute{
 									Description:         "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
 									MarkdownDescription: "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
@@ -9953,25 +10661,6 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 															Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 															MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 															Attributes: map[string]schema.Attribute{
-																"claims": schema.ListNestedAttribute{
-																	Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																	MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																	NestedObject: schema.NestedAttributeObject{
-																		Attributes: map[string]schema.Attribute{
-																			"name": schema.StringAttribute{
-																				Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																				MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																				Required:            true,
-																				Optional:            false,
-																				Computed:            false,
-																			},
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
 																"limits": schema.MapAttribute{
 																	Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -10052,6 +10741,14 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 														"storage_class_name": schema.StringAttribute{
 															Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 															MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"volume_attributes_class_name": schema.StringAttribute{
+															Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+															MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -10603,6 +11300,101 @@ func (r *MonitoringCoreosComPrometheusAgentV1Alpha1Manifest) Schema(_ context.Co
 											MarkdownDescription: "sources is the list of volume projections",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
+													"cluster_trust_bundle": schema.SingleNestedAttribute{
+														Description:         "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file.  Alpha, gated by the ClusterTrustBundleProjection feature gate.  ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector.  Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+														MarkdownDescription: "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file.  Alpha, gated by the ClusterTrustBundleProjection feature gate.  ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector.  Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+														Attributes: map[string]schema.Attribute{
+															"label_selector": schema.SingleNestedAttribute{
+																Description:         "Select all ClusterTrustBundles that match this label selector.  Only has effect if signerName is set.  Mutually-exclusive with name.  If unset, interpreted as 'match nothing'.  If set but empty, interpreted as 'match everything'.",
+																MarkdownDescription: "Select all ClusterTrustBundles that match this label selector.  Only has effect if signerName is set.  Mutually-exclusive with name.  If unset, interpreted as 'match nothing'.  If set but empty, interpreted as 'match everything'.",
+																Attributes: map[string]schema.Attribute{
+																	"match_expressions": schema.ListNestedAttribute{
+																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "key is the label key that the selector applies to.",
+																					MarkdownDescription: "key is the label key that the selector applies to.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"operator": schema.StringAttribute{
+																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"values": schema.ListAttribute{
+																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": schema.MapAttribute{
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.",
+																MarkdownDescription: "Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																MarkdownDescription: "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"path": schema.StringAttribute{
+																Description:         "Relative path from the volume root to write the bundle.",
+																MarkdownDescription: "Relative path from the volume root to write the bundle.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"signer_name": schema.StringAttribute{
+																Description:         "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																MarkdownDescription: "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"config_map": schema.SingleNestedAttribute{
 														Description:         "configMap information about the configMap data to project",
 														MarkdownDescription: "configMap information about the configMap data to project",

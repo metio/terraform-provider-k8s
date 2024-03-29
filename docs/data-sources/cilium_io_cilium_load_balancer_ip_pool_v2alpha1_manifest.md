@@ -16,6 +16,7 @@ CiliumLoadBalancerIPPool is a Kubernetes third-party resource which is used to d
 data "k8s_cilium_io_cilium_load_balancer_ip_pool_v2alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -52,21 +53,32 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
+Optional:
 
-- `cidrs` (Attributes List) CiliumLoadBalancerIPPoolCIDRBlock is a list of CIDRs comprising this IP Pool (see [below for nested schema](#nestedatt--spec--cidrs))
+- `allow_first_last_i_ps` (String) AllowFirstLastIPs, if set to 'yes' means that the first and last IPs of each CIDR will be allocatable. If 'no' or undefined, these IPs will be reserved. This field is ignored for /{31,32} and /{127,128} CIDRs since reserving the first and last IPs would make the CIDRs unusable.
+- `blocks` (Attributes List) Blocks is a list of CIDRs comprising this IP Pool (see [below for nested schema](#nestedatt--spec--blocks))
+- `cidrs` (Attributes List) Cidrs is a list of CIDRs comprising this IP Pool Deprecated: please use the 'blocks' field instead. This field will be removed in a future release. https://github.com/cilium/cilium/issues/28590 (see [below for nested schema](#nestedatt--spec--cidrs))
+- `disabled` (Boolean) Disabled, if set to true means that no new IPs will be allocated from this pool. Existing allocations will not be removed from services.
+- `service_selector` (Attributes) ServiceSelector selects a set of services which are eligible to receive IPs from this (see [below for nested schema](#nestedatt--spec--service_selector))
+
+<a id="nestedatt--spec--blocks"></a>
+### Nested Schema for `spec.blocks`
 
 Optional:
 
-- `disabled` (Boolean) Disabled, if set to true means that no new IPs will be allocated from this pool. Existing allocations will not be removed from services.
-- `service_selector` (Attributes) ServiceSelector selects a set of services which are eligible to receive IPs from this (see [below for nested schema](#nestedatt--spec--service_selector))
+- `cidr` (String)
+- `start` (String)
+- `stop` (String)
+
 
 <a id="nestedatt--spec--cidrs"></a>
 ### Nested Schema for `spec.cidrs`
 
-Required:
+Optional:
 
 - `cidr` (String)
+- `start` (String)
+- `stop` (String)
 
 
 <a id="nestedatt--spec--service_selector"></a>

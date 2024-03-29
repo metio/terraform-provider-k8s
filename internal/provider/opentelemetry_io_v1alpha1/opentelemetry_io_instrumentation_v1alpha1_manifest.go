@@ -396,8 +396,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Metadata(_ context.Cont
 
 func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Instrumentation is the spec for OpenTelemetry instrumentation.",
-		MarkdownDescription: "Instrumentation is the spec for OpenTelemetry instrumentation.",
+		Description:         "",
+		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -472,61 +472,61 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "InstrumentationSpec defines the desired state of OpenTelemetry SDK and instrumentation.",
-				MarkdownDescription: "InstrumentationSpec defines the desired state of OpenTelemetry SDK and instrumentation.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"apache_httpd": schema.SingleNestedAttribute{
-						Description:         "ApacheHttpd defines configuration for Apache HTTPD auto-instrumentation.",
-						MarkdownDescription: "ApacheHttpd defines configuration for Apache HTTPD auto-instrumentation.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"attrs": schema.ListNestedAttribute{
-								Description:         "Attrs defines Apache HTTPD agent specific attributes. The precedence is: 'agent default attributes' > 'instrument spec attributes' . Attributes are documented at https://github.",
-								MarkdownDescription: "Attrs defines Apache HTTPD agent specific attributes. The precedence is: 'agent default attributes' > 'instrument spec attributes' . Attributes are documented at https://github.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value_from": schema.SingleNestedAttribute{
-											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"config_map_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a ConfigMap.",
-													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key to select.",
-															MarkdownDescription: "The key to select.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the ConfigMap or its key must be defined",
-															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -538,20 +538,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
-															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"field_path": schema.StringAttribute{
-															Description:         "Path of the field to select in the specified API version.",
-															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -563,28 +563,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
-															Description:         "Container name: required for volumes, optional for env vars",
-															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"divisor": schema.StringAttribute{
-															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"resource": schema.StringAttribute{
-															Description:         "Required: resource to select",
-															MarkdownDescription: "Required: resource to select",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -596,28 +596,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"secret_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a secret in the pod's namespace",
-													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the Secret or its key must be defined",
-															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -640,61 +640,61 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"config_path": schema.StringAttribute{
-								Description:         "Location of Apache HTTPD server configuration. Needed only if different from default '/usr/local/apache2/conf'",
-								MarkdownDescription: "Location of Apache HTTPD server configuration. Needed only if different from default '/usr/local/apache2/conf'",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"env": schema.ListNestedAttribute{
-								Description:         "Env defines Apache HTTPD specific env vars.",
-								MarkdownDescription: "Env defines Apache HTTPD specific env vars.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value_from": schema.SingleNestedAttribute{
-											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"config_map_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a ConfigMap.",
-													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key to select.",
-															MarkdownDescription: "The key to select.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the ConfigMap or its key must be defined",
-															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -706,20 +706,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
-															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"field_path": schema.StringAttribute{
-															Description:         "Path of the field to select in the specified API version.",
-															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -731,28 +731,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
-															Description:         "Container name: required for volumes, optional for env vars",
-															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"divisor": schema.StringAttribute{
-															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"resource": schema.StringAttribute{
-															Description:         "Required: resource to select",
-															MarkdownDescription: "Required: resource to select",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -764,28 +764,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"secret_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a secret in the pod's namespace",
-													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the Secret or its key must be defined",
-															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -808,25 +808,25 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "Image is a container image with Apache SDK and auto-instrumentation.",
-								MarkdownDescription: "Image is a container image with Apache SDK and auto-instrumentation.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_requirements": schema.SingleNestedAttribute{
-								Description:         "Resources describes the compute resource requirements.",
-								MarkdownDescription: "Resources describes the compute resource requirements.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -839,8 +839,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -848,8 +848,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -862,16 +862,16 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"version": schema.StringAttribute{
-								Description:         "Apache HTTPD server version. One of 2.4 or 2.2. Default is 2.4",
-								MarkdownDescription: "Apache HTTPD server version. One of 2.4 or 2.2. Default is 2.4",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"volume_limit_size": schema.StringAttribute{
-								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
-								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -883,57 +883,57 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"dotnet": schema.SingleNestedAttribute{
-						Description:         "DotNet defines configuration for DotNet auto-instrumentation.",
-						MarkdownDescription: "DotNet defines configuration for DotNet auto-instrumentation.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"env": schema.ListNestedAttribute{
-								Description:         "Env defines DotNet specific env vars.",
-								MarkdownDescription: "Env defines DotNet specific env vars.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value_from": schema.SingleNestedAttribute{
-											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"config_map_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a ConfigMap.",
-													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key to select.",
-															MarkdownDescription: "The key to select.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the ConfigMap or its key must be defined",
-															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -945,20 +945,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
-															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"field_path": schema.StringAttribute{
-															Description:         "Path of the field to select in the specified API version.",
-															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -970,28 +970,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
-															Description:         "Container name: required for volumes, optional for env vars",
-															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"divisor": schema.StringAttribute{
-															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"resource": schema.StringAttribute{
-															Description:         "Required: resource to select",
-															MarkdownDescription: "Required: resource to select",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1003,28 +1003,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"secret_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a secret in the pod's namespace",
-													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the Secret or its key must be defined",
-															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1047,25 +1047,25 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "Image is a container image with DotNet SDK and auto-instrumentation.",
-								MarkdownDescription: "Image is a container image with DotNet SDK and auto-instrumentation.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_requirements": schema.SingleNestedAttribute{
-								Description:         "Resources describes the compute resource requirements.",
-								MarkdownDescription: "Resources describes the compute resource requirements.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1078,8 +1078,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1087,8 +1087,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1101,8 +1101,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"volume_limit_size": schema.StringAttribute{
-								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
-								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1114,53 +1114,53 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"env": schema.ListNestedAttribute{
-						Description:         "Env defines common env vars.",
-						MarkdownDescription: "Env defines common env vars.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-									MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"value": schema.StringAttribute{
-									Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-									MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"value_from": schema.SingleNestedAttribute{
-									Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-									MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"config_map_key_ref": schema.SingleNestedAttribute{
-											Description:         "Selects a key of a ConfigMap.",
-											MarkdownDescription: "Selects a key of a ConfigMap.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key to select.",
-													MarkdownDescription: "The key to select.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"optional": schema.BoolAttribute{
-													Description:         "Specify whether the ConfigMap or its key must be defined",
-													MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1172,20 +1172,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"field_ref": schema.SingleNestedAttribute{
-											Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-											MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"api_version": schema.StringAttribute{
-													Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-													MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"field_path": schema.StringAttribute{
-													Description:         "Path of the field to select in the specified API version.",
-													MarkdownDescription: "Path of the field to select in the specified API version.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1197,28 +1197,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"resource_field_ref": schema.SingleNestedAttribute{
-											Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-											MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"container_name": schema.StringAttribute{
-													Description:         "Container name: required for volumes, optional for env vars",
-													MarkdownDescription: "Container name: required for volumes, optional for env vars",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"divisor": schema.StringAttribute{
-													Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-													MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"resource": schema.StringAttribute{
-													Description:         "Required: resource to select",
-													MarkdownDescription: "Required: resource to select",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1230,28 +1230,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"secret_key_ref": schema.SingleNestedAttribute{
-											Description:         "Selects a key of a secret in the pod's namespace",
-											MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"optional": schema.BoolAttribute{
-													Description:         "Specify whether the Secret or its key must be defined",
-													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1274,12 +1274,12 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"exporter": schema.SingleNestedAttribute{
-						Description:         "Exporter defines exporter configuration.",
-						MarkdownDescription: "Exporter defines exporter configuration.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"endpoint": schema.StringAttribute{
-								Description:         "Endpoint is address of the collector with OTLP endpoint.",
-								MarkdownDescription: "Endpoint is address of the collector with OTLP endpoint.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1291,57 +1291,57 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"go": schema.SingleNestedAttribute{
-						Description:         "Go defines configuration for Go auto-instrumentation.",
-						MarkdownDescription: "Go defines configuration for Go auto-instrumentation.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"env": schema.ListNestedAttribute{
-								Description:         "Env defines Go specific env vars.",
-								MarkdownDescription: "Env defines Go specific env vars.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value_from": schema.SingleNestedAttribute{
-											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"config_map_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a ConfigMap.",
-													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key to select.",
-															MarkdownDescription: "The key to select.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the ConfigMap or its key must be defined",
-															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1353,20 +1353,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
-															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"field_path": schema.StringAttribute{
-															Description:         "Path of the field to select in the specified API version.",
-															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1378,28 +1378,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
-															Description:         "Container name: required for volumes, optional for env vars",
-															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"divisor": schema.StringAttribute{
-															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"resource": schema.StringAttribute{
-															Description:         "Required: resource to select",
-															MarkdownDescription: "Required: resource to select",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1411,28 +1411,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"secret_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a secret in the pod's namespace",
-													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the Secret or its key must be defined",
-															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1455,25 +1455,25 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "Image is a container image with Go SDK and auto-instrumentation.",
-								MarkdownDescription: "Image is a container image with Go SDK and auto-instrumentation.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_requirements": schema.SingleNestedAttribute{
-								Description:         "Resources describes the compute resource requirements.",
-								MarkdownDescription: "Resources describes the compute resource requirements.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1486,8 +1486,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1495,8 +1495,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1509,8 +1509,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"volume_limit_size": schema.StringAttribute{
-								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
-								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1522,57 +1522,57 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"java": schema.SingleNestedAttribute{
-						Description:         "Java defines configuration for java auto-instrumentation.",
-						MarkdownDescription: "Java defines configuration for java auto-instrumentation.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"env": schema.ListNestedAttribute{
-								Description:         "Env defines java specific env vars.",
-								MarkdownDescription: "Env defines java specific env vars.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value_from": schema.SingleNestedAttribute{
-											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"config_map_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a ConfigMap.",
-													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key to select.",
-															MarkdownDescription: "The key to select.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the ConfigMap or its key must be defined",
-															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1584,20 +1584,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
-															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"field_path": schema.StringAttribute{
-															Description:         "Path of the field to select in the specified API version.",
-															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1609,28 +1609,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
-															Description:         "Container name: required for volumes, optional for env vars",
-															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"divisor": schema.StringAttribute{
-															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"resource": schema.StringAttribute{
-															Description:         "Required: resource to select",
-															MarkdownDescription: "Required: resource to select",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1642,28 +1642,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"secret_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a secret in the pod's namespace",
-													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the Secret or its key must be defined",
-															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1686,25 +1686,25 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "Image is a container image with javaagent auto-instrumentation JAR.",
-								MarkdownDescription: "Image is a container image with javaagent auto-instrumentation JAR.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resources": schema.SingleNestedAttribute{
-								Description:         "Resources describes the compute resource requirements.",
-								MarkdownDescription: "Resources describes the compute resource requirements.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1717,8 +1717,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1726,8 +1726,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1740,8 +1740,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"volume_limit_size": schema.StringAttribute{
-								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
-								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1753,57 +1753,57 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"nginx": schema.SingleNestedAttribute{
-						Description:         "Nginx defines configuration for Nginx auto-instrumentation.",
-						MarkdownDescription: "Nginx defines configuration for Nginx auto-instrumentation.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"attrs": schema.ListNestedAttribute{
-								Description:         "Attrs defines Nginx agent specific attributes. The precedence order is: 'agent default attributes' > 'instrument spec attributes' . Attributes are documented at https://github.",
-								MarkdownDescription: "Attrs defines Nginx agent specific attributes. The precedence order is: 'agent default attributes' > 'instrument spec attributes' . Attributes are documented at https://github.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value_from": schema.SingleNestedAttribute{
-											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"config_map_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a ConfigMap.",
-													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key to select.",
-															MarkdownDescription: "The key to select.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the ConfigMap or its key must be defined",
-															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1815,20 +1815,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
-															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"field_path": schema.StringAttribute{
-															Description:         "Path of the field to select in the specified API version.",
-															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1840,28 +1840,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
-															Description:         "Container name: required for volumes, optional for env vars",
-															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"divisor": schema.StringAttribute{
-															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"resource": schema.StringAttribute{
-															Description:         "Required: resource to select",
-															MarkdownDescription: "Required: resource to select",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1873,28 +1873,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"secret_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a secret in the pod's namespace",
-													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the Secret or its key must be defined",
-															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1917,61 +1917,61 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"config_file": schema.StringAttribute{
-								Description:         "Location of Nginx configuration file. Needed only if different from default '/etx/nginx/nginx.conf'",
-								MarkdownDescription: "Location of Nginx configuration file. Needed only if different from default '/etx/nginx/nginx.conf'",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"env": schema.ListNestedAttribute{
-								Description:         "Env defines Nginx specific env vars.",
-								MarkdownDescription: "Env defines Nginx specific env vars.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value_from": schema.SingleNestedAttribute{
-											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"config_map_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a ConfigMap.",
-													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key to select.",
-															MarkdownDescription: "The key to select.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the ConfigMap or its key must be defined",
-															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1983,20 +1983,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
-															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"field_path": schema.StringAttribute{
-															Description:         "Path of the field to select in the specified API version.",
-															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2008,28 +2008,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
-															Description:         "Container name: required for volumes, optional for env vars",
-															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"divisor": schema.StringAttribute{
-															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"resource": schema.StringAttribute{
-															Description:         "Required: resource to select",
-															MarkdownDescription: "Required: resource to select",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2041,28 +2041,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"secret_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a secret in the pod's namespace",
-													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the Secret or its key must be defined",
-															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2085,25 +2085,25 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "Image is a container image with Nginx SDK and auto-instrumentation.",
-								MarkdownDescription: "Image is a container image with Nginx SDK and auto-instrumentation.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_requirements": schema.SingleNestedAttribute{
-								Description:         "Resources describes the compute resource requirements.",
-								MarkdownDescription: "Resources describes the compute resource requirements.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2116,8 +2116,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2125,8 +2125,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2139,8 +2139,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"volume_limit_size": schema.StringAttribute{
-								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
-								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2152,57 +2152,57 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"nodejs": schema.SingleNestedAttribute{
-						Description:         "NodeJS defines configuration for nodejs auto-instrumentation.",
-						MarkdownDescription: "NodeJS defines configuration for nodejs auto-instrumentation.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"env": schema.ListNestedAttribute{
-								Description:         "Env defines nodejs specific env vars.",
-								MarkdownDescription: "Env defines nodejs specific env vars.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value_from": schema.SingleNestedAttribute{
-											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"config_map_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a ConfigMap.",
-													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key to select.",
-															MarkdownDescription: "The key to select.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the ConfigMap or its key must be defined",
-															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2214,20 +2214,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
-															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"field_path": schema.StringAttribute{
-															Description:         "Path of the field to select in the specified API version.",
-															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2239,28 +2239,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
-															Description:         "Container name: required for volumes, optional for env vars",
-															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"divisor": schema.StringAttribute{
-															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"resource": schema.StringAttribute{
-															Description:         "Required: resource to select",
-															MarkdownDescription: "Required: resource to select",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2272,28 +2272,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"secret_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a secret in the pod's namespace",
-													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the Secret or its key must be defined",
-															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2316,25 +2316,25 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "Image is a container image with NodeJS SDK and auto-instrumentation.",
-								MarkdownDescription: "Image is a container image with NodeJS SDK and auto-instrumentation.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_requirements": schema.SingleNestedAttribute{
-								Description:         "Resources describes the compute resource requirements.",
-								MarkdownDescription: "Resources describes the compute resource requirements.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2347,8 +2347,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2356,8 +2356,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2370,8 +2370,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"volume_limit_size": schema.StringAttribute{
-								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
-								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2383,8 +2383,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"propagators": schema.ListAttribute{
-						Description:         "Propagators defines inter-process context propagation configuration. Values in this list will be set in the OTEL_PROPAGATORS env var. Enum=tracecontext;baggage;b3;b3multi;jaeger;xray;ottrace;none",
-						MarkdownDescription: "Propagators defines inter-process context propagation configuration. Values in this list will be set in the OTEL_PROPAGATORS env var. Enum=tracecontext;baggage;b3;b3multi;jaeger;xray;ottrace;none",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -2392,57 +2392,57 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"python": schema.SingleNestedAttribute{
-						Description:         "Python defines configuration for python auto-instrumentation.",
-						MarkdownDescription: "Python defines configuration for python auto-instrumentation.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"env": schema.ListNestedAttribute{
-								Description:         "Env defines python specific env vars.",
-								MarkdownDescription: "Env defines python specific env vars.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value_from": schema.SingleNestedAttribute{
-											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"config_map_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a ConfigMap.",
-													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key to select.",
-															MarkdownDescription: "The key to select.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the ConfigMap or its key must be defined",
-															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2454,20 +2454,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
-															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"field_path": schema.StringAttribute{
-															Description:         "Path of the field to select in the specified API version.",
-															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2479,28 +2479,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
-															Description:         "Container name: required for volumes, optional for env vars",
-															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"divisor": schema.StringAttribute{
-															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"resource": schema.StringAttribute{
-															Description:         "Required: resource to select",
-															MarkdownDescription: "Required: resource to select",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2512,28 +2512,28 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"secret_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a secret in the pod's namespace",
-													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the Secret or its key must be defined",
-															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2556,25 +2556,25 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "Image is a container image with Python SDK and auto-instrumentation.",
-								MarkdownDescription: "Image is a container image with Python SDK and auto-instrumentation.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_requirements": schema.SingleNestedAttribute{
-								Description:         "Resources describes the compute resource requirements.",
-								MarkdownDescription: "Resources describes the compute resource requirements.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2587,8 +2587,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2596,8 +2596,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2610,8 +2610,8 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"volume_limit_size": schema.StringAttribute{
-								Description:         "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
-								MarkdownDescription: "VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2623,20 +2623,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"resource": schema.SingleNestedAttribute{
-						Description:         "Resource defines the configuration for the resource attributes, as defined by the OpenTelemetry specification.",
-						MarkdownDescription: "Resource defines the configuration for the resource attributes, as defined by the OpenTelemetry specification.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"add_k8s_uid_attributes": schema.BoolAttribute{
-								Description:         "AddK8sUIDAttributes defines whether K8s UID attributes should be collected (e.g. k8s.deployment.uid).",
-								MarkdownDescription: "AddK8sUIDAttributes defines whether K8s UID attributes should be collected (e.g. k8s.deployment.uid).",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_attributes": schema.MapAttribute{
-								Description:         "Attributes defines attributes that are added to the resource. For example environment: dev",
-								MarkdownDescription: "Attributes defines attributes that are added to the resource. For example environment: dev",
+								Description:         "",
+								MarkdownDescription: "",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -2649,20 +2649,20 @@ func (r *OpentelemetryIoInstrumentationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"sampler": schema.SingleNestedAttribute{
-						Description:         "Sampler defines sampling configuration.",
-						MarkdownDescription: "Sampler defines sampling configuration.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"argument": schema.StringAttribute{
-								Description:         "Argument defines sampler argument. The value depends on the sampler type. For instance for parentbased_traceidratio sampler type it is a number in range [0..1] e.g. 0.25.",
-								MarkdownDescription: "Argument defines sampler argument. The value depends on the sampler type. For instance for parentbased_traceidratio sampler type it is a number in range [0..1] e.g. 0.25.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "Type defines sampler type. The value will be set in the OTEL_TRACES_SAMPLER env var. The value can be for instance parentbased_always_on, parentbased_always_off, parentbased_traceidratio...",
-								MarkdownDescription: "Type defines sampler type. The value will be set in the OTEL_TRACES_SAMPLER env var. The value can be for instance parentbased_always_on, parentbased_always_off, parentbased_traceidratio...",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

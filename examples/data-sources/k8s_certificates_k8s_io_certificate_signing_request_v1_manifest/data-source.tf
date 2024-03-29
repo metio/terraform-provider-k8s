@@ -1,3 +1,13 @@
+data "k8s_certificates_k8s_io_certificate_signing_request_v1_manifest" "example" {
+  metadata = {
+    name = "some-name"
+  }
+  spec = {
+    signer_name = "kubernetes.io/kube-apiserver-client"
+    request     = base64encode(local.cert_request)
+  }
+}
+
 locals {
   cert_request = <<EOT
 -----BEGIN CERTIFICATE REQUEST-----
@@ -8,16 +18,4 @@ BAMCA0AAMD0CHQDErNLjX86BVfOsYh/A4zmjmGknZpc2u6/coTHqAhxcR41hEU1I
 DpNPvh30e0Js8/DYn2YUfu/pQU19
 -----END CERTIFICATE REQUEST-----
 EOT
-}
-
-
-data "k8s_certificates_k8s_io_certificate_signing_request_v1_manifest" "example" {
-  metadata = {
-    name = "some-name"
-  }
-  spec = {
-    usages      = ["client auth", "server auth"]
-    signer_name = "kubernetes.io/kube-apiserver-client"
-    request     = base64encode(local.cert_request)
-  }
 }

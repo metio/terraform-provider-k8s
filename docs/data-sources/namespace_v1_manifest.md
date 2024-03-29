@@ -16,12 +16,7 @@ Namespace provides a scope for Names. Use of multiple namespaces is optional.
 data "k8s_namespace_v1_manifest" "example" {
   metadata = {
     name = "some-name"
-    annotations = {
-      name = "example-annotation"
-    }
-    labels = {
-      mylabel = "label-value"
-    }
+
   }
 }
 ```

@@ -96,6 +96,9 @@ type ChaosMeshOrgPodNetworkChaosV1Alpha1ManifestData struct {
 				Correlation *string `tfsdk:"correlation" json:"correlation,omitempty"`
 				Loss        *string `tfsdk:"loss" json:"loss,omitempty"`
 			} `tfsdk:"loss" json:"loss,omitempty"`
+			Rate *struct {
+				Rate *string `tfsdk:"rate" json:"rate,omitempty"`
+			} `tfsdk:"rate" json:"rate,omitempty"`
 			Source *string `tfsdk:"source" json:"source,omitempty"`
 			Type   *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"tcs" json:"tcs,omitempty"`
@@ -536,6 +539,23 @@ func (r *ChaosMeshOrgPodNetworkChaosV1Alpha1Manifest) Schema(_ context.Context, 
 										"loss": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"rate": schema.SingleNestedAttribute{
+									Description:         "Rate represents the detail about rate control action",
+									MarkdownDescription: "Rate represents the detail about rate control action",
+									Attributes: map[string]schema.Attribute{
+										"rate": schema.StringAttribute{
+											Description:         "Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.",
+											MarkdownDescription: "Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,

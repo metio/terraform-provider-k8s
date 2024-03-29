@@ -30,7 +30,7 @@ data "k8s_ec2_services_k8s_aws_security_group_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) SecurityGroupSpec defines the desired state of SecurityGroup.  Describes a security group. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) SecurityGroupSpec defines the desired state of SecurityGroup.Describes a security group. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,16 +56,16 @@ Optional:
 
 Required:
 
-- `description` (String) A description for the security group. This is informational only.  Constraints: Up to 255 characters in length  Constraints for EC2-Classic: ASCII characters  Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*
-- `name` (String) The name of the security group.  Constraints: Up to 255 characters in length. Cannot start with sg-.  Constraints for EC2-Classic: ASCII characters  Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*
+- `description` (String) A description for the security group. This is informational only.Constraints: Up to 255 characters in lengthConstraints for EC2-Classic: ASCII charactersConstraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*
+- `name` (String) The name of the security group.Constraints: Up to 255 characters in length. Cannot start with sg-.Constraints for EC2-Classic: ASCII charactersConstraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*
 
 Optional:
 
 - `egress_rules` (Attributes List) (see [below for nested schema](#nestedatt--spec--egress_rules))
 - `ingress_rules` (Attributes List) (see [below for nested schema](#nestedatt--spec--ingress_rules))
-- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string. (see [below for nested schema](#nestedatt--spec--tags))
 - `vpc_id` (String) [EC2-VPC] The ID of the VPC. Required for EC2-VPC.
-- `vpc_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--vpc_ref))
+- `vpc_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--vpc_ref))
 
 <a id="nestedatt--spec--egress_rules"></a>
 ### Nested Schema for `spec.egress_rules`
@@ -191,7 +191,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_ref--from))
 
 <a id="nestedatt--spec--vpc_ref--from"></a>
 ### Nested Schema for `spec.vpc_ref.from`

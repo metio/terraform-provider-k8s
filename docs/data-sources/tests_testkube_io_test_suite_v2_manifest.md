@@ -59,7 +59,7 @@ Optional:
 - `after` (Attributes List) After steps is list of tests which will be sequentially orchestrated (see [below for nested schema](#nestedatt--spec--after))
 - `before` (Attributes List) Before steps is list of tests which will be sequentially orchestrated (see [below for nested schema](#nestedatt--spec--before))
 - `description` (String)
-- `execution_request` (Attributes) test suite execution request body (see [below for nested schema](#nestedatt--spec--execution_request))
+- `execution_request` (Attributes) TestSuiteExecutionRequest defines the execution request body (see [below for nested schema](#nestedatt--spec--execution_request))
 - `repeats` (Number)
 - `schedule` (String) schedule in cron job format for scheduled test execution
 - `steps` (Attributes List) Steps is list of tests which will be sequentially orchestrated (see [below for nested schema](#nestedatt--spec--steps))

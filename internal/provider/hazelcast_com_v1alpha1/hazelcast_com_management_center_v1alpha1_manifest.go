@@ -45,11 +45,13 @@ type HazelcastComManagementCenterV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		Annotations          *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 		ExternalConnectivity *struct {
 			Ingress *struct {
 				Annotations      *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Hostname         *string            `tfsdk:"hostname" json:"hostname,omitempty"`
 				IngressClassName *string            `tfsdk:"ingress_class_name" json:"ingressClassName,omitempty"`
+				Path             *string            `tfsdk:"path" json:"path,omitempty"`
 			} `tfsdk:"ingress" json:"ingress,omitempty"`
 			Route *struct {
 				Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
@@ -71,8 +73,9 @@ type HazelcastComManagementCenterV1Alpha1ManifestData struct {
 		Jvm *struct {
 			Args *[]string `tfsdk:"args" json:"args,omitempty"`
 		} `tfsdk:"jvm" json:"jvm,omitempty"`
-		LicenseKeySecret     *string `tfsdk:"license_key_secret" json:"licenseKeySecret,omitempty"`
-		LicenseKeySecretName *string `tfsdk:"license_key_secret_name" json:"licenseKeySecretName,omitempty"`
+		Labels               *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		LicenseKeySecret     *string            `tfsdk:"license_key_secret" json:"licenseKeySecret,omitempty"`
+		LicenseKeySecretName *string            `tfsdk:"license_key_secret_name" json:"licenseKeySecretName,omitempty"`
 		Persistence          *struct {
 			Enabled                 *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 			ExistingVolumeClaimName *string `tfsdk:"existing_volume_claim_name" json:"existingVolumeClaimName,omitempty"`
@@ -81,6 +84,9 @@ type HazelcastComManagementCenterV1Alpha1ManifestData struct {
 		} `tfsdk:"persistence" json:"persistence,omitempty"`
 		Repository *string `tfsdk:"repository" json:"repository,omitempty"`
 		Resources  *struct {
+			Claims *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
@@ -234,6 +240,21 @@ type HazelcastComManagementCenterV1Alpha1ManifestData struct {
 				WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 			} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 		} `tfsdk:"scheduling" json:"scheduling,omitempty"`
+		SecurityProvider *struct {
+			Ldap *struct {
+				AdminGroups           *[]string `tfsdk:"admin_groups" json:"adminGroups,omitempty"`
+				CredentialsSecretName *string   `tfsdk:"credentials_secret_name" json:"credentialsSecretName,omitempty"`
+				GroupDN               *string   `tfsdk:"group_dn" json:"groupDN,omitempty"`
+				GroupSearchFilter     *string   `tfsdk:"group_search_filter" json:"groupSearchFilter,omitempty"`
+				MetricsOnlyGroups     *[]string `tfsdk:"metrics_only_groups" json:"metricsOnlyGroups,omitempty"`
+				NestedGroupSearch     *bool     `tfsdk:"nested_group_search" json:"nestedGroupSearch,omitempty"`
+				ReadonlyUserGroups    *[]string `tfsdk:"readonly_user_groups" json:"readonlyUserGroups,omitempty"`
+				Url                   *string   `tfsdk:"url" json:"url,omitempty"`
+				UserDN                *string   `tfsdk:"user_dn" json:"userDN,omitempty"`
+				UserGroups            *[]string `tfsdk:"user_groups" json:"userGroups,omitempty"`
+				UserSearchFilter      *string   `tfsdk:"user_search_filter" json:"userSearchFilter,omitempty"`
+			} `tfsdk:"ldap" json:"ldap,omitempty"`
+		} `tfsdk:"security_provider" json:"securityProvider,omitempty"`
 		Version *string `tfsdk:"version" json:"version,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -323,6 +344,15 @@ func (r *HazelcastComManagementCenterV1Alpha1Manifest) Schema(_ context.Context,
 				Description:         "Initial values will be filled with its fields' default values.",
 				MarkdownDescription: "Initial values will be filled with its fields' default values.",
 				Attributes: map[string]schema.Attribute{
+					"annotations": schema.MapAttribute{
+						Description:         "ManagementCenter Kubernetes resource annotations",
+						MarkdownDescription: "ManagementCenter Kubernetes resource annotations",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"external_connectivity": schema.SingleNestedAttribute{
 						Description:         "Configuration to expose Management Center to outside.",
 						MarkdownDescription: "Configuration to expose Management Center to outside.",
@@ -351,6 +381,14 @@ func (r *HazelcastComManagementCenterV1Alpha1Manifest) Schema(_ context.Context,
 									"ingress_class_name": schema.StringAttribute{
 										Description:         "IngressClassName of the ingress object.",
 										MarkdownDescription: "IngressClassName of the ingress object.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"path": schema.StringAttribute{
+										Description:         "Path of the ingress rule.",
+										MarkdownDescription: "Path of the ingress rule.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -494,6 +532,15 @@ func (r *HazelcastComManagementCenterV1Alpha1Manifest) Schema(_ context.Context,
 						Computed: false,
 					},
 
+					"labels": schema.MapAttribute{
+						Description:         "ManagementCenter Kubernetes resource labels",
+						MarkdownDescription: "ManagementCenter Kubernetes resource labels",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"license_key_secret": schema.StringAttribute{
 						Description:         "licenseKeySecret is a deprecated alias for licenseKeySecretName.",
 						MarkdownDescription: "licenseKeySecret is a deprecated alias for licenseKeySecretName.",
@@ -563,6 +610,25 @@ func (r *HazelcastComManagementCenterV1Alpha1Manifest) Schema(_ context.Context,
 						Description:         "Compute Resources required by the MC container.",
 						MarkdownDescription: "Compute Resources required by the MC container.",
 						Attributes: map[string]schema.Attribute{
+							"claims": schema.ListNestedAttribute{
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"limits": schema.MapAttribute{
 								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -573,8 +639,8 @@ func (r *HazelcastComManagementCenterV1Alpha1Manifest) Schema(_ context.Context,
 							},
 
 							"requests": schema.MapAttribute{
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1516,8 +1582,8 @@ func (r *HazelcastComManagementCenterV1Alpha1Manifest) Schema(_ context.Context,
 										},
 
 										"match_label_keys": schema.ListAttribute{
-											Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.",
-											MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.",
+											Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+											MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1541,16 +1607,16 @@ func (r *HazelcastComManagementCenterV1Alpha1Manifest) Schema(_ context.Context,
 										},
 
 										"node_affinity_policy": schema.StringAttribute{
-											Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-											MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+											Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+											MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"node_taints_policy": schema.StringAttribute{
-											Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-											MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+											Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+											MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1571,6 +1637,116 @@ func (r *HazelcastComManagementCenterV1Alpha1Manifest) Schema(_ context.Context,
 											Optional:            false,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"security_provider": schema.SingleNestedAttribute{
+						Description:         "SecurityProviders to authenticate users in Management Center",
+						MarkdownDescription: "SecurityProviders to authenticate users in Management Center",
+						Attributes: map[string]schema.Attribute{
+							"ldap": schema.SingleNestedAttribute{
+								Description:         "LDAP security provider",
+								MarkdownDescription: "LDAP security provider",
+								Attributes: map[string]schema.Attribute{
+									"admin_groups": schema.ListAttribute{
+										Description:         "Members of these groups and its nested groups have admin privileges on the Management Center.",
+										MarkdownDescription: "Members of these groups and its nested groups have admin privileges on the Management Center.",
+										ElementType:         types.StringType,
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"credentials_secret_name": schema.StringAttribute{
+										Description:         "CredentialsSecretName is the name of the secret that contains username and password of a user that has admin privileges on the LDAP server. The username must be the DN of the user. It is used to connect to the server when authenticating users.",
+										MarkdownDescription: "CredentialsSecretName is the name of the secret that contains username and password of a user that has admin privileges on the LDAP server. The username must be the DN of the user. It is used to connect to the server when authenticating users.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"group_dn": schema.StringAttribute{
+										Description:         "DN to be used for searching groups.",
+										MarkdownDescription: "DN to be used for searching groups.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"group_search_filter": schema.StringAttribute{
+										Description:         "LDAP search filter expression to search for the groups. For example, uniquemember={0} searches for a group that matches with the uniquemember attribute.",
+										MarkdownDescription: "LDAP search filter expression to search for the groups. For example, uniquemember={0} searches for a group that matches with the uniquemember attribute.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"metrics_only_groups": schema.ListAttribute{
+										Description:         "Members of these groups and its nested groups have the privilege to see only the metrics on the Management Center.",
+										MarkdownDescription: "Members of these groups and its nested groups have the privilege to see only the metrics on the Management Center.",
+										ElementType:         types.StringType,
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"nested_group_search": schema.BoolAttribute{
+										Description:         "NestedGroupSearch enables searching for nested LDAP groups.",
+										MarkdownDescription: "NestedGroupSearch enables searching for nested LDAP groups.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"readonly_user_groups": schema.ListAttribute{
+										Description:         "Members of these groups and its nested groups have only read privilege on the Management Center.",
+										MarkdownDescription: "Members of these groups and its nested groups have only read privilege on the Management Center.",
+										ElementType:         types.StringType,
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"url": schema.StringAttribute{
+										Description:         "URL of your LDAP server, including schema (ldap://) and port.",
+										MarkdownDescription: "URL of your LDAP server, including schema (ldap://) and port.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"user_dn": schema.StringAttribute{
+										Description:         "DN to be used for searching users.",
+										MarkdownDescription: "DN to be used for searching users.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"user_groups": schema.ListAttribute{
+										Description:         "Members of these groups and its nested groups have read and write privileges on the Management Center.",
+										MarkdownDescription: "Members of these groups and its nested groups have read and write privileges on the Management Center.",
+										ElementType:         types.StringType,
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"user_search_filter": schema.StringAttribute{
+										Description:         "LDAP search filter expression to search for the users. For example, uid={0} searches for a username that matches with the uid attribute.",
+										MarkdownDescription: "LDAP search filter expression to search for the users. For example, uid={0} searches for a username that matches with the uid attribute.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
 									},
 								},
 								Required: false,

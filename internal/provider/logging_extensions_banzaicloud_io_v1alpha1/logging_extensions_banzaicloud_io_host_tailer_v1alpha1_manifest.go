@@ -157,12 +157,28 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"container_overrides" json:"containerOverrides,omitempty"`
-			Disabled        *bool   `tfsdk:"disabled" json:"disabled,omitempty"`
+			Disabled *bool `tfsdk:"disabled" json:"disabled,omitempty"`
+			Image    *struct {
+				ImagePullSecrets *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+				PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+				Repository *string `tfsdk:"repository" json:"repository,omitempty"`
+				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
+			} `tfsdk:"image" json:"image,omitempty"`
 			Name            *string `tfsdk:"name" json:"name,omitempty"`
 			Path            *string `tfsdk:"path" json:"path,omitempty"`
 			Read_from_head  *bool   `tfsdk:"read_from_head" json:"read_from_head,omitempty"`
 			Skip_long_lines *string `tfsdk:"skip_long_lines" json:"skip_long_lines,omitempty"`
 		} `tfsdk:"file_tailers" json:"fileTailers,omitempty"`
+		Image *struct {
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+			PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+			Repository *string `tfsdk:"repository" json:"repository,omitempty"`
+			Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
+		} `tfsdk:"image" json:"image,omitempty"`
 		SystemdTailers *[]struct {
 			ContainerOverrides *struct {
 				Command       *[]string `tfsdk:"command" json:"command,omitempty"`
@@ -272,7 +288,15 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"container_overrides" json:"containerOverrides,omitempty"`
-			Disabled      *bool   `tfsdk:"disabled" json:"disabled,omitempty"`
+			Disabled *bool `tfsdk:"disabled" json:"disabled,omitempty"`
+			Image    *struct {
+				ImagePullSecrets *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+				PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+				Repository *string `tfsdk:"repository" json:"repository,omitempty"`
+				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
+			} `tfsdk:"image" json:"image,omitempty"`
 			MaxEntries    *int64  `tfsdk:"max_entries" json:"maxEntries,omitempty"`
 			Name          *string `tfsdk:"name" json:"name,omitempty"`
 			Path          *string `tfsdk:"path" json:"path,omitempty"`
@@ -326,6 +350,8 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -348,6 +374,8 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -371,6 +399,8 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -393,6 +423,8 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -757,9 +789,6 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 							} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 							Resources *struct {
-								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
-								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 							} `tfsdk:"resources" json:"resources,omitempty"`
@@ -771,9 +800,10 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"selector" json:"selector,omitempty"`
-							StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-							VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-							VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+							StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+							VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+							VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+							VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 						} `tfsdk:"spec" json:"spec,omitempty"`
 					} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 				} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -854,6 +884,20 @@ type LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1ManifestData struct {
 				Projected *struct {
 					DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 					Sources     *[]struct {
+						ClusterTrustBundle *struct {
+							LabelSelector *struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							Name       *string `tfsdk:"name" json:"name,omitempty"`
+							Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							Path       *string `tfsdk:"path" json:"path,omitempty"`
+							SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+						} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 						ConfigMap *struct {
 							Items *[]struct {
 								Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1812,6 +1856,58 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 									Computed:            false,
 								},
 
+								"image": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"image_pull_secrets": schema.ListNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"pull_policy": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"repository": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"tag": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -1843,6 +1939,58 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 									Optional:            true,
 									Computed:            false,
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pull_policy": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"repository": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tag": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -2595,6 +2743,58 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 									Computed:            false,
 								},
 
+								"image": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"image_pull_secrets": schema.ListNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"pull_policy": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"repository": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"tag": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"max_entries": schema.Int64Attribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -2936,6 +3136,24 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 																	Computed: false,
 																},
 
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"namespace_selector": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -3083,6 +3301,24 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"match_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
@@ -3234,6 +3470,24 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 																	Computed: false,
 																},
 
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"namespace_selector": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -3381,6 +3635,24 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"match_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
@@ -5840,25 +6112,6 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
-																		"claims": schema.ListNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			NestedObject: schema.NestedAttributeObject{
-																				Attributes: map[string]schema.Attribute{
-																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
-																						Required:            true,
-																						Optional:            false,
-																						Computed:            false,
-																					},
-																				},
-																			},
-																			Required: false,
-																			Optional: true,
-																			Computed: false,
-																		},
-
 																		"limits": schema.MapAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -5937,6 +6190,14 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 																},
 
 																"storage_class_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"volume_attributes_class_name": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Required:            false,
@@ -6490,6 +6751,101 @@ func (r *LoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest) Schema(_ cont
 													MarkdownDescription: "",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"cluster_trust_bundle": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"label_selector": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"match_expressions": schema.ListNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				NestedObject: schema.NestedAttributeObject{
+																					Attributes: map[string]schema.Attribute{
+																						"key": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"operator": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"values": schema.ListAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"match_labels": schema.MapAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"signer_name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"config_map": schema.SingleNestedAttribute{
 																Description:         "",
 																MarkdownDescription: "",

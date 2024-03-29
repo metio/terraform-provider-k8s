@@ -52,10 +52,12 @@ type SagemakerServicesK8SAwsEndpointConfigV1Alpha1ManifestData struct {
 			OutputConfig *struct {
 				KmsKeyID           *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
 				NotificationConfig *struct {
-					ErrorTopic   *string `tfsdk:"error_topic" json:"errorTopic,omitempty"`
-					SuccessTopic *string `tfsdk:"success_topic" json:"successTopic,omitempty"`
+					ErrorTopic                 *string   `tfsdk:"error_topic" json:"errorTopic,omitempty"`
+					IncludeInferenceResponseIn *[]string `tfsdk:"include_inference_response_in" json:"includeInferenceResponseIn,omitempty"`
+					SuccessTopic               *string   `tfsdk:"success_topic" json:"successTopic,omitempty"`
 				} `tfsdk:"notification_config" json:"notificationConfig,omitempty"`
-				S3OutputPath *string `tfsdk:"s3_output_path" json:"s3OutputPath,omitempty"`
+				S3FailurePath *string `tfsdk:"s3_failure_path" json:"s3FailurePath,omitempty"`
+				S3OutputPath  *string `tfsdk:"s3_output_path" json:"s3OutputPath,omitempty"`
 			} `tfsdk:"output_config" json:"outputConfig,omitempty"`
 		} `tfsdk:"async_inference_config" json:"asyncInferenceConfig,omitempty"`
 		DataCaptureConfig *struct {
@@ -71,24 +73,35 @@ type SagemakerServicesK8SAwsEndpointConfigV1Alpha1ManifestData struct {
 			InitialSamplingPercentage *int64  `tfsdk:"initial_sampling_percentage" json:"initialSamplingPercentage,omitempty"`
 			KmsKeyID                  *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
 		} `tfsdk:"data_capture_config" json:"dataCaptureConfig,omitempty"`
-		EndpointConfigName *string `tfsdk:"endpoint_config_name" json:"endpointConfigName,omitempty"`
-		KmsKeyID           *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
-		ProductionVariants *[]struct {
+		EnableNetworkIsolation *bool   `tfsdk:"enable_network_isolation" json:"enableNetworkIsolation,omitempty"`
+		EndpointConfigName     *string `tfsdk:"endpoint_config_name" json:"endpointConfigName,omitempty"`
+		ExecutionRoleARN       *string `tfsdk:"execution_role_arn" json:"executionRoleARN,omitempty"`
+		KmsKeyID               *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
+		ProductionVariants     *[]struct {
 			AcceleratorType                             *string `tfsdk:"accelerator_type" json:"acceleratorType,omitempty"`
 			ContainerStartupHealthCheckTimeoutInSeconds *int64  `tfsdk:"container_startup_health_check_timeout_in_seconds" json:"containerStartupHealthCheckTimeoutInSeconds,omitempty"`
 			CoreDumpConfig                              *struct {
 				DestinationS3URI *string `tfsdk:"destination_s3_uri" json:"destinationS3URI,omitempty"`
 				KmsKeyID         *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
 			} `tfsdk:"core_dump_config" json:"coreDumpConfig,omitempty"`
-			EnableSSMAccess                   *bool    `tfsdk:"enable_ssm_access" json:"enableSSMAccess,omitempty"`
-			InitialInstanceCount              *int64   `tfsdk:"initial_instance_count" json:"initialInstanceCount,omitempty"`
-			InitialVariantWeight              *float64 `tfsdk:"initial_variant_weight" json:"initialVariantWeight,omitempty"`
-			InstanceType                      *string  `tfsdk:"instance_type" json:"instanceType,omitempty"`
-			ModelDataDownloadTimeoutInSeconds *int64   `tfsdk:"model_data_download_timeout_in_seconds" json:"modelDataDownloadTimeoutInSeconds,omitempty"`
-			ModelName                         *string  `tfsdk:"model_name" json:"modelName,omitempty"`
-			ServerlessConfig                  *struct {
-				MaxConcurrency *int64 `tfsdk:"max_concurrency" json:"maxConcurrency,omitempty"`
-				MemorySizeInMB *int64 `tfsdk:"memory_size_in_mb" json:"memorySizeInMB,omitempty"`
+			EnableSSMAccess        *bool    `tfsdk:"enable_ssm_access" json:"enableSSMAccess,omitempty"`
+			InitialInstanceCount   *int64   `tfsdk:"initial_instance_count" json:"initialInstanceCount,omitempty"`
+			InitialVariantWeight   *float64 `tfsdk:"initial_variant_weight" json:"initialVariantWeight,omitempty"`
+			InstanceType           *string  `tfsdk:"instance_type" json:"instanceType,omitempty"`
+			ManagedInstanceScaling *struct {
+				MaxInstanceCount *int64  `tfsdk:"max_instance_count" json:"maxInstanceCount,omitempty"`
+				MinInstanceCount *int64  `tfsdk:"min_instance_count" json:"minInstanceCount,omitempty"`
+				Status           *string `tfsdk:"status" json:"status,omitempty"`
+			} `tfsdk:"managed_instance_scaling" json:"managedInstanceScaling,omitempty"`
+			ModelDataDownloadTimeoutInSeconds *int64  `tfsdk:"model_data_download_timeout_in_seconds" json:"modelDataDownloadTimeoutInSeconds,omitempty"`
+			ModelName                         *string `tfsdk:"model_name" json:"modelName,omitempty"`
+			RoutingConfig                     *struct {
+				RoutingStrategy *string `tfsdk:"routing_strategy" json:"routingStrategy,omitempty"`
+			} `tfsdk:"routing_config" json:"routingConfig,omitempty"`
+			ServerlessConfig *struct {
+				MaxConcurrency         *int64 `tfsdk:"max_concurrency" json:"maxConcurrency,omitempty"`
+				MemorySizeInMB         *int64 `tfsdk:"memory_size_in_mb" json:"memorySizeInMB,omitempty"`
+				ProvisionedConcurrency *int64 `tfsdk:"provisioned_concurrency" json:"provisionedConcurrency,omitempty"`
 			} `tfsdk:"serverless_config" json:"serverlessConfig,omitempty"`
 			VariantName    *string `tfsdk:"variant_name" json:"variantName,omitempty"`
 			VolumeSizeInGB *int64  `tfsdk:"volume_size_in_gb" json:"volumeSizeInGB,omitempty"`
@@ -97,6 +110,10 @@ type SagemakerServicesK8SAwsEndpointConfigV1Alpha1ManifestData struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tags" json:"tags,omitempty"`
+		VpcConfig *struct {
+			SecurityGroupIDs *[]string `tfsdk:"security_group_i_ds" json:"securityGroupIDs,omitempty"`
+			Subnets          *[]string `tfsdk:"subnets" json:"subnets,omitempty"`
+		} `tfsdk:"vpc_config" json:"vpcConfig,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -186,12 +203,12 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 				MarkdownDescription: "EndpointConfigSpec defines the desired state of EndpointConfig.",
 				Attributes: map[string]schema.Attribute{
 					"async_inference_config": schema.SingleNestedAttribute{
-						Description:         "Specifies configuration for how an endpoint performs asynchronous inference. This is a required field in order for your Endpoint to be invoked using InvokeEndpointAsync (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpointAsync.html).",
-						MarkdownDescription: "Specifies configuration for how an endpoint performs asynchronous inference. This is a required field in order for your Endpoint to be invoked using InvokeEndpointAsync (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpointAsync.html).",
+						Description:         "Specifies configuration for how an endpoint performs asynchronous inference.This is a required field in order for your Endpoint to be invoked using InvokeEndpointAsync(https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpointAsync.html).",
+						MarkdownDescription: "Specifies configuration for how an endpoint performs asynchronous inference.This is a required field in order for your Endpoint to be invoked using InvokeEndpointAsync(https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpointAsync.html).",
 						Attributes: map[string]schema.Attribute{
 							"client_config": schema.SingleNestedAttribute{
-								Description:         "Configures the behavior of the client used by SageMaker to interact with the model container during asynchronous inference.",
-								MarkdownDescription: "Configures the behavior of the client used by SageMaker to interact with the model container during asynchronous inference.",
+								Description:         "Configures the behavior of the client used by SageMaker to interact withthe model container during asynchronous inference.",
+								MarkdownDescription: "Configures the behavior of the client used by SageMaker to interact withthe model container during asynchronous inference.",
 								Attributes: map[string]schema.Attribute{
 									"max_concurrent_invocations_per_instance": schema.Int64Attribute{
 										Description:         "",
@@ -219,12 +236,21 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 									},
 
 									"notification_config": schema.SingleNestedAttribute{
-										Description:         "Specifies the configuration for notifications of inference results for asynchronous inference.",
-										MarkdownDescription: "Specifies the configuration for notifications of inference results for asynchronous inference.",
+										Description:         "Specifies the configuration for notifications of inference results for asynchronousinference.",
+										MarkdownDescription: "Specifies the configuration for notifications of inference results for asynchronousinference.",
 										Attributes: map[string]schema.Attribute{
 											"error_topic": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"include_inference_response_in": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -241,6 +267,14 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"s3_failure_path": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"s3_output_path": schema.StringAttribute{
@@ -266,8 +300,8 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 						MarkdownDescription: "Configuration to control how SageMaker captures inference data.",
 						Attributes: map[string]schema.Attribute{
 							"capture_content_type_header": schema.SingleNestedAttribute{
-								Description:         "Configuration specifying how to treat different headers. If no headers are specified SageMaker will by default base64 encode when capturing the data.",
-								MarkdownDescription: "Configuration specifying how to treat different headers. If no headers are specified SageMaker will by default base64 encode when capturing the data.",
+								Description:         "Configuration specifying how to treat different headers. If no headers arespecified Amazon SageMaker will by default base64 encode when capturing thedata.",
+								MarkdownDescription: "Configuration specifying how to treat different headers. If no headers arespecified Amazon SageMaker will by default base64 encode when capturing thedata.",
 								Attributes: map[string]schema.Attribute{
 									"csv_content_types": schema.ListAttribute{
 										Description:         "",
@@ -348,25 +382,41 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 						Computed: false,
 					},
 
+					"enable_network_isolation": schema.BoolAttribute{
+						Description:         "Sets whether all model containers deployed to the endpoint are isolated.If they are, no inbound or outbound network calls can be made to or fromthe model containers.",
+						MarkdownDescription: "Sets whether all model containers deployed to the endpoint are isolated.If they are, no inbound or outbound network calls can be made to or fromthe model containers.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"endpoint_config_name": schema.StringAttribute{
-						Description:         "The name of the endpoint configuration. You specify this name in a CreateEndpoint request.",
-						MarkdownDescription: "The name of the endpoint configuration. You specify this name in a CreateEndpoint request.",
+						Description:         "The name of the endpoint configuration. You specify this name in a CreateEndpoint(https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html)request.",
+						MarkdownDescription: "The name of the endpoint configuration. You specify this name in a CreateEndpoint(https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html)request.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
+					"execution_role_arn": schema.StringAttribute{
+						Description:         "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assumeto perform actions on your behalf. For more information, see SageMaker Roles(https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).To be able to pass this role to Amazon SageMaker, the caller of this actionmust have the iam:PassRole permission.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assumeto perform actions on your behalf. For more information, see SageMaker Roles(https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).To be able to pass this role to Amazon SageMaker, the caller of this actionmust have the iam:PassRole permission.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"kms_key_id": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.  The KmsKeyId can be any of the following formats:  * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab  * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab  * Alias name: alias/ExampleAlias  * Alias name ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias  The KMS key policy must grant permission to the IAM role that you specify in your CreateEndpoint, UpdateEndpoint requests. For more information, refer to the Amazon Web Services Key Management Service section Using Key Policies in Amazon Web Services KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)  Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a KmsKeyId when using an instance type with local storage. If any of the models that you specify in the ProductionVariants parameter use nitro-based instances with local storage, do not specify a value for the KmsKeyId parameter. If you specify a value for KmsKeyId when using any nitro-based instances with local storage, the call to CreateEndpointConfig fails.  For a list of instance types that support local instance storage, see Instance Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).  For more information about local instance storage encryption, see SSD Instance Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html).",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.  The KmsKeyId can be any of the following formats:  * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab  * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab  * Alias name: alias/ExampleAlias  * Alias name ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias  The KMS key policy must grant permission to the IAM role that you specify in your CreateEndpoint, UpdateEndpoint requests. For more information, refer to the Amazon Web Services Key Management Service section Using Key Policies in Amazon Web Services KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)  Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a KmsKeyId when using an instance type with local storage. If any of the models that you specify in the ProductionVariants parameter use nitro-based instances with local storage, do not specify a value for the KmsKeyId parameter. If you specify a value for KmsKeyId when using any nitro-based instances with local storage, the call to CreateEndpointConfig fails.  For a list of instance types that support local instance storage, see Instance Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).  For more information about local instance storage encryption, see SSD Instance Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html).",
+						Description:         "The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Servicekey that SageMaker uses to encrypt data on the storage volume attached tothe ML compute instance that hosts the endpoint.The KmsKeyId can be any of the following formats:   * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab   * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab   * Alias name: alias/ExampleAlias   * Alias name ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAliasThe KMS key policy must grant permission to the IAM role that you specifyin your CreateEndpoint, UpdateEndpoint requests. For more information, referto the Amazon Web Services Key Management Service section Using Key Policiesin Amazon Web Services KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)Certain Nitro-based instances include local storage, dependent on the instancetype. Local storage volumes are encrypted using a hardware module on theinstance. You can't request a KmsKeyId when using an instance type with localstorage. If any of the models that you specify in the ProductionVariantsparameter use nitro-based instances with local storage, do not specify avalue for the KmsKeyId parameter. If you specify a value for KmsKeyId whenusing any nitro-based instances with local storage, the call to CreateEndpointConfigfails.For a list of instance types that support local instance storage, see InstanceStore Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).For more information about local instance storage encryption, see SSD InstanceStore Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html).",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Servicekey that SageMaker uses to encrypt data on the storage volume attached tothe ML compute instance that hosts the endpoint.The KmsKeyId can be any of the following formats:   * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab   * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab   * Alias name: alias/ExampleAlias   * Alias name ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAliasThe KMS key policy must grant permission to the IAM role that you specifyin your CreateEndpoint, UpdateEndpoint requests. For more information, referto the Amazon Web Services Key Management Service section Using Key Policiesin Amazon Web Services KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)Certain Nitro-based instances include local storage, dependent on the instancetype. Local storage volumes are encrypted using a hardware module on theinstance. You can't request a KmsKeyId when using an instance type with localstorage. If any of the models that you specify in the ProductionVariantsparameter use nitro-based instances with local storage, do not specify avalue for the KmsKeyId parameter. If you specify a value for KmsKeyId whenusing any nitro-based instances with local storage, the call to CreateEndpointConfigfails.For a list of instance types that support local instance storage, see InstanceStore Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).For more information about local instance storage encryption, see SSD InstanceStore Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"production_variants": schema.ListNestedAttribute{
-						Description:         "An array of ProductionVariant objects, one for each model that you want to host at this endpoint.",
-						MarkdownDescription: "An array of ProductionVariant objects, one for each model that you want to host at this endpoint.",
+						Description:         "An array of ProductionVariant objects, one for each model that you want tohost at this endpoint.",
+						MarkdownDescription: "An array of ProductionVariant objects, one for each model that you want tohost at this endpoint.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"accelerator_type": schema.StringAttribute{
@@ -386,8 +436,8 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 								},
 
 								"core_dump_config": schema.SingleNestedAttribute{
-									Description:         "Specifies configuration for a core dump from the model container when the process crashes.",
-									MarkdownDescription: "Specifies configuration for a core dump from the model container when the process crashes.",
+									Description:         "Specifies configuration for a core dump from the model container when theprocess crashes.",
+									MarkdownDescription: "Specifies configuration for a core dump from the model container when theprocess crashes.",
 									Attributes: map[string]schema.Attribute{
 										"destination_s3_uri": schema.StringAttribute{
 											Description:         "",
@@ -442,6 +492,39 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 									Computed:            false,
 								},
 
+								"managed_instance_scaling": schema.SingleNestedAttribute{
+									Description:         "Settings that control the range in the number of instances that the endpointprovisions as it scales up or down to accommodate traffic.",
+									MarkdownDescription: "Settings that control the range in the number of instances that the endpointprovisions as it scales up or down to accommodate traffic.",
+									Attributes: map[string]schema.Attribute{
+										"max_instance_count": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"min_instance_count": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"status": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"model_data_download_timeout_in_seconds": schema.Int64Attribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -458,6 +541,23 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 									Computed:            false,
 								},
 
+								"routing_config": schema.SingleNestedAttribute{
+									Description:         "Settings that control how the endpoint routes incoming traffic to the instancesthat the endpoint hosts.",
+									MarkdownDescription: "Settings that control how the endpoint routes incoming traffic to the instancesthat the endpoint hosts.",
+									Attributes: map[string]schema.Attribute{
+										"routing_strategy": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"serverless_config": schema.SingleNestedAttribute{
 									Description:         "Specifies the serverless configuration for an endpoint variant.",
 									MarkdownDescription: "Specifies the serverless configuration for an endpoint variant.",
@@ -471,6 +571,14 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 										},
 
 										"memory_size_in_mb": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"provisioned_concurrency": schema.Int64Attribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -506,8 +614,8 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
-						MarkdownDescription: "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
+						Description:         "An array of key-value pairs. You can use tags to categorize your Amazon WebServices resources in different ways, for example, by purpose, owner, orenvironment. For more information, see Tagging Amazon Web Services Resources(https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
+						MarkdownDescription: "An array of key-value pairs. You can use tags to categorize your Amazon WebServices resources in different ways, for example, by purpose, owner, orenvironment. For more information, see Tagging Amazon Web Services Resources(https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -525,6 +633,33 @@ func (r *SagemakerServicesK8SAwsEndpointConfigV1Alpha1Manifest) Schema(_ context
 									Optional:            true,
 									Computed:            false,
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"vpc_config": schema.SingleNestedAttribute{
+						Description:         "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
+						MarkdownDescription: "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
+						Attributes: map[string]schema.Attribute{
+							"security_group_i_ds": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"subnets": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

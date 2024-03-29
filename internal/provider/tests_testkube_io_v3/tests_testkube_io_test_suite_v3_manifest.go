@@ -46,16 +46,122 @@ type TestsTestkubeIoTestSuiteV3ManifestData struct {
 
 	Spec *struct {
 		After *[]struct {
+			DownloadArtifacts *struct {
+				AllPreviousSteps    *bool     `tfsdk:"all_previous_steps" json:"allPreviousSteps,omitempty"`
+				PreviousStepNumbers *[]string `tfsdk:"previous_step_numbers" json:"previousStepNumbers,omitempty"`
+				PreviousTestNames   *[]string `tfsdk:"previous_test_names" json:"previousTestNames,omitempty"`
+			} `tfsdk:"download_artifacts" json:"downloadArtifacts,omitempty"`
 			Execute *[]struct {
-				Delay *string `tfsdk:"delay" json:"delay,omitempty"`
-				Test  *string `tfsdk:"test" json:"test,omitempty"`
+				Delay            *string `tfsdk:"delay" json:"delay,omitempty"`
+				ExecutionRequest *struct {
+					Args                     *[]string          `tfsdk:"args" json:"args,omitempty"`
+					ArgsMode                 *string            `tfsdk:"args_mode" json:"argsMode,omitempty"`
+					Command                  *[]string          `tfsdk:"command" json:"command,omitempty"`
+					CronJobTemplate          *string            `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
+					CronJobTemplateReference *string            `tfsdk:"cron_job_template_reference" json:"cronJobTemplateReference,omitempty"`
+					ExecutionLabels          *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
+					HttpProxy                *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
+					HttpsProxy               *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
+					JobTemplate              *string            `tfsdk:"job_template" json:"jobTemplate,omitempty"`
+					JobTemplateReference     *string            `tfsdk:"job_template_reference" json:"jobTemplateReference,omitempty"`
+					NegativeTest             *bool              `tfsdk:"negative_test" json:"negativeTest,omitempty"`
+					PvcTemplate              *string            `tfsdk:"pvc_template" json:"pvcTemplate,omitempty"`
+					PvcTemplateReference     *string            `tfsdk:"pvc_template_reference" json:"pvcTemplateReference,omitempty"`
+					RunningContext           *struct {
+						Context *string `tfsdk:"context" json:"context,omitempty"`
+						Type    *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"running_context" json:"runningContext,omitempty"`
+					ScraperTemplate          *string `tfsdk:"scraper_template" json:"scraperTemplate,omitempty"`
+					ScraperTemplateReference *string `tfsdk:"scraper_template_reference" json:"scraperTemplateReference,omitempty"`
+					Sync                     *bool   `tfsdk:"sync" json:"sync,omitempty"`
+					Variables                *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Type      *string `tfsdk:"type" json:"type,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							ConfigMapKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+							FieldRef *struct {
+								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+							ResourceFieldRef *struct {
+								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"variables" json:"variables,omitempty"`
+				} `tfsdk:"execution_request" json:"executionRequest,omitempty"`
+				Test *string `tfsdk:"test" json:"test,omitempty"`
 			} `tfsdk:"execute" json:"execute,omitempty"`
 			StopOnFailure *bool `tfsdk:"stop_on_failure" json:"stopOnFailure,omitempty"`
 		} `tfsdk:"after" json:"after,omitempty"`
 		Before *[]struct {
+			DownloadArtifacts *struct {
+				AllPreviousSteps    *bool     `tfsdk:"all_previous_steps" json:"allPreviousSteps,omitempty"`
+				PreviousStepNumbers *[]string `tfsdk:"previous_step_numbers" json:"previousStepNumbers,omitempty"`
+				PreviousTestNames   *[]string `tfsdk:"previous_test_names" json:"previousTestNames,omitempty"`
+			} `tfsdk:"download_artifacts" json:"downloadArtifacts,omitempty"`
 			Execute *[]struct {
-				Delay *string `tfsdk:"delay" json:"delay,omitempty"`
-				Test  *string `tfsdk:"test" json:"test,omitempty"`
+				Delay            *string `tfsdk:"delay" json:"delay,omitempty"`
+				ExecutionRequest *struct {
+					Args                     *[]string          `tfsdk:"args" json:"args,omitempty"`
+					ArgsMode                 *string            `tfsdk:"args_mode" json:"argsMode,omitempty"`
+					Command                  *[]string          `tfsdk:"command" json:"command,omitempty"`
+					CronJobTemplate          *string            `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
+					CronJobTemplateReference *string            `tfsdk:"cron_job_template_reference" json:"cronJobTemplateReference,omitempty"`
+					ExecutionLabels          *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
+					HttpProxy                *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
+					HttpsProxy               *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
+					JobTemplate              *string            `tfsdk:"job_template" json:"jobTemplate,omitempty"`
+					JobTemplateReference     *string            `tfsdk:"job_template_reference" json:"jobTemplateReference,omitempty"`
+					NegativeTest             *bool              `tfsdk:"negative_test" json:"negativeTest,omitempty"`
+					PvcTemplate              *string            `tfsdk:"pvc_template" json:"pvcTemplate,omitempty"`
+					PvcTemplateReference     *string            `tfsdk:"pvc_template_reference" json:"pvcTemplateReference,omitempty"`
+					RunningContext           *struct {
+						Context *string `tfsdk:"context" json:"context,omitempty"`
+						Type    *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"running_context" json:"runningContext,omitempty"`
+					ScraperTemplate          *string `tfsdk:"scraper_template" json:"scraperTemplate,omitempty"`
+					ScraperTemplateReference *string `tfsdk:"scraper_template_reference" json:"scraperTemplateReference,omitempty"`
+					Sync                     *bool   `tfsdk:"sync" json:"sync,omitempty"`
+					Variables                *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Type      *string `tfsdk:"type" json:"type,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							ConfigMapKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+							FieldRef *struct {
+								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+							ResourceFieldRef *struct {
+								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"variables" json:"variables,omitempty"`
+				} `tfsdk:"execution_request" json:"executionRequest,omitempty"`
+				Test *string `tfsdk:"test" json:"test,omitempty"`
 			} `tfsdk:"execute" json:"execute,omitempty"`
 			StopOnFailure *bool `tfsdk:"stop_on_failure" json:"stopOnFailure,omitempty"`
 		} `tfsdk:"before" json:"before,omitempty"`
@@ -108,9 +214,62 @@ type TestsTestkubeIoTestSuiteV3ManifestData struct {
 		Repeats  *int64  `tfsdk:"repeats" json:"repeats,omitempty"`
 		Schedule *string `tfsdk:"schedule" json:"schedule,omitempty"`
 		Steps    *[]struct {
+			DownloadArtifacts *struct {
+				AllPreviousSteps    *bool     `tfsdk:"all_previous_steps" json:"allPreviousSteps,omitempty"`
+				PreviousStepNumbers *[]string `tfsdk:"previous_step_numbers" json:"previousStepNumbers,omitempty"`
+				PreviousTestNames   *[]string `tfsdk:"previous_test_names" json:"previousTestNames,omitempty"`
+			} `tfsdk:"download_artifacts" json:"downloadArtifacts,omitempty"`
 			Execute *[]struct {
-				Delay *string `tfsdk:"delay" json:"delay,omitempty"`
-				Test  *string `tfsdk:"test" json:"test,omitempty"`
+				Delay            *string `tfsdk:"delay" json:"delay,omitempty"`
+				ExecutionRequest *struct {
+					Args                     *[]string          `tfsdk:"args" json:"args,omitempty"`
+					ArgsMode                 *string            `tfsdk:"args_mode" json:"argsMode,omitempty"`
+					Command                  *[]string          `tfsdk:"command" json:"command,omitempty"`
+					CronJobTemplate          *string            `tfsdk:"cron_job_template" json:"cronJobTemplate,omitempty"`
+					CronJobTemplateReference *string            `tfsdk:"cron_job_template_reference" json:"cronJobTemplateReference,omitempty"`
+					ExecutionLabels          *map[string]string `tfsdk:"execution_labels" json:"executionLabels,omitempty"`
+					HttpProxy                *string            `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
+					HttpsProxy               *string            `tfsdk:"https_proxy" json:"httpsProxy,omitempty"`
+					JobTemplate              *string            `tfsdk:"job_template" json:"jobTemplate,omitempty"`
+					JobTemplateReference     *string            `tfsdk:"job_template_reference" json:"jobTemplateReference,omitempty"`
+					NegativeTest             *bool              `tfsdk:"negative_test" json:"negativeTest,omitempty"`
+					PvcTemplate              *string            `tfsdk:"pvc_template" json:"pvcTemplate,omitempty"`
+					PvcTemplateReference     *string            `tfsdk:"pvc_template_reference" json:"pvcTemplateReference,omitempty"`
+					RunningContext           *struct {
+						Context *string `tfsdk:"context" json:"context,omitempty"`
+						Type    *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"running_context" json:"runningContext,omitempty"`
+					ScraperTemplate          *string `tfsdk:"scraper_template" json:"scraperTemplate,omitempty"`
+					ScraperTemplateReference *string `tfsdk:"scraper_template_reference" json:"scraperTemplateReference,omitempty"`
+					Sync                     *bool   `tfsdk:"sync" json:"sync,omitempty"`
+					Variables                *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Type      *string `tfsdk:"type" json:"type,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							ConfigMapKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+							FieldRef *struct {
+								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+							ResourceFieldRef *struct {
+								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"variables" json:"variables,omitempty"`
+				} `tfsdk:"execution_request" json:"executionRequest,omitempty"`
+				Test *string `tfsdk:"test" json:"test,omitempty"`
 			} `tfsdk:"execute" json:"execute,omitempty"`
 			StopOnFailure *bool `tfsdk:"stop_on_failure" json:"stopOnFailure,omitempty"`
 		} `tfsdk:"steps" json:"steps,omitempty"`
@@ -207,6 +366,41 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 						MarkdownDescription: "After batch steps is list of batch tests which will be sequentially orchestrated for parallel tests in each batch",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"download_artifacts": schema.SingleNestedAttribute{
+									Description:         "options to download artifacts from previous steps",
+									MarkdownDescription: "options to download artifacts from previous steps",
+									Attributes: map[string]schema.Attribute{
+										"all_previous_steps": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"previous_step_numbers": schema.ListAttribute{
+											Description:         "previous step numbers starting from 1",
+											MarkdownDescription: "previous step numbers starting from 1",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"previous_test_names": schema.ListAttribute{
+											Description:         "previous test names",
+											MarkdownDescription: "previous test names",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"execute": schema.ListNestedAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -218,6 +412,340 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"execution_request": schema.SingleNestedAttribute{
+												Description:         "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
+												MarkdownDescription: "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "additional executor binary arguments",
+														MarkdownDescription: "additional executor binary arguments",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"args_mode": schema.StringAttribute{
+														Description:         "usage mode for arguments",
+														MarkdownDescription: "usage mode for arguments",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("append", "override", "replace"),
+														},
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "executor binary command",
+														MarkdownDescription: "executor binary command",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"cron_job_template": schema.StringAttribute{
+														Description:         "cron job template extensions",
+														MarkdownDescription: "cron job template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"cron_job_template_reference": schema.StringAttribute{
+														Description:         "cron job template extensions reference",
+														MarkdownDescription: "cron job template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"execution_labels": schema.MapAttribute{
+														Description:         "test execution labels",
+														MarkdownDescription: "test execution labels",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_proxy": schema.StringAttribute{
+														Description:         "http proxy for executor containers",
+														MarkdownDescription: "http proxy for executor containers",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"https_proxy": schema.StringAttribute{
+														Description:         "https proxy for executor containers",
+														MarkdownDescription: "https proxy for executor containers",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"job_template": schema.StringAttribute{
+														Description:         "job template extensions",
+														MarkdownDescription: "job template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"job_template_reference": schema.StringAttribute{
+														Description:         "job template extensions reference",
+														MarkdownDescription: "job template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"negative_test": schema.BoolAttribute{
+														Description:         "negative test will fail the execution if it is a success and it will succeed if it is a failure",
+														MarkdownDescription: "negative test will fail the execution if it is a success and it will succeed if it is a failure",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"pvc_template": schema.StringAttribute{
+														Description:         "pvc template extensions",
+														MarkdownDescription: "pvc template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"pvc_template_reference": schema.StringAttribute{
+														Description:         "pvc template extensions reference",
+														MarkdownDescription: "pvc template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"running_context": schema.SingleNestedAttribute{
+														Description:         "RunningContext for test or test suite execution",
+														MarkdownDescription: "RunningContext for test or test suite execution",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context value depending from its type",
+																MarkdownDescription: "Context value depending from its type",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "One of possible context types",
+																MarkdownDescription: "One of possible context types",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scraper_template": schema.StringAttribute{
+														Description:         "scraper template extensions",
+														MarkdownDescription: "scraper template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"scraper_template_reference": schema.StringAttribute{
+														Description:         "scraper template extensions reference",
+														MarkdownDescription: "scraper template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"sync": schema.BoolAttribute{
+														Description:         "whether to start execution sync or async",
+														MarkdownDescription: "whether to start execution sync or async",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"variables": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "variable name",
+																MarkdownDescription: "variable name",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "variable type",
+																MarkdownDescription: "variable type",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"value": schema.StringAttribute{
+																Description:         "variable string value",
+																MarkdownDescription: "variable string value",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"value_from": schema.SingleNestedAttribute{
+																Description:         "or load it from var source",
+																MarkdownDescription: "or load it from var source",
+																Attributes: map[string]schema.Attribute{
+																	"config_map_key_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a key of a ConfigMap.",
+																		MarkdownDescription: "Selects a key of a ConfigMap.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"field_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		Attributes: map[string]schema.Attribute{
+																			"api_version": schema.StringAttribute{
+																				Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																				MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"field_path": schema.StringAttribute{
+																				Description:         "Path of the field to select in the specified API version.",
+																				MarkdownDescription: "Path of the field to select in the specified API version.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"resource_field_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		Attributes: map[string]schema.Attribute{
+																			"container_name": schema.StringAttribute{
+																				Description:         "Container name: required for volumes, optional for env vars",
+																				MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"divisor": schema.StringAttribute{
+																				Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																				MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"resource": schema.StringAttribute{
+																				Description:         "Required: resource to select",
+																				MarkdownDescription: "Required: resource to select",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret_key_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a key of a secret in the pod's namespace",
+																		MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"test": schema.StringAttribute{
@@ -253,6 +781,41 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 						MarkdownDescription: "Before batch steps is list of batch tests which will be sequentially orchestrated for parallel tests in each batch",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"download_artifacts": schema.SingleNestedAttribute{
+									Description:         "options to download artifacts from previous steps",
+									MarkdownDescription: "options to download artifacts from previous steps",
+									Attributes: map[string]schema.Attribute{
+										"all_previous_steps": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"previous_step_numbers": schema.ListAttribute{
+											Description:         "previous step numbers starting from 1",
+											MarkdownDescription: "previous step numbers starting from 1",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"previous_test_names": schema.ListAttribute{
+											Description:         "previous test names",
+											MarkdownDescription: "previous test names",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"execute": schema.ListNestedAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -264,6 +827,340 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"execution_request": schema.SingleNestedAttribute{
+												Description:         "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
+												MarkdownDescription: "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "additional executor binary arguments",
+														MarkdownDescription: "additional executor binary arguments",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"args_mode": schema.StringAttribute{
+														Description:         "usage mode for arguments",
+														MarkdownDescription: "usage mode for arguments",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("append", "override", "replace"),
+														},
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "executor binary command",
+														MarkdownDescription: "executor binary command",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"cron_job_template": schema.StringAttribute{
+														Description:         "cron job template extensions",
+														MarkdownDescription: "cron job template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"cron_job_template_reference": schema.StringAttribute{
+														Description:         "cron job template extensions reference",
+														MarkdownDescription: "cron job template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"execution_labels": schema.MapAttribute{
+														Description:         "test execution labels",
+														MarkdownDescription: "test execution labels",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_proxy": schema.StringAttribute{
+														Description:         "http proxy for executor containers",
+														MarkdownDescription: "http proxy for executor containers",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"https_proxy": schema.StringAttribute{
+														Description:         "https proxy for executor containers",
+														MarkdownDescription: "https proxy for executor containers",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"job_template": schema.StringAttribute{
+														Description:         "job template extensions",
+														MarkdownDescription: "job template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"job_template_reference": schema.StringAttribute{
+														Description:         "job template extensions reference",
+														MarkdownDescription: "job template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"negative_test": schema.BoolAttribute{
+														Description:         "negative test will fail the execution if it is a success and it will succeed if it is a failure",
+														MarkdownDescription: "negative test will fail the execution if it is a success and it will succeed if it is a failure",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"pvc_template": schema.StringAttribute{
+														Description:         "pvc template extensions",
+														MarkdownDescription: "pvc template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"pvc_template_reference": schema.StringAttribute{
+														Description:         "pvc template extensions reference",
+														MarkdownDescription: "pvc template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"running_context": schema.SingleNestedAttribute{
+														Description:         "RunningContext for test or test suite execution",
+														MarkdownDescription: "RunningContext for test or test suite execution",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context value depending from its type",
+																MarkdownDescription: "Context value depending from its type",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "One of possible context types",
+																MarkdownDescription: "One of possible context types",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scraper_template": schema.StringAttribute{
+														Description:         "scraper template extensions",
+														MarkdownDescription: "scraper template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"scraper_template_reference": schema.StringAttribute{
+														Description:         "scraper template extensions reference",
+														MarkdownDescription: "scraper template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"sync": schema.BoolAttribute{
+														Description:         "whether to start execution sync or async",
+														MarkdownDescription: "whether to start execution sync or async",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"variables": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "variable name",
+																MarkdownDescription: "variable name",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "variable type",
+																MarkdownDescription: "variable type",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"value": schema.StringAttribute{
+																Description:         "variable string value",
+																MarkdownDescription: "variable string value",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"value_from": schema.SingleNestedAttribute{
+																Description:         "or load it from var source",
+																MarkdownDescription: "or load it from var source",
+																Attributes: map[string]schema.Attribute{
+																	"config_map_key_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a key of a ConfigMap.",
+																		MarkdownDescription: "Selects a key of a ConfigMap.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"field_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		Attributes: map[string]schema.Attribute{
+																			"api_version": schema.StringAttribute{
+																				Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																				MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"field_path": schema.StringAttribute{
+																				Description:         "Path of the field to select in the specified API version.",
+																				MarkdownDescription: "Path of the field to select in the specified API version.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"resource_field_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		Attributes: map[string]schema.Attribute{
+																			"container_name": schema.StringAttribute{
+																				Description:         "Container name: required for volumes, optional for env vars",
+																				MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"divisor": schema.StringAttribute{
+																				Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																				MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"resource": schema.StringAttribute{
+																				Description:         "Required: resource to select",
+																				MarkdownDescription: "Required: resource to select",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret_key_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a key of a secret in the pod's namespace",
+																		MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"test": schema.StringAttribute{
@@ -636,6 +1533,41 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 						MarkdownDescription: "Batch steps is list of batch tests which will be sequentially orchestrated for parallel tests in each batch",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"download_artifacts": schema.SingleNestedAttribute{
+									Description:         "options to download artifacts from previous steps",
+									MarkdownDescription: "options to download artifacts from previous steps",
+									Attributes: map[string]schema.Attribute{
+										"all_previous_steps": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"previous_step_numbers": schema.ListAttribute{
+											Description:         "previous step numbers starting from 1",
+											MarkdownDescription: "previous step numbers starting from 1",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"previous_test_names": schema.ListAttribute{
+											Description:         "previous test names",
+											MarkdownDescription: "previous test names",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"execute": schema.ListNestedAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -647,6 +1579,340 @@ func (r *TestsTestkubeIoTestSuiteV3Manifest) Schema(_ context.Context, _ datasou
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"execution_request": schema.SingleNestedAttribute{
+												Description:         "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
+												MarkdownDescription: "TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions.",
+												Attributes: map[string]schema.Attribute{
+													"args": schema.ListAttribute{
+														Description:         "additional executor binary arguments",
+														MarkdownDescription: "additional executor binary arguments",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"args_mode": schema.StringAttribute{
+														Description:         "usage mode for arguments",
+														MarkdownDescription: "usage mode for arguments",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("append", "override", "replace"),
+														},
+													},
+
+													"command": schema.ListAttribute{
+														Description:         "executor binary command",
+														MarkdownDescription: "executor binary command",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"cron_job_template": schema.StringAttribute{
+														Description:         "cron job template extensions",
+														MarkdownDescription: "cron job template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"cron_job_template_reference": schema.StringAttribute{
+														Description:         "cron job template extensions reference",
+														MarkdownDescription: "cron job template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"execution_labels": schema.MapAttribute{
+														Description:         "test execution labels",
+														MarkdownDescription: "test execution labels",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_proxy": schema.StringAttribute{
+														Description:         "http proxy for executor containers",
+														MarkdownDescription: "http proxy for executor containers",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"https_proxy": schema.StringAttribute{
+														Description:         "https proxy for executor containers",
+														MarkdownDescription: "https proxy for executor containers",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"job_template": schema.StringAttribute{
+														Description:         "job template extensions",
+														MarkdownDescription: "job template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"job_template_reference": schema.StringAttribute{
+														Description:         "job template extensions reference",
+														MarkdownDescription: "job template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"negative_test": schema.BoolAttribute{
+														Description:         "negative test will fail the execution if it is a success and it will succeed if it is a failure",
+														MarkdownDescription: "negative test will fail the execution if it is a success and it will succeed if it is a failure",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"pvc_template": schema.StringAttribute{
+														Description:         "pvc template extensions",
+														MarkdownDescription: "pvc template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"pvc_template_reference": schema.StringAttribute{
+														Description:         "pvc template extensions reference",
+														MarkdownDescription: "pvc template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"running_context": schema.SingleNestedAttribute{
+														Description:         "RunningContext for test or test suite execution",
+														MarkdownDescription: "RunningContext for test or test suite execution",
+														Attributes: map[string]schema.Attribute{
+															"context": schema.StringAttribute{
+																Description:         "Context value depending from its type",
+																MarkdownDescription: "Context value depending from its type",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "One of possible context types",
+																MarkdownDescription: "One of possible context types",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scraper_template": schema.StringAttribute{
+														Description:         "scraper template extensions",
+														MarkdownDescription: "scraper template extensions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"scraper_template_reference": schema.StringAttribute{
+														Description:         "scraper template extensions reference",
+														MarkdownDescription: "scraper template extensions reference",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"sync": schema.BoolAttribute{
+														Description:         "whether to start execution sync or async",
+														MarkdownDescription: "whether to start execution sync or async",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"variables": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "variable name",
+																MarkdownDescription: "variable name",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "variable type",
+																MarkdownDescription: "variable type",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"value": schema.StringAttribute{
+																Description:         "variable string value",
+																MarkdownDescription: "variable string value",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"value_from": schema.SingleNestedAttribute{
+																Description:         "or load it from var source",
+																MarkdownDescription: "or load it from var source",
+																Attributes: map[string]schema.Attribute{
+																	"config_map_key_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a key of a ConfigMap.",
+																		MarkdownDescription: "Selects a key of a ConfigMap.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"field_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																		Attributes: map[string]schema.Attribute{
+																			"api_version": schema.StringAttribute{
+																				Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																				MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"field_path": schema.StringAttribute{
+																				Description:         "Path of the field to select in the specified API version.",
+																				MarkdownDescription: "Path of the field to select in the specified API version.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"resource_field_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																		Attributes: map[string]schema.Attribute{
+																			"container_name": schema.StringAttribute{
+																				Description:         "Container name: required for volumes, optional for env vars",
+																				MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"divisor": schema.StringAttribute{
+																				Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																				MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"resource": schema.StringAttribute{
+																				Description:         "Required: resource to select",
+																				MarkdownDescription: "Required: resource to select",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret_key_ref": schema.SingleNestedAttribute{
+																		Description:         "Selects a key of a secret in the pod's namespace",
+																		MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"test": schema.StringAttribute{

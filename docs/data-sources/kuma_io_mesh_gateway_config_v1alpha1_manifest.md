@@ -3,12 +3,12 @@
 page_title: "k8s_kuma_io_mesh_gateway_config_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "kuma.io"
 description: |-
-  MeshGatewayConfig holds the configuration of a MeshGateway. A GatewayClass can refer to a MeshGatewayConfig via parametersRef.
+  MeshGatewayConfig holds the configuration of a MeshGateway. AGatewayClass can refer to a MeshGatewayConfig via parametersRef.
 ---
 
 # k8s_kuma_io_mesh_gateway_config_v1alpha1_manifest (Data Source)
 
-MeshGatewayConfig holds the configuration of a MeshGateway. A GatewayClass can refer to a MeshGatewayConfig via parametersRef.
+MeshGatewayConfig holds the configuration of a MeshGateway. AGatewayClass can refer to a MeshGatewayConfig via parametersRef.
 
 ## Example Usage
 
@@ -16,6 +16,7 @@ MeshGatewayConfig holds the configuration of a MeshGateway. A GatewayClass can r
 data "k8s_kuma_io_mesh_gateway_config_v1alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -54,13 +55,13 @@ Optional:
 
 Optional:
 
-- `cross_mesh` (Boolean) CrossMesh specifies whether listeners configured by this gateway are cross mesh listeners.
+- `cross_mesh` (Boolean) CrossMesh specifies whether listeners configured by this gateway arecross mesh listeners.
 - `pod_template` (Attributes) PodTemplate configures the Pod owned by this config. (see [below for nested schema](#nestedatt--spec--pod_template))
-- `replicas` (Number) Replicas is the number of dataplane proxy replicas to create. For now this is a fixed number, but in the future it could be automatically scaled based on metrics.
-- `resources` (Attributes) Resources specifies the compute resources for the proxy container. The default can be set in the control plane config. (see [below for nested schema](#nestedatt--spec--resources))
+- `replicas` (Number) Replicas is the number of dataplane proxy replicas to create. Fornow this is a fixed number, but in the future it could beautomatically scaled based on metrics.
+- `resources` (Attributes) Resources specifies the compute resources for the proxy container.The default can be set in the control plane config. (see [below for nested schema](#nestedatt--spec--resources))
 - `service_template` (Attributes) ServiceTemplate configures the Service owned by this config. (see [below for nested schema](#nestedatt--spec--service_template))
-- `service_type` (String) ServiceType specifies the type of managed Service that will be created to expose the dataplane proxies to traffic from outside the cluster. The ports to expose will be taken from the matching Gateway resource. If there is no matching Gateway, the managed Service will be deleted.
-- `tags` (Map of String) Tags specifies a set of Kuma tags that are included in the MeshGatewayInstance and thus propagated to every Dataplane generated to serve the MeshGateway. These tags should include a maximum of one 'kuma.io/service' tag.
+- `service_type` (String) ServiceType specifies the type of managed Service that will becreated to expose the dataplane proxies to traffic from outsidethe cluster. The ports to expose will be taken from the matching Gatewayresource. If there is no matching Gateway, the managed Service willbe deleted.
+- `tags` (Map of String) Tags specifies a set of Kuma tags that are included in theMeshGatewayInstance and thus propagated to every Dataplane generated toserve the MeshGateway.These tags should include a maximum of one 'kuma.io/service' tag.
 
 <a id="nestedatt--spec--pod_template"></a>
 ### Nested Schema for `spec.pod_template`
@@ -119,16 +120,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resources--claims"></a>
 ### Nested Schema for `spec.resources.claims`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
 
 

@@ -91,8 +91,8 @@ func (r *KumaIoMeshGatewayInstanceV1Alpha1Manifest) Metadata(_ context.Context, 
 
 func (r *KumaIoMeshGatewayInstanceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "MeshGatewayInstance represents a managed instance of a dataplane proxy for a Kuma Gateway.",
-		MarkdownDescription: "MeshGatewayInstance represents a managed instance of a dataplane proxy for a Kuma Gateway.",
+		Description:         "MeshGatewayInstance represents a managed instance of a dataplane proxy for a KumaGateway.",
+		MarkdownDescription: "MeshGatewayInstance represents a managed instance of a dataplane proxy for a KumaGateway.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -267,8 +267,8 @@ func (r *KumaIoMeshGatewayInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"replicas": schema.Int64Attribute{
-						Description:         "Replicas is the number of dataplane proxy replicas to create. For now this is a fixed number, but in the future it could be automatically scaled based on metrics.",
-						MarkdownDescription: "Replicas is the number of dataplane proxy replicas to create. For now this is a fixed number, but in the future it could be automatically scaled based on metrics.",
+						Description:         "Replicas is the number of dataplane proxy replicas to create. Fornow this is a fixed number, but in the future it could beautomatically scaled based on metrics.",
+						MarkdownDescription: "Replicas is the number of dataplane proxy replicas to create. Fornow this is a fixed number, but in the future it could beautomatically scaled based on metrics.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -278,17 +278,17 @@ func (r *KumaIoMeshGatewayInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"resources": schema.SingleNestedAttribute{
-						Description:         "Resources specifies the compute resources for the proxy container. The default can be set in the control plane config.",
-						MarkdownDescription: "Resources specifies the compute resources for the proxy container. The default can be set in the control plane config.",
+						Description:         "Resources specifies the compute resources for the proxy container.The default can be set in the control plane config.",
+						MarkdownDescription: "Resources specifies the compute resources for the proxy container.The default can be set in the control plane config.",
 						Attributes: map[string]schema.Attribute{
 							"claims": schema.ListNestedAttribute{
-								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -301,8 +301,8 @@ func (r *KumaIoMeshGatewayInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 							},
 
 							"limits": schema.MapAttribute{
-								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -310,8 +310,8 @@ func (r *KumaIoMeshGatewayInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 							},
 
 							"requests": schema.MapAttribute{
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -377,8 +377,8 @@ func (r *KumaIoMeshGatewayInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"service_type": schema.StringAttribute{
-						Description:         "ServiceType specifies the type of managed Service that will be created to expose the dataplane proxies to traffic from outside the cluster. The ports to expose will be taken from the matching Gateway resource. If there is no matching Gateway, the managed Service will be deleted.",
-						MarkdownDescription: "ServiceType specifies the type of managed Service that will be created to expose the dataplane proxies to traffic from outside the cluster. The ports to expose will be taken from the matching Gateway resource. If there is no matching Gateway, the managed Service will be deleted.",
+						Description:         "ServiceType specifies the type of managed Service that will becreated to expose the dataplane proxies to traffic from outsidethe cluster. The ports to expose will be taken from the matching Gatewayresource. If there is no matching Gateway, the managed Service willbe deleted.",
+						MarkdownDescription: "ServiceType specifies the type of managed Service that will becreated to expose the dataplane proxies to traffic from outsidethe cluster. The ports to expose will be taken from the matching Gatewayresource. If there is no matching Gateway, the managed Service willbe deleted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -388,8 +388,8 @@ func (r *KumaIoMeshGatewayInstanceV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "Tags specifies the Kuma tags that are propagated to the managed dataplane proxies. These tags should include exactly one 'kuma.io/service' tag, and should match exactly one Gateway resource.",
-						MarkdownDescription: "Tags specifies the Kuma tags that are propagated to the managed dataplane proxies. These tags should include exactly one 'kuma.io/service' tag, and should match exactly one Gateway resource.",
+						Description:         "Tags specifies the Kuma tags that are propagated to the manageddataplane proxies. These tags should include exactly one'kuma.io/service' tag, and should match exactly one Gatewayresource.",
+						MarkdownDescription: "Tags specifies the Kuma tags that are propagated to the manageddataplane proxies. These tags should include exactly one'kuma.io/service' tag, and should match exactly one Gatewayresource.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

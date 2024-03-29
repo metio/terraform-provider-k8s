@@ -189,7 +189,38 @@ type MariadbMmontesIoSqlJobV1Alpha1ManifestData struct {
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
 			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 		} `tfsdk:"password_secret_key_ref" json:"passwordSecretKeyRef,omitempty"`
+		PodSecurityContext *struct {
+			FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
+			FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
+			RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+			RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+			RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+			SeLinuxOptions      *struct {
+				Level *string `tfsdk:"level" json:"level,omitempty"`
+				Role  *string `tfsdk:"role" json:"role,omitempty"`
+				Type  *string `tfsdk:"type" json:"type,omitempty"`
+				User  *string `tfsdk:"user" json:"user,omitempty"`
+			} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+			SeccompProfile *struct {
+				LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+				Type             *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+			SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+			Sysctls            *[]struct {
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"sysctls" json:"sysctls,omitempty"`
+			WindowsOptions *struct {
+				GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+				GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+				HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+				RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+			} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+		} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
 		Resources *struct {
+			Claims *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
@@ -198,6 +229,35 @@ type MariadbMmontesIoSqlJobV1Alpha1ManifestData struct {
 			Cron    *string `tfsdk:"cron" json:"cron,omitempty"`
 			Suspend *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
 		} `tfsdk:"schedule" json:"schedule,omitempty"`
+		SecurityContext *struct {
+			AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+			Capabilities             *struct {
+				Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+				Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+			} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+			Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+			ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+			ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+			RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+			RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+			RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+			SeLinuxOptions         *struct {
+				Level *string `tfsdk:"level" json:"level,omitempty"`
+				Role  *string `tfsdk:"role" json:"role,omitempty"`
+				Type  *string `tfsdk:"type" json:"type,omitempty"`
+				User  *string `tfsdk:"user" json:"user,omitempty"`
+			} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+			SeccompProfile *struct {
+				LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+				Type             *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+			WindowsOptions *struct {
+				GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+				GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+				HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+				RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+			} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+		} `tfsdk:"security_context" json:"securityContext,omitempty"`
 		Sql                *string `tfsdk:"sql" json:"sql,omitempty"`
 		SqlConfigMapKeyRef *struct {
 			Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -221,8 +281,8 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Metadata(_ context.Context, req
 
 func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "SqlJob is the Schema for the sqljobs API",
-		MarkdownDescription: "SqlJob is the Schema for the sqljobs API",
+		Description:         "SqlJob is the Schema for the sqljobs API. It is used to run sql scripts as jobs.",
+		MarkdownDescription: "SqlJob is the Schema for the sqljobs API. It is used to run sql scripts as jobs.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -301,8 +361,8 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 				MarkdownDescription: "SqlJobSpec defines the desired state of SqlJob",
 				Attributes: map[string]schema.Attribute{
 					"affinity": schema.SingleNestedAttribute{
-						Description:         "Affinity is a group of affinity scheduling rules.",
-						MarkdownDescription: "Affinity is a group of affinity scheduling rules.",
+						Description:         "Affinity to be used in the SqlJob Pod.",
+						MarkdownDescription: "Affinity to be used in the SqlJob Pod.",
 						Attributes: map[string]schema.Attribute{
 							"node_affinity": schema.SingleNestedAttribute{
 								Description:         "Describes node affinity scheduling rules for the pod.",
@@ -1107,24 +1167,24 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"backoff_limit": schema.Int64Attribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "BackoffLimit defines the maximum number of attempts to successfully execute a SqlJob.",
+						MarkdownDescription: "BackoffLimit defines the maximum number of attempts to successfully execute a SqlJob.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"database": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Username to be used when executing the SqlJob.",
+						MarkdownDescription: "Username to be used when executing the SqlJob.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"depends_on": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "DependsOn defines dependencies with other SqlJob objectecs.",
+						MarkdownDescription: "DependsOn defines dependencies with other SqlJob objectecs.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -1142,8 +1202,8 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"maria_db_ref": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "MariaDBRef is a reference to a MariaDB object.",
+						MarkdownDescription: "MariaDBRef is a reference to a MariaDB object.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -1202,8 +1262,8 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"wait_for_it": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.",
+								MarkdownDescription: "WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1215,8 +1275,8 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"node_selector": schema.MapAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "NodeSelector to be used in the SqlJob Pod.",
+						MarkdownDescription: "NodeSelector to be used in the SqlJob Pod.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1224,8 +1284,8 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"password_secret_key_ref": schema.SingleNestedAttribute{
-						Description:         "SecretKeySelector selects a key of a Secret.",
-						MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
+						Description:         "UserPasswordSecretKeyRef is a reference to the impersonated user's password to be used when executing the SqlJob.",
+						MarkdownDescription: "UserPasswordSecretKeyRef is a reference to the impersonated user's password to be used when executing the SqlJob.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1256,10 +1316,221 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						Computed: false,
 					},
 
-					"resources": schema.SingleNestedAttribute{
-						Description:         "ResourceRequirements describes the compute resource requirements.",
-						MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
+					"pod_security_context": schema.SingleNestedAttribute{
+						Description:         "SecurityContext holds pod-level security attributes and common container settings.",
+						MarkdownDescription: "SecurityContext holds pod-level security attributes and common container settings.",
 						Attributes: map[string]schema.Attribute{
+							"fs_group": schema.Int64Attribute{
+								Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"fs_group_change_policy": schema.StringAttribute{
+								Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"run_as_group": schema.Int64Attribute{
+								Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"run_as_non_root": schema.BoolAttribute{
+								Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+								MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"run_as_user": schema.Int64Attribute{
+								Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"se_linux_options": schema.SingleNestedAttribute{
+								Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								Attributes: map[string]schema.Attribute{
+									"level": schema.StringAttribute{
+										Description:         "Level is SELinux level label that applies to the container.",
+										MarkdownDescription: "Level is SELinux level label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"role": schema.StringAttribute{
+										Description:         "Role is a SELinux role label that applies to the container.",
+										MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "Type is a SELinux type label that applies to the container.",
+										MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"user": schema.StringAttribute{
+										Description:         "User is a SELinux user label that applies to the container.",
+										MarkdownDescription: "User is a SELinux user label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"seccomp_profile": schema.SingleNestedAttribute{
+								Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+								Attributes: map[string]schema.Attribute{
+									"localhost_profile": schema.StringAttribute{
+										Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+										MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"supplemental_groups": schema.ListAttribute{
+								Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"sysctls": schema.ListNestedAttribute{
+								Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of a property to set",
+											MarkdownDescription: "Name of a property to set",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Value of a property to set",
+											MarkdownDescription: "Value of a property to set",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"windows_options": schema.SingleNestedAttribute{
+								Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+								MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+								Attributes: map[string]schema.Attribute{
+									"gmsa_credential_spec": schema.StringAttribute{
+										Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+										MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"gmsa_credential_spec_name": schema.StringAttribute{
+										Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+										MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"host_process": schema.BoolAttribute{
+										Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_user_name": schema.StringAttribute{
+										Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+										MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"resources": schema.SingleNestedAttribute{
+						Description:         "Resouces describes the compute resource requirements.",
+						MarkdownDescription: "Resouces describes the compute resource requirements.",
+						Attributes: map[string]schema.Attribute{
+							"claims": schema.ListNestedAttribute{
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"limits": schema.MapAttribute{
 								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -1270,8 +1541,8 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"requests": schema.MapAttribute{
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1284,28 +1555,31 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"restart_policy": schema.StringAttribute{
-						Description:         "RestartPolicy describes how the container should be restarted. Only one of the following restart policies may be specified. If none of the following policies is specified, the default one is RestartPolicyAlways.",
-						MarkdownDescription: "RestartPolicy describes how the container should be restarted. Only one of the following restart policies may be specified. If none of the following policies is specified, the default one is RestartPolicyAlways.",
+						Description:         "RestartPolicy to be added to the SqlJob Pod.",
+						MarkdownDescription: "RestartPolicy to be added to the SqlJob Pod.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Always", "OnFailure", "Never"),
+						},
 					},
 
 					"schedule": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Schedule defines when the SqlJob will be executed.",
+						MarkdownDescription: "Schedule defines when the SqlJob will be executed.",
 						Attributes: map[string]schema.Attribute{
 							"cron": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Cron is a cron expression that defines the schedule.",
+								MarkdownDescription: "Cron is a cron expression that defines the schedule.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"suspend": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Suspend defines whether the schedule is active or not.",
+								MarkdownDescription: "Suspend defines whether the schedule is active or not.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1316,17 +1590,216 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						Computed: false,
 					},
 
+					"security_context": schema.SingleNestedAttribute{
+						Description:         "SecurityContext holds security configuration that will be applied to a container.",
+						MarkdownDescription: "SecurityContext holds security configuration that will be applied to a container.",
+						Attributes: map[string]schema.Attribute{
+							"allow_privilege_escalation": schema.BoolAttribute{
+								Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"capabilities": schema.SingleNestedAttribute{
+								Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "Added capabilities",
+										MarkdownDescription: "Added capabilities",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"drop": schema.ListAttribute{
+										Description:         "Removed capabilities",
+										MarkdownDescription: "Removed capabilities",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"privileged": schema.BoolAttribute{
+								Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proc_mount": schema.StringAttribute{
+								Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"read_only_root_filesystem": schema.BoolAttribute{
+								Description:         "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"run_as_group": schema.Int64Attribute{
+								Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"run_as_non_root": schema.BoolAttribute{
+								Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+								MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"run_as_user": schema.Int64Attribute{
+								Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"se_linux_options": schema.SingleNestedAttribute{
+								Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+								Attributes: map[string]schema.Attribute{
+									"level": schema.StringAttribute{
+										Description:         "Level is SELinux level label that applies to the container.",
+										MarkdownDescription: "Level is SELinux level label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"role": schema.StringAttribute{
+										Description:         "Role is a SELinux role label that applies to the container.",
+										MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "Type is a SELinux type label that applies to the container.",
+										MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"user": schema.StringAttribute{
+										Description:         "User is a SELinux user label that applies to the container.",
+										MarkdownDescription: "User is a SELinux user label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"seccomp_profile": schema.SingleNestedAttribute{
+								Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+								Attributes: map[string]schema.Attribute{
+									"localhost_profile": schema.StringAttribute{
+										Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+										MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"windows_options": schema.SingleNestedAttribute{
+								Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+								MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+								Attributes: map[string]schema.Attribute{
+									"gmsa_credential_spec": schema.StringAttribute{
+										Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+										MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"gmsa_credential_spec_name": schema.StringAttribute{
+										Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+										MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"host_process": schema.BoolAttribute{
+										Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_user_name": schema.StringAttribute{
+										Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+										MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"sql": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Sql is the script to be executed by the SqlJob.",
+						MarkdownDescription: "Sql is the script to be executed by the SqlJob.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"sql_config_map_key_ref": schema.SingleNestedAttribute{
-						Description:         "Selects a key from a ConfigMap.",
-						MarkdownDescription: "Selects a key from a ConfigMap.",
+						Description:         "SqlConfigMapKeyRef is a reference to a ConfigMap containing the Sql script. It is defaulted to a ConfigMap with the contents of the Sql field.",
+						MarkdownDescription: "SqlConfigMapKeyRef is a reference to a ConfigMap containing the Sql script. It is defaulted to a ConfigMap with the contents of the Sql field.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key to select.",
@@ -1358,8 +1831,8 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"tolerations": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Tolerations to be used in the SqlJob Pod.",
+						MarkdownDescription: "Tolerations to be used in the SqlJob Pod.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"effect": schema.StringAttribute{
@@ -1409,8 +1882,8 @@ func (r *MariadbMmontesIoSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"username": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Username to be impersonated when executing the SqlJob.",
+						MarkdownDescription: "Username to be impersonated when executing the SqlJob.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

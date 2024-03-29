@@ -73,6 +73,7 @@ Optional:
 - `initial_savepoint_path` (String)
 - `jar_uri` (String)
 - `parallelism` (Number)
+- `savepoint_redeploy_nonce` (Number)
 - `savepoint_trigger_nonce` (Number)
 - `state` (String)
 - `upgrade_mode` (String)

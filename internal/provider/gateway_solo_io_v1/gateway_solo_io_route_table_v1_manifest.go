@@ -361,6 +361,16 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							} `tfsdk:"request_headers" json:"requestHeaders,omitempty"`
 							SourceCluster *map[string]string `tfsdk:"source_cluster" json:"sourceCluster,omitempty"`
 						} `tfsdk:"actions" json:"actions,omitempty"`
+						Limit *struct {
+							DynamicMetadata *struct {
+								MetadataKey *struct {
+									Key  *string `tfsdk:"key" json:"key,omitempty"`
+									Path *[]struct {
+										Key *string `tfsdk:"key" json:"key,omitempty"`
+									} `tfsdk:"path" json:"path,omitempty"`
+								} `tfsdk:"metadata_key" json:"metadataKey,omitempty"`
+							} `tfsdk:"dynamic_metadata" json:"dynamicMetadata,omitempty"`
+						} `tfsdk:"limit" json:"limit,omitempty"`
 						SetActions *[]struct {
 							DestinationCluster *map[string]string `tfsdk:"destination_cluster" json:"destinationCluster,omitempty"`
 							GenericKey         *struct {
@@ -461,6 +471,16 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							} `tfsdk:"request_headers" json:"requestHeaders,omitempty"`
 							SourceCluster *map[string]string `tfsdk:"source_cluster" json:"sourceCluster,omitempty"`
 						} `tfsdk:"actions" json:"actions,omitempty"`
+						Limit *struct {
+							DynamicMetadata *struct {
+								MetadataKey *struct {
+									Key  *string `tfsdk:"key" json:"key,omitempty"`
+									Path *[]struct {
+										Key *string `tfsdk:"key" json:"key,omitempty"`
+									} `tfsdk:"path" json:"path,omitempty"`
+								} `tfsdk:"metadata_key" json:"metadataKey,omitempty"`
+							} `tfsdk:"dynamic_metadata" json:"dynamicMetadata,omitempty"`
+						} `tfsdk:"limit" json:"limit,omitempty"`
 						SetActions *[]struct {
 							DestinationCluster *map[string]string `tfsdk:"destination_cluster" json:"destinationCluster,omitempty"`
 							GenericKey         *struct {
@@ -551,6 +571,16 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							} `tfsdk:"request_headers" json:"requestHeaders,omitempty"`
 							SourceCluster *map[string]string `tfsdk:"source_cluster" json:"sourceCluster,omitempty"`
 						} `tfsdk:"actions" json:"actions,omitempty"`
+						Limit *struct {
+							DynamicMetadata *struct {
+								MetadataKey *struct {
+									Key  *string `tfsdk:"key" json:"key,omitempty"`
+									Path *[]struct {
+										Key *string `tfsdk:"key" json:"key,omitempty"`
+									} `tfsdk:"path" json:"path,omitempty"`
+								} `tfsdk:"metadata_key" json:"metadataKey,omitempty"`
+							} `tfsdk:"dynamic_metadata" json:"dynamicMetadata,omitempty"`
+						} `tfsdk:"limit" json:"limit,omitempty"`
 						SetActions *[]struct {
 							DestinationCluster *map[string]string `tfsdk:"destination_cluster" json:"destinationCluster,omitempty"`
 							GenericKey         *struct {
@@ -677,10 +707,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -722,10 +754,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -776,10 +810,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -848,10 +884,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -893,10 +931,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -947,10 +987,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 									EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 									Extractors       *struct {
-										Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-										Header   *string            `tfsdk:"header" json:"header,omitempty"`
-										Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-										Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+										Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+										Header          *string            `tfsdk:"header" json:"header,omitempty"`
+										Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+										Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+										ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+										Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 									} `tfsdk:"extractors" json:"extractors,omitempty"`
 									Headers *struct {
 										Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1007,10 +1049,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 							EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 							Extractors       *struct {
-								Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-								Header   *string            `tfsdk:"header" json:"header,omitempty"`
-								Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-								Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+								Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+								Header          *string            `tfsdk:"header" json:"header,omitempty"`
+								Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+								Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+								ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+								Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 							} `tfsdk:"extractors" json:"extractors,omitempty"`
 							Headers *struct {
 								Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1052,10 +1096,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 							EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 							Extractors       *struct {
-								Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-								Header   *string            `tfsdk:"header" json:"header,omitempty"`
-								Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-								Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+								Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+								Header          *string            `tfsdk:"header" json:"header,omitempty"`
+								Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+								Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+								ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+								Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 							} `tfsdk:"extractors" json:"extractors,omitempty"`
 							Headers *struct {
 								Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1124,6 +1170,7 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 				HostRedirect  *string `tfsdk:"host_redirect" json:"hostRedirect,omitempty"`
 				HttpsRedirect *bool   `tfsdk:"https_redirect" json:"httpsRedirect,omitempty"`
 				PathRedirect  *string `tfsdk:"path_redirect" json:"pathRedirect,omitempty"`
+				PortRedirect  *int64  `tfsdk:"port_redirect" json:"portRedirect,omitempty"`
 				PrefixRewrite *string `tfsdk:"prefix_rewrite" json:"prefixRewrite,omitempty"`
 				RegexRewrite  *struct {
 					Pattern *struct {
@@ -1193,10 +1240,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 										} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 										EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 										Extractors       *struct {
-											Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-											Header   *string            `tfsdk:"header" json:"header,omitempty"`
-											Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-											Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+											Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+											Header          *string            `tfsdk:"header" json:"header,omitempty"`
+											Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+											Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+											ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+											Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 										} `tfsdk:"extractors" json:"extractors,omitempty"`
 										Headers *struct {
 											Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1343,10 +1392,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 												EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 												Extractors       *struct {
-													Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-													Header   *string            `tfsdk:"header" json:"header,omitempty"`
-													Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-													Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+													Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+													Header          *string            `tfsdk:"header" json:"header,omitempty"`
+													Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+													Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+													ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+													Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 												} `tfsdk:"extractors" json:"extractors,omitempty"`
 												Headers *struct {
 													Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1388,10 +1439,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 												EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 												Extractors       *struct {
-													Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-													Header   *string            `tfsdk:"header" json:"header,omitempty"`
-													Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-													Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+													Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+													Header          *string            `tfsdk:"header" json:"header,omitempty"`
+													Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+													Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+													ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+													Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 												} `tfsdk:"extractors" json:"extractors,omitempty"`
 												Headers *struct {
 													Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1442,10 +1495,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 												EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 												Extractors       *struct {
-													Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-													Header   *string            `tfsdk:"header" json:"header,omitempty"`
-													Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-													Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+													Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+													Header          *string            `tfsdk:"header" json:"header,omitempty"`
+													Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+													Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+													ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+													Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 												} `tfsdk:"extractors" json:"extractors,omitempty"`
 												Headers *struct {
 													Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1514,10 +1569,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 												EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 												Extractors       *struct {
-													Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-													Header   *string            `tfsdk:"header" json:"header,omitempty"`
-													Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-													Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+													Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+													Header          *string            `tfsdk:"header" json:"header,omitempty"`
+													Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+													Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+													ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+													Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 												} `tfsdk:"extractors" json:"extractors,omitempty"`
 												Headers *struct {
 													Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1559,10 +1616,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 												EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 												Extractors       *struct {
-													Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-													Header   *string            `tfsdk:"header" json:"header,omitempty"`
-													Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-													Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+													Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+													Header          *string            `tfsdk:"header" json:"header,omitempty"`
+													Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+													Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+													ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+													Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 												} `tfsdk:"extractors" json:"extractors,omitempty"`
 												Headers *struct {
 													Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1613,10 +1672,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 												EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 												Extractors       *struct {
-													Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-													Header   *string            `tfsdk:"header" json:"header,omitempty"`
-													Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-													Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+													Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+													Header          *string            `tfsdk:"header" json:"header,omitempty"`
+													Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+													Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+													ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+													Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 												} `tfsdk:"extractors" json:"extractors,omitempty"`
 												Headers *struct {
 													Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1663,10 +1724,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 										} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 										EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 										Extractors       *struct {
-											Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-											Header   *string            `tfsdk:"header" json:"header,omitempty"`
-											Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-											Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+											Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+											Header          *string            `tfsdk:"header" json:"header,omitempty"`
+											Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+											Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+											ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+											Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 										} `tfsdk:"extractors" json:"extractors,omitempty"`
 										Headers *struct {
 											Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1708,10 +1771,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 										} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 										EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 										Extractors       *struct {
-											Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-											Header   *string            `tfsdk:"header" json:"header,omitempty"`
-											Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-											Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+											Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+											Header          *string            `tfsdk:"header" json:"header,omitempty"`
+											Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+											Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+											ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+											Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 										} `tfsdk:"extractors" json:"extractors,omitempty"`
 										Headers *struct {
 											Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -1787,10 +1852,12 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 								} `tfsdk:"dynamic_metadata_values" json:"dynamicMetadataValues,omitempty"`
 								EscapeCharacters *bool `tfsdk:"escape_characters" json:"escapeCharacters,omitempty"`
 								Extractors       *struct {
-									Body     *map[string]string `tfsdk:"body" json:"body,omitempty"`
-									Header   *string            `tfsdk:"header" json:"header,omitempty"`
-									Regex    *string            `tfsdk:"regex" json:"regex,omitempty"`
-									Subgroup *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
+									Body            *map[string]string `tfsdk:"body" json:"body,omitempty"`
+									Header          *string            `tfsdk:"header" json:"header,omitempty"`
+									Mode            *string            `tfsdk:"mode" json:"mode,omitempty"`
+									Regex           *string            `tfsdk:"regex" json:"regex,omitempty"`
+									ReplacementText *string            `tfsdk:"replacement_text" json:"replacementText,omitempty"`
+									Subgroup        *int64             `tfsdk:"subgroup" json:"subgroup,omitempty"`
 								} `tfsdk:"extractors" json:"extractors,omitempty"`
 								Headers *struct {
 									Text *string `tfsdk:"text" json:"text,omitempty"`
@@ -3971,6 +4038,60 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																Computed: false,
 															},
 
+															"limit": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"dynamic_metadata": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"metadata_key": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"path": schema.ListNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						NestedObject: schema.NestedAttributeObject{
+																							Attributes: map[string]schema.Attribute{
+																								"key": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"set_actions": schema.ListNestedAttribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -4627,6 +4748,60 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																Computed: false,
 															},
 
+															"limit": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"dynamic_metadata": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"metadata_key": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"path": schema.ListNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						NestedObject: schema.NestedAttributeObject{
+																							Attributes: map[string]schema.Attribute{
+																								"key": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"set_actions": schema.ListNestedAttribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -5217,6 +5392,60 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																			Optional:            true,
 																			Computed:            false,
 																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"limit": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"dynamic_metadata": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"metadata_key": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"path": schema.ListNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						NestedObject: schema.NestedAttributeObject{
+																							Attributes: map[string]schema.Attribute{
+																								"key": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
 																	},
 																},
 																Required: false,
@@ -6050,7 +6279,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -6341,7 +6586,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -6694,7 +6955,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -7174,7 +7451,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -7465,7 +7758,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -7818,7 +8127,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																								Computed:            false,
 																							},
 
+																							"mode": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
 																							"regex": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"replacement_text": schema.StringAttribute{
 																								Description:         "",
 																								MarkdownDescription: "",
 																								Required:            false,
@@ -8203,7 +8528,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																			Computed:            false,
 																		},
 
+																		"mode": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"regex": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"replacement_text": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -8494,7 +8835,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																			Computed:            false,
 																		},
 
+																		"mode": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"regex": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"replacement_text": schema.StringAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			Required:            false,
@@ -8943,6 +9300,18 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"port_redirect": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(4.294967295e+09),
+											},
 										},
 
 										"prefix_rewrite": schema.StringAttribute{
@@ -9399,7 +9768,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																										Computed:            false,
 																									},
 
+																									"mode": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
 																									"regex": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"replacement_text": schema.StringAttribute{
 																										Description:         "",
 																										MarkdownDescription: "",
 																										Required:            false,
@@ -10352,7 +10737,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																															Computed:            false,
 																														},
 
+																														"mode": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
 																														"regex": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
+																														"replacement_text": schema.StringAttribute{
 																															Description:         "",
 																															MarkdownDescription: "",
 																															Required:            false,
@@ -10643,7 +11044,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																															Computed:            false,
 																														},
 
+																														"mode": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
 																														"regex": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
+																														"replacement_text": schema.StringAttribute{
 																															Description:         "",
 																															MarkdownDescription: "",
 																															Required:            false,
@@ -10996,7 +11413,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																															Computed:            false,
 																														},
 
+																														"mode": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
 																														"regex": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
+																														"replacement_text": schema.StringAttribute{
 																															Description:         "",
 																															MarkdownDescription: "",
 																															Required:            false,
@@ -11476,7 +11909,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																															Computed:            false,
 																														},
 
+																														"mode": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
 																														"regex": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
+																														"replacement_text": schema.StringAttribute{
 																															Description:         "",
 																															MarkdownDescription: "",
 																															Required:            false,
@@ -11767,7 +12216,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																															Computed:            false,
 																														},
 
+																														"mode": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
 																														"regex": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
+																														"replacement_text": schema.StringAttribute{
 																															Description:         "",
 																															MarkdownDescription: "",
 																															Required:            false,
@@ -12120,7 +12585,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																															Computed:            false,
 																														},
 
+																														"mode": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
 																														"regex": schema.StringAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Required:            false,
+																															Optional:            true,
+																															Computed:            false,
+																														},
+
+																														"replacement_text": schema.StringAttribute{
 																															Description:         "",
 																															MarkdownDescription: "",
 																															Required:            false,
@@ -12439,7 +12920,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																										Computed:            false,
 																									},
 
+																									"mode": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
 																									"regex": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"replacement_text": schema.StringAttribute{
 																										Description:         "",
 																										MarkdownDescription: "",
 																										Required:            false,
@@ -12730,7 +13227,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																										Computed:            false,
 																									},
 
+																									"mode": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
 																									"regex": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"replacement_text": schema.StringAttribute{
 																										Description:         "",
 																										MarkdownDescription: "",
 																										Required:            false,
@@ -13247,7 +13760,23 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																					Computed:            false,
 																				},
 
+																				"mode": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"regex": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"replacement_text": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
 																					Required:            false,

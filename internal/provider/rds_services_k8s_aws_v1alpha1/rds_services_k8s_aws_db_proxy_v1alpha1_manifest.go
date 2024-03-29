@@ -150,8 +150,8 @@ func (r *RdsServicesK8SAwsDbproxyV1Alpha1Manifest) Schema(_ context.Context, _ d
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "DBProxySpec defines the desired state of DBProxy.  The data structure representing a proxy managed by the RDS Proxy.  This data type is used as a response element in the DescribeDBProxies action.",
-				MarkdownDescription: "DBProxySpec defines the desired state of DBProxy.  The data structure representing a proxy managed by the RDS Proxy.  This data type is used as a response element in the DescribeDBProxies action.",
+				Description:         "DBProxySpec defines the desired state of DBProxy.The data structure representing a proxy managed by the RDS Proxy.This data type is used as a response element in the DescribeDBProxies action.",
+				MarkdownDescription: "DBProxySpec defines the desired state of DBProxy.The data structure representing a proxy managed by the RDS Proxy.This data type is used as a response element in the DescribeDBProxies action.",
 				Attributes: map[string]schema.Attribute{
 					"auth": schema.ListNestedAttribute{
 						Description:         "The authorization mechanism that the proxy uses.",
@@ -213,56 +213,56 @@ func (r *RdsServicesK8SAwsDbproxyV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"debug_logging": schema.BoolAttribute{
-						Description:         "Whether the proxy includes detailed information about SQL statements in its logs. This information helps you to debug issues involving SQL behavior or the performance and scalability of the proxy connections. The debug information includes the text of SQL statements that you submit through the proxy. Thus, only enable this setting when needed for debugging, and only when you have security measures in place to safeguard any sensitive information that appears in the logs.",
-						MarkdownDescription: "Whether the proxy includes detailed information about SQL statements in its logs. This information helps you to debug issues involving SQL behavior or the performance and scalability of the proxy connections. The debug information includes the text of SQL statements that you submit through the proxy. Thus, only enable this setting when needed for debugging, and only when you have security measures in place to safeguard any sensitive information that appears in the logs.",
+						Description:         "Whether the proxy includes detailed information about SQL statements in itslogs. This information helps you to debug issues involving SQL behavior orthe performance and scalability of the proxy connections. The debug informationincludes the text of SQL statements that you submit through the proxy. Thus,only enable this setting when needed for debugging, and only when you havesecurity measures in place to safeguard any sensitive information that appearsin the logs.",
+						MarkdownDescription: "Whether the proxy includes detailed information about SQL statements in itslogs. This information helps you to debug issues involving SQL behavior orthe performance and scalability of the proxy connections. The debug informationincludes the text of SQL statements that you submit through the proxy. Thus,only enable this setting when needed for debugging, and only when you havesecurity measures in place to safeguard any sensitive information that appearsin the logs.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"engine_family": schema.StringAttribute{
-						Description:         "The kinds of databases that the proxy can connect to. This value determines which database network protocol the proxy recognizes when it interprets network traffic to and from the database. For Aurora MySQL, RDS for MariaDB, and RDS for MySQL databases, specify MYSQL. For Aurora PostgreSQL and RDS for PostgreSQL databases, specify POSTGRESQL. For RDS for Microsoft SQL Server, specify SQLSERVER.",
-						MarkdownDescription: "The kinds of databases that the proxy can connect to. This value determines which database network protocol the proxy recognizes when it interprets network traffic to and from the database. For Aurora MySQL, RDS for MariaDB, and RDS for MySQL databases, specify MYSQL. For Aurora PostgreSQL and RDS for PostgreSQL databases, specify POSTGRESQL. For RDS for Microsoft SQL Server, specify SQLSERVER.",
+						Description:         "The kinds of databases that the proxy can connect to. This value determineswhich database network protocol the proxy recognizes when it interprets networktraffic to and from the database. For Aurora MySQL, RDS for MariaDB, andRDS for MySQL databases, specify MYSQL. For Aurora PostgreSQL and RDS forPostgreSQL databases, specify POSTGRESQL. For RDS for Microsoft SQL Server,specify SQLSERVER.",
+						MarkdownDescription: "The kinds of databases that the proxy can connect to. This value determineswhich database network protocol the proxy recognizes when it interprets networktraffic to and from the database. For Aurora MySQL, RDS for MariaDB, andRDS for MySQL databases, specify MYSQL. For Aurora PostgreSQL and RDS forPostgreSQL databases, specify POSTGRESQL. For RDS for Microsoft SQL Server,specify SQLSERVER.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"idle_client_timeout": schema.Int64Attribute{
-						Description:         "The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it. You can set this value higher or lower than the connection timeout limit for the associated database.",
-						MarkdownDescription: "The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it. You can set this value higher or lower than the connection timeout limit for the associated database.",
+						Description:         "The number of seconds that a connection to the proxy can be inactive beforethe proxy disconnects it. You can set this value higher or lower than theconnection timeout limit for the associated database.",
+						MarkdownDescription: "The number of seconds that a connection to the proxy can be inactive beforethe proxy disconnects it. You can set this value higher or lower than theconnection timeout limit for the associated database.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The identifier for the proxy. This name must be unique for all proxies owned by your Amazon Web Services account in the specified Amazon Web Services Region. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens.",
-						MarkdownDescription: "The identifier for the proxy. This name must be unique for all proxies owned by your Amazon Web Services account in the specified Amazon Web Services Region. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens.",
+						Description:         "The identifier for the proxy. This name must be unique for all proxies ownedby your Amazon Web Services account in the specified Amazon Web ServicesRegion. An identifier must begin with a letter and must contain only ASCIIletters, digits, and hyphens; it can't end with a hyphen or contain two consecutivehyphens.",
+						MarkdownDescription: "The identifier for the proxy. This name must be unique for all proxies ownedby your Amazon Web Services account in the specified Amazon Web ServicesRegion. An identifier must begin with a letter and must contain only ASCIIletters, digits, and hyphens; it can't end with a hyphen or contain two consecutivehyphens.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"require_tls": schema.BoolAttribute{
-						Description:         "A Boolean parameter that specifies whether Transport Layer Security (TLS) encryption is required for connections to the proxy. By enabling this setting, you can enforce encrypted TLS connections to the proxy.",
-						MarkdownDescription: "A Boolean parameter that specifies whether Transport Layer Security (TLS) encryption is required for connections to the proxy. By enabling this setting, you can enforce encrypted TLS connections to the proxy.",
+						Description:         "A Boolean parameter that specifies whether Transport Layer Security (TLS)encryption is required for connections to the proxy. By enabling this setting,you can enforce encrypted TLS connections to the proxy.",
+						MarkdownDescription: "A Boolean parameter that specifies whether Transport Layer Security (TLS)encryption is required for connections to the proxy. By enabling this setting,you can enforce encrypted TLS connections to the proxy.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the IAM role that the proxy uses to access secrets in Amazon Web Services Secrets Manager.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM role that the proxy uses to access secrets in Amazon Web Services Secrets Manager.",
+						Description:         "The Amazon Resource Name (ARN) of the IAM role that the proxy uses to accesssecrets in Amazon Web Services Secrets Manager.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM role that the proxy uses to accesssecrets in Amazon Web Services Secrets Manager.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "An optional set of key-value pairs to associate arbitrary data of your choosing with the proxy.",
-						MarkdownDescription: "An optional set of key-value pairs to associate arbitrary data of your choosing with the proxy.",
+						Description:         "An optional set of key-value pairs to associate arbitrary data of your choosingwith the proxy.",
+						MarkdownDescription: "An optional set of key-value pairs to associate arbitrary data of your choosingwith the proxy.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

@@ -62,9 +62,12 @@ Optional:
 - `logging_ref` (String)
 - `loggly` (Attributes) (see [below for nested schema](#nestedatt--spec--loggly))
 - `logscale` (Attributes) (see [below for nested schema](#nestedatt--spec--logscale))
+- `loki` (Attributes) (see [below for nested schema](#nestedatt--spec--loki))
 - `mongodb` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb))
 - `mqtt` (Attributes) (see [below for nested schema](#nestedatt--spec--mqtt))
+- `openobserve` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve))
 - `redis` (Attributes) (see [below for nested schema](#nestedatt--spec--redis))
+- `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--s3))
 - `splunk_hec_event` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event))
 - `sumologic_http` (Attributes) (see [below for nested schema](#nestedatt--spec--sumologic_http))
 - `sumologic_syslog` (Attributes) (see [below for nested schema](#nestedatt--spec--sumologic_syslog))
@@ -95,6 +98,7 @@ Optional:
 - `persist_name` (String)
 - `response_action` (Map of String)
 - `retries` (Number)
+- `template` (String)
 - `time_reopen` (Number)
 - `timeout` (Number)
 - `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--tls))
@@ -184,6 +188,7 @@ Optional:
 - `cipher_suite` (String)
 - `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--elasticsearch--tls--key_file))
 - `peer_verify` (Boolean)
+- `ssl_version` (String)
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--elasticsearch--tls--ca_dir"></a>
@@ -539,6 +544,7 @@ Optional:
 - `cipher_suite` (String)
 - `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--http--tls--key_file))
 - `peer_verify` (Boolean)
+- `ssl_version` (String)
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--http--tls--ca_dir"></a>
@@ -856,6 +862,7 @@ Optional:
 - `cipher_suite` (String)
 - `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--loggly--tls--key_file))
 - `peer_verify` (Boolean)
+- `ssl_version` (String)
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--loggly--tls--ca_dir"></a>
@@ -1209,13 +1216,234 @@ Optional:
 
 
 
+<a id="nestedatt--spec--loki"></a>
+### Nested Schema for `spec.loki`
+
+Optional:
+
+- `auth` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth))
+- `batch_lines` (Number)
+- `batch_timeout` (Number)
+- `disk_buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--disk_buffer))
+- `labels` (Map of String)
+- `log_fifo_size` (Number)
+- `persist_name` (String)
+- `retries` (Number)
+- `template` (String)
+- `time_reopen` (Number)
+- `timestamp` (String)
+- `url` (String)
+- `workers` (Number)
+
+<a id="nestedatt--spec--loki--auth"></a>
+### Nested Schema for `spec.loki.auth`
+
+Optional:
+
+- `adc` (Map of String)
+- `alts` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--alts))
+- `insecure` (Map of String)
+- `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls))
+
+<a id="nestedatt--spec--loki--auth--alts"></a>
+### Nested Schema for `spec.loki.auth.tls`
+
+Optional:
+
+- `target_service_accounts` (List of String)
+
+
+<a id="nestedatt--spec--loki--auth--tls"></a>
+### Nested Schema for `spec.loki.auth.tls`
+
+Optional:
+
+- `ca_file` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--ca_file))
+- `cert_file` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--cert_file))
+- `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--key_file))
+
+<a id="nestedatt--spec--loki--auth--tls--ca_file"></a>
+### Nested Schema for `spec.loki.auth.tls.ca_file`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--ca_file--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--ca_file--value_from))
+
+<a id="nestedatt--spec--loki--auth--tls--ca_file--mount_from"></a>
+### Nested Schema for `spec.loki.auth.tls.ca_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--ca_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--loki--auth--tls--ca_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.auth.tls.ca_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--loki--auth--tls--ca_file--value_from"></a>
+### Nested Schema for `spec.loki.auth.tls.ca_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--ca_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--loki--auth--tls--ca_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.auth.tls.ca_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--loki--auth--tls--cert_file"></a>
+### Nested Schema for `spec.loki.auth.tls.cert_file`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--cert_file--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--cert_file--value_from))
+
+<a id="nestedatt--spec--loki--auth--tls--cert_file--mount_from"></a>
+### Nested Schema for `spec.loki.auth.tls.cert_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--cert_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--loki--auth--tls--cert_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.auth.tls.cert_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--loki--auth--tls--cert_file--value_from"></a>
+### Nested Schema for `spec.loki.auth.tls.cert_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--cert_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--loki--auth--tls--cert_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.auth.tls.cert_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--loki--auth--tls--key_file"></a>
+### Nested Schema for `spec.loki.auth.tls.key_file`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--key_file--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--key_file--value_from))
+
+<a id="nestedatt--spec--loki--auth--tls--key_file--mount_from"></a>
+### Nested Schema for `spec.loki.auth.tls.key_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--key_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--loki--auth--tls--key_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.auth.tls.key_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--loki--auth--tls--key_file--value_from"></a>
+### Nested Schema for `spec.loki.auth.tls.key_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--loki--auth--tls--key_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--loki--auth--tls--key_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.loki.auth.tls.key_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+
+
+<a id="nestedatt--spec--loki--disk_buffer"></a>
+### Nested Schema for `spec.loki.disk_buffer`
+
+Required:
+
+- `disk_buf_size` (Number)
+- `reliable` (Boolean)
+
+Optional:
+
+- `compaction` (Boolean)
+- `dir` (String)
+- `mem_buf_length` (Number)
+- `mem_buf_size` (Number)
+- `q_out_size` (Number)
+
+
+
 <a id="nestedatt--spec--mongodb"></a>
 ### Nested Schema for `spec.mongodb`
 
 Required:
 
 - `collection` (String)
-- `compaction` (Boolean)
 
 Optional:
 
@@ -1231,9 +1459,9 @@ Optional:
 - `persist_name` (String)
 - `retries` (Number)
 - `time_reopen` (Number)
-- `uri` (String)
+- `uri` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--uri))
 - `value_pairs` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--value_pairs))
-- `write_concern` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--write_concern))
+- `write_concern` (String)
 
 <a id="nestedatt--spec--mongodb--disk_buffer"></a>
 ### Nested Schema for `spec.mongodb.disk_buffer`
@@ -1252,55 +1480,67 @@ Optional:
 - `q_out_size` (Number)
 
 
+<a id="nestedatt--spec--mongodb--uri"></a>
+### Nested Schema for `spec.mongodb.uri`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--uri--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--uri--value_from))
+
+<a id="nestedatt--spec--mongodb--uri--mount_from"></a>
+### Nested Schema for `spec.mongodb.uri.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--uri--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--mongodb--uri--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mongodb.uri.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--mongodb--uri--value_from"></a>
+### Nested Schema for `spec.mongodb.uri.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--uri--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--mongodb--uri--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.mongodb.uri.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
 <a id="nestedatt--spec--mongodb--value_pairs"></a>
 ### Nested Schema for `spec.mongodb.value_pairs`
 
 Optional:
 
-- `exclude` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--value_pairs--exclude))
-- `key` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--value_pairs--key))
-- `pair` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--value_pairs--pair))
-- `scope` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb--value_pairs--scope))
-
-<a id="nestedatt--spec--mongodb--value_pairs--exclude"></a>
-### Nested Schema for `spec.mongodb.value_pairs.scope`
-
-Optional:
-
-- `raw_string` (String)
-
-
-<a id="nestedatt--spec--mongodb--value_pairs--key"></a>
-### Nested Schema for `spec.mongodb.value_pairs.scope`
-
-Optional:
-
-- `raw_string` (String)
-
-
-<a id="nestedatt--spec--mongodb--value_pairs--pair"></a>
-### Nested Schema for `spec.mongodb.value_pairs.scope`
-
-Optional:
-
-- `raw_string` (String)
-
-
-<a id="nestedatt--spec--mongodb--value_pairs--scope"></a>
-### Nested Schema for `spec.mongodb.value_pairs.scope`
-
-Optional:
-
-- `raw_string` (String)
-
-
-
-<a id="nestedatt--spec--mongodb--write_concern"></a>
-### Nested Schema for `spec.mongodb.write_concern`
-
-Optional:
-
-- `raw_string` (String)
+- `exclude` (String)
+- `key` (String)
+- `pair` (String)
+- `scope` (String)
 
 
 
@@ -1314,6 +1554,331 @@ Optional:
 - `qos` (Number)
 - `template` (String)
 - `topic` (String)
+
+
+<a id="nestedatt--spec--openobserve"></a>
+### Nested Schema for `spec.openobserve`
+
+Optional:
+
+- `batch_bytes` (Number)
+- `batch_lines` (Number)
+- `batch_timeout` (Number)
+- `body` (String)
+- `body_prefix` (String)
+- `body_suffix` (String)
+- `delimiter` (String)
+- `disk_buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--disk_buffer))
+- `headers` (List of String)
+- `log_fifo_size` (Number)
+- `method` (String)
+- `organization` (String)
+- `password` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--password))
+- `persist_name` (String)
+- `port` (Number)
+- `record` (String)
+- `response_action` (Map of String)
+- `retries` (Number)
+- `stream` (String)
+- `time_reopen` (Number)
+- `timeout` (Number)
+- `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls))
+- `url` (String)
+- `user` (String)
+- `user_agent` (String)
+- `workers` (Number)
+
+<a id="nestedatt--spec--openobserve--disk_buffer"></a>
+### Nested Schema for `spec.openobserve.disk_buffer`
+
+Required:
+
+- `disk_buf_size` (Number)
+- `reliable` (Boolean)
+
+Optional:
+
+- `compaction` (Boolean)
+- `dir` (String)
+- `mem_buf_length` (Number)
+- `mem_buf_size` (Number)
+- `q_out_size` (Number)
+
+
+<a id="nestedatt--spec--openobserve--password"></a>
+### Nested Schema for `spec.openobserve.password`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--password--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--password--value_from))
+
+<a id="nestedatt--spec--openobserve--password--mount_from"></a>
+### Nested Schema for `spec.openobserve.password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--openobserve--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.openobserve.password.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--openobserve--password--value_from"></a>
+### Nested Schema for `spec.openobserve.password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--openobserve--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.openobserve.password.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--openobserve--tls"></a>
+### Nested Schema for `spec.openobserve.tls`
+
+Optional:
+
+- `ca_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--ca_dir))
+- `ca_file` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--ca_file))
+- `cert_file` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--cert_file))
+- `cipher_suite` (String)
+- `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--key_file))
+- `peer_verify` (Boolean)
+- `ssl_version` (String)
+- `use_system_cert_store` (Boolean)
+
+<a id="nestedatt--spec--openobserve--tls--ca_dir"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--value_from))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--value_from"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--openobserve--tls--ca_file"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--value_from))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--value_from"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--openobserve--tls--cert_file"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--value_from))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--value_from"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--openobserve--tls--key_file"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--value_from))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--value_from"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve--tls--use_system_cert_store--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--openobserve--tls--use_system_cert_store--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.openobserve.tls.use_system_cert_store.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
 
 
 <a id="nestedatt--spec--redis"></a>
@@ -1412,6 +1977,138 @@ Optional:
 - `mem_buf_length` (Number)
 - `mem_buf_size` (Number)
 - `q_out_size` (Number)
+
+
+
+<a id="nestedatt--spec--s3"></a>
+### Nested Schema for `spec.s3`
+
+Optional:
+
+- `access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--access_key))
+- `bucket` (String)
+- `canned_acl` (String)
+- `chunk_size` (Number)
+- `compression` (Boolean)
+- `compresslevel` (Number)
+- `flush_grace_period` (Number)
+- `log_fifo_size` (Number)
+- `max_object_size` (Number)
+- `max_pending_uploads` (Number)
+- `object_key` (String)
+- `object_key_timestamp` (String)
+- `persist_name` (String)
+- `region` (String)
+- `retries` (Number)
+- `secret_key` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--secret_key))
+- `storage_class` (String)
+- `template` (String)
+- `throttle` (Number)
+- `upload_threads` (Number)
+- `url` (String)
+
+<a id="nestedatt--spec--s3--access_key"></a>
+### Nested Schema for `spec.s3.access_key`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--access_key--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--access_key--value_from))
+
+<a id="nestedatt--spec--s3--access_key--mount_from"></a>
+### Nested Schema for `spec.s3.access_key.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--access_key--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--s3--access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.s3.access_key.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--s3--access_key--value_from"></a>
+### Nested Schema for `spec.s3.access_key.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--access_key--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--s3--access_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.s3.access_key.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--s3--secret_key"></a>
+### Nested Schema for `spec.s3.secret_key`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--secret_key--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--secret_key--value_from))
+
+<a id="nestedatt--spec--s3--secret_key--mount_from"></a>
+### Nested Schema for `spec.s3.secret_key.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--secret_key--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--s3--secret_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.s3.secret_key.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--s3--secret_key--value_from"></a>
+### Nested Schema for `spec.s3.secret_key.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--secret_key--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--s3--secret_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.s3.secret_key.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
 
 
 
@@ -1537,6 +2234,7 @@ Optional:
 - `cipher_suite` (String)
 - `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event--tls--key_file))
 - `peer_verify` (Boolean)
+- `ssl_version` (String)
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--splunk_hec_event--tls--ca_dir"></a>
@@ -1899,6 +2597,7 @@ Optional:
 - `cipher_suite` (String)
 - `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--sumologic_http--tls--key_file))
 - `peer_verify` (Boolean)
+- `ssl_version` (String)
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--sumologic_http--tls--ca_dir"></a>
@@ -2204,6 +2903,7 @@ Optional:
 - `cipher_suite` (String)
 - `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--sumologic_syslog--tls--key_file))
 - `peer_verify` (Boolean)
+- `ssl_version` (String)
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--sumologic_syslog--tls--ca_dir"></a>
@@ -2464,6 +3164,7 @@ Optional:
 - `cipher_suite` (String)
 - `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog--tls--key_file))
 - `peer_verify` (Boolean)
+- `ssl_version` (String)
 - `use_system_cert_store` (Boolean)
 
 <a id="nestedatt--spec--syslog--tls--ca_dir"></a>

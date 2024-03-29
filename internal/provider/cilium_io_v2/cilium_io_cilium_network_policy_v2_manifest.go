@@ -55,7 +55,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			Icmps *[]struct {
 				Fields *[]struct {
 					Family *string `tfsdk:"family" json:"family,omitempty"`
-					Type   *int64  `tfsdk:"type" json:"type,omitempty"`
+					Type   *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"fields" json:"fields,omitempty"`
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToCIDR    *[]string `tfsdk:"to_cidr" json:"toCIDR,omitempty"`
@@ -85,13 +85,22 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 					SecurityGroupsNames *[]string          `tfsdk:"security_groups_names" json:"securityGroupsNames,omitempty"`
 				} `tfsdk:"aws" json:"aws,omitempty"`
 			} `tfsdk:"to_groups" json:"toGroups,omitempty"`
+			ToNodes *[]struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"to_nodes" json:"toNodes,omitempty"`
 			ToPorts *[]struct {
 				Listener *struct {
 					EnvoyConfig *struct {
 						Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"envoy_config" json:"envoyConfig,omitempty"`
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Priority *int64  `tfsdk:"priority" json:"priority,omitempty"`
 				} `tfsdk:"listener" json:"listener,omitempty"`
 				OriginatingTLS *struct {
 					Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
@@ -177,7 +186,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			Icmps *[]struct {
 				Fields *[]struct {
 					Family *string `tfsdk:"family" json:"family,omitempty"`
-					Type   *int64  `tfsdk:"type" json:"type,omitempty"`
+					Type   *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"fields" json:"fields,omitempty"`
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToCIDR    *[]string `tfsdk:"to_cidr" json:"toCIDR,omitempty"`
@@ -203,6 +212,14 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 					SecurityGroupsNames *[]string          `tfsdk:"security_groups_names" json:"securityGroupsNames,omitempty"`
 				} `tfsdk:"aws" json:"aws,omitempty"`
 			} `tfsdk:"to_groups" json:"toGroups,omitempty"`
+			ToNodes *[]struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"to_nodes" json:"toNodes,omitempty"`
 			ToPorts *[]struct {
 				Ports *[]struct {
 					Port     *string `tfsdk:"port" json:"port,omitempty"`
@@ -235,6 +252,10 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 				} `tfsdk:"k8s_service_selector" json:"k8sServiceSelector,omitempty"`
 			} `tfsdk:"to_services" json:"toServices,omitempty"`
 		} `tfsdk:"egress_deny" json:"egressDeny,omitempty"`
+		EnableDefaultDeny *struct {
+			Egress  *bool `tfsdk:"egress" json:"egress,omitempty"`
+			Ingress *bool `tfsdk:"ingress" json:"ingress,omitempty"`
+		} `tfsdk:"enable_default_deny" json:"enableDefaultDeny,omitempty"`
 		EndpointSelector *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -262,6 +283,22 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"from_endpoints" json:"fromEndpoints,omitempty"`
 			FromEntities *[]string `tfsdk:"from_entities" json:"fromEntities,omitempty"`
+			FromGroups   *[]struct {
+				Aws *struct {
+					Labels              *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Region              *string            `tfsdk:"region" json:"region,omitempty"`
+					SecurityGroupsIds   *[]string          `tfsdk:"security_groups_ids" json:"securityGroupsIds,omitempty"`
+					SecurityGroupsNames *[]string          `tfsdk:"security_groups_names" json:"securityGroupsNames,omitempty"`
+				} `tfsdk:"aws" json:"aws,omitempty"`
+			} `tfsdk:"from_groups" json:"fromGroups,omitempty"`
+			FromNodes *[]struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"from_nodes" json:"fromNodes,omitempty"`
 			FromRequires *[]struct {
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -273,7 +310,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			Icmps *[]struct {
 				Fields *[]struct {
 					Family *string `tfsdk:"family" json:"family,omitempty"`
-					Type   *int64  `tfsdk:"type" json:"type,omitempty"`
+					Type   *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"fields" json:"fields,omitempty"`
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToPorts *[]struct {
@@ -282,7 +319,8 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 						Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"envoy_config" json:"envoyConfig,omitempty"`
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Priority *int64  `tfsdk:"priority" json:"priority,omitempty"`
 				} `tfsdk:"listener" json:"listener,omitempty"`
 				OriginatingTLS *struct {
 					Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
@@ -355,6 +393,22 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"from_endpoints" json:"fromEndpoints,omitempty"`
 			FromEntities *[]string `tfsdk:"from_entities" json:"fromEntities,omitempty"`
+			FromGroups   *[]struct {
+				Aws *struct {
+					Labels              *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Region              *string            `tfsdk:"region" json:"region,omitempty"`
+					SecurityGroupsIds   *[]string          `tfsdk:"security_groups_ids" json:"securityGroupsIds,omitempty"`
+					SecurityGroupsNames *[]string          `tfsdk:"security_groups_names" json:"securityGroupsNames,omitempty"`
+				} `tfsdk:"aws" json:"aws,omitempty"`
+			} `tfsdk:"from_groups" json:"fromGroups,omitempty"`
+			FromNodes *[]struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"from_nodes" json:"fromNodes,omitempty"`
 			FromRequires *[]struct {
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -366,7 +420,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			Icmps *[]struct {
 				Fields *[]struct {
 					Family *string `tfsdk:"family" json:"family,omitempty"`
-					Type   *int64  `tfsdk:"type" json:"type,omitempty"`
+					Type   *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"fields" json:"fields,omitempty"`
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToPorts *[]struct {
@@ -399,7 +453,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			Icmps *[]struct {
 				Fields *[]struct {
 					Family *string `tfsdk:"family" json:"family,omitempty"`
-					Type   *int64  `tfsdk:"type" json:"type,omitempty"`
+					Type   *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"fields" json:"fields,omitempty"`
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToCIDR    *[]string `tfsdk:"to_cidr" json:"toCIDR,omitempty"`
@@ -429,13 +483,22 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 					SecurityGroupsNames *[]string          `tfsdk:"security_groups_names" json:"securityGroupsNames,omitempty"`
 				} `tfsdk:"aws" json:"aws,omitempty"`
 			} `tfsdk:"to_groups" json:"toGroups,omitempty"`
+			ToNodes *[]struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"to_nodes" json:"toNodes,omitempty"`
 			ToPorts *[]struct {
 				Listener *struct {
 					EnvoyConfig *struct {
 						Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"envoy_config" json:"envoyConfig,omitempty"`
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Priority *int64  `tfsdk:"priority" json:"priority,omitempty"`
 				} `tfsdk:"listener" json:"listener,omitempty"`
 				OriginatingTLS *struct {
 					Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
@@ -521,7 +584,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			Icmps *[]struct {
 				Fields *[]struct {
 					Family *string `tfsdk:"family" json:"family,omitempty"`
-					Type   *int64  `tfsdk:"type" json:"type,omitempty"`
+					Type   *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"fields" json:"fields,omitempty"`
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToCIDR    *[]string `tfsdk:"to_cidr" json:"toCIDR,omitempty"`
@@ -547,6 +610,14 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 					SecurityGroupsNames *[]string          `tfsdk:"security_groups_names" json:"securityGroupsNames,omitempty"`
 				} `tfsdk:"aws" json:"aws,omitempty"`
 			} `tfsdk:"to_groups" json:"toGroups,omitempty"`
+			ToNodes *[]struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"to_nodes" json:"toNodes,omitempty"`
 			ToPorts *[]struct {
 				Ports *[]struct {
 					Port     *string `tfsdk:"port" json:"port,omitempty"`
@@ -579,6 +650,10 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 				} `tfsdk:"k8s_service_selector" json:"k8sServiceSelector,omitempty"`
 			} `tfsdk:"to_services" json:"toServices,omitempty"`
 		} `tfsdk:"egress_deny" json:"egressDeny,omitempty"`
+		EnableDefaultDeny *struct {
+			Egress  *bool `tfsdk:"egress" json:"egress,omitempty"`
+			Ingress *bool `tfsdk:"ingress" json:"ingress,omitempty"`
+		} `tfsdk:"enable_default_deny" json:"enableDefaultDeny,omitempty"`
 		EndpointSelector *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -606,6 +681,22 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"from_endpoints" json:"fromEndpoints,omitempty"`
 			FromEntities *[]string `tfsdk:"from_entities" json:"fromEntities,omitempty"`
+			FromGroups   *[]struct {
+				Aws *struct {
+					Labels              *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Region              *string            `tfsdk:"region" json:"region,omitempty"`
+					SecurityGroupsIds   *[]string          `tfsdk:"security_groups_ids" json:"securityGroupsIds,omitempty"`
+					SecurityGroupsNames *[]string          `tfsdk:"security_groups_names" json:"securityGroupsNames,omitempty"`
+				} `tfsdk:"aws" json:"aws,omitempty"`
+			} `tfsdk:"from_groups" json:"fromGroups,omitempty"`
+			FromNodes *[]struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"from_nodes" json:"fromNodes,omitempty"`
 			FromRequires *[]struct {
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -617,7 +708,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			Icmps *[]struct {
 				Fields *[]struct {
 					Family *string `tfsdk:"family" json:"family,omitempty"`
-					Type   *int64  `tfsdk:"type" json:"type,omitempty"`
+					Type   *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"fields" json:"fields,omitempty"`
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToPorts *[]struct {
@@ -626,7 +717,8 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 						Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"envoy_config" json:"envoyConfig,omitempty"`
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Priority *int64  `tfsdk:"priority" json:"priority,omitempty"`
 				} `tfsdk:"listener" json:"listener,omitempty"`
 				OriginatingTLS *struct {
 					Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
@@ -699,6 +791,22 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"from_endpoints" json:"fromEndpoints,omitempty"`
 			FromEntities *[]string `tfsdk:"from_entities" json:"fromEntities,omitempty"`
+			FromGroups   *[]struct {
+				Aws *struct {
+					Labels              *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Region              *string            `tfsdk:"region" json:"region,omitempty"`
+					SecurityGroupsIds   *[]string          `tfsdk:"security_groups_ids" json:"securityGroupsIds,omitempty"`
+					SecurityGroupsNames *[]string          `tfsdk:"security_groups_names" json:"securityGroupsNames,omitempty"`
+				} `tfsdk:"aws" json:"aws,omitempty"`
+			} `tfsdk:"from_groups" json:"fromGroups,omitempty"`
+			FromNodes *[]struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"from_nodes" json:"fromNodes,omitempty"`
 			FromRequires *[]struct {
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -710,7 +818,7 @@ type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
 			Icmps *[]struct {
 				Fields *[]struct {
 					Family *string `tfsdk:"family" json:"family,omitempty"`
-					Type   *int64  `tfsdk:"type" json:"type,omitempty"`
+					Type   *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"fields" json:"fields,omitempty"`
 			} `tfsdk:"icmps" json:"icmps,omitempty"`
 			ToPorts *[]struct {
@@ -875,16 +983,12 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 															},
 														},
 
-														"type": schema.Int64Attribute{
-															Description:         "Type is a ICMP-type. It should be 0-255 (8bit).",
-															MarkdownDescription: "Type is a ICMP-type. It should be 0-255 (8bit).",
+														"type": schema.StringAttribute{
+															Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+															MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
-															Validators: []validator.Int64{
-																int64validator.AtLeast(0),
-																int64validator.AtMost(255),
-															},
 														},
 													},
 												},
@@ -925,8 +1029,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1107,6 +1211,65 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 									Computed: false,
 								},
 
+								"to_nodes": schema.ListNestedAttribute{
+									Description:         "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+									MarkdownDescription: "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"match_expressions": schema.ListNestedAttribute{
+												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "key is the label key that the selector applies to.",
+															MarkdownDescription: "key is the label key that the selector applies to.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+															},
+														},
+
+														"values": schema.ListAttribute{
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"match_labels": schema.MapAttribute{
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"to_ports": schema.ListNestedAttribute{
 									Description:         "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is allowed to initiate connections to destination port 8080/tcp",
 									MarkdownDescription: "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is allowed to initiate connections to destination port 8080/tcp",
@@ -1117,8 +1280,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
 												Attributes: map[string]schema.Attribute{
 													"envoy_config": schema.SingleNestedAttribute{
-														Description:         "EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined.",
-														MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined.",
+														Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
+														MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
 														Attributes: map[string]schema.Attribute{
 															"kind": schema.StringAttribute{
 																Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
@@ -1155,6 +1318,18 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 														Validators: []validator.String{
 															stringvalidator.LengthAtLeast(1),
+														},
+													},
+
+													"priority": schema.Int64Attribute{
+														Description:         "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+														MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(1),
+															int64validator.AtMost(100),
 														},
 													},
 												},
@@ -1751,16 +1926,12 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 															},
 														},
 
-														"type": schema.Int64Attribute{
-															Description:         "Type is a ICMP-type. It should be 0-255 (8bit).",
-															MarkdownDescription: "Type is a ICMP-type. It should be 0-255 (8bit).",
+														"type": schema.StringAttribute{
+															Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+															MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
-															Validators: []validator.Int64{
-																int64validator.AtLeast(0),
-																int64validator.AtMost(255),
-															},
 														},
 													},
 												},
@@ -1801,8 +1972,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1942,6 +2113,65 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"to_nodes": schema.ListNestedAttribute{
+									Description:         "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+									MarkdownDescription: "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"match_expressions": schema.ListNestedAttribute{
+												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "key is the label key that the selector applies to.",
+															MarkdownDescription: "key is the label key that the selector applies to.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+															},
+														},
+
+														"values": schema.ListAttribute{
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"match_labels": schema.MapAttribute{
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 									},
@@ -2169,6 +2399,31 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 						Computed: false,
 					},
 
+					"enable_default_deny": schema.SingleNestedAttribute{
+						Description:         "EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.  If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.  If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.  This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode.",
+						MarkdownDescription: "EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.  If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.  If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.  This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode.",
+						Attributes: map[string]schema.Attribute{
+							"egress": schema.BoolAttribute{
+								Description:         "Whether or not the endpoint should have a default-deny rule applied to egress traffic.",
+								MarkdownDescription: "Whether or not the endpoint should have a default-deny rule applied to egress traffic.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"ingress": schema.BoolAttribute{
+								Description:         "Whether or not the endpoint should have a default-deny rule applied to ingress traffic.",
+								MarkdownDescription: "Whether or not the endpoint should have a default-deny rule applied to ingress traffic.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"endpoint_selector": schema.SingleNestedAttribute{
 						Description:         "EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive.",
 						MarkdownDescription: "EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive.",
@@ -2277,8 +2532,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2371,6 +2626,120 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 									Computed:            false,
 								},
 
+								"from_groups": schema.ListNestedAttribute{
+									Description:         "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+									MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"aws": schema.SingleNestedAttribute{
+												Description:         "AWSGroup is an structure that can be used to whitelisting information from AWS integration",
+												MarkdownDescription: "AWSGroup is an structure that can be used to whitelisting information from AWS integration",
+												Attributes: map[string]schema.Attribute{
+													"labels": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"region": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"security_groups_ids": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"security_groups_names": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"from_nodes": schema.ListNestedAttribute{
+									Description:         "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+									MarkdownDescription: "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"match_expressions": schema.ListNestedAttribute{
+												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "key is the label key that the selector applies to.",
+															MarkdownDescription: "key is the label key that the selector applies to.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+															},
+														},
+
+														"values": schema.ListAttribute{
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"match_labels": schema.MapAttribute{
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"from_requires": schema.ListNestedAttribute{
 									Description:         "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
 									MarkdownDescription: "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
@@ -2451,16 +2820,12 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 															},
 														},
 
-														"type": schema.Int64Attribute{
-															Description:         "Type is a ICMP-type. It should be 0-255 (8bit).",
-															MarkdownDescription: "Type is a ICMP-type. It should be 0-255 (8bit).",
+														"type": schema.StringAttribute{
+															Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+															MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
-															Validators: []validator.Int64{
-																int64validator.AtLeast(0),
-																int64validator.AtMost(255),
-															},
 														},
 													},
 												},
@@ -2485,8 +2850,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
 												Attributes: map[string]schema.Attribute{
 													"envoy_config": schema.SingleNestedAttribute{
-														Description:         "EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined.",
-														MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined.",
+														Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
+														MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
 														Attributes: map[string]schema.Attribute{
 															"kind": schema.StringAttribute{
 																Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
@@ -2523,6 +2888,18 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 														Validators: []validator.String{
 															stringvalidator.LengthAtLeast(1),
+														},
+													},
+
+													"priority": schema.Int64Attribute{
+														Description:         "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+														MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(1),
+															int64validator.AtMost(100),
 														},
 													},
 												},
@@ -2955,8 +3332,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 											},
 
 											"cidr_group_ref": schema.StringAttribute{
-												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
-												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
+												Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+												MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3049,6 +3426,120 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 									Computed:            false,
 								},
 
+								"from_groups": schema.ListNestedAttribute{
+									Description:         "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+									MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"aws": schema.SingleNestedAttribute{
+												Description:         "AWSGroup is an structure that can be used to whitelisting information from AWS integration",
+												MarkdownDescription: "AWSGroup is an structure that can be used to whitelisting information from AWS integration",
+												Attributes: map[string]schema.Attribute{
+													"labels": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"region": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"security_groups_ids": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"security_groups_names": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"from_nodes": schema.ListNestedAttribute{
+									Description:         "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+									MarkdownDescription: "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"match_expressions": schema.ListNestedAttribute{
+												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "key is the label key that the selector applies to.",
+															MarkdownDescription: "key is the label key that the selector applies to.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+															},
+														},
+
+														"values": schema.ListAttribute{
+															Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"match_labels": schema.MapAttribute{
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"from_requires": schema.ListNestedAttribute{
 									Description:         "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
 									MarkdownDescription: "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
@@ -3129,16 +3620,12 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 															},
 														},
 
-														"type": schema.Int64Attribute{
-															Description:         "Type is a ICMP-type. It should be 0-255 (8bit).",
-															MarkdownDescription: "Type is a ICMP-type. It should be 0-255 (8bit).",
+														"type": schema.StringAttribute{
+															Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+															MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
-															Validators: []validator.Int64{
-																int64validator.AtLeast(0),
-																int64validator.AtMost(255),
-															},
 														},
 													},
 												},
@@ -3359,16 +3846,12 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 																},
 															},
 
-															"type": schema.Int64Attribute{
-																Description:         "Type is a ICMP-type. It should be 0-255 (8bit).",
-																MarkdownDescription: "Type is a ICMP-type. It should be 0-255 (8bit).",
+															"type": schema.StringAttribute{
+																Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+																MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
-																Validators: []validator.Int64{
-																	int64validator.AtLeast(0),
-																	int64validator.AtMost(255),
-																},
 															},
 														},
 													},
@@ -3409,8 +3892,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3591,6 +4074,65 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 										Computed: false,
 									},
 
+									"to_nodes": schema.ListNestedAttribute{
+										Description:         "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+										MarkdownDescription: "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"match_expressions": schema.ListNestedAttribute{
+													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "key is the label key that the selector applies to.",
+																MarkdownDescription: "key is the label key that the selector applies to.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																},
+															},
+
+															"values": schema.ListAttribute{
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"match_labels": schema.MapAttribute{
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"to_ports": schema.ListNestedAttribute{
 										Description:         "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is allowed to initiate connections to destination port 8080/tcp",
 										MarkdownDescription: "ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is allowed to initiate connections to destination port 8080/tcp",
@@ -3601,8 +4143,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
 													Attributes: map[string]schema.Attribute{
 														"envoy_config": schema.SingleNestedAttribute{
-															Description:         "EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined.",
-															MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined.",
+															Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
+															MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
 															Attributes: map[string]schema.Attribute{
 																"kind": schema.StringAttribute{
 																	Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
@@ -3639,6 +4181,18 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 															Computed:            false,
 															Validators: []validator.String{
 																stringvalidator.LengthAtLeast(1),
+															},
+														},
+
+														"priority": schema.Int64Attribute{
+															Description:         "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+															MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(1),
+																int64validator.AtMost(100),
 															},
 														},
 													},
@@ -4235,16 +4789,12 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 																},
 															},
 
-															"type": schema.Int64Attribute{
-																Description:         "Type is a ICMP-type. It should be 0-255 (8bit).",
-																MarkdownDescription: "Type is a ICMP-type. It should be 0-255 (8bit).",
+															"type": schema.StringAttribute{
+																Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+																MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
-																Validators: []validator.Int64{
-																	int64validator.AtLeast(0),
-																	int64validator.AtMost(255),
-																},
 															},
 														},
 													},
@@ -4285,8 +4835,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4426,6 +4976,65 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"to_nodes": schema.ListNestedAttribute{
+										Description:         "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+										MarkdownDescription: "ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"match_expressions": schema.ListNestedAttribute{
+													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "key is the label key that the selector applies to.",
+																MarkdownDescription: "key is the label key that the selector applies to.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																},
+															},
+
+															"values": schema.ListAttribute{
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"match_labels": schema.MapAttribute{
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 											},
 										},
@@ -4653,6 +5262,31 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 							Computed: false,
 						},
 
+						"enable_default_deny": schema.SingleNestedAttribute{
+							Description:         "EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.  If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.  If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.  This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode.",
+							MarkdownDescription: "EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.  If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.  If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.  This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode.",
+							Attributes: map[string]schema.Attribute{
+								"egress": schema.BoolAttribute{
+									Description:         "Whether or not the endpoint should have a default-deny rule applied to egress traffic.",
+									MarkdownDescription: "Whether or not the endpoint should have a default-deny rule applied to egress traffic.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ingress": schema.BoolAttribute{
+									Description:         "Whether or not the endpoint should have a default-deny rule applied to ingress traffic.",
+									MarkdownDescription: "Whether or not the endpoint should have a default-deny rule applied to ingress traffic.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+							Required: false,
+							Optional: true,
+							Computed: false,
+						},
+
 						"endpoint_selector": schema.SingleNestedAttribute{
 							Description:         "EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive.",
 							MarkdownDescription: "EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive.",
@@ -4761,8 +5395,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4855,6 +5489,120 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 										Computed:            false,
 									},
 
+									"from_groups": schema.ListNestedAttribute{
+										Description:         "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+										MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"aws": schema.SingleNestedAttribute{
+													Description:         "AWSGroup is an structure that can be used to whitelisting information from AWS integration",
+													MarkdownDescription: "AWSGroup is an structure that can be used to whitelisting information from AWS integration",
+													Attributes: map[string]schema.Attribute{
+														"labels": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"region": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"security_groups_ids": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"security_groups_names": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"from_nodes": schema.ListNestedAttribute{
+										Description:         "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+										MarkdownDescription: "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"match_expressions": schema.ListNestedAttribute{
+													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "key is the label key that the selector applies to.",
+																MarkdownDescription: "key is the label key that the selector applies to.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																},
+															},
+
+															"values": schema.ListAttribute{
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"match_labels": schema.MapAttribute{
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"from_requires": schema.ListNestedAttribute{
 										Description:         "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
 										MarkdownDescription: "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
@@ -4935,16 +5683,12 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 																},
 															},
 
-															"type": schema.Int64Attribute{
-																Description:         "Type is a ICMP-type. It should be 0-255 (8bit).",
-																MarkdownDescription: "Type is a ICMP-type. It should be 0-255 (8bit).",
+															"type": schema.StringAttribute{
+																Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+																MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
-																Validators: []validator.Int64{
-																	int64validator.AtLeast(0),
-																	int64validator.AtMost(255),
-																},
 															},
 														},
 													},
@@ -4969,8 +5713,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 													MarkdownDescription: "listener specifies the name of a custom Envoy listener to which this traffic should be redirected to.",
 													Attributes: map[string]schema.Attribute{
 														"envoy_config": schema.SingleNestedAttribute{
-															Description:         "EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined.",
-															MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined.",
+															Description:         "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
+															MarkdownDescription: "EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined.",
 															Attributes: map[string]schema.Attribute{
 																"kind": schema.StringAttribute{
 																	Description:         "Kind is the resource type being referred to. Defaults to CiliumEnvoyConfig or CiliumClusterwideEnvoyConfig for CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy, respectively. The only case this is currently explicitly needed is when referring to a CiliumClusterwideEnvoyConfig from CiliumNetworkPolicy, as using a namespaced listener from a cluster scoped policy is not allowed.",
@@ -5007,6 +5751,18 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 															Computed:            false,
 															Validators: []validator.String{
 																stringvalidator.LengthAtLeast(1),
+															},
+														},
+
+														"priority": schema.Int64Attribute{
+															Description:         "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+															MarkdownDescription: "Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(1),
+																int64validator.AtMost(100),
 															},
 														},
 													},
@@ -5439,8 +6195,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 												},
 
 												"cidr_group_ref": schema.StringAttribute{
-													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
-													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.",
+													Description:         "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
+													MarkdownDescription: "CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5533,6 +6289,120 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 										Computed:            false,
 									},
 
+									"from_groups": schema.ListNestedAttribute{
+										Description:         "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+										MarkdownDescription: "FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX'",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"aws": schema.SingleNestedAttribute{
+													Description:         "AWSGroup is an structure that can be used to whitelisting information from AWS integration",
+													MarkdownDescription: "AWSGroup is an structure that can be used to whitelisting information from AWS integration",
+													Attributes: map[string]schema.Attribute{
+														"labels": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"region": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"security_groups_ids": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"security_groups_names": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"from_nodes": schema.ListNestedAttribute{
+										Description:         "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+										MarkdownDescription: "FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"match_expressions": schema.ListNestedAttribute{
+													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "key is the label key that the selector applies to.",
+																MarkdownDescription: "key is the label key that the selector applies to.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																},
+															},
+
+															"values": schema.ListAttribute{
+																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"match_labels": schema.MapAttribute{
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"from_requires": schema.ListNestedAttribute{
 										Description:         "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
 										MarkdownDescription: "FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'.",
@@ -5613,16 +6483,12 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 																},
 															},
 
-															"type": schema.Int64Attribute{
-																Description:         "Type is a ICMP-type. It should be 0-255 (8bit).",
-																MarkdownDescription: "Type is a ICMP-type. It should be 0-255 (8bit).",
+															"type": schema.StringAttribute{
+																Description:         "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
+																MarkdownDescription: "Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
-																Validators: []validator.Int64{
-																	int64validator.AtLeast(0),
-																	int64validator.AtMost(255),
-																},
 															},
 														},
 													},

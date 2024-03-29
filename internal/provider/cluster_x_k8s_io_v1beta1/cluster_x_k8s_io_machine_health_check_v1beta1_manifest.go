@@ -172,24 +172,24 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"max_unhealthy": schema.StringAttribute{
-						Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
-						MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
+						Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.",
+						MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"node_startup_timeout": schema.StringAttribute{
-						Description:         "Machines older than this duration without a node will be considered to have failed and will be remediated. If not set, this value is defaulted to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
-						MarkdownDescription: "Machines older than this duration without a node will be considered to have failed and will be remediated. If not set, this value is defaulted to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
+						Description:         "Machines older than this duration without a node will be considered to havefailed and will be remediated.If not set, this value is defaulted to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
+						MarkdownDescription: "Machines older than this duration without a node will be considered to havefailed and will be remediated.If not set, this value is defaulted to 10 minutes.If you wish to disable this feature, set the value explicitly to 0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"remediation_template": schema.SingleNestedAttribute{
-						Description:         "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider.  This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
-						MarkdownDescription: "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider.  This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
+						Description:         "RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API.",
+						MarkdownDescription: "RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -200,48 +200,48 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_version": schema.StringAttribute{
-								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"uid": schema.StringAttribute{
-								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -270,16 +270,16 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -293,8 +293,8 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -307,8 +307,8 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"unhealthy_conditions": schema.ListNestedAttribute{
-						Description:         "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy.  The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
-						MarkdownDescription: "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy.  The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+						Description:         "UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy.  The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+						MarkdownDescription: "UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy.  The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"status": schema.StringAttribute{
@@ -348,8 +348,8 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"unhealthy_range": schema.StringAttribute{
-						Description:         "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
-						MarkdownDescription: "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
+						Description:         "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines",
+						MarkdownDescription: "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

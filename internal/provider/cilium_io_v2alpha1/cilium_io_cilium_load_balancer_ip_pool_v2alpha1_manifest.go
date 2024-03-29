@@ -43,8 +43,16 @@ type CiliumIoCiliumLoadBalancerIppoolV2Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		AllowFirstLastIPs *string `tfsdk:"allow_first_last_i_ps" json:"allowFirstLastIPs,omitempty"`
+		Blocks            *[]struct {
+			Cidr  *string `tfsdk:"cidr" json:"cidr,omitempty"`
+			Start *string `tfsdk:"start" json:"start,omitempty"`
+			Stop  *string `tfsdk:"stop" json:"stop,omitempty"`
+		} `tfsdk:"blocks" json:"blocks,omitempty"`
 		Cidrs *[]struct {
-			Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
+			Cidr  *string `tfsdk:"cidr" json:"cidr,omitempty"`
+			Start *string `tfsdk:"start" json:"start,omitempty"`
+			Stop  *string `tfsdk:"stop" json:"stop,omitempty"`
 		} `tfsdk:"cidrs" json:"cidrs,omitempty"`
 		Disabled        *bool `tfsdk:"disabled" json:"disabled,omitempty"`
 		ServiceSelector *struct {
@@ -131,22 +139,84 @@ func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Schema(_ context.Cont
 				Description:         "Spec is a human readable description for a BGP load balancer ip pool.",
 				MarkdownDescription: "Spec is a human readable description for a BGP load balancer ip pool.",
 				Attributes: map[string]schema.Attribute{
-					"cidrs": schema.ListNestedAttribute{
-						Description:         "CiliumLoadBalancerIPPoolCIDRBlock is a list of CIDRs comprising this IP Pool",
-						MarkdownDescription: "CiliumLoadBalancerIPPoolCIDRBlock is a list of CIDRs comprising this IP Pool",
+					"allow_first_last_i_ps": schema.StringAttribute{
+						Description:         "AllowFirstLastIPs, if set to 'yes' means that the first and last IPs of each CIDR will be allocatable. If 'no' or undefined, these IPs will be reserved. This field is ignored for /{31,32} and /{127,128} CIDRs since reserving the first and last IPs would make the CIDRs unusable.",
+						MarkdownDescription: "AllowFirstLastIPs, if set to 'yes' means that the first and last IPs of each CIDR will be allocatable. If 'no' or undefined, these IPs will be reserved. This field is ignored for /{31,32} and /{127,128} CIDRs since reserving the first and last IPs would make the CIDRs unusable.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Yes", "No"),
+						},
+					},
+
+					"blocks": schema.ListNestedAttribute{
+						Description:         "Blocks is a list of CIDRs comprising this IP Pool",
+						MarkdownDescription: "Blocks is a list of CIDRs comprising this IP Pool",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"cidr": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"start": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"stop": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"cidrs": schema.ListNestedAttribute{
+						Description:         "Cidrs is a list of CIDRs comprising this IP Pool Deprecated: please use the 'blocks' field instead. This field will be removed in a future release. https://github.com/cilium/cilium/issues/28590",
+						MarkdownDescription: "Cidrs is a list of CIDRs comprising this IP Pool Deprecated: please use the 'blocks' field instead. This field will be removed in a future release. https://github.com/cilium/cilium/issues/28590",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"cidr": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"start": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"stop": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

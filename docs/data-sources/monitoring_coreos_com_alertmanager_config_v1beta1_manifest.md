@@ -3,12 +3,12 @@
 page_title: "k8s_monitoring_coreos_com_alertmanager_config_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "monitoring.coreos.com"
 description: |-
-  AlertmanagerConfig defines a namespaced AlertmanagerConfig to be aggregated across multiple namespaces configuring one Alertmanager cluster.
+  AlertmanagerConfig configures the Prometheus Alertmanager, specifying how alerts should be grouped, inhibited and notified to external systems.
 ---
 
 # k8s_monitoring_coreos_com_alertmanager_config_v1beta1_manifest (Data Source)
 
-AlertmanagerConfig defines a namespaced AlertmanagerConfig to be aggregated across multiple namespaces configuring one Alertmanager cluster.
+AlertmanagerConfig configures the Prometheus Alertmanager, specifying how alerts should be grouped, inhibited and notified to external systems.
 
 ## Example Usage
 
@@ -18,6 +18,7 @@ data "k8s_monitoring_coreos_com_alertmanager_config_v1beta1_manifest" "example" 
     name      = "some-name"
     namespace = "some-namespace"
   }
+  spec = {}
 }
 ```
 
@@ -105,6 +106,7 @@ Optional:
 
 - `discord_configs` (Attributes List) List of Slack configurations. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs))
 - `email_configs` (Attributes List) List of Email configurations. (see [below for nested schema](#nestedatt--spec--receivers--email_configs))
+- `msteams_configs` (Attributes List) List of MSTeams configurations. It requires Alertmanager >= 0.26.0. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs))
 - `opsgenie_configs` (Attributes List) List of OpsGenie configurations. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs))
 - `pagerduty_configs` (Attributes List) List of PagerDuty configurations. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs))
 - `pushover_configs` (Attributes List) List of Pushover configurations. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs))
@@ -180,8 +182,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--discord_configs--title--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.discord_configs.title.basic_auth.username`
@@ -224,14 +226,14 @@ Required:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--discord_configs--title--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--discord_configs--title--oauth2--client_id"></a>
 ### Nested Schema for `spec.receivers.discord_configs.title.oauth2.scopes`
@@ -522,6 +524,272 @@ Optional:
 
 
 
+<a id="nestedatt--spec--receivers--msteams_configs"></a>
+### Nested Schema for `spec.receivers.msteams_configs`
+
+Required:
+
+- `webhook_url` (Attributes) MSTeams webhook URL. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--webhook_url))
+
+Optional:
+
+- `http_config` (Attributes) HTTP client configuration. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--http_config))
+- `send_resolved` (Boolean) Whether to notify about resolved alerts.
+- `text` (String) Message body template.
+- `title` (String) Message title template.
+
+<a id="nestedatt--spec--receivers--msteams_configs--webhook_url"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--http_config"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title`
+
+Optional:
+
+- `authorization` (Attributes) Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--authorization))
+- `basic_auth` (Attributes) BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--basic_auth))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--bearer_token_secret))
+- `follow_redirects` (Boolean) FollowRedirects specifies whether the client should follow HTTP 3xx redirects.
+- `oauth2` (Attributes) OAuth2 client credentials used to fetch a token for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--oauth2))
+- `proxy_url` (String) Optional proxy URL.
+- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--tls_config))
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--authorization"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.authorization`
+
+Optional:
+
+- `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--authorization--credentials))
+- `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--authorization--credentials"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.authorization.type`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--basic_auth"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.basic_auth`
+
+Optional:
+
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--basic_auth--username))
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--basic_auth--password"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.basic_auth.username`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--basic_auth--username"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.basic_auth.username`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--bearer_token_secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.bearer_token_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `name` (String) The name of the secret in the object's namespace to select from.
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--oauth2"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.oauth2`
+
+Required:
+
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
+
+Optional:
+
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--oauth2--client_id"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.oauth2.scopes`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--oauth2--scopes--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--oauth2--scopes--secret))
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--oauth2--scopes--config_map"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.oauth2.scopes.secret`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--oauth2--scopes--secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.oauth2.scopes.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--oauth2--client_secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.oauth2.scopes`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--tls_config"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--tls_config--cert))
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--tls_config--key_secret))
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--ca"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--secret))
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--config_map"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name.secret`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--cert"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--secret))
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--config_map"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name.secret`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--server_name--secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--receivers--msteams_configs--title--tls_config--key_secret"></a>
+### Nested Schema for `spec.receivers.msteams_configs.title.tls_config.server_name`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+
 <a id="nestedatt--spec--receivers--opsgenie_configs"></a>
 ### Nested Schema for `spec.receivers.opsgenie_configs`
 
@@ -600,8 +868,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.opsgenie_configs.tags.basic_auth.username`
@@ -644,14 +912,14 @@ Required:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--opsgenie_configs--tags--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--opsgenie_configs--tags--oauth2--client_id"></a>
 ### Nested Schema for `spec.receivers.opsgenie_configs.tags.oauth2.scopes`
@@ -883,8 +1151,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.pagerduty_configs.url.basic_auth.username`
@@ -927,14 +1195,14 @@ Required:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--pagerduty_configs--url--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--pagerduty_configs--url--oauth2--client_id"></a>
 ### Nested Schema for `spec.receivers.pagerduty_configs.url.oauth2.scopes`
@@ -1124,6 +1392,7 @@ Required:
 
 Optional:
 
+- `device` (String) The name of a device to send the notification to
 - `expire` (String) How long your notification will continue to be retried for, unless the user acknowledges the notification.
 - `html` (Boolean) Whether notification message is HTML or plain text.
 - `http_config` (Attributes) HTTP client configuration. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--http_config))
@@ -1133,34 +1402,36 @@ Optional:
 - `send_resolved` (Boolean) Whether or not to notify about resolved alerts.
 - `sound` (String) The name of one of the sounds supported by device clients to override the user's default sound choice
 - `title` (String) Notification title.
-- `token` (Attributes) The secret's key that contains the registered application's API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--token))
+- `token` (Attributes) The secret's key that contains the registered application's API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. Either 'token' or 'tokenFile' is required. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--token))
+- `token_file` (String) The token file that contains the registered application's API token, see https://pushover.net/apps. Either 'token' or 'tokenFile' is required. It requires Alertmanager >= v0.26.0.
 - `url` (String) A supplementary URL shown alongside the message.
 - `url_title` (String) A title for supplementary URL, otherwise just the URL is shown
-- `user_key` (Attributes) The secret's key that contains the recipient user's user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key))
+- `user_key` (Attributes) The secret's key that contains the recipient user's user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. Either 'userKey' or 'userKeyFile' is required. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key))
+- `user_key_file` (String) The user key file that contains the recipient user's user key. Either 'userKey' or 'userKeyFile' is required. It requires Alertmanager >= v0.26.0.
 
 <a id="nestedatt--spec--receivers--pushover_configs--http_config"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file`
 
 Optional:
 
-- `authorization` (Attributes) Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--authorization))
-- `basic_auth` (Attributes) BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--basic_auth))
-- `bearer_token_secret` (Attributes) The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--bearer_token_secret))
+- `authorization` (Attributes) Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--authorization))
+- `basic_auth` (Attributes) BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--basic_auth))
+- `bearer_token_secret` (Attributes) The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--bearer_token_secret))
 - `follow_redirects` (Boolean) FollowRedirects specifies whether the client should follow HTTP 3xx redirects.
-- `oauth2` (Attributes) OAuth2 client credentials used to fetch a token for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--oauth2))
+- `oauth2` (Attributes) OAuth2 client credentials used to fetch a token for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2))
 - `proxy_url` (String) Optional proxy URL.
-- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--tls_config))
+- `tls_config` (Attributes) TLS configuration for the client. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config))
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--authorization"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.authorization`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--authorization"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.authorization`
 
 Optional:
 
-- `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--authorization--credentials))
+- `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--authorization--credentials))
 - `type` (String) Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--authorization--credentials"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.authorization.type`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--authorization--credentials"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.authorization.type`
 
 Required:
 
@@ -1173,16 +1444,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--basic_auth"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.basic_auth`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--basic_auth"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.basic_auth`
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--basic_auth--username))
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--basic_auth--password"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.basic_auth.username`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--basic_auth--password"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.basic_auth.username`
 
 Required:
 
@@ -1194,8 +1465,8 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--basic_auth--username"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.basic_auth.username`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--basic_auth--username"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.basic_auth.username`
 
 Required:
 
@@ -1208,8 +1479,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--bearer_token_secret"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.bearer_token_secret`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--bearer_token_secret"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.bearer_token_secret`
 
 Required:
 
@@ -1217,30 +1488,30 @@ Required:
 - `name` (String) The name of the secret in the object's namespace to select from.
 
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--oauth2"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.oauth2`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.oauth2`
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--oauth2--client_id"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.oauth2.scopes`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--client_id"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.oauth2.scopes`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--oauth2--scopes--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--oauth2--scopes--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--scopes--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--scopes--secret))
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--oauth2--scopes--config_map"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.oauth2.scopes.secret`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--scopes--config_map"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.oauth2.scopes.secret`
 
 Required:
 
@@ -1252,8 +1523,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--oauth2--scopes--secret"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.oauth2.scopes.secret`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--scopes--secret"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.oauth2.scopes.secret`
 
 Required:
 
@@ -1266,8 +1537,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--oauth2--client_secret"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.oauth2.scopes`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--oauth2--client_secret"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.oauth2.scopes`
 
 Required:
 
@@ -1280,27 +1551,27 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--tls_config"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.tls_config`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config`
 
 Optional:
 
-- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--tls_config--ca))
-- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--tls_config--cert))
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--cert))
 - `insecure_skip_verify` (Boolean) Disable target certificate validation.
-- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--tls_config--key_secret))
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--key_secret))
 - `server_name` (String) Used to verify the hostname for the targets.
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--tls_config--ca"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.tls_config.server_name`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--ca"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--secret))
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--config_map"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name.secret`
 
 Required:
 
@@ -1312,8 +1583,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--secret"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name.secret`
 
 Required:
 
@@ -1326,16 +1597,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--tls_config--cert"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.tls_config.server_name`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--cert"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name`
 
 Optional:
 
-- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--tls_config--server_name--config_map))
-- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key--tls_config--server_name--secret))
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--secret))
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--tls_config--server_name--config_map"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--config_map"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name.secret`
 
 Required:
 
@@ -1347,8 +1618,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--tls_config--server_name--secret"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.tls_config.server_name.secret`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--server_name--secret"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name.secret`
 
 Required:
 
@@ -1361,8 +1632,8 @@ Optional:
 
 
 
-<a id="nestedatt--spec--receivers--pushover_configs--user_key--tls_config--key_secret"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key.tls_config.server_name`
+<a id="nestedatt--spec--receivers--pushover_configs--user_key_file--tls_config--key_secret"></a>
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file.tls_config.server_name`
 
 Required:
 
@@ -1377,7 +1648,7 @@ Optional:
 
 
 <a id="nestedatt--spec--receivers--pushover_configs--token"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file`
 
 Required:
 
@@ -1386,7 +1657,7 @@ Required:
 
 
 <a id="nestedatt--spec--receivers--pushover_configs--user_key"></a>
-### Nested Schema for `spec.receivers.pushover_configs.user_key`
+### Nested Schema for `spec.receivers.pushover_configs.user_key_file`
 
 Required:
 
@@ -1516,8 +1787,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--slack_configs--username--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.slack_configs.username.basic_auth.username`
@@ -1560,14 +1831,14 @@ Required:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--slack_configs--username--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--slack_configs--username--oauth2--client_id"></a>
 ### Nested Schema for `spec.receivers.slack_configs.username.oauth2.scopes`
@@ -1771,8 +2042,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.sns_configs.topic_arn.basic_auth.username`
@@ -1815,14 +2086,14 @@ Required:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--sns_configs--topic_arn--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--sns_configs--topic_arn--oauth2--client_id"></a>
 ### Nested Schema for `spec.receivers.sns_configs.topic_arn.oauth2.scopes`
@@ -2072,8 +2343,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.telegram_configs.send_resolved.basic_auth.username`
@@ -2116,14 +2387,14 @@ Required:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--telegram_configs--send_resolved--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--telegram_configs--send_resolved--oauth2--client_id"></a>
 ### Nested Schema for `spec.receivers.telegram_configs.send_resolved.oauth2.scopes`
@@ -2345,8 +2616,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.victorops_configs.state_message.basic_auth.username`
@@ -2389,14 +2660,14 @@ Required:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--victorops_configs--state_message--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--victorops_configs--state_message--oauth2--client_id"></a>
 ### Nested Schema for `spec.receivers.victorops_configs.state_message.oauth2.scopes`
@@ -2598,8 +2869,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.webex_configs.send_resolved.basic_auth.username`
@@ -2642,14 +2913,14 @@ Required:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--webex_configs--send_resolved--oauth2--client_id"></a>
 ### Nested Schema for `spec.receivers.webex_configs.send_resolved.oauth2.scopes`
@@ -2848,8 +3119,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.webhook_configs.url_secret.basic_auth.username`
@@ -2892,14 +3163,14 @@ Required:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--webhook_configs--url_secret--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--webhook_configs--url_secret--oauth2--client_id"></a>
 ### Nested Schema for `spec.receivers.webhook_configs.url_secret.oauth2.scopes`
@@ -3122,8 +3393,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--basic_auth--username))
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--basic_auth--password"></a>
 ### Nested Schema for `spec.receivers.wechat_configs.to_user.basic_auth.username`
@@ -3166,14 +3437,14 @@ Required:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--receivers--wechat_configs--to_user--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--receivers--wechat_configs--to_user--oauth2--client_id"></a>
 ### Nested Schema for `spec.receivers.wechat_configs.to_user.oauth2.scopes`

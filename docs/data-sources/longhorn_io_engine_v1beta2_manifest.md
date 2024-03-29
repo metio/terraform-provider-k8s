@@ -57,12 +57,14 @@ Optional:
 Optional:
 
 - `active` (Boolean)
-- `backend_store_driver` (String)
+- `backend_store_driver` (String) Deprecated: Replaced by field 'dataEngine'.
 - `backup_volume` (String)
+- `data_engine` (String)
 - `desire_state` (String)
 - `disable_frontend` (Boolean)
-- `engine_image` (String)
+- `engine_image` (String) Deprecated: Replaced by field 'image'.
 - `frontend` (String)
+- `image` (String)
 - `log_requested` (Boolean)
 - `node_id` (String)
 - `replica_address_map` (Map of String)
@@ -70,6 +72,8 @@ Optional:
 - `requested_data_source` (String)
 - `revision_counter_disabled` (Boolean)
 - `salvage_requested` (Boolean)
+- `snapshot_max_count` (Number)
+- `snapshot_max_size` (String)
 - `unmap_mark_snap_chain_removed_enabled` (Boolean)
 - `upgraded_replica_address_map` (Map of String)
 - `volume_name` (String)

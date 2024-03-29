@@ -196,8 +196,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"apply_to": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Specifies where in the Envoy configuration, the patch should be applied.Valid Options: LISTENER, FILTER_CHAIN, NETWORK_FILTER, HTTP_FILTER, ROUTE_CONFIGURATION, VIRTUAL_HOST, HTTP_ROUTE, CLUSTER, EXTENSION_CONFIG, BOOTSTRAP, LISTENER_FILTER",
+									MarkdownDescription: "Specifies where in the Envoy configuration, the patch should be applied.Valid Options: LISTENER, FILTER_CHAIN, NETWORK_FILTER, HTTP_FILTER, ROUTE_CONFIGURATION, VIRTUAL_HOST, HTTP_ROUTE, CLUSTER, EXTENSION_CONFIG, BOOTSTRAP, LISTENER_FILTER",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -252,8 +252,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 										},
 
 										"context": schema.StringAttribute{
-											Description:         "The specific config generation context to match on.",
-											MarkdownDescription: "The specific config generation context to match on.",
+											Description:         "The specific config generation context to match on.Valid Options: ANY, SIDECAR_INBOUND, SIDECAR_OUTBOUND, GATEWAY",
+											MarkdownDescription: "The specific config generation context to match on.Valid Options: ANY, SIDECAR_INBOUND, SIDECAR_OUTBOUND, GATEWAY",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -299,8 +299,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 																},
 
 																"sub_filter": schema.SingleNestedAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "The next level filter within this filter to match upon.",
+																	MarkdownDescription: "The next level filter within this filter to match upon.",
 																	Attributes: map[string]schema.Attribute{
 																		"name": schema.StringAttribute{
 																			Description:         "The filter name to match on.",
@@ -374,8 +374,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 												},
 
 												"port_number": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The service port/gateway port to which traffic is being sent/received.",
+													MarkdownDescription: "The service port/gateway port to which traffic is being sent/received.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -391,8 +391,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 											MarkdownDescription: "Match on properties associated with a proxy.",
 											Attributes: map[string]schema.Attribute{
 												"metadata": schema.MapAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Match on the node metadata supplied by a proxy when connecting to Istio Pilot.",
+													MarkdownDescription: "Match on the node metadata supplied by a proxy when connecting to Istio Pilot.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -400,8 +400,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 												},
 
 												"proxy_version": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "A regular expression in golang regex format (RE2) that can be used to select proxies using a specific version of istio proxy.",
+													MarkdownDescription: "A regular expression in golang regex format (RE2) that can be used to select proxies using a specific version of istio proxy.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -417,8 +417,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 											MarkdownDescription: "Match on envoy HTTP route configuration attributes.",
 											Attributes: map[string]schema.Attribute{
 												"gateway": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The Istio gateway config's namespace/name for which this route configuration was generated.",
+													MarkdownDescription: "The Istio gateway config's namespace/name for which this route configuration was generated.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -441,20 +441,20 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 												},
 
 												"port_number": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The service port number or gateway server port number for which this route configuration was generated.",
+													MarkdownDescription: "The service port number or gateway server port number for which this route configuration was generated.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"vhost": schema.SingleNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Match a specific virtual host in a route configuration and apply the patch to the virtual host.",
+													MarkdownDescription: "Match a specific virtual host in a route configuration and apply the patch to the virtual host.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "The VirtualHosts objects generated by Istio are named as host:port, where the host typically corresponds to the VirtualService's host field or the hostname of a service in the registry.",
+															MarkdownDescription: "The VirtualHosts objects generated by Istio are named as host:port, where the host typically corresponds to the VirtualService's host field or the hostname of a service in the registry.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -465,8 +465,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 															MarkdownDescription: "Match a specific route within the virtual host.",
 															Attributes: map[string]schema.Attribute{
 																"action": schema.StringAttribute{
-																	Description:         "Match a route with specific action type.",
-																	MarkdownDescription: "Match a route with specific action type.",
+																	Description:         "Match a route with specific action type.Valid Options: ANY, ROUTE, REDIRECT, DIRECT_RESPONSE",
+																	MarkdownDescription: "Match a route with specific action type.Valid Options: ANY, ROUTE, REDIRECT, DIRECT_RESPONSE",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -476,8 +476,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "The Route objects generated by default are named as default.",
+																	MarkdownDescription: "The Route objects generated by default are named as default.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -508,8 +508,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 									MarkdownDescription: "The patch to apply along with the operation.",
 									Attributes: map[string]schema.Attribute{
 										"filter_class": schema.StringAttribute{
-											Description:         "Determines the filter insertion order.",
-											MarkdownDescription: "Determines the filter insertion order.",
+											Description:         "Determines the filter insertion order.Valid Options: AUTHN, AUTHZ, STATS",
+											MarkdownDescription: "Determines the filter insertion order.Valid Options: AUTHN, AUTHZ, STATS",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -519,8 +519,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 										},
 
 										"operation": schema.StringAttribute{
-											Description:         "Determines how the patch should be applied.",
-											MarkdownDescription: "Determines how the patch should be applied.",
+											Description:         "Determines how the patch should be applied.Valid Options: MERGE, ADD, REMOVE, INSERT_BEFORE, INSERT_AFTER, INSERT_FIRST, REPLACE",
+											MarkdownDescription: "Determines how the patch should be applied.Valid Options: MERGE, ADD, REMOVE, INSERT_BEFORE, INSERT_AFTER, INSERT_FIRST, REPLACE",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -558,12 +558,12 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context,
 					},
 
 					"workload_selector": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Criteria used to select the specific set of pods/VMs on which this patch configuration should be applied.",
+						MarkdownDescription: "Criteria used to select the specific set of pods/VMs on which this patch configuration should be applied.",
 						Attributes: map[string]schema.Attribute{
 							"labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "One or more labels that indicate a specific set of pods/VMs on which the configuration should be applied.",
+								MarkdownDescription: "One or more labels that indicate a specific set of pods/VMs on which the configuration should be applied.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

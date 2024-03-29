@@ -56,19 +56,19 @@ Optional:
 
 Required:
 
-- `name` (String) Specifies the alias name. This value must begin with alias/ followed by a name, such as alias/ExampleAlias.  The AliasName value must be string of 1-256 characters. It can contain only alphanumeric characters, forward slashes (/), underscores (_), and dashes (-). The alias name cannot begin with alias/aws/. The alias/aws/ prefix is reserved for Amazon Web Services managed keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk).
+- `name` (String) Specifies the alias name. This value must begin with alias/ followed by aname, such as alias/ExampleAlias.The AliasName value must be string of 1-256 characters. It can contain onlyalphanumeric characters, forward slashes (/), underscores (_), and dashes(-). The alias name cannot begin with alias/aws/. The alias/aws/ prefix isreserved for Amazon Web Services managed keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk).
 
 Optional:
 
-- `target_key_id` (String) Associates the alias with the specified customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk). The KMS key must be in the same Amazon Web Services Region.  A valid key ID is required. If you supply a null or empty string value, this operation returns an error.  For help finding the key ID and ARN, see Finding the Key ID and ARN (https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn) in the Key Management Service Developer Guide .  Specify the key ID or key ARN of the KMS key.  For example:  * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab  * Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab  To get the key ID and key ARN for a KMS key, use ListKeys or DescribeKey.
-- `target_key_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--target_key_ref))
+- `target_key_id` (String) Associates the alias with the specified customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk).The KMS key must be in the same Amazon Web Services Region.A valid key ID is required. If you supply a null or empty string value, thisoperation returns an error.For help finding the key ID and ARN, see Finding the Key ID and ARN (https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn)in the Key Management Service Developer Guide .Specify the key ID or key ARN of the KMS key.For example:   * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab   * Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890abTo get the key ID and key ARN for a KMS key, use ListKeys or DescribeKey.
+- `target_key_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--target_key_ref))
 
 <a id="nestedatt--spec--target_key_ref"></a>
 ### Nested Schema for `spec.target_key_ref`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--target_key_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--target_key_ref--from))
 
 <a id="nestedatt--spec--target_key_ref--from"></a>
 ### Nested Schema for `spec.target_key_ref.from`

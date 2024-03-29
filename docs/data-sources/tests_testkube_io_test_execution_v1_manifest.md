@@ -88,7 +88,9 @@ Optional:
 - `env_config_maps` (Attributes List) config map references (see [below for nested schema](#nestedatt--spec--execution_request--env_config_maps))
 - `env_secrets` (Attributes List) secret references (see [below for nested schema](#nestedatt--spec--execution_request--env_secrets))
 - `envs` (Map of String) Environment variables passed to executor. Deprecated: use Basic Variables instead
+- `execute_post_run_script_before_scraping` (Boolean) execute post run script before scraping (prebuilt executor only)
 - `execution_labels` (Map of String) test execution labels
+- `execution_namespace` (String) namespace for test execution (Pro edition only)
 - `http_proxy` (String) http proxy for executor containers
 - `https_proxy` (String) https proxy for executor containers
 - `image` (String) container executor image
@@ -104,6 +106,8 @@ Optional:
 - `running_context` (Attributes) running context for test or test suite execution (see [below for nested schema](#nestedatt--spec--execution_request--running_context))
 - `scraper_template` (String) scraper template extensions
 - `secret_envs` (Map of String) Execution variables passed to executor from secrets. Deprecated: use Secret Variables instead
+- `slave_pod_request` (Attributes) pod request body (see [below for nested schema](#nestedatt--spec--execution_request--slave_pod_request))
+- `source_scripts` (Boolean) run scripts using source command (container executor only)
 - `sync` (Boolean) whether to start execution sync or async
 - `test_secret_uuid` (String) test secret uuid
 - `test_suite_name` (String) unique test suite name (CRD Test suite name), if it's run as a part of test suite
@@ -122,7 +126,9 @@ Required:
 Optional:
 
 - `dirs` (List of String) artifact directories for scraping
+- `masks` (List of String) regexp to filter scraped artifacts, single or comma separated
 - `omit_folder_per_execution` (Boolean) don't use a separate folder for execution artifacts
+- `shared_between_pods` (Boolean) whether to share volume between pods
 - `storage_bucket` (String) artifact bucket storage
 
 
@@ -188,6 +194,43 @@ Required:
 Optional:
 
 - `context` (String) Context value depending from its type
+
+
+<a id="nestedatt--spec--execution_request--slave_pod_request"></a>
+### Nested Schema for `spec.execution_request.slave_pod_request`
+
+Optional:
+
+- `pod_template` (String) pod template extensions
+- `pod_template_reference` (String) name of the template resource
+- `resources` (Attributes) pod resources request specification (see [below for nested schema](#nestedatt--spec--execution_request--slave_pod_request--resources))
+
+<a id="nestedatt--spec--execution_request--slave_pod_request--resources"></a>
+### Nested Schema for `spec.execution_request.slave_pod_request.resources`
+
+Optional:
+
+- `limits` (Attributes) resource request specification (see [below for nested schema](#nestedatt--spec--execution_request--slave_pod_request--resources--limits))
+- `requests` (Attributes) resource request specification (see [below for nested schema](#nestedatt--spec--execution_request--slave_pod_request--resources--requests))
+
+<a id="nestedatt--spec--execution_request--slave_pod_request--resources--limits"></a>
+### Nested Schema for `spec.execution_request.slave_pod_request.resources.limits`
+
+Optional:
+
+- `cpu` (String) requested cpu units
+- `memory` (String) requested memory units
+
+
+<a id="nestedatt--spec--execution_request--slave_pod_request--resources--requests"></a>
+### Nested Schema for `spec.execution_request.slave_pod_request.resources.requests`
+
+Optional:
+
+- `cpu` (String) requested cpu units
+- `memory` (String) requested memory units
+
+
 
 
 <a id="nestedatt--spec--execution_request--variables"></a>

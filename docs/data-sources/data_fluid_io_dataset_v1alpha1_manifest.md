@@ -54,14 +54,11 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
-
-- `mounts` (Attributes List) Mount Points to be mounted on Alluxio. (see [below for nested schema](#nestedatt--spec--mounts))
-
 Optional:
 
 - `access_modes` (List of String) AccessModes contains all ways the volume backing the PVC can be mounted
 - `data_restore_location` (Attributes) DataRestoreLocation is the location to load data of dataset  been backuped (see [below for nested schema](#nestedatt--spec--data_restore_location))
+- `mounts` (Attributes List) Mount Points to be mounted on cache runtime. <br> This field can be empty because some runtimes don't need to mount external storage (e.g. <a href='https://v6d.io/'>Vineyard</a>). (see [below for nested schema](#nestedatt--spec--mounts))
 - `node_affinity` (Attributes) NodeAffinity defines constraints that limit what nodes this dataset can be cached to. This field influences the scheduling of pods that use the cached dataset. (see [below for nested schema](#nestedatt--spec--node_affinity))
 - `owner` (Attributes) The owner of the dataset (see [below for nested schema](#nestedatt--spec--owner))
 - `placement` (String) Manage switch for opening Multiple datasets single node deployment or not TODO(xieydd) In future, evaluate node resources and runtime resources to decide whether to turn them on
@@ -70,13 +67,25 @@ Optional:
 - `shared_options` (Map of String) SharedOptions is the options to all mount
 - `tolerations` (Attributes List) If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--tolerations))
 
+<a id="nestedatt--spec--data_restore_location"></a>
+### Nested Schema for `spec.data_restore_location`
+
+Optional:
+
+- `node_name` (String) NodeName describes the nodeName of restore if Path is  in the form of local://subpath
+- `path` (String) Path describes the path of restore, in the form of  local://subpath or pvc://<pvcName>/subpath
+
+
 <a id="nestedatt--spec--mounts"></a>
 ### Nested Schema for `spec.mounts`
+
+Required:
+
+- `mount_point` (String) MountPoint is the mount point of source.
 
 Optional:
 
 - `encrypt_options` (Attributes List) The secret information (see [below for nested schema](#nestedatt--spec--mounts--encrypt_options))
-- `mount_point` (String) MountPoint is the mount point of source.
 - `name` (String) The name of mount
 - `options` (Map of String) The Mount Options. <br> Refer to <a href='https://docs.alluxio.io/os/user/stable/en/reference/Properties-List.html'>Mount Options</a>.  <br> The option has Prefix 'fs.' And you can Learn more from <a href='https://docs.alluxio.io/os/user/stable/en/ufs/S3.html'>The Storage Integrations</a>
 - `path` (String) The path of mount, if not set will be /{Name}
@@ -86,9 +95,12 @@ Optional:
 <a id="nestedatt--spec--mounts--encrypt_options"></a>
 ### Nested Schema for `spec.mounts.encrypt_options`
 
-Optional:
+Required:
 
 - `name` (String) The name of encryptOption
+
+Optional:
+
 - `value_from` (Attributes) The valueFrom of encryptOption (see [below for nested schema](#nestedatt--spec--mounts--encrypt_options--value_from))
 
 <a id="nestedatt--spec--mounts--encrypt_options--value_from"></a>
@@ -101,22 +113,16 @@ Optional:
 <a id="nestedatt--spec--mounts--encrypt_options--value_from--secret_key_ref"></a>
 ### Nested Schema for `spec.mounts.encrypt_options.value_from.secret_key_ref`
 
+Required:
+
+- `name` (String) The name of required secret
+
 Optional:
 
 - `key` (String) The required key in the secret
-- `name` (String) The name of required secret
 
 
 
-
-
-<a id="nestedatt--spec--data_restore_location"></a>
-### Nested Schema for `spec.data_restore_location`
-
-Optional:
-
-- `node_name` (String) NodeName describes the nodeName of restore if Path is  in the form of local://subpath
-- `path` (String) Path describes the path of restore, in the form of  local://subpath or pvc://<pvcName>/subpath
 
 
 <a id="nestedatt--spec--node_affinity"></a>
@@ -196,9 +202,12 @@ Optional:
 <a id="nestedatt--spec--shared_encrypt_options"></a>
 ### Nested Schema for `spec.shared_encrypt_options`
 
-Optional:
+Required:
 
 - `name` (String) The name of encryptOption
+
+Optional:
+
 - `value_from` (Attributes) The valueFrom of encryptOption (see [below for nested schema](#nestedatt--spec--shared_encrypt_options--value_from))
 
 <a id="nestedatt--spec--shared_encrypt_options--value_from"></a>
@@ -211,10 +220,13 @@ Optional:
 <a id="nestedatt--spec--shared_encrypt_options--value_from--secret_key_ref"></a>
 ### Nested Schema for `spec.shared_encrypt_options.value_from.secret_key_ref`
 
+Required:
+
+- `name` (String) The name of required secret
+
 Optional:
 
 - `key` (String) The required key in the secret
-- `name` (String) The name of required secret
 
 
 

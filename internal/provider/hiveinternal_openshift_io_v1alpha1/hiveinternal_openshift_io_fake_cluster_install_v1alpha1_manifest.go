@@ -64,6 +64,9 @@ type HiveinternalOpenshiftIoFakeClusterInstallV1Alpha1ManifestData struct {
 				Azure *struct {
 					ResourceGroupName *string `tfsdk:"resource_group_name" json:"resourceGroupName,omitempty"`
 				} `tfsdk:"azure" json:"azure,omitempty"`
+				Gcp *struct {
+					NetworkProjectID *string `tfsdk:"network_project_id" json:"networkProjectID,omitempty"`
+				} `tfsdk:"gcp" json:"gcp,omitempty"`
 			} `tfsdk:"platform" json:"platform,omitempty"`
 		} `tfsdk:"cluster_metadata" json:"clusterMetadata,omitempty"`
 		ImageSetRef *struct {
@@ -258,6 +261,23 @@ func (r *HiveinternalOpenshiftIoFakeClusterInstallV1Alpha1Manifest) Schema(_ con
 												MarkdownDescription: "ResourceGroupName is the name of the resource group in which the cluster resources were created.",
 												Required:            true,
 												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"gcp": schema.SingleNestedAttribute{
+										Description:         "GCP holds GCP-specific cluster metadata",
+										MarkdownDescription: "GCP holds GCP-specific cluster metadata",
+										Attributes: map[string]schema.Attribute{
+											"network_project_id": schema.StringAttribute{
+												Description:         "NetworkProjectID is used for shared VPC setups",
+												MarkdownDescription: "NetworkProjectID is used for shared VPC setups",
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 										},

@@ -116,13 +116,28 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 					CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 					CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 					CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
+					Components                *[]string          `tfsdk:"components" json:"components,omitempty"`
 					ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 					ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 					Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
 					NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 					NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 					Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-					Replicas                  *[]struct {
+					Patches                   *[]struct {
+						Options *map[string]string `tfsdk:"options" json:"options,omitempty"`
+						Patch   *string            `tfsdk:"patch" json:"patch,omitempty"`
+						Path    *string            `tfsdk:"path" json:"path,omitempty"`
+						Target  *struct {
+							AnnotationSelector *string `tfsdk:"annotation_selector" json:"annotationSelector,omitempty"`
+							Group              *string `tfsdk:"group" json:"group,omitempty"`
+							Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
+							LabelSelector      *string `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							Name               *string `tfsdk:"name" json:"name,omitempty"`
+							Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
+							Version            *string `tfsdk:"version" json:"version,omitempty"`
+						} `tfsdk:"target" json:"target,omitempty"`
+					} `tfsdk:"patches" json:"patches,omitempty"`
+					Replicas *[]struct {
 						Count *string `tfsdk:"count" json:"count,omitempty"`
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"replicas" json:"replicas,omitempty"`
@@ -189,13 +204,28 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 					CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 					CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 					CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
+					Components                *[]string          `tfsdk:"components" json:"components,omitempty"`
 					ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 					ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 					Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
 					NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 					NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 					Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-					Replicas                  *[]struct {
+					Patches                   *[]struct {
+						Options *map[string]string `tfsdk:"options" json:"options,omitempty"`
+						Patch   *string            `tfsdk:"patch" json:"patch,omitempty"`
+						Path    *string            `tfsdk:"path" json:"path,omitempty"`
+						Target  *struct {
+							AnnotationSelector *string `tfsdk:"annotation_selector" json:"annotationSelector,omitempty"`
+							Group              *string `tfsdk:"group" json:"group,omitempty"`
+							Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
+							LabelSelector      *string `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							Name               *string `tfsdk:"name" json:"name,omitempty"`
+							Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
+							Version            *string `tfsdk:"version" json:"version,omitempty"`
+						} `tfsdk:"target" json:"target,omitempty"`
+					} `tfsdk:"patches" json:"patches,omitempty"`
+					Replicas *[]struct {
 						Count *string `tfsdk:"count" json:"count,omitempty"`
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"replicas" json:"replicas,omitempty"`
@@ -294,13 +324,28 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 				CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 				CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 				CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
+				Components                *[]string          `tfsdk:"components" json:"components,omitempty"`
 				ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 				ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 				Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
 				NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 				NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 				Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-				Replicas                  *[]struct {
+				Patches                   *[]struct {
+					Options *map[string]string `tfsdk:"options" json:"options,omitempty"`
+					Patch   *string            `tfsdk:"patch" json:"patch,omitempty"`
+					Path    *string            `tfsdk:"path" json:"path,omitempty"`
+					Target  *struct {
+						AnnotationSelector *string `tfsdk:"annotation_selector" json:"annotationSelector,omitempty"`
+						Group              *string `tfsdk:"group" json:"group,omitempty"`
+						Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
+						LabelSelector      *string `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						Name               *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
+						Version            *string `tfsdk:"version" json:"version,omitempty"`
+					} `tfsdk:"target" json:"target,omitempty"`
+				} `tfsdk:"patches" json:"patches,omitempty"`
+				Replicas *[]struct {
 					Count *string `tfsdk:"count" json:"count,omitempty"`
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"replicas" json:"replicas,omitempty"`
@@ -367,13 +412,28 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 				CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 				CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 				CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
+				Components                *[]string          `tfsdk:"components" json:"components,omitempty"`
 				ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 				ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
 				Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
 				NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 				NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
 				Namespace                 *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-				Replicas                  *[]struct {
+				Patches                   *[]struct {
+					Options *map[string]string `tfsdk:"options" json:"options,omitempty"`
+					Patch   *string            `tfsdk:"patch" json:"patch,omitempty"`
+					Path    *string            `tfsdk:"path" json:"path,omitempty"`
+					Target  *struct {
+						AnnotationSelector *string `tfsdk:"annotation_selector" json:"annotationSelector,omitempty"`
+						Group              *string `tfsdk:"group" json:"group,omitempty"`
+						Kind               *string `tfsdk:"kind" json:"kind,omitempty"`
+						LabelSelector      *string `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						Name               *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
+						Version            *string `tfsdk:"version" json:"version,omitempty"`
+					} `tfsdk:"target" json:"target,omitempty"`
+				} `tfsdk:"patches" json:"patches,omitempty"`
+				Replicas *[]struct {
 					Count *string `tfsdk:"count" json:"count,omitempty"`
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"replicas" json:"replicas,omitempty"`
@@ -996,6 +1056,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 												Computed:            false,
 											},
 
+											"components": schema.ListAttribute{
+												Description:         "Components specifies a list of kustomize components to add to the kustomization before building",
+												MarkdownDescription: "Components specifies a list of kustomize components to add to the kustomization before building",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"force_common_annotations": schema.BoolAttribute{
 												Description:         "ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps",
 												MarkdownDescription: "ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps",
@@ -1043,6 +1112,107 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"patches": schema.ListNestedAttribute{
+												Description:         "Patches is a list of Kustomize patches",
+												MarkdownDescription: "Patches is a list of Kustomize patches",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"options": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"patch": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"target": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"annotation_selector": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"group": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"kind": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"label_selector": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"namespace": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"version": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"replicas": schema.ListNestedAttribute{
@@ -1512,6 +1682,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 													Computed:            false,
 												},
 
+												"components": schema.ListAttribute{
+													Description:         "Components specifies a list of kustomize components to add to the kustomization before building",
+													MarkdownDescription: "Components specifies a list of kustomize components to add to the kustomization before building",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"force_common_annotations": schema.BoolAttribute{
 													Description:         "ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps",
 													MarkdownDescription: "ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps",
@@ -1559,6 +1738,107 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"patches": schema.ListNestedAttribute{
+													Description:         "Patches is a list of Kustomize patches",
+													MarkdownDescription: "Patches is a list of Kustomize patches",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"options": schema.MapAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"patch": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"path": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"target": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"annotation_selector": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"group": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"kind": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"label_selector": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"namespace": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"version": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"replicas": schema.ListNestedAttribute{
@@ -1799,8 +2079,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 						MarkdownDescription: "Destination is a reference to the target Kubernetes server and namespace",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "Name is an alternate way of specifying the target cluster by its symbolic name",
-								MarkdownDescription: "Name is an alternate way of specifying the target cluster by its symbolic name",
+								Description:         "Name is an alternate way of specifying the target cluster by its symbolic name. This must be set if Server is not set.",
+								MarkdownDescription: "Name is an alternate way of specifying the target cluster by its symbolic name. This must be set if Server is not set.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1815,8 +2095,8 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"server": schema.StringAttribute{
-								Description:         "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
-								MarkdownDescription: "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
+								Description:         "Server specifies the URL of the target cluster's Kubernetes control plane API. This must be set if Name is not set.",
+								MarkdownDescription: "Server specifies the URL of the target cluster's Kubernetes control plane API. This must be set if Name is not set.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2240,6 +2520,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 										Computed:            false,
 									},
 
+									"components": schema.ListAttribute{
+										Description:         "Components specifies a list of kustomize components to add to the kustomization before building",
+										MarkdownDescription: "Components specifies a list of kustomize components to add to the kustomization before building",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"force_common_annotations": schema.BoolAttribute{
 										Description:         "ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps",
 										MarkdownDescription: "ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps",
@@ -2287,6 +2576,107 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"patches": schema.ListNestedAttribute{
+										Description:         "Patches is a list of Kustomize patches",
+										MarkdownDescription: "Patches is a list of Kustomize patches",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"options": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"patch": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"path": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"target": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"annotation_selector": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"group": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"kind": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"label_selector": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"namespace": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"version": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"replicas": schema.ListNestedAttribute{
@@ -2756,6 +3146,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed:            false,
 										},
 
+										"components": schema.ListAttribute{
+											Description:         "Components specifies a list of kustomize components to add to the kustomization before building",
+											MarkdownDescription: "Components specifies a list of kustomize components to add to the kustomization before building",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"force_common_annotations": schema.BoolAttribute{
 											Description:         "ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps",
 											MarkdownDescription: "ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps",
@@ -2803,6 +3202,107 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"patches": schema.ListNestedAttribute{
+											Description:         "Patches is a list of Kustomize patches",
+											MarkdownDescription: "Patches is a list of Kustomize patches",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"options": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"patch": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"target": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"annotation_selector": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"group": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"kind": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"label_selector": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"namespace": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"version": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"replicas": schema.ListNestedAttribute{

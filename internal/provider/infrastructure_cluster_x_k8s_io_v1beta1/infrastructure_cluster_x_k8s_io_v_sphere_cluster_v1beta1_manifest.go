@@ -77,8 +77,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Beta1Manifest) Metadata(_ co
 
 func (r *InfrastructureClusterXK8SIoVsphereClusterV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereCluster is the Schema for the vsphereclusters API",
-		MarkdownDescription: "VSphereCluster is the Schema for the vsphereclusters API",
+		Description:         "VSphereCluster is the Schema for the vsphereclusters API.",
+		MarkdownDescription: "VSphereCluster is the Schema for the vsphereclusters API.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -153,8 +153,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Beta1Manifest) Schema(_ cont
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "VSphereClusterSpec defines the desired state of VSphereCluster",
-				MarkdownDescription: "VSphereClusterSpec defines the desired state of VSphereCluster",
+				Description:         "VSphereClusterSpec defines the desired state of VSphereCluster.",
+				MarkdownDescription: "VSphereClusterSpec defines the desired state of VSphereCluster.",
 				Attributes: map[string]schema.Attribute{
 					"cluster_modules": schema.ListNestedAttribute{
 						Description:         "ClusterModules hosts information regarding the anti-affinity vSphere constructs for each of the objects responsible for creation of VM objects belonging to the cluster.",

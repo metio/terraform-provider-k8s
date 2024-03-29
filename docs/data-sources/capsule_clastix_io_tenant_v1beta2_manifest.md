@@ -16,6 +16,7 @@ Tenant is the Schema for the tenants API.
 data "k8s_capsule_clastix_io_tenant_v1beta2_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -67,6 +68,7 @@ Optional:
 - `namespace_options` (Attributes) Specifies options for the Namespaces, such as additional metadata or maximum number of namespaces allowed for that Tenant. Once the namespace quota assigned to the Tenant has been reached, the Tenant owner cannot create further namespaces. Optional. (see [below for nested schema](#nestedatt--spec--namespace_options))
 - `network_policies` (Attributes) Specifies the NetworkPolicies assigned to the Tenant. The assigned NetworkPolicies are inherited by any namespace created in the Tenant. Optional. (see [below for nested schema](#nestedatt--spec--network_policies))
 - `node_selector` (Map of String) Specifies the label to control the placement of pods on a given pool of worker nodes. All namespaces created within the Tenant will have the node selector annotation. This annotation tells the Kubernetes scheduler to place pods on the nodes having the selector label. Optional.
+- `pod_options` (Attributes) Specifies options for the Pods deployed in the Tenant namespaces, such as additional metadata. (see [below for nested schema](#nestedatt--spec--pod_options))
 - `prevent_deletion` (Boolean) Prevent accidental deletion of the Tenant. When enabled, the deletion request will be declined.
 - `priority_classes` (Attributes) Specifies the allowed priorityClasses assigned to the Tenant. Capsule assures that all Pods resources created in the Tenant can use only one of the allowed PriorityClasses. A default value can be specified, and all the Pod resources created will inherit the declared class. Optional. (see [below for nested schema](#nestedatt--spec--priority_classes))
 - `resource_quotas` (Attributes) Specifies a list of ResourceQuota resources assigned to the Tenant. The assigned values are inherited by any namespace created in the Tenant. The Capsule operator aggregates ResourceQuota at Tenant level, so that the hard quota is never crossed for the given Tenant. This permits the Tenant owner to consume resources in the Tenant regardless of the namespace. Optional. (see [below for nested schema](#nestedatt--spec--resource_quotas))
@@ -458,6 +460,23 @@ Optional:
 
 
 
+<a id="nestedatt--spec--pod_options"></a>
+### Nested Schema for `spec.pod_options`
+
+Optional:
+
+- `additional_metadata` (Attributes) Specifies additional labels and annotations the Capsule operator places on any Pod resource in the Tenant. Optional. (see [below for nested schema](#nestedatt--spec--pod_options--additional_metadata))
+
+<a id="nestedatt--spec--pod_options--additional_metadata"></a>
+### Nested Schema for `spec.pod_options.additional_metadata`
+
+Optional:
+
+- `annotations` (Map of String)
+- `labels` (Map of String)
+
+
+
 <a id="nestedatt--spec--priority_classes"></a>
 ### Nested Schema for `spec.priority_classes`
 
@@ -555,6 +574,8 @@ Optional:
 - `additional_metadata` (Attributes) Specifies additional labels and annotations the Capsule operator places on any Service resource in the Tenant. Optional. (see [below for nested schema](#nestedatt--spec--service_options--additional_metadata))
 - `allowed_services` (Attributes) Block or deny certain type of Services. Optional. (see [below for nested schema](#nestedatt--spec--service_options--allowed_services))
 - `external_i_ps` (Attributes) Specifies the external IPs that can be used in Services with type ClusterIP. An empty list means no IPs are allowed. Optional. (see [below for nested schema](#nestedatt--spec--service_options--external_i_ps))
+- `forbidden_annotations` (Attributes) Define the annotations that a Tenant Owner cannot set for their Service resources. (see [below for nested schema](#nestedatt--spec--service_options--forbidden_annotations))
+- `forbidden_labels` (Attributes) Define the labels that a Tenant Owner cannot set for their Service resources. (see [below for nested schema](#nestedatt--spec--service_options--forbidden_labels))
 
 <a id="nestedatt--spec--service_options--additional_metadata"></a>
 ### Nested Schema for `spec.service_options.additional_metadata`
@@ -581,6 +602,24 @@ Optional:
 Required:
 
 - `allowed` (List of String)
+
+
+<a id="nestedatt--spec--service_options--forbidden_annotations"></a>
+### Nested Schema for `spec.service_options.forbidden_annotations`
+
+Optional:
+
+- `denied` (List of String)
+- `denied_regex` (String)
+
+
+<a id="nestedatt--spec--service_options--forbidden_labels"></a>
+### Nested Schema for `spec.service_options.forbidden_labels`
+
+Optional:
+
+- `denied` (List of String)
+- `denied_regex` (String)
 
 
 

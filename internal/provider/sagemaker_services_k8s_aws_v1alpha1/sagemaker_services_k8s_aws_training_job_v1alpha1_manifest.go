@@ -86,7 +86,10 @@ type SagemakerServicesK8SAwsTrainingJobV1Alpha1ManifestData struct {
 			TrialComponentDisplayName *string `tfsdk:"trial_component_display_name" json:"trialComponentDisplayName,omitempty"`
 			TrialName                 *string `tfsdk:"trial_name" json:"trialName,omitempty"`
 		} `tfsdk:"experiment_config" json:"experimentConfig,omitempty"`
-		HyperParameters *map[string]string `tfsdk:"hyper_parameters" json:"hyperParameters,omitempty"`
+		HyperParameters  *map[string]string `tfsdk:"hyper_parameters" json:"hyperParameters,omitempty"`
+		InfraCheckConfig *struct {
+			EnableInfraCheck *bool `tfsdk:"enable_infra_check" json:"enableInfraCheck,omitempty"`
+		} `tfsdk:"infra_check_config" json:"infraCheckConfig,omitempty"`
 		InputDataConfig *[]struct {
 			ChannelName     *string `tfsdk:"channel_name" json:"channelName,omitempty"`
 			CompressionType *string `tfsdk:"compression_type" json:"compressionType,omitempty"`
@@ -113,8 +116,9 @@ type SagemakerServicesK8SAwsTrainingJobV1Alpha1ManifestData struct {
 			} `tfsdk:"shuffle_config" json:"shuffleConfig,omitempty"`
 		} `tfsdk:"input_data_config" json:"inputDataConfig,omitempty"`
 		OutputDataConfig *struct {
-			KmsKeyID     *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
-			S3OutputPath *string `tfsdk:"s3_output_path" json:"s3OutputPath,omitempty"`
+			CompressionType *string `tfsdk:"compression_type" json:"compressionType,omitempty"`
+			KmsKeyID        *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
+			S3OutputPath    *string `tfsdk:"s3_output_path" json:"s3OutputPath,omitempty"`
 		} `tfsdk:"output_data_config" json:"outputDataConfig,omitempty"`
 		ProfilerConfig *struct {
 			ProfilingIntervalInMilliseconds *int64             `tfsdk:"profiling_interval_in_milliseconds" json:"profilingIntervalInMilliseconds,omitempty"`
@@ -130,6 +134,9 @@ type SagemakerServicesK8SAwsTrainingJobV1Alpha1ManifestData struct {
 			S3OutputPath          *string            `tfsdk:"s3_output_path" json:"s3OutputPath,omitempty"`
 			VolumeSizeInGB        *int64             `tfsdk:"volume_size_in_gb" json:"volumeSizeInGB,omitempty"`
 		} `tfsdk:"profiler_rule_configurations" json:"profilerRuleConfigurations,omitempty"`
+		RemoteDebugConfig *struct {
+			EnableRemoteDebug *bool `tfsdk:"enable_remote_debug" json:"enableRemoteDebug,omitempty"`
+		} `tfsdk:"remote_debug_config" json:"remoteDebugConfig,omitempty"`
 		ResourceConfig *struct {
 			InstanceCount  *int64 `tfsdk:"instance_count" json:"instanceCount,omitempty"`
 			InstanceGroups *[]struct {
@@ -147,8 +154,9 @@ type SagemakerServicesK8SAwsTrainingJobV1Alpha1ManifestData struct {
 		} `tfsdk:"retry_strategy" json:"retryStrategy,omitempty"`
 		RoleARN           *string `tfsdk:"role_arn" json:"roleARN,omitempty"`
 		StoppingCondition *struct {
-			MaxRuntimeInSeconds  *int64 `tfsdk:"max_runtime_in_seconds" json:"maxRuntimeInSeconds,omitempty"`
-			MaxWaitTimeInSeconds *int64 `tfsdk:"max_wait_time_in_seconds" json:"maxWaitTimeInSeconds,omitempty"`
+			MaxPendingTimeInSeconds *int64 `tfsdk:"max_pending_time_in_seconds" json:"maxPendingTimeInSeconds,omitempty"`
+			MaxRuntimeInSeconds     *int64 `tfsdk:"max_runtime_in_seconds" json:"maxRuntimeInSeconds,omitempty"`
+			MaxWaitTimeInSeconds    *int64 `tfsdk:"max_wait_time_in_seconds" json:"maxWaitTimeInSeconds,omitempty"`
 		} `tfsdk:"stopping_condition" json:"stoppingCondition,omitempty"`
 		Tags *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
@@ -248,12 +256,12 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "TrainingJobSpec defines the desired state of TrainingJob.  Contains information about a training job.",
-				MarkdownDescription: "TrainingJobSpec defines the desired state of TrainingJob.  Contains information about a training job.",
+				Description:         "TrainingJobSpec defines the desired state of TrainingJob.Contains information about a training job.",
+				MarkdownDescription: "TrainingJobSpec defines the desired state of TrainingJob.Contains information about a training job.",
 				Attributes: map[string]schema.Attribute{
 					"algorithm_specification": schema.SingleNestedAttribute{
-						Description:         "The registry path of the Docker image that contains the training algorithm and algorithm-specific metadata, including the input mode. For more information about algorithms provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html). For information about providing your own algorithms, see Using Your Own Algorithms with Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html).",
-						MarkdownDescription: "The registry path of the Docker image that contains the training algorithm and algorithm-specific metadata, including the input mode. For more information about algorithms provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html). For information about providing your own algorithms, see Using Your Own Algorithms with Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html).",
+						Description:         "The registry path of the Docker image that contains the training algorithmand algorithm-specific metadata, including the input mode. For more informationabout algorithms provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).For information about providing your own algorithms, see Using Your Own Algorithmswith Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html).",
+						MarkdownDescription: "The registry path of the Docker image that contains the training algorithmand algorithm-specific metadata, including the input mode. For more informationabout algorithms provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).For information about providing your own algorithms, see Using Your Own Algorithmswith Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html).",
 						Attributes: map[string]schema.Attribute{
 							"algorithm_name": schema.StringAttribute{
 								Description:         "",
@@ -307,8 +315,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"training_input_mode": schema.StringAttribute{
-								Description:         "The training input mode that the algorithm supports. For more information about input modes, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).  Pipe mode  If an algorithm supports Pipe mode, Amazon SageMaker streams data directly from Amazon S3 to the container.  File mode  If an algorithm supports File mode, SageMaker downloads the training data from S3 to the provisioned ML storage volume, and mounts the directory to the Docker volume for the training container.  You must provision the ML storage volume with sufficient capacity to accommodate the data downloaded from S3. In addition to the training data, the ML storage volume also stores the output model. The algorithm container uses the ML storage volume to also store intermediate information, if any.  For distributed algorithms, training data is distributed uniformly. Your training duration is predictable if the input data objects sizes are approximately the same. SageMaker does not split the files any further for model training. If the object sizes are skewed, training won't be optimal as the data distribution is also skewed when one host in a training cluster is overloaded, thus becoming a bottleneck in training.  FastFile mode  If an algorithm supports FastFile mode, SageMaker streams data directly from S3 to the container with no code changes, and provides file system access to the data. Users can author their training script to interact with these files as if they were stored on disk.  FastFile mode works best when the data is read sequentially. Augmented manifest files aren't supported. The startup time is lower when there are fewer files in the S3 bucket provided.",
-								MarkdownDescription: "The training input mode that the algorithm supports. For more information about input modes, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).  Pipe mode  If an algorithm supports Pipe mode, Amazon SageMaker streams data directly from Amazon S3 to the container.  File mode  If an algorithm supports File mode, SageMaker downloads the training data from S3 to the provisioned ML storage volume, and mounts the directory to the Docker volume for the training container.  You must provision the ML storage volume with sufficient capacity to accommodate the data downloaded from S3. In addition to the training data, the ML storage volume also stores the output model. The algorithm container uses the ML storage volume to also store intermediate information, if any.  For distributed algorithms, training data is distributed uniformly. Your training duration is predictable if the input data objects sizes are approximately the same. SageMaker does not split the files any further for model training. If the object sizes are skewed, training won't be optimal as the data distribution is also skewed when one host in a training cluster is overloaded, thus becoming a bottleneck in training.  FastFile mode  If an algorithm supports FastFile mode, SageMaker streams data directly from S3 to the container with no code changes, and provides file system access to the data. Users can author their training script to interact with these files as if they were stored on disk.  FastFile mode works best when the data is read sequentially. Augmented manifest files aren't supported. The startup time is lower when there are fewer files in the S3 bucket provided.",
+								Description:         "The training input mode that the algorithm supports. For more informationabout input modes, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).Pipe modeIf an algorithm supports Pipe mode, Amazon SageMaker streams data directlyfrom Amazon S3 to the container.File modeIf an algorithm supports File mode, SageMaker downloads the training datafrom S3 to the provisioned ML storage volume, and mounts the directory tothe Docker volume for the training container.You must provision the ML storage volume with sufficient capacity to accommodatethe data downloaded from S3. In addition to the training data, the ML storagevolume also stores the output model. The algorithm container uses the MLstorage volume to also store intermediate information, if any.For distributed algorithms, training data is distributed uniformly. Yourtraining duration is predictable if the input data objects sizes are approximatelythe same. SageMaker does not split the files any further for model training.If the object sizes are skewed, training won't be optimal as the data distributionis also skewed when one host in a training cluster is overloaded, thus becominga bottleneck in training.FastFile modeIf an algorithm supports FastFile mode, SageMaker streams data directly fromS3 to the container with no code changes, and provides file system accessto the data. Users can author their training script to interact with thesefiles as if they were stored on disk.FastFile mode works best when the data is read sequentially. Augmented manifestfiles aren't supported. The startup time is lower when there are fewer filesin the S3 bucket provided.",
+								MarkdownDescription: "The training input mode that the algorithm supports. For more informationabout input modes, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).Pipe modeIf an algorithm supports Pipe mode, Amazon SageMaker streams data directlyfrom Amazon S3 to the container.File modeIf an algorithm supports File mode, SageMaker downloads the training datafrom S3 to the provisioned ML storage volume, and mounts the directory tothe Docker volume for the training container.You must provision the ML storage volume with sufficient capacity to accommodatethe data downloaded from S3. In addition to the training data, the ML storagevolume also stores the output model. The algorithm container uses the MLstorage volume to also store intermediate information, if any.For distributed algorithms, training data is distributed uniformly. Yourtraining duration is predictable if the input data objects sizes are approximatelythe same. SageMaker does not split the files any further for model training.If the object sizes are skewed, training won't be optimal as the data distributionis also skewed when one host in a training cluster is overloaded, thus becominga bottleneck in training.FastFile modeIf an algorithm supports FastFile mode, SageMaker streams data directly fromS3 to the container with no code changes, and provides file system accessto the data. Users can author their training script to interact with thesefiles as if they were stored on disk.FastFile mode works best when the data is read sequentially. Augmented manifestfiles aren't supported. The startup time is lower when there are fewer filesin the S3 bucket provided.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -320,8 +328,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"checkpoint_config": schema.SingleNestedAttribute{
-						Description:         "Contains information about the output location for managed spot training checkpoint data.",
-						MarkdownDescription: "Contains information about the output location for managed spot training checkpoint data.",
+						Description:         "Contains information about the output location for managed spot trainingcheckpoint data.",
+						MarkdownDescription: "Contains information about the output location for managed spot trainingcheckpoint data.",
 						Attributes: map[string]schema.Attribute{
 							"local_path": schema.StringAttribute{
 								Description:         "",
@@ -345,8 +353,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"debug_hook_config": schema.SingleNestedAttribute{
-						Description:         "Configuration information for the Amazon SageMaker Debugger hook parameters, metric and tensor collections, and storage paths. To learn more about how to configure the DebugHookConfig parameter, see Use the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug Your Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).",
-						MarkdownDescription: "Configuration information for the Amazon SageMaker Debugger hook parameters, metric and tensor collections, and storage paths. To learn more about how to configure the DebugHookConfig parameter, see Use the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug Your Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).",
+						Description:         "Configuration information for the Amazon SageMaker Debugger hook parameters,metric and tensor collections, and storage paths. To learn more about howto configure the DebugHookConfig parameter, see Use the SageMaker and DebuggerConfiguration API Operations to Create, Update, and Debug Your Training Job(https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).",
+						MarkdownDescription: "Configuration information for the Amazon SageMaker Debugger hook parameters,metric and tensor collections, and storage paths. To learn more about howto configure the DebugHookConfig parameter, see Use the SageMaker and DebuggerConfiguration API Operations to Create, Update, and Debug Your Training Job(https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).",
 						Attributes: map[string]schema.Attribute{
 							"collection_configurations": schema.ListNestedAttribute{
 								Description:         "",
@@ -407,8 +415,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"debug_rule_configurations": schema.ListNestedAttribute{
-						Description:         "Configuration information for Amazon SageMaker Debugger rules for debugging output tensors.",
-						MarkdownDescription: "Configuration information for Amazon SageMaker Debugger rules for debugging output tensors.",
+						Description:         "Configuration information for Amazon SageMaker Debugger rules for debuggingoutput tensors.",
+						MarkdownDescription: "Configuration information for Amazon SageMaker Debugger rules for debuggingoutput tensors.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"instance_type": schema.StringAttribute{
@@ -475,24 +483,24 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"enable_inter_container_traffic_encryption": schema.BoolAttribute{
-						Description:         "To encrypt all communications between ML compute instances in distributed training, choose True. Encryption provides greater security for distributed training, but training might take longer. How long it takes depends on the amount of communication between compute instances, especially if you use a deep learning algorithm in distributed training. For more information, see Protect Communications Between ML Compute Instances in a Distributed Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/train-encrypt.html).",
-						MarkdownDescription: "To encrypt all communications between ML compute instances in distributed training, choose True. Encryption provides greater security for distributed training, but training might take longer. How long it takes depends on the amount of communication between compute instances, especially if you use a deep learning algorithm in distributed training. For more information, see Protect Communications Between ML Compute Instances in a Distributed Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/train-encrypt.html).",
+						Description:         "To encrypt all communications between ML compute instances in distributedtraining, choose True. Encryption provides greater security for distributedtraining, but training might take longer. How long it takes depends on theamount of communication between compute instances, especially if you usea deep learning algorithm in distributed training. For more information,see Protect Communications Between ML Compute Instances in a DistributedTraining Job (https://docs.aws.amazon.com/sagemaker/latest/dg/train-encrypt.html).",
+						MarkdownDescription: "To encrypt all communications between ML compute instances in distributedtraining, choose True. Encryption provides greater security for distributedtraining, but training might take longer. How long it takes depends on theamount of communication between compute instances, especially if you usea deep learning algorithm in distributed training. For more information,see Protect Communications Between ML Compute Instances in a DistributedTraining Job (https://docs.aws.amazon.com/sagemaker/latest/dg/train-encrypt.html).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"enable_managed_spot_training": schema.BoolAttribute{
-						Description:         "To train models using managed spot training, choose True. Managed spot training provides a fully managed and scalable infrastructure for training machine learning models. this option is useful when training jobs can be interrupted and when there is flexibility when the training job is run.  The complete and intermediate results of jobs are stored in an Amazon S3 bucket, and can be used as a starting point to train models incrementally. Amazon SageMaker provides metrics and logs in CloudWatch. They can be used to see when managed spot training jobs are running, interrupted, resumed, or completed.",
-						MarkdownDescription: "To train models using managed spot training, choose True. Managed spot training provides a fully managed and scalable infrastructure for training machine learning models. this option is useful when training jobs can be interrupted and when there is flexibility when the training job is run.  The complete and intermediate results of jobs are stored in an Amazon S3 bucket, and can be used as a starting point to train models incrementally. Amazon SageMaker provides metrics and logs in CloudWatch. They can be used to see when managed spot training jobs are running, interrupted, resumed, or completed.",
+						Description:         "To train models using managed spot training, choose True. Managed spot trainingprovides a fully managed and scalable infrastructure for training machinelearning models. this option is useful when training jobs can be interruptedand when there is flexibility when the training job is run.The complete and intermediate results of jobs are stored in an Amazon S3bucket, and can be used as a starting point to train models incrementally.Amazon SageMaker provides metrics and logs in CloudWatch. They can be usedto see when managed spot training jobs are running, interrupted, resumed,or completed.",
+						MarkdownDescription: "To train models using managed spot training, choose True. Managed spot trainingprovides a fully managed and scalable infrastructure for training machinelearning models. this option is useful when training jobs can be interruptedand when there is flexibility when the training job is run.The complete and intermediate results of jobs are stored in an Amazon S3bucket, and can be used as a starting point to train models incrementally.Amazon SageMaker provides metrics and logs in CloudWatch. They can be usedto see when managed spot training jobs are running, interrupted, resumed,or completed.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"enable_network_isolation": schema.BoolAttribute{
-						Description:         "Isolates the training container. No inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If you enable network isolation for training jobs that are configured to use a VPC, SageMaker downloads and uploads customer data and model artifacts through the specified VPC, but the training container does not have network access.",
-						MarkdownDescription: "Isolates the training container. No inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If you enable network isolation for training jobs that are configured to use a VPC, SageMaker downloads and uploads customer data and model artifacts through the specified VPC, but the training container does not have network access.",
+						Description:         "Isolates the training container. No inbound or outbound network calls canbe made, except for calls between peers within a training cluster for distributedtraining. If you enable network isolation for training jobs that are configuredto use a VPC, SageMaker downloads and uploads customer data and model artifactsthrough the specified VPC, but the training container does not have networkaccess.",
+						MarkdownDescription: "Isolates the training container. No inbound or outbound network calls canbe made, except for calls between peers within a training cluster for distributedtraining. If you enable network isolation for training jobs that are configuredto use a VPC, SageMaker downloads and uploads customer data and model artifactsthrough the specified VPC, but the training container does not have networkaccess.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -508,8 +516,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"experiment_config": schema.SingleNestedAttribute{
-						Description:         "Associates a SageMaker job as a trial component with an experiment and trial. Specified when you call the following APIs:  * CreateProcessingJob  * CreateTrainingJob  * CreateTransformJob",
-						MarkdownDescription: "Associates a SageMaker job as a trial component with an experiment and trial. Specified when you call the following APIs:  * CreateProcessingJob  * CreateTrainingJob  * CreateTransformJob",
+						Description:         "Associates a SageMaker job as a trial component with an experiment and trial.Specified when you call the following APIs:   * CreateProcessingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateProcessingJob.html)   * CreateTrainingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)   * CreateTransformJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html)",
+						MarkdownDescription: "Associates a SageMaker job as a trial component with an experiment and trial.Specified when you call the following APIs:   * CreateProcessingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateProcessingJob.html)   * CreateTrainingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)   * CreateTransformJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html)",
 						Attributes: map[string]schema.Attribute{
 							"experiment_name": schema.StringAttribute{
 								Description:         "",
@@ -541,17 +549,34 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"hyper_parameters": schema.MapAttribute{
-						Description:         "Algorithm-specific parameters that influence the quality of the model. You set hyperparameters before you start the learning process. For a list of hyperparameters for each training algorithm provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).  You can specify a maximum of 100 hyperparameters. Each hyperparameter is a key-value pair. Each key and value is limited to 256 characters, as specified by the Length Constraint.  Do not include any security-sensitive information including account access IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive credentials are detected, SageMaker will reject your training job request and return an exception error.",
-						MarkdownDescription: "Algorithm-specific parameters that influence the quality of the model. You set hyperparameters before you start the learning process. For a list of hyperparameters for each training algorithm provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).  You can specify a maximum of 100 hyperparameters. Each hyperparameter is a key-value pair. Each key and value is limited to 256 characters, as specified by the Length Constraint.  Do not include any security-sensitive information including account access IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive credentials are detected, SageMaker will reject your training job request and return an exception error.",
+						Description:         "Algorithm-specific parameters that influence the quality of the model. Youset hyperparameters before you start the learning process. For a list ofhyperparameters for each training algorithm provided by SageMaker, see Algorithms(https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).You can specify a maximum of 100 hyperparameters. Each hyperparameter isa key-value pair. Each key and value is limited to 256 characters, as specifiedby the Length Constraint.Do not include any security-sensitive information including account accessIDs, secrets or tokens in any hyperparameter field. If the use of security-sensitivecredentials are detected, SageMaker will reject your training job requestand return an exception error.",
+						MarkdownDescription: "Algorithm-specific parameters that influence the quality of the model. Youset hyperparameters before you start the learning process. For a list ofhyperparameters for each training algorithm provided by SageMaker, see Algorithms(https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).You can specify a maximum of 100 hyperparameters. Each hyperparameter isa key-value pair. Each key and value is limited to 256 characters, as specifiedby the Length Constraint.Do not include any security-sensitive information including account accessIDs, secrets or tokens in any hyperparameter field. If the use of security-sensitivecredentials are detected, SageMaker will reject your training job requestand return an exception error.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
+					"infra_check_config": schema.SingleNestedAttribute{
+						Description:         "Contains information about the infrastructure health check configurationfor the training job.",
+						MarkdownDescription: "Contains information about the infrastructure health check configurationfor the training job.",
+						Attributes: map[string]schema.Attribute{
+							"enable_infra_check": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"input_data_config": schema.ListNestedAttribute{
-						Description:         "An array of Channel objects. Each channel is a named input source. InputDataConfig describes the input data and its location.  Algorithms can accept input data from one or more channels. For example, an algorithm might have two channels of input data, training_data and validation_data. The configuration for each channel provides the S3, EFS, or FSx location where the input data is stored. It also provides information about the stored data: the MIME type, compression method, and whether the data is wrapped in RecordIO format.  Depending on the input mode that the algorithm supports, SageMaker either copies input data files from an S3 bucket to a local directory in the Docker container, or makes it available as input streams. For example, if you specify an EFS location, input data files are available as input streams. They do not need to be downloaded.",
-						MarkdownDescription: "An array of Channel objects. Each channel is a named input source. InputDataConfig describes the input data and its location.  Algorithms can accept input data from one or more channels. For example, an algorithm might have two channels of input data, training_data and validation_data. The configuration for each channel provides the S3, EFS, or FSx location where the input data is stored. It also provides information about the stored data: the MIME type, compression method, and whether the data is wrapped in RecordIO format.  Depending on the input mode that the algorithm supports, SageMaker either copies input data files from an S3 bucket to a local directory in the Docker container, or makes it available as input streams. For example, if you specify an EFS location, input data files are available as input streams. They do not need to be downloaded.",
+						Description:         "An array of Channel objects. Each channel is a named input source. InputDataConfigdescribes the input data and its location.Algorithms can accept input data from one or more channels. For example,an algorithm might have two channels of input data, training_data and validation_data.The configuration for each channel provides the S3, EFS, or FSx locationwhere the input data is stored. It also provides information about the storeddata: the MIME type, compression method, and whether the data is wrappedin RecordIO format.Depending on the input mode that the algorithm supports, SageMaker eithercopies input data files from an S3 bucket to a local directory in the Dockercontainer, or makes it available as input streams. For example, if you specifyan EFS location, input data files are available as input streams. They donot need to be downloaded.Your input must be in the same Amazon Web Services region as your trainingjob.",
+						MarkdownDescription: "An array of Channel objects. Each channel is a named input source. InputDataConfigdescribes the input data and its location.Algorithms can accept input data from one or more channels. For example,an algorithm might have two channels of input data, training_data and validation_data.The configuration for each channel provides the S3, EFS, or FSx locationwhere the input data is stored. It also provides information about the storeddata: the MIME type, compression method, and whether the data is wrappedin RecordIO format.Depending on the input mode that the algorithm supports, SageMaker eithercopies input data files from an S3 bucket to a local directory in the Dockercontainer, or makes it available as input streams. For example, if you specifyan EFS location, input data files are available as input streams. They donot need to be downloaded.Your input must be in the same Amazon Web Services region as your trainingjob.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"channel_name": schema.StringAttribute{
@@ -624,8 +649,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"s3_data_source": schema.SingleNestedAttribute{
-											Description:         "Describes the S3 data source.",
-											MarkdownDescription: "Describes the S3 data source.",
+											Description:         "Describes the S3 data source.Your input bucket must be in the same Amazon Web Services region as yourtraining job.",
+											MarkdownDescription: "Describes the S3 data source.Your input bucket must be in the same Amazon Web Services region as yourtraining job.",
 											Attributes: map[string]schema.Attribute{
 												"attribute_names": schema.ListAttribute{
 													Description:         "",
@@ -680,8 +705,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 								},
 
 								"input_mode": schema.StringAttribute{
-									Description:         "The training input mode that the algorithm supports. For more information about input modes, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).  Pipe mode  If an algorithm supports Pipe mode, Amazon SageMaker streams data directly from Amazon S3 to the container.  File mode  If an algorithm supports File mode, SageMaker downloads the training data from S3 to the provisioned ML storage volume, and mounts the directory to the Docker volume for the training container.  You must provision the ML storage volume with sufficient capacity to accommodate the data downloaded from S3. In addition to the training data, the ML storage volume also stores the output model. The algorithm container uses the ML storage volume to also store intermediate information, if any.  For distributed algorithms, training data is distributed uniformly. Your training duration is predictable if the input data objects sizes are approximately the same. SageMaker does not split the files any further for model training. If the object sizes are skewed, training won't be optimal as the data distribution is also skewed when one host in a training cluster is overloaded, thus becoming a bottleneck in training.  FastFile mode  If an algorithm supports FastFile mode, SageMaker streams data directly from S3 to the container with no code changes, and provides file system access to the data. Users can author their training script to interact with these files as if they were stored on disk.  FastFile mode works best when the data is read sequentially. Augmented manifest files aren't supported. The startup time is lower when there are fewer files in the S3 bucket provided.",
-									MarkdownDescription: "The training input mode that the algorithm supports. For more information about input modes, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).  Pipe mode  If an algorithm supports Pipe mode, Amazon SageMaker streams data directly from Amazon S3 to the container.  File mode  If an algorithm supports File mode, SageMaker downloads the training data from S3 to the provisioned ML storage volume, and mounts the directory to the Docker volume for the training container.  You must provision the ML storage volume with sufficient capacity to accommodate the data downloaded from S3. In addition to the training data, the ML storage volume also stores the output model. The algorithm container uses the ML storage volume to also store intermediate information, if any.  For distributed algorithms, training data is distributed uniformly. Your training duration is predictable if the input data objects sizes are approximately the same. SageMaker does not split the files any further for model training. If the object sizes are skewed, training won't be optimal as the data distribution is also skewed when one host in a training cluster is overloaded, thus becoming a bottleneck in training.  FastFile mode  If an algorithm supports FastFile mode, SageMaker streams data directly from S3 to the container with no code changes, and provides file system access to the data. Users can author their training script to interact with these files as if they were stored on disk.  FastFile mode works best when the data is read sequentially. Augmented manifest files aren't supported. The startup time is lower when there are fewer files in the S3 bucket provided.",
+									Description:         "The training input mode that the algorithm supports. For more informationabout input modes, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).Pipe modeIf an algorithm supports Pipe mode, Amazon SageMaker streams data directlyfrom Amazon S3 to the container.File modeIf an algorithm supports File mode, SageMaker downloads the training datafrom S3 to the provisioned ML storage volume, and mounts the directory tothe Docker volume for the training container.You must provision the ML storage volume with sufficient capacity to accommodatethe data downloaded from S3. In addition to the training data, the ML storagevolume also stores the output model. The algorithm container uses the MLstorage volume to also store intermediate information, if any.For distributed algorithms, training data is distributed uniformly. Yourtraining duration is predictable if the input data objects sizes are approximatelythe same. SageMaker does not split the files any further for model training.If the object sizes are skewed, training won't be optimal as the data distributionis also skewed when one host in a training cluster is overloaded, thus becominga bottleneck in training.FastFile modeIf an algorithm supports FastFile mode, SageMaker streams data directly fromS3 to the container with no code changes, and provides file system accessto the data. Users can author their training script to interact with thesefiles as if they were stored on disk.FastFile mode works best when the data is read sequentially. Augmented manifestfiles aren't supported. The startup time is lower when there are fewer filesin the S3 bucket provided.",
+									MarkdownDescription: "The training input mode that the algorithm supports. For more informationabout input modes, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).Pipe modeIf an algorithm supports Pipe mode, Amazon SageMaker streams data directlyfrom Amazon S3 to the container.File modeIf an algorithm supports File mode, SageMaker downloads the training datafrom S3 to the provisioned ML storage volume, and mounts the directory tothe Docker volume for the training container.You must provision the ML storage volume with sufficient capacity to accommodatethe data downloaded from S3. In addition to the training data, the ML storagevolume also stores the output model. The algorithm container uses the MLstorage volume to also store intermediate information, if any.For distributed algorithms, training data is distributed uniformly. Yourtraining duration is predictable if the input data objects sizes are approximatelythe same. SageMaker does not split the files any further for model training.If the object sizes are skewed, training won't be optimal as the data distributionis also skewed when one host in a training cluster is overloaded, thus becominga bottleneck in training.FastFile modeIf an algorithm supports FastFile mode, SageMaker streams data directly fromS3 to the container with no code changes, and provides file system accessto the data. Users can author their training script to interact with thesefiles as if they were stored on disk.FastFile mode works best when the data is read sequentially. Augmented manifestfiles aren't supported. The startup time is lower when there are fewer filesin the S3 bucket provided.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -696,8 +721,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 								},
 
 								"shuffle_config": schema.SingleNestedAttribute{
-									Description:         "A configuration for a shuffle option for input data in a channel. If you use S3Prefix for S3DataType, the results of the S3 key prefix matches are shuffled. If you use ManifestFile, the order of the S3 object references in the ManifestFile is shuffled. If you use AugmentedManifestFile, the order of the JSON lines in the AugmentedManifestFile is shuffled. The shuffling order is determined using the Seed value.  For Pipe input mode, when ShuffleConfig is specified shuffling is done at the start of every epoch. With large datasets, this ensures that the order of the training data is different for each epoch, and it helps reduce bias and possible overfitting. In a multi-node training job when ShuffleConfig is combined with S3DataDistributionType of ShardedByS3Key, the data is shuffled across nodes so that the content sent to a particular node on the first epoch might be sent to a different node on the second epoch.",
-									MarkdownDescription: "A configuration for a shuffle option for input data in a channel. If you use S3Prefix for S3DataType, the results of the S3 key prefix matches are shuffled. If you use ManifestFile, the order of the S3 object references in the ManifestFile is shuffled. If you use AugmentedManifestFile, the order of the JSON lines in the AugmentedManifestFile is shuffled. The shuffling order is determined using the Seed value.  For Pipe input mode, when ShuffleConfig is specified shuffling is done at the start of every epoch. With large datasets, this ensures that the order of the training data is different for each epoch, and it helps reduce bias and possible overfitting. In a multi-node training job when ShuffleConfig is combined with S3DataDistributionType of ShardedByS3Key, the data is shuffled across nodes so that the content sent to a particular node on the first epoch might be sent to a different node on the second epoch.",
+									Description:         "A configuration for a shuffle option for input data in a channel. If youuse S3Prefix for S3DataType, the results of the S3 key prefix matches areshuffled. If you use ManifestFile, the order of the S3 object referencesin the ManifestFile is shuffled. If you use AugmentedManifestFile, the orderof the JSON lines in the AugmentedManifestFile is shuffled. The shufflingorder is determined using the Seed value.For Pipe input mode, when ShuffleConfig is specified shuffling is done atthe start of every epoch. With large datasets, this ensures that the orderof the training data is different for each epoch, and it helps reduce biasand possible overfitting. In a multi-node training job when ShuffleConfigis combined with S3DataDistributionType of ShardedByS3Key, the data is shuffledacross nodes so that the content sent to a particular node on the first epochmight be sent to a different node on the second epoch.",
+									MarkdownDescription: "A configuration for a shuffle option for input data in a channel. If youuse S3Prefix for S3DataType, the results of the S3 key prefix matches areshuffled. If you use ManifestFile, the order of the S3 object referencesin the ManifestFile is shuffled. If you use AugmentedManifestFile, the orderof the JSON lines in the AugmentedManifestFile is shuffled. The shufflingorder is determined using the Seed value.For Pipe input mode, when ShuffleConfig is specified shuffling is done atthe start of every epoch. With large datasets, this ensures that the orderof the training data is different for each epoch, and it helps reduce biasand possible overfitting. In a multi-node training job when ShuffleConfigis combined with S3DataDistributionType of ShardedByS3Key, the data is shuffledacross nodes so that the content sent to a particular node on the first epochmight be sent to a different node on the second epoch.",
 									Attributes: map[string]schema.Attribute{
 										"seed": schema.Int64Attribute{
 											Description:         "",
@@ -719,9 +744,17 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"output_data_config": schema.SingleNestedAttribute{
-						Description:         "Specifies the path to the S3 location where you want to store model artifacts. SageMaker creates subfolders for the artifacts.",
-						MarkdownDescription: "Specifies the path to the S3 location where you want to store model artifacts. SageMaker creates subfolders for the artifacts.",
+						Description:         "Specifies the path to the S3 location where you want to store model artifacts.SageMaker creates subfolders for the artifacts.",
+						MarkdownDescription: "Specifies the path to the S3 location where you want to store model artifacts.SageMaker creates subfolders for the artifacts.",
 						Attributes: map[string]schema.Attribute{
+							"compression_type": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"kms_key_id": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -744,8 +777,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"profiler_config": schema.SingleNestedAttribute{
-						Description:         "Configuration information for Amazon SageMaker Debugger system monitoring, framework profiling, and storage paths.",
-						MarkdownDescription: "Configuration information for Amazon SageMaker Debugger system monitoring, framework profiling, and storage paths.",
+						Description:         "Configuration information for Amazon SageMaker Debugger system monitoring,framework profiling, and storage paths.",
+						MarkdownDescription: "Configuration information for Amazon SageMaker Debugger system monitoring,framework profiling, and storage paths.",
 						Attributes: map[string]schema.Attribute{
 							"profiling_interval_in_milliseconds": schema.Int64Attribute{
 								Description:         "",
@@ -778,8 +811,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"profiler_rule_configurations": schema.ListNestedAttribute{
-						Description:         "Configuration information for Amazon SageMaker Debugger rules for profiling system and framework metrics.",
-						MarkdownDescription: "Configuration information for Amazon SageMaker Debugger rules for profiling system and framework metrics.",
+						Description:         "Configuration information for Amazon SageMaker Debugger rules for profilingsystem and framework metrics.",
+						MarkdownDescription: "Configuration information for Amazon SageMaker Debugger rules for profilingsystem and framework metrics.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"instance_type": schema.StringAttribute{
@@ -845,9 +878,26 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 						Computed: false,
 					},
 
+					"remote_debug_config": schema.SingleNestedAttribute{
+						Description:         "Configuration for remote debugging. To learn more about the remote debuggingfunctionality of SageMaker, see Access a training container through AmazonWeb Services Systems Manager (SSM) for remote debugging (https://docs.aws.amazon.com/sagemaker/latest/dg/train-remote-debugging.html).",
+						MarkdownDescription: "Configuration for remote debugging. To learn more about the remote debuggingfunctionality of SageMaker, see Access a training container through AmazonWeb Services Systems Manager (SSM) for remote debugging (https://docs.aws.amazon.com/sagemaker/latest/dg/train-remote-debugging.html).",
+						Attributes: map[string]schema.Attribute{
+							"enable_remote_debug": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"resource_config": schema.SingleNestedAttribute{
-						Description:         "The resources, including the ML compute instances and ML storage volumes, to use for model training.  ML storage volumes store model artifacts and incremental states. Training algorithms might also use ML storage volumes for scratch space. If you want SageMaker to use the ML storage volume to store the training data, choose File as the TrainingInputMode in the algorithm specification. For distributed training algorithms, specify an instance count greater than 1.",
-						MarkdownDescription: "The resources, including the ML compute instances and ML storage volumes, to use for model training.  ML storage volumes store model artifacts and incremental states. Training algorithms might also use ML storage volumes for scratch space. If you want SageMaker to use the ML storage volume to store the training data, choose File as the TrainingInputMode in the algorithm specification. For distributed training algorithms, specify an instance count greater than 1.",
+						Description:         "The resources, including the ML compute instances and ML storage volumes,to use for model training.ML storage volumes store model artifacts and incremental states. Trainingalgorithms might also use ML storage volumes for scratch space. If you wantSageMaker to use the ML storage volume to store the training data, chooseFile as the TrainingInputMode in the algorithm specification. For distributedtraining algorithms, specify an instance count greater than 1.",
+						MarkdownDescription: "The resources, including the ML compute instances and ML storage volumes,to use for model training.ML storage volumes store model artifacts and incremental states. Trainingalgorithms might also use ML storage volumes for scratch space. If you wantSageMaker to use the ML storage volume to store the training data, chooseFile as the TrainingInputMode in the algorithm specification. For distributedtraining algorithms, specify an instance count greater than 1.",
 						Attributes: map[string]schema.Attribute{
 							"instance_count": schema.Int64Attribute{
 								Description:         "",
@@ -901,8 +951,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"keep_alive_period_in_seconds": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Optional. Customer requested period in seconds for which the Training clusteris kept alive after the job is finished.",
+								MarkdownDescription: "Optional. Customer requested period in seconds for which the Training clusteris kept alive after the job is finished.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -947,17 +997,25 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume to perform tasks on your behalf.  During model training, SageMaker needs your permission to read input data from an S3 bucket, download a Docker image that contains training code, write model artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, and publish metrics to Amazon CloudWatch. You grant permissions for all of these tasks to an IAM role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).  To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume to perform tasks on your behalf.  During model training, SageMaker needs your permission to read input data from an S3 bucket, download a Docker image that contains training code, write model artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, and publish metrics to Amazon CloudWatch. You grant permissions for all of these tasks to an IAM role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).  To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission.",
+						Description:         "The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume toperform tasks on your behalf.During model training, SageMaker needs your permission to read input datafrom an S3 bucket, download a Docker image that contains training code, writemodel artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, andpublish metrics to Amazon CloudWatch. You grant permissions for all of thesetasks to an IAM role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).To be able to pass this role to SageMaker, the caller of this API must havethe iam:PassRole permission.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume toperform tasks on your behalf.During model training, SageMaker needs your permission to read input datafrom an S3 bucket, download a Docker image that contains training code, writemodel artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, andpublish metrics to Amazon CloudWatch. You grant permissions for all of thesetasks to an IAM role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).To be able to pass this role to SageMaker, the caller of this API must havethe iam:PassRole permission.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"stopping_condition": schema.SingleNestedAttribute{
-						Description:         "Specifies a limit to how long a model training job can run. It also specifies how long a managed Spot training job has to complete. When the job reaches the time limit, SageMaker ends the training job. Use this API to cap model training costs.  To stop a job, SageMaker sends the algorithm the SIGTERM signal, which delays job termination for 120 seconds. Algorithms can use this 120-second window to save the model artifacts, so the results of training are not lost.",
-						MarkdownDescription: "Specifies a limit to how long a model training job can run. It also specifies how long a managed Spot training job has to complete. When the job reaches the time limit, SageMaker ends the training job. Use this API to cap model training costs.  To stop a job, SageMaker sends the algorithm the SIGTERM signal, which delays job termination for 120 seconds. Algorithms can use this 120-second window to save the model artifacts, so the results of training are not lost.",
+						Description:         "Specifies a limit to how long a model training job can run. It also specifieshow long a managed Spot training job has to complete. When the job reachesthe time limit, SageMaker ends the training job. Use this API to cap modeltraining costs.To stop a job, SageMaker sends the algorithm the SIGTERM signal, which delaysjob termination for 120 seconds. Algorithms can use this 120-second windowto save the model artifacts, so the results of training are not lost.",
+						MarkdownDescription: "Specifies a limit to how long a model training job can run. It also specifieshow long a managed Spot training job has to complete. When the job reachesthe time limit, SageMaker ends the training job. Use this API to cap modeltraining costs.To stop a job, SageMaker sends the algorithm the SIGTERM signal, which delaysjob termination for 120 seconds. Algorithms can use this 120-second windowto save the model artifacts, so the results of training are not lost.",
 						Attributes: map[string]schema.Attribute{
+							"max_pending_time_in_seconds": schema.Int64Attribute{
+								Description:         "Maximum job scheduler pending time in seconds.",
+								MarkdownDescription: "Maximum job scheduler pending time in seconds.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"max_runtime_in_seconds": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -980,8 +1038,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
-						MarkdownDescription: "An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
+						Description:         "An array of key-value pairs. You can use tags to categorize your Amazon WebServices resources in different ways, for example, by purpose, owner, orenvironment. For more information, see Tagging Amazon Web Services Resources(https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
+						MarkdownDescription: "An array of key-value pairs. You can use tags to categorize your Amazon WebServices resources in different ways, for example, by purpose, owner, orenvironment. For more information, see Tagging Amazon Web Services Resources(https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -1007,8 +1065,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"tensor_board_output_config": schema.SingleNestedAttribute{
-						Description:         "Configuration of storage locations for the Amazon SageMaker Debugger TensorBoard output data.",
-						MarkdownDescription: "Configuration of storage locations for the Amazon SageMaker Debugger TensorBoard output data.",
+						Description:         "Configuration of storage locations for the Amazon SageMaker Debugger TensorBoardoutput data.",
+						MarkdownDescription: "Configuration of storage locations for the Amazon SageMaker Debugger TensorBoardoutput data.",
 						Attributes: map[string]schema.Attribute{
 							"local_path": schema.StringAttribute{
 								Description:         "",
@@ -1032,16 +1090,16 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"training_job_name": schema.StringAttribute{
-						Description:         "The name of the training job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account.",
-						MarkdownDescription: "The name of the training job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account.",
+						Description:         "The name of the training job. The name must be unique within an Amazon WebServices Region in an Amazon Web Services account.",
+						MarkdownDescription: "The name of the training job. The name must be unique within an Amazon WebServices Region in an Amazon Web Services account.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"vpc_config": schema.SingleNestedAttribute{
-						Description:         "A VpcConfig object that specifies the VPC that you want your training job to connect to. Control access to and from your training container by configuring the VPC. For more information, see Protect Training Jobs by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html).",
-						MarkdownDescription: "A VpcConfig object that specifies the VPC that you want your training job to connect to. Control access to and from your training container by configuring the VPC. For more information, see Protect Training Jobs by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html).",
+						Description:         "A VpcConfig (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_VpcConfig.html)object that specifies the VPC that you want your training job to connectto. Control access to and from your training container by configuring theVPC. For more information, see Protect Training Jobs by Using an Amazon VirtualPrivate Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html).",
+						MarkdownDescription: "A VpcConfig (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_VpcConfig.html)object that specifies the VPC that you want your training job to connectto. Control access to and from your training container by configuring theVPC. For more information, see Protect Training Jobs by Using an Amazon VirtualPrivate Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html).",
 						Attributes: map[string]schema.Attribute{
 							"security_group_i_ds": schema.ListAttribute{
 								Description:         "",

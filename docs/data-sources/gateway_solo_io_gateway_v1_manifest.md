@@ -106,6 +106,7 @@ Optional:
 - `ratelimit_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--ratelimit_server))
 - `router` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--router))
 - `sanitize_cluster_header` (Boolean)
+- `tap` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--tap))
 - `waf` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--waf))
 - `wasm` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm))
 
@@ -1265,9 +1266,18 @@ Optional:
 
 - `deny_on_fail` (Boolean)
 - `enable_x_ratelimit_headers` (Boolean)
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--grpc_service))
 - `rate_limit_before_auth` (Boolean)
 - `ratelimit_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--ratelimit_server_ref))
 - `request_timeout` (String)
+
+<a id="nestedatt--spec--http_gateway--options--wasm--grpc_service"></a>
+### Nested Schema for `spec.http_gateway.options.wasm.grpc_service`
+
+Optional:
+
+- `authority` (String)
+
 
 <a id="nestedatt--spec--http_gateway--options--wasm--ratelimit_server_ref"></a>
 ### Nested Schema for `spec.http_gateway.options.wasm.ratelimit_server_ref`
@@ -1285,6 +1295,58 @@ Optional:
 Optional:
 
 - `suppress_envoy_headers` (Boolean)
+
+
+<a id="nestedatt--spec--http_gateway--options--tap"></a>
+### Nested Schema for `spec.http_gateway.options.wasm`
+
+Optional:
+
+- `sinks` (Attributes List) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks))
+
+<a id="nestedatt--spec--http_gateway--options--wasm--sinks"></a>
+### Nested Schema for `spec.http_gateway.options.wasm.sinks`
+
+Optional:
+
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--grpc_service))
+- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--http_service))
+
+<a id="nestedatt--spec--http_gateway--options--wasm--sinks--grpc_service"></a>
+### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service`
+
+Optional:
+
+- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server))
+
+<a id="nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server"></a>
+### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service.tap_server`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+<a id="nestedatt--spec--http_gateway--options--wasm--sinks--http_service"></a>
+### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service`
+
+Optional:
+
+- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server))
+- `timeout` (String)
+
+<a id="nestedatt--spec--http_gateway--options--wasm--sinks--http_service--tap_server"></a>
+### Nested Schema for `spec.http_gateway.options.wasm.sinks.http_service.timeout`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
 
 
 <a id="nestedatt--spec--http_gateway--options--waf"></a>
@@ -1908,6 +1970,7 @@ Optional:
 - `ratelimit_server` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--ratelimit_server))
 - `router` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--router))
 - `sanitize_cluster_header` (Boolean)
+- `tap` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--tap))
 - `waf` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--waf))
 - `wasm` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm))
 
@@ -3067,9 +3130,18 @@ Optional:
 
 - `deny_on_fail` (Boolean)
 - `enable_x_ratelimit_headers` (Boolean)
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--grpc_service))
 - `rate_limit_before_auth` (Boolean)
 - `ratelimit_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ratelimit_server_ref))
 - `request_timeout` (String)
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--grpc_service"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.request_timeout`
+
+Optional:
+
+- `authority` (String)
+
 
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--ratelimit_server_ref"></a>
 ### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.request_timeout`
@@ -3087,6 +3159,58 @@ Optional:
 Optional:
 
 - `suppress_envoy_headers` (Boolean)
+
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--tap"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm`
+
+Optional:
+
+- `sinks` (Attributes List) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks))
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.sinks`
+
+Optional:
+
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--grpc_service))
+- `http_service` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service))
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--grpc_service"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.sinks.http_service`
+
+Optional:
+
+- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service--tap_server))
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service--tap_server"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.sinks.http_service.tap_server`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.sinks.http_service`
+
+Optional:
+
+- `tap_server` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service--tap_server))
+- `timeout` (String)
+
+<a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--wasm--sinks--http_service--tap_server"></a>
+### Nested Schema for `spec.hybrid_gateway.matched_gateways.tcp_gateway.options.wasm.sinks.http_service.tap_server`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
 
 
 <a id="nestedatt--spec--hybrid_gateway--matched_gateways--tcp_gateway--options--waf"></a>
@@ -3560,7 +3684,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -3960,7 +4086,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -4070,7 +4198,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -4201,7 +4331,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -4367,7 +4499,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -4477,7 +4611,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -4608,7 +4744,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -4730,7 +4868,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -4840,7 +4980,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -5027,7 +5169,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -5464,6 +5608,7 @@ Optional:
 Optional:
 
 - `max_direct_response_body_size_bytes` (Number)
+- `most_specific_header_mutations_wins` (Boolean)
 
 
 <a id="nestedatt--spec--tcp_gateway"></a>
@@ -5718,7 +5863,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -6118,7 +6265,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -6228,7 +6377,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -6359,7 +6510,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -6525,7 +6678,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -6635,7 +6790,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -6766,7 +6923,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -6888,7 +7047,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -6998,7 +7159,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -7185,7 +7348,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 

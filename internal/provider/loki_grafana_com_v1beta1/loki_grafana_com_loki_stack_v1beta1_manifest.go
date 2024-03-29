@@ -343,8 +343,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 										MarkdownDescription: "IngestionLimits defines the limits applied on ingested log streams.",
 										Attributes: map[string]schema.Attribute{
 											"ingestion_burst_size": schema.Int64Attribute{
-												Description:         "IngestionBurstSize defines the local rate-limited sample size per distributor replica. It should be set to the set at least to the maximum logs size expected in a single push request.",
-												MarkdownDescription: "IngestionBurstSize defines the local rate-limited sample size per distributor replica. It should be set to the set at least to the maximum logs size expected in a single push request.",
+												Description:         "IngestionBurstSize defines the local rate-limited sample size perdistributor replica. It should be set to the set at least to themaximum logs size expected in a single push request.",
+												MarkdownDescription: "IngestionBurstSize defines the local rate-limited sample size perdistributor replica. It should be set to the set at least to themaximum logs size expected in a single push request.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -359,32 +359,32 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"max_global_streams_per_tenant": schema.Int64Attribute{
-												Description:         "MaxGlobalStreamsPerTenant defines the maximum number of active streams per tenant, across the cluster.",
-												MarkdownDescription: "MaxGlobalStreamsPerTenant defines the maximum number of active streams per tenant, across the cluster.",
+												Description:         "MaxGlobalStreamsPerTenant defines the maximum number of active streamsper tenant, across the cluster.",
+												MarkdownDescription: "MaxGlobalStreamsPerTenant defines the maximum number of active streamsper tenant, across the cluster.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_name_length": schema.Int64Attribute{
-												Description:         "MaxLabelNameLength defines the maximum number of characters allowed for label keys in log streams.",
-												MarkdownDescription: "MaxLabelNameLength defines the maximum number of characters allowed for label keys in log streams.",
+												Description:         "MaxLabelNameLength defines the maximum number of characters allowedfor label keys in log streams.",
+												MarkdownDescription: "MaxLabelNameLength defines the maximum number of characters allowedfor label keys in log streams.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_names_per_series": schema.Int64Attribute{
-												Description:         "MaxLabelNamesPerSeries defines the maximum number of label names per series in each log stream.",
-												MarkdownDescription: "MaxLabelNamesPerSeries defines the maximum number of label names per series in each log stream.",
+												Description:         "MaxLabelNamesPerSeries defines the maximum number of label names per seriesin each log stream.",
+												MarkdownDescription: "MaxLabelNamesPerSeries defines the maximum number of label names per seriesin each log stream.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_value_length": schema.Int64Attribute{
-												Description:         "MaxLabelValueLength defines the maximum number of characters allowed for label values in log streams.",
-												MarkdownDescription: "MaxLabelValueLength defines the maximum number of characters allowed for label values in log streams.",
+												Description:         "MaxLabelValueLength defines the maximum number of characters allowedfor label values in log streams.",
+												MarkdownDescription: "MaxLabelValueLength defines the maximum number of characters allowedfor label values in log streams.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -408,24 +408,24 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 										MarkdownDescription: "QueryLimits defines the limit applied on querying log streams.",
 										Attributes: map[string]schema.Attribute{
 											"max_chunks_per_query": schema.Int64Attribute{
-												Description:         "MaxChunksPerQuery defines the maximum number of chunks that can be fetched by a single query.",
-												MarkdownDescription: "MaxChunksPerQuery defines the maximum number of chunks that can be fetched by a single query.",
+												Description:         "MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.",
+												MarkdownDescription: "MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_entries_limit_per_query": schema.Int64Attribute{
-												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
-												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
+												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.",
+												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_query_series": schema.Int64Attribute{
-												Description:         "MaxQuerySeries defines the maximum of unique series that is returned by a metric query.",
-												MarkdownDescription: "MaxQuerySeries defines the maximum of unique series that is returned by a metric query.",
+												Description:         "MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.",
+												MarkdownDescription: "MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -450,8 +450,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 										MarkdownDescription: "IngestionLimits defines the limits applied on ingested log streams.",
 										Attributes: map[string]schema.Attribute{
 											"ingestion_burst_size": schema.Int64Attribute{
-												Description:         "IngestionBurstSize defines the local rate-limited sample size per distributor replica. It should be set to the set at least to the maximum logs size expected in a single push request.",
-												MarkdownDescription: "IngestionBurstSize defines the local rate-limited sample size per distributor replica. It should be set to the set at least to the maximum logs size expected in a single push request.",
+												Description:         "IngestionBurstSize defines the local rate-limited sample size perdistributor replica. It should be set to the set at least to themaximum logs size expected in a single push request.",
+												MarkdownDescription: "IngestionBurstSize defines the local rate-limited sample size perdistributor replica. It should be set to the set at least to themaximum logs size expected in a single push request.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -466,32 +466,32 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"max_global_streams_per_tenant": schema.Int64Attribute{
-												Description:         "MaxGlobalStreamsPerTenant defines the maximum number of active streams per tenant, across the cluster.",
-												MarkdownDescription: "MaxGlobalStreamsPerTenant defines the maximum number of active streams per tenant, across the cluster.",
+												Description:         "MaxGlobalStreamsPerTenant defines the maximum number of active streamsper tenant, across the cluster.",
+												MarkdownDescription: "MaxGlobalStreamsPerTenant defines the maximum number of active streamsper tenant, across the cluster.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_name_length": schema.Int64Attribute{
-												Description:         "MaxLabelNameLength defines the maximum number of characters allowed for label keys in log streams.",
-												MarkdownDescription: "MaxLabelNameLength defines the maximum number of characters allowed for label keys in log streams.",
+												Description:         "MaxLabelNameLength defines the maximum number of characters allowedfor label keys in log streams.",
+												MarkdownDescription: "MaxLabelNameLength defines the maximum number of characters allowedfor label keys in log streams.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_names_per_series": schema.Int64Attribute{
-												Description:         "MaxLabelNamesPerSeries defines the maximum number of label names per series in each log stream.",
-												MarkdownDescription: "MaxLabelNamesPerSeries defines the maximum number of label names per series in each log stream.",
+												Description:         "MaxLabelNamesPerSeries defines the maximum number of label names per seriesin each log stream.",
+												MarkdownDescription: "MaxLabelNamesPerSeries defines the maximum number of label names per seriesin each log stream.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_value_length": schema.Int64Attribute{
-												Description:         "MaxLabelValueLength defines the maximum number of characters allowed for label values in log streams.",
-												MarkdownDescription: "MaxLabelValueLength defines the maximum number of characters allowed for label values in log streams.",
+												Description:         "MaxLabelValueLength defines the maximum number of characters allowedfor label values in log streams.",
+												MarkdownDescription: "MaxLabelValueLength defines the maximum number of characters allowedfor label values in log streams.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -515,24 +515,24 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 										MarkdownDescription: "QueryLimits defines the limit applied on querying log streams.",
 										Attributes: map[string]schema.Attribute{
 											"max_chunks_per_query": schema.Int64Attribute{
-												Description:         "MaxChunksPerQuery defines the maximum number of chunks that can be fetched by a single query.",
-												MarkdownDescription: "MaxChunksPerQuery defines the maximum number of chunks that can be fetched by a single query.",
+												Description:         "MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.",
+												MarkdownDescription: "MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_entries_limit_per_query": schema.Int64Attribute{
-												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
-												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
+												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.",
+												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_query_series": schema.Int64Attribute{
-												Description:         "MaxQuerySeries defines the maximum of unique series that is returned by a metric query.",
-												MarkdownDescription: "MaxQuerySeries defines the maximum of unique series that is returned by a metric query.",
+												Description:         "MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.",
+												MarkdownDescription: "MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -554,8 +554,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"management_state": schema.StringAttribute{
-						Description:         "ManagementState defines if the CR should be managed by the operator or not. Default is managed.",
-						MarkdownDescription: "ManagementState defines if the CR should be managed by the operator or not. Default is managed.",
+						Description:         "ManagementState defines if the CR should be managed by the operator or not.Default is managed.",
+						MarkdownDescription: "ManagementState defines if the CR should be managed by the operator or not.Default is managed.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -588,8 +588,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"namespace_selector": schema.SingleNestedAttribute{
-								Description:         "Namespaces to be selected for PrometheusRules discovery. If unspecified, only the same namespace as the LokiStack object is in is used.",
-								MarkdownDescription: "Namespaces to be selected for PrometheusRules discovery. If unspecified, only the same namespace as the LokiStack object is in is used.",
+								Description:         "Namespaces to be selected for PrometheusRules discovery. If unspecified, onlythe same namespace as the LokiStack object is in is used.",
+								MarkdownDescription: "Namespaces to be selected for PrometheusRules discovery. If unspecified, onlythe same namespace as the LokiStack object is in is used.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -605,16 +605,16 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -628,8 +628,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -642,8 +642,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"selector": schema.SingleNestedAttribute{
-								Description:         "A selector to select which LokiRules to mount for loading alerting/recording rules from.",
-								MarkdownDescription: "A selector to select which LokiRules to mount for loading alerting/recording rules from.",
+								Description:         "A selector to select which LokiRules to mount for loading alerting/recordingrules from.",
+								MarkdownDescription: "A selector to select which LokiRules to mount for loading alerting/recordingrules from.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -659,16 +659,16 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -682,8 +682,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -721,8 +721,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"effective_date": schema.StringAttribute{
-											Description:         "EffectiveDate is the date in UTC that the schema will be applied on. To ensure readibility of logs, this date should be before the current date in UTC.",
-											MarkdownDescription: "EffectiveDate is the date in UTC that the schema will be applied on. To ensure readibility of logs, this date should be before the current date in UTC.",
+											Description:         "EffectiveDate is the date in UTC that the schema will be applied on.To ensure readibility of logs, this date should be before the currentdate in UTC.",
+											MarkdownDescription: "EffectiveDate is the date in UTC that the schema will be applied on.To ensure readibility of logs, this date should be before the currentdate in UTC.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -749,8 +749,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"secret": schema.SingleNestedAttribute{
-								Description:         "Secret for object storage authentication. Name of a secret in the same namespace as the LokiStack custom resource.",
-								MarkdownDescription: "Secret for object storage authentication. Name of a secret in the same namespace as the LokiStack custom resource.",
+								Description:         "Secret for object storage authentication.Name of a secret in the same namespace as the LokiStack custom resource.",
+								MarkdownDescription: "Secret for object storage authentication.Name of a secret in the same namespace as the LokiStack custom resource.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name of a secret in the namespace configured for object storage secrets.",
@@ -781,8 +781,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "TLS configuration for reaching the object storage endpoint.",
 								Attributes: map[string]schema.Attribute{
 									"ca_name": schema.StringAttribute{
-										Description:         "CA is the name of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource.",
-										MarkdownDescription: "CA is the name of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource.",
+										Description:         "CA is the name of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.",
+										MarkdownDescription: "CA is the name of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -815,8 +815,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "Compactor defines the compaction component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -832,45 +832,45 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -892,8 +892,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "Distributor defines the distributor component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -909,45 +909,45 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -969,8 +969,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "Gateway defines the lokistack gateway component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -986,45 +986,45 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1046,8 +1046,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "IndexGateway defines the index gateway component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1063,45 +1063,45 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1123,8 +1123,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "Ingester defines the ingester component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1140,45 +1140,45 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1200,8 +1200,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "Querier defines the querier component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1217,45 +1217,45 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1277,8 +1277,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "QueryFrontend defines the query frontend component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1294,45 +1294,45 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1354,8 +1354,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "Ruler defines the ruler component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1371,45 +1371,45 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

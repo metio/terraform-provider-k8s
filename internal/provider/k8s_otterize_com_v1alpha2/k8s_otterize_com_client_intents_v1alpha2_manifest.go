@@ -47,8 +47,9 @@ type K8SOtterizeComClientIntentsV1Alpha2ManifestData struct {
 	Spec *struct {
 		Calls *[]struct {
 			DatabaseResources *[]struct {
-				Operations *[]string `tfsdk:"operations" json:"operations,omitempty"`
-				Table      *string   `tfsdk:"table" json:"table,omitempty"`
+				DatabaseName *string   `tfsdk:"database_name" json:"databaseName,omitempty"`
+				Operations   *[]string `tfsdk:"operations" json:"operations,omitempty"`
+				Table        *string   `tfsdk:"table" json:"table,omitempty"`
 			} `tfsdk:"database_resources" json:"databaseResources,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Resources *[]struct {
@@ -162,20 +163,28 @@ func (r *K8SOtterizeComClientIntentsV1Alpha2Manifest) Schema(_ context.Context, 
 									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
+											"database_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
 											"operations": schema.ListAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 
 											"table": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 										},

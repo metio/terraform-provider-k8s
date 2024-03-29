@@ -61,6 +61,7 @@ Required:
 Optional:
 
 - `async_backup_count` (Number) Number of asynchronous backups.
+- `attributes` (Attributes List) Attributes to be used with Predicates API. You can learn more at https://docs.hazelcast.com/hazelcast/latest/query/predicate-overview#creating-custom-query-attributes (see [below for nested schema](#nestedatt--spec--attributes))
 - `backup_count` (Number) Number of synchronous backups.
 - `entry_listeners` (Attributes List) EntryListeners contains the configuration for the map-level or entry-based events listeners provided by the Hazelcast’s eventing framework. You can learn more at https://docs.hazelcast.com/hazelcast/latest/events/object-events. (see [below for nested schema](#nestedatt--spec--entry_listeners))
 - `event_journal` (Attributes) EventJournal specifies event journal configuration of the Map (see [below for nested schema](#nestedatt--spec--event_journal))
@@ -69,10 +70,21 @@ Optional:
 - `indexes` (Attributes List) Indexes to be created for the map data. You can learn more at https://docs.hazelcast.com/hazelcast/latest/query/indexing-maps. It cannot be updated after map config is created successfully. (see [below for nested schema](#nestedatt--spec--indexes))
 - `map_store` (Attributes) Configuration options when you want to load/store the map entries from/to a persistent data store such as a relational database You can learn more at https://docs.hazelcast.com/hazelcast/latest/data-structures/working-with-external-data (see [below for nested schema](#nestedatt--spec--map_store))
 - `max_idle_seconds` (Number) Maximum time in seconds for each entry to stay idle in the map. Entries that are idle for more than this time are evicted automatically. It can be updated.
+- `merkle_tree` (Attributes) MerkleTree defines the configuration for the Merkle tree data structure. (see [below for nested schema](#nestedatt--spec--merkle_tree))
 - `name` (String) Name of the data structure config to be created. If empty, CR name will be used. It cannot be updated after the config is created successfully.
 - `near_cache` (Attributes) InMemoryFormat specifies near cache configuration for map (see [below for nested schema](#nestedatt--spec--near_cache))
 - `persistence_enabled` (Boolean) When enabled, map data will be persisted. It cannot be updated after map config is created successfully.
+- `tiered_store` (Attributes) TieredStore enables the Hazelcast's Tiered-Store feature for the Map (see [below for nested schema](#nestedatt--spec--tiered_store))
 - `time_to_live_seconds` (Number) Maximum time in seconds for each entry to stay in the map. If it is not 0, entries that are older than this time and not updated for this time are evicted automatically. It can be updated.
+
+<a id="nestedatt--spec--attributes"></a>
+### Nested Schema for `spec.attributes`
+
+Required:
+
+- `extractor_class_name` (String) Name of the extractor class https://docs.hazelcast.com/hazelcast/latest/query/predicate-overview#implementing-a-valueextractor
+- `name` (String) Name of the attribute https://docs.hazelcast.com/hazelcast/latest/query/predicate-overview#creating-custom-query-attributes
+
 
 <a id="nestedatt--spec--entry_listeners"></a>
 ### Nested Schema for `spec.entry_listeners`
@@ -145,6 +157,14 @@ Optional:
 - `write_delay_seconds` (Number) Number of seconds to delay the storing of entries.
 
 
+<a id="nestedatt--spec--merkle_tree"></a>
+### Nested Schema for `spec.merkle_tree`
+
+Optional:
+
+- `depth` (Number) Depth of the merkle tree.
+
+
 <a id="nestedatt--spec--near_cache"></a>
 ### Nested Schema for `spec.near_cache`
 
@@ -169,3 +189,13 @@ Optional:
 - `eviction_policy` (String) EvictionPolicy to be applied when near cache reaches its max size according to the max size policy.
 - `max_size_policy` (String) MaxSizePolicy for deciding if the maxSize is reached.
 - `size` (Number) Size is maximum size of the Near Cache used for max-size-policy
+
+
+
+<a id="nestedatt--spec--tiered_store"></a>
+### Nested Schema for `spec.tiered_store`
+
+Optional:
+
+- `disk_device_name` (String) diskDeviceName defines the name of the device for a given disk tier.
+- `memory_capacity` (String) MemoryCapacity sets Memory tier capacity, i.e., how much main memory should this tier consume at most.

@@ -19,16 +19,11 @@ data "k8s_notification_toolkit_fluxcd_io_alert_v1beta1_manifest" "example" {
     namespace = "some-namespace"
   }
   spec = {
-    exclusion_list = [
-      "first",
-      "second"
-    ]
     provider_ref = {
       name = "test"
     }
-    summary        = "some critical alert"
-    suspend        = true
-    event_severity = "error"
+    summary        = "some minor alert"
+    event_severity = "info"
     event_sources  = []
   }
 }
@@ -74,10 +69,10 @@ Required:
 
 Optional:
 
-- `event_severity` (String) Filter events based on severity, defaults to ('info'). If set to 'info' no events will be filtered.
+- `event_severity` (String) Filter events based on severity, defaults to ('info').If set to 'info' no events will be filtered.
 - `exclusion_list` (List of String) A list of Golang regular expressions to be used for excluding messages.
 - `summary` (String) Short description of the impact and affected cluster.
-- `suspend` (Boolean) This flag tells the controller to suspend subsequent events dispatching. Defaults to false.
+- `suspend` (Boolean) This flag tells the controller to suspend subsequent events dispatching.Defaults to false.
 
 <a id="nestedatt--spec--event_sources"></a>
 ### Nested Schema for `spec.event_sources`
@@ -90,7 +85,7 @@ Optional:
 
 - `api_version` (String) API version of the referent
 - `kind` (String) Kind of the referent
-- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `namespace` (String) Namespace of the referent
 
 

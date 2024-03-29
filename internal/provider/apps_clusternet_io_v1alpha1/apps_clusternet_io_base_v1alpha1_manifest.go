@@ -153,8 +153,8 @@ func (r *AppsClusternetIoBaseV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"kind": schema.StringAttribute{
-									Description:         "Kind is a string value representing the REST resource this object represents. In CamelCase.",
-									MarkdownDescription: "Kind is a string value representing the REST resource this object represents. In CamelCase.",
+									Description:         "Kind is a string value representing the REST resource this object represents.In CamelCase.",
+									MarkdownDescription: "Kind is a string value representing the REST resource this object represents.In CamelCase.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,

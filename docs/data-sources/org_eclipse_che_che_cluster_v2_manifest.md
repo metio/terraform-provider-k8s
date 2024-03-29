@@ -239,16 +239,17 @@ Optional:
 - `branding` (Attributes) Dashboard branding resources. (see [below for nested schema](#nestedatt--spec--components--dashboard--branding))
 - `deployment` (Attributes) Deployment override options. (see [below for nested schema](#nestedatt--spec--components--dashboard--deployment))
 - `header_message` (Attributes) Dashboard header message. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message))
+- `log_level` (String) The log level for the Dashboard.
 
 <a id="nestedatt--spec--components--dashboard--branding"></a>
-### Nested Schema for `spec.components.dashboard.header_message`
+### Nested Schema for `spec.components.dashboard.log_level`
 
 Optional:
 
-- `logo` (Attributes) Dashboard logo. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--logo))
+- `logo` (Attributes) Dashboard logo. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--logo))
 
-<a id="nestedatt--spec--components--dashboard--header_message--logo"></a>
-### Nested Schema for `spec.components.dashboard.header_message.logo`
+<a id="nestedatt--spec--components--dashboard--log_level--logo"></a>
+### Nested Schema for `spec.components.dashboard.log_level.logo`
 
 Required:
 
@@ -258,26 +259,26 @@ Required:
 
 
 <a id="nestedatt--spec--components--dashboard--deployment"></a>
-### Nested Schema for `spec.components.dashboard.header_message`
+### Nested Schema for `spec.components.dashboard.log_level`
 
 Optional:
 
-- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--containers))
-- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--security_context))
+- `containers` (Attributes List) List of containers belonging to the pod. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers))
+- `security_context` (Attributes) Security options the pod should run with. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--security_context))
 
-<a id="nestedatt--spec--components--dashboard--header_message--containers"></a>
-### Nested Schema for `spec.components.dashboard.header_message.containers`
+<a id="nestedatt--spec--components--dashboard--log_level--containers"></a>
+### Nested Schema for `spec.components.dashboard.log_level.containers`
 
 Optional:
 
-- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--containers--env))
+- `env` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--env))
 - `image` (String) Container image. Omit it or leave it empty to use the default container image provided by the Operator.
 - `image_pull_policy` (String) Image pull policy. Default value is 'Always' for 'nightly', 'next' or 'latest' images, and 'IfNotPresent' in other cases.
 - `name` (String) Container name.
-- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--containers--resources))
+- `resources` (Attributes) Compute resources required by this container. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources))
 
-<a id="nestedatt--spec--components--dashboard--header_message--containers--env"></a>
-### Nested Schema for `spec.components.dashboard.header_message.containers.resources`
+<a id="nestedatt--spec--components--dashboard--log_level--containers--env"></a>
+### Nested Schema for `spec.components.dashboard.log_level.containers.resources`
 
 Required:
 
@@ -286,20 +287,20 @@ Required:
 Optional:
 
 - `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--containers--resources--value_from))
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--value_from))
 
-<a id="nestedatt--spec--components--dashboard--header_message--containers--resources--value_from"></a>
-### Nested Schema for `spec.components.dashboard.header_message.containers.resources.value_from`
+<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--value_from"></a>
+### Nested Schema for `spec.components.dashboard.log_level.containers.resources.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--containers--resources--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--containers--resources--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--containers--resources--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--containers--resources--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--secret_key_ref))
 
-<a id="nestedatt--spec--components--dashboard--header_message--containers--resources--value_from--config_map_key_ref"></a>
-### Nested Schema for `spec.components.dashboard.header_message.containers.resources.value_from.secret_key_ref`
+<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.components.dashboard.log_level.containers.resources.value_from.secret_key_ref`
 
 Required:
 
@@ -311,8 +312,8 @@ Optional:
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
-<a id="nestedatt--spec--components--dashboard--header_message--containers--resources--value_from--field_ref"></a>
-### Nested Schema for `spec.components.dashboard.header_message.containers.resources.value_from.secret_key_ref`
+<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--field_ref"></a>
+### Nested Schema for `spec.components.dashboard.log_level.containers.resources.value_from.secret_key_ref`
 
 Required:
 
@@ -323,8 +324,8 @@ Optional:
 - `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
 
 
-<a id="nestedatt--spec--components--dashboard--header_message--containers--resources--value_from--resource_field_ref"></a>
-### Nested Schema for `spec.components.dashboard.header_message.containers.resources.value_from.secret_key_ref`
+<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.components.dashboard.log_level.containers.resources.value_from.secret_key_ref`
 
 Required:
 
@@ -336,8 +337,8 @@ Optional:
 - `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
 
 
-<a id="nestedatt--spec--components--dashboard--header_message--containers--resources--value_from--secret_key_ref"></a>
-### Nested Schema for `spec.components.dashboard.header_message.containers.resources.value_from.secret_key_ref`
+<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.components.dashboard.log_level.containers.resources.value_from.secret_key_ref`
 
 Required:
 
@@ -351,25 +352,16 @@ Optional:
 
 
 
-<a id="nestedatt--spec--components--dashboard--header_message--containers--resources"></a>
-### Nested Schema for `spec.components.dashboard.header_message.containers.resources`
+<a id="nestedatt--spec--components--dashboard--log_level--containers--resources"></a>
+### Nested Schema for `spec.components.dashboard.log_level.containers.resources`
 
 Optional:
 
-- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--containers--resources--limits))
-- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--components--dashboard--header_message--containers--resources--request))
+- `limits` (Attributes) Describes the maximum amount of compute resources allowed. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--limits))
+- `request` (Attributes) Describes the minimum amount of compute resources required. (see [below for nested schema](#nestedatt--spec--components--dashboard--log_level--containers--resources--request))
 
-<a id="nestedatt--spec--components--dashboard--header_message--containers--resources--limits"></a>
-### Nested Schema for `spec.components.dashboard.header_message.containers.resources.request`
-
-Optional:
-
-- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
-
-
-<a id="nestedatt--spec--components--dashboard--header_message--containers--resources--request"></a>
-### Nested Schema for `spec.components.dashboard.header_message.containers.resources.request`
+<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--limits"></a>
+### Nested Schema for `spec.components.dashboard.log_level.containers.resources.request`
 
 Optional:
 
@@ -377,10 +369,19 @@ Optional:
 - `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
+<a id="nestedatt--spec--components--dashboard--log_level--containers--resources--request"></a>
+### Nested Schema for `spec.components.dashboard.log_level.containers.resources.request`
+
+Optional:
+
+- `cpu` (String) CPU, in cores. (500m = .5 cores) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
+- `memory` (String) Memory, in bytes. (500Gi = 500GiB = 500 * 1024 * 1024 * 1024) If the value is not specified, then the default value is set depending on the component. If value is '0', then no value is set for the component.
 
 
-<a id="nestedatt--spec--components--dashboard--header_message--security_context"></a>
-### Nested Schema for `spec.components.dashboard.header_message.security_context`
+
+
+<a id="nestedatt--spec--components--dashboard--log_level--security_context"></a>
+### Nested Schema for `spec.components.dashboard.log_level.security_context`
 
 Optional:
 
@@ -390,7 +391,7 @@ Optional:
 
 
 <a id="nestedatt--spec--components--dashboard--header_message"></a>
-### Nested Schema for `spec.components.dashboard.header_message`
+### Nested Schema for `spec.components.dashboard.log_level`
 
 Optional:
 
@@ -1885,6 +1886,7 @@ Optional:
 
 Optional:
 
+- `advanced_authorization` (Attributes) Advance authorization settings. Determines which users and groups are allowed to access Che. User is allowed to access Che if he/she is either in the 'allowUsers' list or is member of group from 'allowGroups' list and not in neither the 'denyUsers' list nor is member of group from 'denyGroups' list. If 'allowUsers' and 'allowGroups' are empty, then all users are allowed to access Che. if 'denyUsers' and 'denyGroups' are empty, then no users are denied to access Che. (see [below for nested schema](#nestedatt--spec--networking--auth--advanced_authorization))
 - `gateway` (Attributes) Gateway settings. (see [below for nested schema](#nestedatt--spec--networking--auth--gateway))
 - `identity_provider_url` (String) Public URL of the Identity Provider server.
 - `identity_token` (String) Identity token to be passed to upstream. There are two types of tokens supported: 'id_token' and 'access_token'. Default value is 'id_token'. This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.
@@ -1894,6 +1896,17 @@ Optional:
 - `o_auth_scope` (String) Access Token Scope. This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.
 - `o_auth_secret` (String) Name of the secret set in the OpenShift 'OAuthClient' resource used to set up identity federation on the OpenShift side.
 
+<a id="nestedatt--spec--networking--auth--advanced_authorization"></a>
+### Nested Schema for `spec.networking.auth.o_auth_secret`
+
+Optional:
+
+- `allow_groups` (List of String) List of groups allowed to access Che (currently supported in OpenShift only).
+- `allow_users` (List of String) List of users allowed to access Che.
+- `deny_groups` (List of String) List of groups denied to access Che (currently supported in OpenShift only).
+- `deny_users` (List of String) List of users denied to access Che.
+
+
 <a id="nestedatt--spec--networking--auth--gateway"></a>
 ### Nested Schema for `spec.networking.auth.o_auth_secret`
 
@@ -1901,6 +1914,9 @@ Optional:
 
 - `config_labels` (Map of String) Gateway configuration labels.
 - `deployment` (Attributes) Deployment override options. Since gateway deployment consists of several containers, they must be distinguished in the configuration by their names: - 'gateway' - 'configbump' - 'oauth-proxy' - 'kube-rbac-proxy' (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--deployment))
+- `kube_rbac_proxy` (Attributes) Configuration for kube-rbac-proxy within the Che gateway pod. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--kube_rbac_proxy))
+- `o_auth_proxy` (Attributes) Configuration for oauth-proxy within the Che gateway pod. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--o_auth_proxy))
+- `traefik` (Attributes) Configuration for Traefik within the Che gateway pod. (see [below for nested schema](#nestedatt--spec--networking--auth--o_auth_secret--traefik))
 
 <a id="nestedatt--spec--networking--auth--o_auth_secret--deployment"></a>
 ### Nested Schema for `spec.networking.auth.o_auth_secret.deployment`
@@ -2031,3 +2047,28 @@ Optional:
 
 - `fs_group` (Number) A special supplemental group that applies to all containers in a pod. The default value is '1724'.
 - `run_as_user` (Number) The UID to run the entrypoint of the container process. The default value is '1724'.
+
+
+
+<a id="nestedatt--spec--networking--auth--o_auth_secret--kube_rbac_proxy"></a>
+### Nested Schema for `spec.networking.auth.o_auth_secret.kube_rbac_proxy`
+
+Optional:
+
+- `log_level` (Number) The glog log level for the kube-rbac-proxy container within the gateway pod. Larger values represent a higher verbosity. The default value is '0'.
+
+
+<a id="nestedatt--spec--networking--auth--o_auth_secret--o_auth_proxy"></a>
+### Nested Schema for `spec.networking.auth.o_auth_secret.o_auth_proxy`
+
+Optional:
+
+- `cookie_expire_seconds` (Number) Expire timeframe for cookie. If set to 0, cookie becomes a session-cookie which will expire when the browser is closed.
+
+
+<a id="nestedatt--spec--networking--auth--o_auth_secret--traefik"></a>
+### Nested Schema for `spec.networking.auth.o_auth_secret.traefik`
+
+Optional:
+
+- `log_level` (String) The log level for the Traefik container within the gateway pod: 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FATAL', or 'PANIC'. The default value is 'INFO'

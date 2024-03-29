@@ -104,6 +104,7 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 				Metadata  *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
 				MuteAlert *bool              `tfsdk:"mute_alert" json:"muteAlert,omitempty"`
 				Name      *string            `tfsdk:"name" json:"name,omitempty"`
+				Retries   *float64           `tfsdk:"retries" json:"retries,omitempty"`
 				Timeout   *string            `tfsdk:"timeout" json:"timeout,omitempty"`
 				Type      *string            `tfsdk:"type" json:"type,omitempty"`
 				Url       *string            `tfsdk:"url" json:"url,omitempty"`
@@ -223,7 +224,16 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 					Regex  *string `tfsdk:"regex" json:"regex,omitempty"`
 				} `tfsdk:"without_headers" json:"withoutHeaders,omitempty"`
 			} `tfsdk:"match" json:"match,omitempty"`
-			MeshName      *string  `tfsdk:"mesh_name" json:"meshName,omitempty"`
+			MeshName *string `tfsdk:"mesh_name" json:"meshName,omitempty"`
+			Mirror   *[]struct {
+				BackendRef *struct {
+					Group     *string `tfsdk:"group" json:"group,omitempty"`
+					Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Port      *int64  `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"backend_ref" json:"backendRef,omitempty"`
+			} `tfsdk:"mirror" json:"mirror,omitempty"`
 			Name          *string  `tfsdk:"name" json:"name,omitempty"`
 			Port          *float64 `tfsdk:"port" json:"port,omitempty"`
 			PortDiscovery *bool    `tfsdk:"port_discovery" json:"portDiscovery,omitempty"`
@@ -238,7 +248,9 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 				RetryOn       *string `tfsdk:"retry_on" json:"retryOn,omitempty"`
 			} `tfsdk:"retries" json:"retries,omitempty"`
 			Rewrite *struct {
-				Uri *string `tfsdk:"uri" json:"uri,omitempty"`
+				Authority *string `tfsdk:"authority" json:"authority,omitempty"`
+				Type      *string `tfsdk:"type" json:"type,omitempty"`
+				Uri       *string `tfsdk:"uri" json:"uri,omitempty"`
 			} `tfsdk:"rewrite" json:"rewrite,omitempty"`
 			TargetPort    *string `tfsdk:"target_port" json:"targetPort,omitempty"`
 			Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
@@ -276,7 +288,8 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 							To   *string `tfsdk:"to" json:"to,omitempty"`
 						} `tfsdk:"failover" json:"failover,omitempty"`
 					} `tfsdk:"locality_lb_setting" json:"localityLbSetting,omitempty"`
-					Simple *string `tfsdk:"simple" json:"simple,omitempty"`
+					Simple             *string `tfsdk:"simple" json:"simple,omitempty"`
+					WarmupDurationSecs *string `tfsdk:"warmup_duration_secs" json:"warmupDurationSecs,omitempty"`
 				} `tfsdk:"load_balancer" json:"loadBalancer,omitempty"`
 				OutlierDetection *struct {
 					BaseEjectionTime         *string `tfsdk:"base_ejection_time" json:"baseEjectionTime,omitempty"`
@@ -800,6 +813,14 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 											MarkdownDescription: "Name of the webhook",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"retries": schema.Float64Attribute{
+											Description:         "Number of retries for this webhook",
+											MarkdownDescription: "Number of retries for this webhook",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 
@@ -1682,6 +1703,88 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Computed:            false,
 							},
 
+							"mirror": schema.ListNestedAttribute{
+								Description:         "Mirror defines a schema for a filter that mirrors requests.",
+								MarkdownDescription: "Mirror defines a schema for a filter that mirrors requests.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"backend_ref": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"group": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtMost(253),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+													},
+												},
+
+												"kind": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(63),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
+													},
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(253),
+													},
+												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(63),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+													},
+												},
+
+												"port": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(1),
+														int64validator.AtMost(65535),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"name": schema.StringAttribute{
 								Description:         "Kubernetes service name",
 								MarkdownDescription: "Kubernetes service name",
@@ -1778,6 +1881,22 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Description:         "Rewrite HTTP URIs",
 								MarkdownDescription: "Rewrite HTTP URIs",
 								Attributes: map[string]schema.Attribute{
+									"authority": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"uri": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -2039,6 +2158,14 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 												Validators: []validator.String{
 													stringvalidator.OneOf("ROUND_ROBIN", "LEAST_CONN", "RANDOM", "PASSTHROUGH", "LEAST_REQUEST"),
 												},
+											},
+
+											"warmup_duration_secs": schema.StringAttribute{
+												Description:         "Represents the warmup duration of Service.",
+												MarkdownDescription: "Represents the warmup duration of Service.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,

@@ -30,7 +30,7 @@ data "k8s_rds_services_k8s_aws_db_parameter_group_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) DBParameterGroupSpec defines the desired state of DBParameterGroup.  Contains the details of an Amazon RDS DB parameter group.  This data type is used as a response element in the DescribeDBParameterGroups action. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) DBParameterGroupSpec defines the desired state of DBParameterGroup.Contains the details of an Amazon RDS DB parameter group.This data type is used as a response element in the DescribeDBParameterGroupsaction. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -57,8 +57,8 @@ Optional:
 Required:
 
 - `description` (String) The description for the DB parameter group.
-- `family` (String) The DB parameter group family name. A DB parameter group can be associated with one and only one DB parameter group family, and can be applied only to a DB instance running a database engine and engine version compatible with that DB parameter group family.  To list all of the available parameter group families for a DB engine, use the following command:  aws rds describe-db-engine-versions --query 'DBEngineVersions[].DBParameterGroupFamily' --engine <engine>  For example, to list all of the available parameter group families for the MySQL DB engine, use the following command:  aws rds describe-db-engine-versions --query 'DBEngineVersions[].DBParameterGroupFamily' --engine mysql  The output contains duplicates.  The following are the valid DB engine values:  * aurora (for MySQL 5.6-compatible Aurora)  * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)  * aurora-postgresql  * mariadb  * mysql  * oracle-ee  * oracle-ee-cdb  * oracle-se2  * oracle-se2-cdb  * postgres  * sqlserver-ee  * sqlserver-se  * sqlserver-ex  * sqlserver-web
-- `name` (String) The name of the DB parameter group.  Constraints:  * Must be 1 to 255 letters, numbers, or hyphens.  * First character must be a letter  * Can't end with a hyphen or contain two consecutive hyphens  This value is stored as a lowercase string.
+- `family` (String) The DB parameter group family name. A DB parameter group can be associatedwith one and only one DB parameter group family, and can be applied onlyto a DB instance running a database engine and engine version compatiblewith that DB parameter group family.To list all of the available parameter group families for a DB engine, usethe following command:aws rds describe-db-engine-versions --query 'DBEngineVersions[].DBParameterGroupFamily'--engine <engine>For example, to list all of the available parameter group families for theMySQL DB engine, use the following command:aws rds describe-db-engine-versions --query 'DBEngineVersions[].DBParameterGroupFamily'--engine mysqlThe output contains duplicates.The following are the valid DB engine values:   * aurora (for MySQL 5.6-compatible Aurora)   * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)   * aurora-postgresql   * mariadb   * mysql   * oracle-ee   * oracle-ee-cdb   * oracle-se2   * oracle-se2-cdb   * postgres   * sqlserver-ee   * sqlserver-se   * sqlserver-ex   * sqlserver-web
+- `name` (String) The name of the DB parameter group.Constraints:   * Must be 1 to 255 letters, numbers, or hyphens.   * First character must be a letter   * Can't end with a hyphen or contain two consecutive hyphensThis value is stored as a lowercase string.
 
 Optional:
 

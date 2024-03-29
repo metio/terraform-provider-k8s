@@ -10,12 +10,11 @@ import (
 	"github.com/metio/terraform-provider-k8s/tools/internal/fetcher"
 )
 
-func GenerateReuseFiles(templatePath string, outputPath string, openapi []fetcher.UpstreamSource, crd []fetcher.UpstreamSource) {
+func GenerateReuseFiles(templatePath string, outputPath string, openapi []fetcher.UpstreamSource) {
 	dep5Template := ParseTemplates(fmt.Sprintf("%s/dep5.tmpl", templatePath))
 
 	data := dep5TemplateData{
 		OpenAPI: openapi,
-		CRD:     crd,
 	}
 
 	dep5TargetFile := fmt.Sprintf("%s/dep5", outputPath)

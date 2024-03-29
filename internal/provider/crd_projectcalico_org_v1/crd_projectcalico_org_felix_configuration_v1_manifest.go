@@ -48,6 +48,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		AllowVXLANPacketsFromWorkloads     *bool              `tfsdk:"allow_vxlan_packets_from_workloads" json:"allowVXLANPacketsFromWorkloads,omitempty"`
 		AwsSrcDstCheck                     *string            `tfsdk:"aws_src_dst_check" json:"awsSrcDstCheck,omitempty"`
 		BpfCTLBLogFilter                   *string            `tfsdk:"bpf_ctlb_log_filter" json:"bpfCTLBLogFilter,omitempty"`
+		BpfConnectTimeLoadBalancing        *string            `tfsdk:"bpf_connect_time_load_balancing" json:"bpfConnectTimeLoadBalancing,omitempty"`
 		BpfConnectTimeLoadBalancingEnabled *bool              `tfsdk:"bpf_connect_time_load_balancing_enabled" json:"bpfConnectTimeLoadBalancingEnabled,omitempty"`
 		BpfDSROptoutCIDRs                  *[]string          `tfsdk:"bpf_dsr_optout_cid_rs" json:"bpfDSROptoutCIDRs,omitempty"`
 		BpfDataIfacePattern                *string            `tfsdk:"bpf_data_iface_pattern" json:"bpfDataIfacePattern,omitempty"`
@@ -55,10 +56,12 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		BpfDisableUnprivileged             *bool              `tfsdk:"bpf_disable_unprivileged" json:"bpfDisableUnprivileged,omitempty"`
 		BpfEnabled                         *bool              `tfsdk:"bpf_enabled" json:"bpfEnabled,omitempty"`
 		BpfEnforceRPF                      *string            `tfsdk:"bpf_enforce_rpf" json:"bpfEnforceRPF,omitempty"`
+		BpfExcludeCIDRsFromNAT             *[]string          `tfsdk:"bpf_exclude_cid_rs_from_nat" json:"bpfExcludeCIDRsFromNAT,omitempty"`
 		BpfExtToServiceConnmark            *int64             `tfsdk:"bpf_ext_to_service_connmark" json:"bpfExtToServiceConnmark,omitempty"`
 		BpfExternalServiceMode             *string            `tfsdk:"bpf_external_service_mode" json:"bpfExternalServiceMode,omitempty"`
 		BpfForceTrackPacketsFromIfaces     *[]string          `tfsdk:"bpf_force_track_packets_from_ifaces" json:"bpfForceTrackPacketsFromIfaces,omitempty"`
 		BpfHostConntrackBypass             *bool              `tfsdk:"bpf_host_conntrack_bypass" json:"bpfHostConntrackBypass,omitempty"`
+		BpfHostNetworkedNATWithoutCTLB     *string            `tfsdk:"bpf_host_networked_nat_without_ctlb" json:"bpfHostNetworkedNATWithoutCTLB,omitempty"`
 		BpfKubeProxyEndpointSlicesEnabled  *bool              `tfsdk:"bpf_kube_proxy_endpoint_slices_enabled" json:"bpfKubeProxyEndpointSlicesEnabled,omitempty"`
 		BpfKubeProxyIptablesCleanupEnabled *bool              `tfsdk:"bpf_kube_proxy_iptables_cleanup_enabled" json:"bpfKubeProxyIptablesCleanupEnabled,omitempty"`
 		BpfKubeProxyMinSyncPeriod          *string            `tfsdk:"bpf_kube_proxy_min_sync_period" json:"bpfKubeProxyMinSyncPeriod,omitempty"`
@@ -78,8 +81,11 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		DataplaneDriver                    *string            `tfsdk:"dataplane_driver" json:"dataplaneDriver,omitempty"`
 		DataplaneWatchdogTimeout           *string            `tfsdk:"dataplane_watchdog_timeout" json:"dataplaneWatchdogTimeout,omitempty"`
 		DebugDisableLogDropping            *bool              `tfsdk:"debug_disable_log_dropping" json:"debugDisableLogDropping,omitempty"`
+		DebugHost                          *string            `tfsdk:"debug_host" json:"debugHost,omitempty"`
 		DebugMemoryProfilePath             *string            `tfsdk:"debug_memory_profile_path" json:"debugMemoryProfilePath,omitempty"`
+		DebugPort                          *int64             `tfsdk:"debug_port" json:"debugPort,omitempty"`
 		DebugSimulateCalcGraphHangAfter    *string            `tfsdk:"debug_simulate_calc_graph_hang_after" json:"debugSimulateCalcGraphHangAfter,omitempty"`
+		DebugSimulateDataplaneApplyDelay   *string            `tfsdk:"debug_simulate_dataplane_apply_delay" json:"debugSimulateDataplaneApplyDelay,omitempty"`
 		DebugSimulateDataplaneHangAfter    *string            `tfsdk:"debug_simulate_dataplane_hang_after" json:"debugSimulateDataplaneHangAfter,omitempty"`
 		DefaultEndpointToHostAction        *string            `tfsdk:"default_endpoint_to_host_action" json:"defaultEndpointToHostAction,omitempty"`
 		DeviceRouteProtocol                *int64             `tfsdk:"device_route_protocol" json:"deviceRouteProtocol,omitempty"`
@@ -88,6 +94,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		DisableConntrackInvalidCheck       *bool              `tfsdk:"disable_conntrack_invalid_check" json:"disableConntrackInvalidCheck,omitempty"`
 		EndpointReportingDelay             *string            `tfsdk:"endpoint_reporting_delay" json:"endpointReportingDelay,omitempty"`
 		EndpointReportingEnabled           *bool              `tfsdk:"endpoint_reporting_enabled" json:"endpointReportingEnabled,omitempty"`
+		EndpointStatusPathPrefix           *string            `tfsdk:"endpoint_status_path_prefix" json:"endpointStatusPathPrefix,omitempty"`
 		ExternalNodesList                  *[]string          `tfsdk:"external_nodes_list" json:"externalNodesList,omitempty"`
 		FailsafeInboundHostPorts           *[]struct {
 			Net      *string `tfsdk:"net" json:"net,omitempty"`
@@ -175,6 +182,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		VxlanMTUV6                     *int64  `tfsdk:"vxlan_mtuv6" json:"vxlanMTUV6,omitempty"`
 		VxlanPort                      *int64  `tfsdk:"vxlan_port" json:"vxlanPort,omitempty"`
 		VxlanVNI                       *int64  `tfsdk:"vxlan_vni" json:"vxlanVNI,omitempty"`
+		WindowsManageFirewallRules     *string `tfsdk:"windows_manage_firewall_rules" json:"windowsManageFirewallRules,omitempty"`
 		WireguardEnabled               *bool   `tfsdk:"wireguard_enabled" json:"wireguardEnabled,omitempty"`
 		WireguardEnabledV6             *bool   `tfsdk:"wireguard_enabled_v6" json:"wireguardEnabledV6,omitempty"`
 		WireguardHostEncryptionEnabled *bool   `tfsdk:"wireguard_host_encryption_enabled" json:"wireguardHostEncryptionEnabled,omitempty"`
@@ -300,9 +308,20 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"bpf_connect_time_load_balancing": schema.StringAttribute{
+						Description:         "BPFConnectTimeLoadBalancing when in BPF mode, controls whether Felix installs the connect-time load balancer. The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections.When set to TCP, connect time load balancing is available only for services with TCP ports. [Default: TCP]",
+						MarkdownDescription: "BPFConnectTimeLoadBalancing when in BPF mode, controls whether Felix installs the connect-time load balancer. The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections.When set to TCP, connect time load balancing is available only for services with TCP ports. [Default: TCP]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("TCP", "Enabled", "Disabled"),
+						},
+					},
+
 					"bpf_connect_time_load_balancing_enabled": schema.BoolAttribute{
-						Description:         "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer.  The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections.  The only reason to disable it is for debugging purposes.  [Default: true]",
-						MarkdownDescription: "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer.  The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections.  The only reason to disable it is for debugging purposes.  [Default: true]",
+						Description:         "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer.  The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections.  The only reason to disable it is for debugging purposes. This will be deprecated. Use BPFConnectTimeLoadBalancing [Default: true]",
+						MarkdownDescription: "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer.  The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections.  The only reason to disable it is for debugging purposes. This will be deprecated. Use BPFConnectTimeLoadBalancing [Default: true]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -360,6 +379,15 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						},
 					},
 
+					"bpf_exclude_cid_rs_from_nat": schema.ListAttribute{
+						Description:         "BPFExcludeCIDRsFromNAT is a list of CIDRs that are to be excluded from NAT resolution so that host can handle them. A typical usecase is node local DNS cache.",
+						MarkdownDescription: "BPFExcludeCIDRsFromNAT is a list of CIDRs that are to be excluded from NAT resolution so that host can handle them. A typical usecase is node local DNS cache.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"bpf_ext_to_service_connmark": schema.Int64Attribute{
 						Description:         "BPFExtToServiceConnmark in BPF mode, control a 32bit mark that is set on connections from an external client to a local service. This mark allows us to control how packets of that connection are routed within the host and how is routing interpreted by RPF check. [Default: 0]",
 						MarkdownDescription: "BPFExtToServiceConnmark in BPF mode, control a 32bit mark that is set on connections from an external client to a local service. This mark allows us to control how packets of that connection are routed within the host and how is routing interpreted by RPF check. [Default: 0]",
@@ -396,9 +424,20 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"bpf_host_networked_nat_without_ctlb": schema.StringAttribute{
+						Description:         "BPFHostNetworkedNATWithoutCTLB when in BPF mode, controls whether Felix does a NAT without CTLB. This along with BPFConnectTimeLoadBalancing determines the CTLB behavior. [Default: Enabled]",
+						MarkdownDescription: "BPFHostNetworkedNATWithoutCTLB when in BPF mode, controls whether Felix does a NAT without CTLB. This along with BPFConnectTimeLoadBalancing determines the CTLB behavior. [Default: Enabled]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Enabled", "Disabled"),
+						},
+					},
+
 					"bpf_kube_proxy_endpoint_slices_enabled": schema.BoolAttribute{
-						Description:         "BPFKubeProxyEndpointSlicesEnabled in BPF mode, controls whether Felix's embedded kube-proxy accepts EndpointSlices or not.",
-						MarkdownDescription: "BPFKubeProxyEndpointSlicesEnabled in BPF mode, controls whether Felix's embedded kube-proxy accepts EndpointSlices or not.",
+						Description:         "BPFKubeProxyEndpointSlicesEnabled is deprecated and has no effect. BPF kube-proxy always accepts endpoint slices. This option will be removed in the next release.",
+						MarkdownDescription: "BPFKubeProxyEndpointSlicesEnabled is deprecated and has no effect. BPF kube-proxy always accepts endpoint slices. This option will be removed in the next release.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -558,6 +597,14 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"debug_host": schema.StringAttribute{
+						Description:         "DebugHost is the host IP or hostname to bind the debug port to.  Only used if DebugPort is set. [Default:localhost]",
+						MarkdownDescription: "DebugHost is the host IP or hostname to bind the debug port to.  Only used if DebugPort is set. [Default:localhost]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"debug_memory_profile_path": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -566,7 +613,26 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"debug_port": schema.Int64Attribute{
+						Description:         "DebugPort if set, enables Felix's debug HTTP port, which allows memory and CPU profiles to be retrieved.  The debug port is not secure, it should not be exposed to the internet.",
+						MarkdownDescription: "DebugPort if set, enables Felix's debug HTTP port, which allows memory and CPU profiles to be retrieved.  The debug port is not secure, it should not be exposed to the internet.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"debug_simulate_calc_graph_hang_after": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$`), ""),
+						},
+					},
+
+					"debug_simulate_dataplane_apply_delay": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,
@@ -645,6 +711,14 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					"endpoint_reporting_enabled": schema.BoolAttribute{
 						Description:         "",
 						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"endpoint_status_path_prefix": schema.StringAttribute{
+						Description:         "EndpointStatusPathPrefix is the path to the directory where endpoint status will be written. Endpoint status file reporting is disabled if field is left empty.  Chosen directory should match the directory used by the CNI for PodStartupDelay. [Default: '']",
+						MarkdownDescription: "EndpointStatusPathPrefix is the path to the directory where endpoint status will be written. Endpoint status file reporting is disabled if field is left empty.  Chosen directory should match the directory used by the CNI for PodStartupDelay. [Default: '']",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1070,8 +1144,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"metadata_addr": schema.StringAttribute{
-						Description:         "MetadataAddr is the IP address or domain name of the server that can answer VM queries for cloud-init metadata. In OpenStack, this corresponds to the machine running nova-api (or in Ubuntu, nova-api-metadata). A value of none (case insensitive) means that Felix should not set up any NAT rule for the metadata path. [Default: 127.0.0.1]",
-						MarkdownDescription: "MetadataAddr is the IP address or domain name of the server that can answer VM queries for cloud-init metadata. In OpenStack, this corresponds to the machine running nova-api (or in Ubuntu, nova-api-metadata). A value of none (case insensitive) means that Felix should not set up any NAT rule for the metadata path. [Default: 127.0.0.1]",
+						Description:         "MetadataAddr is the IP address or domain name of the server that can answer VM queries for cloud-init metadata. In OpenStack, this corresponds to the machine running nova-api (or in Ubuntu, nova-api-metadata). A value of none (case-insensitive) means that Felix should not set up any NAT rule for the metadata path. [Default: 127.0.0.1]",
+						MarkdownDescription: "MetadataAddr is the IP address or domain name of the server that can answer VM queries for cloud-init metadata. In OpenStack, this corresponds to the machine running nova-api (or in Ubuntu, nova-api-metadata). A value of none (case-insensitive) means that Felix should not set up any NAT rule for the metadata path. [Default: 127.0.0.1]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1391,6 +1465,17 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"windows_manage_firewall_rules": schema.StringAttribute{
+						Description:         "WindowsManageFirewallRules configures whether or not Felix will program Windows Firewall rules. (to allow inbound access to its own metrics ports) [Default: Disabled]",
+						MarkdownDescription: "WindowsManageFirewallRules configures whether or not Felix will program Windows Firewall rules. (to allow inbound access to its own metrics ports) [Default: Disabled]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Enabled", "Disabled"),
+						},
 					},
 
 					"wireguard_enabled": schema.BoolAttribute{

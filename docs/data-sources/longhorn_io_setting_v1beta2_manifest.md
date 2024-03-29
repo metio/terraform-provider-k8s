@@ -28,7 +28,7 @@ data "k8s_longhorn_io_setting_v1beta2_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `value` (String)
+- `value` (String) The value of the setting.
 
 ### Read-Only
 

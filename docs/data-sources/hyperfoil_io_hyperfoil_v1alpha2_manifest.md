@@ -18,9 +18,6 @@ data "k8s_hyperfoil_io_hyperfoil_v1alpha2_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    version = "latest"
-  }
 }
 ```
 

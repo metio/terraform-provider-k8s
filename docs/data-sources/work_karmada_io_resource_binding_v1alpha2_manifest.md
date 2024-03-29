@@ -377,7 +377,9 @@ Optional:
 
 Optional:
 
+- `namespace` (String) Namespace represents the resources namespaces
 - `node_claim` (Attributes) NodeClaim represents the node claim HardNodeAffinity, NodeSelector and Tolerations required by each replica. (see [below for nested schema](#nestedatt--spec--replica_requirements--node_claim))
+- `priority_class_name` (String) PriorityClassName represents the resources priorityClassName
 - `resource_request` (Map of String) ResourceRequest represents the resources required by each replica.
 
 <a id="nestedatt--spec--replica_requirements--node_claim"></a>

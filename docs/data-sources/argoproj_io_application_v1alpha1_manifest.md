@@ -83,9 +83,9 @@ Optional:
 
 Optional:
 
-- `name` (String) Name is an alternate way of specifying the target cluster by its symbolic name
+- `name` (String) Name is an alternate way of specifying the target cluster by its symbolic name. This must be set if Server is not set.
 - `namespace` (String) Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
-- `server` (String) Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API
+- `server` (String) Server specifies the URL of the target cluster's Kubernetes control plane API. This must be set if Name is not set.
 
 
 <a id="nestedatt--spec--ignore_differences"></a>
@@ -223,14 +223,41 @@ Optional:
 - `common_annotations` (Map of String) CommonAnnotations is a list of additional annotations to add to rendered manifests
 - `common_annotations_envsubst` (Boolean) CommonAnnotationsEnvsubst specifies whether to apply env variables substitution for annotation values
 - `common_labels` (Map of String) CommonLabels is a list of additional labels to add to rendered manifests
+- `components` (List of String) Components specifies a list of kustomize components to add to the kustomization before building
 - `force_common_annotations` (Boolean) ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
 - `force_common_labels` (Boolean) ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
 - `images` (List of String) Images is a list of Kustomize image override specifications
 - `name_prefix` (String) NamePrefix is a prefix appended to resources for Kustomize apps
 - `name_suffix` (String) NameSuffix is a suffix appended to resources for Kustomize apps
 - `namespace` (String) Namespace sets the namespace that Kustomize adds to all resources
+- `patches` (Attributes List) Patches is a list of Kustomize patches (see [below for nested schema](#nestedatt--spec--source--kustomize--patches))
 - `replicas` (Attributes List) Replicas is a list of Kustomize Replicas override specifications (see [below for nested schema](#nestedatt--spec--source--kustomize--replicas))
 - `version` (String) Version controls which version of Kustomize to use for rendering manifests
+
+<a id="nestedatt--spec--source--kustomize--patches"></a>
+### Nested Schema for `spec.source.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--source--kustomize--version--target))
+
+<a id="nestedatt--spec--source--kustomize--version--target"></a>
+### Nested Schema for `spec.source.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--source--kustomize--replicas"></a>
 ### Nested Schema for `spec.source.kustomize.version`
@@ -382,14 +409,41 @@ Optional:
 - `common_annotations` (Map of String) CommonAnnotations is a list of additional annotations to add to rendered manifests
 - `common_annotations_envsubst` (Boolean) CommonAnnotationsEnvsubst specifies whether to apply env variables substitution for annotation values
 - `common_labels` (Map of String) CommonLabels is a list of additional labels to add to rendered manifests
+- `components` (List of String) Components specifies a list of kustomize components to add to the kustomization before building
 - `force_common_annotations` (Boolean) ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
 - `force_common_labels` (Boolean) ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
 - `images` (List of String) Images is a list of Kustomize image override specifications
 - `name_prefix` (String) NamePrefix is a prefix appended to resources for Kustomize apps
 - `name_suffix` (String) NameSuffix is a suffix appended to resources for Kustomize apps
 - `namespace` (String) Namespace sets the namespace that Kustomize adds to all resources
+- `patches` (Attributes List) Patches is a list of Kustomize patches (see [below for nested schema](#nestedatt--spec--sources--kustomize--patches))
 - `replicas` (Attributes List) Replicas is a list of Kustomize Replicas override specifications (see [below for nested schema](#nestedatt--spec--sources--kustomize--replicas))
 - `version` (String) Version controls which version of Kustomize to use for rendering manifests
+
+<a id="nestedatt--spec--sources--kustomize--patches"></a>
+### Nested Schema for `spec.sources.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--sources--kustomize--version--target))
+
+<a id="nestedatt--spec--sources--kustomize--version--target"></a>
+### Nested Schema for `spec.sources.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--sources--kustomize--replicas"></a>
 ### Nested Schema for `spec.sources.kustomize.version`
@@ -668,14 +722,41 @@ Optional:
 - `common_annotations` (Map of String) CommonAnnotations is a list of additional annotations to add to rendered manifests
 - `common_annotations_envsubst` (Boolean) CommonAnnotationsEnvsubst specifies whether to apply env variables substitution for annotation values
 - `common_labels` (Map of String) CommonLabels is a list of additional labels to add to rendered manifests
+- `components` (List of String) Components specifies a list of kustomize components to add to the kustomization before building
 - `force_common_annotations` (Boolean) ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
 - `force_common_labels` (Boolean) ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
 - `images` (List of String) Images is a list of Kustomize image override specifications
 - `name_prefix` (String) NamePrefix is a prefix appended to resources for Kustomize apps
 - `name_suffix` (String) NameSuffix is a suffix appended to resources for Kustomize apps
 - `namespace` (String) Namespace sets the namespace that Kustomize adds to all resources
+- `patches` (Attributes List) Patches is a list of Kustomize patches (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--patches))
 - `replicas` (Attributes List) Replicas is a list of Kustomize Replicas override specifications (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--replicas))
 - `version` (String) Version controls which version of Kustomize to use for rendering manifests
+
+<a id="nestedatt--operation--sync--source--target_revision--patches"></a>
+### Nested Schema for `operation.sync.source.target_revision.patches`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--operation--sync--source--target_revision--patches--target))
+
+<a id="nestedatt--operation--sync--source--target_revision--patches--target"></a>
+### Nested Schema for `operation.sync.source.target_revision.patches.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--operation--sync--source--target_revision--replicas"></a>
 ### Nested Schema for `operation.sync.source.target_revision.replicas`
@@ -827,14 +908,41 @@ Optional:
 - `common_annotations` (Map of String) CommonAnnotations is a list of additional annotations to add to rendered manifests
 - `common_annotations_envsubst` (Boolean) CommonAnnotationsEnvsubst specifies whether to apply env variables substitution for annotation values
 - `common_labels` (Map of String) CommonLabels is a list of additional labels to add to rendered manifests
+- `components` (List of String) Components specifies a list of kustomize components to add to the kustomization before building
 - `force_common_annotations` (Boolean) ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
 - `force_common_labels` (Boolean) ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
 - `images` (List of String) Images is a list of Kustomize image override specifications
 - `name_prefix` (String) NamePrefix is a prefix appended to resources for Kustomize apps
 - `name_suffix` (String) NameSuffix is a suffix appended to resources for Kustomize apps
 - `namespace` (String) Namespace sets the namespace that Kustomize adds to all resources
+- `patches` (Attributes List) Patches is a list of Kustomize patches (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--patches))
 - `replicas` (Attributes List) Replicas is a list of Kustomize Replicas override specifications (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--replicas))
 - `version` (String) Version controls which version of Kustomize to use for rendering manifests
+
+<a id="nestedatt--operation--sync--sources--target_revision--patches"></a>
+### Nested Schema for `operation.sync.sources.target_revision.patches`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--operation--sync--sources--target_revision--patches--target))
+
+<a id="nestedatt--operation--sync--sources--target_revision--patches--target"></a>
+### Nested Schema for `operation.sync.sources.target_revision.patches.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--operation--sync--sources--target_revision--replicas"></a>
 ### Nested Schema for `operation.sync.sources.target_revision.replicas`

@@ -127,8 +127,8 @@ func (r *KueueXK8SIoAdmissionCheckV1Beta1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "AdmissionCheckSpec defines the desired state of AdmissionCheck",
 				Attributes: map[string]schema.Attribute{
 					"controller_name": schema.StringAttribute{
-						Description:         "controllerName is name of the controller which will actually perform the checks. This is the name with which controller identifies with, not necessarily a K8S Pod or Deployment name. Cannot be empty.",
-						MarkdownDescription: "controllerName is name of the controller which will actually perform the checks. This is the name with which controller identifies with, not necessarily a K8S Pod or Deployment name. Cannot be empty.",
+						Description:         "controllerName is name of the controller which will actually performthe checks. This is the name with which controller identifies with,not necessarily a K8S Pod or Deployment name. Cannot be empty.",
+						MarkdownDescription: "controllerName is name of the controller which will actually performthe checks. This is the name with which controller identifies with,not necessarily a K8S Pod or Deployment name. Cannot be empty.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -168,8 +168,8 @@ func (r *KueueXK8SIoAdmissionCheckV1Beta1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"retry_delay_minutes": schema.Int64Attribute{
-						Description:         "RetryDelayMinutes specifies how long to keep the workload suspended after a failed check (after it transitioned to False). After that the check state goes to 'Unknown'. The default is 15 min.",
-						MarkdownDescription: "RetryDelayMinutes specifies how long to keep the workload suspended after a failed check (after it transitioned to False). After that the check state goes to 'Unknown'. The default is 15 min.",
+						Description:         "RetryDelayMinutes specifies how long to keep the workload suspendedafter a failed check (after it transitioned to False).After that the check state goes to 'Unknown'.The default is 15 min.",
+						MarkdownDescription: "RetryDelayMinutes specifies how long to keep the workload suspendedafter a failed check (after it transitioned to False).After that the check state goes to 'Unknown'.The default is 15 min.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

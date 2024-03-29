@@ -122,6 +122,7 @@ Optional:
 - `mac` (String)
 - `masquerade` (Attributes) (see [below for nested schema](#nestedatt--spec--instance--interfaces--masquerade))
 - `sriov` (Map of String)
+- `vdpa` (Attributes) (see [below for nested schema](#nestedatt--spec--instance--interfaces--vdpa))
 - `vhost_user` (Map of String)
 
 <a id="nestedatt--spec--instance--interfaces--masquerade"></a>
@@ -130,6 +131,15 @@ Optional:
 Optional:
 
 - `cidr` (String)
+
+
+<a id="nestedatt--spec--instance--interfaces--vdpa"></a>
+### Nested Schema for `spec.instance.interfaces.vhost_user`
+
+Optional:
+
+- `iommu` (Boolean)
+- `num_queues` (Number)
 
 
 

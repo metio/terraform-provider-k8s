@@ -18,14 +18,6 @@ data "k8s_registry_apicur_io_apicurio_registry_v1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    configuration = {
-      kafkasql = {
-        bootstrap_servers = "<service name>.<namespace>.svc:9092"
-      }
-      persistence = "kafkasql"
-    }
-  }
 }
 ```
 
@@ -395,9 +387,11 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
@@ -454,9 +448,11 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
@@ -529,9 +525,11 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
@@ -588,9 +586,11 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--deployment--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.deployment.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
@@ -900,6 +900,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 
@@ -959,6 +961,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -1034,6 +1038,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 
@@ -1093,6 +1099,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -1162,7 +1170,9 @@ Optional:
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--liveness_probe))
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--resources))
+- `restart_policy` (String)
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--startup_probe))
 - `stdin` (Boolean)
@@ -1292,6 +1302,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--exec"></a>
@@ -1324,6 +1335,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--tcp_socket"></a>
@@ -1346,6 +1365,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--exec"></a>
@@ -1378,6 +1398,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--pre_stop--tcp_socket"></a>
@@ -1555,13 +1583,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--resize_policy"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
+
+Required:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--resources"></a>
 ### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir`
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--working_dir--claims"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.containers.working_dir.requests`
+
+Required:
+
+- `name` (String)
+
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--containers--security_context"></a>
@@ -1762,7 +1808,9 @@ Optional:
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--liveness_probe))
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--resources))
+- `restart_policy` (String)
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--startup_probe))
 - `stdin` (Boolean)
@@ -1893,6 +1941,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--exec"></a>
@@ -1925,6 +1974,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -1947,6 +2004,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--exec"></a>
@@ -1979,6 +2037,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -2156,13 +2222,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--resize_policy"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
+
+Required:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--resources"></a>
 ### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir`
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--working_dir--claims"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.ephemeral_containers.working_dir.requests`
+
+Required:
+
+- `name` (String)
+
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--ephemeral_containers--security_context"></a>
@@ -2361,7 +2445,9 @@ Optional:
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--liveness_probe))
 - `ports` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--ports))
 - `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--readiness_probe))
+- `resize_policy` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--resize_policy))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--resources))
+- `restart_policy` (String)
 - `security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--security_context))
 - `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--startup_probe))
 - `stdin` (Boolean)
@@ -2491,6 +2577,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--exec"></a>
@@ -2523,6 +2610,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -2545,6 +2640,7 @@ Optional:
 
 - `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--exec"></a>
@@ -2577,6 +2673,14 @@ Required:
 - `name` (String)
 - `value` (String)
 
+
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number)
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -2754,13 +2858,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--resize_policy"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
+
+Required:
+
+- `resource_name` (String)
+- `restart_policy` (String)
+
+
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir`
 
 Optional:
 
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--working_dir--claims"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.init_containers.working_dir.requests`
+
+Required:
+
+- `name` (String)
+
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--init_containers--security_context"></a>
@@ -3023,17 +3145,21 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--topology_spread_constraints--label_selector"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.topology_spread_constraints.label_selector`
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.topology_spread_constraints.node_taints_policy`
 
 Optional:
 
-- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--topology_spread_constraints--label_selector--match_expressions))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--topology_spread_constraints--node_taints_policy--match_expressions))
 - `match_labels` (Map of String)
 
-<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--topology_spread_constraints--label_selector--match_expressions"></a>
-### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.topology_spread_constraints.label_selector.match_labels`
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--topology_spread_constraints--node_taints_policy--match_expressions"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.topology_spread_constraints.node_taints_policy.match_labels`
 
 Required:
 
@@ -3308,6 +3434,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--volume_claim_template--metadata--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--volume_claim_template--metadata--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -3335,6 +3462,7 @@ Required:
 Optional:
 
 - `api_group` (String)
+- `namespace` (String)
 
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--volume_claim_template--metadata--resources"></a>
@@ -3559,10 +3687,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--cluster_trust_bundle))
 - `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--config_map))
 - `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--downward_api))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--secret))
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--service_account_token))
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--service_account_token--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--service_account_token--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--service_account_token--label_selector--match_expressions"></a>
+### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token.label_selector.match_labels`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--deployment--pod_template_spec_preview--spec--volumes--vsphere_volume--sources--config_map"></a>
 ### Nested Schema for `spec.deployment.pod_template_spec_preview.spec.volumes.vsphere_volume.sources.service_account_token`

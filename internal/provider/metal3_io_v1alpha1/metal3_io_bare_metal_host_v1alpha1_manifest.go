@@ -435,8 +435,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"hardware_profile": schema.StringAttribute{
-						Description:         "What is the name of the hardware profile for this host? It should only be necessary to set this when inspection cannot automatically determine the profile.",
-						MarkdownDescription: "What is the name of the hardware profile for this host? It should only be necessary to set this when inspection cannot automatically determine the profile.",
+						Description:         "What is the name of the hardware profile for this host? Hardware profiles are deprecated and should not be used. Use the separate fields Architecture and RootDeviceHints instead. Set to 'empty' to prepare for the future version of the API without hardware profiles.",
+						MarkdownDescription: "What is the name of the hardware profile for this host? Hardware profiles are deprecated and should not be used. Use the separate fields Architecture and RootDeviceHints instead. Set to 'empty' to prepare for the future version of the API without hardware profiles.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -65,6 +65,7 @@ Optional:
 - `gelf` (Attributes) (see [below for nested schema](#nestedatt--spec--gelf))
 - `http` (Attributes) (see [below for nested schema](#nestedatt--spec--http))
 - `kafka` (Attributes) (see [below for nested schema](#nestedatt--spec--kafka))
+- `kinesis_firehose` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose))
 - `kinesis_stream` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_stream))
 - `logdna` (Attributes) (see [below for nested schema](#nestedatt--spec--logdna))
 - `logging_ref` (String)
@@ -82,6 +83,8 @@ Optional:
 - `sqs` (Attributes) (see [below for nested schema](#nestedatt--spec--sqs))
 - `sumologic` (Attributes) (see [below for nested schema](#nestedatt--spec--sumologic))
 - `syslog` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog))
+- `vmware_log_insight` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight))
+- `vmware_log_intelligence` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_intelligence))
 
 <a id="nestedatt--spec--aws_elasticsearch"></a>
 ### Nested Schema for `spec.aws_elasticsearch`
@@ -990,6 +993,7 @@ Required:
 Optional:
 
 - `auto_create_container` (Boolean)
+- `azure_cloud` (String)
 - `azure_imds_api_version` (String)
 - `azure_object_key_format` (String)
 - `azure_storage_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--azurestorage--azure_storage_access_key))
@@ -3595,6 +3599,261 @@ Optional:
 
 
 
+<a id="nestedatt--spec--kinesis_firehose"></a>
+### Nested Schema for `spec.kinesis_firehose`
+
+Required:
+
+- `delivery_stream_name` (String)
+
+Optional:
+
+- `append_new_line` (Boolean)
+- `assume_role_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--assume_role_credentials))
+- `aws_iam_retries` (Number)
+- `aws_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_key_id))
+- `aws_sec_key` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_sec_key))
+- `aws_ses_token` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_ses_token))
+- `batch_request_max_count` (Number)
+- `batch_request_max_size` (Number)
+- `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--buffer))
+- `format` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--format))
+- `process_credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--process_credentials))
+- `region` (String)
+- `reset_backoff_if_success` (Boolean)
+- `retries_on_batch_request` (Number)
+- `slow_flush_log_threshold` (String)
+
+<a id="nestedatt--spec--kinesis_firehose--assume_role_credentials"></a>
+### Nested Schema for `spec.kinesis_firehose.assume_role_credentials`
+
+Required:
+
+- `role_arn` (String)
+- `role_session_name` (String)
+
+Optional:
+
+- `duration_seconds` (String)
+- `external_id` (String)
+- `policy` (String)
+
+
+<a id="nestedatt--spec--kinesis_firehose--aws_key_id"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_key_id`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_key_id--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_key_id--value_from))
+
+<a id="nestedatt--spec--kinesis_firehose--aws_key_id--mount_from"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_key_id.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_key_id--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--kinesis_firehose--aws_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_key_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--kinesis_firehose--aws_key_id--value_from"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_key_id.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_key_id--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--kinesis_firehose--aws_key_id--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_key_id.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--kinesis_firehose--aws_sec_key"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_sec_key`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_sec_key--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_sec_key--value_from))
+
+<a id="nestedatt--spec--kinesis_firehose--aws_sec_key--mount_from"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_sec_key.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_sec_key--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--kinesis_firehose--aws_sec_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_sec_key.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--kinesis_firehose--aws_sec_key--value_from"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_sec_key.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_sec_key--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--kinesis_firehose--aws_sec_key--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_sec_key.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--kinesis_firehose--aws_ses_token"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_ses_token`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_ses_token--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_ses_token--value_from))
+
+<a id="nestedatt--spec--kinesis_firehose--aws_ses_token--mount_from"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_ses_token.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_ses_token--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--kinesis_firehose--aws_ses_token--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_ses_token.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--kinesis_firehose--aws_ses_token--value_from"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_ses_token.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--kinesis_firehose--aws_ses_token--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--kinesis_firehose--aws_ses_token--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.kinesis_firehose.aws_ses_token.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--kinesis_firehose--buffer"></a>
+### Nested Schema for `spec.kinesis_firehose.buffer`
+
+Optional:
+
+- `chunk_full_threshold` (String)
+- `chunk_limit_records` (Number)
+- `chunk_limit_size` (String)
+- `compress` (String)
+- `delayed_commit_timeout` (String)
+- `disable_chunk_backup` (Boolean)
+- `disabled` (Boolean)
+- `flush_at_shutdown` (Boolean)
+- `flush_interval` (String)
+- `flush_mode` (String)
+- `flush_thread_burst_interval` (String)
+- `flush_thread_count` (Number)
+- `flush_thread_interval` (String)
+- `overflow_action` (String)
+- `path` (String)
+- `queue_limit_length` (Number)
+- `queued_chunks_limit_size` (Number)
+- `retry_exponential_backoff_base` (String)
+- `retry_forever` (Boolean)
+- `retry_max_interval` (String)
+- `retry_max_times` (Number)
+- `retry_randomize` (Boolean)
+- `retry_secondary_threshold` (String)
+- `retry_timeout` (String)
+- `retry_type` (String)
+- `retry_wait` (String)
+- `tags` (String)
+- `timekey` (String)
+- `timekey_use_utc` (Boolean)
+- `timekey_wait` (String)
+- `timekey_zone` (String)
+- `total_limit_size` (String)
+- `type` (String)
+
+
+<a id="nestedatt--spec--kinesis_firehose--format"></a>
+### Nested Schema for `spec.kinesis_firehose.format`
+
+Optional:
+
+- `add_newline` (Boolean)
+- `message_key` (String)
+- `type` (String)
+
+
+<a id="nestedatt--spec--kinesis_firehose--process_credentials"></a>
+### Nested Schema for `spec.kinesis_firehose.process_credentials`
+
+Required:
+
+- `process` (String)
+
+
+
 <a id="nestedatt--spec--kinesis_stream"></a>
 ### Nested Schema for `spec.kinesis_stream`
 
@@ -4666,6 +4925,7 @@ Optional:
 - `default_opensearch_version` (Number)
 - `emit_error_for_missing_id` (Boolean)
 - `emit_error_label_event` (Boolean)
+- `endpoint` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint))
 - `exception_backup` (Boolean)
 - `fail_on_detecting_os_version_retry_exceed` (Boolean)
 - `fail_on_putting_template_retry_exceed` (Boolean)
@@ -4981,6 +5241,389 @@ Optional:
 
 - `name` (String)
 - `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint"></a>
+### Nested Schema for `spec.opensearch.endpoint`
+
+Required:
+
+- `url` (String)
+
+Optional:
+
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--access_key_id))
+- `assume_role_arn` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_arn))
+- `assume_role_session_name` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_session_name))
+- `assume_role_web_identity_token_file` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file))
+- `ecs_container_credentials_relative_uri` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri))
+- `region` (String)
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--secret_access_key))
+- `sts_credentials_region` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region))
+
+<a id="nestedatt--spec--opensearch--endpoint--access_key_id"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_arn"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_session_name"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--secret_access_key"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
 
 
 
@@ -6586,3 +7229,360 @@ Optional:
 
 - `name` (String)
 - `optional` (Boolean)
+
+
+
+
+
+<a id="nestedatt--spec--vmware_log_insight"></a>
+### Nested Schema for `spec.vmware_log_insight`
+
+Optional:
+
+- `agent_id` (String)
+- `authentication` (String)
+- `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--buffer))
+- `ca_file` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--ca_file))
+- `config_param` (Map of String)
+- `flatten_hashes` (Boolean)
+- `flatten_hashes_separator` (String)
+- `host` (String)
+- `http_conn_debug` (Boolean)
+- `http_method` (String)
+- `log_text_keys` (List of String)
+- `max_batch_size` (Number)
+- `password` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--password))
+- `path` (String)
+- `port` (Number)
+- `raise_on_error` (Boolean)
+- `rate_limit_msec` (Number)
+- `request_retries` (Number)
+- `request_timeout` (Number)
+- `scheme` (String)
+- `serializer` (String)
+- `shorten_keys` (Map of String)
+- `ssl_verify` (Boolean)
+- `username` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--username))
+
+<a id="nestedatt--spec--vmware_log_insight--buffer"></a>
+### Nested Schema for `spec.vmware_log_insight.buffer`
+
+Optional:
+
+- `chunk_full_threshold` (String)
+- `chunk_limit_records` (Number)
+- `chunk_limit_size` (String)
+- `compress` (String)
+- `delayed_commit_timeout` (String)
+- `disable_chunk_backup` (Boolean)
+- `disabled` (Boolean)
+- `flush_at_shutdown` (Boolean)
+- `flush_interval` (String)
+- `flush_mode` (String)
+- `flush_thread_burst_interval` (String)
+- `flush_thread_count` (Number)
+- `flush_thread_interval` (String)
+- `overflow_action` (String)
+- `path` (String)
+- `queue_limit_length` (Number)
+- `queued_chunks_limit_size` (Number)
+- `retry_exponential_backoff_base` (String)
+- `retry_forever` (Boolean)
+- `retry_max_interval` (String)
+- `retry_max_times` (Number)
+- `retry_randomize` (Boolean)
+- `retry_secondary_threshold` (String)
+- `retry_timeout` (String)
+- `retry_type` (String)
+- `retry_wait` (String)
+- `tags` (String)
+- `timekey` (String)
+- `timekey_use_utc` (Boolean)
+- `timekey_wait` (String)
+- `timekey_zone` (String)
+- `total_limit_size` (String)
+- `type` (String)
+
+
+<a id="nestedatt--spec--vmware_log_insight--ca_file"></a>
+### Nested Schema for `spec.vmware_log_insight.ca_file`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--ca_file--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--ca_file--value_from))
+
+<a id="nestedatt--spec--vmware_log_insight--ca_file--mount_from"></a>
+### Nested Schema for `spec.vmware_log_insight.ca_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--ca_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--vmware_log_insight--ca_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.vmware_log_insight.ca_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--vmware_log_insight--ca_file--value_from"></a>
+### Nested Schema for `spec.vmware_log_insight.ca_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--ca_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--vmware_log_insight--ca_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.vmware_log_insight.ca_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--vmware_log_insight--password"></a>
+### Nested Schema for `spec.vmware_log_insight.password`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--password--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--password--value_from))
+
+<a id="nestedatt--spec--vmware_log_insight--password--mount_from"></a>
+### Nested Schema for `spec.vmware_log_insight.password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--vmware_log_insight--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.vmware_log_insight.password.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--vmware_log_insight--password--value_from"></a>
+### Nested Schema for `spec.vmware_log_insight.password.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--password--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--vmware_log_insight--password--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.vmware_log_insight.password.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--vmware_log_insight--username"></a>
+### Nested Schema for `spec.vmware_log_insight.username`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--username--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--username--value_from))
+
+<a id="nestedatt--spec--vmware_log_insight--username--mount_from"></a>
+### Nested Schema for `spec.vmware_log_insight.username.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--username--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--vmware_log_insight--username--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.vmware_log_insight.username.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--vmware_log_insight--username--value_from"></a>
+### Nested Schema for `spec.vmware_log_insight.username.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_insight--username--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--vmware_log_insight--username--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.vmware_log_insight.username.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+
+<a id="nestedatt--spec--vmware_log_intelligence"></a>
+### Nested Schema for `spec.vmware_log_intelligence`
+
+Required:
+
+- `endpoint_url` (String)
+- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_intelligence--headers))
+- `verify_ssl` (Boolean)
+
+Optional:
+
+- `buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_intelligence--buffer))
+- `format` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_intelligence--format))
+- `http_compress` (Boolean)
+
+<a id="nestedatt--spec--vmware_log_intelligence--headers"></a>
+### Nested Schema for `spec.vmware_log_intelligence.headers`
+
+Required:
+
+- `authorization` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_intelligence--headers--authorization))
+- `content_type` (String)
+- `structure` (String)
+
+<a id="nestedatt--spec--vmware_log_intelligence--headers--authorization"></a>
+### Nested Schema for `spec.vmware_log_intelligence.headers.structure`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_intelligence--headers--structure--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_intelligence--headers--structure--value_from))
+
+<a id="nestedatt--spec--vmware_log_intelligence--headers--structure--mount_from"></a>
+### Nested Schema for `spec.vmware_log_intelligence.headers.structure.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_intelligence--headers--structure--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--vmware_log_intelligence--headers--structure--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.vmware_log_intelligence.headers.structure.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--vmware_log_intelligence--headers--structure--value_from"></a>
+### Nested Schema for `spec.vmware_log_intelligence.headers.structure.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--vmware_log_intelligence--headers--structure--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--vmware_log_intelligence--headers--structure--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.vmware_log_intelligence.headers.structure.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+
+<a id="nestedatt--spec--vmware_log_intelligence--buffer"></a>
+### Nested Schema for `spec.vmware_log_intelligence.buffer`
+
+Optional:
+
+- `chunk_full_threshold` (String)
+- `chunk_limit_records` (Number)
+- `chunk_limit_size` (String)
+- `compress` (String)
+- `delayed_commit_timeout` (String)
+- `disable_chunk_backup` (Boolean)
+- `disabled` (Boolean)
+- `flush_at_shutdown` (Boolean)
+- `flush_interval` (String)
+- `flush_mode` (String)
+- `flush_thread_burst_interval` (String)
+- `flush_thread_count` (Number)
+- `flush_thread_interval` (String)
+- `overflow_action` (String)
+- `path` (String)
+- `queue_limit_length` (Number)
+- `queued_chunks_limit_size` (Number)
+- `retry_exponential_backoff_base` (String)
+- `retry_forever` (Boolean)
+- `retry_max_interval` (String)
+- `retry_max_times` (Number)
+- `retry_randomize` (Boolean)
+- `retry_secondary_threshold` (String)
+- `retry_timeout` (String)
+- `retry_type` (String)
+- `retry_wait` (String)
+- `tags` (String)
+- `timekey` (String)
+- `timekey_use_utc` (Boolean)
+- `timekey_wait` (String)
+- `timekey_zone` (String)
+- `total_limit_size` (String)
+- `type` (String)
+
+
+<a id="nestedatt--spec--vmware_log_intelligence--format"></a>
+### Nested Schema for `spec.vmware_log_intelligence.format`
+
+Optional:
+
+- `add_newline` (Boolean)
+- `message_key` (String)
+- `type` (String)

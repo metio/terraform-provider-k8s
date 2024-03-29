@@ -213,8 +213,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"configuration": schema.SingleNestedAttribute{
-						Description:         "A list of information about the configuration.  Does not apply to RabbitMQ brokers.",
-						MarkdownDescription: "A list of information about the configuration.  Does not apply to RabbitMQ brokers.",
+						Description:         "A list of information about the configuration.Does not apply to RabbitMQ brokers.",
+						MarkdownDescription: "A list of information about the configuration.Does not apply to RabbitMQ brokers.",
 						Attributes: map[string]schema.Attribute{
 							"id": schema.StringAttribute{
 								Description:         "",
@@ -254,8 +254,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"encryption_options": schema.SingleNestedAttribute{
-						Description:         "Does not apply to RabbitMQ brokers.  Encryption options for the broker.",
-						MarkdownDescription: "Does not apply to RabbitMQ brokers.  Encryption options for the broker.",
+						Description:         "Does not apply to RabbitMQ brokers.Encryption options for the broker.",
+						MarkdownDescription: "Does not apply to RabbitMQ brokers.Encryption options for the broker.",
 						Attributes: map[string]schema.Attribute{
 							"kms_key_id": schema.StringAttribute{
 								Description:         "",
@@ -303,8 +303,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"ldap_server_metadata": schema.SingleNestedAttribute{
-						Description:         "Optional. The metadata of the LDAP server used to authenticate and authorize connections to the broker.  Does not apply to RabbitMQ brokers.",
-						MarkdownDescription: "Optional. The metadata of the LDAP server used to authenticate and authorize connections to the broker.  Does not apply to RabbitMQ brokers.",
+						Description:         "Optional. The metadata of the LDAP server used to authenticate and authorizeconnections to the broker.Does not apply to RabbitMQ brokers.",
+						MarkdownDescription: "Optional. The metadata of the LDAP server used to authenticate and authorizeconnections to the broker.Does not apply to RabbitMQ brokers.",
 						Attributes: map[string]schema.Attribute{
 							"hosts": schema.ListAttribute{
 								Description:         "",
@@ -426,8 +426,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"maintenance_window_start_time": schema.SingleNestedAttribute{
-						Description:         "The scheduled time period relative to UTC during which Amazon MQ begins to apply pending updates or patches to the broker.",
-						MarkdownDescription: "The scheduled time period relative to UTC during which Amazon MQ begins to apply pending updates or patches to the broker.",
+						Description:         "The scheduled time period relative to UTC during which Amazon MQ begins toapply pending updates or patches to the broker.",
+						MarkdownDescription: "The scheduled time period relative to UTC during which Amazon MQ begins toapply pending updates or patches to the broker.",
 						Attributes: map[string]schema.Attribute{
 							"day_of_week": schema.StringAttribute{
 								Description:         "",
@@ -480,8 +480,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -534,8 +534,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -588,8 +588,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"password": schema.SingleNestedAttribute{
-									Description:         "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
-									MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
+									Description:         "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
+									MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
 											Description:         "Key is the key within the secret",

@@ -70,12 +70,15 @@ Optional:
 - `disable_http_route` (Boolean) DisableHTTPRoute disables the creation a route to the HTTP port of the application service (false if omitted)
 - `env` (Attributes List) Env contains environment variables for the containers running the WildFlyServer application (see [below for nested schema](#nestedatt--spec--env))
 - `env_from` (Attributes List) EnvFrom contains environment variables from a source such as a ConfigMap or a Secret (see [below for nested schema](#nestedatt--spec--env_from))
+- `liveness_probe` (Attributes) LivenessProbe defines the periodic probe of container liveness. Container will be restarted if the probe fails. (see [below for nested schema](#nestedatt--spec--liveness_probe))
+- `readiness_probe` (Attributes) ReadinessProbe defines the periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. (see [below for nested schema](#nestedatt--spec--readiness_probe))
 - `resources` (Attributes) ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements (see [below for nested schema](#nestedatt--spec--resources))
 - `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the WildFlyServer object, which shall be mounted into the WildFlyServer Pods. The Secrets are mounted into /etc/secrets/<secret-name>.
 - `security_context` (Attributes) SecurityContext defines the security capabilities required to run the application. (see [below for nested schema](#nestedatt--spec--security_context))
 - `service_account_name` (String)
 - `session_affinity` (Boolean) SessionAffinity defines if connections from the same client ip are passed to the same WildFlyServer instance/pod each time (false if omitted)
 - `standalone_config_map` (Attributes) StandaloneConfigMapSpec defines the desired configMap configuration to obtain the standalone configuration for WildFlyServer (see [below for nested schema](#nestedatt--spec--standalone_config_map))
+- `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. (see [below for nested schema](#nestedatt--spec--startup_probe))
 - `storage` (Attributes) StorageSpec defines specific storage required for the server own data directory. If omitted, an EmptyDir is used (that will not persist data across pod restart). (see [below for nested schema](#nestedatt--spec--storage))
 
 <a id="nestedatt--spec--env"></a>
@@ -87,7 +90,7 @@ Required:
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
+- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
 - `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--env--value_from))
 
 <a id="nestedatt--spec--env--value_from"></a>
@@ -181,13 +184,105 @@ Optional:
 
 
 
+<a id="nestedatt--spec--liveness_probe"></a>
+### Nested Schema for `spec.liveness_probe`
+
+Optional:
+
+- `exec` (Attributes) Exec specifies a command action to take. (see [below for nested schema](#nestedatt--spec--liveness_probe--exec))
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--liveness_probe--http_get))
+- `initial_delay_seconds` (Number) Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.
+- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
+- `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+
+<a id="nestedatt--spec--liveness_probe--exec"></a>
+### Nested Schema for `spec.liveness_probe.exec`
+
+Optional:
+
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+
+
+<a id="nestedatt--spec--liveness_probe--http_get"></a>
+### Nested Schema for `spec.liveness_probe.http_get`
+
+Required:
+
+- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+
+Optional:
+
+- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--liveness_probe--http_get--http_headers))
+- `path` (String) Path to access on the HTTP server.
+- `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
+
+<a id="nestedatt--spec--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.liveness_probe.http_get.scheme`
+
+Required:
+
+- `name` (String) The header field name
+- `value` (String) The header field value
+
+
+
+
+<a id="nestedatt--spec--readiness_probe"></a>
+### Nested Schema for `spec.readiness_probe`
+
+Optional:
+
+- `exec` (Attributes) Exec specifies a command action to take. (see [below for nested schema](#nestedatt--spec--readiness_probe--exec))
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--readiness_probe--http_get))
+- `initial_delay_seconds` (Number) Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.
+- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
+- `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+
+<a id="nestedatt--spec--readiness_probe--exec"></a>
+### Nested Schema for `spec.readiness_probe.exec`
+
+Optional:
+
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+
+
+<a id="nestedatt--spec--readiness_probe--http_get"></a>
+### Nested Schema for `spec.readiness_probe.http_get`
+
+Required:
+
+- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+
+Optional:
+
+- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--readiness_probe--http_get--http_headers))
+- `path` (String) Path to access on the HTTP server.
+- `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
+
+<a id="nestedatt--spec--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.readiness_probe.http_get.scheme`
+
+Required:
+
+- `name` (String) The header field name
+- `value` (String) The header field value
+
+
+
+
 <a id="nestedatt--spec--resources"></a>
 ### Nested Schema for `spec.resources`
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 <a id="nestedatt--spec--security_context"></a>
@@ -195,17 +290,17 @@ Optional:
 
 Optional:
 
-- `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN
-- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. (see [below for nested schema](#nestedatt--spec--security_context--capabilities))
-- `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.
-- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.
-- `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem. Default is false.
-- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+- `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
+- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--capabilities))
+- `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
+- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.
+- `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.
+- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
 - `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. (see [below for nested schema](#nestedatt--spec--security_context--seccomp_profile))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. (see [below for nested schema](#nestedatt--spec--security_context--windows_options))
+- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
+- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--seccomp_profile))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security_context--windows_options))
 
 <a id="nestedatt--spec--security_context--capabilities"></a>
 ### Nested Schema for `spec.security_context.capabilities`
@@ -246,6 +341,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -262,6 +358,52 @@ Optional:
 - `key` (String) Key of the config map whose value is the standalone XML configuration file ('standalone.xml' if omitted)
 
 
+<a id="nestedatt--spec--startup_probe"></a>
+### Nested Schema for `spec.startup_probe`
+
+Optional:
+
+- `exec` (Attributes) Exec specifies a command action to take. (see [below for nested schema](#nestedatt--spec--startup_probe--exec))
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--startup_probe--http_get))
+- `initial_delay_seconds` (Number) Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.
+- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
+- `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+
+<a id="nestedatt--spec--startup_probe--exec"></a>
+### Nested Schema for `spec.startup_probe.exec`
+
+Optional:
+
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+
+
+<a id="nestedatt--spec--startup_probe--http_get"></a>
+### Nested Schema for `spec.startup_probe.http_get`
+
+Required:
+
+- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+
+Optional:
+
+- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--startup_probe--http_get--http_headers))
+- `path` (String) Path to access on the HTTP server.
+- `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
+
+<a id="nestedatt--spec--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.startup_probe.http_get.scheme`
+
+Required:
+
+- `name` (String) The header field name
+- `value` (String) The header field value
+
+
+
+
 <a id="nestedatt--spec--storage"></a>
 ### Nested Schema for `spec.storage`
 
@@ -275,8 +417,8 @@ Optional:
 
 Optional:
 
-- `medium` (String) What type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+- `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
 
 
 <a id="nestedatt--spec--storage--volume_claim_template"></a>
@@ -287,24 +429,38 @@ Optional:
 - `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
 - `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `metadata` (Map of String) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-- `spec` (Attributes) Spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--spec))
-- `status` (Attributes) Status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status))
+- `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--spec))
+- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status))
 
 <a id="nestedatt--spec--storage--volume_claim_template--spec"></a>
 ### Nested Schema for `spec.storage.volume_claim_template.status`
 
 Optional:
 
-- `access_modes` (List of String) AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot - Beta) * An existing PVC (PersistentVolumeClaim) * An existing custom resource/object that implements data population (Alpha) In order to use VolumeSnapshot object types, the appropriate feature gate must be enabled (VolumeSnapshotDataSource or AnyVolumeDataSource) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the specified data source is not supported, the volume will not be created and the failure will be reported as an event. In the future, we plan to support more data source types and the behavior of the provisioner may change. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--data_source))
-- `resources` (Attributes) Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--resources))
-- `selector` (Attributes) A label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--selector))
-- `storage_class_name` (String) Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--selector))
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
-- `volume_name` (String) VolumeName is the binding reference to the PersistentVolume backing this claim.
+- `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--storage--volume_claim_template--status--data_source"></a>
 ### Nested Schema for `spec.storage.volume_claim_template.status.data_source`
+
+Required:
+
+- `kind` (String) Kind is the type of resource being referenced
+- `name` (String) Name is the name of resource being referenced
+
+Optional:
+
+- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+
+
+<a id="nestedatt--spec--storage--volume_claim_template--status--data_source_ref"></a>
+### Nested Schema for `spec.storage.volume_claim_template.status.data_source_ref`
 
 Required:
 
@@ -321,8 +477,8 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 <a id="nestedatt--spec--storage--volume_claim_template--status--selector"></a>
@@ -353,10 +509,12 @@ Optional:
 
 Optional:
 
-- `access_modes` (List of String) AccessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `capacity` (Map of String) Represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) Current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--conditions))
-- `phase` (String) Phase represents the current phase of PersistentVolumeClaim.
+- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `allocated_resources` (Map of String) allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
+- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--conditions))
+- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
+- `resize_status` (String) resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 
 <a id="nestedatt--spec--storage--volume_claim_template--status--conditions"></a>
 ### Nested Schema for `spec.storage.volume_claim_template.status.conditions`
@@ -368,7 +526,7 @@ Required:
 
 Optional:
 
-- `last_probe_time` (String) Last time we probed the condition.
-- `last_transition_time` (String) Last time the condition transitioned from one status to another.
-- `message` (String) Human-readable message indicating details about last transition.
-- `reason` (String) Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
+- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
+- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
+- `message` (String) message is the human-readable message indicating details about last transition.
+- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.

@@ -16,6 +16,7 @@ Lock is the CRD type that tracks package dependencies.
 data "k8s_pkg_crossplane_io_lock_v1beta1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -54,7 +55,7 @@ Optional:
 
 Required:
 
-- `dependencies` (Attributes List) Dependencies are the list of dependencies of this package. The order of the dependencies will dictate the order in which they are resolved. (see [below for nested schema](#nestedatt--packages--dependencies))
+- `dependencies` (Attributes List) Dependencies are the list of dependencies of this package. The order ofthe dependencies will dictate the order in which they are resolved. (see [below for nested schema](#nestedatt--packages--dependencies))
 - `name` (String) Name corresponds to the name of the package revision for this package.
 - `source` (String) Source is the OCI image name without a tag or digest.
 - `type` (String) Type is the type of package. Can be either Configuration or Provider.
@@ -65,6 +66,6 @@ Required:
 
 Required:
 
-- `constraints` (String) Constraints is a valid semver range, which will be used to select a valid dependency version.
+- `constraints` (String) Constraints is a valid semver range, which will be used to select a validdependency version.
 - `package` (String) Package is the OCI image name without a tag or digest.
 - `type` (String) Type is the type of package. Can be either Configuration or Provider.

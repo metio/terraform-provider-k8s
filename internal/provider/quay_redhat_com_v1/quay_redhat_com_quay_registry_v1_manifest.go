@@ -198,9 +198,13 @@ type QuayRedhatComQuayRegistryV1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"env" json:"env,omitempty"`
-				Labels     *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-				Replicas   *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-				VolumeSize *string            `tfsdk:"volume_size" json:"volumeSize,omitempty"`
+				Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Replicas  *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
+				Resources *struct {
+					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
+				VolumeSize *string `tfsdk:"volume_size" json:"volumeSize,omitempty"`
 			} `tfsdk:"overrides" json:"overrides,omitempty"`
 		} `tfsdk:"components" json:"components,omitempty"`
 		ConfigBundleSecret *string `tfsdk:"config_bundle_secret" json:"configBundleSecret,omitempty"`
@@ -590,8 +594,8 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Schema(_ context.Context, _ dataso
 																			},
 
 																			"namespace_selector": schema.SingleNestedAttribute{
-																				Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																				MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																				Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																				MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																				Attributes: map[string]schema.Attribute{
 																					"match_expressions": schema.ListNestedAttribute{
 																						Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -644,8 +648,8 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Schema(_ context.Context, _ dataso
 																			},
 
 																			"namespaces": schema.ListAttribute{
-																				Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																				Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -739,8 +743,8 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Schema(_ context.Context, _ dataso
 																	},
 
 																	"namespace_selector": schema.SingleNestedAttribute{
-																		Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																		MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																		Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																		MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																		Attributes: map[string]schema.Attribute{
 																			"match_expressions": schema.ListNestedAttribute{
 																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -793,8 +797,8 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Schema(_ context.Context, _ dataso
 																	},
 
 																	"namespaces": schema.ListAttribute{
-																		Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																		MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																		Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																		MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -888,8 +892,8 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Schema(_ context.Context, _ dataso
 																			},
 
 																			"namespace_selector": schema.SingleNestedAttribute{
-																				Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																				MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																				Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																				MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																				Attributes: map[string]schema.Attribute{
 																					"match_expressions": schema.ListNestedAttribute{
 																						Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -942,8 +946,8 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Schema(_ context.Context, _ dataso
 																			},
 
 																			"namespaces": schema.ListAttribute{
-																				Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																				Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																				MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -1037,8 +1041,8 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Schema(_ context.Context, _ dataso
 																	},
 
 																	"namespace_selector": schema.SingleNestedAttribute{
-																		Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																		MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																		Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																		MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																		Attributes: map[string]schema.Attribute{
 																			"match_expressions": schema.ListNestedAttribute{
 																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1091,8 +1095,8 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Schema(_ context.Context, _ dataso
 																	},
 
 																	"namespaces": schema.ListAttribute{
-																		Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																		MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																		Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																		MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -1307,6 +1311,33 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Schema(_ context.Context, _ dataso
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"resources": schema.SingleNestedAttribute{
+											Description:         "Resources describes the resource limits and requests for a component.",
+											MarkdownDescription: "Resources describes the resource limits and requests for a component.",
+											Attributes: map[string]schema.Attribute{
+												"limits": schema.MapAttribute{
+													Description:         "ResourceList is a set of (resource name, quantity) pairs.",
+													MarkdownDescription: "ResourceList is a set of (resource name, quantity) pairs.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"requests": schema.MapAttribute{
+													Description:         "ResourceList is a set of (resource name, quantity) pairs.",
+													MarkdownDescription: "ResourceList is a set of (resource name, quantity) pairs.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"volume_size": schema.StringAttribute{

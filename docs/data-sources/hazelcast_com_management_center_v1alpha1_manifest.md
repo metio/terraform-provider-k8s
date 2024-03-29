@@ -56,17 +56,20 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String) ManagementCenter Kubernetes resource annotations
 - `external_connectivity` (Attributes) Configuration to expose Management Center to outside. (see [below for nested schema](#nestedatt--spec--external_connectivity))
 - `hazelcast_clusters` (Attributes List) Connection configuration for the Hazelcast clusters that Management Center will monitor. (see [below for nested schema](#nestedatt--spec--hazelcast_clusters))
 - `image_pull_policy` (String) Pull policy for the Management Center image
 - `image_pull_secrets` (Attributes List) Image pull secrets for the Management Center image (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `jvm` (Attributes) ManagementCenter JVM configuration (see [below for nested schema](#nestedatt--spec--jvm))
+- `labels` (Map of String) ManagementCenter Kubernetes resource labels
 - `license_key_secret` (String) licenseKeySecret is a deprecated alias for licenseKeySecretName.
 - `license_key_secret_name` (String) Name of the secret with Hazelcast Enterprise License Key.
 - `persistence` (Attributes) Configuration for Management Center persistence. (see [below for nested schema](#nestedatt--spec--persistence))
 - `repository` (String) Repository to pull the Management Center image from.
 - `resources` (Attributes) Compute Resources required by the MC container. (see [below for nested schema](#nestedatt--spec--resources))
 - `scheduling` (Attributes) Scheduling details (see [below for nested schema](#nestedatt--spec--scheduling))
+- `security_provider` (Attributes) SecurityProviders to authenticate users in Management Center (see [below for nested schema](#nestedatt--spec--security_provider))
 - `version` (String) Version of Management Center.
 
 <a id="nestedatt--spec--external_connectivity"></a>
@@ -89,6 +92,7 @@ Optional:
 
 - `annotations` (Map of String) Annotations added to the ingress object.
 - `ingress_class_name` (String) IngressClassName of the ingress object.
+- `path` (String) Path of the ingress rule.
 
 
 <a id="nestedatt--spec--external_connectivity--route"></a>
@@ -157,8 +161,17 @@ Optional:
 
 Optional:
 
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--resources--claims"></a>
+### Nested Schema for `spec.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
 
 
 <a id="nestedatt--spec--scheduling"></a>
@@ -569,10 +582,10 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--scheduling--topology_spread_constraints--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
 - `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
-- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--scheduling--topology_spread_constraints--label_selector"></a>
 ### Nested Schema for `spec.scheduling.topology_spread_constraints.node_taints_policy`
@@ -593,3 +606,31 @@ Required:
 Optional:
 
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+
+
+<a id="nestedatt--spec--security_provider"></a>
+### Nested Schema for `spec.security_provider`
+
+Optional:
+
+- `ldap` (Attributes) LDAP security provider (see [below for nested schema](#nestedatt--spec--security_provider--ldap))
+
+<a id="nestedatt--spec--security_provider--ldap"></a>
+### Nested Schema for `spec.security_provider.ldap`
+
+Required:
+
+- `admin_groups` (List of String) Members of these groups and its nested groups have admin privileges on the Management Center.
+- `credentials_secret_name` (String) CredentialsSecretName is the name of the secret that contains username and password of a user that has admin privileges on the LDAP server. The username must be the DN of the user. It is used to connect to the server when authenticating users.
+- `group_dn` (String) DN to be used for searching groups.
+- `group_search_filter` (String) LDAP search filter expression to search for the groups. For example, uniquemember={0} searches for a group that matches with the uniquemember attribute.
+- `metrics_only_groups` (List of String) Members of these groups and its nested groups have the privilege to see only the metrics on the Management Center.
+- `nested_group_search` (Boolean) NestedGroupSearch enables searching for nested LDAP groups.
+- `readonly_user_groups` (List of String) Members of these groups and its nested groups have only read privilege on the Management Center.
+- `url` (String) URL of your LDAP server, including schema (ldap://) and port.
+- `user_dn` (String) DN to be used for searching users.
+- `user_groups` (List of String) Members of these groups and its nested groups have read and write privileges on the Management Center.
+- `user_search_filter` (String) LDAP search filter expression to search for the users. For example, uid={0} searches for a username that matches with the uid attribute.

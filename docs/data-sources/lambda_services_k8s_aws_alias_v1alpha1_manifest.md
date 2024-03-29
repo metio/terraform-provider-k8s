@@ -62,18 +62,18 @@ Required:
 Optional:
 
 - `description` (String) A description of the alias.
-- `function_event_invoke_config` (Attributes) Configures options for asynchronous invocation on an alias.  - DestinationConfig A destination for events after they have been sent to a function for processing.  Types of Destinations: Function - The Amazon Resource Name (ARN) of a Lambda function. Queue - The ARN of a standard SQS queue. Topic - The ARN of a standard SNS topic. Event Bus - The ARN of an Amazon EventBridge event bus.  - MaximumEventAgeInSeconds The maximum age of a request that Lambda sends to a function for processing.  - MaximumRetryAttempts The maximum number of times to retry when the function returns an error. (see [below for nested schema](#nestedatt--spec--function_event_invoke_config))
-- `function_name` (String) The name of the Lambda function.  Name formats  * Function name - MyFunction.  * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.  * Partial ARN - 123456789012:function:MyFunction.  The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
-- `function_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--function_ref))
-- `provisioned_concurrency_config` (Attributes) Configures provisioned concurrency to a function's alias  - ProvisionedConcurrentExecutions The amount of provisioned concurrency to allocate for the version or alias. Minimum value of 1 is required (see [below for nested schema](#nestedatt--spec--provisioned_concurrency_config))
-- `routing_config` (Attributes) The routing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html#configuring-alias-routing) of the alias. (see [below for nested schema](#nestedatt--spec--routing_config))
+- `function_event_invoke_config` (Attributes) Configures options for asynchronous invocation on an alias.- DestinationConfigA destination for events after they have been sent to a function for processing.Types of Destinations:Function - The Amazon Resource Name (ARN) of a Lambda function.Queue - The ARN of a standard SQS queue.Topic - The ARN of a standard SNS topic.Event Bus - The ARN of an Amazon EventBridge event bus.- MaximumEventAgeInSecondsThe maximum age of a request that Lambda sends to a function for processing.- MaximumRetryAttemptsThe maximum number of times to retry when the function returns an error. (see [below for nested schema](#nestedatt--spec--function_event_invoke_config))
+- `function_name` (String) The name of the Lambda function.Name formats   * Function name - MyFunction.   * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.   * Partial ARN - 123456789012:function:MyFunction.The length constraint applies only to the full ARN. If you specify only thefunction name, it is limited to 64 characters in length.
+- `function_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--function_ref))
+- `provisioned_concurrency_config` (Attributes) Configures provisioned concurrency to a function's alias- ProvisionedConcurrentExecutionsThe amount of provisioned concurrency to allocate for the version or alias.Minimum value of 1 is required (see [below for nested schema](#nestedatt--spec--provisioned_concurrency_config))
+- `routing_config` (Attributes) The routing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html#configuring-alias-routing)of the alias. (see [below for nested schema](#nestedatt--spec--routing_config))
 
 <a id="nestedatt--spec--function_event_invoke_config"></a>
 ### Nested Schema for `spec.function_event_invoke_config`
 
 Optional:
 
-- `destination_config` (Attributes) A configuration object that specifies the destination of an event after Lambda processes it. (see [below for nested schema](#nestedatt--spec--function_event_invoke_config--destination_config))
+- `destination_config` (Attributes) A configuration object that specifies the destination of an event after Lambdaprocesses it. (see [below for nested schema](#nestedatt--spec--function_event_invoke_config--destination_config))
 - `function_name` (String)
 - `maximum_event_age_in_seconds` (Number)
 - `maximum_retry_attempts` (Number)
@@ -110,7 +110,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--function_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--function_ref--from))
 
 <a id="nestedatt--spec--function_ref--from"></a>
 ### Nested Schema for `spec.function_ref.from`

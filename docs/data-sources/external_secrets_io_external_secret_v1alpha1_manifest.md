@@ -57,13 +57,13 @@ Optional:
 Required:
 
 - `secret_store_ref` (Attributes) SecretStoreRef defines which SecretStore to fetch the ExternalSecret data. (see [below for nested schema](#nestedatt--spec--secret_store_ref))
-- `target` (Attributes) ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret. (see [below for nested schema](#nestedatt--spec--target))
+- `target` (Attributes) ExternalSecretTarget defines the Kubernetes Secret to be createdThere can be only one target per ExternalSecret. (see [below for nested schema](#nestedatt--spec--target))
 
 Optional:
 
 - `data` (Attributes List) Data defines the connection between the Kubernetes Secret keys and the Provider data (see [below for nested schema](#nestedatt--spec--data))
-- `data_from` (Attributes List) DataFrom is used to fetch all properties from a specific Provider data If multiple entries are specified, the Secret keys are merged in the specified order (see [below for nested schema](#nestedatt--spec--data_from))
-- `refresh_interval` (String) RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.
+- `data_from` (Attributes List) DataFrom is used to fetch all properties from a specific Provider dataIf multiple entries are specified, the Secret keys are merged in the specified order (see [below for nested schema](#nestedatt--spec--data_from))
+- `refresh_interval` (String) RefreshInterval is the amount of time before the values are read again from the SecretStore providerValid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'May be set to zero to fetch and create it once. Defaults to 1h.
 
 <a id="nestedatt--spec--secret_store_ref"></a>
 ### Nested Schema for `spec.secret_store_ref`
@@ -74,7 +74,7 @@ Required:
 
 Optional:
 
-- `kind` (String) Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'
+- `kind` (String) Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'
 
 
 <a id="nestedatt--spec--target"></a>
@@ -82,9 +82,9 @@ Optional:
 
 Optional:
 
-- `creation_policy` (String) CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'
+- `creation_policy` (String) CreationPolicy defines rules on how to create the resulting SecretDefaults to 'Owner'
 - `immutable` (Boolean) Immutable defines if the final secret will be immutable
-- `name` (String) Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource
+- `name` (String) Name defines the name of the Secret resource to be managedThis field is immutableDefaults to the .metadata.name of the ExternalSecret resource
 - `template` (Attributes) Template defines a blueprint for the created Secret resource. (see [below for nested schema](#nestedatt--spec--target--template))
 
 <a id="nestedatt--spec--target--template"></a>
@@ -93,7 +93,7 @@ Optional:
 Optional:
 
 - `data` (Map of String)
-- `engine_version` (String) EngineVersion specifies the template engine version that should be used to compile/execute the template specified in .data and .templateFrom[].
+- `engine_version` (String) EngineVersion specifies the template engine versionthat should be used to compile/execute thetemplate specified in .data and .templateFrom[].
 - `metadata` (Attributes) ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint. (see [below for nested schema](#nestedatt--spec--target--template--metadata))
 - `template_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--target--template--template_from))
 - `type` (String)

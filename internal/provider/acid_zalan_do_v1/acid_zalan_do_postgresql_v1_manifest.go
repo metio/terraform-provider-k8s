@@ -162,12 +162,16 @@ type AcidZalanDoPostgresqlV1ManifestData struct {
 		ReplicaServiceAnnotations *map[string]string `tfsdk:"replica_service_annotations" json:"replicaServiceAnnotations,omitempty"`
 		Resources                 *struct {
 			Limits *struct {
-				Cpu    *string `tfsdk:"cpu" json:"cpu,omitempty"`
-				Memory *string `tfsdk:"memory" json:"memory,omitempty"`
+				Cpu           *string `tfsdk:"cpu" json:"cpu,omitempty"`
+				Hugepages_1Gi *string `tfsdk:"hugepages_1_gi" json:"hugepages-1Gi,omitempty"`
+				Hugepages_2Mi *string `tfsdk:"hugepages_2_mi" json:"hugepages-2Mi,omitempty"`
+				Memory        *string `tfsdk:"memory" json:"memory,omitempty"`
 			} `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *struct {
-				Cpu    *string `tfsdk:"cpu" json:"cpu,omitempty"`
-				Memory *string `tfsdk:"memory" json:"memory,omitempty"`
+				Cpu           *string `tfsdk:"cpu" json:"cpu,omitempty"`
+				Hugepages_1Gi *string `tfsdk:"hugepages_1_gi" json:"hugepages-1Gi,omitempty"`
+				Hugepages_2Mi *string `tfsdk:"hugepages_2_mi" json:"hugepages-2Mi,omitempty"`
+				Memory        *string `tfsdk:"memory" json:"memory,omitempty"`
 			} `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
 		SchedulerName      *string              `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
@@ -183,14 +187,16 @@ type AcidZalanDoPostgresqlV1ManifestData struct {
 			Standby_port *string `tfsdk:"standby_port" json:"standby_port,omitempty"`
 		} `tfsdk:"standby" json:"standby,omitempty"`
 		Streams *[]struct {
-			ApplicationId *string            `tfsdk:"application_id" json:"applicationId,omitempty"`
-			BatchSize     *int64             `tfsdk:"batch_size" json:"batchSize,omitempty"`
-			Database      *string            `tfsdk:"database" json:"database,omitempty"`
-			Filter        *map[string]string `tfsdk:"filter" json:"filter,omitempty"`
-			Tables        *struct {
-				EventType     *string `tfsdk:"event_type" json:"eventType,omitempty"`
-				IdColumn      *string `tfsdk:"id_column" json:"idColumn,omitempty"`
-				PayloadColumn *string `tfsdk:"payload_column" json:"payloadColumn,omitempty"`
+			ApplicationId  *string            `tfsdk:"application_id" json:"applicationId,omitempty"`
+			BatchSize      *int64             `tfsdk:"batch_size" json:"batchSize,omitempty"`
+			Database       *string            `tfsdk:"database" json:"database,omitempty"`
+			EnableRecovery *bool              `tfsdk:"enable_recovery" json:"enableRecovery,omitempty"`
+			Filter         *map[string]string `tfsdk:"filter" json:"filter,omitempty"`
+			Tables         *struct {
+				EventType         *string `tfsdk:"event_type" json:"eventType,omitempty"`
+				IdColumn          *string `tfsdk:"id_column" json:"idColumn,omitempty"`
+				PayloadColumn     *string `tfsdk:"payload_column" json:"payloadColumn,omitempty"`
+				RecoveryEventType *string `tfsdk:"recovery_event_type" json:"recoveryEventType,omitempty"`
 			} `tfsdk:"tables" json:"tables,omitempty"`
 		} `tfsdk:"streams" json:"streams,omitempty"`
 		TeamId *string `tfsdk:"team_id" json:"teamId,omitempty"`
@@ -210,6 +216,7 @@ type AcidZalanDoPostgresqlV1ManifestData struct {
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		UseLoadBalancer                *bool                `tfsdk:"use_load_balancer" json:"useLoadBalancer,omitempty"`
 		Users                          *map[string][]string `tfsdk:"users" json:"users,omitempty"`
+		UsersIgnoringSecretRotation    *[]string            `tfsdk:"users_ignoring_secret_rotation" json:"usersIgnoringSecretRotation,omitempty"`
 		UsersWithInPlaceSecretRotation *[]string            `tfsdk:"users_with_in_place_secret_rotation" json:"usersWithInPlaceSecretRotation,omitempty"`
 		UsersWithSecretRotation        *[]string            `tfsdk:"users_with_secret_rotation" json:"usersWithSecretRotation,omitempty"`
 		Volume                         *struct {
@@ -1064,7 +1071,7 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("10", "11", "12", "13", "14", "15"),
+									stringvalidator.OneOf("11", "12", "13", "14", "15", "16"),
 								},
 							},
 						},
@@ -1168,6 +1175,28 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 										},
 									},
 
+									"hugepages_1_gi": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+										},
+									},
+
+									"hugepages_2_mi": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+										},
+									},
+
 									"memory": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -1196,6 +1225,28 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 										Computed:            false,
 										Validators: []validator.String{
 											stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
+										},
+									},
+
+									"hugepages_1_gi": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
+										},
+									},
+
+									"hugepages_2_mi": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+(e\d+)?|\d+(\.\d+)?(e\d+)?[EPTGMK]i?)$`), ""),
 										},
 									},
 
@@ -1340,6 +1391,14 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 									Computed:            false,
 								},
 
+								"enable_recovery": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"filter": schema.MapAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -1370,6 +1429,14 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 										},
 
 										"payload_column": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"recovery_event_type": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -1514,6 +1581,15 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 						Description:         "",
 						MarkdownDescription: "",
 						ElementType:         types.ListType{ElemType: types.StringType},
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"users_ignoring_secret_rotation": schema.ListAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

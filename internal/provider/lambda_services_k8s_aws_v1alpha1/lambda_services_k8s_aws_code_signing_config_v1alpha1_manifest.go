@@ -137,8 +137,8 @@ func (r *LambdaServicesK8SAwsCodeSigningConfigV1Alpha1Manifest) Schema(_ context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "CodeSigningConfigSpec defines the desired state of CodeSigningConfig.  Details about a Code signing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html).",
-				MarkdownDescription: "CodeSigningConfigSpec defines the desired state of CodeSigningConfig.  Details about a Code signing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html).",
+				Description:         "CodeSigningConfigSpec defines the desired state of CodeSigningConfig.Details about a Code signing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html).",
+				MarkdownDescription: "CodeSigningConfigSpec defines the desired state of CodeSigningConfig.Details about a Code signing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html).",
 				Attributes: map[string]schema.Attribute{
 					"allowed_publishers": schema.SingleNestedAttribute{
 						Description:         "Signing profiles for this code signing configuration.",
@@ -159,8 +159,8 @@ func (r *LambdaServicesK8SAwsCodeSigningConfigV1Alpha1Manifest) Schema(_ context
 					},
 
 					"code_signing_policies": schema.SingleNestedAttribute{
-						Description:         "The code signing policies define the actions to take if the validation checks fail.",
-						MarkdownDescription: "The code signing policies define the actions to take if the validation checks fail.",
+						Description:         "The code signing policies define the actions to take if the validation checksfail.",
+						MarkdownDescription: "The code signing policies define the actions to take if the validation checksfail.",
 						Attributes: map[string]schema.Attribute{
 							"untrusted_artifact_on_deployment": schema.StringAttribute{
 								Description:         "",

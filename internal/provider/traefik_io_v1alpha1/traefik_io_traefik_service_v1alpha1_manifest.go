@@ -53,6 +53,7 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 				Name               *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				NativeLB           *bool   `tfsdk:"native_lb" json:"nativeLB,omitempty"`
+				NodePortLB         *bool   `tfsdk:"node_port_lb" json:"nodePortLB,omitempty"`
 				PassHostHeader     *bool   `tfsdk:"pass_host_header" json:"passHostHeader,omitempty"`
 				Percent            *int64  `tfsdk:"percent" json:"percent,omitempty"`
 				Port               *string `tfsdk:"port" json:"port,omitempty"`
@@ -64,6 +65,7 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 				Sticky           *struct {
 					Cookie *struct {
 						HttpOnly *bool   `tfsdk:"http_only" json:"httpOnly,omitempty"`
+						MaxAge   *int64  `tfsdk:"max_age" json:"maxAge,omitempty"`
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						SameSite *string `tfsdk:"same_site" json:"sameSite,omitempty"`
 						Secure   *bool   `tfsdk:"secure" json:"secure,omitempty"`
@@ -75,6 +77,7 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 			Name               *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			NativeLB           *bool   `tfsdk:"native_lb" json:"nativeLB,omitempty"`
+			NodePortLB         *bool   `tfsdk:"node_port_lb" json:"nodePortLB,omitempty"`
 			PassHostHeader     *bool   `tfsdk:"pass_host_header" json:"passHostHeader,omitempty"`
 			Port               *string `tfsdk:"port" json:"port,omitempty"`
 			ResponseForwarding *struct {
@@ -85,6 +88,7 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 			Sticky           *struct {
 				Cookie *struct {
 					HttpOnly *bool   `tfsdk:"http_only" json:"httpOnly,omitempty"`
+					MaxAge   *int64  `tfsdk:"max_age" json:"maxAge,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					SameSite *string `tfsdk:"same_site" json:"sameSite,omitempty"`
 					Secure   *bool   `tfsdk:"secure" json:"secure,omitempty"`
@@ -99,6 +103,7 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 				Name               *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				NativeLB           *bool   `tfsdk:"native_lb" json:"nativeLB,omitempty"`
+				NodePortLB         *bool   `tfsdk:"node_port_lb" json:"nodePortLB,omitempty"`
 				PassHostHeader     *bool   `tfsdk:"pass_host_header" json:"passHostHeader,omitempty"`
 				Port               *string `tfsdk:"port" json:"port,omitempty"`
 				ResponseForwarding *struct {
@@ -109,6 +114,7 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 				Sticky           *struct {
 					Cookie *struct {
 						HttpOnly *bool   `tfsdk:"http_only" json:"httpOnly,omitempty"`
+						MaxAge   *int64  `tfsdk:"max_age" json:"maxAge,omitempty"`
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						SameSite *string `tfsdk:"same_site" json:"sameSite,omitempty"`
 						Secure   *bool   `tfsdk:"secure" json:"secure,omitempty"`
@@ -120,6 +126,7 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 			Sticky *struct {
 				Cookie *struct {
 					HttpOnly *bool   `tfsdk:"http_only" json:"httpOnly,omitempty"`
+					MaxAge   *int64  `tfsdk:"max_age" json:"maxAge,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					SameSite *string `tfsdk:"same_site" json:"sameSite,omitempty"`
 					Secure   *bool   `tfsdk:"secure" json:"secure,omitempty"`
@@ -135,8 +142,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Metadata(_ context.Context, re
 
 func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice",
-		MarkdownDescription: "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice",
+		Description:         "TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice",
+		MarkdownDescription: "TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -230,8 +237,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"max_body_size": schema.Int64Attribute{
-								Description:         "MaxBodySize defines the maximum size allowed for the body of the request. If the body is larger, the request is not mirrored. Default value is -1, which means unlimited size.",
-								MarkdownDescription: "MaxBodySize defines the maximum size allowed for the body of the request. If the body is larger, the request is not mirrored. Default value is -1, which means unlimited size.",
+								Description:         "MaxBodySize defines the maximum size allowed for the body of the request.If the body is larger, the request is not mirrored.Default value is -1, which means unlimited size.",
+								MarkdownDescription: "MaxBodySize defines the maximum size allowed for the body of the request.If the body is larger, the request is not mirrored.Default value is -1, which means unlimited size.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -254,8 +261,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
-											MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+											Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.",
+											MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -270,32 +277,40 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"native_lb": schema.BoolAttribute{
-											Description:         "NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.",
-											MarkdownDescription: "NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.",
+											Description:         "NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.",
+											MarkdownDescription: "NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"node_port_lb": schema.BoolAttribute{
+											Description:         "NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.",
+											MarkdownDescription: "NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"pass_host_header": schema.BoolAttribute{
-											Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
-											MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
+											Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.",
+											MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"percent": schema.Int64Attribute{
-											Description:         "Percent defines the part of the traffic to mirror. Supported values: 0 to 100.",
-											MarkdownDescription: "Percent defines the part of the traffic to mirror. Supported values: 0 to 100.",
+											Description:         "Percent defines the part of the traffic to mirror.Supported values: 0 to 100.",
+											MarkdownDescription: "Percent defines the part of the traffic to mirror.Supported values: 0 to 100.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"port": schema.StringAttribute{
-											Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-											MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+											Description:         "Port defines the port of a Kubernetes Service.This can be a reference to a named port.",
+											MarkdownDescription: "Port defines the port of a Kubernetes Service.This can be a reference to a named port.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -306,8 +321,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 											MarkdownDescription: "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
 											Attributes: map[string]schema.Attribute{
 												"flush_interval": schema.StringAttribute{
-													Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
-													MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
+													Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms",
+													MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -319,24 +334,24 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"scheme": schema.StringAttribute{
-											Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
-											MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
+											Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.",
+											MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"servers_transport": schema.StringAttribute{
-											Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
-											MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
+											Description:         "ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.",
+											MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"sticky": schema.SingleNestedAttribute{
-											Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
-											MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
+											Description:         "Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
+											MarkdownDescription: "Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
 											Attributes: map[string]schema.Attribute{
 												"cookie": schema.SingleNestedAttribute{
 													Description:         "Cookie defines the sticky cookie configuration.",
@@ -345,6 +360,14 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 														"http_only": schema.BoolAttribute{
 															Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
 															MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"max_age": schema.Int64Attribute{
+															Description:         "MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.",
+															MarkdownDescription: "MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -359,8 +382,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"same_site": schema.StringAttribute{
-															Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-															MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+															Description:         "SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+															MarkdownDescription: "SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -385,16 +408,16 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"strategy": schema.StringAttribute{
-											Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-											MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+											Description:         "Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.",
+											MarkdownDescription: "Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"weight": schema.Int64Attribute{
-											Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
-											MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+											Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).",
+											MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -407,8 +430,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
-								MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+								Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.",
+								MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -423,24 +446,32 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"native_lb": schema.BoolAttribute{
-								Description:         "NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.",
-								MarkdownDescription: "NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.",
+								Description:         "NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.",
+								MarkdownDescription: "NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"node_port_lb": schema.BoolAttribute{
+								Description:         "NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.",
+								MarkdownDescription: "NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"pass_host_header": schema.BoolAttribute{
-								Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
-								MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
+								Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.",
+								MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"port": schema.StringAttribute{
-								Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-								MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+								Description:         "Port defines the port of a Kubernetes Service.This can be a reference to a named port.",
+								MarkdownDescription: "Port defines the port of a Kubernetes Service.This can be a reference to a named port.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -451,8 +482,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 								MarkdownDescription: "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
 								Attributes: map[string]schema.Attribute{
 									"flush_interval": schema.StringAttribute{
-										Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
-										MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
+										Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms",
+										MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -464,24 +495,24 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"scheme": schema.StringAttribute{
-								Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
-								MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
+								Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.",
+								MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"servers_transport": schema.StringAttribute{
-								Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
-								MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
+								Description:         "ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.",
+								MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"sticky": schema.SingleNestedAttribute{
-								Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
-								MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
+								Description:         "Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
+								MarkdownDescription: "Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
 								Attributes: map[string]schema.Attribute{
 									"cookie": schema.SingleNestedAttribute{
 										Description:         "Cookie defines the sticky cookie configuration.",
@@ -490,6 +521,14 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 											"http_only": schema.BoolAttribute{
 												Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
 												MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"max_age": schema.Int64Attribute{
+												Description:         "MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.",
+												MarkdownDescription: "MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -504,8 +543,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"same_site": schema.StringAttribute{
-												Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-												MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+												Description:         "SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+												MarkdownDescription: "SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -530,16 +569,16 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"strategy": schema.StringAttribute{
-								Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-								MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+								Description:         "Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.",
+								MarkdownDescription: "Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"weight": schema.Int64Attribute{
-								Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
-								MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+								Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).",
+								MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -571,8 +610,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
-											MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.",
+											Description:         "Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.",
+											MarkdownDescription: "Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -587,24 +626,32 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"native_lb": schema.BoolAttribute{
-											Description:         "NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.",
-											MarkdownDescription: "NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.",
+											Description:         "NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.",
+											MarkdownDescription: "NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"node_port_lb": schema.BoolAttribute{
+											Description:         "NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.",
+											MarkdownDescription: "NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"pass_host_header": schema.BoolAttribute{
-											Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
-											MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.",
+											Description:         "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.",
+											MarkdownDescription: "PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"port": schema.StringAttribute{
-											Description:         "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
-											MarkdownDescription: "Port defines the port of a Kubernetes Service. This can be a reference to a named port.",
+											Description:         "Port defines the port of a Kubernetes Service.This can be a reference to a named port.",
+											MarkdownDescription: "Port defines the port of a Kubernetes Service.This can be a reference to a named port.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -615,8 +662,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 											MarkdownDescription: "ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client.",
 											Attributes: map[string]schema.Attribute{
 												"flush_interval": schema.StringAttribute{
-													Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
-													MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms",
+													Description:         "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms",
+													MarkdownDescription: "FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -628,24 +675,24 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"scheme": schema.StringAttribute{
-											Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
-											MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.",
+											Description:         "Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.",
+											MarkdownDescription: "Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"servers_transport": schema.StringAttribute{
-											Description:         "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
-											MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.",
+											Description:         "ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.",
+											MarkdownDescription: "ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"sticky": schema.SingleNestedAttribute{
-											Description:         "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
-											MarkdownDescription: "Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
+											Description:         "Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
+											MarkdownDescription: "Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
 											Attributes: map[string]schema.Attribute{
 												"cookie": schema.SingleNestedAttribute{
 													Description:         "Cookie defines the sticky cookie configuration.",
@@ -654,6 +701,14 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 														"http_only": schema.BoolAttribute{
 															Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
 															MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"max_age": schema.Int64Attribute{
+															Description:         "MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.",
+															MarkdownDescription: "MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -668,8 +723,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"same_site": schema.StringAttribute{
-															Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-															MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+															Description:         "SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+															MarkdownDescription: "SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -694,16 +749,16 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"strategy": schema.StringAttribute{
-											Description:         "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
-											MarkdownDescription: "Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.",
+											Description:         "Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.",
+											MarkdownDescription: "Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"weight": schema.Int64Attribute{
-											Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
-											MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).",
+											Description:         "Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).",
+											MarkdownDescription: "Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -716,8 +771,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"sticky": schema.SingleNestedAttribute{
-								Description:         "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
-								MarkdownDescription: "Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
+								Description:         "Sticky defines whether sticky sessions are enabled.More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
+								MarkdownDescription: "Sticky defines whether sticky sessions are enabled.More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
 								Attributes: map[string]schema.Attribute{
 									"cookie": schema.SingleNestedAttribute{
 										Description:         "Cookie defines the sticky cookie configuration.",
@@ -726,6 +781,14 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 											"http_only": schema.BoolAttribute{
 												Description:         "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
 												MarkdownDescription: "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"max_age": schema.Int64Attribute{
+												Description:         "MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.",
+												MarkdownDescription: "MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -740,8 +803,8 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"same_site": schema.StringAttribute{
-												Description:         "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-												MarkdownDescription: "SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+												Description:         "SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+												MarkdownDescription: "SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

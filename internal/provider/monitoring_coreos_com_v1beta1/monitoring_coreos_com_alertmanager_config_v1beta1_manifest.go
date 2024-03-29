@@ -211,6 +211,99 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 				To *string `tfsdk:"to" json:"to,omitempty"`
 			} `tfsdk:"email_configs" json:"emailConfigs,omitempty"`
+			MsteamsConfigs *[]struct {
+				HttpConfig *struct {
+					Authorization *struct {
+						Credentials *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"credentials" json:"credentials,omitempty"`
+						Type *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"authorization" json:"authorization,omitempty"`
+					BasicAuth *struct {
+						Password *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"password" json:"password,omitempty"`
+						Username *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"username" json:"username,omitempty"`
+					} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
+					BearerTokenSecret *struct {
+						Key  *string `tfsdk:"key" json:"key,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
+					FollowRedirects *bool `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+					Oauth2          *struct {
+						ClientId *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"client_id" json:"clientId,omitempty"`
+						ClientSecret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+						EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+						Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+						TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+					ProxyURL  *string `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					TlsConfig *struct {
+						Ca *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"ca" json:"ca,omitempty"`
+						Cert *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"cert" json:"cert,omitempty"`
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+						KeySecret          *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+						ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+					} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				} `tfsdk:"http_config" json:"httpConfig,omitempty"`
+				SendResolved *bool   `tfsdk:"send_resolved" json:"sendResolved,omitempty"`
+				Text         *string `tfsdk:"text" json:"text,omitempty"`
+				Title        *string `tfsdk:"title" json:"title,omitempty"`
+				WebhookUrl   *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"webhook_url" json:"webhookUrl,omitempty"`
+			} `tfsdk:"msteams_configs" json:"msteamsConfigs,omitempty"`
 			Name            *string `tfsdk:"name" json:"name,omitempty"`
 			OpsgenieConfigs *[]struct {
 				Actions *string `tfsdk:"actions" json:"actions,omitempty"`
@@ -437,6 +530,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 				Url      *string `tfsdk:"url" json:"url,omitempty"`
 			} `tfsdk:"pagerduty_configs" json:"pagerdutyConfigs,omitempty"`
 			PushoverConfigs *[]struct {
+				Device     *string `tfsdk:"device" json:"device,omitempty"`
 				Expire     *string `tfsdk:"expire" json:"expire,omitempty"`
 				Html       *bool   `tfsdk:"html" json:"html,omitempty"`
 				HttpConfig *struct {
@@ -532,12 +626,14 @@ type MonitoringCoreosComAlertmanagerConfigV1Beta1ManifestData struct {
 					Key  *string `tfsdk:"key" json:"key,omitempty"`
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"token" json:"token,omitempty"`
-				Url      *string `tfsdk:"url" json:"url,omitempty"`
-				UrlTitle *string `tfsdk:"url_title" json:"urlTitle,omitempty"`
-				UserKey  *struct {
+				TokenFile *string `tfsdk:"token_file" json:"tokenFile,omitempty"`
+				Url       *string `tfsdk:"url" json:"url,omitempty"`
+				UrlTitle  *string `tfsdk:"url_title" json:"urlTitle,omitempty"`
+				UserKey   *struct {
 					Key  *string `tfsdk:"key" json:"key,omitempty"`
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"user_key" json:"userKey,omitempty"`
+				UserKeyFile *string `tfsdk:"user_key_file" json:"userKeyFile,omitempty"`
 			} `tfsdk:"pushover_configs" json:"pushoverConfigs,omitempty"`
 			SlackConfigs *[]struct {
 				Actions *[]struct {
@@ -1290,8 +1386,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Metadata(_ contex
 
 func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "AlertmanagerConfig defines a namespaced AlertmanagerConfig to be aggregated across multiple namespaces configuring one Alertmanager cluster.",
-		MarkdownDescription: "AlertmanagerConfig defines a namespaced AlertmanagerConfig to be aggregated across multiple namespaces configuring one Alertmanager cluster.",
+		Description:         "AlertmanagerConfig configures the Prometheus Alertmanager, specifying how alerts should be grouped, inhibited and notified to external systems.",
+		MarkdownDescription: "AlertmanagerConfig configures the Prometheus Alertmanager, specifying how alerts should be grouped, inhibited and notified to external systems.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -1573,8 +1669,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1606,8 +1702,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1687,8 +1783,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "The secret or configmap containing the OAuth2 client id",
-																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -1762,8 +1858,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "The secret containing the OAuth2 client secret",
-																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -1795,8 +1891,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "Parameters to append to the token URL",
-																MarkdownDescription: "Parameters to append to the token URL",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1804,8 +1900,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"scopes": schema.ListAttribute{
-																Description:         "OAuth2 scopes used for the token request",
-																MarkdownDescription: "OAuth2 scopes used for the token request",
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1813,8 +1909,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"token_url": schema.StringAttribute{
-																Description:         "The URL to fetch the token from",
-																MarkdownDescription: "The URL to fetch the token from",
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -2470,6 +2566,609 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 									Computed: false,
 								},
 
+								"msteams_configs": schema.ListNestedAttribute{
+									Description:         "List of MSTeams configurations. It requires Alertmanager >= 0.26.0.",
+									MarkdownDescription: "List of MSTeams configurations. It requires Alertmanager >= 0.26.0.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"http_config": schema.SingleNestedAttribute{
+												Description:         "HTTP client configuration.",
+												MarkdownDescription: "HTTP client configuration.",
+												Attributes: map[string]schema.Attribute{
+													"authorization": schema.SingleNestedAttribute{
+														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Attributes: map[string]schema.Attribute{
+															"credentials": schema.SingleNestedAttribute{
+																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+																MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive.  'Basic' is not a supported value.  Default: 'Bearer'",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"basic_auth": schema.SingleNestedAttribute{
+														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Attributes: map[string]schema.Attribute{
+															"password": schema.SingleNestedAttribute{
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"username": schema.SingleNestedAttribute{
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"bearer_token_secret": schema.SingleNestedAttribute{
+														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "The name of the secret in the object's namespace to select from.",
+																MarkdownDescription: "The name of the secret in the object's namespace to select from.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"follow_redirects": schema.BoolAttribute{
+														Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+														MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"oauth2": schema.SingleNestedAttribute{
+														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+														Attributes: map[string]schema.Attribute{
+															"client_id": schema.SingleNestedAttribute{
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"client_secret": schema.SingleNestedAttribute{
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"endpoint_params": schema.MapAttribute{
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"scopes": schema.ListAttribute{
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"token_url": schema.StringAttribute{
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL.",
+														MarkdownDescription: "Optional proxy URL.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"tls_config": schema.SingleNestedAttribute{
+														Description:         "TLS configuration for the client.",
+														MarkdownDescription: "TLS configuration for the client.",
+														Attributes: map[string]schema.Attribute{
+															"ca": schema.SingleNestedAttribute{
+																Description:         "Certificate authority used when verifying server certificates.",
+																MarkdownDescription: "Certificate authority used when verifying server certificates.",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"cert": schema.SingleNestedAttribute{
+																Description:         "Client certificate to present when doing client-authentication.",
+																MarkdownDescription: "Client certificate to present when doing client-authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"insecure_skip_verify": schema.BoolAttribute{
+																Description:         "Disable target certificate validation.",
+																MarkdownDescription: "Disable target certificate validation.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"key_secret": schema.SingleNestedAttribute{
+																Description:         "Secret containing the client key file for the targets.",
+																MarkdownDescription: "Secret containing the client key file for the targets.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"server_name": schema.StringAttribute{
+																Description:         "Used to verify the hostname for the targets.",
+																MarkdownDescription: "Used to verify the hostname for the targets.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"send_resolved": schema.BoolAttribute{
+												Description:         "Whether to notify about resolved alerts.",
+												MarkdownDescription: "Whether to notify about resolved alerts.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"text": schema.StringAttribute{
+												Description:         "Message body template.",
+												MarkdownDescription: "Message body template.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"title": schema.StringAttribute{
+												Description:         "Message title template.",
+												MarkdownDescription: "Message title template.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"webhook_url": schema.SingleNestedAttribute{
+												Description:         "MSTeams webhook URL.",
+												MarkdownDescription: "MSTeams webhook URL.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "Name of the receiver. Must be unique across all items from the list.",
 									MarkdownDescription: "Name of the receiver. Must be unique across all items from the list.",
@@ -2638,8 +3337,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2671,8 +3370,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2752,8 +3451,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "The secret or configmap containing the OAuth2 client id",
-																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -2827,8 +3526,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "The secret containing the OAuth2 client secret",
-																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -2860,8 +3559,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "Parameters to append to the token URL",
-																MarkdownDescription: "Parameters to append to the token URL",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2869,8 +3568,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"scopes": schema.ListAttribute{
-																Description:         "OAuth2 scopes used for the token request",
-																MarkdownDescription: "OAuth2 scopes used for the token request",
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2878,8 +3577,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"token_url": schema.StringAttribute{
-																Description:         "The URL to fetch the token from",
-																MarkdownDescription: "The URL to fetch the token from",
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -3357,8 +4056,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3390,8 +4089,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3471,8 +4170,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "The secret or configmap containing the OAuth2 client id",
-																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -3546,8 +4245,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "The secret containing the OAuth2 client secret",
-																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -3579,8 +4278,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "Parameters to append to the token URL",
-																MarkdownDescription: "Parameters to append to the token URL",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3588,8 +4287,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"scopes": schema.ListAttribute{
-																Description:         "OAuth2 scopes used for the token request",
-																MarkdownDescription: "OAuth2 scopes used for the token request",
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3597,8 +4296,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"token_url": schema.StringAttribute{
-																Description:         "The URL to fetch the token from",
-																MarkdownDescription: "The URL to fetch the token from",
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -3992,6 +4691,14 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 									MarkdownDescription: "List of Pushover configurations.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
+											"device": schema.StringAttribute{
+												Description:         "The name of a device to send the notification to",
+												MarkdownDescription: "The name of a device to send the notification to",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"expire": schema.StringAttribute{
 												Description:         "How long your notification will continue to be retried for, unless the user acknowledges the notification.",
 												MarkdownDescription: "How long your notification will continue to be retried for, unless the user acknowledges the notification.",
@@ -4070,8 +4777,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4103,8 +4810,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4184,8 +4891,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "The secret or configmap containing the OAuth2 client id",
-																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -4259,8 +4966,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "The secret containing the OAuth2 client secret",
-																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4292,8 +4999,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "Parameters to append to the token URL",
-																MarkdownDescription: "Parameters to append to the token URL",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4301,8 +5008,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"scopes": schema.ListAttribute{
-																Description:         "OAuth2 scopes used for the token request",
-																MarkdownDescription: "OAuth2 scopes used for the token request",
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4310,8 +5017,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"token_url": schema.StringAttribute{
-																Description:         "The URL to fetch the token from",
-																MarkdownDescription: "The URL to fetch the token from",
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4598,8 +5305,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"token": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the registered application's API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the registered application's API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the registered application's API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. Either 'token' or 'tokenFile' is required.",
+												MarkdownDescription: "The secret's key that contains the registered application's API token, see https://pushover.net/apps. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. Either 'token' or 'tokenFile' is required.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4626,6 +5333,14 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"token_file": schema.StringAttribute{
+												Description:         "The token file that contains the registered application's API token, see https://pushover.net/apps. Either 'token' or 'tokenFile' is required. It requires Alertmanager >= v0.26.0.",
+												MarkdownDescription: "The token file that contains the registered application's API token, see https://pushover.net/apps. Either 'token' or 'tokenFile' is required. It requires Alertmanager >= v0.26.0.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 
 											"url": schema.StringAttribute{
@@ -4645,8 +5360,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 											},
 
 											"user_key": schema.SingleNestedAttribute{
-												Description:         "The secret's key that contains the recipient user's user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
-												MarkdownDescription: "The secret's key that contains the recipient user's user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+												Description:         "The secret's key that contains the recipient user's user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. Either 'userKey' or 'userKeyFile' is required.",
+												MarkdownDescription: "The secret's key that contains the recipient user's user key. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. Either 'userKey' or 'userKeyFile' is required.",
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
 														Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4673,6 +5388,14 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"user_key_file": schema.StringAttribute{
+												Description:         "The user key file that contains the recipient user's user key. Either 'userKey' or 'userKeyFile' is required. It requires Alertmanager >= v0.26.0.",
+												MarkdownDescription: "The user key file that contains the recipient user's user key. Either 'userKey' or 'userKeyFile' is required. It requires Alertmanager >= v0.26.0.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 									},
@@ -4966,8 +5689,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4999,8 +5722,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5080,8 +5803,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "The secret or configmap containing the OAuth2 client id",
-																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -5155,8 +5878,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "The secret containing the OAuth2 client secret",
-																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5188,8 +5911,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "Parameters to append to the token URL",
-																MarkdownDescription: "Parameters to append to the token URL",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5197,8 +5920,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"scopes": schema.ListAttribute{
-																Description:         "OAuth2 scopes used for the token request",
-																MarkdownDescription: "OAuth2 scopes used for the token request",
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5206,8 +5929,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"token_url": schema.StringAttribute{
-																Description:         "The URL to fetch the token from",
-																MarkdownDescription: "The URL to fetch the token from",
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5634,8 +6357,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5667,8 +6390,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5748,8 +6471,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "The secret or configmap containing the OAuth2 client id",
-																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -5823,8 +6546,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "The secret containing the OAuth2 client secret",
-																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -5856,8 +6579,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "Parameters to append to the token URL",
-																MarkdownDescription: "Parameters to append to the token URL",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5865,8 +6588,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"scopes": schema.ListAttribute{
-																Description:         "OAuth2 scopes used for the token request",
-																MarkdownDescription: "OAuth2 scopes used for the token request",
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -5874,8 +6597,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"token_url": schema.StringAttribute{
-																Description:         "The URL to fetch the token from",
-																MarkdownDescription: "The URL to fetch the token from",
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6390,8 +7113,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6423,8 +7146,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6504,8 +7227,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "The secret or configmap containing the OAuth2 client id",
-																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -6579,8 +7302,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "The secret containing the OAuth2 client secret",
-																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -6612,8 +7335,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "Parameters to append to the token URL",
-																MarkdownDescription: "Parameters to append to the token URL",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -6621,8 +7344,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"scopes": schema.ListAttribute{
-																Description:         "OAuth2 scopes used for the token request",
-																MarkdownDescription: "OAuth2 scopes used for the token request",
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -6630,8 +7353,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"token_url": schema.StringAttribute{
-																Description:         "The URL to fetch the token from",
-																MarkdownDescription: "The URL to fetch the token from",
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -7040,8 +7763,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7073,8 +7796,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7154,8 +7877,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "The secret or configmap containing the OAuth2 client id",
-																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -7229,8 +7952,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "The secret containing the OAuth2 client secret",
-																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7262,8 +7985,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "Parameters to append to the token URL",
-																MarkdownDescription: "Parameters to append to the token URL",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -7271,8 +7994,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"scopes": schema.ListAttribute{
-																Description:         "OAuth2 scopes used for the token request",
-																MarkdownDescription: "OAuth2 scopes used for the token request",
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -7280,8 +8003,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"token_url": schema.StringAttribute{
-																Description:         "The URL to fetch the token from",
-																MarkdownDescription: "The URL to fetch the token from",
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -7637,8 +8360,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7670,8 +8393,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7751,8 +8474,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "The secret or configmap containing the OAuth2 client id",
-																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -7826,8 +8549,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "The secret containing the OAuth2 client secret",
-																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -7859,8 +8582,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "Parameters to append to the token URL",
-																MarkdownDescription: "Parameters to append to the token URL",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -7868,8 +8591,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"scopes": schema.ListAttribute{
-																Description:         "OAuth2 scopes used for the token request",
-																MarkdownDescription: "OAuth2 scopes used for the token request",
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -7877,8 +8600,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"token_url": schema.StringAttribute{
-																Description:         "The URL to fetch the token from",
-																MarkdownDescription: "The URL to fetch the token from",
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -8210,8 +8933,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -8243,8 +8966,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -8324,8 +9047,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "The secret or configmap containing the OAuth2 client id",
-																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -8399,8 +9122,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "The secret containing the OAuth2 client secret",
-																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -8432,8 +9155,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "Parameters to append to the token URL",
-																MarkdownDescription: "Parameters to append to the token URL",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -8441,8 +9164,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"scopes": schema.ListAttribute{
-																Description:         "OAuth2 scopes used for the token request",
-																MarkdownDescription: "OAuth2 scopes used for the token request",
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -8450,8 +9173,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"token_url": schema.StringAttribute{
-																Description:         "The URL to fetch the token from",
-																MarkdownDescription: "The URL to fetch the token from",
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -8869,8 +9592,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
 														Attributes: map[string]schema.Attribute{
 															"password": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -8902,8 +9625,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"username": schema.SingleNestedAttribute{
-																Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-																MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -8983,8 +9706,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
 														Attributes: map[string]schema.Attribute{
 															"client_id": schema.SingleNestedAttribute{
-																Description:         "The secret or configmap containing the OAuth2 client id",
-																MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 																Attributes: map[string]schema.Attribute{
 																	"config_map": schema.SingleNestedAttribute{
 																		Description:         "ConfigMap containing data to use for the targets.",
@@ -9058,8 +9781,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"client_secret": schema.SingleNestedAttribute{
-																Description:         "The secret containing the OAuth2 client secret",
-																MarkdownDescription: "The secret containing the OAuth2 client secret",
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
 																		Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -9091,8 +9814,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"endpoint_params": schema.MapAttribute{
-																Description:         "Parameters to append to the token URL",
-																MarkdownDescription: "Parameters to append to the token URL",
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -9100,8 +9823,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"scopes": schema.ListAttribute{
-																Description:         "OAuth2 scopes used for the token request",
-																MarkdownDescription: "OAuth2 scopes used for the token request",
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -9109,8 +9832,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Beta1Manifest) Schema(_ context.
 															},
 
 															"token_url": schema.StringAttribute{
-																Description:         "The URL to fetch the token from",
-																MarkdownDescription: "The URL to fetch the token from",
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,

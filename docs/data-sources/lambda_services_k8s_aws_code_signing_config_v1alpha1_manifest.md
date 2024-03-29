@@ -30,7 +30,7 @@ data "k8s_lambda_services_k8s_aws_code_signing_config_v1alpha1_manifest" "exampl
 
 ### Optional
 
-- `spec` (Attributes) CodeSigningConfigSpec defines the desired state of CodeSigningConfig.  Details about a Code signing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html). (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) CodeSigningConfigSpec defines the desired state of CodeSigningConfig.Details about a Code signing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html). (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -60,7 +60,7 @@ Required:
 
 Optional:
 
-- `code_signing_policies` (Attributes) The code signing policies define the actions to take if the validation checks fail. (see [below for nested schema](#nestedatt--spec--code_signing_policies))
+- `code_signing_policies` (Attributes) The code signing policies define the actions to take if the validation checksfail. (see [below for nested schema](#nestedatt--spec--code_signing_policies))
 - `description` (String) Descriptive name for this code signing configuration.
 
 <a id="nestedatt--spec--allowed_publishers"></a>

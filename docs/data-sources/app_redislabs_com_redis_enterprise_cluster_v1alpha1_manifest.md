@@ -18,30 +18,6 @@ data "k8s_app_redislabs_com_redis_enterprise_cluster_v1alpha1_manifest" "example
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    nodes = 3
-    persistent_spec = {
-      enabled            = "true"
-      storage_class_name = "gp2"
-    }
-    ui_service_type = "LoadBalancer"
-    username        = "admin@acme.com"
-    redis_enterprise_node_resources = {
-      limits = {
-        cpu    = "400m"
-        memory = "4Gi"
-      }
-      requests = {
-        cpu    = "400m"
-        memory = "4Gi"
-      }
-    }
-    redis_enterprise_image_spec = {
-      image_pull_policy = "IfNotPresent"
-      repository        = "redislabs/redis"
-      version_tag       = "5.4.0-19"
-    }
-  }
 }
 ```
 
@@ -115,6 +91,7 @@ Optional:
 - `rack_awareness_node_label` (String)
 - `redis_enterprise_additional_pod_spec_attributes` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes))
 - `redis_enterprise_image_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_image_spec))
+- `redis_enterprise_ip_family` (String)
 - `redis_enterprise_node_resources` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_node_resources))
 - `redis_enterprise_pod_annotations` (Map of String) annotations for redis enterprise pod
 - `redis_enterprise_services_configuration` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_enterprise_services_configuration))
@@ -124,6 +101,7 @@ Optional:
 - `redis_enterprise_volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--redis_enterprise_volume_mounts))
 - `redis_on_flash_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--redis_on_flash_spec))
 - `redis_upgrade_policy` (String)
+- `resp3_default` (Boolean)
 - `service_account_name` (String)
 - `services` (Attributes) (see [below for nested schema](#nestedatt--spec--services))
 - `services_rigger_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--services_rigger_spec))

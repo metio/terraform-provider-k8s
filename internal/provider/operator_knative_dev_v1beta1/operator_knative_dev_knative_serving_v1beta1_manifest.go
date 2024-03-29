@@ -250,6 +250,10 @@ type OperatorKnativeDevKnativeServingV1Beta1ManifestData struct {
 							Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
 							Target_port *int64  `tfsdk:"target_port" json:"target_port,omitempty"`
 						} `tfsdk:"port" json:"port,omitempty"`
+						Tls *struct {
+							CredentialName *string `tfsdk:"credential_name" json:"credentialName,omitempty"`
+							Mode           *string `tfsdk:"mode" json:"mode,omitempty"`
+						} `tfsdk:"tls" json:"tls,omitempty"`
 					} `tfsdk:"servers" json:"servers,omitempty"`
 				} `tfsdk:"knative_ingress_gateway" json:"knative-ingress-gateway,omitempty"`
 				Knative_local_gateway *struct {
@@ -262,6 +266,10 @@ type OperatorKnativeDevKnativeServingV1Beta1ManifestData struct {
 							Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
 							Target_port *int64  `tfsdk:"target_port" json:"target_port,omitempty"`
 						} `tfsdk:"port" json:"port,omitempty"`
+						Tls *struct {
+							CredentialName *string `tfsdk:"credential_name" json:"credentialName,omitempty"`
+							Mode           *string `tfsdk:"mode" json:"mode,omitempty"`
+						} `tfsdk:"tls" json:"tls,omitempty"`
 					} `tfsdk:"servers" json:"servers,omitempty"`
 				} `tfsdk:"knative_local_gateway" json:"knative-local-gateway,omitempty"`
 			} `tfsdk:"istio" json:"istio,omitempty"`
@@ -1938,6 +1946,31 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Manifest) Schema(_ context.Conte
 															Optional: true,
 															Computed: false,
 														},
+
+														"tls": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"credential_name": schema.StringAttribute{
+																	Description:         "TLS certificate name.",
+																	MarkdownDescription: "TLS certificate name.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mode": schema.StringAttribute{
+																	Description:         "TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.",
+																	MarkdownDescription: "TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
 													},
 												},
 												Required: false,
@@ -2008,6 +2041,31 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Manifest) Schema(_ context.Conte
 																"target_port": schema.Int64Attribute{
 																	Description:         "A valid non-negative integer target port number.",
 																	MarkdownDescription: "A valid non-negative integer target port number.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"tls": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"credential_name": schema.StringAttribute{
+																	Description:         "TLS certificate name.",
+																	MarkdownDescription: "TLS certificate name.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mode": schema.StringAttribute{
+																	Description:         "TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.",
+																	MarkdownDescription: "TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,

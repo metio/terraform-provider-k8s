@@ -981,6 +981,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--init_containers--working_dir--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--init_containers--working_dir--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--init_containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--capabilities"></a>
@@ -1001,6 +1002,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--driver--init_containers--working_dir--seccomp_profile"></a>
+### Nested Schema for `spec.driver.init_containers.working_dir.seccomp_profile`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--driver--init_containers--working_dir--windows_options"></a>
@@ -1285,6 +1294,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--security_context--windows_options))
 
 <a id="nestedatt--spec--driver--security_context--capabilities"></a>
@@ -1305,6 +1315,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--driver--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.driver.security_context.windows_options`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--driver--security_context--windows_options"></a>
@@ -1725,6 +1743,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--sidecars--working_dir--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--sidecars--working_dir--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--driver--sidecars--working_dir--windows_options))
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--capabilities"></a>
@@ -1745,6 +1764,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--driver--sidecars--working_dir--seccomp_profile"></a>
+### Nested Schema for `spec.driver.sidecars.working_dir.seccomp_profile`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--driver--sidecars--working_dir--windows_options"></a>
@@ -2758,6 +2785,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--init_containers--working_dir--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--init_containers--working_dir--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--init_containers--working_dir--windows_options))
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--capabilities"></a>
@@ -2778,6 +2806,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--executor--init_containers--working_dir--seccomp_profile"></a>
+### Nested Schema for `spec.executor.init_containers.working_dir.seccomp_profile`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--executor--init_containers--working_dir--windows_options"></a>
@@ -2945,6 +2981,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--security_context--windows_options))
 
 <a id="nestedatt--spec--executor--security_context--capabilities"></a>
@@ -2965,6 +3002,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--executor--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.executor.security_context.windows_options`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--executor--security_context--windows_options"></a>
@@ -3385,6 +3430,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--sidecars--working_dir--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--sidecars--working_dir--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--executor--sidecars--working_dir--windows_options))
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--capabilities"></a>
@@ -3405,6 +3451,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--executor--sidecars--working_dir--seccomp_profile"></a>
+### Nested Schema for `spec.executor.sidecars.working_dir.seccomp_profile`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--executor--sidecars--working_dir--windows_options"></a>

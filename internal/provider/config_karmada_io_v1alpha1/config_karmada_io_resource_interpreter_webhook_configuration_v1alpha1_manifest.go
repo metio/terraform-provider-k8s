@@ -231,8 +231,8 @@ func (r *ConfigKarmadaIoResourceInterpreterWebhookConfigurationV1Alpha1Manifest)
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"api_groups": schema.ListAttribute{
-										Description:         "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all group  Note: The group cloud be empty, e.g the 'core' group of kubernetes, in that case use [''].",
-										MarkdownDescription: "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all group  Note: The group cloud be empty, e.g the 'core' group of kubernetes, in that case use [''].",
+										Description:         "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all group  Note: The group could be empty, e.g the 'core' group of kubernetes, in that case use [''].",
+										MarkdownDescription: "APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all group  Note: The group could be empty, e.g the 'core' group of kubernetes, in that case use [''].",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,

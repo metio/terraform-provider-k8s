@@ -81,6 +81,13 @@ type CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha2ManifestData struct {
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"envs" json:"envs,omitempty"`
 		} `tfsdk:"flag_d_spec" json:"flagDSpec,omitempty"`
+		Resources *struct {
+			Claims *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"claims" json:"claims,omitempty"`
+			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+		} `tfsdk:"resources" json:"resources,omitempty"`
 		ServiceProvider *struct {
 			Credentials *struct {
 				ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
@@ -414,6 +421,52 @@ func (r *CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha2Manifest) Schema(_ co
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"resources": schema.SingleNestedAttribute{
+						Description:         "Resources defines flagd sidecar resources. Default to operator sidecar-cpu-* and sidecar-ram-* flags.",
+						MarkdownDescription: "Resources defines flagd sidecar resources. Default to operator sidecar-cpu-* and sidecar-ram-* flags.",
+						Attributes: map[string]schema.Attribute{
+							"claims": schema.ListNestedAttribute{
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"limits": schema.MapAttribute{
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"requests": schema.MapAttribute{
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

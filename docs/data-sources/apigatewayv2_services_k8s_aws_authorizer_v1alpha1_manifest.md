@@ -30,7 +30,7 @@ data "k8s_apigatewayv2_services_k8s_aws_authorizer_v1alpha1_manifest" "example" 
 
 ### Optional
 
-- `spec` (Attributes) AuthorizerSpec defines the desired state of Authorizer.  Represents an authorizer. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) AuthorizerSpec defines the desired state of Authorizer.Represents an authorizer. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -63,21 +63,21 @@ Required:
 Optional:
 
 - `api_id` (String)
-- `api_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--api_ref))
+- `api_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--api_ref))
 - `authorizer_credentials_arn` (String)
 - `authorizer_payload_format_version` (String)
 - `authorizer_result_ttl_in_seconds` (Number)
 - `authorizer_uri` (String)
 - `enable_simple_responses` (Boolean)
 - `identity_validation_expression` (String)
-- `jwt_configuration` (Attributes) Represents the configuration of a JWT authorizer. Required for the JWT authorizer type. Supported only for HTTP APIs. (see [below for nested schema](#nestedatt--spec--jwt_configuration))
+- `jwt_configuration` (Attributes) Represents the configuration of a JWT authorizer. Required for the JWT authorizertype. Supported only for HTTP APIs. (see [below for nested schema](#nestedatt--spec--jwt_configuration))
 
 <a id="nestedatt--spec--api_ref"></a>
 ### Nested Schema for `spec.api_ref`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--api_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--api_ref--from))
 
 <a id="nestedatt--spec--api_ref--from"></a>
 ### Nested Schema for `spec.api_ref.from`

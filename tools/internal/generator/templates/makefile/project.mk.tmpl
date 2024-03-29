@@ -35,16 +35,6 @@ out/install-sentinel: out/${PROVIDER}
 	touch $@
 
 {{ range $index, $resource := . -}}
-out/terratest-sentinel-{{ .ResourceTestFile }}: out/install-sentinel terratest/{{ $resource.Package }}/{{ $resource.ResourceTestFile }} $(shell find ./examples/resources/{{ $resource.FullResourceTypeName }} -type f -name '*.tf')
-	mkdir --parents $(@D)
-	go test -timeout=120s ./terratest/{{ $resource.Package }}/{{ $resource.ResourceTestFile }}
-	touch $@
-
-out/terratest-sentinel-{{ .DataSourceTestFile }}: out/install-sentinel terratest/{{ $resource.Package }}/{{ $resource.DataSourceTestFile }} $(shell find ./examples/data-sources/{{ $resource.FullDataSourceTypeName }} -type f -name '*.tf')
-	mkdir --parents $(@D)
-	go test -timeout=120s ./terratest/{{ $resource.Package }}/{{ $resource.DataSourceTestFile }}
-	touch $@
-
 out/terratest-sentinel-{{ .ManifestTestFile }}: out/install-sentinel terratest/{{ $resource.Package }}/{{ $resource.ManifestTestFile }} $(shell find ./examples/data-sources/{{ $resource.FullManifestTypeName }} -type f -name '*.tf')
 	mkdir --parents $(@D)
 	go test -timeout=120s ./terratest/{{ $resource.Package }}/{{ $resource.ManifestTestFile }}
@@ -52,16 +42,6 @@ out/terratest-sentinel-{{ .ManifestTestFile }}: out/install-sentinel terratest/{
 {{ end }}
 
 {{ range $index, $resource := . -}}
-out/test-sentinel-{{ $resource.ResourceTestFile }}: ./internal/provider/{{ $resource.Package }}/{{ $resource.ResourceFile }} ./internal/provider/{{ $resource.Package }}/{{ $resource.ResourceTestFile }}
-	mkdir --parents $(@D)
-	go test -timeout=120s ./internal/provider/{{ $resource.Package }}/{{ $resource.ResourceTestFile }}
-	touch $@
-
-out/test-sentinel-{{ $resource.DataSourceTestFile }}: ./internal/provider/{{ $resource.Package }}/{{ $resource.DataSourceFile }} ./internal/provider/{{ $resource.Package }}/{{ $resource.DataSourceTestFile }}
-	mkdir --parents $(@D)
-	go test ./internal/provider/{{ $resource.Package }}/{{ $resource.DataSourceTestFile }}
-	touch $@
-
 out/test-sentinel-{{ $resource.ManifestTestFile }}: ./internal/provider/{{ $resource.Package }}/{{ $resource.ManifestFile }} ./internal/provider/{{ $resource.Package }}/{{ $resource.ManifestTestFile }}
 	mkdir --parents $(@D)
 	go test ./internal/provider/{{ $resource.Package }}/{{ $resource.ManifestTestFile }}
@@ -108,10 +88,10 @@ generate: out/generate-sentinel ## generate the code
 docs: out/docs-sentinel ## generate the documentation
 
 .PHONY: terratests
-terratests: {{ range $index, $resource := . }}out/terratest-sentinel-{{ $resource.ResourceTestFile }} out/terratest-sentinel-{{ $resource.DataSourceTestFile }} out/terratest-sentinel-{{ $resource.ManifestTestFile }} {{ end }} ## run all terratest tests
+terratests: {{ range $index, $resource := . }}out/terratest-sentinel-{{ $resource.ManifestTestFile }} {{ end }} ## run all terratest tests
 
 .PHONY: tests
-tests: {{ range $index, $resource := . }}out/test-sentinel-{{ $resource.ResourceTestFile }} out/test-sentinel-{{ $resource.DataSourceTestFile }} out/test-sentinel-{{ $resource.ManifestTestFile }} {{ end }}out/tools-tests-sentinel ## run the unit tests
+tests: {{ range $index, $resource := . }}out/test-sentinel-{{ $resource.ManifestTestFile }} {{ end }}out/tools-tests-sentinel ## run the unit tests
 
 .PHONY: download
 download: ## download specific upstream specs

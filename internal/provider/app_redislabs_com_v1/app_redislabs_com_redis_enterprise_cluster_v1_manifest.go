@@ -1214,6 +1214,7 @@ type AppRedislabsComRedisEnterpriseClusterV1ManifestData struct {
 				} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 			} `tfsdk:"volumes" json:"volumes,omitempty"`
 		} `tfsdk:"redis_enterprise_additional_pod_spec_attributes" json:"redisEnterpriseAdditionalPodSpecAttributes,omitempty"`
+		RedisEnterpriseIPFamily  *string `tfsdk:"redis_enterprise_ip_family" json:"redisEnterpriseIPFamily,omitempty"`
 		RedisEnterpriseImageSpec *struct {
 			DigestHash      *string `tfsdk:"digest_hash" json:"digestHash,omitempty"`
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
@@ -1281,6 +1282,7 @@ type AppRedislabsComRedisEnterpriseClusterV1ManifestData struct {
 			StorageClassName   *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
 		} `tfsdk:"redis_on_flash_spec" json:"redisOnFlashSpec,omitempty"`
 		RedisUpgradePolicy *string `tfsdk:"redis_upgrade_policy" json:"redisUpgradePolicy,omitempty"`
+		Resp3Default       *bool   `tfsdk:"resp3_default" json:"resp3Default,omitempty"`
 		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
 		Services           *struct {
 			ApiService *struct {
@@ -10750,6 +10752,17 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 						Computed: false,
 					},
 
+					"redis_enterprise_ip_family": schema.StringAttribute{
+						Description:         "Reserved, future use, only for use if instructed by Redis. IPFamily dictates what IP family to choose for pods' internal and external communication.",
+						MarkdownDescription: "Reserved, future use, only for use if instructed by Redis. IPFamily dictates what IP family to choose for pods' internal and external communication.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("IPv4", "IPv6"),
+						},
+					},
+
 					"redis_enterprise_image_spec": schema.SingleNestedAttribute{
 						Description:         "Specification for Redis Enterprise container image",
 						MarkdownDescription: "Specification for Redis Enterprise container image",
@@ -11213,6 +11226,14 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Manifest) Schema(_ context.Conte
 						Validators: []validator.String{
 							stringvalidator.OneOf("major", "latest"),
 						},
+					},
+
+					"resp3_default": schema.BoolAttribute{
+						Description:         "Whether databases will turn on RESP3 compatibility upon database upgrade. Note - Deleting this property after explicitly setting its value shall have no effect. Please view the corresponding field in RS doc for more info.",
+						MarkdownDescription: "Whether databases will turn on RESP3 compatibility upon database upgrade. Note - Deleting this property after explicitly setting its value shall have no effect. Please view the corresponding field in RS doc for more info.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"service_account_name": schema.StringAttribute{

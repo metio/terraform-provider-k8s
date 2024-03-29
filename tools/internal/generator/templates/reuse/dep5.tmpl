@@ -29,10 +29,3 @@ Copyright: The {{ $source.ProjectName }} Authors
 License: {{ $source.License }}
 
 {{ end -}}
-
-{{ range $index, $source := .CRD -}}
-Files: schemas/crd_v1/{{ $source.ProjectName }}/*
-Copyright: The {{ $source.ProjectName }} Authors
-License: {{ $source.License }}
-
-{{ end -}}

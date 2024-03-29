@@ -239,8 +239,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 					},
 
 					"advanced_options": schema.MapAttribute{
-						Description:         "Option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true. See Advanced cluster parameters (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options) for more information.",
-						MarkdownDescription: "Option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true. See Advanced cluster parameters (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options) for more information.",
+						Description:         "Option to allow references to indices in an HTTP request body. Must be falsewhen configuring access to individual sub-resources. By default, the valueis true. See Advanced cluster parameters (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options)for more information.",
+						MarkdownDescription: "Option to allow references to indices in an HTTP request body. Must be falsewhen configuring access to individual sub-resources. By default, the valueis true. See Advanced cluster parameters (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options)for more information.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -280,8 +280,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 								MarkdownDescription: "Credentials for the master user: username and password, ARN, or both.",
 								Attributes: map[string]schema.Attribute{
 									"master_user_arn": schema.StringAttribute{
-										Description:         "The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using AWS Identity and Access Management for more information.",
-										MarkdownDescription: "The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using AWS Identity and Access Management for more information.",
+										Description:         "The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities(http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using AWSIdentity and Access Management for more information.",
+										MarkdownDescription: "The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities(http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using AWSIdentity and Access Management for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -296,8 +296,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 									},
 
 									"master_user_password": schema.SingleNestedAttribute{
-										Description:         "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
-										MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret",
+										Description:         "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
+										MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "Key is the key within the secret",
@@ -446,20 +446,20 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 										},
 
 										"duration": schema.SingleNestedAttribute{
-											Description:         "The maintenance schedule duration: duration value and duration unit. See Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html) for more information.",
-											MarkdownDescription: "The maintenance schedule duration: duration value and duration unit. See Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html) for more information.",
+											Description:         "The maintenance schedule duration: duration value and duration unit. SeeAuto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)for more information.",
+											MarkdownDescription: "The maintenance schedule duration: duration value and duration unit. SeeAuto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)for more information.",
 											Attributes: map[string]schema.Attribute{
 												"unit": schema.StringAttribute{
-													Description:         "The unit of a maintenance schedule duration. Valid value is HOUR. See Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html) for more information.",
-													MarkdownDescription: "The unit of a maintenance schedule duration. Valid value is HOUR. See Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html) for more information.",
+													Description:         "The unit of a maintenance schedule duration. Valid value is HOUR. See Auto-Tunefor Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)for more information.",
+													MarkdownDescription: "The unit of a maintenance schedule duration. Valid value is HOUR. See Auto-Tunefor Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)for more information.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.Int64Attribute{
-													Description:         "Integer to specify the value of a maintenance schedule duration. See Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html) for more information.",
-													MarkdownDescription: "Integer to specify the value of a maintenance schedule duration. See Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html) for more information.",
+													Description:         "Integer to specify the value of a maintenance schedule duration. See Auto-Tunefor Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)for more information.",
+													MarkdownDescription: "Integer to specify the value of a maintenance schedule duration. See Auto-Tunefor Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)for more information.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -493,8 +493,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 					},
 
 					"cluster_config": schema.SingleNestedAttribute{
-						Description:         "Configuration options for a domain. Specifies the instance type and number of instances in the domain.",
-						MarkdownDescription: "Configuration options for a domain. Specifies the instance type and number of instances in the domain.",
+						Description:         "Configuration options for a domain. Specifies the instance type and numberof instances in the domain.",
+						MarkdownDescription: "Configuration options for a domain. Specifies the instance type and numberof instances in the domain.",
 						Attributes: map[string]schema.Attribute{
 							"cold_storage_options": schema.SingleNestedAttribute{
 								Description:         "Specifies the configuration for cold storage options such as enabled",
@@ -578,8 +578,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 							},
 
 							"zone_awareness_config": schema.SingleNestedAttribute{
-								Description:         "The zone awareness configuration for the domain cluster, such as the number of availability zones.",
-								MarkdownDescription: "The zone awareness configuration for the domain cluster, such as the number of availability zones.",
+								Description:         "The zone awareness configuration for the domain cluster, such as the numberof availability zones.",
+								MarkdownDescription: "The zone awareness configuration for the domain cluster, such as the numberof availability zones.",
 								Attributes: map[string]schema.Attribute{
 									"availability_zone_count": schema.Int64Attribute{
 										Description:         "",
@@ -608,8 +608,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 					},
 
 					"cognito_options": schema.SingleNestedAttribute{
-						Description:         "Options to specify the Cognito user and identity pools for OpenSearch Dashboards authentication. For more information, see Configuring Amazon Cognito authentication for OpenSearch Dashboards (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html).",
-						MarkdownDescription: "Options to specify the Cognito user and identity pools for OpenSearch Dashboards authentication. For more information, see Configuring Amazon Cognito authentication for OpenSearch Dashboards (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html).",
+						Description:         "Options to specify the Cognito user and identity pools for OpenSearch Dashboardsauthentication. For more information, see Configuring Amazon Cognito authenticationfor OpenSearch Dashboards (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html).",
+						MarkdownDescription: "Options to specify the Cognito user and identity pools for OpenSearch Dashboardsauthentication. For more information, see Configuring Amazon Cognito authenticationfor OpenSearch Dashboards (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html).",
 						Attributes: map[string]schema.Attribute{
 							"enabled": schema.BoolAttribute{
 								Description:         "",
@@ -661,8 +661,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 							},
 
 							"custom_endpoint_certificate_arn": schema.StringAttribute{
-								Description:         "The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using AWS Identity and Access Management for more information.",
-								MarkdownDescription: "The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using AWS Identity and Access Management for more information.",
+								Description:         "The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities(http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using AWSIdentity and Access Management for more information.",
+								MarkdownDescription: "The Amazon Resource Name (ARN) of the domain. See Identifiers for IAM Entities(http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) in Using AWSIdentity and Access Management for more information.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -698,8 +698,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 					},
 
 					"ebs_options": schema.SingleNestedAttribute{
-						Description:         "Options to enable, disable, and specify the type and size of EBS storage volumes.",
-						MarkdownDescription: "Options to enable, disable, and specify the type and size of EBS storage volumes.",
+						Description:         "Options to enable, disable, and specify the type and size of EBS storagevolumes.",
+						MarkdownDescription: "Options to enable, disable, and specify the type and size of EBS storagevolumes.",
 						Attributes: map[string]schema.Attribute{
 							"ebs_enabled": schema.BoolAttribute{
 								Description:         "",
@@ -734,8 +734,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 							},
 
 							"volume_type": schema.StringAttribute{
-								Description:         "The type of EBS volume, standard, gp2, gp3 or io1. See Configuring EBS-based Storage (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-createupdatedomains.html#opensearch-createdomain-configure-ebs) for more information.",
-								MarkdownDescription: "The type of EBS volume, standard, gp2, gp3 or io1. See Configuring EBS-based Storage (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-createupdatedomains.html#opensearch-createdomain-configure-ebs) for more information.",
+								Description:         "The type of EBS volume, standard, gp2, gp3 or io1. See Configuring EBS-basedStorage (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-createupdatedomains.html#opensearch-createdomain-configure-ebs)for more information.",
+								MarkdownDescription: "The type of EBS volume, standard, gp2, gp3 or io1. See Configuring EBS-basedStorage (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-createupdatedomains.html#opensearch-createdomain-configure-ebs)for more information.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -772,16 +772,16 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 					},
 
 					"engine_version": schema.StringAttribute{
-						Description:         "String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the Amazon OpenSearch Service domain. For example, 'OpenSearch_1.0' or 'Elasticsearch_7.9'. For more information, see Creating and managing Amazon OpenSearch Service domains (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).",
-						MarkdownDescription: "String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the Amazon OpenSearch Service domain. For example, 'OpenSearch_1.0' or 'Elasticsearch_7.9'. For more information, see Creating and managing Amazon OpenSearch Service domains (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).",
+						Description:         "String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engineversion for the Amazon OpenSearch Service domain. For example, 'OpenSearch_1.0'or 'Elasticsearch_7.9'. For more information, see Creating and managing AmazonOpenSearch Service domains (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).",
+						MarkdownDescription: "String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engineversion for the Amazon OpenSearch Service domain. For example, 'OpenSearch_1.0'or 'Elasticsearch_7.9'. For more information, see Creating and managing AmazonOpenSearch Service domains (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"log_publishing_options": schema.SingleNestedAttribute{
-						Description:         "Map of LogType and LogPublishingOption, each containing options to publish a given type of OpenSearch log.",
-						MarkdownDescription: "Map of LogType and LogPublishingOption, each containing options to publish a given type of OpenSearch log.",
+						Description:         "Map of LogType and LogPublishingOption, each containing options to publisha given type of OpenSearch log.",
+						MarkdownDescription: "Map of LogType and LogPublishingOption, each containing options to publisha given type of OpenSearch log.",
 						Attributes: map[string]schema.Attribute{
 							"cloud_watch_logs_log_group_arn": schema.StringAttribute{
 								Description:         "ARN of the Cloudwatch log group to publish logs to.",
@@ -805,8 +805,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the Amazon OpenSearch Service domain you're creating. Domain names are unique across the domains owned by an account within an AWS region. Domain names must start with a lowercase letter and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
-						MarkdownDescription: "The name of the Amazon OpenSearch Service domain you're creating. Domain names are unique across the domains owned by an account within an AWS region. Domain names must start with a lowercase letter and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+						Description:         "The name of the Amazon OpenSearch Service domain you're creating. Domainnames are unique across the domains owned by an account within an AWS region.Domain names must start with a lowercase letter and can contain the followingcharacters: a-z (lowercase), 0-9, and - (hyphen).",
+						MarkdownDescription: "The name of the Amazon OpenSearch Service domain you're creating. Domainnames are unique across the domains owned by an account within an AWS region.Domain names must start with a lowercase letter and can contain the followingcharacters: a-z (lowercase), 0-9, and - (hyphen).",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -835,16 +835,16 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
-									Description:         "A string of length from 1 to 128 characters that specifies the key for a tag. Tag keys must be unique for the domain to which they're attached.",
-									MarkdownDescription: "A string of length from 1 to 128 characters that specifies the key for a tag. Tag keys must be unique for the domain to which they're attached.",
+									Description:         "A string of length from 1 to 128 characters that specifies the key for atag. Tag keys must be unique for the domain to which they're attached.",
+									MarkdownDescription: "A string of length from 1 to 128 characters that specifies the key for atag. Tag keys must be unique for the domain to which they're attached.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"value": schema.StringAttribute{
-									Description:         "A string of length from 0 to 256 characters that specifies the value for a tag. Tag values can be null and don't have to be unique in a tag set.",
-									MarkdownDescription: "A string of length from 0 to 256 characters that specifies the value for a tag. Tag values can be null and don't have to be unique in a tag set.",
+									Description:         "A string of length from 0 to 256 characters that specifies the value fora tag. Tag values can be null and don't have to be unique in a tag set.",
+									MarkdownDescription: "A string of length from 0 to 256 characters that specifies the value fora tag. Tag values can be null and don't have to be unique in a tag set.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -857,8 +857,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 					},
 
 					"vpc_options": schema.SingleNestedAttribute{
-						Description:         "Options to specify the subnets and security groups for a VPC endpoint. For more information, see Launching your Amazon OpenSearch Service domains using a VPC (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).",
-						MarkdownDescription: "Options to specify the subnets and security groups for a VPC endpoint. For more information, see Launching your Amazon OpenSearch Service domains using a VPC (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).",
+						Description:         "Options to specify the subnets and security groups for a VPC endpoint. Formore information, see Launching your Amazon OpenSearch Service domains usinga VPC (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).",
+						MarkdownDescription: "Options to specify the subnets and security groups for a VPC endpoint. Formore information, see Launching your Amazon OpenSearch Service domains usinga VPC (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).",
 						Attributes: map[string]schema.Attribute{
 							"security_group_i_ds": schema.ListAttribute{
 								Description:         "",

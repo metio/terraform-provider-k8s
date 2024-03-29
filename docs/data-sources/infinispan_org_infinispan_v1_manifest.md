@@ -62,7 +62,7 @@ Optional:
 
 - `affinity` (Attributes) Deprecated. Use scheduling.affinity instead (see [below for nested schema](#nestedatt--spec--affinity))
 - `autoscale` (Attributes) Autoscale describe autoscaling configuration for the cluster (see [below for nested schema](#nestedatt--spec--autoscale))
-- `cloud_events` (Attributes) InfinispanCloudEvents describes how Infinispan is connected with Cloud Event, see Kafka docs for more info (see [below for nested schema](#nestedatt--spec--cloud_events))
+- `cloud_events` (Attributes) Deprecated. Has no effect starting with Infinispan 15.0.0 servers (see [below for nested schema](#nestedatt--spec--cloud_events))
 - `config_listener` (Attributes) (see [below for nested schema](#nestedatt--spec--config_listener))
 - `config_map_name` (String)
 - `container` (Attributes) InfinispanContainerSpec specify resource requirements per container (see [below for nested schema](#nestedatt--spec--container))
@@ -208,9 +208,32 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
 ### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
 
 Optional:
@@ -244,7 +267,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -256,6 +280,28 @@ Optional:
 
 <a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
 
 Required:
 
@@ -296,9 +342,32 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespaces--match_expressions"></a>
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.pod_affinity_term.namespaces`
 
 Optional:
@@ -332,7 +401,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -344,6 +414,28 @@ Optional:
 
 <a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_labels`
 
 Required:
 
@@ -608,9 +700,32 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
 ### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
 
 Optional:
@@ -644,9 +759,32 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
 ### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
 
 Optional:
@@ -696,9 +834,32 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
+### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector"></a>
 ### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
 
 Optional:
@@ -732,9 +893,32 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespaces` (List of String) namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means 'this pod's namespace'
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
+### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--scheduling--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
 ### Nested Schema for `spec.scheduling.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
 
 Optional:
@@ -818,8 +1002,47 @@ Optional:
 Optional:
 
 - `ephemeral_storage` (Boolean) Enable/disable container ephemeral storage
+- `liveness_probe` (Attributes) Periodic probe of container liveness. Container will be restarted if the probe fails. (see [below for nested schema](#nestedatt--spec--service--container--liveness_probe))
+- `readiness_probe` (Attributes) Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. (see [below for nested schema](#nestedatt--spec--service--container--readiness_probe))
+- `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. (see [below for nested schema](#nestedatt--spec--service--container--startup_probe))
 - `storage` (String) The amount of storage for the persistent volume claim.
 - `storage_class_name` (String) The storage class object for persistent volume claims
+
+<a id="nestedatt--spec--service--container--liveness_probe"></a>
+### Nested Schema for `spec.service.container.storage_class_name`
+
+Optional:
+
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.
+- `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.
+- `period_seconds` (Number) How often (in seconds) to perform the probe.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed.
+- `timeout_seconds` (Number) Number of seconds after which the probe times out.
+
+
+<a id="nestedatt--spec--service--container--readiness_probe"></a>
+### Nested Schema for `spec.service.container.storage_class_name`
+
+Optional:
+
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.
+- `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.
+- `period_seconds` (Number) How often (in seconds) to perform the probe.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed.
+- `timeout_seconds` (Number) Number of seconds after which the probe times out.
+
+
+<a id="nestedatt--spec--service--container--startup_probe"></a>
+### Nested Schema for `spec.service.container.storage_class_name`
+
+Optional:
+
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.
+- `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.
+- `period_seconds` (Number) How often (in seconds) to perform the probe.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed.
+- `timeout_seconds` (Number) Number of seconds after which the probe times out.
+
 
 
 <a id="nestedatt--spec--service--sites"></a>

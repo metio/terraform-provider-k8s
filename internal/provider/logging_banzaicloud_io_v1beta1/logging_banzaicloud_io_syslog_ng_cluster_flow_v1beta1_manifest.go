@@ -173,6 +173,11 @@ type LoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1ManifestData struct {
 				Value    *string   `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"regexp" json:"regexp,omitempty"`
 		} `tfsdk:"match" json:"match,omitempty"`
+		OutputMetrics *[]struct {
+			Key    *string            `tfsdk:"key" json:"key,omitempty"`
+			Labels *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Level  *int64             `tfsdk:"level" json:"level,omitempty"`
+		} `tfsdk:"output_metrics" json:"outputMetrics,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -1141,6 +1146,42 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1Manifest) Schema(_ contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"output_metrics": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"key": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"labels": schema.MapAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"level": schema.Int64Attribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,

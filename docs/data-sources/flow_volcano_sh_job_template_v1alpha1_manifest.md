@@ -205,6 +205,7 @@ Optional:
 - `readiness_probe` (Attributes) Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--readiness_probe))
 - `resize_policy` (Attributes List) Resources resize policy for the container. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--resize_policy))
 - `resources` (Attributes) Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--resources))
+- `restart_policy` (String) RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.
 - `security_context` (Attributes) SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--security_context))
 - `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
@@ -334,6 +335,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--exec"></a>
@@ -366,6 +368,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.tasks.template.spec.containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--tcp_socket"></a>
@@ -388,6 +398,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--exec"></a>
@@ -420,6 +431,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.tasks.template.spec.containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--tasks--template--spec--containers--working_dir--pre_stop--tcp_socket"></a>
@@ -670,7 +689,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--tasks--template--spec--containers--working_dir--windows_options"></a>
@@ -680,7 +699,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -914,7 +933,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -973,7 +994,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1048,7 +1071,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1107,7 +1132,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1198,6 +1225,7 @@ Optional:
 - `readiness_probe` (Attributes) Probes are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--readiness_probe))
 - `resize_policy` (Attributes List) Resources resize policy for the container. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--resize_policy))
 - `resources` (Attributes) Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--resources))
+- `restart_policy` (String) Restart policy for the container to manage the restart behavior of each container within a pod. This may only be set for init containers. You cannot set this field on ephemeral containers.
 - `security_context` (Attributes) Optional: SecurityContext defines the security options the ephemeral container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--security_context))
 - `startup_probe` (Attributes) Probes are not allowed for ephemeral containers. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
@@ -1328,6 +1356,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--exec"></a>
@@ -1360,6 +1389,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.tasks.template.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -1382,6 +1419,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--exec"></a>
@@ -1414,6 +1452,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.tasks.template.spec.ephemeral_containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -1664,7 +1710,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--tasks--template--spec--ephemeral_containers--working_dir--windows_options"></a>
@@ -1674,7 +1720,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -1816,6 +1862,7 @@ Optional:
 - `readiness_probe` (Attributes) Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--readiness_probe))
 - `resize_policy` (Attributes List) Resources resize policy for the container. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--resize_policy))
 - `resources` (Attributes) Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--resources))
+- `restart_policy` (String) RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.
 - `security_context` (Attributes) SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--security_context))
 - `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
@@ -1945,6 +1992,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--exec"></a>
@@ -1977,6 +2025,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.tasks.template.spec.init_containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -1999,6 +2055,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--exec"></a>
@@ -2031,6 +2088,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--sleep"></a>
+### Nested Schema for `spec.tasks.template.spec.init_containers.working_dir.pre_stop.tcp_socket`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--tasks--template--spec--init_containers--working_dir--pre_stop--tcp_socket"></a>
@@ -2281,7 +2346,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--tasks--template--spec--init_containers--working_dir--windows_options"></a>
@@ -2291,7 +2356,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -2428,7 +2493,7 @@ Optional:
 Optional:
 
 - `resource_claim_name` (String) ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.
-- `resource_claim_template_name` (String) ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.  The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The name of the ResourceClaim will be <pod name>-<resource name>, where <resource name> is the PodResourceClaim.Name. Pod validation will reject the pod if the concatenated name is not valid for a ResourceClaim (e.g. too long).  An existing ResourceClaim with that name that is not owned by the pod will not be used for the pod to avoid using an unrelated resource by mistake. Scheduling and pod startup are then blocked until the unrelated ResourceClaim is removed.  This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.
+- `resource_claim_template_name` (String) ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.  The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.  This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.
 
 
 
@@ -2476,7 +2541,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--tasks--template--spec--security_context--sysctls"></a>
@@ -2495,7 +2560,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -2813,6 +2878,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -2848,17 +2914,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--resources--claims"></a>
-### Nested Schema for `spec.tasks.template.spec.volumes.vsphere_volume.volume_claim_template.metadata.resources.requests`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
@@ -3086,10 +3143,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file.  Alpha, gated by the ClusterTrustBundleProjection feature gate.  ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector.  Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle))
 - `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--sources--config_map))
 - `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--sources--downward_api))
 - `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--sources--secret))
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--sources--service_account_token))
+
+<a id="nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.tasks.template.spec.volumes.vsphere_volume.sources.service_account_token`
+
+Required:
+
+- `path` (String) Relative path from the volume root to write the bundle.
+
+Optional:
+
+- `label_selector` (Attributes) Select all ClusterTrustBundles that match this label selector.  Only has effect if signerName is set.  Mutually-exclusive with name.  If unset, interpreted as 'match nothing'.  If set but empty, interpreted as 'match everything'. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--sources--service_account_token--label_selector))
+- `name` (String) Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.
+- `optional` (Boolean) If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.
+- `signer_name` (String) Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.
+
+<a id="nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
+### Nested Schema for `spec.tasks.template.spec.volumes.vsphere_volume.sources.service_account_token.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--sources--service_account_token--label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--sources--service_account_token--label_selector--match_expressions"></a>
+### Nested Schema for `spec.tasks.template.spec.volumes.vsphere_volume.sources.service_account_token.label_selector.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
 
 <a id="nestedatt--spec--tasks--template--spec--volumes--vsphere_volume--sources--config_map"></a>
 ### Nested Schema for `spec.tasks.template.spec.volumes.vsphere_volume.sources.service_account_token`
@@ -3354,6 +3449,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--volumes--volume_claim--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--volumes--volume_claim--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -3389,17 +3485,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--volumes--volume_claim--volume_name--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--volumes--volume_claim--volume_name--claims"></a>
-### Nested Schema for `spec.volumes.volume_claim.volume_name.claims`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--volumes--volume_claim--selector"></a>

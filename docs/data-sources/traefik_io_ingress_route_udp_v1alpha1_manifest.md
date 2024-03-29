@@ -60,7 +60,7 @@ Required:
 
 Optional:
 
-- `entry_points` (List of String) EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/entrypoints/ Default: all.
+- `entry_points` (List of String) EntryPoints defines the list of entry point names to bind to.Entry points have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/entrypoints/Default: all.
 
 <a id="nestedatt--spec--routes"></a>
 ### Nested Schema for `spec.routes`
@@ -75,10 +75,11 @@ Optional:
 Required:
 
 - `name` (String) Name defines the name of the referenced Kubernetes Service.
-- `port` (String) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
+- `port` (String) Port defines the port of a Kubernetes Service.This can be a reference to a named port.
 
 Optional:
 
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service.
-- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.
+- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.
+- `node_port_lb` (Boolean) NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.
 - `weight` (Number) Weight defines the weight used when balancing requests between multiple Kubernetes Service.

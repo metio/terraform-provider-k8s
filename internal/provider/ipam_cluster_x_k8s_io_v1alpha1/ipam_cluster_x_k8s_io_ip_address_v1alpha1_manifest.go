@@ -157,8 +157,8 @@ func (r *IpamClusterXK8SIoIpaddressV1Alpha1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "ClaimRef is a reference to the claim this IPAddress was created for.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -182,8 +182,8 @@ func (r *IpamClusterXK8SIoIpaddressV1Alpha1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "PoolRef is a reference to the pool that this IPAddress was created from.",
 						Attributes: map[string]schema.Attribute{
 							"api_group": schema.StringAttribute{
-								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-								MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+								Description:         "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
+								MarkdownDescription: "APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

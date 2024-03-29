@@ -13,6 +13,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 var deserializer = clientschema.Codecs.UniversalDeserializer()
@@ -21,7 +22,7 @@ func ParseCRDv1Files(basePath string) []*apiextensionsv1.CustomResourceDefinitio
 	crds := make([]*apiextensionsv1.CustomResourceDefinition, 0)
 
 	err := filepath.WalkDir(basePath, func(path string, d fs.DirEntry, err error) error {
-		if !d.IsDir() {
+		if !d.IsDir() && strings.HasSuffix(path, ".yaml") {
 			file, fileErr := os.ReadFile(path)
 			if fileErr != nil {
 				return fmt.Errorf("error reading %s: %v", path, fileErr)

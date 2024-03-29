@@ -59,6 +59,7 @@ Required:
 Optional:
 
 - `background` (Boolean) Background controls if exceptions are applied to existing policies during a background scan. Optional. Default value is 'true'. The value must be set to 'false' if the policy rule uses variables that are only available in the admission review request (e.g. user name).
+- `conditions` (Attributes) Conditions are used to determine if a resource applies to the exception by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. (see [below for nested schema](#nestedatt--spec--conditions))
 
 <a id="nestedatt--spec--exceptions"></a>
 ### Nested Schema for `spec.exceptions`
@@ -242,3 +243,35 @@ Optional:
 
 - `api_group` (String) APIGroup holds the API group of the referenced subject. Defaults to '' for ServiceAccount subjects. Defaults to 'rbac.authorization.k8s.io' for User and Group subjects.
 - `namespace` (String) Namespace of the referenced object.  If the object kind is non-namespace, such as 'User' or 'Group', and this value is not empty the Authorizer should report an error.
+
+
+
+
+<a id="nestedatt--spec--conditions"></a>
+### Nested Schema for `spec.conditions`
+
+Optional:
+
+- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass. (see [below for nested schema](#nestedatt--spec--conditions--all))
+- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass. (see [below for nested schema](#nestedatt--spec--conditions--any))
+
+<a id="nestedatt--spec--conditions--all"></a>
+### Nested Schema for `spec.conditions.all`
+
+Optional:
+
+- `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
+- `message` (String) Message is an optional display message
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.
+
+
+<a id="nestedatt--spec--conditions--any"></a>
+### Nested Schema for `spec.conditions.any`
+
+Optional:
+
+- `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
+- `message` (String) Message is an optional display message
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.

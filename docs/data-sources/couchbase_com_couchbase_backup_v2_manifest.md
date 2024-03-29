@@ -20,9 +20,6 @@ data "k8s_couchbase_com_couchbase_backup_v2_manifest" "example" {
   }
   spec = {
     strategy = "full_incremental"
-    auto_scaling = {
-      limit = "150Ki"
-    }
   }
 }
 ```
@@ -63,6 +60,7 @@ Optional:
 - `backoff_limit` (Number) Number of times a backup job should try to execute. Once it hits the BackoffLimit it will not run until the next scheduled job.
 - `backup_retention` (String) Number of hours to hold backups for, everything older will be deleted.  More info: https://golang.org/pkg/time/#ParseDuration
 - `data` (Attributes) Data allows control over what key-value/document data is included in the backup.  By default, all data is included.  Modifications to this field will only take effect on the next full backup. (see [below for nested schema](#nestedatt--spec--data))
+- `default_recovery_method` (String) DefaultRecoveryMethod specifies how cbbackupmgr should recover from broken backup/restore attempts.
 - `ephemeral_volume` (Boolean) EphemeralVolume sets backup to use an ephemeral volume instead of a persistent volume. This is used when backing up to a remote cloud provider, where a persistent volume is not needed.
 - `failed_jobs_history_limit` (Number) Amount of failed jobs to keep.
 - `full` (Attributes) Full is the schedule on when to take full backups. Used in Full/Incremental and FullOnly backup strategies. (see [below for nested schema](#nestedatt--spec--full))

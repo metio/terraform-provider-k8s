@@ -50,6 +50,7 @@ type MariadbMmontesIoConnectionV1Alpha1ManifestData struct {
 			Interval      *string `tfsdk:"interval" json:"interval,omitempty"`
 			RetryInterval *string `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 		} `tfsdk:"health_check" json:"healthCheck,omitempty"`
+		Host       *string `tfsdk:"host" json:"host,omitempty"`
 		MariaDbRef *struct {
 			ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			FieldPath       *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
@@ -60,12 +61,22 @@ type MariadbMmontesIoConnectionV1Alpha1ManifestData struct {
 			Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 			WaitForIt       *bool   `tfsdk:"wait_for_it" json:"waitForIt,omitempty"`
 		} `tfsdk:"maria_db_ref" json:"mariaDbRef,omitempty"`
+		MaxScaleRef *struct {
+			ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+			FieldPath       *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+			Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
+			Name            *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace       *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			ResourceVersion *string `tfsdk:"resource_version" json:"resourceVersion,omitempty"`
+			Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
+		} `tfsdk:"max_scale_ref" json:"maxScaleRef,omitempty"`
 		Params               *map[string]string `tfsdk:"params" json:"params,omitempty"`
 		PasswordSecretKeyRef *struct {
 			Key      *string `tfsdk:"key" json:"key,omitempty"`
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
 			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 		} `tfsdk:"password_secret_key_ref" json:"passwordSecretKeyRef,omitempty"`
+		Port           *int64  `tfsdk:"port" json:"port,omitempty"`
 		SecretName     *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 		SecretTemplate *struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -89,8 +100,8 @@ func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Metadata(_ context.Context,
 
 func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Connection is the Schema for the connections API",
-		MarkdownDescription: "Connection is the Schema for the connections API",
+		Description:         "Connection is the Schema for the connections API. It is used to configure connection strings for the applications connecting to MariaDB.",
+		MarkdownDescription: "Connection is the Schema for the connections API. It is used to configure connection strings for the applications connecting to MariaDB.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -169,28 +180,28 @@ func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Schema(_ context.Context, _
 				MarkdownDescription: "ConnectionSpec defines the desired state of Connection",
 				Attributes: map[string]schema.Attribute{
 					"database": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Database to use when configuring the Connection.",
+						MarkdownDescription: "Database to use when configuring the Connection.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"health_check": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "HealthCheck to be used in the Connection.",
+						MarkdownDescription: "HealthCheck to be used in the Connection.",
 						Attributes: map[string]schema.Attribute{
 							"interval": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Interval used to perform health checks.",
+								MarkdownDescription: "Interval used to perform health checks.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"retry_interval": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "RetryInterval is the intervañ used to perform health check retries.",
+								MarkdownDescription: "RetryInterval is the intervañ used to perform health check retries.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -201,9 +212,17 @@ func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed: false,
 					},
 
+					"host": schema.StringAttribute{
+						Description:         "Host to connect to. If not provided, it defaults to the MariaDB host or to the MaxScale host.",
+						MarkdownDescription: "Host to connect to. If not provided, it defaults to the MariaDB host or to the MaxScale host.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"maria_db_ref": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "MariaDBRef is a reference to the MariaDB to connect to. Either MariaDBRef or MaxScaleRef must be provided.",
+						MarkdownDescription: "MariaDBRef is a reference to the MariaDB to connect to. Either MariaDBRef or MaxScaleRef must be provided.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -262,21 +281,86 @@ func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"wait_for_it": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.",
+								MarkdownDescription: "WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"max_scale_ref": schema.SingleNestedAttribute{
+						Description:         "MaxScaleRef is a reference to the MaxScale to connect to. Either MariaDBRef or MaxScaleRef must be provided.",
+						MarkdownDescription: "MaxScaleRef is a reference to the MaxScale to connect to. Either MariaDBRef or MaxScaleRef must be provided.",
+						Attributes: map[string]schema.Attribute{
+							"api_version": schema.StringAttribute{
+								Description:         "API version of the referent.",
+								MarkdownDescription: "API version of the referent.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"field_path": schema.StringAttribute{
+								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kind": schema.StringAttribute{
+								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"namespace": schema.StringAttribute{
+								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"resource_version": schema.StringAttribute{
+								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"uid": schema.StringAttribute{
+								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
 					"params": schema.MapAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Params to be used in the Connection.",
+						MarkdownDescription: "Params to be used in the Connection.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -284,8 +368,8 @@ func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"password_secret_key_ref": schema.SingleNestedAttribute{
-						Description:         "SecretKeySelector selects a key of a Secret.",
-						MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
+						Description:         "PasswordSecretKeyRef is a reference to the password to use for configuring the Connection.",
+						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to use for configuring the Connection.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -316,21 +400,29 @@ func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed: false,
 					},
 
+					"port": schema.Int64Attribute{
+						Description:         "Port to connect to. If not provided, it defaults to the MariaDB port or to the first MaxScale listener.",
+						MarkdownDescription: "Port to connect to. If not provided, it defaults to the MariaDB port or to the first MaxScale listener.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"secret_name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "SecretName to be used in the Connection.",
+						MarkdownDescription: "SecretName to be used in the Connection.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"secret_template": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "SecretTemplate to be used in the Connection.",
+						MarkdownDescription: "SecretTemplate to be used in the Connection.",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Annotations to be added to the Secret object.",
+								MarkdownDescription: "Annotations to be added to the Secret object.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -338,40 +430,40 @@ func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"database_key": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "DatabaseKey to be used in the Secret.",
+								MarkdownDescription: "DatabaseKey to be used in the Secret.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"format": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Format to be used in the Secret.",
+								MarkdownDescription: "Format to be used in the Secret.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"host_key": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "HostKey to be used in the Secret.",
+								MarkdownDescription: "HostKey to be used in the Secret.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"key": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Key to be used in the Secret.",
+								MarkdownDescription: "Key to be used in the Secret.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Labels to be added to the Secret object.",
+								MarkdownDescription: "Labels to be added to the Secret object.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -379,24 +471,24 @@ func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"password_key": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "PasswordKey to be used in the Secret.",
+								MarkdownDescription: "PasswordKey to be used in the Secret.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"port_key": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "PortKey to be used in the Secret.",
+								MarkdownDescription: "PortKey to be used in the Secret.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"username_key": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "UsernameKey to be used in the Secret.",
+								MarkdownDescription: "UsernameKey to be used in the Secret.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -408,16 +500,16 @@ func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"service_name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "ServiceName to be used in the Connection.",
+						MarkdownDescription: "ServiceName to be used in the Connection.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"username": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Username to use for configuring the Connection.",
+						MarkdownDescription: "Username to use for configuring the Connection.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

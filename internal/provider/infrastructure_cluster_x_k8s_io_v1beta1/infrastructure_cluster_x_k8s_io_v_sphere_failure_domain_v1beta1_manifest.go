@@ -74,8 +74,8 @@ func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1Manifest) Metadat
 
 func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereFailureDomain is the Schema for the vspherefailuredomains API",
-		MarkdownDescription: "VSphereFailureDomain is the Schema for the vspherefailuredomains API",
+		Description:         "VSphereFailureDomain is the Schema for the vspherefailuredomains API.",
+		MarkdownDescription: "VSphereFailureDomain is the Schema for the vspherefailuredomains API.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.name'.",
@@ -138,8 +138,8 @@ func (r *InfrastructureClusterXK8SIoVsphereFailureDomainV1Beta1Manifest) Schema(
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "VSphereFailureDomainSpec defines the desired state of VSphereFailureDomain",
-				MarkdownDescription: "VSphereFailureDomainSpec defines the desired state of VSphereFailureDomain",
+				Description:         "VSphereFailureDomainSpec defines the desired state of VSphereFailureDomain.",
+				MarkdownDescription: "VSphereFailureDomainSpec defines the desired state of VSphereFailureDomain.",
 				Attributes: map[string]schema.Attribute{
 					"region": schema.SingleNestedAttribute{
 						Description:         "Region defines the name and type of a region",

@@ -92,6 +92,7 @@ Optional:
 - `port` (Number) The port on which PostgreSQL should listen.
 - `post_gis_version` (String) The PostGIS extension version installed in the PostgreSQL image. When image is not set, indicates a PostGIS enabled image will be used.
 - `proxy` (Attributes) The specification of a proxy that connects to PostgreSQL. (see [below for nested schema](#nestedatt--spec--proxy))
+- `replica_service` (Attributes) Specification of the service that exposes PostgreSQL replica instances (see [below for nested schema](#nestedatt--spec--replica_service))
 - `service` (Attributes) Specification of the service that exposes the PostgreSQL primary instance. (see [below for nested schema](#nestedatt--spec--service))
 - `shutdown` (Boolean) Whether or not the PostgreSQL cluster should be stopped. When this is true, workloads are scaled to zero and CronJobs are suspended. Other resources, such as Services and Volumes, remain in place.
 - `standby` (Attributes) Run this cluster as a read-only copy of an existing cluster or archive. (see [below for nested schema](#nestedatt--spec--standby))
@@ -130,7 +131,7 @@ Optional:
 
 Required:
 
-- `name` (String) The name of the the repository
+- `name` (String) The name of the repository
 
 Optional:
 
@@ -3243,7 +3244,7 @@ Optional:
 
 Optional:
 
-- `pgbackrest` (Attributes) Defines a pgBackRest cloud-based data source that can be used to pre-populate the the PostgreSQL data directory for a new PostgreSQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new PostgreSQL cluster (see [below for nested schema](#nestedatt--spec--data_source--pgbackrest))
+- `pgbackrest` (Attributes) Defines a pgBackRest cloud-based data source that can be used to pre-populate the PostgreSQL data directory for a new PostgreSQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new PostgreSQL cluster (see [below for nested schema](#nestedatt--spec--data_source--pgbackrest))
 - `postgres_cluster` (Attributes) Defines a pgBackRest data source that can be used to pre-populate the PostgreSQL data directory for a new PostgreSQL cluster using a pgBackRest restore. The PGBackRest field is incompatible with the PostgresCluster field: only one data source can be used for pre-populating a new PostgreSQL cluster (see [below for nested schema](#nestedatt--spec--data_source--postgres_cluster))
 - `volumes` (Attributes) Defines any existing volumes to reuse for this PostgresCluster. (see [below for nested schema](#nestedatt--spec--data_source--volumes))
 
@@ -3270,7 +3271,7 @@ Optional:
 
 Required:
 
-- `name` (String) The name of the the repository
+- `name` (String) The name of the repository
 
 Optional:
 
@@ -5841,6 +5842,25 @@ Optional:
 
 
 
+
+
+
+<a id="nestedatt--spec--replica_service"></a>
+### Nested Schema for `spec.replica_service`
+
+Optional:
+
+- `metadata` (Attributes) Metadata contains metadata for custom resources (see [below for nested schema](#nestedatt--spec--replica_service--metadata))
+- `node_port` (Number) The port on which this service is exposed when type is NodePort or LoadBalancer. Value must be in-range and not in use or the operation will fail. If unspecified, a port will be allocated if this Service requires one. - https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+- `type` (String) More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+
+<a id="nestedatt--spec--replica_service--metadata"></a>
+### Nested Schema for `spec.replica_service.metadata`
+
+Optional:
+
+- `annotations` (Map of String)
+- `labels` (Map of String)
 
 
 

@@ -48,8 +48,9 @@ type BitnamiComSealedSecretV1Alpha1ManifestData struct {
 		Data          *string            `tfsdk:"data" json:"data,omitempty"`
 		EncryptedData *map[string]string `tfsdk:"encrypted_data" json:"encryptedData,omitempty"`
 		Template      *struct {
-			Data     *map[string]string `tfsdk:"data" json:"data,omitempty"`
-			Metadata *struct {
+			Data      *map[string]string `tfsdk:"data" json:"data,omitempty"`
+			Immutable *bool              `tfsdk:"immutable" json:"immutable,omitempty"`
+			Metadata  *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Finalizers  *[]string          `tfsdk:"finalizers" json:"finalizers,omitempty"`
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -174,6 +175,14 @@ func (r *BitnamiComSealedSecretV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								Description:         "Keys that should be templated using decrypted data",
 								MarkdownDescription: "Keys that should be templated using decrypted data",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"immutable": schema.BoolAttribute{
+								Description:         "Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.",
+								MarkdownDescription: "Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

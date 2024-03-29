@@ -30,7 +30,7 @@ data "k8s_ec2_services_k8s_aws_internet_gateway_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) InternetGatewaySpec defines the desired state of InternetGateway.  Describes an internet gateway. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) InternetGatewaySpec defines the desired state of InternetGateway.Describes an internet gateway. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,9 +56,27 @@ Optional:
 
 Optional:
 
-- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string. (see [below for nested schema](#nestedatt--spec--tags))
+- `route_table_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--route_table_refs))
+- `route_tables` (List of String)
+- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string. (see [below for nested schema](#nestedatt--spec--tags))
 - `vpc` (String) The ID of the VPC.
-- `vpc_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--vpc_ref))
+- `vpc_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--vpc_ref))
+
+<a id="nestedatt--spec--route_table_refs"></a>
+### Nested Schema for `spec.route_table_refs`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--route_table_refs--from))
+
+<a id="nestedatt--spec--route_table_refs--from"></a>
+### Nested Schema for `spec.route_table_refs.from`
+
+Optional:
+
+- `name` (String)
+
+
 
 <a id="nestedatt--spec--tags"></a>
 ### Nested Schema for `spec.tags`
@@ -74,7 +92,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--vpc_ref--from))
 
 <a id="nestedatt--spec--vpc_ref--from"></a>
 ### Nested Schema for `spec.vpc_ref.from`

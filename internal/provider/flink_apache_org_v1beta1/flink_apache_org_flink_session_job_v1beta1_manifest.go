@@ -55,6 +55,7 @@ type FlinkApacheOrgFlinkSessionJobV1Beta1ManifestData struct {
 			InitialSavepointPath   *string   `tfsdk:"initial_savepoint_path" json:"initialSavepointPath,omitempty"`
 			JarURI                 *string   `tfsdk:"jar_uri" json:"jarURI,omitempty"`
 			Parallelism            *int64    `tfsdk:"parallelism" json:"parallelism,omitempty"`
+			SavepointRedeployNonce *int64    `tfsdk:"savepoint_redeploy_nonce" json:"savepointRedeployNonce,omitempty"`
 			SavepointTriggerNonce  *int64    `tfsdk:"savepoint_trigger_nonce" json:"savepointTriggerNonce,omitempty"`
 			State                  *string   `tfsdk:"state" json:"state,omitempty"`
 			UpgradeMode            *string   `tfsdk:"upgrade_mode" json:"upgradeMode,omitempty"`
@@ -219,6 +220,14 @@ func (r *FlinkApacheOrgFlinkSessionJobV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"parallelism": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"savepoint_redeploy_nonce": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

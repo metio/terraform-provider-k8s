@@ -59,8 +59,8 @@ func (r *InfrastructureClusterXK8SIoVsphereDeploymentZoneV1Beta1Manifest) Metada
 
 func (r *InfrastructureClusterXK8SIoVsphereDeploymentZoneV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereDeploymentZone is the Schema for the vspheredeploymentzones API",
-		MarkdownDescription: "VSphereDeploymentZone is the Schema for the vspheredeploymentzones API",
+		Description:         "VSphereDeploymentZone is the Schema for the vspheredeploymentzones API.",
+		MarkdownDescription: "VSphereDeploymentZone is the Schema for the vspheredeploymentzones API.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.name'.",
@@ -123,8 +123,8 @@ func (r *InfrastructureClusterXK8SIoVsphereDeploymentZoneV1Beta1Manifest) Schema
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "VSphereDeploymentZoneSpec defines the desired state of VSphereDeploymentZone",
-				MarkdownDescription: "VSphereDeploymentZoneSpec defines the desired state of VSphereDeploymentZone",
+				Description:         "VSphereDeploymentZoneSpec defines the desired state of VSphereDeploymentZone.",
+				MarkdownDescription: "VSphereDeploymentZoneSpec defines the desired state of VSphereDeploymentZone.",
 				Attributes: map[string]schema.Attribute{
 					"control_plane": schema.BoolAttribute{
 						Description:         "ControlPlane determines if this failure domain is suitable for use by control plane machines.",

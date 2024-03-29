@@ -64,7 +64,7 @@ Required:
 Required:
 
 - `api_version` (String) APIVersion defines the versioned schema of this representation of an object.
-- `kind` (String) Kind is a string value representing the REST resource this object represents. In CamelCase.
+- `kind` (String) Kind is a string value representing the REST resource this object represents.In CamelCase.
 - `name` (String) Name of the target resource.
 
 Optional:

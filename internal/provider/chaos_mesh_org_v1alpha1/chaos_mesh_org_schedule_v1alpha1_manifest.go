@@ -348,7 +348,10 @@ type ChaosMeshOrgScheduleV1Alpha1ManifestData struct {
 				Correlation *string `tfsdk:"correlation" json:"correlation,omitempty"`
 				Loss        *string `tfsdk:"loss" json:"loss,omitempty"`
 			} `tfsdk:"loss" json:"loss,omitempty"`
-			Mode          *string `tfsdk:"mode" json:"mode,omitempty"`
+			Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+			Rate *struct {
+				Rate *string `tfsdk:"rate" json:"rate,omitempty"`
+			} `tfsdk:"rate" json:"rate,omitempty"`
 			RemoteCluster *string `tfsdk:"remote_cluster" json:"remoteCluster,omitempty"`
 			Selector      *struct {
 				AnnotationSelectors *map[string]string `tfsdk:"annotation_selectors" json:"annotationSelectors,omitempty"`
@@ -1078,7 +1081,10 @@ type ChaosMeshOrgScheduleV1Alpha1ManifestData struct {
 						Correlation *string `tfsdk:"correlation" json:"correlation,omitempty"`
 						Loss        *string `tfsdk:"loss" json:"loss,omitempty"`
 					} `tfsdk:"loss" json:"loss,omitempty"`
-					Mode          *string `tfsdk:"mode" json:"mode,omitempty"`
+					Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+					Rate *struct {
+						Rate *string `tfsdk:"rate" json:"rate,omitempty"`
+					} `tfsdk:"rate" json:"rate,omitempty"`
 					RemoteCluster *string `tfsdk:"remote_cluster" json:"remoteCluster,omitempty"`
 					Selector      *struct {
 						AnnotationSelectors *map[string]string `tfsdk:"annotation_selectors" json:"annotationSelectors,omitempty"`
@@ -1737,7 +1743,10 @@ type ChaosMeshOrgScheduleV1Alpha1ManifestData struct {
 							Correlation *string `tfsdk:"correlation" json:"correlation,omitempty"`
 							Loss        *string `tfsdk:"loss" json:"loss,omitempty"`
 						} `tfsdk:"loss" json:"loss,omitempty"`
-						Mode          *string `tfsdk:"mode" json:"mode,omitempty"`
+						Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+						Rate *struct {
+							Rate *string `tfsdk:"rate" json:"rate,omitempty"`
+						} `tfsdk:"rate" json:"rate,omitempty"`
 						RemoteCluster *string `tfsdk:"remote_cluster" json:"remoteCluster,omitempty"`
 						Selector      *struct {
 							AnnotationSelectors *map[string]string `tfsdk:"annotation_selectors" json:"annotationSelectors,omitempty"`
@@ -3301,8 +3310,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"patterns": schema.ListAttribute{
-								Description:         "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note:      1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid.      2. if the patterns is empty, will take effect on all the domain names. For example: 		The value is ['google.com', 'github.*', 'chaos-mes?.org'], 		will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
-								MarkdownDescription: "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note:      1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid.      2. if the patterns is empty, will take effect on all the domain names. For example: 		The value is ['google.com', 'github.*', 'chaos-mes?.org'], 		will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
+								Description:         "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note: 1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid. 2. if the patterns is empty, will take effect on all the domain names. For example: The value is ['google.com', 'github.*', 'chaos-mes?.org'], will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
+								MarkdownDescription: "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note: 1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid. 2. if the patterns is empty, will take effect on all the domain names. For example: The value is ['google.com', 'github.*', 'chaos-mes?.org'], will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -4683,8 +4692,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								MarkdownDescription: "FailKernRequest defines the request of kernel injection",
 								Attributes: map[string]schema.Attribute{
 									"callchain": schema.ListNestedAttribute{
-										Description:         "Callchain indicate a special call chain, such as:     ext4_mount       -> mount_subtree          -> ...             -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
-										MarkdownDescription: "Callchain indicate a special call chain, such as:     ext4_mount       -> mount_subtree          -> ...             -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
+										Description:         "Callchain indicate a special call chain, such as: ext4_mount -> mount_subtree -> ... -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
+										MarkdownDescription: "Callchain indicate a special call chain, such as: ext4_mount -> mount_subtree -> ... -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"funcname": schema.StringAttribute{
@@ -4718,8 +4727,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"failtype": schema.Int64Attribute{
-										Description:         "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read:   1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html   2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
-										MarkdownDescription: "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read:   1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html   2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
+										Description:         "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read: 1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html 2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
+										MarkdownDescription: "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read: 1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html 2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -5177,6 +5186,23 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								Validators: []validator.String{
 									stringvalidator.OneOf("one", "all", "fixed", "fixed-percent", "random-max-percent"),
 								},
+							},
+
+							"rate": schema.SingleNestedAttribute{
+								Description:         "Rate represents the detail about rate control action",
+								MarkdownDescription: "Rate represents the detail about rate control action",
+								Attributes: map[string]schema.Attribute{
+									"rate": schema.StringAttribute{
+										Description:         "Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.",
+										MarkdownDescription: "Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"remote_cluster": schema.StringAttribute{
@@ -8193,8 +8219,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "TODO: use a custom type, as 'TemplateType' contains other possible values",
-						MarkdownDescription: "TODO: use a custom type, as 'TemplateType' contains other possible values",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -8703,8 +8729,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"patterns": schema.ListAttribute{
-													Description:         "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note:      1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid.      2. if the patterns is empty, will take effect on all the domain names. For example: 		The value is ['google.com', 'github.*', 'chaos-mes?.org'], 		will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
-													MarkdownDescription: "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note:      1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid.      2. if the patterns is empty, will take effect on all the domain names. For example: 		The value is ['google.com', 'github.*', 'chaos-mes?.org'], 		will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
+													Description:         "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note: 1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid. 2. if the patterns is empty, will take effect on all the domain names. For example: The value is ['google.com', 'github.*', 'chaos-mes?.org'], will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
+													MarkdownDescription: "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note: 1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid. 2. if the patterns is empty, will take effect on all the domain names. For example: The value is ['google.com', 'github.*', 'chaos-mes?.org'], will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -10074,8 +10100,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													MarkdownDescription: "FailKernRequest defines the request of kernel injection",
 													Attributes: map[string]schema.Attribute{
 														"callchain": schema.ListNestedAttribute{
-															Description:         "Callchain indicate a special call chain, such as:     ext4_mount       -> mount_subtree          -> ...             -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
-															MarkdownDescription: "Callchain indicate a special call chain, such as:     ext4_mount       -> mount_subtree          -> ...             -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
+															Description:         "Callchain indicate a special call chain, such as: ext4_mount -> mount_subtree -> ... -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
+															MarkdownDescription: "Callchain indicate a special call chain, such as: ext4_mount -> mount_subtree -> ... -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"funcname": schema.StringAttribute{
@@ -10109,8 +10135,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"failtype": schema.Int64Attribute{
-															Description:         "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read:   1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html   2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
-															MarkdownDescription: "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read:   1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html   2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
+															Description:         "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read: 1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html 2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
+															MarkdownDescription: "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read: 1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html 2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -10576,6 +10602,23 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													Validators: []validator.String{
 														stringvalidator.OneOf("one", "all", "fixed", "fixed-percent", "random-max-percent"),
 													},
+												},
+
+												"rate": schema.SingleNestedAttribute{
+													Description:         "Rate represents the detail about rate control action",
+													MarkdownDescription: "Rate represents the detail about rate control action",
+													Attributes: map[string]schema.Attribute{
+														"rate": schema.StringAttribute{
+															Description:         "Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.",
+															MarkdownDescription: "Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"remote_cluster": schema.StringAttribute{
@@ -13557,8 +13600,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"patterns": schema.ListAttribute{
-															Description:         "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note:      1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid.      2. if the patterns is empty, will take effect on all the domain names. For example: 		The value is ['google.com', 'github.*', 'chaos-mes?.org'], 		will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
-															MarkdownDescription: "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note:      1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid.      2. if the patterns is empty, will take effect on all the domain names. For example: 		The value is ['google.com', 'github.*', 'chaos-mes?.org'], 		will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
+															Description:         "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note: 1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid. 2. if the patterns is empty, will take effect on all the domain names. For example: The value is ['google.com', 'github.*', 'chaos-mes?.org'], will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
+															MarkdownDescription: "Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note: 1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid. 2. if the patterns is empty, will take effect on all the domain names. For example: The value is ['google.com', 'github.*', 'chaos-mes?.org'], will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -14939,8 +14982,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 															MarkdownDescription: "FailKernRequest defines the request of kernel injection",
 															Attributes: map[string]schema.Attribute{
 																"callchain": schema.ListNestedAttribute{
-																	Description:         "Callchain indicate a special call chain, such as:     ext4_mount       -> mount_subtree          -> ...             -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
-																	MarkdownDescription: "Callchain indicate a special call chain, such as:     ext4_mount       -> mount_subtree          -> ...             -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
+																	Description:         "Callchain indicate a special call chain, such as: ext4_mount -> mount_subtree -> ... -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
+																	MarkdownDescription: "Callchain indicate a special call chain, such as: ext4_mount -> mount_subtree -> ... -> should_failslab With an optional set of predicates and an optional set of parameters, which used with predicates. You can read call chan and predicate examples from https://github.com/chaos-mesh/bpfki/tree/develop/examples to learn more. If no special call chain, just keep Callchain empty, which means it will fail at any call chain with slab alloc (eg: kmalloc).",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"funcname": schema.StringAttribute{
@@ -14974,8 +15017,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																},
 
 																"failtype": schema.Int64Attribute{
-																	Description:         "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read:   1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html   2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
-																	MarkdownDescription: "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read:   1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html   2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
+																	Description:         "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read: 1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html 2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
+																	MarkdownDescription: "FailType indicates what to fail, can be set to '0' / '1' / '2' If '0', indicates slab to fail (should_failslab) If '1', indicates alloc_page to fail (should_fail_alloc_page) If '2', indicates bio to fail (should_fail_bio) You can read: 1. https://www.kernel.org/doc/html/latest/fault-injection/fault-injection.html 2. http://github.com/iovisor/bcc/blob/master/tools/inject_example.txt to learn more",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -15433,6 +15476,23 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 															Validators: []validator.String{
 																stringvalidator.OneOf("one", "all", "fixed", "fixed-percent", "random-max-percent"),
 															},
+														},
+
+														"rate": schema.SingleNestedAttribute{
+															Description:         "Rate represents the detail about rate control action",
+															MarkdownDescription: "Rate represents the detail about rate control action",
+															Attributes: map[string]schema.Attribute{
+																"rate": schema.StringAttribute{
+																	Description:         "Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.",
+																	MarkdownDescription: "Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
 														},
 
 														"remote_cluster": schema.StringAttribute{
@@ -18449,8 +18509,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "TODO: use a custom type, as 'TemplateType' contains other possible values",
-													MarkdownDescription: "TODO: use a custom type, as 'TemplateType' contains other possible values",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -20980,8 +21040,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 															},
 
 															"ephemeral": schema.SingleNestedAttribute{
-																Description:         "ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time.",
-																MarkdownDescription: "ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time.",
+																Description:         "ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through a PersistentVolumeClaim (see EphemeralVolumeSource for more information on the connection between this volume type and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time.",
+																MarkdownDescription: "ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.  Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through a PersistentVolumeClaim (see EphemeralVolumeSource for more information on the connection between this volume type and PersistentVolumeClaim).  Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.  Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.  A pod can use both types of ephemeral volumes and persistent volumes at the same time.",
 																Attributes: map[string]schema.Attribute{
 																	"volume_claim_template": schema.SingleNestedAttribute{
 																		Description:         "Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).  An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.  This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.  Required, must not be nil.",
@@ -21043,8 +21103,8 @@ func (r *ChaosMeshOrgScheduleV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																					},
 
 																					"data_source_ref": schema.SingleNestedAttribute{
-																						Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. * While dataSource only allows local objects, dataSourceRef allows objects   in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
-																						MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. * While dataSource only allows local objects, dataSourceRef allows objects   in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																						Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																						MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 																						Attributes: map[string]schema.Attribute{
 																							"api_group": schema.StringAttribute{
 																								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",

@@ -126,7 +126,7 @@ func (v *openapiv3ValidatorExtractor) stringWithPattern() string {
 	if v.property.Type == "string" && v.property.Pattern != "" {
 		v.imports.Regexp = true
 		v.imports.StringValidator = true
-		return fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%c%s%c), "")`, '`', v.property.Pattern, '`')
+		return fmt.Sprintf(`stringvalidator.RegexMatches(regexp.MustCompile(%s), "")`, escapeRegexPattern(v.property.Pattern))
 	}
 	return ""
 }

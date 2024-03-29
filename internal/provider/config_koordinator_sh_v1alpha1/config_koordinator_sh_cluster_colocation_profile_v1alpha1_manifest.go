@@ -43,10 +43,12 @@ type ConfigKoordinatorShClusterColocationProfileV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Annotations         *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-		KoordinatorPriority *int64             `tfsdk:"koordinator_priority" json:"koordinatorPriority,omitempty"`
-		Labels              *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-		NamespaceSelector   *struct {
+		AnnotationKeysMapping *map[string]string `tfsdk:"annotation_keys_mapping" json:"annotationKeysMapping,omitempty"`
+		Annotations           *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+		KoordinatorPriority   *int64             `tfsdk:"koordinator_priority" json:"koordinatorPriority,omitempty"`
+		LabelKeysMapping      *map[string]string `tfsdk:"label_keys_mapping" json:"labelKeysMapping,omitempty"`
+		Labels                *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		NamespaceSelector     *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
 				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -143,6 +145,15 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 				Description:         "ClusterColocationProfileSpec is a description of a ClusterColocationProfile.",
 				MarkdownDescription: "ClusterColocationProfileSpec is a description of a ClusterColocationProfile.",
 				Attributes: map[string]schema.Attribute{
+					"annotation_keys_mapping": schema.MapAttribute{
+						Description:         "AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values. It sets the Pod.Annotations[AnnotationsToAnnotations[k]] = Pod.Annotations[k] for each key k.",
+						MarkdownDescription: "AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values. It sets the Pod.Annotations[AnnotationsToAnnotations[k]] = Pod.Annotations[k] for each key k.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"annotations": schema.MapAttribute{
 						Description:         "Annotations describes the k/v pair that needs to inject into Pod.Annotations",
 						MarkdownDescription: "Annotations describes the k/v pair that needs to inject into Pod.Annotations",
@@ -155,6 +166,15 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 					"koordinator_priority": schema.Int64Attribute{
 						Description:         "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority.",
 						MarkdownDescription: "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"label_keys_mapping": schema.MapAttribute{
+						Description:         "LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values. It sets the Pod.Labels[LabelsToLabels[k]] = Pod.Labels[k] for each key k.",
+						MarkdownDescription: "LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values. It sets the Pod.Labels[LabelsToLabels[k]] = Pod.Labels[k] for each key k.",
+						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

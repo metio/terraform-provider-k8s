@@ -16,6 +16,7 @@ description: |-
 data "k8s_logging_extensions_banzaicloud_io_event_tailer_v1alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -59,6 +60,7 @@ Required:
 Optional:
 
 - `container_overrides` (Attributes) (see [below for nested schema](#nestedatt--spec--container_overrides))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--image))
 - `position_volume` (Attributes) (see [below for nested schema](#nestedatt--spec--position_volume))
 - `workload_meta_overrides` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_meta_overrides))
 - `workload_overrides` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides))
@@ -320,6 +322,25 @@ Optional:
 
 
 
+<a id="nestedatt--spec--image"></a>
+### Nested Schema for `spec.image`
+
+Optional:
+
+- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--image--image_pull_secrets))
+- `pull_policy` (String)
+- `repository` (String)
+- `tag` (String)
+
+<a id="nestedatt--spec--image--image_pull_secrets"></a>
+### Nested Schema for `spec.image.image_pull_secrets`
+
+Optional:
+
+- `name` (String)
+
+
+
 <a id="nestedatt--spec--position_volume"></a>
 ### Nested Schema for `spec.position_volume`
 
@@ -382,6 +403,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--position_volume--pvc--spec--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--position_volume--pvc--spec--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -417,17 +439,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--position_volume--pvc--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
-
-<a id="nestedatt--spec--position_volume--pvc--spec--resources--claims"></a>
-### Nested Schema for `spec.position_volume.pvc.spec.resources.requests`
-
-Required:
-
-- `name` (String)
-
 
 
 <a id="nestedatt--spec--position_volume--pvc--spec--selector"></a>
@@ -635,6 +648,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 
@@ -694,6 +709,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -769,6 +786,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String)
 
@@ -828,6 +847,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -1733,6 +1754,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -1768,17 +1790,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
-
-<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.volume_claim_template.metadata.volume_name.requests`
-
-Required:
-
-- `name` (String)
-
 
 
 <a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--volume_claim_template--metadata--selector"></a>
@@ -1994,10 +2007,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--cluster_trust_bundle))
 - `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--config_map))
 - `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--downward_api))
 - `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--secret))
 - `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token))
+
+<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--label_selector"></a>
+### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token.signer_name`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--service_account_token--signer_name--match_expressions"></a>
+### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token.signer_name.match_labels`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--workload_overrides--volumes--vsphere_volume--sources--config_map"></a>
 ### Nested Schema for `spec.workload_overrides.volumes.vsphere_volume.sources.service_account_token`

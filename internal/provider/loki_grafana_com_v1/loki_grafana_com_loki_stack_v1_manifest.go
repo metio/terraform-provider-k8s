@@ -8,10 +8,13 @@ package loki_grafana_com_v1
 import (
 	"context"
 	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/boolvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
@@ -49,6 +52,7 @@ type LokiGrafanaComLokiStackV1ManifestData struct {
 	Spec *struct {
 		HashRing *struct {
 			Memberlist *struct {
+				EnableIPv6       *bool   `tfsdk:"enable_i_pv6" json:"enableIPv6,omitempty"`
 				InstanceAddrType *string `tfsdk:"instance_addr_type" json:"instanceAddrType,omitempty"`
 			} `tfsdk:"memberlist" json:"memberlist,omitempty"`
 			Type *string `tfsdk:"type" json:"type,omitempty"`
@@ -63,6 +67,7 @@ type LokiGrafanaComLokiStackV1ManifestData struct {
 					MaxLabelNamesPerSeries    *int64 `tfsdk:"max_label_names_per_series" json:"maxLabelNamesPerSeries,omitempty"`
 					MaxLabelValueLength       *int64 `tfsdk:"max_label_value_length" json:"maxLabelValueLength,omitempty"`
 					MaxLineSize               *int64 `tfsdk:"max_line_size" json:"maxLineSize,omitempty"`
+					PerStreamDesiredRate      *int64 `tfsdk:"per_stream_desired_rate" json:"perStreamDesiredRate,omitempty"`
 					PerStreamRateLimit        *int64 `tfsdk:"per_stream_rate_limit" json:"perStreamRateLimit,omitempty"`
 					PerStreamRateLimitBurst   *int64 `tfsdk:"per_stream_rate_limit_burst" json:"perStreamRateLimitBurst,omitempty"`
 				} `tfsdk:"ingestion" json:"ingestion,omitempty"`
@@ -91,10 +96,17 @@ type LokiGrafanaComLokiStackV1ManifestData struct {
 					MaxLabelNamesPerSeries    *int64 `tfsdk:"max_label_names_per_series" json:"maxLabelNamesPerSeries,omitempty"`
 					MaxLabelValueLength       *int64 `tfsdk:"max_label_value_length" json:"maxLabelValueLength,omitempty"`
 					MaxLineSize               *int64 `tfsdk:"max_line_size" json:"maxLineSize,omitempty"`
+					PerStreamDesiredRate      *int64 `tfsdk:"per_stream_desired_rate" json:"perStreamDesiredRate,omitempty"`
 					PerStreamRateLimit        *int64 `tfsdk:"per_stream_rate_limit" json:"perStreamRateLimit,omitempty"`
 					PerStreamRateLimitBurst   *int64 `tfsdk:"per_stream_rate_limit_burst" json:"perStreamRateLimitBurst,omitempty"`
 				} `tfsdk:"ingestion" json:"ingestion,omitempty"`
 				Queries *struct {
+					Blocked *[]struct {
+						Hash    *int64    `tfsdk:"hash" json:"hash,omitempty"`
+						Pattern *string   `tfsdk:"pattern" json:"pattern,omitempty"`
+						Regex   *bool     `tfsdk:"regex" json:"regex,omitempty"`
+						Types   *[]string `tfsdk:"types" json:"types,omitempty"`
+					} `tfsdk:"blocked" json:"blocked,omitempty"`
 					CardinalityLimit        *int64  `tfsdk:"cardinality_limit" json:"cardinalityLimit,omitempty"`
 					MaxChunksPerQuery       *int64  `tfsdk:"max_chunks_per_query" json:"maxChunksPerQuery,omitempty"`
 					MaxEntriesLimitPerQuery *int64  `tfsdk:"max_entries_limit_per_query" json:"maxEntriesLimitPerQuery,omitempty"`
@@ -151,8 +163,9 @@ type LokiGrafanaComLokiStackV1ManifestData struct {
 				Version       *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"schemas" json:"schemas,omitempty"`
 			Secret *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
-				Type *string `tfsdk:"type" json:"type,omitempty"`
+				CredentialMode *string `tfsdk:"credential_mode" json:"credentialMode,omitempty"`
+				Name           *string `tfsdk:"name" json:"name,omitempty"`
+				Type           *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"secret" json:"secret,omitempty"`
 			Tls *struct {
 				CaKey  *string `tfsdk:"ca_key" json:"caKey,omitempty"`
@@ -754,9 +767,17 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								Description:         "MemberList configuration spec",
 								MarkdownDescription: "MemberList configuration spec",
 								Attributes: map[string]schema.Attribute{
+									"enable_i_pv6": schema.BoolAttribute{
+										Description:         "EnableIPv6 enables IPv6 support for the memberlist based hash ring.Currently this also forces the instanceAddrType to podIP to avoid local address lookupfor the memberlist.",
+										MarkdownDescription: "EnableIPv6 enables IPv6 support for the memberlist based hash ring.Currently this also forces the instanceAddrType to podIP to avoid local address lookupfor the memberlist.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"instance_addr_type": schema.StringAttribute{
-										Description:         "InstanceAddrType defines the type of address to use to advertise to the ring. Defaults to the first address from any private network interfaces of the current pod. Alternatively the public pod IP can be used in case private networks (RFC 1918 and RFC 6598) are not available.",
-										MarkdownDescription: "InstanceAddrType defines the type of address to use to advertise to the ring. Defaults to the first address from any private network interfaces of the current pod. Alternatively the public pod IP can be used in case private networks (RFC 1918 and RFC 6598) are not available.",
+										Description:         "InstanceAddrType defines the type of address to use to advertise to the ring.Defaults to the first address from any private network interfaces of the current pod.Alternatively the public pod IP can be used in case private networks (RFC 1918 and RFC 6598)are not available.",
+										MarkdownDescription: "InstanceAddrType defines the type of address to use to advertise to the ring.Defaults to the first address from any private network interfaces of the current pod.Alternatively the public pod IP can be used in case private networks (RFC 1918 and RFC 6598)are not available.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -799,8 +820,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 										MarkdownDescription: "IngestionLimits defines the limits applied on ingested log streams.",
 										Attributes: map[string]schema.Attribute{
 											"ingestion_burst_size": schema.Int64Attribute{
-												Description:         "IngestionBurstSize defines the local rate-limited sample size per distributor replica. It should be set to the set at least to the maximum logs size expected in a single push request.",
-												MarkdownDescription: "IngestionBurstSize defines the local rate-limited sample size per distributor replica. It should be set to the set at least to the maximum logs size expected in a single push request.",
+												Description:         "IngestionBurstSize defines the local rate-limited sample size perdistributor replica. It should be set to the set at least to themaximum logs size expected in a single push request.",
+												MarkdownDescription: "IngestionBurstSize defines the local rate-limited sample size perdistributor replica. It should be set to the set at least to themaximum logs size expected in a single push request.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -815,32 +836,32 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"max_global_streams_per_tenant": schema.Int64Attribute{
-												Description:         "MaxGlobalStreamsPerTenant defines the maximum number of active streams per tenant, across the cluster.",
-												MarkdownDescription: "MaxGlobalStreamsPerTenant defines the maximum number of active streams per tenant, across the cluster.",
+												Description:         "MaxGlobalStreamsPerTenant defines the maximum number of active streamsper tenant, across the cluster.",
+												MarkdownDescription: "MaxGlobalStreamsPerTenant defines the maximum number of active streamsper tenant, across the cluster.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_name_length": schema.Int64Attribute{
-												Description:         "MaxLabelNameLength defines the maximum number of characters allowed for label keys in log streams.",
-												MarkdownDescription: "MaxLabelNameLength defines the maximum number of characters allowed for label keys in log streams.",
+												Description:         "MaxLabelNameLength defines the maximum number of characters allowedfor label keys in log streams.",
+												MarkdownDescription: "MaxLabelNameLength defines the maximum number of characters allowedfor label keys in log streams.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_names_per_series": schema.Int64Attribute{
-												Description:         "MaxLabelNamesPerSeries defines the maximum number of label names per series in each log stream.",
-												MarkdownDescription: "MaxLabelNamesPerSeries defines the maximum number of label names per series in each log stream.",
+												Description:         "MaxLabelNamesPerSeries defines the maximum number of label names per seriesin each log stream.",
+												MarkdownDescription: "MaxLabelNamesPerSeries defines the maximum number of label names per seriesin each log stream.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_value_length": schema.Int64Attribute{
-												Description:         "MaxLabelValueLength defines the maximum number of characters allowed for label values in log streams.",
-												MarkdownDescription: "MaxLabelValueLength defines the maximum number of characters allowed for label values in log streams.",
+												Description:         "MaxLabelValueLength defines the maximum number of characters allowedfor label values in log streams.",
+												MarkdownDescription: "MaxLabelValueLength defines the maximum number of characters allowedfor label values in log streams.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -849,6 +870,14 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											"max_line_size": schema.Int64Attribute{
 												Description:         "MaxLineSize defines the maximum line size on ingestion path. Units in Bytes.",
 												MarkdownDescription: "MaxLineSize defines the maximum line size on ingestion path. Units in Bytes.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"per_stream_desired_rate": schema.Int64Attribute{
+												Description:         "PerStreamDesiredRate defines the desired ingestion rate per second that LokiStack shouldtarget applying automatic stream sharding. Units MB.",
+												MarkdownDescription: "PerStreamDesiredRate defines the desired ingestion rate per second that LokiStack shouldtarget applying automatic stream sharding. Units MB.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -888,24 +917,24 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"max_chunks_per_query": schema.Int64Attribute{
-												Description:         "MaxChunksPerQuery defines the maximum number of chunks that can be fetched by a single query.",
-												MarkdownDescription: "MaxChunksPerQuery defines the maximum number of chunks that can be fetched by a single query.",
+												Description:         "MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.",
+												MarkdownDescription: "MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_entries_limit_per_query": schema.Int64Attribute{
-												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
-												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
+												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.",
+												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_query_series": schema.Int64Attribute{
-												Description:         "MaxQuerySeries defines the maximum of unique series that is returned by a metric query.",
-												MarkdownDescription: "MaxQuerySeries defines the maximum of unique series that is returned by a metric query.",
+												Description:         "MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.",
+												MarkdownDescription: "MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -996,8 +1025,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 										MarkdownDescription: "IngestionLimits defines the limits applied on ingested log streams.",
 										Attributes: map[string]schema.Attribute{
 											"ingestion_burst_size": schema.Int64Attribute{
-												Description:         "IngestionBurstSize defines the local rate-limited sample size per distributor replica. It should be set to the set at least to the maximum logs size expected in a single push request.",
-												MarkdownDescription: "IngestionBurstSize defines the local rate-limited sample size per distributor replica. It should be set to the set at least to the maximum logs size expected in a single push request.",
+												Description:         "IngestionBurstSize defines the local rate-limited sample size perdistributor replica. It should be set to the set at least to themaximum logs size expected in a single push request.",
+												MarkdownDescription: "IngestionBurstSize defines the local rate-limited sample size perdistributor replica. It should be set to the set at least to themaximum logs size expected in a single push request.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1012,32 +1041,32 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"max_global_streams_per_tenant": schema.Int64Attribute{
-												Description:         "MaxGlobalStreamsPerTenant defines the maximum number of active streams per tenant, across the cluster.",
-												MarkdownDescription: "MaxGlobalStreamsPerTenant defines the maximum number of active streams per tenant, across the cluster.",
+												Description:         "MaxGlobalStreamsPerTenant defines the maximum number of active streamsper tenant, across the cluster.",
+												MarkdownDescription: "MaxGlobalStreamsPerTenant defines the maximum number of active streamsper tenant, across the cluster.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_name_length": schema.Int64Attribute{
-												Description:         "MaxLabelNameLength defines the maximum number of characters allowed for label keys in log streams.",
-												MarkdownDescription: "MaxLabelNameLength defines the maximum number of characters allowed for label keys in log streams.",
+												Description:         "MaxLabelNameLength defines the maximum number of characters allowedfor label keys in log streams.",
+												MarkdownDescription: "MaxLabelNameLength defines the maximum number of characters allowedfor label keys in log streams.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_names_per_series": schema.Int64Attribute{
-												Description:         "MaxLabelNamesPerSeries defines the maximum number of label names per series in each log stream.",
-												MarkdownDescription: "MaxLabelNamesPerSeries defines the maximum number of label names per series in each log stream.",
+												Description:         "MaxLabelNamesPerSeries defines the maximum number of label names per seriesin each log stream.",
+												MarkdownDescription: "MaxLabelNamesPerSeries defines the maximum number of label names per seriesin each log stream.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_label_value_length": schema.Int64Attribute{
-												Description:         "MaxLabelValueLength defines the maximum number of characters allowed for label values in log streams.",
-												MarkdownDescription: "MaxLabelValueLength defines the maximum number of characters allowed for label values in log streams.",
+												Description:         "MaxLabelValueLength defines the maximum number of characters allowedfor label values in log streams.",
+												MarkdownDescription: "MaxLabelValueLength defines the maximum number of characters allowedfor label values in log streams.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1046,6 +1075,14 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											"max_line_size": schema.Int64Attribute{
 												Description:         "MaxLineSize defines the maximum line size on ingestion path. Units in Bytes.",
 												MarkdownDescription: "MaxLineSize defines the maximum line size on ingestion path. Units in Bytes.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"per_stream_desired_rate": schema.Int64Attribute{
+												Description:         "PerStreamDesiredRate defines the desired ingestion rate per second that LokiStack shouldtarget applying automatic stream sharding. Units MB.",
+												MarkdownDescription: "PerStreamDesiredRate defines the desired ingestion rate per second that LokiStack shouldtarget applying automatic stream sharding. Units MB.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1076,6 +1113,62 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 										Description:         "QueryLimits defines the limit applied on querying log streams.",
 										MarkdownDescription: "QueryLimits defines the limit applied on querying log streams.",
 										Attributes: map[string]schema.Attribute{
+											"blocked": schema.ListNestedAttribute{
+												Description:         "Blocked defines the list of rules to block matching queries.",
+												MarkdownDescription: "Blocked defines the list of rules to block matching queries.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"hash": schema.Int64Attribute{
+															Description:         "Hash is a 32-bit FNV-1 hash of the query string.",
+															MarkdownDescription: "Hash is a 32-bit FNV-1 hash of the query string.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("pattern"), path.MatchRelative().AtParent().AtName("regex"), path.MatchRelative().AtParent().AtName("types")),
+															},
+														},
+
+														"pattern": schema.StringAttribute{
+															Description:         "Pattern defines the pattern matching the queries to be blocked.",
+															MarkdownDescription: "Pattern defines the pattern matching the queries to be blocked.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("hash"), path.MatchRelative().AtParent().AtName("regex"), path.MatchRelative().AtParent().AtName("types")),
+															},
+														},
+
+														"regex": schema.BoolAttribute{
+															Description:         "Regex defines if the pattern is a regular expression. If false the pattern will be used only for exact matches.",
+															MarkdownDescription: "Regex defines if the pattern is a regular expression. If false the pattern will be used only for exact matches.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Bool{
+																boolvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("hash"), path.MatchRelative().AtParent().AtName("pattern"), path.MatchRelative().AtParent().AtName("types")),
+															},
+														},
+
+														"types": schema.ListAttribute{
+															Description:         "Types defines the list of query types that should be considered for blocking.",
+															MarkdownDescription: "Types defines the list of query types that should be considered for blocking.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.List{
+																listvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("hash"), path.MatchRelative().AtParent().AtName("pattern"), path.MatchRelative().AtParent().AtName("regex")),
+															},
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"cardinality_limit": schema.Int64Attribute{
 												Description:         "CardinalityLimit defines the cardinality limit for index queries.",
 												MarkdownDescription: "CardinalityLimit defines the cardinality limit for index queries.",
@@ -1085,24 +1178,24 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"max_chunks_per_query": schema.Int64Attribute{
-												Description:         "MaxChunksPerQuery defines the maximum number of chunks that can be fetched by a single query.",
-												MarkdownDescription: "MaxChunksPerQuery defines the maximum number of chunks that can be fetched by a single query.",
+												Description:         "MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.",
+												MarkdownDescription: "MaxChunksPerQuery defines the maximum number of chunksthat can be fetched by a single query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_entries_limit_per_query": schema.Int64Attribute{
-												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
-												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
+												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.",
+												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entriesthat will be returned for a query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_query_series": schema.Int64Attribute{
-												Description:         "MaxQuerySeries defines the maximum of unique series that is returned by a metric query.",
-												MarkdownDescription: "MaxQuerySeries defines the maximum of unique series that is returned by a metric query.",
+												Description:         "MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.",
+												MarkdownDescription: "MaxQuerySeries defines the maximum of unique seriesthat is returned by a metric query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1190,8 +1283,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"management_state": schema.StringAttribute{
-						Description:         "ManagementState defines if the CR should be managed by the operator or not. Default is managed.",
-						MarkdownDescription: "ManagementState defines if the CR should be managed by the operator or not. Default is managed.",
+						Description:         "ManagementState defines if the CR should be managed by the operator or not.Default is managed.",
+						MarkdownDescription: "ManagementState defines if the CR should be managed by the operator or not.Default is managed.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1249,8 +1342,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"zones": schema.ListNestedAttribute{
-								Description:         "Zones defines an array of ZoneSpec that the scheduler will try to satisfy. IMPORTANT: Make sure that the replication factor defined is less than or equal to the number of available zones.",
-								MarkdownDescription: "Zones defines an array of ZoneSpec that the scheduler will try to satisfy. IMPORTANT: Make sure that the replication factor defined is less than or equal to the number of available zones.",
+								Description:         "Zones defines an array of ZoneSpec that the scheduler will try to satisfy.IMPORTANT: Make sure that the replication factor defined is less than or equal to the number of available zones.",
+								MarkdownDescription: "Zones defines an array of ZoneSpec that the scheduler will try to satisfy.IMPORTANT: Make sure that the replication factor defined is less than or equal to the number of available zones.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"max_skew": schema.Int64Attribute{
@@ -1281,8 +1374,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"replication_factor": schema.Int64Attribute{
-						Description:         "Deprecated: Please use replication.factor instead. This field will be removed in future versions of this CRD. ReplicationFactor defines the policy for log stream replication.",
-						MarkdownDescription: "Deprecated: Please use replication.factor instead. This field will be removed in future versions of this CRD. ReplicationFactor defines the policy for log stream replication.",
+						Description:         "Deprecated: Please use replication.factor instead. This field will be removed in future versions of this CRD.ReplicationFactor defines the policy for log stream replication.",
+						MarkdownDescription: "Deprecated: Please use replication.factor instead. This field will be removed in future versions of this CRD.ReplicationFactor defines the policy for log stream replication.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1304,8 +1397,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"namespace_selector": schema.SingleNestedAttribute{
-								Description:         "Namespaces to be selected for PrometheusRules discovery. If unspecified, only the same namespace as the LokiStack object is in is used.",
-								MarkdownDescription: "Namespaces to be selected for PrometheusRules discovery. If unspecified, only the same namespace as the LokiStack object is in is used.",
+								Description:         "Namespaces to be selected for PrometheusRules discovery. If unspecified, onlythe same namespace as the LokiStack object is in is used.",
+								MarkdownDescription: "Namespaces to be selected for PrometheusRules discovery. If unspecified, onlythe same namespace as the LokiStack object is in is used.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1321,16 +1414,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1344,8 +1437,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1358,8 +1451,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"selector": schema.SingleNestedAttribute{
-								Description:         "A selector to select which LokiRules to mount for loading alerting/recording rules from.",
-								MarkdownDescription: "A selector to select which LokiRules to mount for loading alerting/recording rules from.",
+								Description:         "A selector to select which LokiRules to mount for loading alerting/recordingrules from.",
+								MarkdownDescription: "A selector to select which LokiRules to mount for loading alerting/recordingrules from.",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1375,16 +1468,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1398,8 +1491,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1437,8 +1530,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"effective_date": schema.StringAttribute{
-											Description:         "EffectiveDate is the date in UTC that the schema will be applied on. To ensure readibility of logs, this date should be before the current date in UTC.",
-											MarkdownDescription: "EffectiveDate is the date in UTC that the schema will be applied on. To ensure readibility of logs, this date should be before the current date in UTC.",
+											Description:         "EffectiveDate is the date in UTC that the schema will be applied on.To ensure readibility of logs, this date should be before the currentdate in UTC.",
+											MarkdownDescription: "EffectiveDate is the date in UTC that the schema will be applied on.To ensure readibility of logs, this date should be before the currentdate in UTC.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -1454,7 +1547,7 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("v11", "v12"),
+												stringvalidator.OneOf("v11", "v12", "v13"),
 											},
 										},
 									},
@@ -1465,9 +1558,20 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"secret": schema.SingleNestedAttribute{
-								Description:         "Secret for object storage authentication. Name of a secret in the same namespace as the LokiStack custom resource.",
-								MarkdownDescription: "Secret for object storage authentication. Name of a secret in the same namespace as the LokiStack custom resource.",
+								Description:         "Secret for object storage authentication.Name of a secret in the same namespace as the LokiStack custom resource.",
+								MarkdownDescription: "Secret for object storage authentication.Name of a secret in the same namespace as the LokiStack custom resource.",
 								Attributes: map[string]schema.Attribute{
+									"credential_mode": schema.StringAttribute{
+										Description:         "CredentialMode can be used to set the desired credential mode for authenticating with the object storage.If this is not set, then the operator tries to infer the credential mode from the provided secret and itsown configuration.",
+										MarkdownDescription: "CredentialMode can be used to set the desired credential mode for authenticating with the object storage.If this is not set, then the operator tries to infer the credential mode from the provided secret and itsown configuration.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("static", "token", "token-cco"),
+										},
+									},
+
 									"name": schema.StringAttribute{
 										Description:         "Name of a secret in the namespace configured for object storage secrets.",
 										MarkdownDescription: "Name of a secret in the namespace configured for object storage secrets.",
@@ -1497,16 +1601,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								MarkdownDescription: "TLS configuration for reaching the object storage endpoint.",
 								Attributes: map[string]schema.Attribute{
 									"ca_key": schema.StringAttribute{
-										Description:         "Key is the data key of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource. If empty, it defaults to 'service-ca.crt'.",
-										MarkdownDescription: "Key is the data key of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource. If empty, it defaults to 'service-ca.crt'.",
+										Description:         "Key is the data key of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.If empty, it defaults to 'service-ca.crt'.",
+										MarkdownDescription: "Key is the data key of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.If empty, it defaults to 'service-ca.crt'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"ca_name": schema.StringAttribute{
-										Description:         "CA is the name of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource.",
-										MarkdownDescription: "CA is the name of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource.",
+										Description:         "CA is the name of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.",
+										MarkdownDescription: "CA is the name of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -1539,8 +1643,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								MarkdownDescription: "Compactor defines the compaction component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1548,12 +1652,12 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"pod_anti_affinity": schema.SingleNestedAttribute{
-										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
-										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
+										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
+										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
@@ -1578,16 +1682,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1601,8 +1705,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1615,8 +1719,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1632,16 +1736,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1655,8 +1759,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1669,8 +1773,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1678,8 +1782,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1691,8 +1795,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1705,8 +1809,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
@@ -1727,16 +1831,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -1750,8 +1854,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1764,8 +1868,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1781,16 +1885,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -1804,8 +1908,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1818,8 +1922,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1827,8 +1931,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1854,45 +1958,45 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1914,8 +2018,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								MarkdownDescription: "Distributor defines the distributor component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1923,12 +2027,12 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"pod_anti_affinity": schema.SingleNestedAttribute{
-										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
-										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
+										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
+										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
@@ -1953,16 +2057,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1976,8 +2080,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1990,8 +2094,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2007,16 +2111,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -2030,8 +2134,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2044,8 +2148,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2053,8 +2157,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -2066,8 +2170,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2080,8 +2184,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
@@ -2102,16 +2206,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -2125,8 +2229,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2139,8 +2243,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2156,16 +2260,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -2179,8 +2283,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2193,8 +2297,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2202,8 +2306,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2229,45 +2333,45 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2289,8 +2393,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								MarkdownDescription: "Gateway defines the lokistack gateway component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2298,12 +2402,12 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"pod_anti_affinity": schema.SingleNestedAttribute{
-										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
-										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
+										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
+										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
@@ -2328,16 +2432,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -2351,8 +2455,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2365,8 +2469,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2382,16 +2486,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -2405,8 +2509,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2419,8 +2523,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2428,8 +2532,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -2441,8 +2545,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2455,8 +2559,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
@@ -2477,16 +2581,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -2500,8 +2604,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2514,8 +2618,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2531,16 +2635,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -2554,8 +2658,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2568,8 +2672,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2577,8 +2681,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2604,45 +2708,45 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2664,8 +2768,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								MarkdownDescription: "IndexGateway defines the index gateway component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2673,12 +2777,12 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"pod_anti_affinity": schema.SingleNestedAttribute{
-										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
-										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
+										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
+										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
@@ -2703,16 +2807,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -2726,8 +2830,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2740,8 +2844,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2757,16 +2861,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -2780,8 +2884,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2794,8 +2898,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2803,8 +2907,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -2816,8 +2920,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2830,8 +2934,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
@@ -2852,16 +2956,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -2875,8 +2979,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2889,8 +2993,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2906,16 +3010,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -2929,8 +3033,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2943,8 +3047,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2952,8 +3056,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2979,45 +3083,45 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3039,8 +3143,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								MarkdownDescription: "Ingester defines the ingester component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3048,12 +3152,12 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"pod_anti_affinity": schema.SingleNestedAttribute{
-										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
-										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
+										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
+										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
@@ -3078,16 +3182,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3101,8 +3205,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3115,8 +3219,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3132,16 +3236,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3155,8 +3259,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3169,8 +3273,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3178,8 +3282,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -3191,8 +3295,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3205,8 +3309,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
@@ -3227,16 +3331,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3250,8 +3354,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3264,8 +3368,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3281,16 +3385,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3304,8 +3408,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3318,8 +3422,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3327,8 +3431,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3354,45 +3458,45 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3414,8 +3518,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								MarkdownDescription: "Querier defines the querier component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3423,12 +3527,12 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"pod_anti_affinity": schema.SingleNestedAttribute{
-										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
-										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
+										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
+										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
@@ -3453,16 +3557,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3476,8 +3580,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3490,8 +3594,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3507,16 +3611,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3530,8 +3634,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3544,8 +3648,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3553,8 +3657,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -3566,8 +3670,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3580,8 +3684,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
@@ -3602,16 +3706,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3625,8 +3729,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3639,8 +3743,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3656,16 +3760,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3679,8 +3783,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3693,8 +3797,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3702,8 +3806,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3729,45 +3833,45 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3789,8 +3893,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								MarkdownDescription: "QueryFrontend defines the query frontend component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3798,12 +3902,12 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"pod_anti_affinity": schema.SingleNestedAttribute{
-										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
-										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
+										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
+										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
@@ -3828,16 +3932,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3851,8 +3955,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3865,8 +3969,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -3882,16 +3986,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3905,8 +4009,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3919,8 +4023,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3928,8 +4032,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -3941,8 +4045,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3955,8 +4059,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
@@ -3977,16 +4081,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -4000,8 +4104,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -4014,8 +4118,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4031,16 +4135,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -4054,8 +4158,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -4068,8 +4172,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -4077,8 +4181,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -4104,45 +4208,45 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4164,8 +4268,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								MarkdownDescription: "Ruler defines the ruler component spec.",
 								Attributes: map[string]schema.Attribute{
 									"node_selector": schema.MapAttribute{
-										Description:         "NodeSelector defines the labels required by a node to schedule the component onto it.",
-										MarkdownDescription: "NodeSelector defines the labels required by a node to schedule the component onto it.",
+										Description:         "NodeSelector defines the labels required by a node to schedulethe component onto it.",
+										MarkdownDescription: "NodeSelector defines the labels required by a node to schedulethe component onto it.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -4173,12 +4277,12 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"pod_anti_affinity": schema.SingleNestedAttribute{
-										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
-										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule pods of a component.",
+										Description:         "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
+										MarkdownDescription: "PodAntiAffinity defines the pod anti affinity scheduling rules to schedule podsof a component.",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
@@ -4203,16 +4307,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -4226,8 +4330,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -4240,8 +4344,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4257,16 +4361,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -4280,8 +4384,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -4294,8 +4398,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -4303,8 +4407,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -4316,8 +4420,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -4330,8 +4434,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
@@ -4352,16 +4456,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -4375,8 +4479,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -4389,8 +4493,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4406,16 +4510,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -4429,8 +4533,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -4443,8 +4547,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -4452,8 +4556,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -4479,45 +4583,45 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "Tolerations defines the tolerations required by a node to schedule the component onto it.",
-										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedule the component onto it.",
+										Description:         "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
+										MarkdownDescription: "Tolerations defines the tolerations required by a node to schedulethe component onto it.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4557,16 +4661,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 													MarkdownDescription: "CA defines the spec for the custom CA for tenant's authentication.",
 													Attributes: map[string]schema.Attribute{
 														"ca_key": schema.StringAttribute{
-															Description:         "Key is the data key of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource. If empty, it defaults to 'service-ca.crt'.",
-															MarkdownDescription: "Key is the data key of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource. If empty, it defaults to 'service-ca.crt'.",
+															Description:         "Key is the data key of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.If empty, it defaults to 'service-ca.crt'.",
+															MarkdownDescription: "Key is the data key of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.If empty, it defaults to 'service-ca.crt'.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"ca_name": schema.StringAttribute{
-															Description:         "CA is the name of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource.",
-															MarkdownDescription: "CA is the name of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource.",
+															Description:         "CA is the name of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.",
+															MarkdownDescription: "CA is the name of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -4599,16 +4703,16 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 													MarkdownDescription: "IssuerCA defines the spec for the issuer CA for tenant's authentication.",
 													Attributes: map[string]schema.Attribute{
 														"ca_key": schema.StringAttribute{
-															Description:         "Key is the data key of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource. If empty, it defaults to 'service-ca.crt'.",
-															MarkdownDescription: "Key is the data key of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource. If empty, it defaults to 'service-ca.crt'.",
+															Description:         "Key is the data key of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.If empty, it defaults to 'service-ca.crt'.",
+															MarkdownDescription: "Key is the data key of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.If empty, it defaults to 'service-ca.crt'.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"ca_name": schema.StringAttribute{
-															Description:         "CA is the name of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource.",
-															MarkdownDescription: "CA is the name of a ConfigMap containing a CA certificate. It needs to be in the same namespace as the LokiStack custom resource.",
+															Description:         "CA is the name of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.",
+															MarkdownDescription: "CA is the name of a ConfigMap containing a CA certificate.It needs to be in the same namespace as the LokiStack custom resource.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -4833,8 +4937,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								MarkdownDescription: "Openshift defines the configuration specific to Openshift modes.",
 								Attributes: map[string]schema.Attribute{
 									"admin_groups": schema.ListAttribute{
-										Description:         "AdminGroups defines a list of groups, whose members are considered to have admin-privileges by the Loki Operator. Setting this to an empty array disables admin groups.  By default the following groups are considered admin-groups: - system:cluster-admins - cluster-admin - dedicated-admin",
-										MarkdownDescription: "AdminGroups defines a list of groups, whose members are considered to have admin-privileges by the Loki Operator. Setting this to an empty array disables admin groups.  By default the following groups are considered admin-groups: - system:cluster-admins - cluster-admin - dedicated-admin",
+										Description:         "AdminGroups defines a list of groups, whose members are considered to have admin-privileges by the Loki Operator.Setting this to an empty array disables admin groups.By default the following groups are considered admin-groups: - system:cluster-admins - cluster-admin - dedicated-admin",
+										MarkdownDescription: "AdminGroups defines a list of groups, whose members are considered to have admin-privileges by the Loki Operator.Setting this to an empty array disables admin groups.By default the following groups are considered admin-groups: - system:cluster-admins - cluster-admin - dedicated-admin",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,

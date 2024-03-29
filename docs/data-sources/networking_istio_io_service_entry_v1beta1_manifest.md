@@ -54,16 +54,19 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `hosts` (List of String) The hosts associated with the ServiceEntry.
+
 Optional:
 
 - `addresses` (List of String) The virtual IP addresses associated with the service.
 - `endpoints` (Attributes List) One or more endpoints associated with the service. (see [below for nested schema](#nestedatt--spec--endpoints))
 - `export_to` (List of String) A list of namespaces to which this service is exported.
-- `hosts` (List of String) The hosts associated with the ServiceEntry.
-- `location` (String)
+- `location` (String) Specify whether the service should be considered external to the mesh or part of the mesh.Valid Options: MESH_EXTERNAL, MESH_INTERNAL
 - `ports` (Attributes List) The ports associated with the external service. (see [below for nested schema](#nestedatt--spec--ports))
-- `resolution` (String) Service resolution mode for the hosts.
-- `subject_alt_names` (List of String)
+- `resolution` (String) Service resolution mode for the hosts.Valid Options: NONE, STATIC, DNS, DNS_ROUND_ROBIN
+- `subject_alt_names` (List of String) If specified, the proxy will verify that the server certificate's subject alternate name matches one of the specified values.
 - `workload_selector` (Attributes) Applicable only for MESH_INTERNAL services. (see [below for nested schema](#nestedatt--spec--workload_selector))
 
 <a id="nestedatt--spec--endpoints"></a>
@@ -71,24 +74,27 @@ Optional:
 
 Optional:
 
-- `address` (String)
+- `address` (String) Address associated with the network endpoint without the port.
 - `labels` (Map of String) One or more labels associated with the endpoint.
 - `locality` (String) The locality associated with the endpoint.
-- `network` (String)
+- `network` (String) Network enables Istio to group endpoints resident in the same L3 domain/network.
 - `ports` (Map of String) Set of ports associated with the endpoint.
-- `service_account` (String)
+- `service_account` (String) The service account associated with the workload if a sidecar is present in the workload.
 - `weight` (Number) The load balancing weight associated with the endpoint.
 
 
 <a id="nestedatt--spec--ports"></a>
 ### Nested Schema for `spec.ports`
 
-Optional:
+Required:
 
 - `name` (String) Label assigned to the port.
 - `number` (Number) A valid non-negative integer port number.
+
+Optional:
+
 - `protocol` (String) The protocol exposed on the port.
-- `target_port` (Number)
+- `target_port` (Number) The port number on the endpoint where the traffic will be received.
 
 
 <a id="nestedatt--spec--workload_selector"></a>
@@ -96,4 +102,4 @@ Optional:
 
 Optional:
 
-- `labels` (Map of String)
+- `labels` (Map of String) One or more labels that indicate a specific set of pods/VMs on which the configuration should be applied.

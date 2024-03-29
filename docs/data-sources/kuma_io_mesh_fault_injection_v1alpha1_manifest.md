@@ -56,11 +56,12 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 Optional:
 
 - `from` (Attributes List) From list makes a match between clients and corresponding configurations (see [below for nested schema](#nestedatt--spec--from))
+- `to` (Attributes List) To list makes a match between clients and corresponding configurations (see [below for nested schema](#nestedatt--spec--to))
 
 <a id="nestedatt--spec--target_ref"></a>
 ### Nested Schema for `spec.target_ref`
@@ -69,8 +70,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--from"></a>
@@ -78,11 +80,11 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group of destinations. (see [below for nested schema](#nestedatt--spec--from--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group ofdestinations. (see [below for nested schema](#nestedatt--spec--from--target_ref))
 
 Optional:
 
-- `default` (Attributes) Default is a configuration specific to the group of destinations referenced in 'targetRef' (see [below for nested schema](#nestedatt--spec--from--default))
+- `default` (Attributes) Default is a configuration specific to the group of destinations referenced in'targetRef' (see [below for nested schema](#nestedatt--spec--from--default))
 
 <a id="nestedatt--spec--from--target_ref"></a>
 ### Nested Schema for `spec.from.target_ref`
@@ -91,8 +93,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--from--default"></a>
@@ -107,9 +110,9 @@ Optional:
 
 Optional:
 
-- `abort` (Attributes) Abort defines a configuration of not delivering requests to destination service and replacing the responses from destination dataplane by predefined status code (see [below for nested schema](#nestedatt--spec--from--default--http--abort))
+- `abort` (Attributes) Abort defines a configuration of not delivering requests to destinationservice and replacing the responses from destination dataplane bypredefined status code (see [below for nested schema](#nestedatt--spec--from--default--http--abort))
 - `delay` (Attributes) Delay defines configuration of delaying a response from a destination (see [below for nested schema](#nestedatt--spec--from--default--http--delay))
-- `response_bandwidth` (Attributes) ResponseBandwidth defines a configuration to limit the speed of responding to the requests (see [below for nested schema](#nestedatt--spec--from--default--http--response_bandwidth))
+- `response_bandwidth` (Attributes) ResponseBandwidth defines a configuration to limit the speed ofresponding to the requests (see [below for nested schema](#nestedatt--spec--from--default--http--response_bandwidth))
 
 <a id="nestedatt--spec--from--default--http--abort"></a>
 ### Nested Schema for `spec.from.default.http.abort`
@@ -117,7 +120,7 @@ Optional:
 Required:
 
 - `http_status` (Number) HTTP status code which will be returned to source side
-- `percentage` (String) Percentage of requests on which abort will be injected, has to be either int or decimal represented as string.
+- `percentage` (String) Percentage of requests on which abort will be injected, has to beeither int or decimal represented as string.
 
 
 <a id="nestedatt--spec--from--default--http--delay"></a>
@@ -125,7 +128,7 @@ Required:
 
 Required:
 
-- `percentage` (String) Percentage of requests on which delay will be injected, has to be either int or decimal represented as string.
+- `percentage` (String) Percentage of requests on which delay will be injected, has to beeither int or decimal represented as string.
 - `value` (String) The duration during which the response will be delayed
 
 
@@ -134,5 +137,74 @@ Required:
 
 Required:
 
-- `limit` (String) Limit is represented by value measure in gbps, mbps, kbps or bps, e.g. 10kbps
-- `percentage` (String) Percentage of requests on which response bandwidth limit will be either int or decimal represented as string.
+- `limit` (String) Limit is represented by value measure in Gbps, Mbps, kbps, e.g.10kbps
+- `percentage` (String) Percentage of requests on which response bandwidth limit will beeither int or decimal represented as string.
+
+
+
+
+
+<a id="nestedatt--spec--to"></a>
+### Nested Schema for `spec.to`
+
+Required:
+
+- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group ofdestinations. (see [below for nested schema](#nestedatt--spec--to--target_ref))
+
+Optional:
+
+- `default` (Attributes) Default is a configuration specific to the group of destinations referenced in'targetRef' (see [below for nested schema](#nestedatt--spec--to--default))
+
+<a id="nestedatt--spec--to--target_ref"></a>
+### Nested Schema for `spec.to.target_ref`
+
+Optional:
+
+- `kind` (String) Kind of the referenced resource
+- `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
+
+
+<a id="nestedatt--spec--to--default"></a>
+### Nested Schema for `spec.to.default`
+
+Optional:
+
+- `http` (Attributes List) Http allows to define list of Http faults between dataplanes. (see [below for nested schema](#nestedatt--spec--to--default--http))
+
+<a id="nestedatt--spec--to--default--http"></a>
+### Nested Schema for `spec.to.default.http`
+
+Optional:
+
+- `abort` (Attributes) Abort defines a configuration of not delivering requests to destinationservice and replacing the responses from destination dataplane bypredefined status code (see [below for nested schema](#nestedatt--spec--to--default--http--abort))
+- `delay` (Attributes) Delay defines configuration of delaying a response from a destination (see [below for nested schema](#nestedatt--spec--to--default--http--delay))
+- `response_bandwidth` (Attributes) ResponseBandwidth defines a configuration to limit the speed ofresponding to the requests (see [below for nested schema](#nestedatt--spec--to--default--http--response_bandwidth))
+
+<a id="nestedatt--spec--to--default--http--abort"></a>
+### Nested Schema for `spec.to.default.http.abort`
+
+Required:
+
+- `http_status` (Number) HTTP status code which will be returned to source side
+- `percentage` (String) Percentage of requests on which abort will be injected, has to beeither int or decimal represented as string.
+
+
+<a id="nestedatt--spec--to--default--http--delay"></a>
+### Nested Schema for `spec.to.default.http.delay`
+
+Required:
+
+- `percentage` (String) Percentage of requests on which delay will be injected, has to beeither int or decimal represented as string.
+- `value` (String) The duration during which the response will be delayed
+
+
+<a id="nestedatt--spec--to--default--http--response_bandwidth"></a>
+### Nested Schema for `spec.to.default.http.response_bandwidth`
+
+Required:
+
+- `limit` (String) Limit is represented by value measure in Gbps, Mbps, kbps, e.g.10kbps
+- `percentage` (String) Percentage of requests on which response bandwidth limit will beeither int or decimal represented as string.

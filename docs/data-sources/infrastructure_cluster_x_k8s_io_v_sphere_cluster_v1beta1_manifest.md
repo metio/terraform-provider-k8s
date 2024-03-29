@@ -3,12 +3,12 @@
 page_title: "k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "infrastructure.cluster.x-k8s.io"
 description: |-
-  VSphereCluster is the Schema for the vsphereclusters API
+  VSphereCluster is the Schema for the vsphereclusters API.
 ---
 
 # k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_v1beta1_manifest (Data Source)
 
-VSphereCluster is the Schema for the vsphereclusters API
+VSphereCluster is the Schema for the vsphereclusters API.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_v1beta1_manifest" "ex
 
 ### Optional
 
-- `spec` (Attributes) VSphereClusterSpec defines the desired state of VSphereCluster (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) VSphereClusterSpec defines the desired state of VSphereCluster. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

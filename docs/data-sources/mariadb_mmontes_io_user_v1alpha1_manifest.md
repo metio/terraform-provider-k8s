@@ -3,12 +3,12 @@
 page_title: "k8s_mariadb_mmontes_io_user_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "mariadb.mmontes.io"
 description: |-
-  User is the Schema for the users API
+  User is the Schema for the users API.  It is used to define grants as if you were running a 'CREATE USER' statement.
 ---
 
 # k8s_mariadb_mmontes_io_user_v1alpha1_manifest (Data Source)
 
-User is the Schema for the users API
+User is the Schema for the users API.  It is used to define grants as if you were running a 'CREATE USER' statement.
 
 ## Example Usage
 
@@ -56,14 +56,16 @@ Optional:
 
 Required:
 
-- `maria_db_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--maria_db_ref))
-- `password_secret_key_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
+- `maria_db_ref` (Attributes) MariaDBRef is a reference to a MariaDB object. (see [below for nested schema](#nestedatt--spec--maria_db_ref))
+- `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a reference to the password to be used by the User. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
 
 Optional:
 
-- `host` (String)
-- `max_user_connections` (Number)
-- `name` (String)
+- `host` (String) Host related to the User.
+- `max_user_connections` (Number) MaxUserConnections defines the maximum number of connections that the User can establish.
+- `name` (String) Name overrides the default name provided by metadata.name.
+- `requeue_interval` (String) RequeueInterval is used to perform requeue reconcilizations.
+- `retry_interval` (String) RetryInterval is the interval used to perform retries.
 
 <a id="nestedatt--spec--maria_db_ref"></a>
 ### Nested Schema for `spec.maria_db_ref`
@@ -77,7 +79,7 @@ Optional:
 - `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 - `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
-- `wait_for_it` (Boolean)
+- `wait_for_it` (Boolean) WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.
 
 
 <a id="nestedatt--spec--password_secret_key_ref"></a>

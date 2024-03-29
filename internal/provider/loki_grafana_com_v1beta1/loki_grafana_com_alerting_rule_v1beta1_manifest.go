@@ -153,8 +153,8 @@ func (r *LokiGrafanaComAlertingRuleV1Beta1Manifest) Schema(_ context.Context, _ 
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"interval": schema.StringAttribute{
-									Description:         "Interval defines the time interval between evaluation of the given alerting rule.",
-									MarkdownDescription: "Interval defines the time interval between evaluation of the given alerting rule.",
+									Description:         "Interval defines the time interval between evaluation of the givenalerting rule.",
+									MarkdownDescription: "Interval defines the time interval between evaluation of the givenalerting rule.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -202,16 +202,16 @@ func (r *LokiGrafanaComAlertingRuleV1Beta1Manifest) Schema(_ context.Context, _ 
 											},
 
 											"expr": schema.StringAttribute{
-												Description:         "The LogQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts.",
-												MarkdownDescription: "The LogQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts.",
+												Description:         "The LogQL expression to evaluate. Every evaluation cycle this isevaluated at the current time, and all resultant time series becomepending/firing alerts.",
+												MarkdownDescription: "The LogQL expression to evaluate. Every evaluation cycle this isevaluated at the current time, and all resultant time series becomepending/firing alerts.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"for": schema.StringAttribute{
-												Description:         "Alerts are considered firing once they have been returned for this long. Alerts which have not yet fired for long enough are considered pending.",
-												MarkdownDescription: "Alerts are considered firing once they have been returned for this long. Alerts which have not yet fired for long enough are considered pending.",
+												Description:         "Alerts are considered firing once they have been returned for this long.Alerts which have not yet fired for long enough are considered pending.",
+												MarkdownDescription: "Alerts are considered firing once they have been returned for this long.Alerts which have not yet fired for long enough are considered pending.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

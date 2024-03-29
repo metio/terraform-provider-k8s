@@ -43,9 +43,11 @@ type OperationsKubeedgeIoNodeUpgradeJobV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Concurrency   *int64  `tfsdk:"concurrency" json:"concurrency,omitempty"`
-		Image         *string `tfsdk:"image" json:"image,omitempty"`
-		LabelSelector *struct {
+		CheckItems      *[]string `tfsdk:"check_items" json:"checkItems,omitempty"`
+		Concurrency     *int64    `tfsdk:"concurrency" json:"concurrency,omitempty"`
+		FailureTolerate *string   `tfsdk:"failure_tolerate" json:"failureTolerate,omitempty"`
+		Image           *string   `tfsdk:"image" json:"image,omitempty"`
+		LabelSelector   *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
 				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -55,7 +57,6 @@ type OperationsKubeedgeIoNodeUpgradeJobV1Alpha1ManifestData struct {
 		} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
 		NodeNames      *[]string `tfsdk:"node_names" json:"nodeNames,omitempty"`
 		TimeoutSeconds *int64    `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
-		UpgradeTool    *string   `tfsdk:"upgrade_tool" json:"upgradeTool,omitempty"`
 		Version        *string   `tfsdk:"version" json:"version,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -133,9 +134,26 @@ func (r *OperationsKubeedgeIoNodeUpgradeJobV1Alpha1Manifest) Schema(_ context.Co
 				Description:         "Specification of the desired behavior of NodeUpgradeJob.",
 				MarkdownDescription: "Specification of the desired behavior of NodeUpgradeJob.",
 				Attributes: map[string]schema.Attribute{
+					"check_items": schema.ListAttribute{
+						Description:         "CheckItems specifies the items need to be checked before the task is executed. The default CheckItems value is nil.",
+						MarkdownDescription: "CheckItems specifies the items need to be checked before the task is executed. The default CheckItems value is nil.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"concurrency": schema.Int64Attribute{
 						Description:         "Concurrency specifies the max number of edge nodes that can be upgraded at the same time. The default Concurrency value is 1.",
 						MarkdownDescription: "Concurrency specifies the max number of edge nodes that can be upgraded at the same time. The default Concurrency value is 1.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"failure_tolerate": schema.StringAttribute{
+						Description:         "FailureTolerate specifies the task tolerance failure ratio. The default FailureTolerate value is 0.1.",
+						MarkdownDescription: "FailureTolerate specifies the task tolerance failure ratio. The default FailureTolerate value is 0.1.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -215,14 +233,6 @@ func (r *OperationsKubeedgeIoNodeUpgradeJobV1Alpha1Manifest) Schema(_ context.Co
 					"timeout_seconds": schema.Int64Attribute{
 						Description:         "TimeoutSeconds limits the duration of the node upgrade job. Default to 300. If set to 0, we'll use the default value 300.",
 						MarkdownDescription: "TimeoutSeconds limits the duration of the node upgrade job. Default to 300. If set to 0, we'll use the default value 300.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
-					"upgrade_tool": schema.StringAttribute{
-						Description:         "UpgradeTool is a request to decide use which upgrade tool. If it is empty, the upgrade job simply use default upgrade tool keadm to do upgrade operation.",
-						MarkdownDescription: "UpgradeTool is a request to decide use which upgrade tool. If it is empty, the upgrade job simply use default upgrade tool keadm to do upgrade operation.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

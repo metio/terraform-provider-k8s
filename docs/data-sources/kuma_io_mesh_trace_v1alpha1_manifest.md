@@ -56,7 +56,7 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 Optional:
 
@@ -69,8 +69,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--default"></a>
@@ -78,9 +79,9 @@ Optional:
 
 Optional:
 
-- `backends` (Attributes List) A one element array of backend definition. Envoy allows configuring only 1 backend, so the natural way of representing that would be just one object. Unfortunately due to the reasons explained in MADR 009-tracing-policy this has to be a one element array for now. (see [below for nested schema](#nestedatt--spec--default--backends))
-- `sampling` (Attributes) Sampling configuration. Sampling is the process by which a decision is made on whether to process/export a span or not. (see [below for nested schema](#nestedatt--spec--default--sampling))
-- `tags` (Attributes List) Custom tags configuration. You can add custom tags to traces based on headers or literal values. (see [below for nested schema](#nestedatt--spec--default--tags))
+- `backends` (Attributes List) A one element array of backend definition.Envoy allows configuring only 1 backend, so the natural way ofrepresenting that would be just one object. Unfortunately due to thereasons explained in MADR 009-tracing-policy this has to be a one elementarray for now. (see [below for nested schema](#nestedatt--spec--default--backends))
+- `sampling` (Attributes) Sampling configuration.Sampling is the process by which a decision is made on whether toprocess/export a span or not. (see [below for nested schema](#nestedatt--spec--default--sampling))
+- `tags` (Attributes List) Custom tags configuration. You can add custom tags to traces based onheaders or literal values. (see [below for nested schema](#nestedatt--spec--default--tags))
 
 <a id="nestedatt--spec--default--backends"></a>
 ### Nested Schema for `spec.default.backends`
@@ -100,11 +101,11 @@ Optional:
 
 Required:
 
-- `url` (String) Address of Datadog collector, only host and port are allowed (no paths, fragments etc.)
+- `url` (String) Address of Datadog collector, only host and port are allowed (no paths,fragments etc.)
 
 Optional:
 
-- `split_service` (Boolean) Determines if datadog service name should be split based on traffic direction and destination. For example, with 'splitService: true' and a 'backend' service that communicates with a couple of databases, you would get service names like 'backend_INBOUND', 'backend_OUTBOUND_db1', and 'backend_OUTBOUND_db2' in Datadog. Default: false
+- `split_service` (Boolean) Determines if datadog service name should be split based on trafficdirection and destination. For example, with 'splitService: true' and a'backend' service that communicates with a couple of databases, you wouldget service names like 'backend_INBOUND', 'backend_OUTBOUND_db1', and'backend_OUTBOUND_db2' in Datadog.
 
 
 <a id="nestedatt--spec--default--backends--open_telemetry"></a>
@@ -124,9 +125,9 @@ Required:
 
 Optional:
 
-- `api_version` (String) Version of the API. values: httpJson, httpProto. Default: httpJson see https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/trace/v3/zipkin.proto#L66
-- `shared_span_context` (Boolean) Determines whether client and server spans will share the same span context. Default: true. https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/trace/v3/zipkin.proto#L63
-- `trace_id128bit` (Boolean) Generate 128bit traces. Default: false
+- `api_version` (String) Version of the API.https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/trace/v3/zipkin.proto#L66
+- `shared_span_context` (Boolean) Determines whether client and server spans will share the same spancontext.https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/trace/v3/zipkin.proto#L63
+- `trace_id128bit` (Boolean) Generate 128bit traces.
 
 
 
@@ -135,9 +136,9 @@ Optional:
 
 Optional:
 
-- `client` (String) Target percentage of requests that will be force traced if the 'x-client-trace-id' header is set. Default: 100% Mirror of client_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L127-L133 Either int or decimal represented as string.
-- `overall` (String) Target percentage of requests will be traced after all other sampling checks have been applied (client, force tracing, random sampling). This field functions as an upper limit on the total configured sampling rate. For instance, setting client_sampling to 100% but overall_sampling to 1% will result in only 1% of client requests with the appropriate headers to be force traced. Default: 100% Mirror of overall_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L142-L150 Either int or decimal represented as string.
-- `random` (String) Target percentage of requests that will be randomly selected for trace generation, if not requested by the client or not forced. Default: 100% Mirror of random_sampling in Envoy https://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L135-L140 Either int or decimal represented as string.
+- `client` (String) Target percentage of requests that will be force traced if the'x-client-trace-id' header is set. Mirror of client_sampling in Envoyhttps://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L127-L133Either int or decimal represented as string.
+- `overall` (String) Target percentage of requests will be tracedafter all other sampling checks have been applied (client, force tracing,random sampling). This field functions as an upper limit on the totalconfigured sampling rate. For instance, setting client_sampling to 100%but overall_sampling to 1% will result in only 1% of client requests withthe appropriate headers to be force traced. Mirror ofoverall_sampling in Envoyhttps://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L142-L150Either int or decimal represented as string.
+- `random` (String) Target percentage of requests that will be randomly selected for tracegeneration, if not requested by the client or not forced.Mirror of random_sampling in Envoyhttps://github.com/envoyproxy/envoy/blob/v1.22.0/api/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager.proto#L135-L140Either int or decimal represented as string.
 
 
 <a id="nestedatt--spec--default--tags"></a>
@@ -161,4 +162,4 @@ Required:
 
 Optional:
 
-- `default` (String) Default value to use if header is missing. If the default is missing and there is no value the tag will not be included.
+- `default` (String) Default value to use if header is missing.If the default is missing and there is no value the tag will not beincluded.

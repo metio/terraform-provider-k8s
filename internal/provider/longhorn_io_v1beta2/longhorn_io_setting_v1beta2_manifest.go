@@ -129,8 +129,8 @@ func (r *LonghornIoSettingV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 			},
 
 			"value": schema.StringAttribute{
-				Description:         "",
-				MarkdownDescription: "",
+				Description:         "The value of the setting.",
+				MarkdownDescription: "The value of the setting.",
 				Required:            true,
 				Optional:            false,
 				Computed:            false,

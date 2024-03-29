@@ -88,23 +88,25 @@ type AcidZalanDoOperatorConfigurationV1ManifestData struct {
 		Etcd_host                             *string `tfsdk:"etcd_host" json:"etcd_host,omitempty"`
 		Ignore_instance_limits_annotation_key *string `tfsdk:"ignore_instance_limits_annotation_key" json:"ignore_instance_limits_annotation_key,omitempty"`
 		Kubernetes                            *struct {
-			Additional_pod_capabilities      *[]string          `tfsdk:"additional_pod_capabilities" json:"additional_pod_capabilities,omitempty"`
-			Cluster_domain                   *string            `tfsdk:"cluster_domain" json:"cluster_domain,omitempty"`
-			Cluster_labels                   *map[string]string `tfsdk:"cluster_labels" json:"cluster_labels,omitempty"`
-			Cluster_name_label               *string            `tfsdk:"cluster_name_label" json:"cluster_name_label,omitempty"`
-			Custom_pod_annotations           *map[string]string `tfsdk:"custom_pod_annotations" json:"custom_pod_annotations,omitempty"`
-			Delete_annotation_date_key       *string            `tfsdk:"delete_annotation_date_key" json:"delete_annotation_date_key,omitempty"`
-			Delete_annotation_name_key       *string            `tfsdk:"delete_annotation_name_key" json:"delete_annotation_name_key,omitempty"`
-			Downscaler_annotations           *[]string          `tfsdk:"downscaler_annotations" json:"downscaler_annotations,omitempty"`
-			Enable_cross_namespace_secret    *bool              `tfsdk:"enable_cross_namespace_secret" json:"enable_cross_namespace_secret,omitempty"`
-			Enable_init_containers           *bool              `tfsdk:"enable_init_containers" json:"enable_init_containers,omitempty"`
-			Enable_pod_antiaffinity          *bool              `tfsdk:"enable_pod_antiaffinity" json:"enable_pod_antiaffinity,omitempty"`
-			Enable_pod_disruption_budget     *bool              `tfsdk:"enable_pod_disruption_budget" json:"enable_pod_disruption_budget,omitempty"`
-			Enable_readiness_probe           *bool              `tfsdk:"enable_readiness_probe" json:"enable_readiness_probe,omitempty"`
-			Enable_sidecars                  *bool              `tfsdk:"enable_sidecars" json:"enable_sidecars,omitempty"`
-			Ignored_annotations              *[]string          `tfsdk:"ignored_annotations" json:"ignored_annotations,omitempty"`
-			Infrastructure_roles_secret_name *string            `tfsdk:"infrastructure_roles_secret_name" json:"infrastructure_roles_secret_name,omitempty"`
-			Infrastructure_roles_secrets     *[]struct {
+			Additional_pod_capabilities             *[]string          `tfsdk:"additional_pod_capabilities" json:"additional_pod_capabilities,omitempty"`
+			Cluster_domain                          *string            `tfsdk:"cluster_domain" json:"cluster_domain,omitempty"`
+			Cluster_labels                          *map[string]string `tfsdk:"cluster_labels" json:"cluster_labels,omitempty"`
+			Cluster_name_label                      *string            `tfsdk:"cluster_name_label" json:"cluster_name_label,omitempty"`
+			Custom_pod_annotations                  *map[string]string `tfsdk:"custom_pod_annotations" json:"custom_pod_annotations,omitempty"`
+			Delete_annotation_date_key              *string            `tfsdk:"delete_annotation_date_key" json:"delete_annotation_date_key,omitempty"`
+			Delete_annotation_name_key              *string            `tfsdk:"delete_annotation_name_key" json:"delete_annotation_name_key,omitempty"`
+			Downscaler_annotations                  *[]string          `tfsdk:"downscaler_annotations" json:"downscaler_annotations,omitempty"`
+			Enable_cross_namespace_secret           *bool              `tfsdk:"enable_cross_namespace_secret" json:"enable_cross_namespace_secret,omitempty"`
+			Enable_finalizers                       *bool              `tfsdk:"enable_finalizers" json:"enable_finalizers,omitempty"`
+			Enable_init_containers                  *bool              `tfsdk:"enable_init_containers" json:"enable_init_containers,omitempty"`
+			Enable_persistent_volume_claim_deletion *bool              `tfsdk:"enable_persistent_volume_claim_deletion" json:"enable_persistent_volume_claim_deletion,omitempty"`
+			Enable_pod_antiaffinity                 *bool              `tfsdk:"enable_pod_antiaffinity" json:"enable_pod_antiaffinity,omitempty"`
+			Enable_pod_disruption_budget            *bool              `tfsdk:"enable_pod_disruption_budget" json:"enable_pod_disruption_budget,omitempty"`
+			Enable_readiness_probe                  *bool              `tfsdk:"enable_readiness_probe" json:"enable_readiness_probe,omitempty"`
+			Enable_sidecars                         *bool              `tfsdk:"enable_sidecars" json:"enable_sidecars,omitempty"`
+			Ignored_annotations                     *[]string          `tfsdk:"ignored_annotations" json:"ignored_annotations,omitempty"`
+			Infrastructure_roles_secret_name        *string            `tfsdk:"infrastructure_roles_secret_name" json:"infrastructure_roles_secret_name,omitempty"`
+			Infrastructure_roles_secrets            *[]struct {
 				Defaultrolevalue *string `tfsdk:"defaultrolevalue" json:"defaultrolevalue,omitempty"`
 				Defaultuservalue *string `tfsdk:"defaultuservalue" json:"defaultuservalue,omitempty"`
 				Details          *string `tfsdk:"details" json:"details,omitempty"`
@@ -172,6 +174,7 @@ type AcidZalanDoOperatorConfigurationV1ManifestData struct {
 			Logical_backup_azure_storage_container        *string `tfsdk:"logical_backup_azure_storage_container" json:"logical_backup_azure_storage_container,omitempty"`
 			Logical_backup_cpu_limit                      *string `tfsdk:"logical_backup_cpu_limit" json:"logical_backup_cpu_limit,omitempty"`
 			Logical_backup_cpu_request                    *string `tfsdk:"logical_backup_cpu_request" json:"logical_backup_cpu_request,omitempty"`
+			Logical_backup_cronjob_environment_secret     *string `tfsdk:"logical_backup_cronjob_environment_secret" json:"logical_backup_cronjob_environment_secret,omitempty"`
 			Logical_backup_docker_image                   *string `tfsdk:"logical_backup_docker_image" json:"logical_backup_docker_image,omitempty"`
 			Logical_backup_google_application_credentials *string `tfsdk:"logical_backup_google_application_credentials" json:"logical_backup_google_application_credentials,omitempty"`
 			Logical_backup_job_prefix                     *string `tfsdk:"logical_backup_job_prefix" json:"logical_backup_job_prefix,omitempty"`
@@ -743,7 +746,23 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"enable_finalizers": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enable_init_containers": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enable_persistent_volume_claim_deletion": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -1338,6 +1357,14 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 								Validators: []validator.String{
 									stringvalidator.RegexMatches(regexp.MustCompile(`^(\d+m|\d+(\.\d{1,3})?)$`), ""),
 								},
+							},
+
+							"logical_backup_cronjob_environment_secret": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"logical_backup_docker_image": schema.StringAttribute{

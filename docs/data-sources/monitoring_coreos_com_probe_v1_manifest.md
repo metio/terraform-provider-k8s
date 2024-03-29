@@ -68,6 +68,8 @@ Optional:
 - `oauth2` (Attributes) OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer. (see [below for nested schema](#nestedatt--spec--oauth2))
 - `prober` (Attributes) Specification for the prober to use for probing targets. The prober.URL parameter is required. Targets cannot be probed if left empty. (see [below for nested schema](#nestedatt--spec--prober))
 - `sample_limit` (Number) SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.
+- `scrape_class` (String) The scrape class to apply.
+- `scrape_protocols` (List of String) 'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.
 - `scrape_timeout` (String) Timeout for scraping metrics from the Prometheus exporter. If not specified, the Prometheus global scrape timeout is used.
 - `target_limit` (Number) TargetLimit defines a limit on the number of scraped targets that will be accepted.
 - `targets` (Attributes) Targets defines a set of static or dynamically discovered targets to probe. (see [below for nested schema](#nestedatt--spec--targets))
@@ -100,8 +102,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--basic_auth--username))
 
 <a id="nestedatt--spec--basic_auth--password"></a>
 ### Nested Schema for `spec.basic_auth.password`
@@ -162,14 +164,14 @@ Optional:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--oauth2--client_id"></a>
 ### Nested Schema for `spec.oauth2.client_id`

@@ -91,9 +91,9 @@ Required:
 
 Optional:
 
-- `name` (String) Name is an alternate way of specifying the target cluster by its symbolic name
+- `name` (String) Name is an alternate way of specifying the target cluster by its symbolic name. This must be set if Server is not set.
 - `namespace` (String) Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
-- `server` (String) Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API
+- `server` (String) Server specifies the URL of the target cluster's Kubernetes control plane API. This must be set if Name is not set.
 
 
 <a id="nestedatt--spec--namespace_resource_blacklist"></a>

@@ -208,12 +208,12 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "VSphereClusterSpec defines the desired state of VSphereCluster",
-				MarkdownDescription: "VSphereClusterSpec defines the desired state of VSphereCluster",
+				Description:         "VSphereClusterSpec defines the desired state of VSphereCluster.",
+				MarkdownDescription: "VSphereClusterSpec defines the desired state of VSphereCluster.",
 				Attributes: map[string]schema.Attribute{
 					"cloud_provider_configuration": schema.SingleNestedAttribute{
-						Description:         "CloudProviderConfiguration holds the cluster-wide configuration for the DEPRECATED: will be removed in v1alpha4 vSphere cloud provider.",
-						MarkdownDescription: "CloudProviderConfiguration holds the cluster-wide configuration for the DEPRECATED: will be removed in v1alpha4 vSphere cloud provider.",
+						Description:         "CloudProviderConfiguration holds the cluster-wide configuration for the vSphere cloud provider.  Deprecated: will be removed in v1alpha4.",
+						MarkdownDescription: "CloudProviderConfiguration holds the cluster-wide configuration for the vSphere cloud provider.  Deprecated: will be removed in v1alpha4.",
 						Attributes: map[string]schema.Attribute{
 							"disk": schema.SingleNestedAttribute{
 								Description:         "Disk is the vSphere cloud provider's disk configuration.",
@@ -663,16 +663,16 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterV1Alpha3Manifest) Schema(_ con
 					},
 
 					"insecure": schema.BoolAttribute{
-						Description:         "Insecure is a flag that controls whether or not to validate the vSphere server's certificate. DEPRECATED: will be removed in v1alpha4",
-						MarkdownDescription: "Insecure is a flag that controls whether or not to validate the vSphere server's certificate. DEPRECATED: will be removed in v1alpha4",
+						Description:         "Insecure is a flag that controls whether to validate the vSphere server's certificate.  Deprecated: will be removed in v1alpha4.",
+						MarkdownDescription: "Insecure is a flag that controls whether to validate the vSphere server's certificate.  Deprecated: will be removed in v1alpha4.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"load_balancer_ref": schema.SingleNestedAttribute{
-						Description:         "LoadBalancerRef may be used to enable a control plane load balancer for this cluster. When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready field will not be true until the referenced resource is Status.Ready and has a non-empty Status.Address value. DEPRECATED: will be removed in v1alpha4",
-						MarkdownDescription: "LoadBalancerRef may be used to enable a control plane load balancer for this cluster. When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready field will not be true until the referenced resource is Status.Ready and has a non-empty Status.Address value. DEPRECATED: will be removed in v1alpha4",
+						Description:         "LoadBalancerRef may be used to enable a control plane load balancer for this cluster. When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready field will not be true until the referenced resource is Status.Ready and has a non-empty Status.Address value.  Deprecated: will be removed in v1alpha4.",
+						MarkdownDescription: "LoadBalancerRef may be used to enable a control plane load balancer for this cluster. When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready field will not be true until the referenced resource is Status.Ready and has a non-empty Status.Address value.  Deprecated: will be removed in v1alpha4.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",

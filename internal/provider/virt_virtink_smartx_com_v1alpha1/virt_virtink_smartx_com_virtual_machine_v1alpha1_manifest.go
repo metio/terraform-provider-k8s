@@ -187,8 +187,12 @@ type VirtVirtinkSmartxComVirtualMachineV1Alpha1ManifestData struct {
 				Masquerade *struct {
 					Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
 				} `tfsdk:"masquerade" json:"masquerade,omitempty"`
-				Name      *string            `tfsdk:"name" json:"name,omitempty"`
-				Sriov     *map[string]string `tfsdk:"sriov" json:"sriov,omitempty"`
+				Name  *string            `tfsdk:"name" json:"name,omitempty"`
+				Sriov *map[string]string `tfsdk:"sriov" json:"sriov,omitempty"`
+				Vdpa  *struct {
+					Iommu     *bool  `tfsdk:"iommu" json:"iommu,omitempty"`
+					NumQueues *int64 `tfsdk:"num_queues" json:"numQueues,omitempty"`
+				} `tfsdk:"vdpa" json:"vdpa,omitempty"`
 				VhostUser *map[string]string `tfsdk:"vhost_user" json:"vhostUser,omitempty"`
 			} `tfsdk:"interfaces" json:"interfaces,omitempty"`
 			Kernel *struct {
@@ -1340,6 +1344,31 @@ func (r *VirtVirtinkSmartxComVirtualMachineV1Alpha1Manifest) Schema(_ context.Co
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"vdpa": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"iommu": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"num_queues": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"vhost_user": schema.MapAttribute{

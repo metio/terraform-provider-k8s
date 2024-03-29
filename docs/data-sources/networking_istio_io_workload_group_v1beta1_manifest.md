@@ -30,7 +30,7 @@ data "k8s_networking_istio_io_workload_group_v1beta1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) 'WorkloadGroup' enables specifying the properties of a single workload for bootstrap and provides a template for 'WorkloadEntry', similar to how 'Deployment' specifies properties of workloads via 'Pod' templates. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -54,11 +54,28 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `template` (Attributes) Template to be used for the generation of 'WorkloadEntry' resources that belong to this 'WorkloadGroup'. (see [below for nested schema](#nestedatt--spec--template))
+
 Optional:
 
 - `metadata` (Attributes) Metadata that will be used for all corresponding 'WorkloadEntries'. (see [below for nested schema](#nestedatt--spec--metadata))
 - `probe` (Attributes) 'ReadinessProbe' describes the configuration the user must provide for healthchecking on their workload. (see [below for nested schema](#nestedatt--spec--probe))
-- `template` (Attributes) Template to be used for the generation of 'WorkloadEntry' resources that belong to this 'WorkloadGroup'. (see [below for nested schema](#nestedatt--spec--template))
+
+<a id="nestedatt--spec--template"></a>
+### Nested Schema for `spec.template`
+
+Optional:
+
+- `address` (String) Address associated with the network endpoint without the port.
+- `labels` (Map of String) One or more labels associated with the endpoint.
+- `locality` (String) The locality associated with the endpoint.
+- `network` (String) Network enables Istio to group endpoints resident in the same L3 domain/network.
+- `ports` (Map of String) Set of ports associated with the endpoint.
+- `service_account` (String) The service account associated with the workload if a sidecar is present in the workload.
+- `weight` (Number) The load balancing weight associated with the endpoint.
+
 
 <a id="nestedatt--spec--metadata"></a>
 ### Nested Schema for `spec.metadata`
@@ -76,7 +93,7 @@ Optional:
 
 - `exec` (Attributes) Health is determined by how the command that is executed exited. (see [below for nested schema](#nestedatt--spec--probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.
-- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--probe--http_get))
+- `http_get` (Attributes) 'httpGet' is performed to a given endpoint and the status/able to connect determines health. (see [below for nested schema](#nestedatt--spec--probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before readiness probes are initiated.
 - `period_seconds` (Number) How often (in seconds) to perform the probe.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed.
@@ -94,12 +111,15 @@ Optional:
 <a id="nestedatt--spec--probe--http_get"></a>
 ### Nested Schema for `spec.probe.http_get`
 
+Required:
+
+- `port` (Number) Port on which the endpoint lives.
+
 Optional:
 
 - `host` (String) Host name to connect to, defaults to the pod IP.
 - `http_headers` (Attributes List) Headers the proxy will pass on to make the request. (see [below for nested schema](#nestedatt--spec--probe--http_get--http_headers))
 - `path` (String) Path to access on the HTTP server.
-- `port` (Number) Port on which the endpoint lives.
 - `scheme` (String)
 
 <a id="nestedatt--spec--probe--http_get--http_headers"></a>
@@ -115,22 +135,10 @@ Optional:
 <a id="nestedatt--spec--probe--tcp_socket"></a>
 ### Nested Schema for `spec.probe.tcp_socket`
 
+Required:
+
+- `port` (Number)
+
 Optional:
 
 - `host` (String)
-- `port` (Number)
-
-
-
-<a id="nestedatt--spec--template"></a>
-### Nested Schema for `spec.template`
-
-Optional:
-
-- `address` (String)
-- `labels` (Map of String) One or more labels associated with the endpoint.
-- `locality` (String) The locality associated with the endpoint.
-- `network` (String)
-- `ports` (Map of String) Set of ports associated with the endpoint.
-- `service_account` (String)
-- `weight` (Number) The load balancing weight associated with the endpoint.

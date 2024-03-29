@@ -3,12 +3,4 @@ data "k8s_iot_eclipse_org_hawkbit_v1alpha1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    database = {
-      embedded = {}
-    }
-    rabbit = {
-      managed = {}
-    }
-  }
 }

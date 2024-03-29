@@ -1669,6 +1669,12 @@ type DatabasesSchemaheroIoDatabaseV1Alpha4ManifestData struct {
 		Schemahero         *struct {
 			Image        *string            `tfsdk:"image" json:"image,omitempty"`
 			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+			Tolerations  *[]struct {
+				Effect   *string `tfsdk:"effect" json:"effect,omitempty"`
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Operator *string `tfsdk:"operator" json:"operator,omitempty"`
+				Value    *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		} `tfsdk:"schemahero" json:"schemahero,omitempty"`
 		Template *struct {
 			Metadata *struct {
@@ -11773,6 +11779,49 @@ func (r *DatabasesSchemaheroIoDatabaseV1Alpha4Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"tolerations": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"effect": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"operator": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

@@ -16,22 +16,7 @@ ClusterManager configures the controllers on the hub that govern registration an
 data "k8s_operator_open_cluster_management_io_cluster_manager_v1_manifest" "example" {
   metadata = {
     name = "some-name"
-  }
-  spec = {
-    deploy_option = {
-      mode = "Default"
-    }
-    placement_image_pull_spec = "quay.io/open-cluster-management/placement:v0.8.0"
-    registration_configuration = {
-      feature_gates = [
-        {
-          feature = "DefaultClusterSet"
-          mode    = "Enable"
-        }
-      ]
-    }
-    registration_image_pull_spec = "quay.io/open-cluster-management/registration:v0.8.0"
-    work_image_pull_spec         = "quay.io/open-cluster-management/work:v0.8.0"
+
   }
 }
 ```
@@ -77,6 +62,7 @@ Optional:
 - `placement_image_pull_spec` (String) PlacementImagePullSpec represents the desired image configuration of placement controller/webhook installed on hub.
 - `registration_configuration` (Attributes) RegistrationConfiguration contains the configuration of registration (see [below for nested schema](#nestedatt--spec--registration_configuration))
 - `registration_image_pull_spec` (String) RegistrationImagePullSpec represents the desired image of registration controller/webhook installed on hub.
+- `resource_requirement` (Attributes) ResourceRequirement specify QoS classes of deployments managed by clustermanager. It applies to all the containers in the deployments. (see [below for nested schema](#nestedatt--spec--resource_requirement))
 - `work_configuration` (Attributes) WorkConfiguration contains the configuration of work (see [below for nested schema](#nestedatt--spec--work_configuration))
 - `work_image_pull_spec` (String) WorkImagePullSpec represents the desired image configuration of work controller/webhook installed on hub.
 
@@ -109,7 +95,7 @@ Required:
 
 Optional:
 
-- `hosted` (Attributes) Hosted includes configurations we needs for clustermanager in the Hosted mode. (see [below for nested schema](#nestedatt--spec--deploy_option--hosted))
+- `hosted` (Attributes) Hosted includes configurations we need for clustermanager in the Hosted mode. (see [below for nested schema](#nestedatt--spec--deploy_option--hosted))
 
 <a id="nestedatt--spec--deploy_option--hosted"></a>
 ### Nested Schema for `spec.deploy_option.hosted`
@@ -151,7 +137,7 @@ Optional:
 Optional:
 
 - `node_selector` (Map of String) NodeSelector defines which Nodes the Pods are scheduled on. The default is an empty list.
-- `tolerations` (Attributes List) Tolerations is attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list. (see [below for nested schema](#nestedatt--spec--node_placement--tolerations))
+- `tolerations` (Attributes List) Tolerations are attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list. (see [below for nested schema](#nestedatt--spec--node_placement--tolerations))
 
 <a id="nestedatt--spec--node_placement--tolerations"></a>
 ### Nested Schema for `spec.node_placement.tolerations`
@@ -184,6 +170,33 @@ Required:
 Optional:
 
 - `mode` (String) Mode is either Enable, Disable, '' where '' is Disable by default. In Enable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=true'. In Disable mode, a valid feature gate 'featuregate/Foo' will be set to '--featuregate/Foo=false'.
+
+
+
+<a id="nestedatt--spec--resource_requirement"></a>
+### Nested Schema for `spec.resource_requirement`
+
+Optional:
+
+- `resource_requirements` (Attributes) ResourceRequirements defines resource requests and limits when Type is ResourceQosClassResourceRequirement (see [below for nested schema](#nestedatt--spec--resource_requirement--resource_requirements))
+- `type` (String)
+
+<a id="nestedatt--spec--resource_requirement--resource_requirements"></a>
+### Nested Schema for `spec.resource_requirement.resource_requirements`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resource_requirement--resource_requirements--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--resource_requirement--resource_requirements--claims"></a>
+### Nested Schema for `spec.resource_requirement.resource_requirements.requests`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
 
 
 

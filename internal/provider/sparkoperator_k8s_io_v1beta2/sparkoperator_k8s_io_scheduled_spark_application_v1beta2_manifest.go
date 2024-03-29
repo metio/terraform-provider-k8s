@@ -386,6 +386,9 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 							Type  *string `tfsdk:"type" json:"type,omitempty"`
 							User  *string `tfsdk:"user" json:"user,omitempty"`
 						} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+						SeccompProfile *struct {
+							Type *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
 						WindowsOptions *struct {
 							GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
 							GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
@@ -528,6 +531,9 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 						Type  *string `tfsdk:"type" json:"type,omitempty"`
 						User  *string `tfsdk:"user" json:"user,omitempty"`
 					} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+					SeccompProfile *struct {
+						Type *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
 					WindowsOptions *struct {
 						GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
 						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
@@ -696,6 +702,9 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 							Type  *string `tfsdk:"type" json:"type,omitempty"`
 							User  *string `tfsdk:"user" json:"user,omitempty"`
 						} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+						SeccompProfile *struct {
+							Type *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
 						WindowsOptions *struct {
 							GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
 							GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
@@ -1088,6 +1097,9 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 							Type  *string `tfsdk:"type" json:"type,omitempty"`
 							User  *string `tfsdk:"user" json:"user,omitempty"`
 						} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+						SeccompProfile *struct {
+							Type *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
 						WindowsOptions *struct {
 							GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
 							GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
@@ -1189,6 +1201,9 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 						Type  *string `tfsdk:"type" json:"type,omitempty"`
 						User  *string `tfsdk:"user" json:"user,omitempty"`
 					} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+					SeccompProfile *struct {
+						Type *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
 					WindowsOptions *struct {
 						GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
 						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
@@ -1356,6 +1371,9 @@ type SparkoperatorK8SIoScheduledSparkApplicationV1Beta2ManifestData struct {
 							Type  *string `tfsdk:"type" json:"type,omitempty"`
 							User  *string `tfsdk:"user" json:"user,omitempty"`
 						} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+						SeccompProfile *struct {
+							Type *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
 						WindowsOptions *struct {
 							GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
 							GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
@@ -4079,6 +4097,23 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 															Computed: false,
 														},
 
+														"seccomp_profile": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"type": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"windows_options": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -5037,6 +5072,23 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 													},
 
 													"user": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"seccomp_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"type": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
 														Required:            false,
@@ -6151,6 +6203,23 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 																},
 
 																"user": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"seccomp_profile": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"type": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Required:            false,
@@ -8775,6 +8844,23 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 															Computed: false,
 														},
 
+														"seccomp_profile": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"type": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"windows_options": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -9476,6 +9562,23 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 													},
 
 													"user": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"seccomp_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"type": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
 														Required:            false,
@@ -10581,6 +10684,23 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ co
 																},
 
 																"user": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"seccomp_profile": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"type": schema.StringAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Required:            false,

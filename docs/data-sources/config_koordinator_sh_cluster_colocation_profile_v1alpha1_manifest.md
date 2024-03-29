@@ -16,6 +16,7 @@ ClusterColocationProfile is the Schema for the ClusterColocationProfile API
 data "k8s_config_koordinator_sh_cluster_colocation_profile_v1alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -54,8 +55,10 @@ Optional:
 
 Optional:
 
+- `annotation_keys_mapping` (Map of String) AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values. It sets the Pod.Annotations[AnnotationsToAnnotations[k]] = Pod.Annotations[k] for each key k.
 - `annotations` (Map of String) Annotations describes the k/v pair that needs to inject into Pod.Annotations
 - `koordinator_priority` (Number) KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority.
+- `label_keys_mapping` (Map of String) LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values. It sets the Pod.Labels[LabelsToLabels[k]] = Pod.Labels[k] for each key k.
 - `labels` (Map of String) Labels describes the k/v pair that needs to inject into Pod.Labels
 - `namespace_selector` (Attributes) NamespaceSelector decides whether to mutate/validate Pods if the namespace matches the selector. Default to the empty LabelSelector, which matches everything. (see [below for nested schema](#nestedatt--spec--namespace_selector))
 - `patch` (Map of String) Patch indicates patching podTemplate that will be injected to the Pod.

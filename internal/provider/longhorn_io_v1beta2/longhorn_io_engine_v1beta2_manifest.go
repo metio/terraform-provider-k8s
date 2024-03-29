@@ -48,10 +48,12 @@ type LonghornIoEngineV1Beta2ManifestData struct {
 		Active                           *bool              `tfsdk:"active" json:"active,omitempty"`
 		BackendStoreDriver               *string            `tfsdk:"backend_store_driver" json:"backendStoreDriver,omitempty"`
 		BackupVolume                     *string            `tfsdk:"backup_volume" json:"backupVolume,omitempty"`
+		DataEngine                       *string            `tfsdk:"data_engine" json:"dataEngine,omitempty"`
 		DesireState                      *string            `tfsdk:"desire_state" json:"desireState,omitempty"`
 		DisableFrontend                  *bool              `tfsdk:"disable_frontend" json:"disableFrontend,omitempty"`
 		EngineImage                      *string            `tfsdk:"engine_image" json:"engineImage,omitempty"`
 		Frontend                         *string            `tfsdk:"frontend" json:"frontend,omitempty"`
+		Image                            *string            `tfsdk:"image" json:"image,omitempty"`
 		LogRequested                     *bool              `tfsdk:"log_requested" json:"logRequested,omitempty"`
 		NodeID                           *string            `tfsdk:"node_id" json:"nodeID,omitempty"`
 		ReplicaAddressMap                *map[string]string `tfsdk:"replica_address_map" json:"replicaAddressMap,omitempty"`
@@ -59,6 +61,8 @@ type LonghornIoEngineV1Beta2ManifestData struct {
 		RequestedDataSource              *string            `tfsdk:"requested_data_source" json:"requestedDataSource,omitempty"`
 		RevisionCounterDisabled          *bool              `tfsdk:"revision_counter_disabled" json:"revisionCounterDisabled,omitempty"`
 		SalvageRequested                 *bool              `tfsdk:"salvage_requested" json:"salvageRequested,omitempty"`
+		SnapshotMaxCount                 *int64             `tfsdk:"snapshot_max_count" json:"snapshotMaxCount,omitempty"`
+		SnapshotMaxSize                  *string            `tfsdk:"snapshot_max_size" json:"snapshotMaxSize,omitempty"`
 		UnmapMarkSnapChainRemovedEnabled *bool              `tfsdk:"unmap_mark_snap_chain_removed_enabled" json:"unmapMarkSnapChainRemovedEnabled,omitempty"`
 		UpgradedReplicaAddressMap        *map[string]string `tfsdk:"upgraded_replica_address_map" json:"upgradedReplicaAddressMap,omitempty"`
 		VolumeName                       *string            `tfsdk:"volume_name" json:"volumeName,omitempty"`
@@ -160,14 +164,11 @@ func (r *LonghornIoEngineV1Beta2Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"backend_store_driver": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Deprecated: Replaced by field 'dataEngine'.",
+						MarkdownDescription: "Deprecated: Replaced by field 'dataEngine'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.OneOf("v1", "v2"),
-						},
 					},
 
 					"backup_volume": schema.StringAttribute{
@@ -176,6 +177,17 @@ func (r *LonghornIoEngineV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"data_engine": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("v1", "v2"),
+						},
 					},
 
 					"desire_state": schema.StringAttribute{
@@ -195,8 +207,8 @@ func (r *LonghornIoEngineV1Beta2Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"engine_image": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Deprecated: Replaced by field 'image'.",
+						MarkdownDescription: "Deprecated: Replaced by field 'image'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -211,6 +223,14 @@ func (r *LonghornIoEngineV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Validators: []validator.String{
 							stringvalidator.OneOf("blockdev", "iscsi", "nvmf", ""),
 						},
+					},
+
+					"image": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"log_requested": schema.BoolAttribute{
@@ -263,6 +283,22 @@ func (r *LonghornIoEngineV1Beta2Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"salvage_requested": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"snapshot_max_count": schema.Int64Attribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"snapshot_max_size": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,

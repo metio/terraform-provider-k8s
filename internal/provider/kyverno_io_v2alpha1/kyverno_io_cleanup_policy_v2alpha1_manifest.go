@@ -555,16 +555,16 @@ func (r *KyvernoIoCleanupPolicyV2Alpha1Manifest) Schema(_ context.Context, _ dat
 											MarkdownDescription: "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
 											Attributes: map[string]schema.Attribute{
 												"allow_insecure_registry": schema.BoolAttribute{
-													Description:         "AllowInsecureRegistry allows insecure access to a registry",
-													MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry",
+													Description:         "AllowInsecureRegistry allows insecure access to a registry.",
+													MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"providers": schema.ListAttribute{
-													Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
-													MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
+													Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
+													MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -572,8 +572,8 @@ func (r *KyvernoIoCleanupPolicyV2Alpha1Manifest) Schema(_ context.Context, _ dat
 												},
 
 												"secrets": schema.ListAttribute{
-													Description:         "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
-													MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
+													Description:         "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
+													MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,

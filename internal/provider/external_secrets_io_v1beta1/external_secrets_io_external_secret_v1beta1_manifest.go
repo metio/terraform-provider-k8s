@@ -90,6 +90,9 @@ type ExternalSecretsIoExternalSecretV1Beta1ManifestData struct {
 					Source *string `tfsdk:"source" json:"source,omitempty"`
 					Target *string `tfsdk:"target" json:"target,omitempty"`
 				} `tfsdk:"regexp" json:"regexp,omitempty"`
+				Transform *struct {
+					Template *string `tfsdk:"template" json:"template,omitempty"`
+				} `tfsdk:"transform" json:"transform,omitempty"`
 			} `tfsdk:"rewrite" json:"rewrite,omitempty"`
 			SourceRef *struct {
 				GeneratorRef *struct {
@@ -236,8 +239,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"remote_ref": schema.SingleNestedAttribute{
-									Description:         "RemoteRef points to the remote secret and defines which secret (version/property/..) to fetch.",
-									MarkdownDescription: "RemoteRef points to the remote secret and defines which secret (version/property/..) to fetch.",
+									Description:         "RemoteRef points to the remote secret and defineswhich secret (version/property/..) to fetch.",
+									MarkdownDescription: "RemoteRef points to the remote secret and defineswhich secret (version/property/..) to fetch.",
 									Attributes: map[string]schema.Attribute{
 										"conversion_strategy": schema.StringAttribute{
 											Description:         "Used to define a conversion Strategy",
@@ -245,6 +248,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Default", "Unicode"),
+											},
 										},
 
 										"decoding_strategy": schema.StringAttribute{
@@ -253,6 +259,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Auto", "Base64", "Base64URL", "None"),
+											},
 										},
 
 										"key": schema.StringAttribute{
@@ -269,6 +278,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("None", "Fetch"),
+											},
 										},
 
 										"property": schema.StringAttribute{
@@ -293,20 +305,20 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 								},
 
 								"secret_key": schema.StringAttribute{
-									Description:         "SecretKey defines the key in which the controller stores the value. This is the key in the Kind=Secret",
-									MarkdownDescription: "SecretKey defines the key in which the controller stores the value. This is the key in the Kind=Secret",
+									Description:         "SecretKey defines the key in which the controller storesthe value. This is the key in the Kind=Secret",
+									MarkdownDescription: "SecretKey defines the key in which the controller storesthe value. This is the key in the Kind=Secret",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"source_ref": schema.SingleNestedAttribute{
-									Description:         "SourceRef allows you to override the source from which the value will pulled from.",
-									MarkdownDescription: "SourceRef allows you to override the source from which the value will pulled from.",
+									Description:         "SourceRef allows you to override the sourcefrom which the value will pulled from.",
+									MarkdownDescription: "SourceRef allows you to override the sourcefrom which the value will pulled from.",
 									Attributes: map[string]schema.Attribute{
 										"generator_ref": schema.SingleNestedAttribute{
-											Description:         "GeneratorRef points to a generator custom resource in",
-											MarkdownDescription: "GeneratorRef points to a generator custom resource in",
+											Description:         "GeneratorRef points to a generator custom resource.Deprecated: The generatorRef is not implemented in .data[].this will be removed with v1.",
+											MarkdownDescription: "GeneratorRef points to a generator custom resource.Deprecated: The generatorRef is not implemented in .data[].this will be removed with v1.",
 											Attributes: map[string]schema.Attribute{
 												"api_version": schema.StringAttribute{
 													Description:         "Specify the apiVersion of the generator resource",
@@ -342,8 +354,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 											MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
 											Attributes: map[string]schema.Attribute{
 												"kind": schema.StringAttribute{
-													Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
-													MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+													Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
+													MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -374,13 +386,13 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"data_from": schema.ListNestedAttribute{
-						Description:         "DataFrom is used to fetch all properties from a specific Provider data If multiple entries are specified, the Secret keys are merged in the specified order",
-						MarkdownDescription: "DataFrom is used to fetch all properties from a specific Provider data If multiple entries are specified, the Secret keys are merged in the specified order",
+						Description:         "DataFrom is used to fetch all properties from a specific Provider dataIf multiple entries are specified, the Secret keys are merged in the specified order",
+						MarkdownDescription: "DataFrom is used to fetch all properties from a specific Provider dataIf multiple entries are specified, the Secret keys are merged in the specified order",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"extract": schema.SingleNestedAttribute{
-									Description:         "Used to extract multiple key/value pairs from one secret Note: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.",
-									MarkdownDescription: "Used to extract multiple key/value pairs from one secret Note: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.",
+									Description:         "Used to extract multiple key/value pairs from one secretNote: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.",
+									MarkdownDescription: "Used to extract multiple key/value pairs from one secretNote: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef.",
 									Attributes: map[string]schema.Attribute{
 										"conversion_strategy": schema.StringAttribute{
 											Description:         "Used to define a conversion Strategy",
@@ -388,6 +400,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Default", "Unicode"),
+											},
 										},
 
 										"decoding_strategy": schema.StringAttribute{
@@ -396,6 +411,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Auto", "Base64", "Base64URL", "None"),
+											},
 										},
 
 										"key": schema.StringAttribute{
@@ -412,6 +430,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("None", "Fetch"),
+											},
 										},
 
 										"property": schema.StringAttribute{
@@ -436,8 +457,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 								},
 
 								"find": schema.SingleNestedAttribute{
-									Description:         "Used to find secrets based on tags or regular expressions Note: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.",
-									MarkdownDescription: "Used to find secrets based on tags or regular expressions Note: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.",
+									Description:         "Used to find secrets based on tags or regular expressionsNote: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.",
+									MarkdownDescription: "Used to find secrets based on tags or regular expressionsNote: Find does not support sourceRef.Generator or sourceRef.GeneratorRef.",
 									Attributes: map[string]schema.Attribute{
 										"conversion_strategy": schema.StringAttribute{
 											Description:         "Used to define a conversion Strategy",
@@ -445,6 +466,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Default", "Unicode"),
+											},
 										},
 
 										"decoding_strategy": schema.StringAttribute{
@@ -453,6 +477,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Auto", "Base64", "Base64URL", "None"),
+											},
 										},
 
 										"name": schema.SingleNestedAttribute{
@@ -495,13 +522,13 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 								},
 
 								"rewrite": schema.ListNestedAttribute{
-									Description:         "Used to rewrite secret Keys after getting them from the secret Provider Multiple Rewrite operations can be provided. They are applied in a layered order (first to last)",
-									MarkdownDescription: "Used to rewrite secret Keys after getting them from the secret Provider Multiple Rewrite operations can be provided. They are applied in a layered order (first to last)",
+									Description:         "Used to rewrite secret Keys after getting them from the secret ProviderMultiple Rewrite operations can be provided. They are applied in a layered order (first to last)",
+									MarkdownDescription: "Used to rewrite secret Keys after getting them from the secret ProviderMultiple Rewrite operations can be provided. They are applied in a layered order (first to last)",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"regexp": schema.SingleNestedAttribute{
-												Description:         "Used to rewrite with regular expressions. The resulting key will be the output of a regexp.ReplaceAll operation.",
-												MarkdownDescription: "Used to rewrite with regular expressions. The resulting key will be the output of a regexp.ReplaceAll operation.",
+												Description:         "Used to rewrite with regular expressions.The resulting key will be the output of a regexp.ReplaceAll operation.",
+												MarkdownDescription: "Used to rewrite with regular expressions.The resulting key will be the output of a regexp.ReplaceAll operation.",
 												Attributes: map[string]schema.Attribute{
 													"source": schema.StringAttribute{
 														Description:         "Used to define the regular expression of a re.Compiler.",
@@ -523,6 +550,23 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 												Optional: true,
 												Computed: false,
 											},
+
+											"transform": schema.SingleNestedAttribute{
+												Description:         "Used to apply string transformation on the secrets.The resulting key will be the output of the template applied by the operation.",
+												MarkdownDescription: "Used to apply string transformation on the secrets.The resulting key will be the output of the template applied by the operation.",
+												Attributes: map[string]schema.Attribute{
+													"template": schema.StringAttribute{
+														Description:         "Used to define the template to apply on the secret name.'.value ' will specify the secret name in the template.",
+														MarkdownDescription: "Used to define the template to apply on the secret name.'.value ' will specify the secret name in the template.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										},
 									},
 									Required: false,
@@ -531,12 +575,12 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 								},
 
 								"source_ref": schema.SingleNestedAttribute{
-									Description:         "SourceRef points to a store or generator which contains secret values ready to use. Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values",
-									MarkdownDescription: "SourceRef points to a store or generator which contains secret values ready to use. Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values",
+									Description:         "SourceRef points to a store or generatorwhich contains secret values ready to use.Use this in combination with Extract or Find pull values out ofa specific SecretStore.When sourceRef points to a generator Extract or Find is not supported.The generator returns a static map of values",
+									MarkdownDescription: "SourceRef points to a store or generatorwhich contains secret values ready to use.Use this in combination with Extract or Find pull values out ofa specific SecretStore.When sourceRef points to a generator Extract or Find is not supported.The generator returns a static map of values",
 									Attributes: map[string]schema.Attribute{
 										"generator_ref": schema.SingleNestedAttribute{
-											Description:         "GeneratorRef points to a generator custom resource in",
-											MarkdownDescription: "GeneratorRef points to a generator custom resource in",
+											Description:         "GeneratorRef points to a generator custom resource.",
+											MarkdownDescription: "GeneratorRef points to a generator custom resource.",
 											Attributes: map[string]schema.Attribute{
 												"api_version": schema.StringAttribute{
 													Description:         "Specify the apiVersion of the generator resource",
@@ -572,8 +616,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 											MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
 											Attributes: map[string]schema.Attribute{
 												"kind": schema.StringAttribute{
-													Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
-													MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+													Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
+													MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -604,8 +648,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"refresh_interval": schema.StringAttribute{
-						Description:         "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
-						MarkdownDescription: "RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.",
+						Description:         "RefreshInterval is the amount of time before the values are read again from the SecretStore providerValid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'May be set to zero to fetch and create it once. Defaults to 1h.",
+						MarkdownDescription: "RefreshInterval is the amount of time before the values are read again from the SecretStore providerValid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'May be set to zero to fetch and create it once. Defaults to 1h.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -616,8 +660,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 						MarkdownDescription: "SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
-								MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'",
+								Description:         "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
+								MarkdownDescription: "Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -637,12 +681,12 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"target": schema.SingleNestedAttribute{
-						Description:         "ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.",
-						MarkdownDescription: "ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret.",
+						Description:         "ExternalSecretTarget defines the Kubernetes Secret to be createdThere can be only one target per ExternalSecret.",
+						MarkdownDescription: "ExternalSecretTarget defines the Kubernetes Secret to be createdThere can be only one target per ExternalSecret.",
 						Attributes: map[string]schema.Attribute{
 							"creation_policy": schema.StringAttribute{
-								Description:         "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
-								MarkdownDescription: "CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'",
+								Description:         "CreationPolicy defines rules on how to create the resulting SecretDefaults to 'Owner'",
+								MarkdownDescription: "CreationPolicy defines rules on how to create the resulting SecretDefaults to 'Owner'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -652,8 +696,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 							},
 
 							"deletion_policy": schema.StringAttribute{
-								Description:         "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
-								MarkdownDescription: "DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'",
+								Description:         "DeletionPolicy defines rules on how to delete the resulting SecretDefaults to 'Retain'",
+								MarkdownDescription: "DeletionPolicy defines rules on how to delete the resulting SecretDefaults to 'Retain'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -671,8 +715,8 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
-								MarkdownDescription: "Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource",
+								Description:         "Name defines the name of the Secret resource to be managedThis field is immutableDefaults to the .metadata.name of the ExternalSecret resource",
+								MarkdownDescription: "Name defines the name of the Secret resource to be managedThis field is immutableDefaults to the .metadata.name of the ExternalSecret resource",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -692,11 +736,14 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 									},
 
 									"engine_version": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "EngineVersion specifies the template engine versionthat should be used to compile/execute thetemplate specified in .data and .templateFrom[].",
+										MarkdownDescription: "EngineVersion specifies the template engine versionthat should be used to compile/execute thetemplate specified in .data and .templateFrom[].",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("v1", "v2"),
+										},
 									},
 
 									"merge_policy": schema.StringAttribute{
@@ -705,6 +752,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Replace", "Merge"),
+										},
 									},
 
 									"metadata": schema.SingleNestedAttribute{
@@ -762,6 +812,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("Values", "KeysAndValues"),
+																		},
 																	},
 																},
 															},
@@ -814,6 +867,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("Values", "KeysAndValues"),
+																		},
 																	},
 																},
 															},
@@ -841,6 +897,9 @@ func (r *ExternalSecretsIoExternalSecretV1Beta1Manifest) Schema(_ context.Contex
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Data", "Annotations", "Labels"),
+													},
 												},
 											},
 										},

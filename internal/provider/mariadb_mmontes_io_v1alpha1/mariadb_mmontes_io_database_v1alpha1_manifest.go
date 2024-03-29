@@ -57,7 +57,9 @@ type MariadbMmontesIoDatabaseV1Alpha1ManifestData struct {
 			Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 			WaitForIt       *bool   `tfsdk:"wait_for_it" json:"waitForIt,omitempty"`
 		} `tfsdk:"maria_db_ref" json:"mariaDbRef,omitempty"`
-		Name *string `tfsdk:"name" json:"name,omitempty"`
+		Name            *string `tfsdk:"name" json:"name,omitempty"`
+		RequeueInterval *string `tfsdk:"requeue_interval" json:"requeueInterval,omitempty"`
+		RetryInterval   *string `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -67,8 +69,8 @@ func (r *MariadbMmontesIoDatabaseV1Alpha1Manifest) Metadata(_ context.Context, r
 
 func (r *MariadbMmontesIoDatabaseV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Database is the Schema for the databases API",
-		MarkdownDescription: "Database is the Schema for the databases API",
+		Description:         "Database is the Schema for the databases API. It is used to define a logical database as if you were running a 'CREATE DATABASE' statement.",
+		MarkdownDescription: "Database is the Schema for the databases API. It is used to define a logical database as if you were running a 'CREATE DATABASE' statement.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -147,24 +149,24 @@ func (r *MariadbMmontesIoDatabaseV1Alpha1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "DatabaseSpec defines the desired state of Database",
 				Attributes: map[string]schema.Attribute{
 					"character_set": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "CharacterSet to use in the Database.",
+						MarkdownDescription: "CharacterSet to use in the Database.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"collate": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "CharacterSet to use in the Database.",
+						MarkdownDescription: "CharacterSet to use in the Database.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"maria_db_ref": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "MariaDBRef is a reference to a MariaDB object.",
+						MarkdownDescription: "MariaDBRef is a reference to a MariaDB object.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -223,8 +225,8 @@ func (r *MariadbMmontesIoDatabaseV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"wait_for_it": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.",
+								MarkdownDescription: "WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -236,14 +238,30 @@ func (r *MariadbMmontesIoDatabaseV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Name overrides the default Database name provided by metadata.name.",
+						MarkdownDescription: "Name overrides the default Database name provided by metadata.name.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.LengthAtMost(80),
 						},
+					},
+
+					"requeue_interval": schema.StringAttribute{
+						Description:         "RequeueInterval is used to perform requeue reconcilizations.",
+						MarkdownDescription: "RequeueInterval is used to perform requeue reconcilizations.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"retry_interval": schema.StringAttribute{
+						Description:         "RetryInterval is the interval used to perform retries.",
+						MarkdownDescription: "RetryInterval is the interval used to perform retries.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

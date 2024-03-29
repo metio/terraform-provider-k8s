@@ -3,12 +3,12 @@
 page_title: "k8s_infrastructure_cluster_x_k8s_io_v_sphere_machine_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "infrastructure.cluster.x-k8s.io"
 description: |-
-  VSphereMachine is the Schema for the vspheremachines API
+  VSphereMachine is the Schema for the vspheremachines API.
 ---
 
 # k8s_infrastructure_cluster_x_k8s_io_v_sphere_machine_v1beta1_manifest (Data Source)
 
-VSphereMachine is the Schema for the vspheremachines API
+VSphereMachine is the Schema for the vspheremachines API.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_infrastructure_cluster_x_k8s_io_v_sphere_machine_v1beta1_manifest" "ex
 
 ### Optional
 
-- `spec` (Attributes) VSphereMachineSpec defines the desired state of VSphereMachine (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) VSphereMachineSpec defines the desired state of VSphereMachine. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -94,7 +94,7 @@ Required:
 
 Optional:
 
-- `preferred_api_server_cidr` (String) PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine
+- `preferred_api_server_cidr` (String) PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine  Deprecated: This field is going to be removed in a future release.
 - `routes` (Attributes List) Routes is a list of optional, static routes applied to the virtual machine. (see [below for nested schema](#nestedatt--spec--network--routes))
 
 <a id="nestedatt--spec--network--devices"></a>
@@ -114,15 +114,16 @@ Optional:
 - `dhcp6_overrides` (Attributes) DHCP6Overrides allows for the control over several DHCP behaviors. Overrides will only be applied when the corresponding DHCP flag is set. Only configured values will be sent, omitted values will default to distribution defaults. Dependent on support in the network stack for your distribution. For more information see the netplan reference (https://netplan.io/reference#dhcp-overrides) (see [below for nested schema](#nestedatt--spec--network--devices--dhcp6_overrides))
 - `gateway4` (String) Gateway4 is the IPv4 gateway used by this device. Required when DHCP4 is false.
 - `gateway6` (String) Gateway4 is the IPv4 gateway used by this device.
-- `ip_addrs` (List of String) IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device.  IP addresses must also specify the segment length in CIDR notation. Required when DHCP4 and DHCP6 are both false.
+- `ip_addrs` (List of String) IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device. IP addresses must also specify the segment length in CIDR notation. Required when DHCP4, DHCP6 and SkipIPAllocation are false.
 - `mac_addr` (String) MACAddr is the MAC address used by this device. It is generally a good idea to omit this field and allow a MAC address to be generated. Please note that this value must use the VMware OUI to work with the in-tree vSphere cloud provider.
 - `mtu` (Number) MTU is the device’s Maximum Transmission Unit size in bytes.
 - `nameservers` (List of String) Nameservers is a list of IPv4 and/or IPv6 addresses used as DNS nameservers. Please note that Linux allows only three nameservers (https://linux.die.net/man/5/resolv.conf).
 - `routes` (Attributes List) Routes is a list of optional, static routes applied to the device. (see [below for nested schema](#nestedatt--spec--network--devices--routes))
 - `search_domains` (List of String) SearchDomains is a list of search domains used when resolving IP addresses with DNS.
+- `skip_ip_allocation` (Boolean) SkipIPAllocation allows the device to not have IP address or DHCP configured. This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI. If true, CAPV will not verify IP address allocation.
 
 <a id="nestedatt--spec--network--devices--addresses_from_pools"></a>
-### Nested Schema for `spec.network.devices.search_domains`
+### Nested Schema for `spec.network.devices.skip_ip_allocation`
 
 Required:
 
@@ -135,7 +136,7 @@ Optional:
 
 
 <a id="nestedatt--spec--network--devices--dhcp4_overrides"></a>
-### Nested Schema for `spec.network.devices.search_domains`
+### Nested Schema for `spec.network.devices.skip_ip_allocation`
 
 Optional:
 
@@ -151,7 +152,7 @@ Optional:
 
 
 <a id="nestedatt--spec--network--devices--dhcp6_overrides"></a>
-### Nested Schema for `spec.network.devices.search_domains`
+### Nested Schema for `spec.network.devices.skip_ip_allocation`
 
 Optional:
 
@@ -167,7 +168,7 @@ Optional:
 
 
 <a id="nestedatt--spec--network--devices--routes"></a>
-### Nested Schema for `spec.network.devices.search_domains`
+### Nested Schema for `spec.network.devices.skip_ip_allocation`
 
 Required:
 

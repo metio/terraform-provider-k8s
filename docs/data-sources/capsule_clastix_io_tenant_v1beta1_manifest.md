@@ -16,6 +16,7 @@ Tenant is the Schema for the tenants API.
 data "k8s_capsule_clastix_io_tenant_v1beta1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -474,6 +475,8 @@ Optional:
 - `additional_metadata` (Attributes) Specifies additional labels and annotations the Capsule operator places on any Service resource in the Tenant. Optional. (see [below for nested schema](#nestedatt--spec--service_options--additional_metadata))
 - `allowed_services` (Attributes) Block or deny certain type of Services. Optional. (see [below for nested schema](#nestedatt--spec--service_options--allowed_services))
 - `external_i_ps` (Attributes) Specifies the external IPs that can be used in Services with type ClusterIP. An empty list means no IPs are allowed. Optional. (see [below for nested schema](#nestedatt--spec--service_options--external_i_ps))
+- `forbidden_annotations` (Attributes) Define the annotations that a Tenant Owner cannot set for their Service resources. (see [below for nested schema](#nestedatt--spec--service_options--forbidden_annotations))
+- `forbidden_labels` (Attributes) Define the labels that a Tenant Owner cannot set for their Service resources. (see [below for nested schema](#nestedatt--spec--service_options--forbidden_labels))
 
 <a id="nestedatt--spec--service_options--additional_metadata"></a>
 ### Nested Schema for `spec.service_options.additional_metadata`
@@ -500,6 +503,24 @@ Optional:
 Required:
 
 - `allowed` (List of String)
+
+
+<a id="nestedatt--spec--service_options--forbidden_annotations"></a>
+### Nested Schema for `spec.service_options.forbidden_annotations`
+
+Optional:
+
+- `denied` (List of String)
+- `denied_regex` (String)
+
+
+<a id="nestedatt--spec--service_options--forbidden_labels"></a>
+### Nested Schema for `spec.service_options.forbidden_labels`
+
+Optional:
+
+- `denied` (List of String)
+- `denied_regex` (String)
 
 
 

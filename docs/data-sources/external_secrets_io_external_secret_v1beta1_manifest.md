@@ -57,22 +57,22 @@ Optional:
 Optional:
 
 - `data` (Attributes List) Data defines the connection between the Kubernetes Secret keys and the Provider data (see [below for nested schema](#nestedatt--spec--data))
-- `data_from` (Attributes List) DataFrom is used to fetch all properties from a specific Provider data If multiple entries are specified, the Secret keys are merged in the specified order (see [below for nested schema](#nestedatt--spec--data_from))
-- `refresh_interval` (String) RefreshInterval is the amount of time before the values are read again from the SecretStore provider Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h' May be set to zero to fetch and create it once. Defaults to 1h.
+- `data_from` (Attributes List) DataFrom is used to fetch all properties from a specific Provider dataIf multiple entries are specified, the Secret keys are merged in the specified order (see [below for nested schema](#nestedatt--spec--data_from))
+- `refresh_interval` (String) RefreshInterval is the amount of time before the values are read again from the SecretStore providerValid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'May be set to zero to fetch and create it once. Defaults to 1h.
 - `secret_store_ref` (Attributes) SecretStoreRef defines which SecretStore to fetch the ExternalSecret data. (see [below for nested schema](#nestedatt--spec--secret_store_ref))
-- `target` (Attributes) ExternalSecretTarget defines the Kubernetes Secret to be created There can be only one target per ExternalSecret. (see [below for nested schema](#nestedatt--spec--target))
+- `target` (Attributes) ExternalSecretTarget defines the Kubernetes Secret to be createdThere can be only one target per ExternalSecret. (see [below for nested schema](#nestedatt--spec--target))
 
 <a id="nestedatt--spec--data"></a>
 ### Nested Schema for `spec.data`
 
 Required:
 
-- `remote_ref` (Attributes) RemoteRef points to the remote secret and defines which secret (version/property/..) to fetch. (see [below for nested schema](#nestedatt--spec--data--remote_ref))
-- `secret_key` (String) SecretKey defines the key in which the controller stores the value. This is the key in the Kind=Secret
+- `remote_ref` (Attributes) RemoteRef points to the remote secret and defineswhich secret (version/property/..) to fetch. (see [below for nested schema](#nestedatt--spec--data--remote_ref))
+- `secret_key` (String) SecretKey defines the key in which the controller storesthe value. This is the key in the Kind=Secret
 
 Optional:
 
-- `source_ref` (Attributes) SourceRef allows you to override the source from which the value will pulled from. (see [below for nested schema](#nestedatt--spec--data--source_ref))
+- `source_ref` (Attributes) SourceRef allows you to override the sourcefrom which the value will pulled from. (see [below for nested schema](#nestedatt--spec--data--source_ref))
 
 <a id="nestedatt--spec--data--remote_ref"></a>
 ### Nested Schema for `spec.data.remote_ref`
@@ -95,7 +95,7 @@ Optional:
 
 Optional:
 
-- `generator_ref` (Attributes) GeneratorRef points to a generator custom resource in (see [below for nested schema](#nestedatt--spec--data--source_ref--generator_ref))
+- `generator_ref` (Attributes) GeneratorRef points to a generator custom resource.Deprecated: The generatorRef is not implemented in .data[].this will be removed with v1. (see [below for nested schema](#nestedatt--spec--data--source_ref--generator_ref))
 - `store_ref` (Attributes) SecretStoreRef defines which SecretStore to fetch the ExternalSecret data. (see [below for nested schema](#nestedatt--spec--data--source_ref--store_ref))
 
 <a id="nestedatt--spec--data--source_ref--generator_ref"></a>
@@ -120,7 +120,7 @@ Required:
 
 Optional:
 
-- `kind` (String) Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'
+- `kind` (String) Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'
 
 
 
@@ -130,10 +130,10 @@ Optional:
 
 Optional:
 
-- `extract` (Attributes) Used to extract multiple key/value pairs from one secret Note: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef. (see [below for nested schema](#nestedatt--spec--data_from--extract))
-- `find` (Attributes) Used to find secrets based on tags or regular expressions Note: Find does not support sourceRef.Generator or sourceRef.GeneratorRef. (see [below for nested schema](#nestedatt--spec--data_from--find))
-- `rewrite` (Attributes List) Used to rewrite secret Keys after getting them from the secret Provider Multiple Rewrite operations can be provided. They are applied in a layered order (first to last) (see [below for nested schema](#nestedatt--spec--data_from--rewrite))
-- `source_ref` (Attributes) SourceRef points to a store or generator which contains secret values ready to use. Use this in combination with Extract or Find pull values out of a specific SecretStore. When sourceRef points to a generator Extract or Find is not supported. The generator returns a static map of values (see [below for nested schema](#nestedatt--spec--data_from--source_ref))
+- `extract` (Attributes) Used to extract multiple key/value pairs from one secretNote: Extract does not support sourceRef.Generator or sourceRef.GeneratorRef. (see [below for nested schema](#nestedatt--spec--data_from--extract))
+- `find` (Attributes) Used to find secrets based on tags or regular expressionsNote: Find does not support sourceRef.Generator or sourceRef.GeneratorRef. (see [below for nested schema](#nestedatt--spec--data_from--find))
+- `rewrite` (Attributes List) Used to rewrite secret Keys after getting them from the secret ProviderMultiple Rewrite operations can be provided. They are applied in a layered order (first to last) (see [below for nested schema](#nestedatt--spec--data_from--rewrite))
+- `source_ref` (Attributes) SourceRef points to a store or generatorwhich contains secret values ready to use.Use this in combination with Extract or Find pull values out ofa specific SecretStore.When sourceRef points to a generator Extract or Find is not supported.The generator returns a static map of values (see [below for nested schema](#nestedatt--spec--data_from--source_ref))
 
 <a id="nestedatt--spec--data_from--extract"></a>
 ### Nested Schema for `spec.data_from.extract`
@@ -176,15 +176,24 @@ Optional:
 
 Optional:
 
-- `regexp` (Attributes) Used to rewrite with regular expressions. The resulting key will be the output of a regexp.ReplaceAll operation. (see [below for nested schema](#nestedatt--spec--data_from--rewrite--regexp))
+- `regexp` (Attributes) Used to rewrite with regular expressions.The resulting key will be the output of a regexp.ReplaceAll operation. (see [below for nested schema](#nestedatt--spec--data_from--rewrite--regexp))
+- `transform` (Attributes) Used to apply string transformation on the secrets.The resulting key will be the output of the template applied by the operation. (see [below for nested schema](#nestedatt--spec--data_from--rewrite--transform))
 
 <a id="nestedatt--spec--data_from--rewrite--regexp"></a>
-### Nested Schema for `spec.data_from.rewrite.regexp`
+### Nested Schema for `spec.data_from.rewrite.transform`
 
 Required:
 
 - `source` (String) Used to define the regular expression of a re.Compiler.
 - `target` (String) Used to define the target pattern of a ReplaceAll operation.
+
+
+<a id="nestedatt--spec--data_from--rewrite--transform"></a>
+### Nested Schema for `spec.data_from.rewrite.transform`
+
+Required:
+
+- `template` (String) Used to define the template to apply on the secret name.'.value ' will specify the secret name in the template.
 
 
 
@@ -193,7 +202,7 @@ Required:
 
 Optional:
 
-- `generator_ref` (Attributes) GeneratorRef points to a generator custom resource in (see [below for nested schema](#nestedatt--spec--data_from--source_ref--generator_ref))
+- `generator_ref` (Attributes) GeneratorRef points to a generator custom resource. (see [below for nested schema](#nestedatt--spec--data_from--source_ref--generator_ref))
 - `store_ref` (Attributes) SecretStoreRef defines which SecretStore to fetch the ExternalSecret data. (see [below for nested schema](#nestedatt--spec--data_from--source_ref--store_ref))
 
 <a id="nestedatt--spec--data_from--source_ref--generator_ref"></a>
@@ -218,7 +227,7 @@ Required:
 
 Optional:
 
-- `kind` (String) Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'
+- `kind` (String) Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'
 
 
 
@@ -232,7 +241,7 @@ Required:
 
 Optional:
 
-- `kind` (String) Kind of the SecretStore resource (SecretStore or ClusterSecretStore) Defaults to 'SecretStore'
+- `kind` (String) Kind of the SecretStore resource (SecretStore or ClusterSecretStore)Defaults to 'SecretStore'
 
 
 <a id="nestedatt--spec--target"></a>
@@ -240,10 +249,10 @@ Optional:
 
 Optional:
 
-- `creation_policy` (String) CreationPolicy defines rules on how to create the resulting Secret Defaults to 'Owner'
-- `deletion_policy` (String) DeletionPolicy defines rules on how to delete the resulting Secret Defaults to 'Retain'
+- `creation_policy` (String) CreationPolicy defines rules on how to create the resulting SecretDefaults to 'Owner'
+- `deletion_policy` (String) DeletionPolicy defines rules on how to delete the resulting SecretDefaults to 'Retain'
 - `immutable` (Boolean) Immutable defines if the final secret will be immutable
-- `name` (String) Name defines the name of the Secret resource to be managed This field is immutable Defaults to the .metadata.name of the ExternalSecret resource
+- `name` (String) Name defines the name of the Secret resource to be managedThis field is immutableDefaults to the .metadata.name of the ExternalSecret resource
 - `template` (Attributes) Template defines a blueprint for the created Secret resource. (see [below for nested schema](#nestedatt--spec--target--template))
 
 <a id="nestedatt--spec--target--template"></a>
@@ -252,7 +261,7 @@ Optional:
 Optional:
 
 - `data` (Map of String)
-- `engine_version` (String)
+- `engine_version` (String) EngineVersion specifies the template engine versionthat should be used to compile/execute thetemplate specified in .data and .templateFrom[].
 - `merge_policy` (String)
 - `metadata` (Attributes) ExternalSecretTemplateMetadata defines metadata fields for the Secret blueprint. (see [below for nested schema](#nestedatt--spec--target--template--metadata))
 - `template_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--target--template--template_from))

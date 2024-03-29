@@ -130,13 +130,13 @@ func (r *PkgCrossplaneIoLockV1Beta1Manifest) Schema(_ context.Context, _ datasou
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"dependencies": schema.ListNestedAttribute{
-							Description:         "Dependencies are the list of dependencies of this package. The order of the dependencies will dictate the order in which they are resolved.",
-							MarkdownDescription: "Dependencies are the list of dependencies of this package. The order of the dependencies will dictate the order in which they are resolved.",
+							Description:         "Dependencies are the list of dependencies of this package. The order ofthe dependencies will dictate the order in which they are resolved.",
+							MarkdownDescription: "Dependencies are the list of dependencies of this package. The order ofthe dependencies will dictate the order in which they are resolved.",
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"constraints": schema.StringAttribute{
-										Description:         "Constraints is a valid semver range, which will be used to select a valid dependency version.",
-										MarkdownDescription: "Constraints is a valid semver range, which will be used to select a valid dependency version.",
+										Description:         "Constraints is a valid semver range, which will be used to select a validdependency version.",
+										MarkdownDescription: "Constraints is a valid semver range, which will be used to select a validdependency version.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,

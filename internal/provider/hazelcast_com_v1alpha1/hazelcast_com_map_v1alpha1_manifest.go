@@ -47,8 +47,12 @@ type HazelcastComMapV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		AsyncBackupCount *int64 `tfsdk:"async_backup_count" json:"asyncBackupCount,omitempty"`
-		BackupCount      *int64 `tfsdk:"backup_count" json:"backupCount,omitempty"`
-		EntryListeners   *[]struct {
+		Attributes       *[]struct {
+			ExtractorClassName *string `tfsdk:"extractor_class_name" json:"extractorClassName,omitempty"`
+			Name               *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"attributes" json:"attributes,omitempty"`
+		BackupCount    *int64 `tfsdk:"backup_count" json:"backupCount,omitempty"`
+		EntryListeners *[]struct {
 			ClassName     *string `tfsdk:"class_name" json:"className,omitempty"`
 			IncludeValues *bool   `tfsdk:"include_values" json:"includeValues,omitempty"`
 			Local         *bool   `tfsdk:"local" json:"local,omitempty"`
@@ -81,9 +85,12 @@ type HazelcastComMapV1Alpha1ManifestData struct {
 			WriteCoalescing      *bool   `tfsdk:"write_coalescing" json:"writeCoalescing,omitempty"`
 			WriteDelaySeconds    *int64  `tfsdk:"write_delay_seconds" json:"writeDelaySeconds,omitempty"`
 		} `tfsdk:"map_store" json:"mapStore,omitempty"`
-		MaxIdleSeconds *int64  `tfsdk:"max_idle_seconds" json:"maxIdleSeconds,omitempty"`
-		Name           *string `tfsdk:"name" json:"name,omitempty"`
-		NearCache      *struct {
+		MaxIdleSeconds *int64 `tfsdk:"max_idle_seconds" json:"maxIdleSeconds,omitempty"`
+		MerkleTree     *struct {
+			Depth *int64 `tfsdk:"depth" json:"depth,omitempty"`
+		} `tfsdk:"merkle_tree" json:"merkleTree,omitempty"`
+		Name      *string `tfsdk:"name" json:"name,omitempty"`
+		NearCache *struct {
 			CacheLocalEntries *bool `tfsdk:"cache_local_entries" json:"cacheLocalEntries,omitempty"`
 			Eviction          *struct {
 				EvictionPolicy *string `tfsdk:"eviction_policy" json:"evictionPolicy,omitempty"`
@@ -96,8 +103,12 @@ type HazelcastComMapV1Alpha1ManifestData struct {
 			Name               *string `tfsdk:"name" json:"name,omitempty"`
 			TimeToLiveSeconds  *int64  `tfsdk:"time_to_live_seconds" json:"timeToLiveSeconds,omitempty"`
 		} `tfsdk:"near_cache" json:"nearCache,omitempty"`
-		PersistenceEnabled *bool  `tfsdk:"persistence_enabled" json:"persistenceEnabled,omitempty"`
-		TimeToLiveSeconds  *int64 `tfsdk:"time_to_live_seconds" json:"timeToLiveSeconds,omitempty"`
+		PersistenceEnabled *bool `tfsdk:"persistence_enabled" json:"persistenceEnabled,omitempty"`
+		TieredStore        *struct {
+			DiskDeviceName *string `tfsdk:"disk_device_name" json:"diskDeviceName,omitempty"`
+			MemoryCapacity *string `tfsdk:"memory_capacity" json:"memoryCapacity,omitempty"`
+		} `tfsdk:"tiered_store" json:"tieredStore,omitempty"`
+		TimeToLiveSeconds *int64 `tfsdk:"time_to_live_seconds" json:"timeToLiveSeconds,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -196,6 +207,33 @@ func (r *HazelcastComMapV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 							int64validator.AtLeast(0),
 							int64validator.AtMost(6),
 						},
+					},
+
+					"attributes": schema.ListNestedAttribute{
+						Description:         "Attributes to be used with Predicates API. You can learn more at https://docs.hazelcast.com/hazelcast/latest/query/predicate-overview#creating-custom-query-attributes",
+						MarkdownDescription: "Attributes to be used with Predicates API. You can learn more at https://docs.hazelcast.com/hazelcast/latest/query/predicate-overview#creating-custom-query-attributes",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"extractor_class_name": schema.StringAttribute{
+									Description:         "Name of the extractor class https://docs.hazelcast.com/hazelcast/latest/query/predicate-overview#implementing-a-valueextractor",
+									MarkdownDescription: "Name of the extractor class https://docs.hazelcast.com/hazelcast/latest/query/predicate-overview#implementing-a-valueextractor",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name of the attribute https://docs.hazelcast.com/hazelcast/latest/query/predicate-overview#creating-custom-query-attributes",
+									MarkdownDescription: "Name of the attribute https://docs.hazelcast.com/hazelcast/latest/query/predicate-overview#creating-custom-query-attributes",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"backup_count": schema.Int64Attribute{
@@ -472,6 +510,23 @@ func (r *HazelcastComMapV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
+					"merkle_tree": schema.SingleNestedAttribute{
+						Description:         "MerkleTree defines the configuration for the Merkle tree data structure.",
+						MarkdownDescription: "MerkleTree defines the configuration for the Merkle tree data structure.",
+						Attributes: map[string]schema.Attribute{
+							"depth": schema.Int64Attribute{
+								Description:         "Depth of the merkle tree.",
+								MarkdownDescription: "Depth of the merkle tree.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"name": schema.StringAttribute{
 						Description:         "Name of the data structure config to be created. If empty, CR name will be used. It cannot be updated after the config is created successfully.",
 						MarkdownDescription: "Name of the data structure config to be created. If empty, CR name will be used. It cannot be updated after the config is created successfully.",
@@ -585,6 +640,31 @@ func (r *HazelcastComMapV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"tiered_store": schema.SingleNestedAttribute{
+						Description:         "TieredStore enables the Hazelcast's Tiered-Store feature for the Map",
+						MarkdownDescription: "TieredStore enables the Hazelcast's Tiered-Store feature for the Map",
+						Attributes: map[string]schema.Attribute{
+							"disk_device_name": schema.StringAttribute{
+								Description:         "diskDeviceName defines the name of the device for a given disk tier.",
+								MarkdownDescription: "diskDeviceName defines the name of the device for a given disk tier.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"memory_capacity": schema.StringAttribute{
+								Description:         "MemoryCapacity sets Memory tier capacity, i.e., how much main memory should this tier consume at most.",
+								MarkdownDescription: "MemoryCapacity sets Memory tier capacity, i.e., how much main memory should this tier consume at most.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"time_to_live_seconds": schema.Int64Attribute{

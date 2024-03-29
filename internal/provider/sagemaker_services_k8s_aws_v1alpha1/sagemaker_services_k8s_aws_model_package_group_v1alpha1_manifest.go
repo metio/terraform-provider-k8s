@@ -136,8 +136,8 @@ func (r *SagemakerServicesK8SAwsModelPackageGroupV1Alpha1Manifest) Schema(_ cont
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ModelPackageGroupSpec defines the desired state of ModelPackageGroup.  A group of versioned models in the model registry.",
-				MarkdownDescription: "ModelPackageGroupSpec defines the desired state of ModelPackageGroup.  A group of versioned models in the model registry.",
+				Description:         "ModelPackageGroupSpec defines the desired state of ModelPackageGroup.A group of versioned models in the model registry.",
+				MarkdownDescription: "ModelPackageGroupSpec defines the desired state of ModelPackageGroup.A group of versioned models in the model registry.",
 				Attributes: map[string]schema.Attribute{
 					"model_package_group_description": schema.StringAttribute{
 						Description:         "A description for the model group.",
@@ -156,8 +156,8 @@ func (r *SagemakerServicesK8SAwsModelPackageGroupV1Alpha1Manifest) Schema(_ cont
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of key value pairs associated with the model group. For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the Amazon Web Services General Reference Guide.",
-						MarkdownDescription: "A list of key value pairs associated with the model group. For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the Amazon Web Services General Reference Guide.",
+						Description:         "A list of key value pairs associated with the model group. For more information,see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)in the Amazon Web Services General Reference Guide.",
+						MarkdownDescription: "A list of key value pairs associated with the model group. For more information,see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)in the Amazon Web Services General Reference Guide.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

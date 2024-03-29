@@ -18,11 +18,6 @@ data "k8s_apps_3scale_net_ap_icast_v1alpha1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    admin_portal_credentials_ref = {
-      name = "mysecretname"
-    }
-  }
 }
 ```
 
@@ -75,6 +70,7 @@ Optional:
 - `enabled_services` (List of String) EnabledServices can be used to specify a list of service IDs used to filter the configured services.
 - `exposed_host` (Attributes) ExposedHost is the domain name used for external access. By default no external access is configured. (see [below for nested schema](#nestedatt--spec--exposed_host))
 - `extended_metrics` (Boolean) ExtendedMetrics enables additional information on Prometheus metrics; some labels will be used with specific information that will provide more in-depth details about APIcast.
+- `hpa` (Boolean) Enables/disables HPA
 - `http_proxy` (String) HTTPProxy specifies a HTTP(S) Proxy to be used for connecting to HTTP services. Authentication is not supported. Format is <scheme>://<host>:<port>
 - `https_certificate_secret_ref` (Attributes) HTTPSCertificateSecretRef references secret containing the X.509 certificate in the PEM format and the X.509 certificate secret key. (see [below for nested schema](#nestedatt--spec--https_certificate_secret_ref))
 - `https_port` (Number) HttpsPort controls on which port APIcast should start listening for HTTPS connections. If this clashes with HTTP port it will be used only for HTTPS.

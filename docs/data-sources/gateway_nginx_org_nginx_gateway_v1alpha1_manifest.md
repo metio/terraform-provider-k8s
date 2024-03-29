@@ -3,12 +3,12 @@
 page_title: "k8s_gateway_nginx_org_nginx_gateway_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "gateway.nginx.org"
 description: |-
-  NginxGateway represents the dynamic configuration for an NGINX Kubernetes Gateway control plane.
+  NginxGateway represents the dynamic configuration for an NGINX Gateway Fabric control plane.
 ---
 
 # k8s_gateway_nginx_org_nginx_gateway_v1alpha1_manifest (Data Source)
 
-NginxGateway represents the dynamic configuration for an NGINX Kubernetes Gateway control plane.
+NginxGateway represents the dynamic configuration for an NGINX Gateway Fabric control plane.
 
 ## Example Usage
 

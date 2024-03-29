@@ -66,12 +66,14 @@ Optional:
 
 - `custom_endpoints` (List of String) If this zone cannot be accessed from other peer Ceph clusters via the ClusterIP Service endpoint created by Rook, you must set this to the externally reachable endpoint(s). You may include the port in the definition. For example: 'https://my-object-store.my-domain.net:443'. In many cases, you should set this to the endpoint of the ingress resource that makes the CephObjectStore associated with this CephObjectStoreZone reachable to peer clusters. The list can have one or more endpoints pointing to different RGW servers in the zone.  If a CephObjectStore endpoint is omitted from this list, that object store's gateways will not receive multisite replication data (see CephObjectStore.spec.gateway.disableMultisiteSyncTraffic).
 - `preserve_pools_on_delete` (Boolean) Preserve pools on object zone deletion
+- `shared_pools` (Attributes) The pool information when configuring RADOS namespaces in existing pools. (see [below for nested schema](#nestedatt--spec--shared_pools))
 
 <a id="nestedatt--spec--data_pool"></a>
 ### Nested Schema for `spec.data_pool`
 
 Optional:
 
+- `application` (String) The application name to set on the pool. Only expected to be set for rgw pools.
 - `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters
 - `crush_root` (String) The root of the crush hierarchy utilized by the pool
 - `device_class` (String) The device class the OSD should set to for use in the pool
@@ -185,6 +187,7 @@ Optional:
 
 Optional:
 
+- `application` (String) The application name to set on the pool. Only expected to be set for rgw pools.
 - `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters
 - `crush_root` (String) The root of the crush hierarchy utilized by the pool
 - `device_class` (String) The device class the OSD should set to for use in the pool
@@ -289,3 +292,18 @@ Optional:
 - `disabled` (Boolean)
 - `interval` (String) Interval is the internal in second or minute for the health check to run like 60s for 60 seconds
 - `timeout` (String)
+
+
+
+
+<a id="nestedatt--spec--shared_pools"></a>
+### Nested Schema for `spec.shared_pools`
+
+Required:
+
+- `data_pool_name` (String) The data pool used for creating RADOS namespaces in the object store
+- `metadata_pool_name` (String) The metadata pool used for creating RADOS namespaces in the object store
+
+Optional:
+
+- `preserve_rados_namespace_data_on_delete` (Boolean) Whether the RADOS namespaces should be preserved on deletion of the object store

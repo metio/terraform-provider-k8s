@@ -49,6 +49,45 @@ type AppsKubeedgeIoEdgeApplicationV1Alpha1ManifestData struct {
 			TargetNodeGroups *[]struct {
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
 				Overriders *struct {
+					ArgsOverriders *[]struct {
+						ContainerName *string   `tfsdk:"container_name" json:"containerName,omitempty"`
+						Operator      *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Value         *[]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"args_overriders" json:"argsOverriders,omitempty"`
+					CommandOverriders *[]struct {
+						ContainerName *string   `tfsdk:"container_name" json:"containerName,omitempty"`
+						Operator      *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Value         *[]string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"command_overriders" json:"commandOverriders,omitempty"`
+					EnvOverriders *[]struct {
+						ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+						Operator      *string `tfsdk:"operator" json:"operator,omitempty"`
+						Value         *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"env_overriders" json:"envOverriders,omitempty"`
 					ImageOverriders *[]struct {
 						Component *string `tfsdk:"component" json:"component,omitempty"`
 						Operator  *string `tfsdk:"operator" json:"operator,omitempty"`
@@ -57,7 +96,17 @@ type AppsKubeedgeIoEdgeApplicationV1Alpha1ManifestData struct {
 						} `tfsdk:"predicate" json:"predicate,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"image_overriders" json:"imageOverriders,omitempty"`
-					Replicas *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+					Replicas            *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+					ResourcesOverriders *[]struct {
+						ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+						Value         *struct {
+							Claims *[]struct {
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"claims" json:"claims,omitempty"`
+							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+						} `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"resources_overriders" json:"resourcesOverriders,omitempty"`
 				} `tfsdk:"overriders" json:"overriders,omitempty"`
 			} `tfsdk:"target_node_groups" json:"targetNodeGroups,omitempty"`
 		} `tfsdk:"workload_scope" json:"workloadScope,omitempty"`
@@ -173,6 +222,274 @@ func (r *AppsKubeedgeIoEdgeApplicationV1Alpha1Manifest) Schema(_ context.Context
 											Description:         "Overriders represents the override rules that would apply on workload.",
 											MarkdownDescription: "Overriders represents the override rules that would apply on workload.",
 											Attributes: map[string]schema.Attribute{
+												"args_overriders": schema.ListNestedAttribute{
+													Description:         "ArgsOverriders represents the rules dedicated to handling container args",
+													MarkdownDescription: "ArgsOverriders represents the rules dedicated to handling container args",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"container_name": schema.StringAttribute{
+																Description:         "The name of container",
+																MarkdownDescription: "The name of container",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "Operator represents the operator which will apply on the command/args.",
+																MarkdownDescription: "Operator represents the operator which will apply on the command/args.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("add", "remove"),
+																},
+															},
+
+															"value": schema.ListAttribute{
+																Description:         "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
+																MarkdownDescription: "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"command_overriders": schema.ListNestedAttribute{
+													Description:         "CommandOverriders represents the rules dedicated to handling container command",
+													MarkdownDescription: "CommandOverriders represents the rules dedicated to handling container command",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"container_name": schema.StringAttribute{
+																Description:         "The name of container",
+																MarkdownDescription: "The name of container",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "Operator represents the operator which will apply on the command/args.",
+																MarkdownDescription: "Operator represents the operator which will apply on the command/args.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("add", "remove"),
+																},
+															},
+
+															"value": schema.ListAttribute{
+																Description:         "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
+																MarkdownDescription: "Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"env_overriders": schema.ListNestedAttribute{
+													Description:         "EnvOverriders will override the env field of the container",
+													MarkdownDescription: "EnvOverriders will override the env field of the container",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"container_name": schema.StringAttribute{
+																Description:         "The name of container",
+																MarkdownDescription: "The name of container",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "Operator represents the operator which will apply on the env.",
+																MarkdownDescription: "Operator represents the operator which will apply on the env.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("add", "remove", "replace"),
+																},
+															},
+
+															"value": schema.ListNestedAttribute{
+																Description:         "Value to be applied to env. Must not be empty when operator is 'add' or 'replace'. When the operator is 'remove', the matched value in env will be deleted and only the name of the value will be matched. If Value is empty, then the env will remain the same.",
+																MarkdownDescription: "Value to be applied to env. Must not be empty when operator is 'add' or 'replace'. When the operator is 'remove', the matched value in env will be deleted and only the name of the value will be matched. If Value is empty, then the env will remain the same.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																			MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"value": schema.StringAttribute{
+																			Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+																			MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"value_from": schema.SingleNestedAttribute{
+																			Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																			MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																			Attributes: map[string]schema.Attribute{
+																				"config_map_key_ref": schema.SingleNestedAttribute{
+																					Description:         "Selects a key of a ConfigMap.",
+																					MarkdownDescription: "Selects a key of a ConfigMap.",
+																					Attributes: map[string]schema.Attribute{
+																						"key": schema.StringAttribute{
+																							Description:         "The key to select.",
+																							MarkdownDescription: "The key to select.",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																							MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"optional": schema.BoolAttribute{
+																							Description:         "Specify whether the ConfigMap or its key must be defined",
+																							MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"field_ref": schema.SingleNestedAttribute{
+																					Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																					MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																					Attributes: map[string]schema.Attribute{
+																						"api_version": schema.StringAttribute{
+																							Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																							MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"field_path": schema.StringAttribute{
+																							Description:         "Path of the field to select in the specified API version.",
+																							MarkdownDescription: "Path of the field to select in the specified API version.",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"resource_field_ref": schema.SingleNestedAttribute{
+																					Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																					MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																					Attributes: map[string]schema.Attribute{
+																						"container_name": schema.StringAttribute{
+																							Description:         "Container name: required for volumes, optional for env vars",
+																							MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"divisor": schema.StringAttribute{
+																							Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																							MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"resource": schema.StringAttribute{
+																							Description:         "Required: resource to select",
+																							MarkdownDescription: "Required: resource to select",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"secret_key_ref": schema.SingleNestedAttribute{
+																					Description:         "Selects a key of a secret in the pod's namespace",
+																					MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																					Attributes: map[string]schema.Attribute{
+																						"key": schema.StringAttribute{
+																							Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																							MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																							MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"optional": schema.BoolAttribute{
+																							Description:         "Specify whether the Secret or its key must be defined",
+																							MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"image_overriders": schema.ListNestedAttribute{
 													Description:         "ImageOverriders represents the rules dedicated to handling image overrides.",
 													MarkdownDescription: "ImageOverriders represents the rules dedicated to handling image overrides.",
@@ -237,6 +554,71 @@ func (r *AppsKubeedgeIoEdgeApplicationV1Alpha1Manifest) Schema(_ context.Context
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"resources_overriders": schema.ListNestedAttribute{
+													Description:         "ResourcesOverriders will override the resources field of the container",
+													MarkdownDescription: "ResourcesOverriders will override the resources field of the container",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"container_name": schema.StringAttribute{
+																Description:         "The name of container",
+																MarkdownDescription: "The name of container",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"value": schema.SingleNestedAttribute{
+																Description:         "Value to be applied to resources. Must not be empty",
+																MarkdownDescription: "Value to be applied to resources. Must not be empty",
+																Attributes: map[string]schema.Attribute{
+																	"claims": schema.ListNestedAttribute{
+																		Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																		MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.StringAttribute{
+																					Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																					MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"limits": schema.MapAttribute{
+																		Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																		MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"requests": schema.MapAttribute{
+																		Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																		MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 											Required: false,

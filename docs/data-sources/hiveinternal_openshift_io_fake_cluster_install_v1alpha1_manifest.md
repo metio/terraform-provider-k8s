@@ -121,9 +121,10 @@ Optional:
 
 - `aws` (Attributes) AWS holds AWS-specific cluster metadata (see [below for nested schema](#nestedatt--spec--cluster_metadata--platform--aws))
 - `azure` (Attributes) Azure holds azure-specific cluster metadata (see [below for nested schema](#nestedatt--spec--cluster_metadata--platform--azure))
+- `gcp` (Attributes) GCP holds GCP-specific cluster metadata (see [below for nested schema](#nestedatt--spec--cluster_metadata--platform--gcp))
 
 <a id="nestedatt--spec--cluster_metadata--platform--aws"></a>
-### Nested Schema for `spec.cluster_metadata.platform.azure`
+### Nested Schema for `spec.cluster_metadata.platform.gcp`
 
 Optional:
 
@@ -131,8 +132,16 @@ Optional:
 
 
 <a id="nestedatt--spec--cluster_metadata--platform--azure"></a>
-### Nested Schema for `spec.cluster_metadata.platform.azure`
+### Nested Schema for `spec.cluster_metadata.platform.gcp`
 
 Required:
 
 - `resource_group_name` (String) ResourceGroupName is the name of the resource group in which the cluster resources were created.
+
+
+<a id="nestedatt--spec--cluster_metadata--platform--gcp"></a>
+### Nested Schema for `spec.cluster_metadata.platform.gcp`
+
+Optional:
+
+- `network_project_id` (String) NetworkProjectID is used for shared VPC setups

@@ -217,6 +217,7 @@ type KyvernoIoPolicyV1ManifestData struct {
 				Name        *string            `tfsdk:"name" json:"name,omitempty"`
 				Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 				Synchronize *bool              `tfsdk:"synchronize" json:"synchronize,omitempty"`
+				Uid         *string            `tfsdk:"uid" json:"uid,omitempty"`
 			} `tfsdk:"generate" json:"generate,omitempty"`
 			ImageExtractors *map[string]string `tfsdk:"image_extractors" json:"imageExtractors,omitempty"`
 			Match           *struct {
@@ -419,11 +420,13 @@ type KyvernoIoPolicyV1ManifestData struct {
 					Name          *string            `tfsdk:"name" json:"name,omitempty"`
 					Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 					Preconditions *map[string]string `tfsdk:"preconditions" json:"preconditions,omitempty"`
+					Uid           *string            `tfsdk:"uid" json:"uid,omitempty"`
 				} `tfsdk:"targets" json:"targets,omitempty"`
 			} `tfsdk:"mutate" json:"mutate,omitempty"`
-			Name          *string            `tfsdk:"name" json:"name,omitempty"`
-			Preconditions *map[string]string `tfsdk:"preconditions" json:"preconditions,omitempty"`
-			Validate      *struct {
+			Name                   *string            `tfsdk:"name" json:"name,omitempty"`
+			Preconditions          *map[string]string `tfsdk:"preconditions" json:"preconditions,omitempty"`
+			SkipBackgroundRequests *bool              `tfsdk:"skip_background_requests" json:"skipBackgroundRequests,omitempty"`
+			Validate               *struct {
 				AnyPattern *map[string]string `tfsdk:"any_pattern" json:"anyPattern,omitempty"`
 				Cel        *struct {
 					AuditAnnotations *[]struct {
@@ -595,8 +598,10 @@ type KyvernoIoPolicyV1ManifestData struct {
 				Pattern     *map[string]string `tfsdk:"pattern" json:"pattern,omitempty"`
 				PodSecurity *struct {
 					Exclude *[]struct {
-						ControlName *string   `tfsdk:"control_name" json:"controlName,omitempty"`
-						Images      *[]string `tfsdk:"images" json:"images,omitempty"`
+						ControlName     *string   `tfsdk:"control_name" json:"controlName,omitempty"`
+						Images          *[]string `tfsdk:"images" json:"images,omitempty"`
+						RestrictedField *string   `tfsdk:"restricted_field" json:"restrictedField,omitempty"`
+						Values          *[]string `tfsdk:"values" json:"values,omitempty"`
 					} `tfsdk:"exclude" json:"exclude,omitempty"`
 					Level   *string `tfsdk:"level" json:"level,omitempty"`
 					Version *string `tfsdk:"version" json:"version,omitempty"`
@@ -738,16 +743,17 @@ type KyvernoIoPolicyV1ManifestData struct {
 					Providers             *[]string `tfsdk:"providers" json:"providers,omitempty"`
 					Secrets               *[]string `tfsdk:"secrets" json:"secrets,omitempty"`
 				} `tfsdk:"image_registry_credentials" json:"imageRegistryCredentials,omitempty"`
-				Issuer       *string `tfsdk:"issuer" json:"issuer,omitempty"`
-				Key          *string `tfsdk:"key" json:"key,omitempty"`
-				MutateDigest *bool   `tfsdk:"mutate_digest" json:"mutateDigest,omitempty"`
-				Repository   *string `tfsdk:"repository" json:"repository,omitempty"`
-				Required     *bool   `tfsdk:"required" json:"required,omitempty"`
-				Roots        *string `tfsdk:"roots" json:"roots,omitempty"`
-				Subject      *string `tfsdk:"subject" json:"subject,omitempty"`
-				Type         *string `tfsdk:"type" json:"type,omitempty"`
-				UseCache     *bool   `tfsdk:"use_cache" json:"useCache,omitempty"`
-				VerifyDigest *bool   `tfsdk:"verify_digest" json:"verifyDigest,omitempty"`
+				Issuer              *string   `tfsdk:"issuer" json:"issuer,omitempty"`
+				Key                 *string   `tfsdk:"key" json:"key,omitempty"`
+				MutateDigest        *bool     `tfsdk:"mutate_digest" json:"mutateDigest,omitempty"`
+				Repository          *string   `tfsdk:"repository" json:"repository,omitempty"`
+				Required            *bool     `tfsdk:"required" json:"required,omitempty"`
+				Roots               *string   `tfsdk:"roots" json:"roots,omitempty"`
+				SkipImageReferences *[]string `tfsdk:"skip_image_references" json:"skipImageReferences,omitempty"`
+				Subject             *string   `tfsdk:"subject" json:"subject,omitempty"`
+				Type                *string   `tfsdk:"type" json:"type,omitempty"`
+				UseCache            *bool     `tfsdk:"use_cache" json:"useCache,omitempty"`
+				VerifyDigest        *bool     `tfsdk:"verify_digest" json:"verifyDigest,omitempty"`
 			} `tfsdk:"verify_images" json:"verifyImages,omitempty"`
 		} `tfsdk:"rules" json:"rules,omitempty"`
 		SchemaValidation                 *bool   `tfsdk:"schema_validation" json:"schemaValidation,omitempty"`
@@ -1076,16 +1082,16 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														MarkdownDescription: "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
 														Attributes: map[string]schema.Attribute{
 															"allow_insecure_registry": schema.BoolAttribute{
-																Description:         "AllowInsecureRegistry allows insecure access to a registry",
-																MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry",
+																Description:         "AllowInsecureRegistry allows insecure access to a registry.",
+																MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"providers": schema.ListAttribute{
-																Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
-																MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
+																Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
+																MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1093,8 +1099,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															},
 
 															"secrets": schema.ListAttribute{
-																Description:         "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
-																MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
+																Description:         "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
+																MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2057,6 +2063,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 											Optional:            true,
 											Computed:            false,
 										},
+
+										"uid": schema.StringAttribute{
+											Description:         "UID specifies the resource uid.",
+											MarkdownDescription: "UID specifies the resource uid.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 									Required: false,
 									Optional: true,
@@ -2933,16 +2947,16 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			MarkdownDescription: "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
 																			Attributes: map[string]schema.Attribute{
 																				"allow_insecure_registry": schema.BoolAttribute{
-																					Description:         "AllowInsecureRegistry allows insecure access to a registry",
-																					MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry",
+																					Description:         "AllowInsecureRegistry allows insecure access to a registry.",
+																					MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"providers": schema.ListAttribute{
-																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
-																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
+																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
+																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2950,8 +2964,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				},
 
 																				"secrets": schema.ListAttribute{
-																					Description:         "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
-																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
+																					Description:         "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
+																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3347,16 +3361,16 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			MarkdownDescription: "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
 																			Attributes: map[string]schema.Attribute{
 																				"allow_insecure_registry": schema.BoolAttribute{
-																					Description:         "AllowInsecureRegistry allows insecure access to a registry",
-																					MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry",
+																					Description:         "AllowInsecureRegistry allows insecure access to a registry.",
+																					MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"providers": schema.ListAttribute{
-																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
-																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
+																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
+																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3364,8 +3378,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				},
 
 																				"secrets": schema.ListAttribute{
-																					Description:         "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
-																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
+																					Description:         "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
+																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3479,6 +3493,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														Optional:            true,
 														Computed:            false,
 													},
+
+													"uid": schema.StringAttribute{
+														Description:         "UID specifies the resource uid.",
+														MarkdownDescription: "UID specifies the resource uid.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 											},
 											Required: false,
@@ -3506,6 +3528,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 									Description:         "Preconditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. A direct list of conditions (without 'any' or 'all' statements is supported for backwards compatibility but will be deprecated in the next major release. See: https://kyverno.io/docs/writing-policies/preconditions/",
 									MarkdownDescription: "Preconditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. A direct list of conditions (without 'any' or 'all' statements is supported for backwards compatibility but will be deprecated in the next major release. See: https://kyverno.io/docs/writing-policies/preconditions/",
 									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"skip_background_requests": schema.BoolAttribute{
+									Description:         "SkipBackgroundRequests bypasses admission requests that are sent by the background controller. The default value is set to 'true', it must be set to 'false' to apply generate and mutateExisting rules to those requests.",
+									MarkdownDescription: "SkipBackgroundRequests bypasses admission requests that are sent by the background controller. The default value is set to 'true', it must be set to 'false' to apply generate and mutateExisting rules to those requests.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -3902,16 +3932,16 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			MarkdownDescription: "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
 																			Attributes: map[string]schema.Attribute{
 																				"allow_insecure_registry": schema.BoolAttribute{
-																					Description:         "AllowInsecureRegistry allows insecure access to a registry",
-																					MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry",
+																					Description:         "AllowInsecureRegistry allows insecure access to a registry.",
+																					MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"providers": schema.ListAttribute{
-																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
-																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
+																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
+																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -3919,8 +3949,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				},
 
 																				"secrets": schema.ListAttribute{
-																					Description:         "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
-																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
+																					Description:         "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
+																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -4208,8 +4238,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		},
 
 																		"attestor": schema.MapAttribute{
-																			Description:         "Attestor is a nested AttestorSet used to specify a more complex set of match authorities",
-																			MarkdownDescription: "Attestor is a nested AttestorSet used to specify a more complex set of match authorities",
+																			Description:         "Attestor is a nested set of Attestor used to specify a more complex set of match authorities.",
+																			MarkdownDescription: "Attestor is a nested set of Attestor used to specify a more complex set of match authorities.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -4217,40 +4247,40 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		},
 
 																		"certificates": schema.SingleNestedAttribute{
-																			Description:         "Certificates specifies one or more certificates",
-																			MarkdownDescription: "Certificates specifies one or more certificates",
+																			Description:         "Certificates specifies one or more certificates.",
+																			MarkdownDescription: "Certificates specifies one or more certificates.",
 																			Attributes: map[string]schema.Attribute{
 																				"cert": schema.StringAttribute{
-																					Description:         "Certificate is an optional PEM encoded public certificate.",
-																					MarkdownDescription: "Certificate is an optional PEM encoded public certificate.",
+																					Description:         "Cert is an optional PEM-encoded public certificate.",
+																					MarkdownDescription: "Cert is an optional PEM-encoded public certificate.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"cert_chain": schema.StringAttribute{
-																					Description:         "CertificateChain is an optional PEM encoded set of certificates used to verify",
-																					MarkdownDescription: "CertificateChain is an optional PEM encoded set of certificates used to verify",
+																					Description:         "CertChain is an optional PEM encoded set of certificates used to verify.",
+																					MarkdownDescription: "CertChain is an optional PEM encoded set of certificates used to verify.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"ctlog": schema.SingleNestedAttribute{
-																					Description:         "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
-																					MarkdownDescription: "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
+																					Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																					MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_sct": schema.BoolAttribute{
-																							Description:         "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
-																							MarkdownDescription: "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
+																							Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																							MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"pubkey": schema.StringAttribute{
-																							Description:         "CTLogPubKey, if set, is used to validate SCTs against those keys.",
-																							MarkdownDescription: "CTLogPubKey, if set, is used to validate SCTs against those keys.",
+																							Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
+																							MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4266,24 +4296,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																					MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_tlog": schema.BoolAttribute{
-																							Description:         "IgnoreTlog skip tlog verification",
-																							MarkdownDescription: "IgnoreTlog skip tlog verification",
+																							Description:         "IgnoreTlog skips transparency log verification.",
+																							MarkdownDescription: "IgnoreTlog skips transparency log verification.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"pubkey": schema.StringAttribute{
-																							Description:         "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
-																							MarkdownDescription: "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
+																							Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																							MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"url": schema.StringAttribute{
-																							Description:         "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
-																							MarkdownDescription: "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
+																							Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
+																							MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -4313,20 +4343,20 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				},
 
 																				"ctlog": schema.SingleNestedAttribute{
-																					Description:         "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
-																					MarkdownDescription: "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
+																					Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																					MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_sct": schema.BoolAttribute{
-																							Description:         "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
-																							MarkdownDescription: "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
+																							Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																							MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"pubkey": schema.StringAttribute{
-																							Description:         "CTLogPubKey, if set, is used to validate SCTs against those keys.",
-																							MarkdownDescription: "CTLogPubKey, if set, is used to validate SCTs against those keys.",
+																							Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
+																							MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4350,24 +4380,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																					MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_tlog": schema.BoolAttribute{
-																							Description:         "IgnoreTlog skip tlog verification",
-																							MarkdownDescription: "IgnoreTlog skip tlog verification",
+																							Description:         "IgnoreTlog skips transparency log verification.",
+																							MarkdownDescription: "IgnoreTlog skips transparency log verification.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"pubkey": schema.StringAttribute{
-																							Description:         "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
-																							MarkdownDescription: "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
+																							Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																							MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"url": schema.StringAttribute{
-																							Description:         "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
-																							MarkdownDescription: "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
+																							Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
+																							MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -4387,8 +4417,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				},
 
 																				"subject": schema.StringAttribute{
-																					Description:         "Subject is the verified identity used for keyless signing, for example the email address",
-																					MarkdownDescription: "Subject is the verified identity used for keyless signing, for example the email address",
+																					Description:         "Subject is the verified identity used for keyless signing, for example the email address.",
+																					MarkdownDescription: "Subject is the verified identity used for keyless signing, for example the email address.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4400,24 +4430,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		},
 
 																		"keys": schema.SingleNestedAttribute{
-																			Description:         "Keys specifies one or more public keys",
-																			MarkdownDescription: "Keys specifies one or more public keys",
+																			Description:         "Keys specifies one or more public keys.",
+																			MarkdownDescription: "Keys specifies one or more public keys.",
 																			Attributes: map[string]schema.Attribute{
 																				"ctlog": schema.SingleNestedAttribute{
-																					Description:         "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
-																					MarkdownDescription: "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
+																					Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																					MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_sct": schema.BoolAttribute{
-																							Description:         "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
-																							MarkdownDescription: "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
+																							Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																							MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"pubkey": schema.StringAttribute{
-																							Description:         "CTLogPubKey, if set, is used to validate SCTs against those keys.",
-																							MarkdownDescription: "CTLogPubKey, if set, is used to validate SCTs against those keys.",
+																							Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
+																							MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4449,24 +4479,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																					MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																					Attributes: map[string]schema.Attribute{
 																						"ignore_tlog": schema.BoolAttribute{
-																							Description:         "IgnoreTlog skip tlog verification",
-																							MarkdownDescription: "IgnoreTlog skip tlog verification",
+																							Description:         "IgnoreTlog skips transparency log verification.",
+																							MarkdownDescription: "IgnoreTlog skips transparency log verification.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"pubkey": schema.StringAttribute{
-																							Description:         "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
-																							MarkdownDescription: "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
+																							Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																							MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"url": schema.StringAttribute{
-																							Description:         "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
-																							MarkdownDescription: "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
+																							Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
+																							MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -4503,8 +4533,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				},
 
 																				"signature_algorithm": schema.StringAttribute{
-																					Description:         "Specify signature algorithm for public keys. Supported values are sha256 and sha512",
-																					MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha256 and sha512",
+																					Description:         "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
+																					MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -4689,6 +4719,23 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																Optional:            true,
 																Computed:            false,
 															},
+
+															"restricted_field": schema.StringAttribute{
+																Description:         "RestrictedField selects the field for the given Pod Security Standard control. When not set, all restricted fields for the control are selected.",
+																MarkdownDescription: "RestrictedField selects the field for the given Pod Security Standard control. When not set, all restricted fields for the control are selected.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"values": schema.ListAttribute{
+																Description:         "Values defines the allowed values that can be excluded.",
+																MarkdownDescription: "Values defines the allowed values that can be excluded.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 													},
 													Required: false,
@@ -4757,8 +4804,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"attestors": schema.ListNestedAttribute{
-															Description:         "Attestors specify the required attestors (i.e. authorities)",
-															MarkdownDescription: "Attestors specify the required attestors (i.e. authorities)",
+															Description:         "Attestors specify the required attestors (i.e. authorities).",
+															MarkdownDescription: "Attestors specify the required attestors (i.e. authorities).",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"count": schema.Int64Attribute{
@@ -4787,8 +4834,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				},
 
 																				"attestor": schema.MapAttribute{
-																					Description:         "Attestor is a nested AttestorSet used to specify a more complex set of match authorities",
-																					MarkdownDescription: "Attestor is a nested AttestorSet used to specify a more complex set of match authorities",
+																					Description:         "Attestor is a nested set of Attestor used to specify a more complex set of match authorities.",
+																					MarkdownDescription: "Attestor is a nested set of Attestor used to specify a more complex set of match authorities.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -4796,40 +4843,40 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				},
 
 																				"certificates": schema.SingleNestedAttribute{
-																					Description:         "Certificates specifies one or more certificates",
-																					MarkdownDescription: "Certificates specifies one or more certificates",
+																					Description:         "Certificates specifies one or more certificates.",
+																					MarkdownDescription: "Certificates specifies one or more certificates.",
 																					Attributes: map[string]schema.Attribute{
 																						"cert": schema.StringAttribute{
-																							Description:         "Certificate is an optional PEM encoded public certificate.",
-																							MarkdownDescription: "Certificate is an optional PEM encoded public certificate.",
+																							Description:         "Cert is an optional PEM-encoded public certificate.",
+																							MarkdownDescription: "Cert is an optional PEM-encoded public certificate.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"cert_chain": schema.StringAttribute{
-																							Description:         "CertificateChain is an optional PEM encoded set of certificates used to verify",
-																							MarkdownDescription: "CertificateChain is an optional PEM encoded set of certificates used to verify",
+																							Description:         "CertChain is an optional PEM encoded set of certificates used to verify.",
+																							MarkdownDescription: "CertChain is an optional PEM encoded set of certificates used to verify.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"ctlog": schema.SingleNestedAttribute{
-																							Description:         "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
-																							MarkdownDescription: "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
+																							Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																							MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_sct": schema.BoolAttribute{
-																									Description:         "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
-																									MarkdownDescription: "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
+																									Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																									MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"pubkey": schema.StringAttribute{
-																									Description:         "CTLogPubKey, if set, is used to validate SCTs against those keys.",
-																									MarkdownDescription: "CTLogPubKey, if set, is used to validate SCTs against those keys.",
+																									Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
+																									MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4845,24 +4892,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																							MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_tlog": schema.BoolAttribute{
-																									Description:         "IgnoreTlog skip tlog verification",
-																									MarkdownDescription: "IgnoreTlog skip tlog verification",
+																									Description:         "IgnoreTlog skips transparency log verification.",
+																									MarkdownDescription: "IgnoreTlog skips transparency log verification.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"pubkey": schema.StringAttribute{
-																									Description:         "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
-																									MarkdownDescription: "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
+																									Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																									MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"url": schema.StringAttribute{
-																									Description:         "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
-																									MarkdownDescription: "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
+																									Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
+																									MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -4892,20 +4939,20 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																						},
 
 																						"ctlog": schema.SingleNestedAttribute{
-																							Description:         "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
-																							MarkdownDescription: "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
+																							Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																							MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_sct": schema.BoolAttribute{
-																									Description:         "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
-																									MarkdownDescription: "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
+																									Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																									MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"pubkey": schema.StringAttribute{
-																									Description:         "CTLogPubKey, if set, is used to validate SCTs against those keys.",
-																									MarkdownDescription: "CTLogPubKey, if set, is used to validate SCTs against those keys.",
+																									Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
+																									MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -4929,24 +4976,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																							MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_tlog": schema.BoolAttribute{
-																									Description:         "IgnoreTlog skip tlog verification",
-																									MarkdownDescription: "IgnoreTlog skip tlog verification",
+																									Description:         "IgnoreTlog skips transparency log verification.",
+																									MarkdownDescription: "IgnoreTlog skips transparency log verification.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"pubkey": schema.StringAttribute{
-																									Description:         "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
-																									MarkdownDescription: "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
+																									Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																									MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"url": schema.StringAttribute{
-																									Description:         "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
-																									MarkdownDescription: "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
+																									Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
+																									MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -4966,8 +5013,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																						},
 
 																						"subject": schema.StringAttribute{
-																							Description:         "Subject is the verified identity used for keyless signing, for example the email address",
-																							MarkdownDescription: "Subject is the verified identity used for keyless signing, for example the email address",
+																							Description:         "Subject is the verified identity used for keyless signing, for example the email address.",
+																							MarkdownDescription: "Subject is the verified identity used for keyless signing, for example the email address.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -4979,24 +5026,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				},
 
 																				"keys": schema.SingleNestedAttribute{
-																					Description:         "Keys specifies one or more public keys",
-																					MarkdownDescription: "Keys specifies one or more public keys",
+																					Description:         "Keys specifies one or more public keys.",
+																					MarkdownDescription: "Keys specifies one or more public keys.",
 																					Attributes: map[string]schema.Attribute{
 																						"ctlog": schema.SingleNestedAttribute{
-																							Description:         "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
-																							MarkdownDescription: "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
+																							Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																							MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_sct": schema.BoolAttribute{
-																									Description:         "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
-																									MarkdownDescription: "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
+																									Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																									MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"pubkey": schema.StringAttribute{
-																									Description:         "CTLogPubKey, if set, is used to validate SCTs against those keys.",
-																									MarkdownDescription: "CTLogPubKey, if set, is used to validate SCTs against those keys.",
+																									Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
+																									MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
@@ -5028,24 +5075,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																							MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																							Attributes: map[string]schema.Attribute{
 																								"ignore_tlog": schema.BoolAttribute{
-																									Description:         "IgnoreTlog skip tlog verification",
-																									MarkdownDescription: "IgnoreTlog skip tlog verification",
+																									Description:         "IgnoreTlog skips transparency log verification.",
+																									MarkdownDescription: "IgnoreTlog skips transparency log verification.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"pubkey": schema.StringAttribute{
-																									Description:         "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
-																									MarkdownDescription: "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
+																									Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																									MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																									Required:            false,
 																									Optional:            true,
 																									Computed:            false,
 																								},
 
 																								"url": schema.StringAttribute{
-																									Description:         "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
-																									MarkdownDescription: "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
+																									Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
+																									MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																									Required:            true,
 																									Optional:            false,
 																									Computed:            false,
@@ -5082,8 +5129,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																						},
 
 																						"signature_algorithm": schema.StringAttribute{
-																							Description:         "Specify signature algorithm for public keys. Supported values are sha256 and sha512",
-																							MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha256 and sha512",
+																							Description:         "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
+																							MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -5274,8 +5321,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	},
 
 																	"attestor": schema.MapAttribute{
-																		Description:         "Attestor is a nested AttestorSet used to specify a more complex set of match authorities",
-																		MarkdownDescription: "Attestor is a nested AttestorSet used to specify a more complex set of match authorities",
+																		Description:         "Attestor is a nested set of Attestor used to specify a more complex set of match authorities.",
+																		MarkdownDescription: "Attestor is a nested set of Attestor used to specify a more complex set of match authorities.",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -5283,40 +5330,40 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	},
 
 																	"certificates": schema.SingleNestedAttribute{
-																		Description:         "Certificates specifies one or more certificates",
-																		MarkdownDescription: "Certificates specifies one or more certificates",
+																		Description:         "Certificates specifies one or more certificates.",
+																		MarkdownDescription: "Certificates specifies one or more certificates.",
 																		Attributes: map[string]schema.Attribute{
 																			"cert": schema.StringAttribute{
-																				Description:         "Certificate is an optional PEM encoded public certificate.",
-																				MarkdownDescription: "Certificate is an optional PEM encoded public certificate.",
+																				Description:         "Cert is an optional PEM-encoded public certificate.",
+																				MarkdownDescription: "Cert is an optional PEM-encoded public certificate.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"cert_chain": schema.StringAttribute{
-																				Description:         "CertificateChain is an optional PEM encoded set of certificates used to verify",
-																				MarkdownDescription: "CertificateChain is an optional PEM encoded set of certificates used to verify",
+																				Description:         "CertChain is an optional PEM encoded set of certificates used to verify.",
+																				MarkdownDescription: "CertChain is an optional PEM encoded set of certificates used to verify.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"ctlog": schema.SingleNestedAttribute{
-																				Description:         "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
-																				MarkdownDescription: "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
+																				Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																				MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_sct": schema.BoolAttribute{
-																						Description:         "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
-																						MarkdownDescription: "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
+																						Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																						MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"pubkey": schema.StringAttribute{
-																						Description:         "CTLogPubKey, if set, is used to validate SCTs against those keys.",
-																						MarkdownDescription: "CTLogPubKey, if set, is used to validate SCTs against those keys.",
+																						Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
+																						MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5332,24 +5379,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_tlog": schema.BoolAttribute{
-																						Description:         "IgnoreTlog skip tlog verification",
-																						MarkdownDescription: "IgnoreTlog skip tlog verification",
+																						Description:         "IgnoreTlog skips transparency log verification.",
+																						MarkdownDescription: "IgnoreTlog skips transparency log verification.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"pubkey": schema.StringAttribute{
-																						Description:         "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
-																						MarkdownDescription: "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
+																						Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																						MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"url": schema.StringAttribute{
-																						Description:         "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
-																						MarkdownDescription: "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
+																						Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
+																						MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -5379,20 +5426,20 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			},
 
 																			"ctlog": schema.SingleNestedAttribute{
-																				Description:         "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
-																				MarkdownDescription: "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
+																				Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																				MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_sct": schema.BoolAttribute{
-																						Description:         "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
-																						MarkdownDescription: "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
+																						Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																						MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"pubkey": schema.StringAttribute{
-																						Description:         "CTLogPubKey, if set, is used to validate SCTs against those keys.",
-																						MarkdownDescription: "CTLogPubKey, if set, is used to validate SCTs against those keys.",
+																						Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
+																						MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5416,24 +5463,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_tlog": schema.BoolAttribute{
-																						Description:         "IgnoreTlog skip tlog verification",
-																						MarkdownDescription: "IgnoreTlog skip tlog verification",
+																						Description:         "IgnoreTlog skips transparency log verification.",
+																						MarkdownDescription: "IgnoreTlog skips transparency log verification.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"pubkey": schema.StringAttribute{
-																						Description:         "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
-																						MarkdownDescription: "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
+																						Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																						MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"url": schema.StringAttribute{
-																						Description:         "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
-																						MarkdownDescription: "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
+																						Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
+																						MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -5453,8 +5500,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			},
 
 																			"subject": schema.StringAttribute{
-																				Description:         "Subject is the verified identity used for keyless signing, for example the email address",
-																				MarkdownDescription: "Subject is the verified identity used for keyless signing, for example the email address",
+																				Description:         "Subject is the verified identity used for keyless signing, for example the email address.",
+																				MarkdownDescription: "Subject is the verified identity used for keyless signing, for example the email address.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5466,24 +5513,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																	},
 
 																	"keys": schema.SingleNestedAttribute{
-																		Description:         "Keys specifies one or more public keys",
-																		MarkdownDescription: "Keys specifies one or more public keys",
+																		Description:         "Keys specifies one or more public keys.",
+																		MarkdownDescription: "Keys specifies one or more public keys.",
 																		Attributes: map[string]schema.Attribute{
 																			"ctlog": schema.SingleNestedAttribute{
-																				Description:         "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
-																				MarkdownDescription: "CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used",
+																				Description:         "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
+																				MarkdownDescription: "CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_sct": schema.BoolAttribute{
-																						Description:         "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
-																						MarkdownDescription: "IgnoreSCT requires that a certificate contain an embedded SCT during verification.",
+																						Description:         "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
+																						MarkdownDescription: "IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"pubkey": schema.StringAttribute{
-																						Description:         "CTLogPubKey, if set, is used to validate SCTs against those keys.",
-																						MarkdownDescription: "CTLogPubKey, if set, is used to validate SCTs against those keys.",
+																						Description:         "PubKey, if set, is used to validate SCTs against a custom source.",
+																						MarkdownDescription: "PubKey, if set, is used to validate SCTs against a custom source.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -5515,24 +5562,24 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																				Attributes: map[string]schema.Attribute{
 																					"ignore_tlog": schema.BoolAttribute{
-																						Description:         "IgnoreTlog skip tlog verification",
-																						MarkdownDescription: "IgnoreTlog skip tlog verification",
+																						Description:         "IgnoreTlog skips transparency log verification.",
+																						MarkdownDescription: "IgnoreTlog skips transparency log verification.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"pubkey": schema.StringAttribute{
-																						Description:         "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
-																						MarkdownDescription: "RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.",
+																						Description:         "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
+																						MarkdownDescription: "RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"url": schema.StringAttribute{
-																						Description:         "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
-																						MarkdownDescription: "URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.",
+																						Description:         "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
+																						MarkdownDescription: "URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -5569,8 +5616,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			},
 
 																			"signature_algorithm": schema.StringAttribute{
-																				Description:         "Specify signature algorithm for public keys. Supported values are sha256 and sha512",
-																				MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha256 and sha512",
+																				Description:         "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
+																				MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -5619,20 +5666,20 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 											},
 
 											"image_registry_credentials": schema.SingleNestedAttribute{
-												Description:         "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
-												MarkdownDescription: "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
+												Description:         "ImageRegistryCredentials provides credentials that will be used for authentication with registry.",
+												MarkdownDescription: "ImageRegistryCredentials provides credentials that will be used for authentication with registry.",
 												Attributes: map[string]schema.Attribute{
 													"allow_insecure_registry": schema.BoolAttribute{
-														Description:         "AllowInsecureRegistry allows insecure access to a registry",
-														MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry",
+														Description:         "AllowInsecureRegistry allows insecure access to a registry.",
+														MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"providers": schema.ListAttribute{
-														Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
-														MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR",
+														Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
+														MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -5640,8 +5687,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 													},
 
 													"secrets": schema.ListAttribute{
-														Description:         "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
-														MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace",
+														Description:         "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
+														MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -5701,6 +5748,15 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												Computed:            false,
 											},
 
+											"skip_image_references": schema.ListAttribute{
+												Description:         "SkipImageReferences is a list of matching image reference patterns that should be skipped. At least one pattern in the list must match the image for the rule to be skipped. Each image reference consists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest). Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
+												MarkdownDescription: "SkipImageReferences is a list of matching image reference patterns that should be skipped. At least one pattern in the list must match the image for the rule to be skipped. Each image reference consists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest). Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"subject": schema.StringAttribute{
 												Description:         "Deprecated. Use KeylessAttestor instead.",
 												MarkdownDescription: "Deprecated. Use KeylessAttestor instead.",
@@ -5721,8 +5777,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 											},
 
 											"use_cache": schema.BoolAttribute{
-												Description:         "UseCache enables caching of image verify responses for this rule",
-												MarkdownDescription: "UseCache enables caching of image verify responses for this rule",
+												Description:         "UseCache enables caching of image verify responses for this rule.",
+												MarkdownDescription: "UseCache enables caching of image verify responses for this rule.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5749,8 +5805,8 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					},
 
 					"schema_validation": schema.BoolAttribute{
-						Description:         "SchemaValidation skips validation checks for policies as well as patched resources. Optional. The default value is set to 'true', it must be set to 'false' to disable the validation checks.",
-						MarkdownDescription: "SchemaValidation skips validation checks for policies as well as patched resources. Optional. The default value is set to 'true', it must be set to 'false' to disable the validation checks.",
+						Description:         "Deprecated.",
+						MarkdownDescription: "Deprecated.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -5771,7 +5827,7 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("audit", "enforce", "Audit", "Enforce"),
+							stringvalidator.OneOf("Audit", "Enforce"),
 						},
 					},
 
@@ -5787,7 +5843,7 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.OneOf("audit", "enforce", "Audit", "Enforce"),
+										stringvalidator.OneOf("Audit", "Enforce"),
 									},
 								},
 

@@ -3,12 +3,12 @@
 page_title: "k8s_mariadb_mmontes_io_sql_job_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "mariadb.mmontes.io"
 description: |-
-  SqlJob is the Schema for the sqljobs API
+  SqlJob is the Schema for the sqljobs API. It is used to run sql scripts as jobs.
 ---
 
 # k8s_mariadb_mmontes_io_sql_job_v1alpha1_manifest (Data Source)
 
-SqlJob is the Schema for the sqljobs API
+SqlJob is the Schema for the sqljobs API. It is used to run sql scripts as jobs.
 
 ## Example Usage
 
@@ -56,23 +56,25 @@ Optional:
 
 Required:
 
-- `maria_db_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--maria_db_ref))
-- `password_secret_key_ref` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
-- `username` (String)
+- `maria_db_ref` (Attributes) MariaDBRef is a reference to a MariaDB object. (see [below for nested schema](#nestedatt--spec--maria_db_ref))
+- `password_secret_key_ref` (Attributes) UserPasswordSecretKeyRef is a reference to the impersonated user's password to be used when executing the SqlJob. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
+- `username` (String) Username to be impersonated when executing the SqlJob.
 
 Optional:
 
-- `affinity` (Attributes) Affinity is a group of affinity scheduling rules. (see [below for nested schema](#nestedatt--spec--affinity))
-- `backoff_limit` (Number)
-- `database` (String)
-- `depends_on` (Attributes List) (see [below for nested schema](#nestedatt--spec--depends_on))
-- `node_selector` (Map of String)
-- `resources` (Attributes) ResourceRequirements describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--resources))
-- `restart_policy` (String) RestartPolicy describes how the container should be restarted. Only one of the following restart policies may be specified. If none of the following policies is specified, the default one is RestartPolicyAlways.
-- `schedule` (Attributes) (see [below for nested schema](#nestedatt--spec--schedule))
-- `sql` (String)
-- `sql_config_map_key_ref` (Attributes) Selects a key from a ConfigMap. (see [below for nested schema](#nestedatt--spec--sql_config_map_key_ref))
-- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--tolerations))
+- `affinity` (Attributes) Affinity to be used in the SqlJob Pod. (see [below for nested schema](#nestedatt--spec--affinity))
+- `backoff_limit` (Number) BackoffLimit defines the maximum number of attempts to successfully execute a SqlJob.
+- `database` (String) Username to be used when executing the SqlJob.
+- `depends_on` (Attributes List) DependsOn defines dependencies with other SqlJob objectecs. (see [below for nested schema](#nestedatt--spec--depends_on))
+- `node_selector` (Map of String) NodeSelector to be used in the SqlJob Pod.
+- `pod_security_context` (Attributes) SecurityContext holds pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--pod_security_context))
+- `resources` (Attributes) Resouces describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--resources))
+- `restart_policy` (String) RestartPolicy to be added to the SqlJob Pod.
+- `schedule` (Attributes) Schedule defines when the SqlJob will be executed. (see [below for nested schema](#nestedatt--spec--schedule))
+- `security_context` (Attributes) SecurityContext holds security configuration that will be applied to a container. (see [below for nested schema](#nestedatt--spec--security_context))
+- `sql` (String) Sql is the script to be executed by the SqlJob.
+- `sql_config_map_key_ref` (Attributes) SqlConfigMapKeyRef is a reference to a ConfigMap containing the Sql script. It is defaulted to a ConfigMap with the contents of the Sql field. (see [below for nested schema](#nestedatt--spec--sql_config_map_key_ref))
+- `tolerations` (Attributes List) Tolerations to be used in the SqlJob Pod. (see [below for nested schema](#nestedatt--spec--tolerations))
 
 <a id="nestedatt--spec--maria_db_ref"></a>
 ### Nested Schema for `spec.maria_db_ref`
@@ -86,7 +88,7 @@ Optional:
 - `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 - `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
-- `wait_for_it` (Boolean)
+- `wait_for_it` (Boolean) WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.
 
 
 <a id="nestedatt--spec--password_secret_key_ref"></a>
@@ -484,13 +486,82 @@ Optional:
 - `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
+<a id="nestedatt--spec--pod_security_context"></a>
+### Nested Schema for `spec.pod_security_context`
+
+Optional:
+
+- `fs_group` (Number) A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
+- `fs_group_change_policy` (String) fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.
+- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
+- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
+- `se_linux_options` (Attributes) The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_security_context--seccomp_profile))
+- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.
+- `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_security_context--sysctls))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.pod_security_context.se_linux_options`
+
+Optional:
+
+- `level` (String) Level is SELinux level label that applies to the container.
+- `role` (String) Role is a SELinux role label that applies to the container.
+- `type` (String) Type is a SELinux type label that applies to the container.
+- `user` (String) User is a SELinux user label that applies to the container.
+
+
+<a id="nestedatt--spec--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.pod_security_context.seccomp_profile`
+
+Required:
+
+- `type` (String) type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
+
+Optional:
+
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
+
+
+<a id="nestedatt--spec--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.pod_security_context.sysctls`
+
+Required:
+
+- `name` (String) Name of a property to set
+- `value` (String) Value of a property to set
+
+
+<a id="nestedatt--spec--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.pod_security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
+- `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+
+
+
 <a id="nestedatt--spec--resources"></a>
 ### Nested Schema for `spec.resources`
 
 Optional:
 
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--resources--claims"></a>
+### Nested Schema for `spec.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
 
 
 <a id="nestedatt--spec--schedule"></a>
@@ -498,11 +569,72 @@ Optional:
 
 Required:
 
-- `cron` (String)
+- `cron` (String) Cron is a cron expression that defines the schedule.
 
 Optional:
 
-- `suspend` (Boolean)
+- `suspend` (Boolean) Suspend defines whether the schedule is active or not.
+
+
+<a id="nestedatt--spec--security_context"></a>
+### Nested Schema for `spec.security_context`
+
+Optional:
+
+- `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
+- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--capabilities))
+- `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
+- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.
+- `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.
+- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
+- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
+- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--seccomp_profile))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security_context--windows_options))
+
+<a id="nestedatt--spec--security_context--capabilities"></a>
+### Nested Schema for `spec.security_context.capabilities`
+
+Optional:
+
+- `add` (List of String) Added capabilities
+- `drop` (List of String) Removed capabilities
+
+
+<a id="nestedatt--spec--security_context--se_linux_options"></a>
+### Nested Schema for `spec.security_context.se_linux_options`
+
+Optional:
+
+- `level` (String) Level is SELinux level label that applies to the container.
+- `role` (String) Role is a SELinux role label that applies to the container.
+- `type` (String) Type is a SELinux type label that applies to the container.
+- `user` (String) User is a SELinux user label that applies to the container.
+
+
+<a id="nestedatt--spec--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.security_context.seccomp_profile`
+
+Required:
+
+- `type` (String) type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
+
+Optional:
+
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.
+
+
+<a id="nestedatt--spec--security_context--windows_options"></a>
+### Nested Schema for `spec.security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
+- `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+
 
 
 <a id="nestedatt--spec--sql_config_map_key_ref"></a>

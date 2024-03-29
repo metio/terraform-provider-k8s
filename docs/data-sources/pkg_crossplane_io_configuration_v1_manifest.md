@@ -16,6 +16,7 @@ Configuration is the CRD type for a request to add a configuration to Crossplane
 data "k8s_pkg_crossplane_io_configuration_v1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -29,7 +30,7 @@ data "k8s_pkg_crossplane_io_configuration_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) ConfigurationSpec specifies details about a request to install a configuration to Crossplane. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ConfigurationSpec specifies details about a request to install aconfiguration to Crossplane. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -58,17 +59,17 @@ Required:
 
 Optional:
 
-- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
-- `ignore_crossplane_constraints` (Boolean) IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.
-- `package_pull_policy` (String) PackagePullPolicy defines the pull policy for the package. Default is IfNotPresent.
-- `package_pull_secrets` (Attributes List) PackagePullSecrets are named secrets in the same namespace that can be used to fetch packages from private registries. (see [below for nested schema](#nestedatt--spec--package_pull_secrets))
-- `revision_activation_policy` (String) RevisionActivationPolicy specifies how the package controller should update from one revision to the next. Options are Automatic or Manual. Default is Automatic.
-- `revision_history_limit` (Number) RevisionHistoryLimit dictates how the package controller cleans up old inactive package revisions. Defaults to 1. Can be disabled by explicitly setting to 0.
-- `skip_dependency_resolution` (Boolean) SkipDependencyResolution indicates to the package manager whether to skip resolving dependencies for a package. Setting this value to true may have unintended consequences. Default is false.
+- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `ignore_crossplane_constraints` (Boolean) IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.
+- `package_pull_policy` (String) PackagePullPolicy defines the pull policy for the package.Default is IfNotPresent.
+- `package_pull_secrets` (Attributes List) PackagePullSecrets are named secrets in the same namespace that can be usedto fetch packages from private registries. (see [below for nested schema](#nestedatt--spec--package_pull_secrets))
+- `revision_activation_policy` (String) RevisionActivationPolicy specifies how the package controller shouldupdate from one revision to the next. Options are Automatic or Manual.Default is Automatic.
+- `revision_history_limit` (Number) RevisionHistoryLimit dictates how the package controller cleans up oldinactive package revisions.Defaults to 1. Can be disabled by explicitly setting to 0.
+- `skip_dependency_resolution` (Boolean) SkipDependencyResolution indicates to the package manager whether to skipresolving dependencies for a package. Setting this value to true may haveunintended consequences.Default is false.
 
 <a id="nestedatt--spec--package_pull_secrets"></a>
 ### Nested Schema for `spec.package_pull_secrets`
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?

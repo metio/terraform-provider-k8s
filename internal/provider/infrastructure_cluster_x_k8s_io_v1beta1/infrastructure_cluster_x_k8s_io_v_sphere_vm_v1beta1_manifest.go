@@ -109,7 +109,8 @@ type InfrastructureClusterXK8SIoVsphereVmV1Beta1ManifestData struct {
 					To     *string `tfsdk:"to" json:"to,omitempty"`
 					Via    *string `tfsdk:"via" json:"via,omitempty"`
 				} `tfsdk:"routes" json:"routes,omitempty"`
-				SearchDomains *[]string `tfsdk:"search_domains" json:"searchDomains,omitempty"`
+				SearchDomains    *[]string `tfsdk:"search_domains" json:"searchDomains,omitempty"`
+				SkipIPAllocation *bool     `tfsdk:"skip_ip_allocation" json:"skipIPAllocation,omitempty"`
 			} `tfsdk:"devices" json:"devices,omitempty"`
 			PreferredAPIServerCidr *string `tfsdk:"preferred_api_server_cidr" json:"preferredAPIServerCidr,omitempty"`
 			Routes                 *[]struct {
@@ -142,8 +143,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Metadata(_ context
 
 func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereVM is the Schema for the vspherevms API",
-		MarkdownDescription: "VSphereVM is the Schema for the vspherevms API",
+		Description:         "VSphereVM is the Schema for the vspherevms API.",
+		MarkdownDescription: "VSphereVM is the Schema for the vspherevms API.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -623,8 +624,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 										},
 
 										"ip_addrs": schema.ListAttribute{
-											Description:         "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device.  IP addresses must also specify the segment length in CIDR notation. Required when DHCP4 and DHCP6 are both false.",
-											MarkdownDescription: "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device.  IP addresses must also specify the segment length in CIDR notation. Required when DHCP4 and DHCP6 are both false.",
+											Description:         "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device. IP addresses must also specify the segment length in CIDR notation. Required when DHCP4, DHCP6 and SkipIPAllocation are false.",
+											MarkdownDescription: "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device. IP addresses must also specify the segment length in CIDR notation. Required when DHCP4, DHCP6 and SkipIPAllocation are false.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -707,6 +708,14 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 											Optional:            true,
 											Computed:            false,
 										},
+
+										"skip_ip_allocation": schema.BoolAttribute{
+											Description:         "SkipIPAllocation allows the device to not have IP address or DHCP configured. This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI. If true, CAPV will not verify IP address allocation.",
+											MarkdownDescription: "SkipIPAllocation allows the device to not have IP address or DHCP configured. This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI. If true, CAPV will not verify IP address allocation.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: true,
@@ -715,8 +724,8 @@ func (r *InfrastructureClusterXK8SIoVsphereVmV1Beta1Manifest) Schema(_ context.C
 							},
 
 							"preferred_api_server_cidr": schema.StringAttribute{
-								Description:         "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine",
-								MarkdownDescription: "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine",
+								Description:         "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine  Deprecated: This field is going to be removed in a future release.",
+								MarkdownDescription: "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine  Deprecated: This field is going to be removed in a future release.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

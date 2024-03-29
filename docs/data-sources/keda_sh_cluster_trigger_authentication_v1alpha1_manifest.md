@@ -16,6 +16,7 @@ ClusterTriggerAuthentication defines how a trigger can authenticate globally
 data "k8s_keda_sh_cluster_trigger_authentication_v1alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -51,11 +52,146 @@ Optional:
 
 Optional:
 
+- `aws_secret_manager` (Attributes) AwsSecretManager is used to authenticate using AwsSecretManager (see [below for nested schema](#nestedatt--spec--aws_secret_manager))
 - `azure_key_vault` (Attributes) AzureKeyVault is used to authenticate using Azure Key Vault (see [below for nested schema](#nestedatt--spec--azure_key_vault))
+- `config_map_target_ref` (Attributes List) (see [below for nested schema](#nestedatt--spec--config_map_target_ref))
 - `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--env))
+- `gcp_secret_manager` (Attributes) (see [below for nested schema](#nestedatt--spec--gcp_secret_manager))
 - `hashi_corp_vault` (Attributes) HashiCorpVault is used to authenticate using Hashicorp Vault (see [below for nested schema](#nestedatt--spec--hashi_corp_vault))
-- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identity mechanism (see [below for nested schema](#nestedatt--spec--pod_identity))
+- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identitymechanism (see [below for nested schema](#nestedatt--spec--pod_identity))
 - `secret_target_ref` (Attributes List) (see [below for nested schema](#nestedatt--spec--secret_target_ref))
+
+<a id="nestedatt--spec--aws_secret_manager"></a>
+### Nested Schema for `spec.aws_secret_manager`
+
+Required:
+
+- `secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--secrets))
+
+Optional:
+
+- `credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials))
+- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identitymechanism (see [below for nested schema](#nestedatt--spec--aws_secret_manager--pod_identity))
+- `region` (String)
+
+<a id="nestedatt--spec--aws_secret_manager--secrets"></a>
+### Nested Schema for `spec.aws_secret_manager.secrets`
+
+Required:
+
+- `name` (String)
+- `parameter` (String)
+
+Optional:
+
+- `version_id` (String)
+- `version_stage` (String)
+
+
+<a id="nestedatt--spec--aws_secret_manager--credentials"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials`
+
+Required:
+
+- `access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_key))
+- `access_secret_key` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_secret_key))
+
+Optional:
+
+- `access_token` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token))
+
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_key"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_token`
+
+Required:
+
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token--value_from))
+
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_token--value_from"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_token.value_from`
+
+Required:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_token--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_token.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_secret_key"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_token`
+
+Required:
+
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token--value_from))
+
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_token--value_from"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_token.value_from`
+
+Required:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_token--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_token.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+- `name` (String)
+
+
+
+
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_token"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_token`
+
+Required:
+
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token--value_from))
+
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_token--value_from"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_token.value_from`
+
+Required:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_secret_manager--credentials--access_token--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--aws_secret_manager--credentials--access_token--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.aws_secret_manager.credentials.access_token.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+- `name` (String)
+
+
+
+
+
+<a id="nestedatt--spec--aws_secret_manager--pod_identity"></a>
+### Nested Schema for `spec.aws_secret_manager.pod_identity`
+
+Required:
+
+- `provider` (String) PodIdentityProvider contains the list of providers
+
+Optional:
+
+- `identity_authority_host` (String) Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set
+- `identity_id` (String)
+- `identity_owner` (String) IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn
+- `identity_tenant_id` (String) Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set
+- `role_arn` (String) RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner
+
+
 
 <a id="nestedatt--spec--azure_key_vault"></a>
 ### Nested Schema for `spec.azure_key_vault`
@@ -69,7 +205,7 @@ Optional:
 
 - `cloud` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_key_vault--cloud))
 - `credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--azure_key_vault--credentials))
-- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identity mechanism (see [below for nested schema](#nestedatt--spec--azure_key_vault--pod_identity))
+- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identitymechanism (see [below for nested schema](#nestedatt--spec--azure_key_vault--pod_identity))
 
 <a id="nestedatt--spec--azure_key_vault--secrets"></a>
 ### Nested Schema for `spec.azure_key_vault.secrets`
@@ -141,8 +277,22 @@ Required:
 
 Optional:
 
+- `identity_authority_host` (String) Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set
 - `identity_id` (String)
+- `identity_owner` (String) IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn
+- `identity_tenant_id` (String) Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set
+- `role_arn` (String) RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner
 
+
+
+<a id="nestedatt--spec--config_map_target_ref"></a>
+### Nested Schema for `spec.config_map_target_ref`
+
+Required:
+
+- `key` (String)
+- `name` (String)
+- `parameter` (String)
 
 
 <a id="nestedatt--spec--env"></a>
@@ -156,6 +306,81 @@ Required:
 Optional:
 
 - `container_name` (String)
+
+
+<a id="nestedatt--spec--gcp_secret_manager"></a>
+### Nested Schema for `spec.gcp_secret_manager`
+
+Required:
+
+- `secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--gcp_secret_manager--secrets))
+
+Optional:
+
+- `credentials` (Attributes) (see [below for nested schema](#nestedatt--spec--gcp_secret_manager--credentials))
+- `pod_identity` (Attributes) AuthPodIdentity allows users to select the platform native identitymechanism (see [below for nested schema](#nestedatt--spec--gcp_secret_manager--pod_identity))
+
+<a id="nestedatt--spec--gcp_secret_manager--secrets"></a>
+### Nested Schema for `spec.gcp_secret_manager.secrets`
+
+Required:
+
+- `id` (String)
+- `parameter` (String)
+
+Optional:
+
+- `version` (String)
+
+
+<a id="nestedatt--spec--gcp_secret_manager--credentials"></a>
+### Nested Schema for `spec.gcp_secret_manager.credentials`
+
+Required:
+
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--gcp_secret_manager--credentials--client_secret))
+
+<a id="nestedatt--spec--gcp_secret_manager--credentials--client_secret"></a>
+### Nested Schema for `spec.gcp_secret_manager.credentials.client_secret`
+
+Required:
+
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--gcp_secret_manager--credentials--client_secret--value_from))
+
+<a id="nestedatt--spec--gcp_secret_manager--credentials--client_secret--value_from"></a>
+### Nested Schema for `spec.gcp_secret_manager.credentials.client_secret.value_from`
+
+Required:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--gcp_secret_manager--credentials--client_secret--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--gcp_secret_manager--credentials--client_secret--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.gcp_secret_manager.credentials.client_secret.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+- `name` (String)
+
+
+
+
+
+<a id="nestedatt--spec--gcp_secret_manager--pod_identity"></a>
+### Nested Schema for `spec.gcp_secret_manager.pod_identity`
+
+Required:
+
+- `provider` (String) PodIdentityProvider contains the list of providers
+
+Optional:
+
+- `identity_authority_host` (String) Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set
+- `identity_id` (String)
+- `identity_owner` (String) IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn
+- `identity_tenant_id` (String) Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set
+- `role_arn` (String) RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner
+
 
 
 <a id="nestedatt--spec--hashi_corp_vault"></a>
@@ -183,6 +408,25 @@ Required:
 - `parameter` (String)
 - `path` (String)
 
+Optional:
+
+- `pki_data` (Attributes) (see [below for nested schema](#nestedatt--spec--hashi_corp_vault--secrets--pki_data))
+- `type` (String) VaultSecretType defines the type of vault secret
+
+<a id="nestedatt--spec--hashi_corp_vault--secrets--pki_data"></a>
+### Nested Schema for `spec.hashi_corp_vault.secrets.type`
+
+Optional:
+
+- `alt_names` (String)
+- `common_name` (String)
+- `format` (String)
+- `ip_sans` (String)
+- `other_sans` (String)
+- `ttl` (String)
+- `uri_sans` (String)
+
+
 
 <a id="nestedatt--spec--hashi_corp_vault--credential"></a>
 ### Nested Schema for `spec.hashi_corp_vault.credential`
@@ -203,7 +447,11 @@ Required:
 
 Optional:
 
+- `identity_authority_host` (String) Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set
 - `identity_id` (String)
+- `identity_owner` (String) IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn
+- `identity_tenant_id` (String) Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set
+- `role_arn` (String) RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner
 
 
 <a id="nestedatt--spec--secret_target_ref"></a>

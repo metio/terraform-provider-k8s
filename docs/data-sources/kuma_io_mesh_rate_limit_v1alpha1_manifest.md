@@ -56,11 +56,12 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 Optional:
 
 - `from` (Attributes List) From list makes a match between clients and corresponding configurations (see [below for nested schema](#nestedatt--spec--from))
+- `to` (Attributes List) To list makes a match between clients and corresponding configurations (see [below for nested schema](#nestedatt--spec--to))
 
 <a id="nestedatt--spec--target_ref"></a>
 ### Nested Schema for `spec.target_ref`
@@ -69,8 +70,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--from"></a>
@@ -78,11 +80,11 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group of clients. (see [below for nested schema](#nestedatt--spec--from--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group ofclients. (see [below for nested schema](#nestedatt--spec--from--target_ref))
 
 Optional:
 
-- `default` (Attributes) Default is a configuration specific to the group of clients referenced in 'targetRef' (see [below for nested schema](#nestedatt--spec--from--default))
+- `default` (Attributes) Default is a configuration specific to the group of clients referenced in'targetRef' (see [below for nested schema](#nestedatt--spec--from--default))
 
 <a id="nestedatt--spec--from--target_ref"></a>
 ### Nested Schema for `spec.from.target_ref`
@@ -91,8 +93,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--from--default"></a>
@@ -107,8 +110,8 @@ Optional:
 
 Optional:
 
-- `http` (Attributes) LocalHTTP defines confguration of local HTTP rate limiting https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--from--default--local--http))
-- `tcp` (Attributes) LocalTCP defines confguration of local TCP rate limiting https://www.envoyproxy.io/docs/envoy/latest/configuration/listeners/network_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--from--default--local--tcp))
+- `http` (Attributes) LocalHTTP defines confguration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--from--default--local--http))
+- `tcp` (Attributes) LocalTCP defines confguration of local TCP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/listeners/network_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--from--default--local--tcp))
 
 <a id="nestedatt--spec--from--default--local--http"></a>
 ### Nested Schema for `spec.from.default.local.http`
@@ -161,7 +164,7 @@ Required:
 Required:
 
 - `interval` (String) The interval the number of units is accounted for.
-- `num` (Number) Number of units per interval (depending on usage it can be a number of requests, or a number of connections).
+- `num` (Number) Number of units per interval (depending on usage it can be a number of requests,or a number of connections).
 
 
 
@@ -171,7 +174,7 @@ Required:
 Optional:
 
 - `connection_rate` (Attributes) Defines how many connections are allowed per interval. (see [below for nested schema](#nestedatt--spec--from--default--local--tcp--connection_rate))
-- `disabled` (Boolean) Define if rate limiting should be disabled. Default: false
+- `disabled` (Boolean) Define if rate limiting should be disabled.Default: false
 
 <a id="nestedatt--spec--from--default--local--tcp--connection_rate"></a>
 ### Nested Schema for `spec.from.default.local.tcp.disabled`
@@ -179,4 +182,118 @@ Optional:
 Required:
 
 - `interval` (String) The interval the number of units is accounted for.
-- `num` (Number) Number of units per interval (depending on usage it can be a number of requests, or a number of connections).
+- `num` (Number) Number of units per interval (depending on usage it can be a number of requests,or a number of connections).
+
+
+
+
+
+
+<a id="nestedatt--spec--to"></a>
+### Nested Schema for `spec.to`
+
+Required:
+
+- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group ofclients. (see [below for nested schema](#nestedatt--spec--to--target_ref))
+
+Optional:
+
+- `default` (Attributes) Default is a configuration specific to the group of clients referenced in'targetRef' (see [below for nested schema](#nestedatt--spec--to--default))
+
+<a id="nestedatt--spec--to--target_ref"></a>
+### Nested Schema for `spec.to.target_ref`
+
+Optional:
+
+- `kind` (String) Kind of the referenced resource
+- `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
+
+
+<a id="nestedatt--spec--to--default"></a>
+### Nested Schema for `spec.to.default`
+
+Optional:
+
+- `local` (Attributes) LocalConf defines local http or/and tcp rate limit configuration (see [below for nested schema](#nestedatt--spec--to--default--local))
+
+<a id="nestedatt--spec--to--default--local"></a>
+### Nested Schema for `spec.to.default.local`
+
+Optional:
+
+- `http` (Attributes) LocalHTTP defines confguration of local HTTP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--to--default--local--http))
+- `tcp` (Attributes) LocalTCP defines confguration of local TCP rate limitinghttps://www.envoyproxy.io/docs/envoy/latest/configuration/listeners/network_filters/local_rate_limit_filter (see [below for nested schema](#nestedatt--spec--to--default--local--tcp))
+
+<a id="nestedatt--spec--to--default--local--http"></a>
+### Nested Schema for `spec.to.default.local.http`
+
+Optional:
+
+- `disabled` (Boolean) Define if rate limiting should be disabled.
+- `on_rate_limit` (Attributes) Describes the actions to take on a rate limit event (see [below for nested schema](#nestedatt--spec--to--default--local--http--on_rate_limit))
+- `request_rate` (Attributes) Defines how many requests are allowed per interval. (see [below for nested schema](#nestedatt--spec--to--default--local--http--request_rate))
+
+<a id="nestedatt--spec--to--default--local--http--on_rate_limit"></a>
+### Nested Schema for `spec.to.default.local.http.request_rate`
+
+Optional:
+
+- `headers` (Attributes) The Headers to be added to the HTTP response on a rate limit event (see [below for nested schema](#nestedatt--spec--to--default--local--http--request_rate--headers))
+- `status` (Number) The HTTP status code to be set on a rate limit event
+
+<a id="nestedatt--spec--to--default--local--http--request_rate--headers"></a>
+### Nested Schema for `spec.to.default.local.http.request_rate.status`
+
+Optional:
+
+- `add` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--local--http--request_rate--status--add))
+- `set` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--default--local--http--request_rate--status--set))
+
+<a id="nestedatt--spec--to--default--local--http--request_rate--status--add"></a>
+### Nested Schema for `spec.to.default.local.http.request_rate.status.set`
+
+Required:
+
+- `name` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--to--default--local--http--request_rate--status--set"></a>
+### Nested Schema for `spec.to.default.local.http.request_rate.status.set`
+
+Required:
+
+- `name` (String)
+- `value` (String)
+
+
+
+
+<a id="nestedatt--spec--to--default--local--http--request_rate"></a>
+### Nested Schema for `spec.to.default.local.http.request_rate`
+
+Required:
+
+- `interval` (String) The interval the number of units is accounted for.
+- `num` (Number) Number of units per interval (depending on usage it can be a number of requests,or a number of connections).
+
+
+
+<a id="nestedatt--spec--to--default--local--tcp"></a>
+### Nested Schema for `spec.to.default.local.tcp`
+
+Optional:
+
+- `connection_rate` (Attributes) Defines how many connections are allowed per interval. (see [below for nested schema](#nestedatt--spec--to--default--local--tcp--connection_rate))
+- `disabled` (Boolean) Define if rate limiting should be disabled.Default: false
+
+<a id="nestedatt--spec--to--default--local--tcp--connection_rate"></a>
+### Nested Schema for `spec.to.default.local.tcp.disabled`
+
+Required:
+
+- `interval` (String) The interval the number of units is accounted for.
+- `num` (Number) Number of units per interval (depending on usage it can be a number of requests,or a number of connections).

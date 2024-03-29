@@ -16,6 +16,7 @@ ClusterResourceBinding represents a binding of a kubernetes resource with a Clus
 data "k8s_work_karmada_io_cluster_resource_binding_v1alpha2_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -375,7 +376,9 @@ Optional:
 
 Optional:
 
+- `namespace` (String) Namespace represents the resources namespaces
 - `node_claim` (Attributes) NodeClaim represents the node claim HardNodeAffinity, NodeSelector and Tolerations required by each replica. (see [below for nested schema](#nestedatt--spec--replica_requirements--node_claim))
+- `priority_class_name` (String) PriorityClassName represents the resources priorityClassName
 - `resource_request` (Map of String) ResourceRequest represents the resources required by each replica.
 
 <a id="nestedatt--spec--replica_requirements--node_claim"></a>

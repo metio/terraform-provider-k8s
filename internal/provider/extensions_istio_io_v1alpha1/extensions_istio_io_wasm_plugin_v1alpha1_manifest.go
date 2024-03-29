@@ -8,6 +8,7 @@ package extensions_istio_io_v1alpha1
 import (
 	"context"
 	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -17,6 +18,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -167,8 +169,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "Extend the functionality provided by the Istio proxy through WebAssembly filters. See more details at: https://istio.io/docs/reference/config/proxy_extensions/wasm-plugin.html",
 				Attributes: map[string]schema.Attribute{
 					"fail_strategy": schema.StringAttribute{
-						Description:         "Specifies the failure behavior for the plugin due to fatal errors.",
-						MarkdownDescription: "Specifies the failure behavior for the plugin due to fatal errors.",
+						Description:         "Specifies the failure behavior for the plugin due to fatal errors.Valid Options: FAIL_CLOSE, FAIL_OPEN",
+						MarkdownDescription: "Specifies the failure behavior for the plugin due to fatal errors.Valid Options: FAIL_CLOSE, FAIL_OPEN",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -178,8 +180,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"image_pull_policy": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The pull behaviour to be applied when fetching Wasm module by either OCI image or 'http/https'.Valid Options: IfNotPresent, Always",
+						MarkdownDescription: "The pull behaviour to be applied when fetching Wasm module by either OCI image or 'http/https'.Valid Options: IfNotPresent, Always",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -194,6 +196,10 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+							stringvalidator.LengthAtMost(253),
+						},
 					},
 
 					"match": schema.ListNestedAttribute{
@@ -202,8 +208,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"mode": schema.StringAttribute{
-									Description:         "Criteria for selecting traffic by their direction.",
-									MarkdownDescription: "Criteria for selecting traffic by their direction.",
+									Description:         "Criteria for selecting traffic by their direction.Valid Options: CLIENT, SERVER, CLIENT_AND_SERVER",
+									MarkdownDescription: "Criteria for selecting traffic by their direction.Valid Options: CLIENT, SERVER, CLIENT_AND_SERVER",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -220,9 +226,13 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 											"number": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(1),
+													int64validator.AtMost(65535),
+												},
 											},
 										},
 									},
@@ -238,8 +248,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"phase": schema.StringAttribute{
-						Description:         "Determines where in the filter chain this 'WasmPlugin' is to be injected.",
-						MarkdownDescription: "Determines where in the filter chain this 'WasmPlugin' is to be injected.",
+						Description:         "Determines where in the filter chain this 'WasmPlugin' is to be injected.Valid Options: AUTHN, AUTHZ, STATS",
+						MarkdownDescription: "Determines where in the filter chain this 'WasmPlugin' is to be injected.Valid Options: AUTHN, AUTHZ, STATS",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -258,11 +268,15 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"plugin_name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The plugin name to be used in the Envoy configuration (used to be called 'rootID').",
+						MarkdownDescription: "The plugin name to be used in the Envoy configuration (used to be called 'rootID').",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+							stringvalidator.LengthAtMost(256),
+						},
 					},
 
 					"priority": schema.Int64Attribute{
@@ -274,12 +288,12 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"selector": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Criteria used to select the specific set of pods/VMs on which this plugin configuration should be applied.",
+						MarkdownDescription: "Criteria used to select the specific set of pods/VMs on which this plugin configuration should be applied.",
 						Attributes: map[string]schema.Attribute{
 							"match_labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
+								MarkdownDescription: "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -297,11 +311,14 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`(^$|^[a-f0-9]{64}$)`), ""),
+						},
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Optional.",
+						MarkdownDescription: "Optional.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "group is the group of the target resource.",
@@ -341,8 +358,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "Specifies the type of Wasm Extension to be used.",
-						MarkdownDescription: "Specifies the type of Wasm Extension to be used.",
+						Description:         "Specifies the type of Wasm Extension to be used.Valid Options: HTTP, NETWORK",
+						MarkdownDescription: "Specifies the type of Wasm Extension to be used.Valid Options: HTTP, NETWORK",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -354,9 +371,12 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 					"url": schema.StringAttribute{
 						Description:         "URL of a Wasm module or OCI container.",
 						MarkdownDescription: "URL of a Wasm module or OCI container.",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+						},
 					},
 
 					"verification_key": schema.StringAttribute{
@@ -377,11 +397,15 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
+											Description:         "Name of the environment variable.",
+											MarkdownDescription: "Name of the environment variable.",
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(256),
+											},
 										},
 
 										"value": schema.StringAttribute{
@@ -390,11 +414,14 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtMost(2048),
+											},
 										},
 
 										"value_from": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Source for the environment variable's value.Valid Options: INLINE, HOST",
+											MarkdownDescription: "Source for the environment variable's value.Valid Options: INLINE, HOST",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -414,8 +441,8 @@ func (r *ExtensionsIstioIoWasmPluginV1Alpha1Manifest) Schema(_ context.Context, 
 						Computed: false,
 					},
 				},
-				Required: false,
-				Optional: true,
+				Required: true,
+				Optional: false,
 				Computed: false,
 			},
 		},

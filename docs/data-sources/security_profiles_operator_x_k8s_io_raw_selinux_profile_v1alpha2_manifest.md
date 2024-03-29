@@ -18,7 +18,9 @@ data "k8s_security_profiles_operator_x_k8s_io_raw_selinux_profile_v1alpha2_manif
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {}
+  spec = {
+
+  }
 }
 ```
 
@@ -55,10 +57,7 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
-
-- `disabled` (Boolean) Whether the profile is disabled and should be skipped during reconciliation.
-
 Optional:
 
+- `disabled` (Boolean) Whether the profile is disabled and should be skipped during reconciliation.
 - `policy` (String)

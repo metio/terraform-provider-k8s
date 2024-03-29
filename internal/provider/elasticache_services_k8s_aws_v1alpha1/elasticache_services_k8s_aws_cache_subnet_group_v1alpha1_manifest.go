@@ -48,7 +48,12 @@ type ElasticacheServicesK8SAwsCacheSubnetGroupV1Alpha1ManifestData struct {
 		CacheSubnetGroupDescription *string   `tfsdk:"cache_subnet_group_description" json:"cacheSubnetGroupDescription,omitempty"`
 		CacheSubnetGroupName        *string   `tfsdk:"cache_subnet_group_name" json:"cacheSubnetGroupName,omitempty"`
 		SubnetIDs                   *[]string `tfsdk:"subnet_i_ds" json:"subnetIDs,omitempty"`
-		Tags                        *[]struct {
+		SubnetRefs                  *[]struct {
+			From *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"from" json:"from,omitempty"`
+		} `tfsdk:"subnet_refs" json:"subnetRefs,omitempty"`
+		Tags *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tags" json:"tags,omitempty"`
@@ -160,9 +165,37 @@ func (r *ElasticacheServicesK8SAwsCacheSubnetGroupV1Alpha1Manifest) Schema(_ con
 						Description:         "A list of VPC subnet IDs for the cache subnet group.",
 						MarkdownDescription: "A list of VPC subnet IDs for the cache subnet group.",
 						ElementType:         types.StringType,
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
+					},
+
+					"subnet_refs": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"from": schema.SingleNestedAttribute{
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"tags": schema.ListNestedAttribute{

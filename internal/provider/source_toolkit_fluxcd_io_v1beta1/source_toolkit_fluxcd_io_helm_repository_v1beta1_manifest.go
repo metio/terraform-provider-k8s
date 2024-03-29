@@ -151,13 +151,13 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta1Manifest) Schema(_ context.Co
 						MarkdownDescription: "AccessFrom defines an Access Control List for allowing cross-namespace references to this object.",
 						Attributes: map[string]schema.Attribute{
 							"namespace_selectors": schema.ListNestedAttribute{
-								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
-								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
+								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
+								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"match_labels": schema.MapAttribute{
-											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -184,16 +184,16 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Beta1Manifest) Schema(_ context.Co
 					},
 
 					"pass_credentials": schema.BoolAttribute{
-						Description:         "PassCredentials allows the credentials from the SecretRef to be passed on to a host that does not match the host as defined in URL. This may be required if the host of the advertised chart URLs in the index differ from the defined URL. Enabling this should be done with caution, as it can potentially result in credentials getting stolen in a MITM-attack.",
-						MarkdownDescription: "PassCredentials allows the credentials from the SecretRef to be passed on to a host that does not match the host as defined in URL. This may be required if the host of the advertised chart URLs in the index differ from the defined URL. Enabling this should be done with caution, as it can potentially result in credentials getting stolen in a MITM-attack.",
+						Description:         "PassCredentials allows the credentials from the SecretRef to be passed on toa host that does not match the host as defined in URL.This may be required if the host of the advertised chart URLs in the indexdiffer from the defined URL.Enabling this should be done with caution, as it can potentially result incredentials getting stolen in a MITM-attack.",
+						MarkdownDescription: "PassCredentials allows the credentials from the SecretRef to be passed on toa host that does not match the host as defined in URL.This may be required if the host of the advertised chart URLs in the indexdiffer from the defined URL.Enabling this should be done with caution, as it can potentially result incredentials getting stolen in a MITM-attack.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "The name of the secret containing authentication credentials for the Helm repository. For HTTP/S basic auth the secret must contain username and password fields. For TLS the secret must contain a certFile and keyFile, and/or caFile fields.",
-						MarkdownDescription: "The name of the secret containing authentication credentials for the Helm repository. For HTTP/S basic auth the secret must contain username and password fields. For TLS the secret must contain a certFile and keyFile, and/or caFile fields.",
+						Description:         "The name of the secret containing authentication credentials for the Helmrepository.For HTTP/S basic auth the secret must contain username andpassword fields.For TLS the secret must contain a certFile and keyFile, and/orcaFile fields.",
+						MarkdownDescription: "The name of the secret containing authentication credentials for the Helmrepository.For HTTP/S basic auth the secret must contain username andpassword fields.For TLS the secret must contain a certFile and keyFile, and/orcaFile fields.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",

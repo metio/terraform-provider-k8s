@@ -51,16 +51,26 @@ type ElasticacheServicesK8SAwsReplicationGroupV1Alpha1ManifestData struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"auth_token" json:"authToken,omitempty"`
-		AutomaticFailoverEnabled  *bool     `tfsdk:"automatic_failover_enabled" json:"automaticFailoverEnabled,omitempty"`
-		CacheNodeType             *string   `tfsdk:"cache_node_type" json:"cacheNodeType,omitempty"`
-		CacheParameterGroupName   *string   `tfsdk:"cache_parameter_group_name" json:"cacheParameterGroupName,omitempty"`
-		CacheSecurityGroupNames   *[]string `tfsdk:"cache_security_group_names" json:"cacheSecurityGroupNames,omitempty"`
-		CacheSubnetGroupName      *string   `tfsdk:"cache_subnet_group_name" json:"cacheSubnetGroupName,omitempty"`
-		DataTieringEnabled        *bool     `tfsdk:"data_tiering_enabled" json:"dataTieringEnabled,omitempty"`
-		Description               *string   `tfsdk:"description" json:"description,omitempty"`
-		Engine                    *string   `tfsdk:"engine" json:"engine,omitempty"`
-		EngineVersion             *string   `tfsdk:"engine_version" json:"engineVersion,omitempty"`
-		KmsKeyID                  *string   `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
+		AutomaticFailoverEnabled *bool   `tfsdk:"automatic_failover_enabled" json:"automaticFailoverEnabled,omitempty"`
+		CacheNodeType            *string `tfsdk:"cache_node_type" json:"cacheNodeType,omitempty"`
+		CacheParameterGroupName  *string `tfsdk:"cache_parameter_group_name" json:"cacheParameterGroupName,omitempty"`
+		CacheParameterGroupRef   *struct {
+			From *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"from" json:"from,omitempty"`
+		} `tfsdk:"cache_parameter_group_ref" json:"cacheParameterGroupRef,omitempty"`
+		CacheSecurityGroupNames *[]string `tfsdk:"cache_security_group_names" json:"cacheSecurityGroupNames,omitempty"`
+		CacheSubnetGroupName    *string   `tfsdk:"cache_subnet_group_name" json:"cacheSubnetGroupName,omitempty"`
+		CacheSubnetGroupRef     *struct {
+			From *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"from" json:"from,omitempty"`
+		} `tfsdk:"cache_subnet_group_ref" json:"cacheSubnetGroupRef,omitempty"`
+		DataTieringEnabled        *bool   `tfsdk:"data_tiering_enabled" json:"dataTieringEnabled,omitempty"`
+		Description               *string `tfsdk:"description" json:"description,omitempty"`
+		Engine                    *string `tfsdk:"engine" json:"engine,omitempty"`
+		EngineVersion             *string `tfsdk:"engine_version" json:"engineVersion,omitempty"`
+		KmsKeyID                  *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
 		LogDeliveryConfigurations *[]struct {
 			DestinationDetails *struct {
 				CloudWatchLogsDetails *struct {
@@ -94,11 +104,16 @@ type ElasticacheServicesK8SAwsReplicationGroupV1Alpha1ManifestData struct {
 		ReplicasPerNodeGroup       *int64    `tfsdk:"replicas_per_node_group" json:"replicasPerNodeGroup,omitempty"`
 		ReplicationGroupID         *string   `tfsdk:"replication_group_id" json:"replicationGroupID,omitempty"`
 		SecurityGroupIDs           *[]string `tfsdk:"security_group_i_ds" json:"securityGroupIDs,omitempty"`
-		SnapshotARNs               *[]string `tfsdk:"snapshot_ar_ns" json:"snapshotARNs,omitempty"`
-		SnapshotName               *string   `tfsdk:"snapshot_name" json:"snapshotName,omitempty"`
-		SnapshotRetentionLimit     *int64    `tfsdk:"snapshot_retention_limit" json:"snapshotRetentionLimit,omitempty"`
-		SnapshotWindow             *string   `tfsdk:"snapshot_window" json:"snapshotWindow,omitempty"`
-		Tags                       *[]struct {
+		SecurityGroupRefs          *[]struct {
+			From *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"from" json:"from,omitempty"`
+		} `tfsdk:"security_group_refs" json:"securityGroupRefs,omitempty"`
+		SnapshotARNs           *[]string `tfsdk:"snapshot_ar_ns" json:"snapshotARNs,omitempty"`
+		SnapshotName           *string   `tfsdk:"snapshot_name" json:"snapshotName,omitempty"`
+		SnapshotRetentionLimit *int64    `tfsdk:"snapshot_retention_limit" json:"snapshotRetentionLimit,omitempty"`
+		SnapshotWindow         *string   `tfsdk:"snapshot_window" json:"snapshotWindow,omitempty"`
+		Tags                   *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tags" json:"tags,omitempty"`
@@ -257,6 +272,32 @@ func (r *ElasticacheServicesK8SAwsReplicationGroupV1Alpha1Manifest) Schema(_ con
 						Computed:            false,
 					},
 
+					"cache_parameter_group_ref": schema.SingleNestedAttribute{
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						Attributes: map[string]schema.Attribute{
+							"from": schema.SingleNestedAttribute{
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"cache_security_group_names": schema.ListAttribute{
 						Description:         "A list of cache security group names to associate with this replication group.",
 						MarkdownDescription: "A list of cache security group names to associate with this replication group.",
@@ -272,6 +313,32 @@ func (r *ElasticacheServicesK8SAwsReplicationGroupV1Alpha1Manifest) Schema(_ con
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"cache_subnet_group_ref": schema.SingleNestedAttribute{
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						Attributes: map[string]schema.Attribute{
+							"from": schema.SingleNestedAttribute{
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"data_tiering_enabled": schema.BoolAttribute{
@@ -549,6 +616,34 @@ func (r *ElasticacheServicesK8SAwsReplicationGroupV1Alpha1Manifest) Schema(_ con
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"security_group_refs": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"from": schema.SingleNestedAttribute{
+									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"snapshot_ar_ns": schema.ListAttribute{

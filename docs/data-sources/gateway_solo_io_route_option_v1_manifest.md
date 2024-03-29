@@ -663,6 +663,7 @@ Optional:
 Optional:
 
 - `actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--actions))
+- `limit` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--limit))
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--set_actions))
 
 <a id="nestedatt--spec--options--ratelimit--rate_limits--actions"></a>
@@ -755,6 +756,39 @@ Optional:
 
 - `descriptor_key` (String)
 - `header_name` (String)
+
+
+
+<a id="nestedatt--spec--options--ratelimit--rate_limits--limit"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.limit`
+
+Optional:
+
+- `dynamic_metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--limit--dynamic_metadata))
+
+<a id="nestedatt--spec--options--ratelimit--rate_limits--limit--dynamic_metadata"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.limit.dynamic_metadata`
+
+Optional:
+
+- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--limit--dynamic_metadata--metadata_key))
+
+<a id="nestedatt--spec--options--ratelimit--rate_limits--limit--dynamic_metadata--metadata_key"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.limit.dynamic_metadata.metadata_key`
+
+Optional:
+
+- `key` (String)
+- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit--rate_limits--limit--dynamic_metadata--metadata_key--path))
+
+<a id="nestedatt--spec--options--ratelimit--rate_limits--limit--dynamic_metadata--metadata_key--path"></a>
+### Nested Schema for `spec.options.ratelimit.rate_limits.limit.dynamic_metadata.metadata_key.path`
+
+Optional:
+
+- `key` (String)
+
+
 
 
 
@@ -905,6 +939,7 @@ Optional:
 Optional:
 
 - `actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--actions))
+- `limit` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--limit))
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--set_actions))
 
 <a id="nestedatt--spec--options--ratelimit_early--rate_limits--actions"></a>
@@ -997,6 +1032,39 @@ Optional:
 
 - `descriptor_key` (String)
 - `header_name` (String)
+
+
+
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--limit"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.limit`
+
+Optional:
+
+- `dynamic_metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--limit--dynamic_metadata))
+
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--limit--dynamic_metadata"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.limit.dynamic_metadata`
+
+Optional:
+
+- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--limit--dynamic_metadata--metadata_key))
+
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--limit--dynamic_metadata--metadata_key"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.limit.dynamic_metadata.metadata_key`
+
+Optional:
+
+- `key` (String)
+- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_early--rate_limits--limit--dynamic_metadata--metadata_key--path))
+
+<a id="nestedatt--spec--options--ratelimit_early--rate_limits--limit--dynamic_metadata--metadata_key--path"></a>
+### Nested Schema for `spec.options.ratelimit_early.rate_limits.limit.dynamic_metadata.metadata_key.path`
+
+Optional:
+
+- `key` (String)
+
+
 
 
 
@@ -1120,6 +1188,7 @@ Optional:
 Optional:
 
 - `actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--actions))
+- `limit` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--limit))
 - `set_actions` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--set_actions))
 
 <a id="nestedatt--spec--options--ratelimit_regular--rate_limits--actions"></a>
@@ -1212,6 +1281,39 @@ Optional:
 
 - `descriptor_key` (String)
 - `header_name` (String)
+
+
+
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--limit"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.limit`
+
+Optional:
+
+- `dynamic_metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--limit--dynamic_metadata))
+
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--limit--dynamic_metadata"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.limit.dynamic_metadata`
+
+Optional:
+
+- `metadata_key` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--limit--dynamic_metadata--metadata_key))
+
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--limit--dynamic_metadata--metadata_key"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.limit.dynamic_metadata.metadata_key`
+
+Optional:
+
+- `key` (String)
+- `path` (Attributes List) (see [below for nested schema](#nestedatt--spec--options--ratelimit_regular--rate_limits--limit--dynamic_metadata--metadata_key--path))
+
+<a id="nestedatt--spec--options--ratelimit_regular--rate_limits--limit--dynamic_metadata--metadata_key--path"></a>
+### Nested Schema for `spec.options.ratelimit_regular.rate_limits.limit.dynamic_metadata.metadata_key.path`
+
+Optional:
+
+- `key` (String)
+
+
 
 
 
@@ -1554,7 +1656,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -1664,7 +1768,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -1795,7 +1901,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -1961,7 +2069,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -2071,7 +2181,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -2202,7 +2314,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -2344,7 +2458,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -2454,7 +2570,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 

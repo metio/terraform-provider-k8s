@@ -77,7 +77,18 @@ Optional:
 
 - `annotations` (Map of String)
 - `class_name` (String)
+- `labels` (Map of String)
 - `template` (String)
+- `tls` (Attributes List) (see [below for nested schema](#nestedatt--spec--ingress--tls))
+
+<a id="nestedatt--spec--ingress--tls"></a>
+### Nested Schema for `spec.ingress.tls`
+
+Optional:
+
+- `hosts` (List of String)
+- `secret_name` (String)
+
 
 
 <a id="nestedatt--spec--job"></a>
@@ -92,6 +103,7 @@ Optional:
 - `initial_savepoint_path` (String)
 - `jar_uri` (String)
 - `parallelism` (Number)
+- `savepoint_redeploy_nonce` (Number)
 - `savepoint_trigger_nonce` (Number)
 - `state` (String)
 - `upgrade_mode` (String)

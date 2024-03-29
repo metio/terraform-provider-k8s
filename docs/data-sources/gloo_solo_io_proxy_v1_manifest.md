@@ -375,6 +375,7 @@ Optional:
 Optional:
 
 - `max_direct_response_body_size_bytes` (Number)
+- `most_specific_header_mutations_wins` (Boolean)
 
 
 <a id="nestedatt--spec--listeners--ssl_configurations"></a>

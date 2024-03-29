@@ -191,3 +191,4 @@ Optional:
 - `kind` (String) Kind specifies resource kind.
 - `name` (String) Name specifies the resource name.
 - `namespace` (String) Namespace specifies resource namespace.
+- `uid` (String) UID specifies the resource uid.

@@ -84,7 +84,17 @@ type OperatorOpenClusterManagementIoClusterManagerV1ManifestData struct {
 			} `tfsdk:"feature_gates" json:"featureGates,omitempty"`
 		} `tfsdk:"registration_configuration" json:"registrationConfiguration,omitempty"`
 		RegistrationImagePullSpec *string `tfsdk:"registration_image_pull_spec" json:"registrationImagePullSpec,omitempty"`
-		WorkConfiguration         *struct {
+		ResourceRequirement       *struct {
+			ResourceRequirements *struct {
+				Claims *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
+				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+			} `tfsdk:"resource_requirements" json:"resourceRequirements,omitempty"`
+			Type *string `tfsdk:"type" json:"type,omitempty"`
+		} `tfsdk:"resource_requirement" json:"resourceRequirement,omitempty"`
+		WorkConfiguration *struct {
 			FeatureGates *[]struct {
 				Feature *string `tfsdk:"feature" json:"feature,omitempty"`
 				Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
@@ -219,8 +229,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 						MarkdownDescription: "DeployOption contains the options of deploying a cluster-manager Default mode is used if DeployOption is not set.",
 						Attributes: map[string]schema.Attribute{
 							"hosted": schema.SingleNestedAttribute{
-								Description:         "Hosted includes configurations we needs for clustermanager in the Hosted mode.",
-								MarkdownDescription: "Hosted includes configurations we needs for clustermanager in the Hosted mode.",
+								Description:         "Hosted includes configurations we need for clustermanager in the Hosted mode.",
+								MarkdownDescription: "Hosted includes configurations we need for clustermanager in the Hosted mode.",
 								Attributes: map[string]schema.Attribute{
 									"registration_webhook_configuration": schema.SingleNestedAttribute{
 										Description:         "RegistrationWebhookConfiguration represents the customized webhook-server configuration of registration.",
@@ -319,8 +329,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 							},
 
 							"tolerations": schema.ListNestedAttribute{
-								Description:         "Tolerations is attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
-								MarkdownDescription: "Tolerations is attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
+								Description:         "Tolerations are attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
+								MarkdownDescription: "Tolerations are attached by pods to tolerate any taint that matches the triple <key,value,effect> using the matching operator <operator>. The default is an empty list.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"effect": schema.StringAttribute{
@@ -436,6 +446,72 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"resource_requirement": schema.SingleNestedAttribute{
+						Description:         "ResourceRequirement specify QoS classes of deployments managed by clustermanager. It applies to all the containers in the deployments.",
+						MarkdownDescription: "ResourceRequirement specify QoS classes of deployments managed by clustermanager. It applies to all the containers in the deployments.",
+						Attributes: map[string]schema.Attribute{
+							"resource_requirements": schema.SingleNestedAttribute{
+								Description:         "ResourceRequirements defines resource requests and limits when Type is ResourceQosClassResourceRequirement",
+								MarkdownDescription: "ResourceRequirements defines resource requests and limits when Type is ResourceQosClassResourceRequirement",
+								Attributes: map[string]schema.Attribute{
+									"claims": schema.ListNestedAttribute{
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"limits": schema.MapAttribute{
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"requests": schema.MapAttribute{
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"type": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Default", "BestEffort", "ResourceRequirement"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"work_configuration": schema.SingleNestedAttribute{

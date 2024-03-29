@@ -188,8 +188,8 @@ func (r *CrdProjectcalicoOrgBgppeerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"num_allowed_local_as_numbers": schema.Int64Attribute{
-						Description:         "Maximum number of local AS numbers that are allowed in the AS path for received routes. This removes BGP loop prevention and should only be used if absolutely necesssary.",
-						MarkdownDescription: "Maximum number of local AS numbers that are allowed in the AS path for received routes. This removes BGP loop prevention and should only be used if absolutely necesssary.",
+						Description:         "Maximum number of local AS numbers that are allowed in the AS path for received routes. This removes BGP loop prevention and should only be used if absolutely necessary.",
+						MarkdownDescription: "Maximum number of local AS numbers that are allowed in the AS path for received routes. This removes BGP loop prevention and should only be used if absolutely necessary.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

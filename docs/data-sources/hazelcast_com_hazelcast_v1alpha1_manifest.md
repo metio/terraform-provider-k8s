@@ -58,8 +58,10 @@ Optional:
 
 - `advanced_network` (Attributes) Hazelcast Advanced Network configuration (see [below for nested schema](#nestedatt--spec--advanced_network))
 - `agent` (Attributes) B&R Agent configurations (see [below for nested schema](#nestedatt--spec--agent))
+- `annotations` (Map of String) Hazelcast Kubernetes resource annotations
 - `cluster_name` (String) Name of the Hazelcast cluster.
 - `cluster_size` (Number) Number of Hazelcast members in the cluster.
+- `cp_subsystem` (Attributes) CPSubsystem is the configuration of the Hazelcast CP Subsystem. (see [below for nested schema](#nestedatt--spec--cp_subsystem))
 - `custom_config_cm_name` (String) Name of the ConfigMap with the Hazelcast custom configuration. This configuration from the ConfigMap might be overridden by the Hazelcast CR configuration.
 - `durable_executor_services` (Attributes List) Durable Executor Service configurations, see https://docs.hazelcast.com/hazelcast/latest/computing/durable-executor-service (see [below for nested schema](#nestedatt--spec--durable_executor_services))
 - `executor_services` (Attributes List) Java Executor Service configurations, see https://docs.hazelcast.com/hazelcast/latest/computing/executor-service (see [below for nested schema](#nestedatt--spec--executor_services))
@@ -69,8 +71,10 @@ Optional:
 - `image_pull_secrets` (Attributes List) Image pull secrets for the Hazelcast Platform image (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `jet` (Attributes) Jet Engine configuration (see [below for nested schema](#nestedatt--spec--jet))
 - `jvm` (Attributes) Hazelcast JVM configuration (see [below for nested schema](#nestedatt--spec--jvm))
+- `labels` (Map of String) Hazelcast Kubernetes resource labels
 - `license_key_secret` (String) licenseKeySecret is a deprecated alias for licenseKeySecretName.
 - `license_key_secret_name` (String) Name of the secret with Hazelcast Enterprise License Key.
+- `local_devices` (Attributes List) Hazelcast LocalDevice configuration (see [below for nested schema](#nestedatt--spec--local_devices))
 - `logging_level` (String) Logging level for Hazelcast members
 - `management_center` (Attributes) Hazelcast Management Center Configuration (see [below for nested schema](#nestedatt--spec--management_center))
 - `native_memory` (Attributes) Hazelcast Native Memory (HD Memory) configuration (see [below for nested schema](#nestedatt--spec--native_memory))
@@ -81,6 +85,7 @@ Optional:
 - `scheduled_executor_services` (Attributes List) Scheduled Executor Service configurations, see https://docs.hazelcast.com/hazelcast/latest/computing/scheduled-executor-service (see [below for nested schema](#nestedatt--spec--scheduled_executor_services))
 - `scheduling` (Attributes) Scheduling details (see [below for nested schema](#nestedatt--spec--scheduling))
 - `serialization` (Attributes) Hazelcast serialization configuration (see [below for nested schema](#nestedatt--spec--serialization))
+- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run Hazelcast cluster. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 - `sql` (Attributes) Hazelcast SQL configuration (see [below for nested schema](#nestedatt--spec--sql))
 - `tls` (Attributes) Hazelcast TLS configuration (see [below for nested schema](#nestedatt--spec--tls))
 - `user_code_deployment` (Attributes) User Codes to Download into CLASSPATH (see [below for nested schema](#nestedatt--spec--user_code_deployment))
@@ -91,8 +96,17 @@ Optional:
 
 Optional:
 
+- `client_server_socket_endpoint_config` (Attributes) (see [below for nested schema](#nestedatt--spec--advanced_network--client_server_socket_endpoint_config))
 - `member_server_socket_endpoint_config` (Attributes) (see [below for nested schema](#nestedatt--spec--advanced_network--member_server_socket_endpoint_config))
 - `wan` (Attributes List) (see [below for nested schema](#nestedatt--spec--advanced_network--wan))
+
+<a id="nestedatt--spec--advanced_network--client_server_socket_endpoint_config"></a>
+### Nested Schema for `spec.advanced_network.client_server_socket_endpoint_config`
+
+Optional:
+
+- `interfaces` (List of String)
+
 
 <a id="nestedatt--spec--advanced_network--member_server_socket_endpoint_config"></a>
 ### Nested Schema for `spec.advanced_network.member_server_socket_endpoint_config`
@@ -120,7 +134,54 @@ Optional:
 Optional:
 
 - `repository` (String) Repository to pull Hazelcast Platform Operator Agent(https://github.com/hazelcast/platform-operator-agent)
+- `resources` (Attributes) Compute Resources required by the Agent container. (see [below for nested schema](#nestedatt--spec--agent--resources))
 - `version` (String) Version of Hazelcast Platform Operator Agent.
+
+<a id="nestedatt--spec--agent--resources"></a>
+### Nested Schema for `spec.agent.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--agent--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--agent--resources--claims"></a>
+### Nested Schema for `spec.agent.resources.requests`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
+
+
+
+<a id="nestedatt--spec--cp_subsystem"></a>
+### Nested Schema for `spec.cp_subsystem`
+
+Required:
+
+- `member_count` (Number) MemberCount is the number of CP members to initialize the CP Subsystem.
+
+Optional:
+
+- `data_load_timeout_seconds` (Number) DataLoadTimeoutSeconds is the timeout duration in seconds for CP members to restore their persisted data from disk
+- `fail_on_indeterminate_operation_state` (Boolean) FailOnIndeterminateOperationState indicated whether CP Subsystem operations use at-least-once and at-most-once execution guarantees.
+- `group_size` (Number) GroupSize is the number of CP members to participate in each CP group. Allowed values are 3, 5, and 7.
+- `missing_cp_member_auto_removal_seconds` (Number) MissingCpMemberAutoRemovalSeconds is the duration in seconds to wait before automatically removing a missing CP member from the CP Subsystem.
+- `pvc` (Attributes) PVC is the configuration of PersistenceVolumeClaim. (see [below for nested schema](#nestedatt--spec--cp_subsystem--pvc))
+- `session_heartbeat_interval_seconds` (Number) SessionHeartbeatIntervalSeconds Interval in seconds for the periodically committed CP session heartbeats. Must be greater than or equal to SessionTTLSeconds.
+- `session_ttl_seconds` (Number) SessionTTLSeconds is the duration for a CP session to be kept alive after the last received heartbeat. Must be greater than or equal to SessionTTLSeconds.
+
+<a id="nestedatt--spec--cp_subsystem--pvc"></a>
+### Nested Schema for `spec.cp_subsystem.pvc`
+
+Optional:
+
+- `access_modes` (List of String) AccessModes contains the actual access modes of the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `request_storage` (String) A description of the PVC request capacity.
+- `storage_class_name` (String) Name of StorageClass which this persistent volume belongs to.
+
 
 
 <a id="nestedatt--spec--durable_executor_services"></a>
@@ -241,6 +302,31 @@ Optional:
 
 
 
+<a id="nestedatt--spec--local_devices"></a>
+### Nested Schema for `spec.local_devices`
+
+Required:
+
+- `name` (String) Name represents the name of the local device
+
+Optional:
+
+- `block_size` (Number) BlockSize defines Device block/sector size in bytes.
+- `pvc` (Attributes) Configuration of PersistenceVolumeClaim. (see [below for nested schema](#nestedatt--spec--local_devices--pvc))
+- `read_io_thread_count` (Number) ReadIOThreadCount is Read IO thread count.
+- `write_io_thread_count` (Number) WriteIOThreadCount is Write IO thread count.
+
+<a id="nestedatt--spec--local_devices--pvc"></a>
+### Nested Schema for `spec.local_devices.pvc`
+
+Optional:
+
+- `access_modes` (List of String) AccessModes contains the actual access modes of the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `request_storage` (String) A description of the PVC request capacity.
+- `storage_class_name` (String) Name of StorageClass which this persistent volume belongs to.
+
+
+
 <a id="nestedatt--spec--management_center"></a>
 ### Nested Schema for `spec.management_center`
 
@@ -265,10 +351,6 @@ Optional:
 
 <a id="nestedatt--spec--persistence"></a>
 ### Nested Schema for `spec.persistence`
-
-Required:
-
-- `base_dir` (String) Persistence base directory.
 
 Optional:
 
@@ -316,8 +398,17 @@ Optional:
 
 Optional:
 
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--resources--claims"></a>
+### Nested Schema for `spec.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
 
 
 <a id="nestedatt--spec--scheduled_executor_services"></a>
@@ -740,10 +831,10 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--scheduling--topology_spread_constraints--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
 - `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
-- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--scheduling--topology_spread_constraints--label_selector"></a>
 ### Nested Schema for `spec.scheduling.topology_spread_constraints.node_taints_policy`

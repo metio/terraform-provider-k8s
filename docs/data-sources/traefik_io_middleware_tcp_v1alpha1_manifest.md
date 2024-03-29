@@ -3,12 +3,12 @@
 page_title: "k8s_traefik_io_middleware_tcp_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  MiddlewareTCP is the CRD implementation of a Traefik TCP middleware. More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/
+  MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/
 ---
 
 # k8s_traefik_io_middleware_tcp_v1alpha1_manifest (Data Source)
 
-MiddlewareTCP is the CRD implementation of a Traefik TCP middleware. More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/
+MiddlewareTCP is the CRD implementation of a Traefik TCP middleware.More info: https://doc.traefik.io/traefik/v3.0/middlewares/overview/
 
 ## Example Usage
 
@@ -18,7 +18,9 @@ data "k8s_traefik_io_middleware_tcp_v1alpha1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {}
+  spec = {
+
+  }
 }
 ```
 
@@ -55,18 +57,27 @@ Optional:
 Optional:
 
 - `in_flight_conn` (Attributes) InFlightConn defines the InFlightConn middleware configuration. (see [below for nested schema](#nestedatt--spec--in_flight_conn))
-- `ip_allow_list` (Attributes) IPAllowList defines the IPAllowList middleware configuration. (see [below for nested schema](#nestedatt--spec--ip_allow_list))
+- `ip_allow_list` (Attributes) IPAllowList defines the IPAllowList middleware configuration.This middleware accepts/refuses connections based on the client IP.More info: https://doc.traefik.io/traefik/v3.0/middlewares/tcp/ipallowlist/ (see [below for nested schema](#nestedatt--spec--ip_allow_list))
+- `ip_white_list` (Attributes) IPWhiteList defines the IPWhiteList middleware configuration.This middleware accepts/refuses connections based on the client IP.Deprecated: please use IPAllowList instead.More info: https://doc.traefik.io/traefik/v3.0/middlewares/tcp/ipwhitelist/ (see [below for nested schema](#nestedatt--spec--ip_white_list))
 
 <a id="nestedatt--spec--in_flight_conn"></a>
 ### Nested Schema for `spec.in_flight_conn`
 
 Optional:
 
-- `amount` (Number) Amount defines the maximum amount of allowed simultaneous connections. The middleware closes the connection if there are already amount connections opened.
+- `amount` (Number) Amount defines the maximum amount of allowed simultaneous connections.The middleware closes the connection if there are already amount connections opened.
 
 
 <a id="nestedatt--spec--ip_allow_list"></a>
 ### Nested Schema for `spec.ip_allow_list`
+
+Optional:
+
+- `source_range` (List of String) SourceRange defines the allowed IPs (or ranges of allowed IPs by using CIDR notation).
+
+
+<a id="nestedatt--spec--ip_white_list"></a>
+### Nested Schema for `spec.ip_white_list`
 
 Optional:
 

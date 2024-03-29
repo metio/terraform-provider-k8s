@@ -100,7 +100,7 @@ Required:
 Optional:
 
 - `disable_verify_ssl` (Boolean) Indicate whether the server certificate is validated by the client or not
-- `send_cloud_events` (Boolean) Send the notifications with the CloudEvents header: https://github.com/cloudevents/spec/blob/main/cloudevents/adapters/aws-s3.md Supported for Ceph Quincy (v17) or newer.
+- `send_cloud_events` (Boolean) Send the notifications with the CloudEvents header: https://github.com/cloudevents/spec/blob/main/cloudevents/adapters/aws-s3.md
 
 
 <a id="nestedatt--spec--endpoint--kafka"></a>

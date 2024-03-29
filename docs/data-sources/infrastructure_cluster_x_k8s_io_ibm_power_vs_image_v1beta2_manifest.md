@@ -60,9 +60,19 @@ Required:
 - `cluster_name` (String) ClusterName is the name of the Cluster this object belongs to.
 - `object` (String) Cloud Object Storage image filename.
 - `region` (String) Cloud Object Storage region.
-- `service_instance_id` (String) ServiceInstanceID is the id of the power cloud instance where the image will get imported.
+- `service_instance_id` (String) ServiceInstanceID is the id of the power cloud instance where the image will get imported. Deprecated: use ServiceInstance instead
 
 Optional:
 
 - `delete_policy` (String) DeletePolicy defines the policy used to identify images to be preserved beyond the lifecycle of associated cluster.
+- `service_instance` (Attributes) serviceInstance is the reference to the Power VS workspace on which the server instance(VM) will be created. Power VS workspace is a container for all Power VS instances at a specific geographic region. serviceInstance can be created via IBM Cloud catalog or CLI. supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli. More detail about Power VS service instance. https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server when omitted system will dynamically create the service instance (see [below for nested schema](#nestedatt--spec--service_instance))
 - `storage_type` (String) Type of storage, storage pool with the most available space will be selected.
+
+<a id="nestedatt--spec--service_instance"></a>
+### Nested Schema for `spec.service_instance`
+
+Optional:
+
+- `id` (String) ID of resource
+- `name` (String) Name of resource
+- `regex` (String) Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected

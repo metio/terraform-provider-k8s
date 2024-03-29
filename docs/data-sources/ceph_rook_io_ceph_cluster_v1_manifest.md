@@ -55,10 +55,12 @@ Optional:
 Optional:
 
 - `annotations` (Map of String) The annotations-related configuration to add/set on each Pod related object.
+- `ceph_config` (Map of Map of String) Ceph Config options
 - `ceph_version` (Attributes) The version information that instructs Rook to orchestrate a particular version of Ceph. (see [below for nested schema](#nestedatt--spec--ceph_version))
 - `cleanup_policy` (Attributes) Indicates user intent when deleting a cluster; blocks orchestration and should not be set if cluster deletion is not imminent. (see [below for nested schema](#nestedatt--spec--cleanup_policy))
 - `continue_upgrade_after_checks_even_if_not_healthy` (Boolean) ContinueUpgradeAfterChecksEvenIfNotHealthy defines if an upgrade should continue even if PGs are not clean
 - `crash_collector` (Attributes) A spec for the crash controller (see [below for nested schema](#nestedatt--spec--crash_collector))
+- `csi` (Attributes) CSI Driver Options applied per cluster. (see [below for nested schema](#nestedatt--spec--csi))
 - `dashboard` (Attributes) Dashboard settings (see [below for nested schema](#nestedatt--spec--dashboard))
 - `data_dir_host_path` (String) The path on the host where config and data can be persisted
 - `disruption_management` (Attributes) A spec for configuring disruption management. (see [below for nested schema](#nestedatt--spec--disruption_management))
@@ -70,7 +72,7 @@ Optional:
 - `mon` (Attributes) A spec for mon related options (see [below for nested schema](#nestedatt--spec--mon))
 - `monitoring` (Attributes) Prometheus based Monitoring settings (see [below for nested schema](#nestedatt--spec--monitoring))
 - `network` (Attributes) Network related configuration (see [below for nested schema](#nestedatt--spec--network))
-- `placement` (Map of String) The placement-related configuration to pass to kubernetes (affinity, node selector, tolerations).
+- `placement` (Map of String)
 - `priority_class_names` (Map of String) PriorityClassNames sets priority classes on components
 - `remove_os_ds_if_out_and_safe_to_remove` (Boolean) Remove the OSD that is out and safe to remove only if this option is true
 - `resources` (Map of String) Resources set resource requests and limits
@@ -118,6 +120,33 @@ Optional:
 - `disable` (Boolean) Disable determines whether we should enable the crash collector
 
 
+<a id="nestedatt--spec--csi"></a>
+### Nested Schema for `spec.csi`
+
+Optional:
+
+- `cephfs` (Attributes) CephFS defines CSI Driver settings for CephFS driver. (see [below for nested schema](#nestedatt--spec--csi--cephfs))
+- `read_affinity` (Attributes) ReadAffinity defines the read affinity settings for CSI driver. (see [below for nested schema](#nestedatt--spec--csi--read_affinity))
+
+<a id="nestedatt--spec--csi--cephfs"></a>
+### Nested Schema for `spec.csi.cephfs`
+
+Optional:
+
+- `fuse_mount_options` (String) FuseMountOptions defines the mount options for ceph fuse mounter.
+- `kernel_mount_options` (String) KernelMountOptions defines the mount options for kernel mounter.
+
+
+<a id="nestedatt--spec--csi--read_affinity"></a>
+### Nested Schema for `spec.csi.read_affinity`
+
+Optional:
+
+- `crush_location_labels` (List of String) CrushLocationLabels defines which node labels to use as CRUSH location. This should correspond to the values set in the CRUSH map.
+- `enabled` (Boolean) Enables read affinity for CSI driver.
+
+
+
 <a id="nestedatt--spec--dashboard"></a>
 ### Nested Schema for `spec.dashboard`
 
@@ -125,6 +154,8 @@ Optional:
 
 - `enabled` (Boolean) Enabled determines whether to enable the dashboard
 - `port` (Number) Port is the dashboard webserver port
+- `prometheus_endpoint` (String) Endpoint for the Prometheus host
+- `prometheus_endpoint_ssl_verify` (Boolean) Whether to verify the ssl endpoint for prometheus. Set to false for a self-signed cert.
 - `ssl` (Boolean) SSL determines whether SSL should be used
 - `url_prefix` (String) URLPrefix is a prefix for all URLs to use the dashboard with a reverse proxy
 
@@ -139,6 +170,7 @@ Optional:
 - `manage_pod_budgets` (Boolean) This enables management of poddisruptionbudgets
 - `osd_maintenance_timeout` (Number) OSDMaintenanceTimeout sets how many additional minutes the DOWN/OUT interval is for drained failure domains it only works if managePodBudgets is true. the default is 30 minutes
 - `pg_health_check_timeout` (Number) PGHealthCheckTimeout is the time (in minutes) that the operator will wait for the placement groups to become healthy (active+clean) after a drain was completed and OSDs came back up. Rook will continue with the next drain if the timeout exceeds. It only works if managePodBudgets is true. No values or 0 means that the operator will wait until the placement groups are healthy before unblocking the next drain.
+- `pg_healthy_regex` (String) PgHealthyRegex is the regular expression that is used to determine which PG states should be considered healthy. The default is '^(active+clean|active+clean+scrubbing|active+clean+scrubbing+deep)$'
 
 
 <a id="nestedatt--spec--external"></a>
@@ -219,7 +251,7 @@ Optional:
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
 - `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--health_check--liveness_probe--probe--tcp_socket))
-- `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
+- `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--health_check--liveness_probe--probe--exec"></a>
@@ -301,7 +333,7 @@ Optional:
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
 - `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--health_check--startup_probe--probe--tcp_socket))
-- `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
+- `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--health_check--startup_probe--probe--exec"></a>
@@ -379,7 +411,7 @@ Optional:
 Optional:
 
 - `allow_multiple_per_node` (Boolean) AllowMultiplePerNode allows to run multiple managers on the same node (not recommended)
-- `count` (Number) Count is the number of manager to run
+- `count` (Number) Count is the number of manager daemons to run
 - `modules` (Attributes List) Modules is the list of ceph manager modules to enable/disable (see [below for nested schema](#nestedatt--spec--mgr--modules))
 
 <a id="nestedatt--spec--mgr--modules"></a>
@@ -427,14 +459,11 @@ Optional:
 
 Optional:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--metadata))
 - `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec))
-- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status))
 
 <a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.status`
+### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.spec`
 
 Optional:
 
@@ -446,21 +475,22 @@ Optional:
 
 
 <a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec"></a>
-### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.status`
+### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--data_source"></a>
-### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.status.volume_name`
+<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.spec.volume_name`
 
 Required:
 
@@ -472,8 +502,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--data_source_ref"></a>
-### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.status.volume_name`
+<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.spec.volume_name`
 
 Required:
 
@@ -486,34 +516,25 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--resources"></a>
-### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.status.volume_name`
+<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.spec.volume_name`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--volume_name--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--volume_name--claims"></a>
-### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.status.volume_name.requests`
 
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
-
-
-<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--selector"></a>
-### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.status.volume_name`
+<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.spec.volume_name`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--volume_name--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--volume_name--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--volume_name--match_expressions"></a>
-### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.status.volume_name.match_labels`
+<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--spec--volume_name--match_expressions"></a>
+### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.spec.volume_name.match_labels`
 
 Required:
 
@@ -524,35 +545,6 @@ Optional:
 
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
-
-
-
-<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status"></a>
-### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.status`
-
-Optional:
-
-- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--conditions))
-- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-
-<a id="nestedatt--spec--mon--stretch_cluster--zones--volume_claim_template--status--conditions"></a>
-### Nested Schema for `spec.mon.stretch_cluster.zones.volume_claim_template.status.phase`
-
-Required:
-
-- `status` (String)
-- `type` (String) PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type
-
-Optional:
-
-- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
-- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
-- `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
 
 
 
@@ -564,14 +556,11 @@ Optional:
 
 Optional:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--metadata))
 - `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--spec))
-- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--status))
 
 <a id="nestedatt--spec--mon--volume_claim_template--metadata"></a>
-### Nested Schema for `spec.mon.volume_claim_template.status`
+### Nested Schema for `spec.mon.volume_claim_template.spec`
 
 Optional:
 
@@ -583,21 +572,22 @@ Optional:
 
 
 <a id="nestedatt--spec--mon--volume_claim_template--spec"></a>
-### Nested Schema for `spec.mon.volume_claim_template.status`
+### Nested Schema for `spec.mon.volume_claim_template.spec`
 
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--status--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--status--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--status--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--status--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--mon--volume_claim_template--status--data_source"></a>
-### Nested Schema for `spec.mon.volume_claim_template.status.data_source`
+<a id="nestedatt--spec--mon--volume_claim_template--spec--data_source"></a>
+### Nested Schema for `spec.mon.volume_claim_template.spec.data_source`
 
 Required:
 
@@ -609,8 +599,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--mon--volume_claim_template--status--data_source_ref"></a>
-### Nested Schema for `spec.mon.volume_claim_template.status.data_source_ref`
+<a id="nestedatt--spec--mon--volume_claim_template--spec--data_source_ref"></a>
+### Nested Schema for `spec.mon.volume_claim_template.spec.data_source_ref`
 
 Required:
 
@@ -623,34 +613,25 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--mon--volume_claim_template--status--resources"></a>
-### Nested Schema for `spec.mon.volume_claim_template.status.resources`
+<a id="nestedatt--spec--mon--volume_claim_template--spec--resources"></a>
+### Nested Schema for `spec.mon.volume_claim_template.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--status--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--mon--volume_claim_template--status--resources--claims"></a>
-### Nested Schema for `spec.mon.volume_claim_template.status.resources.requests`
 
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
-
-
-<a id="nestedatt--spec--mon--volume_claim_template--status--selector"></a>
-### Nested Schema for `spec.mon.volume_claim_template.status.selector`
+<a id="nestedatt--spec--mon--volume_claim_template--spec--selector"></a>
+### Nested Schema for `spec.mon.volume_claim_template.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--status--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--mon--volume_claim_template--status--selector--match_expressions"></a>
-### Nested Schema for `spec.mon.volume_claim_template.status.selector.match_labels`
+<a id="nestedatt--spec--mon--volume_claim_template--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.mon.volume_claim_template.spec.selector.match_labels`
 
 Required:
 
@@ -661,35 +642,6 @@ Optional:
 
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
-
-
-
-<a id="nestedatt--spec--mon--volume_claim_template--status"></a>
-### Nested Schema for `spec.mon.volume_claim_template.status`
-
-Optional:
-
-- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--mon--volume_claim_template--status--conditions))
-- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-
-<a id="nestedatt--spec--mon--volume_claim_template--status--conditions"></a>
-### Nested Schema for `spec.mon.volume_claim_template.status.conditions`
-
-Required:
-
-- `status` (String)
-- `type` (String) PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type
-
-Optional:
-
-- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
-- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
-- `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
 
 
 
@@ -708,11 +660,8 @@ Optional:
 
 Optional:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--mon--zones--volume_claim_template--metadata))
 - `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--mon--zones--volume_claim_template--spec))
-- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--mon--zones--volume_claim_template--status))
 
 <a id="nestedatt--spec--mon--zones--volume_claim_template--metadata"></a>
 ### Nested Schema for `spec.mon.zones.volume_claim_template.metadata`
@@ -737,6 +686,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--mon--zones--volume_claim_template--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--mon--zones--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -772,17 +722,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--mon--zones--volume_claim_template--spec--volume_name--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--mon--zones--volume_claim_template--spec--volume_name--claims"></a>
-### Nested Schema for `spec.mon.zones.volume_claim_template.spec.volume_name.requests`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--mon--zones--volume_claim_template--spec--selector"></a>
@@ -805,35 +746,6 @@ Optional:
 
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
-
-
-
-<a id="nestedatt--spec--mon--zones--volume_claim_template--status"></a>
-### Nested Schema for `spec.mon.zones.volume_claim_template.status`
-
-Optional:
-
-- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--mon--zones--volume_claim_template--status--conditions))
-- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-
-<a id="nestedatt--spec--mon--zones--volume_claim_template--status--conditions"></a>
-### Nested Schema for `spec.mon.zones.volume_claim_template.status.phase`
-
-Required:
-
-- `status` (String)
-- `type` (String) PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type
-
-Optional:
-
-- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
-- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
-- `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
 
 
 
@@ -889,10 +801,10 @@ Optional:
 - `address_ranges` (Attributes) AddressRanges specify a list of CIDRs that Rook will apply to Ceph's 'public_network' and/or 'cluster_network' configurations. This config section may be used for the 'host' or 'multus' network providers. (see [below for nested schema](#nestedatt--spec--network--address_ranges))
 - `connections` (Attributes) Settings for network connections such as compression and encryption across the wire. (see [below for nested schema](#nestedatt--spec--network--connections))
 - `dual_stack` (Boolean) DualStack determines whether Ceph daemons should listen on both IPv4 and IPv6
-- `host_network` (Boolean) HostNetwork to enable host network
+- `host_network` (Boolean) HostNetwork to enable host network. If host networking is enabled or disabled on a running cluster, then the operator will automatically fail over all the mons to apply the new network settings.
 - `ip_family` (String) IPFamily is the single stack IPv6 or IPv4 protocol
 - `multi_cluster_service` (Attributes) Enable multiClusterService to export the Services between peer clusters (see [below for nested schema](#nestedatt--spec--network--multi_cluster_service))
-- `provider` (String) Provider is what provides network connectivity to the cluster e.g. 'host' or 'multus'
+- `provider` (String) Provider is what provides network connectivity to the cluster e.g. 'host' or 'multus'. If the Provider is updated from being empty to 'host' on a running cluster, then the operator will automatically fail over all the mons to apply the 'host' network settings.
 - `selectors` (Map of String) Selectors define NetworkAttachmentDefinitions to be used for Ceph public and/or cluster networks when the 'multus' network provider is used. This config section is not used for other network providers.  Valid keys are 'public' and 'cluster'. Refer to Ceph networking documentation for more: https://docs.ceph.com/en/reef/rados/configuration/network-config-ref/  Refer to Multus network annotation documentation for help selecting values: https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md#run-pod-with-network-annotation  Rook will make a best-effort attempt to automatically detect CIDR address ranges for given network attachment definitions. Rook's methods are robust but may be imprecise for sufficiently complicated networks. Rook's auto-detection process obtains a new IP address lease for each CephCluster reconcile. If Rook fails to detect, incorrectly detects, only partially detects, or if underlying networks do not support reusing old IP addresses, it is best to use the 'addressRanges' config section to specify CIDR ranges for the Ceph cluster.  As a contrived example, one can use a theoretical Kubernetes-wide network for Ceph client traffic and a theoretical Rook-only network for Ceph replication traffic as shown: selectors: public: 'default/cluster-fast-net' cluster: 'rook-ceph/ceph-backend-net'
 
 <a id="nestedatt--spec--network--address_ranges"></a>
@@ -918,7 +830,7 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Whether to compress the data in transit across the wire. The default is not set. Requires Ceph Quincy (v17) or newer.
+- `enabled` (Boolean) Whether to compress the data in transit across the wire. The default is not set.
 
 
 <a id="nestedatt--spec--network--connections--encryption"></a>
@@ -976,6 +888,7 @@ Optional:
 - `device_filter` (String) A regular expression to allow more fine-grained selection of devices on nodes across the cluster
 - `device_path_filter` (String) A regular expression to allow more fine-grained selection of devices with path names
 - `devices` (Map of String) List of devices to use as storage devices
+- `flapping_restart_interval_hours` (Number) FlappingRestartIntervalHours defines the time for which the OSD pods, that failed with zero exit code, will sleep before restarting. This is needed for OSD flapping where OSD daemons are marked down more than 5 times in 600 seconds by Ceph. Preventing the OSD pods to restart immediately in such scenarios will prevent Rook from marking OSD as 'up' and thus peering of the PGs mapped to the OSD. User needs to manually restart the OSD pod if they manage to fix the underlying OSD flapping issue before the restart interval. The sleep will be disabled if this interval is set to 0.
 - `nodes` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--nodes))
 - `only_apply_osd_placement` (Boolean)
 - `storage_class_device_sets` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets))
@@ -1021,11 +934,8 @@ Required:
 
 Optional:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--storage--nodes--volume_claim_templates--metadata))
 - `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--nodes--volume_claim_templates--spec))
-- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--nodes--volume_claim_templates--status))
 
 <a id="nestedatt--spec--storage--nodes--volume_claim_templates--metadata"></a>
 ### Nested Schema for `spec.storage.nodes.volume_claim_templates.metadata`
@@ -1050,6 +960,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--nodes--volume_claim_templates--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--nodes--volume_claim_templates--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -1085,17 +996,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--storage--nodes--volume_claim_templates--spec--volume_name--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--storage--nodes--volume_claim_templates--spec--volume_name--claims"></a>
-### Nested Schema for `spec.storage.nodes.volume_claim_templates.spec.volume_name.requests`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--storage--nodes--volume_claim_templates--spec--selector"></a>
@@ -1121,35 +1023,6 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--nodes--volume_claim_templates--status"></a>
-### Nested Schema for `spec.storage.nodes.volume_claim_templates.status`
-
-Optional:
-
-- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--storage--nodes--volume_claim_templates--status--conditions))
-- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-
-<a id="nestedatt--spec--storage--nodes--volume_claim_templates--status--conditions"></a>
-### Nested Schema for `spec.storage.nodes.volume_claim_templates.status.phase`
-
-Required:
-
-- `status` (String)
-- `type` (String) PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type
-
-Optional:
-
-- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
-- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
-- `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
-
-
-
 
 
 <a id="nestedatt--spec--storage--storage_class_device_sets"></a>
@@ -1165,9 +1038,9 @@ Optional:
 
 - `config` (Map of String) Provider-specific device configuration
 - `encrypted` (Boolean) Whether to encrypt the deviceSet
-- `placement` (Attributes) Placement is the placement for an object (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement))
+- `placement` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--placement))
 - `portable` (Boolean) Portable represents OSD portability across the hosts
-- `prepare_placement` (Attributes) Placement is the placement for an object (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement))
+- `prepare_placement` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--prepare_placement))
 - `resources` (Attributes) ResourceRequirements describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--resources))
 - `scheduler_name` (String) Scheduler name for OSD pod placement
 - `tune_device_class` (Boolean) TuneSlowDeviceClass Tune the OSD when running on a slow Device Class
@@ -1178,11 +1051,8 @@ Optional:
 
 Optional:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--metadata))
 - `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec))
-- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--status))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--metadata"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.metadata`
@@ -1207,6 +1077,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -1242,17 +1113,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--volume_name--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--volume_name--claims"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.spec.volume_name.requests`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--spec--selector"></a>
@@ -1278,82 +1140,53 @@ Optional:
 
 
 
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--status"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.status`
-
-Optional:
-
-- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--status--conditions))
-- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-
-<a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--status--conditions"></a>
-### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.status.phase`
-
-Required:
-
-- `status` (String)
-- `type` (String) PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type
-
-Optional:
-
-- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
-- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
-- `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
-
-
-
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--placement"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class`
 
 Optional:
 
-- `node_affinity` (Attributes) NodeAffinity is a group of node affinity scheduling rules (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity))
-- `pod_affinity` (Attributes) PodAffinity is a group of inter pod affinity scheduling rules (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity))
-- `pod_anti_affinity` (Attributes) PodAntiAffinity is a group of inter pod anti affinity scheduling rules (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity))
-- `tolerations` (Attributes List) The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator> (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--tolerations))
-- `topology_spread_constraints` (Attributes List) TopologySpreadConstraint specifies how to spread matching pods among the given topology (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity))
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--preference))
-- `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.weight`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
@@ -1361,12 +1194,12 @@ Optional:
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1376,27 +1209,27 @@ Optional:
 
 Required:
 
-- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -1404,12 +1237,12 @@ Optional:
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1420,49 +1253,51 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1471,20 +1306,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1495,33 +1330,35 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1530,20 +1367,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1554,49 +1391,51 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1605,20 +1444,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1629,33 +1468,35 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1664,20 +1505,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1688,11 +1529,11 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String)
+- `key` (String)
+- `operator` (String)
+- `toleration_seconds` (Number)
+- `value` (String)
 
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints"></a>
@@ -1700,37 +1541,37 @@ Optional:
 
 Required:
 
-- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
-- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.
-- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+- `max_skew` (Number)
+- `topology_key` (String)
+- `when_unsatisfiable` (String)
 
 Optional:
 
-- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
-- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
-- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--label_selector"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.topology_spread_constraints.node_taints_policy`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--node_taints_policy--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--node_taints_policy--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--node_taints_policy--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.topology_spread_constraints.node_taints_policy.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1741,47 +1582,47 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) NodeAffinity is a group of node affinity scheduling rules (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity))
-- `pod_affinity` (Attributes) PodAffinity is a group of inter pod affinity scheduling rules (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity))
-- `pod_anti_affinity` (Attributes) PodAntiAffinity is a group of inter pod anti affinity scheduling rules (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity))
-- `tolerations` (Attributes List) The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator> (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--tolerations))
-- `topology_spread_constraints` (Attributes List) TopologySpreadConstraint specifies how to spread matching pods among the given topology (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity))
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--preference))
-- `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--preference"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.weight`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.weight.match_fields`
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--weight--match_fields"></a>
@@ -1789,12 +1630,12 @@ Optional:
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1804,27 +1645,27 @@ Optional:
 
 Required:
 
-- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -1832,12 +1673,12 @@ Optional:
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1848,49 +1689,51 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1899,20 +1742,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1923,33 +1766,35 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1958,20 +1803,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -1982,49 +1827,51 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -2033,20 +1880,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.weight.namespaces.match_expressions`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -2057,33 +1904,35 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -2092,20 +1941,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -2116,11 +1965,11 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String)
+- `key` (String)
+- `operator` (String)
+- `toleration_seconds` (Number)
+- `value` (String)
 
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints"></a>
@@ -2128,37 +1977,37 @@ Optional:
 
 Required:
 
-- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
-- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.
-- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+- `max_skew` (Number)
+- `topology_key` (String)
+- `when_unsatisfiable` (String)
 
 Optional:
 
-- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
-- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
-- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--label_selector"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.topology_spread_constraints.node_taints_policy`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--node_taints_policy--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--node_taints_policy--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--storage--storage_class_device_sets--tune_fast_device_class--topology_spread_constraints--node_taints_policy--match_expressions"></a>
 ### Nested Schema for `spec.storage.storage_class_device_sets.tune_fast_device_class.topology_spread_constraints.node_taints_policy.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -2197,14 +2046,11 @@ Optional:
 
 Optional:
 
-- `api_version` (String) APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-- `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--metadata))
 - `spec` (Attributes) spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--spec))
-- `status` (Attributes) status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--status))
 
 <a id="nestedatt--spec--storage--volume_claim_templates--metadata"></a>
-### Nested Schema for `spec.storage.volume_claim_templates.status`
+### Nested Schema for `spec.storage.volume_claim_templates.spec`
 
 Optional:
 
@@ -2216,21 +2062,22 @@ Optional:
 
 
 <a id="nestedatt--spec--storage--volume_claim_templates--spec"></a>
-### Nested Schema for `spec.storage.volume_claim_templates.status`
+### Nested Schema for `spec.storage.volume_claim_templates.spec`
 
 Optional:
 
 - `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--status--data_source))
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--status--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--status--resources))
-- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--status--selector))
+- `data_source` (Attributes) dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--spec--data_source))
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--spec--resources))
+- `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
-<a id="nestedatt--spec--storage--volume_claim_templates--status--data_source"></a>
-### Nested Schema for `spec.storage.volume_claim_templates.status.data_source`
+<a id="nestedatt--spec--storage--volume_claim_templates--spec--data_source"></a>
+### Nested Schema for `spec.storage.volume_claim_templates.spec.data_source`
 
 Required:
 
@@ -2242,8 +2089,8 @@ Optional:
 - `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
 
 
-<a id="nestedatt--spec--storage--volume_claim_templates--status--data_source_ref"></a>
-### Nested Schema for `spec.storage.volume_claim_templates.status.data_source_ref`
+<a id="nestedatt--spec--storage--volume_claim_templates--spec--data_source_ref"></a>
+### Nested Schema for `spec.storage.volume_claim_templates.spec.data_source_ref`
 
 Required:
 
@@ -2256,34 +2103,25 @@ Optional:
 - `namespace` (String) Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
-<a id="nestedatt--spec--storage--volume_claim_templates--status--resources"></a>
-### Nested Schema for `spec.storage.volume_claim_templates.status.resources`
+<a id="nestedatt--spec--storage--volume_claim_templates--spec--resources"></a>
+### Nested Schema for `spec.storage.volume_claim_templates.spec.resources`
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--status--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-<a id="nestedatt--spec--storage--volume_claim_templates--status--resources--claims"></a>
-### Nested Schema for `spec.storage.volume_claim_templates.status.resources.requests`
 
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
-
-
-<a id="nestedatt--spec--storage--volume_claim_templates--status--selector"></a>
-### Nested Schema for `spec.storage.volume_claim_templates.status.selector`
+<a id="nestedatt--spec--storage--volume_claim_templates--spec--selector"></a>
+### Nested Schema for `spec.storage.volume_claim_templates.spec.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--status--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--spec--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--storage--volume_claim_templates--status--selector--match_expressions"></a>
-### Nested Schema for `spec.storage.volume_claim_templates.status.selector.match_labels`
+<a id="nestedatt--spec--storage--volume_claim_templates--spec--selector--match_expressions"></a>
+### Nested Schema for `spec.storage.volume_claim_templates.spec.selector.match_labels`
 
 Required:
 
@@ -2293,33 +2131,3 @@ Required:
 Optional:
 
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
-
-
-
-
-<a id="nestedatt--spec--storage--volume_claim_templates--status"></a>
-### Nested Schema for `spec.storage.volume_claim_templates.status`
-
-Optional:
-
-- `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don't set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress' - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed' When this field is not set, it means that no resize operation is in progress for the given PVC.  A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
-- `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
-- `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_templates--status--conditions))
-- `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-
-<a id="nestedatt--spec--storage--volume_claim_templates--status--conditions"></a>
-### Nested Schema for `spec.storage.volume_claim_templates.status.conditions`
-
-Required:
-
-- `status` (String)
-- `type` (String) PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type
-
-Optional:
-
-- `last_probe_time` (String) lastProbeTime is the time we probed the condition.
-- `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
-- `message` (String) message is the human-readable message indicating details about last transition.
-- `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.

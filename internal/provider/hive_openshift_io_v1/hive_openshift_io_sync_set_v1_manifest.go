@@ -49,7 +49,8 @@ type HiveOpenshiftIoSyncSetV1ManifestData struct {
 		ClusterDeploymentRefs *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"cluster_deployment_refs" json:"clusterDeploymentRefs,omitempty"`
-		Patches *[]struct {
+		EnableResourceTemplates *bool `tfsdk:"enable_resource_templates" json:"enableResourceTemplates,omitempty"`
+		Patches                 *[]struct {
 			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
 			Name       *string `tfsdk:"name" json:"name,omitempty"`
@@ -185,6 +186,14 @@ func (r *HiveOpenshiftIoSyncSetV1Manifest) Schema(_ context.Context, _ datasourc
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"enable_resource_templates": schema.BoolAttribute{
+						Description:         "EnableResourceTemplates, if True, causes hive to honor golang text/templates in Resources. While the standard syntax is supported, it won't do you a whole lot of good as the parser does not pass a data object (i.e. there is no 'dot' for you to use). This currently exists to expose a single function: {{ fromCDLabel 'some.label/key' }} will be substituted with the string value of ClusterDeployment.Labels['some.label/key']. The empty string is interpolated if there are no labels, or if the indicated key does not exist. Note that this only works in values (not e.g. map keys) that are of type string.",
+						MarkdownDescription: "EnableResourceTemplates, if True, causes hive to honor golang text/templates in Resources. While the standard syntax is supported, it won't do you a whole lot of good as the parser does not pass a data object (i.e. there is no 'dot' for you to use). This currently exists to expose a single function: {{ fromCDLabel 'some.label/key' }} will be substituted with the string value of ClusterDeployment.Labels['some.label/key']. The empty string is interpolated if there are no labels, or if the indicated key does not exist. Note that this only works in values (not e.g. map keys) that are of type string.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"patches": schema.ListNestedAttribute{

@@ -56,7 +56,7 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 Optional:
 
@@ -69,8 +69,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--to"></a>
@@ -78,11 +79,11 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group of destinations. (see [below for nested schema](#nestedatt--spec--to--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group ofdestinations. (see [below for nested schema](#nestedatt--spec--to--target_ref))
 
 Optional:
 
-- `default` (Attributes) Default is a configuration specific to the group of destinations referenced in 'targetRef' (see [below for nested schema](#nestedatt--spec--to--default))
+- `default` (Attributes) Default is a configuration specific to the group of destinations referenced in'targetRef' (see [below for nested schema](#nestedatt--spec--to--default))
 
 <a id="nestedatt--spec--to--target_ref"></a>
 ### Nested Schema for `spec.to.target_ref`
@@ -91,8 +92,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--to--default"></a>
@@ -109,19 +111,19 @@ Optional:
 
 Optional:
 
-- `back_off` (Attributes) BackOff is a configuration of durations which will be used in exponential backoff strategy between retries. (see [below for nested schema](#nestedatt--spec--to--default--tcp--back_off))
-- `num_retries` (Number) NumRetries is the number of attempts that will be made on failed (and retriable) requests.
-- `per_try_timeout` (String) PerTryTimeout is the amount of time after which retry attempt should timeout. Setting this timeout to 0 will disable it. Default is 15s.
-- `rate_limited_back_off` (Attributes) RateLimitedBackOff is a configuration of backoff which will be used when the upstream returns one of the headers configured. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off))
-- `retry_on` (List of String) RetryOn is a list of conditions which will cause a retry. Available values are: [Canceled, DeadlineExceeded, Internal, ResourceExhausted, Unavailable].
+- `back_off` (Attributes) BackOff is a configuration of durations which will be used in an exponentialbackoff strategy between retries. (see [below for nested schema](#nestedatt--spec--to--default--tcp--back_off))
+- `num_retries` (Number) NumRetries is the number of attempts that will be made on failed (andretriable) requests. If not set, the default value is 1.
+- `per_try_timeout` (String) PerTryTimeout is the maximum amount of time each retry attempt can takebefore it times out. If not set, the global request timeout for the routewill be used. Setting this value to 0 will disable the per-try timeout.
+- `rate_limited_back_off` (Attributes) RateLimitedBackOff is a configuration of backoff which will be used whenthe upstream returns one of the headers configured. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off))
+- `retry_on` (List of String) RetryOn is a list of conditions which will cause a retry.
 
 <a id="nestedatt--spec--to--default--tcp--back_off"></a>
 ### Nested Schema for `spec.to.default.tcp.back_off`
 
 Optional:
 
-- `base_interval` (String) BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms. Default is 25ms.
-- `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries. Default is 10 times the 'BaseInterval'.
+- `base_interval` (String) BaseInterval is an amount of time which should be taken between retries.Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.
+- `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries.Default is 10 times the 'BaseInterval'.
 
 
 <a id="nestedatt--spec--to--default--tcp--rate_limited_back_off"></a>
@@ -129,15 +131,15 @@ Optional:
 
 Optional:
 
-- `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries. Default is 300 seconds.
-- `reset_headers` (Attributes List) ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset) to match against the response. Headers are tried in order, and matched case-insensitive. The first header to be parsed successfully is used. If no headers match the default exponential BackOff is used instead. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off--reset_headers))
+- `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries.
+- `reset_headers` (Attributes List) ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset)to match against the response. Headers are tried in order, and matchedcase-insensitive. The first header to be parsed successfully is used.If no headers match the default exponential BackOff is used instead. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off--reset_headers))
 
 <a id="nestedatt--spec--to--default--tcp--rate_limited_back_off--reset_headers"></a>
 ### Nested Schema for `spec.to.default.tcp.rate_limited_back_off.reset_headers`
 
 Required:
 
-- `format` (String) The format of the reset header, either Seconds or UnixTimestamp.
+- `format` (String) The format of the reset header.
 - `name` (String) The Name of the reset header.
 
 
@@ -148,23 +150,23 @@ Required:
 
 Optional:
 
-- `back_off` (Attributes) BackOff is a configuration of durations which will be used in exponential backoff strategy between retries (see [below for nested schema](#nestedatt--spec--to--default--tcp--back_off))
-- `host_selection` (Attributes List) HostSelection is a list of predicates that dictate how hosts should be selected when requests are retried. (see [below for nested schema](#nestedatt--spec--to--default--tcp--host_selection))
-- `host_selection_max_attempts` (Number) HostSelectionMaxAttempts is the maximum number of times host selection will be reattempted before giving up, at which point the host that was last selected will be routed to. If unspecified, this will default to retrying once.
-- `num_retries` (Number) NumRetries is the number of attempts that will be made on failed (and retriable) requests
-- `per_try_timeout` (String) PerTryTimeout is the amount of time after which retry attempt should timeout. Setting this timeout to 0 will disable it. Default is 15s.
-- `rate_limited_back_off` (Attributes) RateLimitedBackOff is a configuration of backoff which will be used when the upstream returns one of the headers configured. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off))
-- `retriable_request_headers` (Attributes List) RetriableRequestHeaders is an HTTP headers which must be present in the request for retries to be attempted. (see [below for nested schema](#nestedatt--spec--to--default--tcp--retriable_request_headers))
-- `retriable_response_headers` (Attributes List) RetriableResponseHeaders is an HTTP response headers that trigger a retry if present in the response. A retry will be triggered if any of the header matches match the upstream response headers. (see [below for nested schema](#nestedatt--spec--to--default--tcp--retriable_response_headers))
-- `retry_on` (List of String) RetryOn is a list of conditions which will cause a retry. Available values are: [5XX, GatewayError, Reset, Retriable4xx, ConnectFailure, EnvoyRatelimited, RefusedStream, Http3PostConnectFailure, HttpMethodConnect, HttpMethodDelete, HttpMethodGet, HttpMethodHead, HttpMethodOptions, HttpMethodPatch, HttpMethodPost, HttpMethodPut, HttpMethodTrace]. Also, any HTTP status code (500, 503, etc).
+- `back_off` (Attributes) BackOff is a configuration of durations which will be used in exponentialbackoff strategy between retries. (see [below for nested schema](#nestedatt--spec--to--default--tcp--back_off))
+- `host_selection` (Attributes List) HostSelection is a list of predicates that dictate how hosts should be selectedwhen requests are retried. (see [below for nested schema](#nestedatt--spec--to--default--tcp--host_selection))
+- `host_selection_max_attempts` (Number) HostSelectionMaxAttempts is the maximum number of times host selection will bereattempted before giving up, at which point the host that was last selected willbe routed to. If unspecified, this will default to retrying once.
+- `num_retries` (Number) NumRetries is the number of attempts that will be made on failed (andretriable) requests.  If not set, the default value is 1.
+- `per_try_timeout` (String) PerTryTimeout is the amount of time after which retry attempt should time out.If left unspecified, the global route timeout for the request will be used.Consequently, when using a 5xx based retry policy, a request that times outwill not be retried as the total timeout budget would have been exhausted.Setting this timeout to 0 will disable it.
+- `rate_limited_back_off` (Attributes) RateLimitedBackOff is a configuration of backoff which will be usedwhen the upstream returns one of the headers configured. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off))
+- `retriable_request_headers` (Attributes List) RetriableRequestHeaders is an HTTP headers which must be present in the requestfor retries to be attempted. (see [below for nested schema](#nestedatt--spec--to--default--tcp--retriable_request_headers))
+- `retriable_response_headers` (Attributes List) RetriableResponseHeaders is an HTTP response headers that trigger a retryif present in the response. A retry will be triggered if any of the headermatches the upstream response headers. (see [below for nested schema](#nestedatt--spec--to--default--tcp--retriable_response_headers))
+- `retry_on` (List of String) RetryOn is a list of conditions which will cause a retry. Available values are:[5XX, GatewayError, Reset, Retriable4xx, ConnectFailure, EnvoyRatelimited,RefusedStream, Http3PostConnectFailure, HttpMethodConnect, HttpMethodDelete,HttpMethodGet, HttpMethodHead, HttpMethodOptions, HttpMethodPatch,HttpMethodPost, HttpMethodPut, HttpMethodTrace].Also, any HTTP status code (500, 503, etc.).
 
 <a id="nestedatt--spec--to--default--tcp--back_off"></a>
 ### Nested Schema for `spec.to.default.tcp.back_off`
 
 Optional:
 
-- `base_interval` (String) BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms. Default is 25ms.
-- `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries. Default is 10 times the 'BaseInterval'.
+- `base_interval` (String) BaseInterval is an amount of time which should be taken between retries.Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.
+- `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries.Default is 10 times the 'BaseInterval'.
 
 
 <a id="nestedatt--spec--to--default--tcp--host_selection"></a>
@@ -172,12 +174,12 @@ Optional:
 
 Required:
 
-- `predicate` (String) Type is requested predicate mode. Available values are OmitPreviousHosts, OmitHostsWithTags, and OmitPreviousPriorities.
+- `predicate` (String) Type is requested predicate mode.
 
 Optional:
 
-- `tags` (Map of String) Tags is a map of metadata to match against for selecting the omitted hosts. Required if Type is OmitHostsWithTags
-- `update_frequency` (Number) UpdateFrequency is how often the priority load should be updated based on previously attempted priorities. Used for OmitPreviousPriorities. Default is 2 if not set.
+- `tags` (Map of String) Tags is a map of metadata to match against for selecting the omitted hosts. Required if Type isOmitHostsWithTags
+- `update_frequency` (Number) UpdateFrequency is how often the priority load should be updated based on previously attempted priorities.Used for OmitPreviousPriorities.
 
 
 <a id="nestedatt--spec--to--default--tcp--rate_limited_back_off"></a>
@@ -185,15 +187,15 @@ Optional:
 
 Optional:
 
-- `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries. Default is 300 seconds.
-- `reset_headers` (Attributes List) ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset) to match against the response. Headers are tried in order, and matched case-insensitive. The first header to be parsed successfully is used. If no headers match the default exponential BackOff is used instead. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off--reset_headers))
+- `max_interval` (String) MaxInterval is a maximal amount of time which will be taken between retries.
+- `reset_headers` (Attributes List) ResetHeaders specifies the list of headers (like Retry-After or X-RateLimit-Reset)to match against the response. Headers are tried in order, and matchedcase-insensitive. The first header to be parsed successfully is used.If no headers match the default exponential BackOff is used instead. (see [below for nested schema](#nestedatt--spec--to--default--tcp--rate_limited_back_off--reset_headers))
 
 <a id="nestedatt--spec--to--default--tcp--rate_limited_back_off--reset_headers"></a>
 ### Nested Schema for `spec.to.default.tcp.rate_limited_back_off.reset_headers`
 
 Required:
 
-- `format` (String) The format of the reset header, either Seconds or UnixTimestamp.
+- `format` (String) The format of the reset header.
 - `name` (String) The Name of the reset header.
 
 
@@ -203,7 +205,7 @@ Required:
 
 Required:
 
-- `name` (String) Name is the name of the HTTP Header to be matched. Name MUST be lower case as they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).
+- `name` (String) Name is the name of the HTTP Header to be matched. Name MUST be lower caseas they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).
 
 Optional:
 
@@ -216,7 +218,7 @@ Optional:
 
 Required:
 
-- `name` (String) Name is the name of the HTTP Header to be matched. Name MUST be lower case as they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).
+- `name` (String) Name is the name of the HTTP Header to be matched. Name MUST be lower caseas they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).
 
 Optional:
 
@@ -230,4 +232,4 @@ Optional:
 
 Optional:
 
-- `max_connect_attempt` (Number) MaxConnectAttempt is a maximal amount of TCP connection attempts which will be made before giving up
+- `max_connect_attempt` (Number) MaxConnectAttempt is a maximal amount of TCP connection attemptswhich will be made before giving up

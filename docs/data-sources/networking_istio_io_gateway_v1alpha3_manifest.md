@@ -56,29 +56,35 @@ Optional:
 
 Optional:
 
-- `selector` (Map of String)
+- `selector` (Map of String) One or more labels that indicate a specific set of pods/VMs on which this gateway configuration should be applied.
 - `servers` (Attributes List) A list of server specifications. (see [below for nested schema](#nestedatt--spec--servers))
 
 <a id="nestedatt--spec--servers"></a>
 ### Nested Schema for `spec.servers`
 
+Required:
+
+- `hosts` (List of String) One or more hosts exposed by this gateway.
+- `port` (Attributes) The Port on which the proxy should listen for incoming connections. (see [below for nested schema](#nestedatt--spec--servers--port))
+
 Optional:
 
-- `bind` (String)
+- `bind` (String) The ip or the Unix domain socket to which the listener should be bound to.
 - `default_endpoint` (String)
-- `hosts` (List of String) One or more hosts exposed by this gateway.
 - `name` (String) An optional name of the server, when set must be unique across all servers.
-- `port` (Attributes) (see [below for nested schema](#nestedatt--spec--servers--port))
 - `tls` (Attributes) Set of TLS related options that govern the server's behavior. (see [below for nested schema](#nestedatt--spec--servers--tls))
 
 <a id="nestedatt--spec--servers--port"></a>
 ### Nested Schema for `spec.servers.port`
 
-Optional:
+Required:
 
 - `name` (String) Label assigned to the port.
 - `number` (Number) A valid non-negative integer port number.
 - `protocol` (String) The protocol exposed on the port.
+
+Optional:
+
 - `target_port` (Number)
 
 
@@ -88,14 +94,15 @@ Optional:
 Optional:
 
 - `ca_certificates` (String) REQUIRED if mode is 'MUTUAL' or 'OPTIONAL_MUTUAL'.
+- `ca_crl` (String) OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented client side certificate.
 - `cipher_suites` (List of String) Optional: If specified, only support the specified cipher list.
-- `credential_name` (String)
-- `https_redirect` (Boolean)
-- `max_protocol_version` (String) Optional: Maximum TLS protocol version.
-- `min_protocol_version` (String) Optional: Minimum TLS protocol version.
-- `mode` (String)
+- `credential_name` (String) For gateways running on Kubernetes, the name of the secret that holds the TLS certs including the CA certificates.
+- `https_redirect` (Boolean) If set to true, the load balancer will send a 301 redirect for all http connections, asking the clients to use HTTPS.
+- `max_protocol_version` (String) Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
+- `min_protocol_version` (String) Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
+- `mode` (String) Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.
 - `server_certificate` (String) REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.
-- `subject_alt_names` (List of String)
-- `verify_certificate_hash` (List of String)
-- `verify_certificate_spki` (List of String)
+- `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate presented by the client.
+- `verify_certificate_hash` (List of String) An optional list of hex-encoded SHA-256 hashes of the authorized client certificates.
+- `verify_certificate_spki` (List of String) An optional list of base64-encoded SHA-256 hashes of the SPKIs of authorized client certificates.

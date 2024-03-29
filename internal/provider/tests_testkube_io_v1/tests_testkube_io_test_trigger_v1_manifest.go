@@ -45,8 +45,9 @@ type TestsTestkubeIoTestTriggerV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Action        *string `tfsdk:"action" json:"action,omitempty"`
-		ConditionSpec *struct {
+		Action            *string `tfsdk:"action" json:"action,omitempty"`
+		ConcurrencyPolicy *string `tfsdk:"concurrency_policy" json:"concurrencyPolicy,omitempty"`
+		ConditionSpec     *struct {
 			Conditions *[]struct {
 				Reason *string `tfsdk:"reason" json:"reason,omitempty"`
 				Status *string `tfsdk:"status" json:"status,omitempty"`
@@ -81,6 +82,7 @@ type TestsTestkubeIoTestTriggerV1ManifestData struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			NameRegex *string `tfsdk:"name_regex" json:"nameRegex,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"resource_selector" json:"resourceSelector,omitempty"`
 		TestSelector *struct {
@@ -93,6 +95,7 @@ type TestsTestkubeIoTestTriggerV1ManifestData struct {
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			NameRegex *string `tfsdk:"name_regex" json:"nameRegex,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"test_selector" json:"testSelector,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -191,6 +194,17 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Schema(_ context.Context, _ datas
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.OneOf("run"),
+						},
+					},
+
+					"concurrency_policy": schema.StringAttribute{
+						Description:         "ConcurrencyPolicy defines concurrency policy for selected Execution",
+						MarkdownDescription: "ConcurrencyPolicy defines concurrency policy for selected Execution",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("allow", "forbid", "replace"),
 						},
 					},
 
@@ -449,6 +463,14 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Schema(_ context.Context, _ datas
 								Computed:            false,
 							},
 
+							"name_regex": schema.StringAttribute{
+								Description:         "kubernetes resource name regex",
+								MarkdownDescription: "kubernetes resource name regex",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"namespace": schema.StringAttribute{
 								Description:         "Namespace of the Kubernetes object",
 								MarkdownDescription: "Namespace of the Kubernetes object",
@@ -523,6 +545,14 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Schema(_ context.Context, _ datas
 							"name": schema.StringAttribute{
 								Description:         "Name selector is used to identify a Kubernetes Object based on the metadata name",
 								MarkdownDescription: "Name selector is used to identify a Kubernetes Object based on the metadata name",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"name_regex": schema.StringAttribute{
+								Description:         "kubernetes resource name regex",
+								MarkdownDescription: "kubernetes resource name regex",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

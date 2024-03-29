@@ -87,6 +87,7 @@ Optional:
 - `sumologic` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--sumologic))
 - `tag_normaliser` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--tag_normaliser))
 - `throttle` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--throttle))
+- `useragent` (Attributes) (see [below for nested schema](#nestedatt--spec--filters--useragent))
 
 <a id="nestedatt--spec--filters--concat"></a>
 ### Nested Schema for `spec.filters.concat`
@@ -973,6 +974,17 @@ Optional:
 - `group_key` (String)
 - `group_reset_rate_s` (Number)
 - `group_warning_delay_s` (Number)
+
+
+<a id="nestedatt--spec--filters--useragent"></a>
+### Nested Schema for `spec.filters.useragent`
+
+Optional:
+
+- `delete_key` (Boolean)
+- `flatten` (Boolean)
+- `key_name` (String)
+- `out_key` (String)
 
 
 

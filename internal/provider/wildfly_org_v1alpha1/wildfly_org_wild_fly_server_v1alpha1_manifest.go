@@ -86,6 +86,46 @@ type WildflyOrgWildFlyServerV1Alpha1ManifestData struct {
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 		} `tfsdk:"env_from" json:"envFrom,omitempty"`
+		LivenessProbe *struct {
+			Exec *struct {
+				Command *[]string `tfsdk:"command" json:"command,omitempty"`
+			} `tfsdk:"exec" json:"exec,omitempty"`
+			FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+			HttpGet          *struct {
+				Host        *string `tfsdk:"host" json:"host,omitempty"`
+				HttpHeaders *[]struct {
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+					Value *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+				Path   *string `tfsdk:"path" json:"path,omitempty"`
+				Port   *string `tfsdk:"port" json:"port,omitempty"`
+				Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+			} `tfsdk:"http_get" json:"httpGet,omitempty"`
+			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+			PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+			SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+			TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+		} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
+		ReadinessProbe *struct {
+			Exec *struct {
+				Command *[]string `tfsdk:"command" json:"command,omitempty"`
+			} `tfsdk:"exec" json:"exec,omitempty"`
+			FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+			HttpGet          *struct {
+				Host        *string `tfsdk:"host" json:"host,omitempty"`
+				HttpHeaders *[]struct {
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+					Value *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+				Path   *string `tfsdk:"path" json:"path,omitempty"`
+				Port   *string `tfsdk:"port" json:"port,omitempty"`
+				Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+			} `tfsdk:"http_get" json:"httpGet,omitempty"`
+			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+			PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+			SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+			TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+		} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 		Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		Resources *struct {
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -117,6 +157,7 @@ type WildflyOrgWildFlyServerV1Alpha1ManifestData struct {
 			WindowsOptions *struct {
 				GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
 				GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+				HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
 				RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 			} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 		} `tfsdk:"security_context" json:"securityContext,omitempty"`
@@ -126,6 +167,26 @@ type WildflyOrgWildFlyServerV1Alpha1ManifestData struct {
 			Key  *string `tfsdk:"key" json:"key,omitempty"`
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"standalone_config_map" json:"standaloneConfigMap,omitempty"`
+		StartupProbe *struct {
+			Exec *struct {
+				Command *[]string `tfsdk:"command" json:"command,omitempty"`
+			} `tfsdk:"exec" json:"exec,omitempty"`
+			FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+			HttpGet          *struct {
+				Host        *string `tfsdk:"host" json:"host,omitempty"`
+				HttpHeaders *[]struct {
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+					Value *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+				Path   *string `tfsdk:"path" json:"path,omitempty"`
+				Port   *string `tfsdk:"port" json:"port,omitempty"`
+				Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+			} `tfsdk:"http_get" json:"httpGet,omitempty"`
+			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+			PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+			SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+			TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+		} `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 		Storage *struct {
 			EmptyDir *struct {
 				Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
@@ -142,6 +203,11 @@ type WildflyOrgWildFlyServerV1Alpha1ManifestData struct {
 						Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"data_source" json:"dataSource,omitempty"`
+					DataSourceRef *struct {
+						ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+						Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 					Resources *struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -159,9 +225,10 @@ type WildflyOrgWildFlyServerV1Alpha1ManifestData struct {
 					VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 				} `tfsdk:"spec" json:"spec,omitempty"`
 				Status *struct {
-					AccessModes *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
-					Capacity    *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
-					Conditions  *[]struct {
+					AccessModes        *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
+					AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
+					Capacity           *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
+					Conditions         *[]struct {
 						LastProbeTime      *string `tfsdk:"last_probe_time" json:"lastProbeTime,omitempty"`
 						LastTransitionTime *string `tfsdk:"last_transition_time" json:"lastTransitionTime,omitempty"`
 						Message            *string `tfsdk:"message" json:"message,omitempty"`
@@ -169,7 +236,8 @@ type WildflyOrgWildFlyServerV1Alpha1ManifestData struct {
 						Status             *string `tfsdk:"status" json:"status,omitempty"`
 						Type               *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"conditions" json:"conditions,omitempty"`
-					Phase *string `tfsdk:"phase" json:"phase,omitempty"`
+					Phase        *string `tfsdk:"phase" json:"phase,omitempty"`
+					ResizeStatus *string `tfsdk:"resize_status" json:"resizeStatus,omitempty"`
 				} `tfsdk:"status" json:"status,omitempty"`
 			} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
@@ -308,8 +376,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"value": schema.StringAttribute{
-									Description:         "Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-									MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+									Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+									MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -523,6 +591,306 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Computed: false,
 					},
 
+					"liveness_probe": schema.SingleNestedAttribute{
+						Description:         "LivenessProbe defines the periodic probe of container liveness. Container will be restarted if the probe fails.",
+						MarkdownDescription: "LivenessProbe defines the periodic probe of container liveness. Container will be restarted if the probe fails.",
+						Attributes: map[string]schema.Attribute{
+							"exec": schema.SingleNestedAttribute{
+								Description:         "Exec specifies a command action to take.",
+								MarkdownDescription: "Exec specifies a command action to take.",
+								Attributes: map[string]schema.Attribute{
+									"command": schema.ListAttribute{
+										Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+										MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"failure_threshold": schema.Int64Attribute{
+								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"http_get": schema.SingleNestedAttribute{
+								Description:         "HTTPGet specifies the http request to perform.",
+								MarkdownDescription: "HTTPGet specifies the http request to perform.",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+										MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"http_headers": schema.ListNestedAttribute{
+										Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+										MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "The header field name",
+													MarkdownDescription: "The header field name",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "The header field value",
+													MarkdownDescription: "The header field value",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"path": schema.StringAttribute{
+										Description:         "Path to access on the HTTP server.",
+										MarkdownDescription: "Path to access on the HTTP server.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.StringAttribute{
+										Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+										MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"scheme": schema.StringAttribute{
+										Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+										MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"initial_delay_seconds": schema.Int64Attribute{
+								Description:         "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
+								MarkdownDescription: "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
+							},
+
+							"period_seconds": schema.Int64Attribute{
+								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"success_threshold": schema.Int64Attribute{
+								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"timeout_seconds": schema.Int64Attribute{
+								Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"readiness_probe": schema.SingleNestedAttribute{
+						Description:         "ReadinessProbe defines the periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails.",
+						MarkdownDescription: "ReadinessProbe defines the periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails.",
+						Attributes: map[string]schema.Attribute{
+							"exec": schema.SingleNestedAttribute{
+								Description:         "Exec specifies a command action to take.",
+								MarkdownDescription: "Exec specifies a command action to take.",
+								Attributes: map[string]schema.Attribute{
+									"command": schema.ListAttribute{
+										Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+										MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"failure_threshold": schema.Int64Attribute{
+								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"http_get": schema.SingleNestedAttribute{
+								Description:         "HTTPGet specifies the http request to perform.",
+								MarkdownDescription: "HTTPGet specifies the http request to perform.",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+										MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"http_headers": schema.ListNestedAttribute{
+										Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+										MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "The header field name",
+													MarkdownDescription: "The header field name",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "The header field value",
+													MarkdownDescription: "The header field value",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"path": schema.StringAttribute{
+										Description:         "Path to access on the HTTP server.",
+										MarkdownDescription: "Path to access on the HTTP server.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.StringAttribute{
+										Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+										MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"scheme": schema.StringAttribute{
+										Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+										MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"initial_delay_seconds": schema.Int64Attribute{
+								Description:         "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
+								MarkdownDescription: "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
+							},
+
+							"period_seconds": schema.Int64Attribute{
+								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"success_threshold": schema.Int64Attribute{
+								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"timeout_seconds": schema.Int64Attribute{
+								Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"replicas": schema.Int64Attribute{
 						Description:         "Replicas is the desired number of replicas for the application",
 						MarkdownDescription: "Replicas is the desired number of replicas for the application",
@@ -539,8 +907,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "ResourcesSpec defines the resources used by the WildFlyServer, ie CPU and memory, use limits and requests. More info: https://pkg.go.dev/k8s.io/api@v0.18.14/core/v1#ResourceRequirements",
 						Attributes: map[string]schema.Attribute{
 							"limits": schema.MapAttribute{
-								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -548,8 +916,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"requests": schema.MapAttribute{
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -575,16 +943,16 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "SecurityContext defines the security capabilities required to run the application.",
 						Attributes: map[string]schema.Attribute{
 							"allow_privilege_escalation": schema.BoolAttribute{
-								Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
-								MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN",
+								Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"capabilities": schema.SingleNestedAttribute{
-								Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.",
-								MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.",
+								Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 								Attributes: map[string]schema.Attribute{
 									"add": schema.ListAttribute{
 										Description:         "Added capabilities",
@@ -610,32 +978,32 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"privileged": schema.BoolAttribute{
-								Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
-								MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.",
+								Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"proc_mount": schema.StringAttribute{
-								Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
-								MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.",
+								Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"read_only_root_filesystem": schema.BoolAttribute{
-								Description:         "Whether this container has a read-only root filesystem. Default is false.",
-								MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false.",
+								Description:         "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"run_as_group": schema.Int64Attribute{
-								Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-								MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+								Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -650,16 +1018,16 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"run_as_user": schema.Int64Attribute{
-								Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-								MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+								Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"se_linux_options": schema.SingleNestedAttribute{
-								Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-								MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+								Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
 								Attributes: map[string]schema.Attribute{
 									"level": schema.StringAttribute{
 										Description:         "Level is SELinux level label that applies to the container.",
@@ -699,8 +1067,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"seccomp_profile": schema.SingleNestedAttribute{
-								Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
-								MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
+								Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 								Attributes: map[string]schema.Attribute{
 									"localhost_profile": schema.StringAttribute{
 										Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
@@ -724,8 +1092,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"windows_options": schema.SingleNestedAttribute{
-								Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
-								MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+								Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+								MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
 								Attributes: map[string]schema.Attribute{
 									"gmsa_credential_spec": schema.StringAttribute{
 										Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
@@ -738,6 +1106,14 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 									"gmsa_credential_spec_name": schema.StringAttribute{
 										Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
 										MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"host_process": schema.BoolAttribute{
+										Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -802,6 +1178,156 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Computed: false,
 					},
 
+					"startup_probe": schema.SingleNestedAttribute{
+						Description:         "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation.",
+						MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation.",
+						Attributes: map[string]schema.Attribute{
+							"exec": schema.SingleNestedAttribute{
+								Description:         "Exec specifies a command action to take.",
+								MarkdownDescription: "Exec specifies a command action to take.",
+								Attributes: map[string]schema.Attribute{
+									"command": schema.ListAttribute{
+										Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+										MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"failure_threshold": schema.Int64Attribute{
+								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"http_get": schema.SingleNestedAttribute{
+								Description:         "HTTPGet specifies the http request to perform.",
+								MarkdownDescription: "HTTPGet specifies the http request to perform.",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+										MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"http_headers": schema.ListNestedAttribute{
+										Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+										MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "The header field name",
+													MarkdownDescription: "The header field name",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "The header field value",
+													MarkdownDescription: "The header field value",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"path": schema.StringAttribute{
+										Description:         "Path to access on the HTTP server.",
+										MarkdownDescription: "Path to access on the HTTP server.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.StringAttribute{
+										Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+										MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"scheme": schema.StringAttribute{
+										Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+										MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"initial_delay_seconds": schema.Int64Attribute{
+								Description:         "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
+								MarkdownDescription: "Number of seconds after the container has started before probes are initiated. It defaults to 60 seconds for liveness probe. It defaults to 10 seconds for readiness probe. It defaults to 0 seconds for startup probe. Minimum value is 0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
+							},
+
+							"period_seconds": schema.Int64Attribute{
+								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"success_threshold": schema.Int64Attribute{
+								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+
+							"timeout_seconds": schema.Int64Attribute{
+								Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"storage": schema.SingleNestedAttribute{
 						Description:         "StorageSpec defines specific storage required for the server own data directory. If omitted, an EmptyDir is used (that will not persist data across pod restart).",
 						MarkdownDescription: "StorageSpec defines specific storage required for the server own data directory. If omitted, an EmptyDir is used (that will not persist data across pod restart).",
@@ -811,16 +1337,16 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 								MarkdownDescription: "Represents an empty directory for a pod. Empty directory volumes support ownership management and SELinux relabeling.",
 								Attributes: map[string]schema.Attribute{
 									"medium": schema.StringAttribute{
-										Description:         "What type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-										MarkdownDescription: "What type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+										Description:         "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+										MarkdownDescription: "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"size_limit": schema.StringAttribute{
-										Description:         "Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
-										MarkdownDescription: "Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
+										Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
+										MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -861,12 +1387,12 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"spec": schema.SingleNestedAttribute{
-										Description:         "Spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-										MarkdownDescription: "Spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+										Description:         "spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+										MarkdownDescription: "spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 										Attributes: map[string]schema.Attribute{
 											"access_modes": schema.ListAttribute{
-												Description:         "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-												MarkdownDescription: "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+												Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+												MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -874,8 +1400,41 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"data_source": schema.SingleNestedAttribute{
-												Description:         "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot - Beta) * An existing PVC (PersistentVolumeClaim) * An existing custom resource/object that implements data population (Alpha) In order to use VolumeSnapshot object types, the appropriate feature gate must be enabled (VolumeSnapshotDataSource or AnyVolumeDataSource) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the specified data source is not supported, the volume will not be created and the failure will be reported as an event. In the future, we plan to support more data source types and the behavior of the provisioner may change.",
-												MarkdownDescription: "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot - Beta) * An existing PVC (PersistentVolumeClaim) * An existing custom resource/object that implements data population (Alpha) In order to use VolumeSnapshot object types, the appropriate feature gate must be enabled (VolumeSnapshotDataSource or AnyVolumeDataSource) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the specified data source is not supported, the volume will not be created and the failure will be reported as an event. In the future, we plan to support more data source types and the behavior of the provisioner may change.",
+												Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+												MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+												Attributes: map[string]schema.Attribute{
+													"api_group": schema.StringAttribute{
+														Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+														MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"kind": schema.StringAttribute{
+														Description:         "Kind is the type of resource being referenced",
+														MarkdownDescription: "Kind is the type of resource being referenced",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name is the name of resource being referenced",
+														MarkdownDescription: "Name is the name of resource being referenced",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"data_source_ref": schema.SingleNestedAttribute{
+												Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+												MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
 												Attributes: map[string]schema.Attribute{
 													"api_group": schema.StringAttribute{
 														Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -907,12 +1466,12 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"resources": schema.SingleNestedAttribute{
-												Description:         "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-												MarkdownDescription: "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+												Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+												MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 												Attributes: map[string]schema.Attribute{
 													"limits": schema.MapAttribute{
-														Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+														Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -920,8 +1479,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"requests": schema.MapAttribute{
-														Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
-														MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/",
+														Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -934,8 +1493,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"selector": schema.SingleNestedAttribute{
-												Description:         "A label query over volumes to consider for binding.",
-												MarkdownDescription: "A label query over volumes to consider for binding.",
+												Description:         "selector is a label query over volumes to consider for binding.",
+												MarkdownDescription: "selector is a label query over volumes to consider for binding.",
 												Attributes: map[string]schema.Attribute{
 													"match_expressions": schema.ListNestedAttribute{
 														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -988,8 +1547,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"storage_class_name": schema.StringAttribute{
-												Description:         "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-												MarkdownDescription: "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+												Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+												MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1004,8 +1563,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"volume_name": schema.StringAttribute{
-												Description:         "VolumeName is the binding reference to the PersistentVolume backing this claim.",
-												MarkdownDescription: "VolumeName is the binding reference to the PersistentVolume backing this claim.",
+												Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
+												MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1017,12 +1576,21 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"status": schema.SingleNestedAttribute{
-										Description:         "Status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-										MarkdownDescription: "Status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+										Description:         "status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+										MarkdownDescription: "status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 										Attributes: map[string]schema.Attribute{
 											"access_modes": schema.ListAttribute{
-												Description:         "AccessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-												MarkdownDescription: "AccessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+												Description:         "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+												MarkdownDescription: "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"allocated_resources": schema.MapAttribute{
+												Description:         "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+												MarkdownDescription: "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1030,8 +1598,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"capacity": schema.MapAttribute{
-												Description:         "Represents the actual resources of the underlying volume.",
-												MarkdownDescription: "Represents the actual resources of the underlying volume.",
+												Description:         "capacity represents the actual resources of the underlying volume.",
+												MarkdownDescription: "capacity represents the actual resources of the underlying volume.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1039,13 +1607,13 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"conditions": schema.ListNestedAttribute{
-												Description:         "Current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
-												MarkdownDescription: "Current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
+												Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
+												MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"last_probe_time": schema.StringAttribute{
-															Description:         "Last time we probed the condition.",
-															MarkdownDescription: "Last time we probed the condition.",
+															Description:         "lastProbeTime is the time we probed the condition.",
+															MarkdownDescription: "lastProbeTime is the time we probed the condition.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1055,8 +1623,8 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"last_transition_time": schema.StringAttribute{
-															Description:         "Last time the condition transitioned from one status to another.",
-															MarkdownDescription: "Last time the condition transitioned from one status to another.",
+															Description:         "lastTransitionTime is the time the condition transitioned from one status to another.",
+															MarkdownDescription: "lastTransitionTime is the time the condition transitioned from one status to another.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1066,16 +1634,16 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"message": schema.StringAttribute{
-															Description:         "Human-readable message indicating details about last transition.",
-															MarkdownDescription: "Human-readable message indicating details about last transition.",
+															Description:         "message is the human-readable message indicating details about last transition.",
+															MarkdownDescription: "message is the human-readable message indicating details about last transition.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"reason": schema.StringAttribute{
-															Description:         "Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
-															MarkdownDescription: "Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
+															Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
+															MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1104,8 +1672,16 @@ func (r *WildflyOrgWildFlyServerV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"phase": schema.StringAttribute{
-												Description:         "Phase represents the current phase of PersistentVolumeClaim.",
-												MarkdownDescription: "Phase represents the current phase of PersistentVolumeClaim.",
+												Description:         "phase represents the current phase of PersistentVolumeClaim.",
+												MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"resize_status": schema.StringAttribute{
+												Description:         "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+												MarkdownDescription: "resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

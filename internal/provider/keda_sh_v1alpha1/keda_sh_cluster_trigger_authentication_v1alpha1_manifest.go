@@ -43,6 +43,49 @@ type KedaShClusterTriggerAuthenticationV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		AwsSecretManager *struct {
+			Credentials *struct {
+				AccessKey *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"access_key" json:"accessKey,omitempty"`
+				AccessSecretKey *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"access_secret_key" json:"accessSecretKey,omitempty"`
+				AccessToken *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"access_token" json:"accessToken,omitempty"`
+			} `tfsdk:"credentials" json:"credentials,omitempty"`
+			PodIdentity *struct {
+				IdentityAuthorityHost *string `tfsdk:"identity_authority_host" json:"identityAuthorityHost,omitempty"`
+				IdentityId            *string `tfsdk:"identity_id" json:"identityId,omitempty"`
+				IdentityOwner         *string `tfsdk:"identity_owner" json:"identityOwner,omitempty"`
+				IdentityTenantId      *string `tfsdk:"identity_tenant_id" json:"identityTenantId,omitempty"`
+				Provider              *string `tfsdk:"provider" json:"provider,omitempty"`
+				RoleArn               *string `tfsdk:"role_arn" json:"roleArn,omitempty"`
+			} `tfsdk:"pod_identity" json:"podIdentity,omitempty"`
+			Region  *string `tfsdk:"region" json:"region,omitempty"`
+			Secrets *[]struct {
+				Name         *string `tfsdk:"name" json:"name,omitempty"`
+				Parameter    *string `tfsdk:"parameter" json:"parameter,omitempty"`
+				VersionId    *string `tfsdk:"version_id" json:"versionId,omitempty"`
+				VersionStage *string `tfsdk:"version_stage" json:"versionStage,omitempty"`
+			} `tfsdk:"secrets" json:"secrets,omitempty"`
+		} `tfsdk:"aws_secret_manager" json:"awsSecretManager,omitempty"`
 		AzureKeyVault *struct {
 			Cloud *struct {
 				ActiveDirectoryEndpoint *string `tfsdk:"active_directory_endpoint" json:"activeDirectoryEndpoint,omitempty"`
@@ -62,8 +105,12 @@ type KedaShClusterTriggerAuthenticationV1Alpha1ManifestData struct {
 				TenantId *string `tfsdk:"tenant_id" json:"tenantId,omitempty"`
 			} `tfsdk:"credentials" json:"credentials,omitempty"`
 			PodIdentity *struct {
-				IdentityId *string `tfsdk:"identity_id" json:"identityId,omitempty"`
-				Provider   *string `tfsdk:"provider" json:"provider,omitempty"`
+				IdentityAuthorityHost *string `tfsdk:"identity_authority_host" json:"identityAuthorityHost,omitempty"`
+				IdentityId            *string `tfsdk:"identity_id" json:"identityId,omitempty"`
+				IdentityOwner         *string `tfsdk:"identity_owner" json:"identityOwner,omitempty"`
+				IdentityTenantId      *string `tfsdk:"identity_tenant_id" json:"identityTenantId,omitempty"`
+				Provider              *string `tfsdk:"provider" json:"provider,omitempty"`
+				RoleArn               *string `tfsdk:"role_arn" json:"roleArn,omitempty"`
 			} `tfsdk:"pod_identity" json:"podIdentity,omitempty"`
 			Secrets *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -72,11 +119,41 @@ type KedaShClusterTriggerAuthenticationV1Alpha1ManifestData struct {
 			} `tfsdk:"secrets" json:"secrets,omitempty"`
 			VaultUri *string `tfsdk:"vault_uri" json:"vaultUri,omitempty"`
 		} `tfsdk:"azure_key_vault" json:"azureKeyVault,omitempty"`
+		ConfigMapTargetRef *[]struct {
+			Key       *string `tfsdk:"key" json:"key,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Parameter *string `tfsdk:"parameter" json:"parameter,omitempty"`
+		} `tfsdk:"config_map_target_ref" json:"configMapTargetRef,omitempty"`
 		Env *[]struct {
 			ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
 			Name          *string `tfsdk:"name" json:"name,omitempty"`
 			Parameter     *string `tfsdk:"parameter" json:"parameter,omitempty"`
 		} `tfsdk:"env" json:"env,omitempty"`
+		GcpSecretManager *struct {
+			Credentials *struct {
+				ClientSecret *struct {
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+			} `tfsdk:"credentials" json:"credentials,omitempty"`
+			PodIdentity *struct {
+				IdentityAuthorityHost *string `tfsdk:"identity_authority_host" json:"identityAuthorityHost,omitempty"`
+				IdentityId            *string `tfsdk:"identity_id" json:"identityId,omitempty"`
+				IdentityOwner         *string `tfsdk:"identity_owner" json:"identityOwner,omitempty"`
+				IdentityTenantId      *string `tfsdk:"identity_tenant_id" json:"identityTenantId,omitempty"`
+				Provider              *string `tfsdk:"provider" json:"provider,omitempty"`
+				RoleArn               *string `tfsdk:"role_arn" json:"roleArn,omitempty"`
+			} `tfsdk:"pod_identity" json:"podIdentity,omitempty"`
+			Secrets *[]struct {
+				Id        *string `tfsdk:"id" json:"id,omitempty"`
+				Parameter *string `tfsdk:"parameter" json:"parameter,omitempty"`
+				Version   *string `tfsdk:"version" json:"version,omitempty"`
+			} `tfsdk:"secrets" json:"secrets,omitempty"`
+		} `tfsdk:"gcp_secret_manager" json:"gcpSecretManager,omitempty"`
 		HashiCorpVault *struct {
 			Address        *string `tfsdk:"address" json:"address,omitempty"`
 			Authentication *string `tfsdk:"authentication" json:"authentication,omitempty"`
@@ -91,11 +168,25 @@ type KedaShClusterTriggerAuthenticationV1Alpha1ManifestData struct {
 				Key       *string `tfsdk:"key" json:"key,omitempty"`
 				Parameter *string `tfsdk:"parameter" json:"parameter,omitempty"`
 				Path      *string `tfsdk:"path" json:"path,omitempty"`
+				PkiData   *struct {
+					AltNames   *string `tfsdk:"alt_names" json:"altNames,omitempty"`
+					CommonName *string `tfsdk:"common_name" json:"commonName,omitempty"`
+					Format     *string `tfsdk:"format" json:"format,omitempty"`
+					IpSans     *string `tfsdk:"ip_sans" json:"ipSans,omitempty"`
+					OtherSans  *string `tfsdk:"other_sans" json:"otherSans,omitempty"`
+					Ttl        *string `tfsdk:"ttl" json:"ttl,omitempty"`
+					UriSans    *string `tfsdk:"uri_sans" json:"uriSans,omitempty"`
+				} `tfsdk:"pki_data" json:"pkiData,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"secrets" json:"secrets,omitempty"`
 		} `tfsdk:"hashi_corp_vault" json:"hashiCorpVault,omitempty"`
 		PodIdentity *struct {
-			IdentityId *string `tfsdk:"identity_id" json:"identityId,omitempty"`
-			Provider   *string `tfsdk:"provider" json:"provider,omitempty"`
+			IdentityAuthorityHost *string `tfsdk:"identity_authority_host" json:"identityAuthorityHost,omitempty"`
+			IdentityId            *string `tfsdk:"identity_id" json:"identityId,omitempty"`
+			IdentityOwner         *string `tfsdk:"identity_owner" json:"identityOwner,omitempty"`
+			IdentityTenantId      *string `tfsdk:"identity_tenant_id" json:"identityTenantId,omitempty"`
+			Provider              *string `tfsdk:"provider" json:"provider,omitempty"`
+			RoleArn               *string `tfsdk:"role_arn" json:"roleArn,omitempty"`
 		} `tfsdk:"pod_identity" json:"podIdentity,omitempty"`
 		SecretTargetRef *[]struct {
 			Key       *string `tfsdk:"key" json:"key,omitempty"`
@@ -178,6 +269,267 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 				Description:         "TriggerAuthenticationSpec defines the various ways to authenticate",
 				MarkdownDescription: "TriggerAuthenticationSpec defines the various ways to authenticate",
 				Attributes: map[string]schema.Attribute{
+					"aws_secret_manager": schema.SingleNestedAttribute{
+						Description:         "AwsSecretManager is used to authenticate using AwsSecretManager",
+						MarkdownDescription: "AwsSecretManager is used to authenticate using AwsSecretManager",
+						Attributes: map[string]schema.Attribute{
+							"credentials": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"access_key": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"value_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										},
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"access_secret_key": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"value_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										},
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"access_token": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"value_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pod_identity": schema.SingleNestedAttribute{
+								Description:         "AuthPodIdentity allows users to select the platform native identitymechanism",
+								MarkdownDescription: "AuthPodIdentity allows users to select the platform native identitymechanism",
+								Attributes: map[string]schema.Attribute{
+									"identity_authority_host": schema.StringAttribute{
+										Description:         "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",
+										MarkdownDescription: "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"identity_id": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"identity_owner": schema.StringAttribute{
+										Description:         "IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn",
+										MarkdownDescription: "IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("keda", "workload"),
+										},
+									},
+
+									"identity_tenant_id": schema.StringAttribute{
+										Description:         "Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set",
+										MarkdownDescription: "Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"provider": schema.StringAttribute{
+										Description:         "PodIdentityProvider contains the list of providers",
+										MarkdownDescription: "PodIdentityProvider contains the list of providers",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("azure", "azure-workload", "gcp", "aws", "aws-eks", "aws-kiam", "none"),
+										},
+									},
+
+									"role_arn": schema.StringAttribute{
+										Description:         "RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner",
+										MarkdownDescription: "RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"region": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"secrets": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"parameter": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"version_id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"version_stage": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"azure_key_vault": schema.SingleNestedAttribute{
 						Description:         "AzureKeyVault is used to authenticate using Azure Key Vault",
 						MarkdownDescription: "AzureKeyVault is used to authenticate using Azure Key Vault",
@@ -284,12 +636,39 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"pod_identity": schema.SingleNestedAttribute{
-								Description:         "AuthPodIdentity allows users to select the platform native identity mechanism",
-								MarkdownDescription: "AuthPodIdentity allows users to select the platform native identity mechanism",
+								Description:         "AuthPodIdentity allows users to select the platform native identitymechanism",
+								MarkdownDescription: "AuthPodIdentity allows users to select the platform native identitymechanism",
 								Attributes: map[string]schema.Attribute{
+									"identity_authority_host": schema.StringAttribute{
+										Description:         "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",
+										MarkdownDescription: "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"identity_id": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"identity_owner": schema.StringAttribute{
+										Description:         "IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn",
+										MarkdownDescription: "IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("keda", "workload"),
+										},
+									},
+
+									"identity_tenant_id": schema.StringAttribute{
+										Description:         "Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set",
+										MarkdownDescription: "Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -300,6 +679,17 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 										MarkdownDescription: "PodIdentityProvider contains the list of providers",
 										Required:            true,
 										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("azure", "azure-workload", "gcp", "aws", "aws-eks", "aws-kiam", "none"),
+										},
+									},
+
+									"role_arn": schema.StringAttribute{
+										Description:         "RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner",
+										MarkdownDescription: "RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 								},
@@ -356,6 +746,41 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 						Computed: false,
 					},
 
+					"config_map_target_ref": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"key": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"parameter": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"env": schema.ListNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -384,6 +809,165 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 									Optional:            false,
 									Computed:            false,
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"gcp_secret_manager": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"credentials": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"client_secret": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"value_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										},
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pod_identity": schema.SingleNestedAttribute{
+								Description:         "AuthPodIdentity allows users to select the platform native identitymechanism",
+								MarkdownDescription: "AuthPodIdentity allows users to select the platform native identitymechanism",
+								Attributes: map[string]schema.Attribute{
+									"identity_authority_host": schema.StringAttribute{
+										Description:         "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",
+										MarkdownDescription: "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"identity_id": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"identity_owner": schema.StringAttribute{
+										Description:         "IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn",
+										MarkdownDescription: "IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("keda", "workload"),
+										},
+									},
+
+									"identity_tenant_id": schema.StringAttribute{
+										Description:         "Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set",
+										MarkdownDescription: "Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"provider": schema.StringAttribute{
+										Description:         "PodIdentityProvider contains the list of providers",
+										MarkdownDescription: "PodIdentityProvider contains the list of providers",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("azure", "azure-workload", "gcp", "aws", "aws-eks", "aws-kiam", "none"),
+										},
+									},
+
+									"role_arn": schema.StringAttribute{
+										Description:         "RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner",
+										MarkdownDescription: "RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"secrets": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"parameter": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"version": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
 							},
 						},
 						Required: false,
@@ -488,6 +1072,79 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 											Optional:            false,
 											Computed:            false,
 										},
+
+										"pki_data": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"alt_names": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"common_name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"format": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"ip_sans": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"other_sans": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"ttl": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"uri_sans": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "VaultSecretType defines the type of vault secret",
+											MarkdownDescription: "VaultSecretType defines the type of vault secret",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: true,
@@ -501,12 +1158,39 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"pod_identity": schema.SingleNestedAttribute{
-						Description:         "AuthPodIdentity allows users to select the platform native identity mechanism",
-						MarkdownDescription: "AuthPodIdentity allows users to select the platform native identity mechanism",
+						Description:         "AuthPodIdentity allows users to select the platform native identitymechanism",
+						MarkdownDescription: "AuthPodIdentity allows users to select the platform native identitymechanism",
 						Attributes: map[string]schema.Attribute{
+							"identity_authority_host": schema.StringAttribute{
+								Description:         "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",
+								MarkdownDescription: "Set identityAuthorityHost to override the default Azure authority host. If this is set, then the IdentityTenantID must also be set",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"identity_id": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"identity_owner": schema.StringAttribute{
+								Description:         "IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn",
+								MarkdownDescription: "IdentityOwner configures which identity has to be used during auto discovery, keda or the scaled workload. Mutually exclusive with roleArn",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("keda", "workload"),
+								},
+							},
+
+							"identity_tenant_id": schema.StringAttribute{
+								Description:         "Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set",
+								MarkdownDescription: "Set identityTenantId to override the default Azure tenant id. If this is set, then the IdentityID must also be set",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -517,6 +1201,17 @@ func (r *KedaShClusterTriggerAuthenticationV1Alpha1Manifest) Schema(_ context.Co
 								MarkdownDescription: "PodIdentityProvider contains the list of providers",
 								Required:            true,
 								Optional:            false,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("azure", "azure-workload", "gcp", "aws", "aws-eks", "aws-kiam", "none"),
+								},
+							},
+
+							"role_arn": schema.StringAttribute{
+								Description:         "RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner",
+								MarkdownDescription: "RoleArn sets the AWS RoleArn to be used. Mutually exclusive with IdentityOwner",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 						},

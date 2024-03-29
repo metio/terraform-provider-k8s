@@ -3,12 +3,12 @@
 page_title: "k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_identity_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "infrastructure.cluster.x-k8s.io"
 description: |-
-  VSphereClusterIdentity defines the account to be used for reconciling clusters
+  VSphereClusterIdentity defines the account to be used for reconciling clusters.
 ---
 
 # k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_identity_v1beta1_manifest (Data Source)
 
-VSphereClusterIdentity defines the account to be used for reconciling clusters
+VSphereClusterIdentity defines the account to be used for reconciling clusters.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_identity_v1beta1_mani
 
 ### Optional
 
-- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) VSphereClusterIdentitySpec contains a secret reference and a group of allowed namespaces. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

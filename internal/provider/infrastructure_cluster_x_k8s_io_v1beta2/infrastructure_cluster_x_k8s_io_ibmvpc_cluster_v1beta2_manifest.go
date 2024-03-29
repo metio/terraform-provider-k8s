@@ -8,6 +8,7 @@ package infrastructure_cluster_x_k8s_io_v1beta2
 import (
 	"context"
 	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -17,7 +18,6 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -51,7 +51,12 @@ type InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2ManifestData struct {
 			Port *int64  `tfsdk:"port" json:"port,omitempty"`
 		} `tfsdk:"control_plane_endpoint" json:"controlPlaneEndpoint,omitempty"`
 		ControlPlaneLoadBalancer *struct {
-			Name *string `tfsdk:"name" json:"name,omitempty"`
+			AdditionalListeners *[]struct {
+				Port *int64 `tfsdk:"port" json:"port,omitempty"`
+			} `tfsdk:"additional_listeners" json:"additionalListeners,omitempty"`
+			Id     *string `tfsdk:"id" json:"id,omitempty"`
+			Name   *string `tfsdk:"name" json:"name,omitempty"`
+			Public *bool   `tfsdk:"public" json:"public,omitempty"`
 		} `tfsdk:"control_plane_load_balancer" json:"controlPlaneLoadBalancer,omitempty"`
 		Region        *string `tfsdk:"region" json:"region,omitempty"`
 		ResourceGroup *string `tfsdk:"resource_group" json:"resourceGroup,omitempty"`
@@ -174,6 +179,37 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 						Description:         "ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior.",
 						MarkdownDescription: "ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior.",
 						Attributes: map[string]schema.Attribute{
+							"additional_listeners": schema.ListNestedAttribute{
+								Description:         "AdditionalListeners sets the additional listeners for the control plane load balancer.",
+								MarkdownDescription: "AdditionalListeners sets the additional listeners for the control plane load balancer.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"port": schema.Int64Attribute{
+											Description:         "Port sets the port for the additional listener.",
+											MarkdownDescription: "Port sets the port for the additional listener.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(1),
+												int64validator.AtMost(65535),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"id": schema.StringAttribute{
+								Description:         "id of the loadbalancer",
+								MarkdownDescription: "id of the loadbalancer",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"name": schema.StringAttribute{
 								Description:         "Name sets the name of the VPC load balancer.",
 								MarkdownDescription: "Name sets the name of the VPC load balancer.",
@@ -182,8 +218,15 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 								Computed:            false,
 								Validators: []validator.String{
 									stringvalidator.LengthAtMost(63),
-									stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
 								},
+							},
+
+							"public": schema.BoolAttribute{
+								Description:         "public indicates that load balancer is public or private",
+								MarkdownDescription: "public indicates that load balancer is public or private",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

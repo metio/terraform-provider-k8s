@@ -30,7 +30,7 @@ data "k8s_ec2_services_k8s_aws_transit_gateway_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) TransitGatewaySpec defines the desired state of TransitGateway.  Describes a transit gateway. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) TransitGatewaySpec defines the desired state of TransitGateway.Describes a transit gateway. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -58,7 +58,7 @@ Optional:
 
 - `description` (String) A description of the transit gateway.
 - `options` (Attributes) The transit gateway options. (see [below for nested schema](#nestedatt--spec--options))
-- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--options"></a>
 ### Nested Schema for `spec.options`

@@ -45,9 +45,10 @@ type LonghornIoInstanceManagerV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Image  *string `tfsdk:"image" json:"image,omitempty"`
-		NodeID *string `tfsdk:"node_id" json:"nodeID,omitempty"`
-		Type   *string `tfsdk:"type" json:"type,omitempty"`
+		DataEngine *string `tfsdk:"data_engine" json:"dataEngine,omitempty"`
+		Image      *string `tfsdk:"image" json:"image,omitempty"`
+		NodeID     *string `tfsdk:"node_id" json:"nodeID,omitempty"`
+		Type       *string `tfsdk:"type" json:"type,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -133,9 +134,17 @@ func (r *LonghornIoInstanceManagerV1Beta2Manifest) Schema(_ context.Context, _ d
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "InstanceManagerSpec defines the desired state of the Longhorn instancer manager",
-				MarkdownDescription: "InstanceManagerSpec defines the desired state of the Longhorn instancer manager",
+				Description:         "InstanceManagerSpec defines the desired state of the Longhorn instance manager",
+				MarkdownDescription: "InstanceManagerSpec defines the desired state of the Longhorn instance manager",
 				Attributes: map[string]schema.Attribute{
+					"data_engine": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"image": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",

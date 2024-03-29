@@ -30,7 +30,7 @@ data "k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_v1alpha3_manifest" "e
 
 ### Optional
 
-- `spec` (Attributes) VSphereClusterSpec defines the desired state of VSphereCluster (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) VSphereClusterSpec defines the desired state of VSphereCluster. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,11 +56,11 @@ Optional:
 
 Optional:
 
-- `cloud_provider_configuration` (Attributes) CloudProviderConfiguration holds the cluster-wide configuration for the DEPRECATED: will be removed in v1alpha4 vSphere cloud provider. (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration))
+- `cloud_provider_configuration` (Attributes) CloudProviderConfiguration holds the cluster-wide configuration for the vSphere cloud provider.  Deprecated: will be removed in v1alpha4. (see [below for nested schema](#nestedatt--spec--cloud_provider_configuration))
 - `control_plane_endpoint` (Attributes) ControlPlaneEndpoint represents the endpoint used to communicate with the control plane. (see [below for nested schema](#nestedatt--spec--control_plane_endpoint))
 - `identity_ref` (Attributes) IdentityRef is a reference to either a Secret or VSphereClusterIdentity that contains the identity to use when reconciling the cluster. (see [below for nested schema](#nestedatt--spec--identity_ref))
-- `insecure` (Boolean) Insecure is a flag that controls whether or not to validate the vSphere server's certificate. DEPRECATED: will be removed in v1alpha4
-- `load_balancer_ref` (Attributes) LoadBalancerRef may be used to enable a control plane load balancer for this cluster. When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready field will not be true until the referenced resource is Status.Ready and has a non-empty Status.Address value. DEPRECATED: will be removed in v1alpha4 (see [below for nested schema](#nestedatt--spec--load_balancer_ref))
+- `insecure` (Boolean) Insecure is a flag that controls whether to validate the vSphere server's certificate.  Deprecated: will be removed in v1alpha4.
+- `load_balancer_ref` (Attributes) LoadBalancerRef may be used to enable a control plane load balancer for this cluster. When a LoadBalancerRef is provided, the VSphereCluster.Status.Ready field will not be true until the referenced resource is Status.Ready and has a non-empty Status.Address value.  Deprecated: will be removed in v1alpha4. (see [below for nested schema](#nestedatt--spec--load_balancer_ref))
 - `server` (String) Server is the address of the vSphere endpoint.
 - `thumbprint` (String) Thumbprint is the colon-separated SHA-1 checksum of the given vCenter server's host certificate When provided, Insecure should not be set to true
 

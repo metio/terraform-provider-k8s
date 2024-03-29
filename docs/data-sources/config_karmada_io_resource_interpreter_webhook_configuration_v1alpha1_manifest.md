@@ -16,6 +16,7 @@ ResourceInterpreterWebhookConfiguration describes the configuration of webhooks 
 data "k8s_config_karmada_io_resource_interpreter_webhook_configuration_v1alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -89,7 +90,7 @@ Optional:
 
 Required:
 
-- `api_groups` (List of String) APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all group  Note: The group cloud be empty, e.g the 'core' group of kubernetes, in that case use [''].
+- `api_groups` (List of String) APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. For example: ['apps', 'batch', 'example.io'] means matches 3 groups. ['*'] means matches all group  Note: The group could be empty, e.g the 'core' group of kubernetes, in that case use [''].
 - `api_versions` (List of String) APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one. For example: ['v1alpha1', 'v1beta1'] means matches 2 versions. ['*'] means matches all versions.
 - `kinds` (List of String) Kinds is a list of resources this rule applies to. If '*' is present, the length of the slice must be one. For example: ['Deployment', 'Pod'] means matches Deployment and Pod. ['*'] means apply to all resources.
 - `operations` (List of String) Operations is the operations the hook cares about. If '*' is present, the length of the slice must be one.

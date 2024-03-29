@@ -565,8 +565,11 @@ type GatewaySoloIoMatchableHttpGatewayV1ManifestData struct {
 				RatelimitServer *struct {
 					DenyOnFail              *bool `tfsdk:"deny_on_fail" json:"denyOnFail,omitempty"`
 					EnableXRatelimitHeaders *bool `tfsdk:"enable_x_ratelimit_headers" json:"enableXRatelimitHeaders,omitempty"`
-					RateLimitBeforeAuth     *bool `tfsdk:"rate_limit_before_auth" json:"rateLimitBeforeAuth,omitempty"`
-					RatelimitServerRef      *struct {
+					GrpcService             *struct {
+						Authority *string `tfsdk:"authority" json:"authority,omitempty"`
+					} `tfsdk:"grpc_service" json:"grpcService,omitempty"`
+					RateLimitBeforeAuth *bool `tfsdk:"rate_limit_before_auth" json:"rateLimitBeforeAuth,omitempty"`
+					RatelimitServerRef  *struct {
 						Name      *string `tfsdk:"name" json:"name,omitempty"`
 						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					} `tfsdk:"ratelimit_server_ref" json:"ratelimitServerRef,omitempty"`
@@ -576,7 +579,24 @@ type GatewaySoloIoMatchableHttpGatewayV1ManifestData struct {
 					SuppressEnvoyHeaders *bool `tfsdk:"suppress_envoy_headers" json:"suppressEnvoyHeaders,omitempty"`
 				} `tfsdk:"router" json:"router,omitempty"`
 				SanitizeClusterHeader *bool `tfsdk:"sanitize_cluster_header" json:"sanitizeClusterHeader,omitempty"`
-				Waf                   *struct {
+				Tap                   *struct {
+					Sinks *[]struct {
+						GrpcService *struct {
+							TapServer *struct {
+								Name      *string `tfsdk:"name" json:"name,omitempty"`
+								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+							} `tfsdk:"tap_server" json:"tapServer,omitempty"`
+						} `tfsdk:"grpc_service" json:"grpcService,omitempty"`
+						HttpService *struct {
+							TapServer *struct {
+								Name      *string `tfsdk:"name" json:"name,omitempty"`
+								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+							} `tfsdk:"tap_server" json:"tapServer,omitempty"`
+							Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
+						} `tfsdk:"http_service" json:"httpService,omitempty"`
+					} `tfsdk:"sinks" json:"sinks,omitempty"`
+				} `tfsdk:"tap" json:"tap,omitempty"`
+				Waf *struct {
 					AuditLogging *struct {
 						Action   *string `tfsdk:"action" json:"action,omitempty"`
 						Location *string `tfsdk:"location" json:"location,omitempty"`
@@ -4304,6 +4324,23 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 												Computed:            false,
 											},
 
+											"grpc_service": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"authority": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"rate_limit_before_auth": schema.BoolAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -4373,6 +4410,102 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"tap": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"sinks": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"grpc_service": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"tap_server": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"http_service": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"tap_server": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"timeout": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"waf": schema.SingleNestedAttribute{

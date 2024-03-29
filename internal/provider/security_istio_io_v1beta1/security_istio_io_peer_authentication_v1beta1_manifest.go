@@ -139,16 +139,16 @@ func (r *SecurityIstioIoPeerAuthenticationV1Beta1Manifest) Schema(_ context.Cont
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "PeerAuthentication defines how traffic will be tunneled (or not) to the sidecar.",
-				MarkdownDescription: "PeerAuthentication defines how traffic will be tunneled (or not) to the sidecar.",
+				Description:         "Peer authentication configuration for workloads. See more details at: https://istio.io/docs/reference/config/security/peer_authentication.html",
+				MarkdownDescription: "Peer authentication configuration for workloads. See more details at: https://istio.io/docs/reference/config/security/peer_authentication.html",
 				Attributes: map[string]schema.Attribute{
 					"mtls": schema.SingleNestedAttribute{
 						Description:         "Mutual TLS settings for workload.",
 						MarkdownDescription: "Mutual TLS settings for workload.",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
-								Description:         "Defines the mTLS mode used for peer authentication.",
-								MarkdownDescription: "Defines the mTLS mode used for peer authentication.",
+								Description:         "Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT",
+								MarkdownDescription: "Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -167,8 +167,8 @@ func (r *SecurityIstioIoPeerAuthenticationV1Beta1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "Port specific mutual TLS settings.",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
-								Description:         "Defines the mTLS mode used for peer authentication.",
-								MarkdownDescription: "Defines the mTLS mode used for peer authentication.",
+								Description:         "Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT",
+								MarkdownDescription: "Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -183,12 +183,12 @@ func (r *SecurityIstioIoPeerAuthenticationV1Beta1Manifest) Schema(_ context.Cont
 					},
 
 					"selector": schema.SingleNestedAttribute{
-						Description:         "The selector determines the workloads to apply the ChannelAuthentication on.",
-						MarkdownDescription: "The selector determines the workloads to apply the ChannelAuthentication on.",
+						Description:         "The selector determines the workloads to apply the PeerAuthentication on.",
+						MarkdownDescription: "The selector determines the workloads to apply the PeerAuthentication on.",
 						Attributes: map[string]schema.Attribute{
 							"match_labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
+								MarkdownDescription: "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

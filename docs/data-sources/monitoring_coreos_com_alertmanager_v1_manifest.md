@@ -61,14 +61,16 @@ Optional:
 - `alertmanager_config_selector` (Attributes) AlertmanagerConfigs to be selected for to merge and configure Alertmanager with. (see [below for nested schema](#nestedatt--spec--alertmanager_config_selector))
 - `alertmanager_configuration` (Attributes) EXPERIMENTAL: alertmanagerConfiguration specifies the configuration of Alertmanager. If defined, it takes precedence over the 'configSecret' field. This field may change in future releases. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration))
 - `automount_service_account_token` (Boolean) AutomountServiceAccountToken indicates whether a service account token should be automatically mounted in the pod. If the service account has 'automountServiceAccountToken: true', set the field to 'false' to opt out of automounting API credentials.
-- `base_image` (String) Base image that is used to deploy pods, without tag. Deprecated: use 'image' instead
+- `base_image` (String) Base image that is used to deploy pods, without tag. Deprecated: use 'image' instead.
 - `cluster_advertise_address` (String) ClusterAdvertiseAddress is the explicit address to advertise in cluster. Needs to be provided for non RFC1918 [1] (public) addresses. [1] RFC1918: https://tools.ietf.org/html/rfc1918
 - `cluster_gossip_interval` (String) Interval between gossip attempts.
+- `cluster_label` (String) Defines the identifier that uniquely identifies the Alertmanager cluster. You should only set it when the Alertmanager cluster includes Alertmanager instances which are external to this Alertmanager resource. In practice, the addresses of the external instances are provided via the '.spec.additionalPeers' field.
 - `cluster_peer_timeout` (String) Timeout for cluster peering.
 - `cluster_pushpull_interval` (String) Interval between pushpull attempts.
 - `config_maps` (List of String) ConfigMaps is a list of ConfigMaps in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. Each ConfigMap is added to the StatefulSet definition as a volume named 'configmap-<configmap-name>'. The ConfigMaps are mounted into '/etc/alertmanager/configmaps/<configmap-name>' in the 'alertmanager' container.
 - `config_secret` (String) ConfigSecret is the name of a Kubernetes Secret in the same namespace as the Alertmanager object, which contains the configuration for this Alertmanager instance. If empty, it defaults to 'alertmanager-<alertmanager-name>'.  The Alertmanager configuration should be available under the 'alertmanager.yaml' key. Additional keys from the original secret are copied to the generated secret and mounted into the '/etc/alertmanager/config' directory in the 'alertmanager' container.  If either the secret or the 'alertmanager.yaml' key is missing, the operator provisions a minimal Alertmanager configuration with one empty receiver (effectively dropping alert notifications).
 - `containers` (Attributes List) Containers allows injecting additional containers. This is meant to allow adding an authentication proxy to an Alertmanager pod. Containers described here modify an operator generated container if they share the same name and modifications are done via a strategic merge patch. The current container names are: 'alertmanager' and 'config-reloader'. Overriding containers is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice. (see [below for nested schema](#nestedatt--spec--containers))
+- `enable_features` (List of String) Enable access to Alertmanager feature flags. By default, no features are enabled. Enabling features which are disabled by default is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.  It requires Alertmanager >= 0.27.0.
 - `external_url` (String) The external URL the Alertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if Alertmanager is not served from root of a DNS name.
 - `force_enable_cluster_mode` (Boolean) ForceEnableClusterMode ensures Alertmanager does not deactivate the cluster mode when running with a single replica. Use case is e.g. spanning an Alertmanager cluster across Kubernetes clusters with a single replica in each.
 - `host_aliases` (Attributes List) Pods' hostAliases configuration (see [below for nested schema](#nestedatt--spec--host_aliases))
@@ -82,7 +84,7 @@ Optional:
 - `min_ready_seconds` (Number) Minimum number of seconds for which a newly created pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) This is an alpha field from kubernetes 1.22 until 1.24 which requires enabling the StatefulSetMinReadySeconds feature gate.
 - `node_selector` (Map of String) Define which Nodes the Pods are scheduled on.
 - `paused` (Boolean) If set to true all actions on the underlying managed objects are not goint to be performed, except for delete actions.
-- `pod_metadata` (Attributes) PodMetadata configures Labels and Annotations which are propagated to the alertmanager pods. (see [below for nested schema](#nestedatt--spec--pod_metadata))
+- `pod_metadata` (Attributes) PodMetadata configures labels and annotations which are propagated to the Alertmanager pods.  The following items are reserved and cannot be overridden: * 'alertmanager' label, set to the name of the Alertmanager instance. * 'app.kubernetes.io/instance' label, set to the name of the Alertmanager instance. * 'app.kubernetes.io/managed-by' label, set to 'prometheus-operator'. * 'app.kubernetes.io/name' label, set to 'alertmanager'. * 'app.kubernetes.io/version' label, set to the Alertmanager version. * 'kubectl.kubernetes.io/default-container' annotation, set to 'alertmanager'. (see [below for nested schema](#nestedatt--spec--pod_metadata))
 - `port_name` (String) Port name used for the pods and governing service. Defaults to 'web'.
 - `priority_class_name` (String) Priority class assigned to the Pods
 - `replicas` (Number) Size is the expected size of the alertmanager cluster. The controller will eventually make the size of the running cluster equal to the expected size.
@@ -92,9 +94,9 @@ Optional:
 - `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. Each Secret is added to the StatefulSet definition as a volume named 'secret-<secret-name>'. The Secrets are mounted into '/etc/alertmanager/secrets/<secret-name>' in the 'alertmanager' container.
 - `security_context` (Attributes) SecurityContext holds pod-level security attributes and common container settings. This defaults to the default PodSecurityContext. (see [below for nested schema](#nestedatt--spec--security_context))
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run the Prometheus Pods.
-- `sha` (String) SHA of Alertmanager container image to be deployed. Defaults to the value of 'version'. Similar to a tag, but the SHA explicitly deploys an immutable container image. Version and Tag are ignored if SHA is set. Deprecated: use 'image' instead.  The image digest can be specified as part of the image URL.
+- `sha` (String) SHA of Alertmanager container image to be deployed. Defaults to the value of 'version'. Similar to a tag, but the SHA explicitly deploys an immutable container image. Version and Tag are ignored if SHA is set. Deprecated: use 'image' instead. The image digest can be specified as part of the image URL.
 - `storage` (Attributes) Storage is the definition of how storage will be used by the Alertmanager instances. (see [below for nested schema](#nestedatt--spec--storage))
-- `tag` (String) Tag of Alertmanager container image to be deployed. Defaults to the value of 'version'. Version is ignored if Tag is set. Deprecated: use 'image' instead.  The image tag can be specified as part of the image URL.
+- `tag` (String) Tag of Alertmanager container image to be deployed. Defaults to the value of 'version'. Version is ignored if Tag is set. Deprecated: use 'image' instead. The image tag can be specified as part of the image URL.
 - `tolerations` (Attributes List) If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--tolerations))
 - `topology_spread_constraints` (Attributes List) If specified, the pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--topology_spread_constraints))
 - `version` (String) Version the cluster should be on.
@@ -232,7 +234,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -291,7 +295,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -366,7 +372,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -425,7 +433,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -590,8 +600,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the password for authentication. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--global--smtp--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the username for authentication. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--global--smtp--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password for authentication. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--global--smtp--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username for authentication. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--global--smtp--basic_auth--username))
 
 <a id="nestedatt--spec--alertmanager_configuration--global--smtp--basic_auth--password"></a>
 ### Nested Schema for `spec.alertmanager_configuration.global.smtp.basic_auth.username`
@@ -638,14 +648,14 @@ Optional:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--global--smtp--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--global--smtp--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--global--smtp--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret. (see [below for nested schema](#nestedatt--spec--alertmanager_configuration--global--smtp--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the token URL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--alertmanager_configuration--global--smtp--oauth2--client_id"></a>
 ### Nested Schema for `spec.alertmanager_configuration.global.smtp.oauth2.scopes`
@@ -1069,6 +1079,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--containers--lifecycle--pre_stop--exec"></a>
@@ -1101,6 +1112,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -1123,6 +1142,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--containers--lifecycle--pre_stop--exec"></a>
@@ -1155,6 +1175,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -1687,6 +1715,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--exec"></a>
@@ -1719,6 +1748,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--init_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -1741,6 +1778,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--exec))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--http_get))
+- `sleep` (Attributes) Sleep represents the duration that the container should sleep before being terminated. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--sleep))
 - `tcp_socket` (Attributes) Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. (see [below for nested schema](#nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket))
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--exec"></a>
@@ -1773,6 +1811,14 @@ Required:
 - `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
 - `value` (String) The header field value
 
+
+
+<a id="nestedatt--spec--init_containers--lifecycle--pre_stop--sleep"></a>
+### Nested Schema for `spec.init_containers.lifecycle.pre_stop.sleep`
+
+Required:
+
+- `seconds` (Number) Seconds is the number of seconds to sleep.
 
 
 <a id="nestedatt--spec--init_containers--lifecycle--pre_stop--tcp_socket"></a>
@@ -2230,7 +2276,7 @@ Optional:
 
 Optional:
 
-- `disable_mount_sub_path` (Boolean) *Deprecated: subPath usage will be removed in a future release.*
+- `disable_mount_sub_path` (Boolean) Deprecated: subPath usage will be removed in a future release.
 - `empty_dir` (Attributes) EmptyDirVolumeSource to be used by the StatefulSet. If specified, it takes precedence over 'ephemeral' and 'volumeClaimTemplate'. More info: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir (see [below for nested schema](#nestedatt--spec--storage--empty_dir))
 - `ephemeral` (Attributes) EphemeralVolumeSource to be used by the StatefulSet. This is a beta field in k8s 1.21 and GA in 1.15. For lower versions, starting with k8s 1.19, it requires enabling the GenericEphemeralVolume feature gate. More info: https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/#generic-ephemeral-volumes (see [below for nested schema](#nestedatt--spec--storage--ephemeral))
 - `volume_claim_template` (Attributes) Defines the PVC spec to be used by the Prometheus StatefulSets. The easiest way to use a volume that cannot be automatically provisioned is to use a label selector alongside manually created PersistentVolumes. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template))
@@ -2273,6 +2319,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -2308,17 +2355,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--storage--ephemeral--volume_claim_template--spec--volume_name--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--storage--ephemeral--volume_claim_template--spec--volume_name--claims"></a>
-### Nested Schema for `spec.storage.ephemeral.volume_claim_template.spec.volume_name.requests`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--storage--ephemeral--volume_claim_template--spec--selector"></a>
@@ -2355,7 +2393,7 @@ Optional:
 - `kind` (String) Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `metadata` (Attributes) EmbeddedMetadata contains metadata relevant to an EmbeddedResource. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--metadata))
 - `spec` (Attributes) Defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--spec))
-- `status` (Attributes) *Deprecated: this field is never set.* (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status))
+- `status` (Attributes) Deprecated: this field is never set. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status))
 
 <a id="nestedatt--spec--storage--volume_claim_template--metadata"></a>
 ### Nested Schema for `spec.storage.volume_claim_template.status`
@@ -2378,6 +2416,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -2413,17 +2452,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--storage--volume_claim_template--status--resources--claims"></a>
-### Nested Schema for `spec.storage.volume_claim_template.status.resources.requests`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--storage--volume_claim_template--status--selector"></a>
@@ -2459,6 +2489,8 @@ Optional:
 - `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: * Un-prefixed keys: - storage - the capacity of the volume. * Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource' Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.  Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.  A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC.  This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 - `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
 - `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--conditions))
+- `current_volume_attributes_class_name` (String) currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is an alpha field and requires enabling VolumeAttributesClass feature.
+- `modify_volume_status` (Attributes) ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is an alpha field and requires enabling VolumeAttributesClass feature. (see [below for nested schema](#nestedatt--spec--storage--volume_claim_template--status--modify_volume_status))
 - `phase` (String) phase represents the current phase of PersistentVolumeClaim.
 
 <a id="nestedatt--spec--storage--volume_claim_template--status--conditions"></a>
@@ -2475,6 +2507,18 @@ Optional:
 - `last_transition_time` (String) lastTransitionTime is the time the condition transitioned from one status to another.
 - `message` (String) message is the human-readable message indicating details about last transition.
 - `reason` (String) reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.
+
+
+<a id="nestedatt--spec--storage--volume_claim_template--status--modify_volume_status"></a>
+### Nested Schema for `spec.storage.volume_claim_template.status.modify_volume_status`
+
+Required:
+
+- `status` (String) status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.
+
+Optional:
+
+- `target_volume_attributes_class_name` (String) targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled
 
 
 
@@ -2809,6 +2853,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -2844,17 +2889,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--volume_name--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--volume_name--claims"></a>
-### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.volume_name.requests`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--selector"></a>
@@ -3070,10 +3106,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file.  Alpha, gated by the ClusterTrustBundleProjection feature gate.  ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector.  Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time. (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--cluster_trust_bundle))
 - `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--config_map))
 - `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--downward_api))
 - `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--secret))
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String) Relative path from the volume root to write the bundle.
+
+Optional:
+
+- `label_selector` (Attributes) Select all ClusterTrustBundles that match this label selector.  Only has effect if signerName is set.  Mutually-exclusive with name.  If unset, interpreted as 'match nothing'.  If set but empty, interpreted as 'match everything'. (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--label_selector))
+- `name` (String) Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.
+- `optional` (Boolean) If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.
+- `signer_name` (String) Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.
+
+<a id="nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.signer_name`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--signer_name--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--volumes--projected--sources--cluster_trust_bundle--signer_name--match_expressions"></a>
+### Nested Schema for `spec.volumes.projected.sources.cluster_trust_bundle.signer_name.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
 
 <a id="nestedatt--spec--volumes--projected--sources--config_map"></a>
 ### Nested Schema for `spec.volumes.projected.sources.config_map`

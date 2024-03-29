@@ -53,8 +53,8 @@ func (r *ScyllaScylladbComScyllaOperatorConfigV1Alpha1Manifest) Metadata(_ conte
 
 func (r *ScyllaScylladbComScyllaOperatorConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "",
-		MarkdownDescription: "",
+		Description:         "ScyllaOperatorConfig describes the Scylla Operator configuration.",
+		MarkdownDescription: "ScyllaOperatorConfig describes the Scylla Operator configuration.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.name'.",

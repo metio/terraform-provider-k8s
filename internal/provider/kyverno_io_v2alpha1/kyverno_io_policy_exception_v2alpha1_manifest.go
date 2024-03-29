@@ -46,6 +46,20 @@ type KyvernoIoPolicyExceptionV2Alpha1ManifestData struct {
 
 	Spec *struct {
 		Background *bool `tfsdk:"background" json:"background,omitempty"`
+		Conditions *struct {
+			All *[]struct {
+				Key      *map[string]string `tfsdk:"key" json:"key,omitempty"`
+				Message  *string            `tfsdk:"message" json:"message,omitempty"`
+				Operator *string            `tfsdk:"operator" json:"operator,omitempty"`
+				Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"all" json:"all,omitempty"`
+			Any *[]struct {
+				Key      *map[string]string `tfsdk:"key" json:"key,omitempty"`
+				Message  *string            `tfsdk:"message" json:"message,omitempty"`
+				Operator *string            `tfsdk:"operator" json:"operator,omitempty"`
+				Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"any" json:"any,omitempty"`
+		} `tfsdk:"conditions" json:"conditions,omitempty"`
 		Exceptions *[]struct {
 			PolicyName *string   `tfsdk:"policy_name" json:"policyName,omitempty"`
 			RuleNames  *[]string `tfsdk:"rule_names" json:"ruleNames,omitempty"`
@@ -214,6 +228,111 @@ func (r *KyvernoIoPolicyExceptionV2Alpha1Manifest) Schema(_ context.Context, _ d
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"conditions": schema.SingleNestedAttribute{
+						Description:         "Conditions are used to determine if a resource applies to the exception by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements.",
+						MarkdownDescription: "Conditions are used to determine if a resource applies to the exception by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements.",
+						Attributes: map[string]schema.Attribute{
+							"all": schema.ListNestedAttribute{
+								Description:         "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass.",
+								MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, all of the conditions need to pass.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"key": schema.MapAttribute{
+											Description:         "Key is the context entry (using JMESPath) for conditional rule evaluation.",
+											MarkdownDescription: "Key is the context entry (using JMESPath) for conditional rule evaluation.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"message": schema.StringAttribute{
+											Description:         "Message is an optional display message",
+											MarkdownDescription: "Message is an optional display message",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"operator": schema.StringAttribute{
+											Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+											MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Equals", "NotEquals", "AnyIn", "AllIn", "AnyNotIn", "AllNotIn", "GreaterThanOrEquals", "GreaterThan", "LessThanOrEquals", "LessThan", "DurationGreaterThanOrEquals", "DurationGreaterThan", "DurationLessThanOrEquals", "DurationLessThan"),
+											},
+										},
+
+										"value": schema.MapAttribute{
+											Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+											MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"any": schema.ListNestedAttribute{
+								Description:         "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass.",
+								MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful for finer control of when an rule is applied. A condition can reference object data using JMESPath notation. Here, at least one of the conditions need to pass.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"key": schema.MapAttribute{
+											Description:         "Key is the context entry (using JMESPath) for conditional rule evaluation.",
+											MarkdownDescription: "Key is the context entry (using JMESPath) for conditional rule evaluation.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"message": schema.StringAttribute{
+											Description:         "Message is an optional display message",
+											MarkdownDescription: "Message is an optional display message",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"operator": schema.StringAttribute{
+											Description:         "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+											MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are: Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals, GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan, DurationLessThanOrEquals, DurationLessThan",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Equals", "NotEquals", "AnyIn", "AllIn", "AnyNotIn", "AllNotIn", "GreaterThanOrEquals", "GreaterThan", "LessThanOrEquals", "LessThan", "DurationGreaterThanOrEquals", "DurationGreaterThan", "DurationLessThanOrEquals", "DurationLessThan"),
+											},
+										},
+
+										"value": schema.MapAttribute{
+											Description:         "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+											MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed set or can be variables declared using JMESPath.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"exceptions": schema.ListNestedAttribute{

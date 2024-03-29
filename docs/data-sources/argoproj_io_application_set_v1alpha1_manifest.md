@@ -78,9 +78,11 @@ Optional:
 - `apply_nested_selectors` (Boolean)
 - `go_template` (Boolean)
 - `go_template_options` (List of String)
+- `ignore_application_differences` (Attributes List) (see [below for nested schema](#nestedatt--spec--ignore_application_differences))
 - `preserved_fields` (Attributes) (see [below for nested schema](#nestedatt--spec--preserved_fields))
 - `strategy` (Attributes) (see [below for nested schema](#nestedatt--spec--strategy))
 - `sync_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--sync_policy))
+- `template_patch` (String)
 
 <a id="nestedatt--spec--generators"></a>
 ### Nested Schema for `spec.generators`
@@ -317,14 +319,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
@@ -476,14 +505,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--cluster_decision_resource--values--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.cluster_decision_resource.values.spec.sync_policy.target_revision.version`
@@ -791,14 +847,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
@@ -950,14 +1033,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--clusters--values--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.clusters.values.spec.sync_policy.target_revision.version`
@@ -1271,14 +1381,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
@@ -1430,14 +1567,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--git--values--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.git.values.spec.sync_policy.target_revision.version`
@@ -1726,14 +1890,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
@@ -1885,14 +2076,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--list--template--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.list.template.spec.sync_policy.target_revision.version`
@@ -2233,14 +2451,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
@@ -2392,14 +2637,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
@@ -2707,14 +2979,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.version`
@@ -2866,14 +3165,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--clusters--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.clusters.values.spec.sync_policy.kustomize.version`
@@ -3187,14 +3513,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.version`
@@ -3346,14 +3699,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--git--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.git.values.spec.sync_policy.kustomize.version`
@@ -3642,14 +4022,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.version`
@@ -3801,14 +4208,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--list--template--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.list.template.spec.sync_policy.kustomize.version`
@@ -4115,14 +4549,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.version`
@@ -4274,14 +4735,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--plugin--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.plugin.values.spec.sync_policy.kustomize.version`
@@ -4763,14 +5251,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.version`
@@ -4922,14 +5437,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--pull_request--template--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.pull_request.template.spec.sync_policy.kustomize.version`
@@ -5215,12 +5757,14 @@ Optional:
 
 - `all_branches` (Boolean)
 - `api` (String)
+- `include_shared_projects` (Boolean)
 - `include_subgroups` (Boolean)
 - `insecure` (Boolean)
 - `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--token_ref))
+- `topic` (String)
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--token_ref"></a>
-### Nested Schema for `spec.generators.matrix.template.scm_provider.values.token_ref`
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.topic`
 
 Required:
 
@@ -5411,14 +5955,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.version`
@@ -5570,14 +6141,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--scm_provider--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.scm_provider.values.spec.sync_policy.kustomize.version`
@@ -5877,14 +6475,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
@@ -6036,14 +6661,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--matrix--template--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.matrix.template.spec.sync_policy.target_revision.version`
@@ -6385,14 +7037,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
@@ -6544,14 +7223,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--cluster_decision_resource--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.cluster_decision_resource.values.spec.sync_policy.kustomize.version`
@@ -6859,14 +7565,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.version`
@@ -7018,14 +7751,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--clusters--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.clusters.values.spec.sync_policy.kustomize.version`
@@ -7339,14 +8099,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.version`
@@ -7498,14 +8285,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--git--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.git.values.spec.sync_policy.kustomize.version`
@@ -7794,14 +8608,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.version`
@@ -7953,14 +8794,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--list--template--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.list.template.spec.sync_policy.kustomize.version`
@@ -8267,14 +9135,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.version`
@@ -8426,14 +9321,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--plugin--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.plugin.values.spec.sync_policy.kustomize.version`
@@ -8915,14 +9837,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.version`
@@ -9074,14 +10023,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--pull_request--template--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.pull_request.template.spec.sync_policy.kustomize.version`
@@ -9367,12 +10343,14 @@ Optional:
 
 - `all_branches` (Boolean)
 - `api` (String)
+- `include_shared_projects` (Boolean)
 - `include_subgroups` (Boolean)
 - `insecure` (Boolean)
 - `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--token_ref))
+- `topic` (String)
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--token_ref"></a>
-### Nested Schema for `spec.generators.merge.template.scm_provider.values.token_ref`
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.topic`
 
 Required:
 
@@ -9563,14 +10541,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.version`
@@ -9722,14 +10727,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--scm_provider--values--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.scm_provider.values.spec.sync_policy.kustomize.version`
@@ -10029,14 +11061,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
@@ -10188,14 +11247,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--merge--template--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.merge.template.spec.sync_policy.target_revision.version`
@@ -10502,14 +11588,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
@@ -10661,14 +11774,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--plugin--values--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.plugin.values.spec.sync_policy.target_revision.version`
@@ -11150,14 +12290,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
@@ -11309,14 +12476,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--pull_request--template--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.pull_request.template.spec.sync_policy.target_revision.version`
@@ -11602,9 +12796,11 @@ Optional:
 
 - `all_branches` (Boolean)
 - `api` (String)
+- `include_shared_projects` (Boolean)
 - `include_subgroups` (Boolean)
 - `insecure` (Boolean)
 - `token_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--values--token_ref))
+- `topic` (String)
 
 <a id="nestedatt--spec--generators--scm_provider--values--token_ref"></a>
 ### Nested Schema for `spec.generators.scm_provider.values.token_ref`
@@ -11798,14 +12994,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
@@ -11957,14 +13180,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--patches"></a>
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--version--target))
+
+<a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--version--target"></a>
+### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--generators--scm_provider--values--spec--sync_policy--target_revision--replicas"></a>
 ### Nested Schema for `spec.generators.scm_provider.values.spec.sync_policy.target_revision.version`
@@ -12264,14 +13514,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--template--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.template.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--template--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--template--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.template.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--template--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.template.spec.sync_policy.kustomize.version`
@@ -12423,14 +13700,41 @@ Optional:
 - `common_annotations` (Map of String)
 - `common_annotations_envsubst` (Boolean)
 - `common_labels` (Map of String)
+- `components` (List of String)
 - `force_common_annotations` (Boolean)
 - `force_common_labels` (Boolean)
 - `images` (List of String)
 - `name_prefix` (String)
 - `name_suffix` (String)
 - `namespace` (String)
+- `patches` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--spec--sync_policy--kustomize--patches))
 - `replicas` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--spec--sync_policy--kustomize--replicas))
 - `version` (String)
+
+<a id="nestedatt--spec--template--spec--sync_policy--kustomize--patches"></a>
+### Nested Schema for `spec.template.spec.sync_policy.kustomize.version`
+
+Optional:
+
+- `options` (Map of String)
+- `patch` (String)
+- `path` (String)
+- `target` (Attributes) (see [below for nested schema](#nestedatt--spec--template--spec--sync_policy--kustomize--version--target))
+
+<a id="nestedatt--spec--template--spec--sync_policy--kustomize--version--target"></a>
+### Nested Schema for `spec.template.spec.sync_policy.kustomize.version.target`
+
+Optional:
+
+- `annotation_selector` (String)
+- `group` (String)
+- `kind` (String)
+- `label_selector` (String)
+- `name` (String)
+- `namespace` (String)
+- `version` (String)
+
+
 
 <a id="nestedatt--spec--template--spec--sync_policy--kustomize--replicas"></a>
 ### Nested Schema for `spec.template.spec.sync_policy.kustomize.version`
@@ -12524,12 +13828,23 @@ Optional:
 
 
 
+<a id="nestedatt--spec--ignore_application_differences"></a>
+### Nested Schema for `spec.ignore_application_differences`
+
+Optional:
+
+- `jq_path_expressions` (List of String)
+- `json_pointers` (List of String)
+- `name` (String)
+
+
 <a id="nestedatt--spec--preserved_fields"></a>
 ### Nested Schema for `spec.preserved_fields`
 
 Optional:
 
 - `annotations` (List of String)
+- `labels` (List of String)
 
 
 <a id="nestedatt--spec--strategy"></a>

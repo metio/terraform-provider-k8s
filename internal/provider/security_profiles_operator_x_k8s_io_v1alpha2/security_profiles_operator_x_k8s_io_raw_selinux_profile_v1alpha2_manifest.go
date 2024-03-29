@@ -138,8 +138,8 @@ func (r *SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Manifest) Schema
 					"disabled": schema.BoolAttribute{
 						Description:         "Whether the profile is disabled and should be skipped during reconciliation.",
 						MarkdownDescription: "Whether the profile is disabled and should be skipped during reconciliation.",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 

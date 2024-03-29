@@ -3,12 +3,12 @@
 page_title: "k8s_mariadb_mmontes_io_grant_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "mariadb.mmontes.io"
 description: |-
-  Grant is the Schema for the grants API
+  Grant is the Schema for the grants API. It is used to define grants as if you were running a 'GRANT' statement.
 ---
 
 # k8s_mariadb_mmontes_io_grant_v1alpha1_manifest (Data Source)
 
-Grant is the Schema for the grants API
+Grant is the Schema for the grants API. It is used to define grants as if you were running a 'GRANT' statement.
 
 ## Example Usage
 
@@ -56,16 +56,18 @@ Optional:
 
 Required:
 
-- `maria_db_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--maria_db_ref))
-- `privileges` (List of String)
-- `username` (String)
+- `maria_db_ref` (Attributes) MariaDBRef is a reference to a MariaDB object. (see [below for nested schema](#nestedatt--spec--maria_db_ref))
+- `privileges` (List of String) Privileges to use in the Grant.
+- `username` (String) Username to use in the Grant.
 
 Optional:
 
-- `database` (String)
-- `grant_option` (Boolean)
-- `host` (String)
-- `table` (String)
+- `database` (String) Database to use in the Grant.
+- `grant_option` (Boolean) GrantOption to use in the Grant.
+- `host` (String) Host to use in the Grant.
+- `requeue_interval` (String) RequeueInterval is used to perform requeue reconcilizations.
+- `retry_interval` (String) RetryInterval is the interval used to perform retries.
+- `table` (String) Table to use in the Grant.
 
 <a id="nestedatt--spec--maria_db_ref"></a>
 ### Nested Schema for `spec.maria_db_ref`
@@ -79,4 +81,4 @@ Optional:
 - `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 - `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
-- `wait_for_it` (Boolean)
+- `wait_for_it` (Boolean) WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.

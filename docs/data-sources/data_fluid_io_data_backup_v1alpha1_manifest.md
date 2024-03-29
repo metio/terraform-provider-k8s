@@ -60,6 +60,7 @@ Optional:
 - `dataset` (String) Dataset defines the target dataset of the DataBackup
 - `run_after` (Attributes) Specifies that the preceding operation in a workflow (see [below for nested schema](#nestedatt--spec--run_after))
 - `run_as` (Attributes) Manage the user to run Alluxio DataBackup (see [below for nested schema](#nestedatt--spec--run_as))
+- `ttl_seconds_after_finished` (Number) TTLSecondsAfterFinished is the time second to clean up data operations after finished or failed
 
 <a id="nestedatt--spec--run_after"></a>
 ### Nested Schema for `spec.run_after`

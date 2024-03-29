@@ -49,7 +49,8 @@ type MonitoringCoreosComServiceMonitorV1ManifestData struct {
 		AttachMetadata *struct {
 			Node *bool `tfsdk:"node" json:"node,omitempty"`
 		} `tfsdk:"attach_metadata" json:"attachMetadata,omitempty"`
-		Endpoints *[]struct {
+		BodySizeLimit *string `tfsdk:"body_size_limit" json:"bodySizeLimit,omitempty"`
+		Endpoints     *[]struct {
 			Authorization *struct {
 				Credentials *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -165,6 +166,7 @@ type MonitoringCoreosComServiceMonitorV1ManifestData struct {
 				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+			TrackTimestampsStaleness *bool `tfsdk:"track_timestamps_staleness" json:"trackTimestampsStaleness,omitempty"`
 		} `tfsdk:"endpoints" json:"endpoints,omitempty"`
 		JobLabel              *string `tfsdk:"job_label" json:"jobLabel,omitempty"`
 		KeepDroppedTargets    *int64  `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
@@ -177,6 +179,8 @@ type MonitoringCoreosComServiceMonitorV1ManifestData struct {
 		} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
 		PodTargetLabels *[]string `tfsdk:"pod_target_labels" json:"podTargetLabels,omitempty"`
 		SampleLimit     *int64    `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
+		ScrapeClass     *string   `tfsdk:"scrape_class" json:"scrapeClass,omitempty"`
+		ScrapeProtocols *[]string `tfsdk:"scrape_protocols" json:"scrapeProtocols,omitempty"`
 		Selector        *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -276,12 +280,12 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "Specification of desired Service selection for target discovery by Prometheus.",
 				Attributes: map[string]schema.Attribute{
 					"attach_metadata": schema.SingleNestedAttribute{
-						Description:         "Attaches node metadata to discovered targets. Requires Prometheus v2.37.0 and above.",
-						MarkdownDescription: "Attaches node metadata to discovered targets. Requires Prometheus v2.37.0 and above.",
+						Description:         "'attachMetadata' defines additional metadata which is added to the discovered targets.  It requires Prometheus >= v2.37.0.",
+						MarkdownDescription: "'attachMetadata' defines additional metadata which is added to the discovered targets.  It requires Prometheus >= v2.37.0.",
 						Attributes: map[string]schema.Attribute{
 							"node": schema.BoolAttribute{
-								Description:         "When set to true, Prometheus must have permissions to get Nodes.",
-								MarkdownDescription: "When set to true, Prometheus must have permissions to get Nodes.",
+								Description:         "When set to true, Prometheus must have the 'get' permission on the 'Nodes' objects.",
+								MarkdownDescription: "When set to true, Prometheus must have the 'get' permission on the 'Nodes' objects.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -292,14 +296,25 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 						Computed: false,
 					},
 
+					"body_size_limit": schema.StringAttribute{
+						Description:         "When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus.  It requires Prometheus >= v2.28.0.",
+						MarkdownDescription: "When defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus.  It requires Prometheus >= v2.28.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`(^0|([0-9]*[.])?[0-9]+((K|M|G|T|E|P)i?)?B)$`), ""),
+						},
+					},
+
 					"endpoints": schema.ListNestedAttribute{
-						Description:         "A list of endpoints allowed as part of this ServiceMonitor.",
-						MarkdownDescription: "A list of endpoints allowed as part of this ServiceMonitor.",
+						Description:         "List of endpoints part of this ServiceMonitor.",
+						MarkdownDescription: "List of endpoints part of this ServiceMonitor.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authorization": schema.SingleNestedAttribute{
-									Description:         "Authorization section for this endpoint",
-									MarkdownDescription: "Authorization section for this endpoint",
+									Description:         "'authorization' configures the Authorization header credentials to use when scraping the target.  Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
+									MarkdownDescription: "'authorization' configures the Authorization header credentials to use when scraping the target.  Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
 									Attributes: map[string]schema.Attribute{
 										"credentials": schema.SingleNestedAttribute{
 											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -348,12 +363,12 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"basic_auth": schema.SingleNestedAttribute{
-									Description:         "BasicAuth allow an endpoint to authenticate over basic authentication More info: https://prometheus.io/docs/operating/configuration/#endpoints",
-									MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication More info: https://prometheus.io/docs/operating/configuration/#endpoints",
+									Description:         "'basicAuth' configures the Basic Authentication credentials to use when scraping the target.  Cannot be set at the same time as 'authorization', or 'oauth2'.",
+									MarkdownDescription: "'basicAuth' configures the Basic Authentication credentials to use when scraping the target.  Cannot be set at the same time as 'authorization', or 'oauth2'.",
 									Attributes: map[string]schema.Attribute{
 										"password": schema.SingleNestedAttribute{
-											Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-											MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+											Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+											MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -385,8 +400,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"username": schema.SingleNestedAttribute{
-											Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-											MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+											Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+											MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -423,16 +438,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"bearer_token_file": schema.StringAttribute{
-									Description:         "File to read bearer token for scraping targets.",
-									MarkdownDescription: "File to read bearer token for scraping targets.",
+									Description:         "File to read bearer token for scraping the target.  Deprecated: use 'authorization' instead.",
+									MarkdownDescription: "File to read bearer token for scraping the target.  Deprecated: use 'authorization' instead.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"bearer_token_secret": schema.SingleNestedAttribute{
-									Description:         "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the service monitor and accessible by the Prometheus Operator.",
-									MarkdownDescription: "Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the service monitor and accessible by the Prometheus Operator.",
+									Description:         "'bearerTokenSecret' specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator.  Deprecated: use 'authorization' instead.",
+									MarkdownDescription: "'bearerTokenSecret' specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator.  Deprecated: use 'authorization' instead.",
 									Attributes: map[string]schema.Attribute{
 										"key": schema.StringAttribute{
 											Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -464,48 +479,48 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"enable_http2": schema.BoolAttribute{
-									Description:         "Whether to enable HTTP2.",
-									MarkdownDescription: "Whether to enable HTTP2.",
+									Description:         "'enableHttp2' can be used to disable HTTP2 when scraping the target.",
+									MarkdownDescription: "'enableHttp2' can be used to disable HTTP2 when scraping the target.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"filter_running": schema.BoolAttribute{
-									Description:         "Drop pods that are not running. (Failed, Succeeded). Enabled by default. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
-									MarkdownDescription: "Drop pods that are not running. (Failed, Succeeded). Enabled by default. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
+									Description:         "When true, the pods which are not running (e.g. either in Failed or Succeeded state) are dropped during the target discovery.  If unset, the filtering is enabled.  More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
+									MarkdownDescription: "When true, the pods which are not running (e.g. either in Failed or Succeeded state) are dropped during the target discovery.  If unset, the filtering is enabled.  More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"follow_redirects": schema.BoolAttribute{
-									Description:         "FollowRedirects configures whether scrape requests follow HTTP 3xx redirects.",
-									MarkdownDescription: "FollowRedirects configures whether scrape requests follow HTTP 3xx redirects.",
+									Description:         "'followRedirects' defines whether the scrape requests should follow HTTP 3xx redirects.",
+									MarkdownDescription: "'followRedirects' defines whether the scrape requests should follow HTTP 3xx redirects.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"honor_labels": schema.BoolAttribute{
-									Description:         "HonorLabels chooses the metric's labels on collisions with target labels.",
-									MarkdownDescription: "HonorLabels chooses the metric's labels on collisions with target labels.",
+									Description:         "When true, 'honorLabels' preserves the metric's labels when they collide with the target's labels.",
+									MarkdownDescription: "When true, 'honorLabels' preserves the metric's labels when they collide with the target's labels.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"honor_timestamps": schema.BoolAttribute{
-									Description:         "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
-									MarkdownDescription: "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
+									Description:         "'honorTimestamps' controls whether Prometheus preserves the timestamps when exposed by the target.",
+									MarkdownDescription: "'honorTimestamps' controls whether Prometheus preserves the timestamps when exposed by the target.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"interval": schema.StringAttribute{
-									Description:         "Interval at which metrics should be scraped If not specified Prometheus' global scrape interval is used.",
-									MarkdownDescription: "Interval at which metrics should be scraped If not specified Prometheus' global scrape interval is used.",
+									Description:         "Interval at which Prometheus scrapes the metrics from the target.  If empty, Prometheus uses the global scrape interval.",
+									MarkdownDescription: "Interval at which Prometheus scrapes the metrics from the target.  If empty, Prometheus uses the global scrape interval.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -515,8 +530,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"metric_relabelings": schema.ListNestedAttribute{
-									Description:         "MetricRelabelConfigs to apply to samples before ingestion.",
-									MarkdownDescription: "MetricRelabelConfigs to apply to samples before ingestion.",
+									Description:         "'metricRelabelings' configures the relabeling rules to apply to the samples before ingestion.",
+									MarkdownDescription: "'metricRelabelings' configures the relabeling rules to apply to the samples before ingestion.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"action": schema.StringAttribute{
@@ -586,12 +601,12 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"oauth2": schema.SingleNestedAttribute{
-									Description:         "OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.",
-									MarkdownDescription: "OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.",
+									Description:         "'oauth2' configures the OAuth2 settings to use when scraping the target.  It requires Prometheus >= 2.27.0.  Cannot be set at the same time as 'authorization', or 'basicAuth'.",
+									MarkdownDescription: "'oauth2' configures the OAuth2 settings to use when scraping the target.  It requires Prometheus >= 2.27.0.  Cannot be set at the same time as 'authorization', or 'basicAuth'.",
 									Attributes: map[string]schema.Attribute{
 										"client_id": schema.SingleNestedAttribute{
-											Description:         "The secret or configmap containing the OAuth2 client id",
-											MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+											MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 											Attributes: map[string]schema.Attribute{
 												"config_map": schema.SingleNestedAttribute{
 													Description:         "ConfigMap containing data to use for the targets.",
@@ -665,8 +680,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"client_secret": schema.SingleNestedAttribute{
-											Description:         "The secret containing the OAuth2 client secret",
-											MarkdownDescription: "The secret containing the OAuth2 client secret",
+											Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+											MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -698,8 +713,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"endpoint_params": schema.MapAttribute{
-											Description:         "Parameters to append to the token URL",
-											MarkdownDescription: "Parameters to append to the token URL",
+											Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+											MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -707,8 +722,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"scopes": schema.ListAttribute{
-											Description:         "OAuth2 scopes used for the token request",
-											MarkdownDescription: "OAuth2 scopes used for the token request",
+											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -716,8 +731,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 										},
 
 										"token_url": schema.StringAttribute{
-											Description:         "The URL to fetch the token from",
-											MarkdownDescription: "The URL to fetch the token from",
+											Description:         "'tokenURL' configures the URL to fetch the token from.",
+											MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -732,8 +747,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"params": schema.MapAttribute{
-									Description:         "Optional HTTP URL parameters",
-									MarkdownDescription: "Optional HTTP URL parameters",
+									Description:         "params define optional HTTP URL parameters.",
+									MarkdownDescription: "params define optional HTTP URL parameters.",
 									ElementType:         types.ListType{ElemType: types.StringType},
 									Required:            false,
 									Optional:            true,
@@ -741,32 +756,32 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"path": schema.StringAttribute{
-									Description:         "HTTP path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
-									MarkdownDescription: "HTTP path to scrape for metrics. If empty, Prometheus uses the default value (e.g. '/metrics').",
+									Description:         "HTTP path from which to scrape for metrics.  If empty, Prometheus uses the default value (e.g. '/metrics').",
+									MarkdownDescription: "HTTP path from which to scrape for metrics.  If empty, Prometheus uses the default value (e.g. '/metrics').",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"port": schema.StringAttribute{
-									Description:         "Name of the service port this endpoint refers to. Mutually exclusive with targetPort.",
-									MarkdownDescription: "Name of the service port this endpoint refers to. Mutually exclusive with targetPort.",
+									Description:         "Name of the Service port which this endpoint refers to.  It takes precedence over 'targetPort'.",
+									MarkdownDescription: "Name of the Service port which this endpoint refers to.  It takes precedence over 'targetPort'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"proxy_url": schema.StringAttribute{
-									Description:         "ProxyURL eg http://proxyserver:2195 Directs scrapes to proxy through this endpoint.",
-									MarkdownDescription: "ProxyURL eg http://proxyserver:2195 Directs scrapes to proxy through this endpoint.",
+									Description:         "'proxyURL' configures the HTTP Proxy URL (e.g. 'http://proxyserver:2195') to go through when scraping the target.",
+									MarkdownDescription: "'proxyURL' configures the HTTP Proxy URL (e.g. 'http://proxyserver:2195') to go through when scraping the target.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"relabelings": schema.ListNestedAttribute{
-									Description:         "RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
-									MarkdownDescription: "RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job's name is available via the '__tmp_prometheus_job_name' label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+									Description:         "'relabelings' configures the relabeling rules to apply the target's metadata labels.  The Operator automatically adds relabelings for a few standard Kubernetes fields.  The original scrape job's name is available via the '__tmp_prometheus_job_name' label.  More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+									MarkdownDescription: "'relabelings' configures the relabeling rules to apply the target's metadata labels.  The Operator automatically adds relabelings for a few standard Kubernetes fields.  The original scrape job's name is available via the '__tmp_prometheus_job_name' label.  More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"action": schema.StringAttribute{
@@ -836,8 +851,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"scheme": schema.StringAttribute{
-									Description:         "HTTP scheme to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
-									MarkdownDescription: "HTTP scheme to use for scraping. 'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling. If empty, Prometheus uses the default value 'http'.",
+									Description:         "HTTP scheme to use for scraping.  'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling.  If empty, Prometheus uses the default value 'http'.",
+									MarkdownDescription: "HTTP scheme to use for scraping.  'http' and 'https' are the expected values unless you rewrite the '__scheme__' label via relabeling.  If empty, Prometheus uses the default value 'http'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -847,8 +862,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"scrape_timeout": schema.StringAttribute{
-									Description:         "Timeout after which the scrape is ended If not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.",
-									MarkdownDescription: "Timeout after which the scrape is ended If not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.",
+									Description:         "Timeout after which Prometheus considers the scrape to be failed.  If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.",
+									MarkdownDescription: "Timeout after which Prometheus considers the scrape to be failed.  If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -858,16 +873,16 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 								},
 
 								"target_port": schema.StringAttribute{
-									Description:         "Name or number of the target port of the Pod behind the Service, the port must be specified with container port property. Mutually exclusive with port.",
-									MarkdownDescription: "Name or number of the target port of the Pod behind the Service, the port must be specified with container port property. Mutually exclusive with port.",
+									Description:         "Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.",
+									MarkdownDescription: "Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"tls_config": schema.SingleNestedAttribute{
-									Description:         "TLS configuration to use when scraping the endpoint",
-									MarkdownDescription: "TLS configuration to use when scraping the endpoint",
+									Description:         "TLS configuration to use when scraping the target.",
+									MarkdownDescription: "TLS configuration to use when scraping the target.",
 									Attributes: map[string]schema.Attribute{
 										"ca": schema.SingleNestedAttribute{
 											Description:         "Certificate authority used when verifying server certificates.",
@@ -1096,16 +1111,24 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 									Optional: true,
 									Computed: false,
 								},
+
+								"track_timestamps_staleness": schema.BoolAttribute{
+									Description:         "'trackTimestampsStaleness' defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false.  It requires Prometheus >= v2.48.0.",
+									MarkdownDescription: "'trackTimestampsStaleness' defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if 'honorTimestamps' is false.  It requires Prometheus >= v2.48.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
 					"job_label": schema.StringAttribute{
-						Description:         "JobLabel selects the label from the associated Kubernetes service which will be used as the 'job' label for all metrics.  For example: If in 'ServiceMonitor.spec.jobLabel: foo' and in 'Service.metadata.labels.foo: bar', then the 'job='bar'' label is added to all metrics.  If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the Kubernetes Service.",
-						MarkdownDescription: "JobLabel selects the label from the associated Kubernetes service which will be used as the 'job' label for all metrics.  For example: If in 'ServiceMonitor.spec.jobLabel: foo' and in 'Service.metadata.labels.foo: bar', then the 'job='bar'' label is added to all metrics.  If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the Kubernetes Service.",
+						Description:         "'jobLabel' selects the label from the associated Kubernetes 'Service' object which will be used as the 'job' label for all metrics.  For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics.  If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the associated Kubernetes 'Service'.",
+						MarkdownDescription: "'jobLabel' selects the label from the associated Kubernetes 'Service' object which will be used as the 'job' label for all metrics.  For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Service' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics.  If the value of this field is empty or if the label doesn't exist for the given Service, the 'job' label of the metrics defaults to the name of the associated Kubernetes 'Service'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1120,32 +1143,32 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"label_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						Description:         "Per-scrape limit on number of labels that will be accepted for a sample.  It requires Prometheus >= v2.27.0.",
+						MarkdownDescription: "Per-scrape limit on number of labels that will be accepted for a sample.  It requires Prometheus >= v2.27.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_name_length_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						Description:         "Per-scrape limit on length of labels name that will be accepted for a sample.  It requires Prometheus >= v2.27.0.",
+						MarkdownDescription: "Per-scrape limit on length of labels name that will be accepted for a sample.  It requires Prometheus >= v2.27.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_value_length_limit": schema.Int64Attribute{
-						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
-						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer.",
+						Description:         "Per-scrape limit on length of labels value that will be accepted for a sample.  It requires Prometheus >= v2.27.0.",
+						MarkdownDescription: "Per-scrape limit on length of labels value that will be accepted for a sample.  It requires Prometheus >= v2.27.0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"namespace_selector": schema.SingleNestedAttribute{
-						Description:         "Selector to select which namespaces the Kubernetes Endpoints objects are discovered from.",
-						MarkdownDescription: "Selector to select which namespaces the Kubernetes Endpoints objects are discovered from.",
+						Description:         "Selector to select which namespaces the Kubernetes 'Endpoints' objects are discovered from.",
+						MarkdownDescription: "Selector to select which namespaces the Kubernetes 'Endpoints' objects are discovered from.",
 						Attributes: map[string]schema.Attribute{
 							"any": schema.BoolAttribute{
 								Description:         "Boolean describing whether all namespaces are selected in contrast to a list restricting them.",
@@ -1170,8 +1193,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"pod_target_labels": schema.ListAttribute{
-						Description:         "PodTargetLabels transfers labels on the Kubernetes 'Pod' onto the created metrics.",
-						MarkdownDescription: "PodTargetLabels transfers labels on the Kubernetes 'Pod' onto the created metrics.",
+						Description:         "'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.",
+						MarkdownDescription: "'podTargetLabels' defines the labels which are transferred from the associated Kubernetes 'Pod' object onto the ingested metrics.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1179,16 +1202,36 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"sample_limit": schema.Int64Attribute{
-						Description:         "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
-						MarkdownDescription: "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
+						Description:         "'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.",
+						MarkdownDescription: "'sampleLimit' defines a per-scrape limit on the number of scraped samples that will be accepted.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"scrape_class": schema.StringAttribute{
+						Description:         "The scrape class to apply.",
+						MarkdownDescription: "The scrape class to apply.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+						},
+					},
+
+					"scrape_protocols": schema.ListAttribute{
+						Description:         "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
+						MarkdownDescription: "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
+						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"selector": schema.SingleNestedAttribute{
-						Description:         "Selector to select Endpoints objects.",
-						MarkdownDescription: "Selector to select Endpoints objects.",
+						Description:         "Label selector to select the Kubernetes 'Endpoints' objects.",
+						MarkdownDescription: "Label selector to select the Kubernetes 'Endpoints' objects.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1241,8 +1284,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"target_labels": schema.ListAttribute{
-						Description:         "TargetLabels transfers labels from the Kubernetes 'Service' onto the created metrics.",
-						MarkdownDescription: "TargetLabels transfers labels from the Kubernetes 'Service' onto the created metrics.",
+						Description:         "'targetLabels' defines the labels which are transferred from the associated Kubernetes 'Service' object onto the ingested metrics.",
+						MarkdownDescription: "'targetLabels' defines the labels which are transferred from the associated Kubernetes 'Service' object onto the ingested metrics.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1250,8 +1293,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, 
 					},
 
 					"target_limit": schema.Int64Attribute{
-						Description:         "TargetLimit defines a limit on the number of scraped targets that will be accepted.",
-						MarkdownDescription: "TargetLimit defines a limit on the number of scraped targets that will be accepted.",
+						Description:         "'targetLimit' defines a limit on the number of scraped targets that will be accepted.",
+						MarkdownDescription: "'targetLimit' defines a limit on the number of scraped targets that will be accepted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

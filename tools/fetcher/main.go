@@ -27,6 +27,6 @@ func main() {
 		fetcher.DownloadOpenAPIv2(fmt.Sprintf("%s/openapi_v2", *schemaDir), *filter)
 	}
 	if *fetchCRDv1 {
-		fetcher.DownloadCRDv1(fmt.Sprintf("%s/crd_v1", *schemaDir), *filter)
+		fetcher.DownloadCRDv1(fmt.Sprintf("%s/crd_v1", *schemaDir))
 	}
 }

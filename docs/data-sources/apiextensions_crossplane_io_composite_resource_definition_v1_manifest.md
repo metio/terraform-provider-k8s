@@ -3,12 +3,12 @@
 page_title: "k8s_apiextensions_crossplane_io_composite_resource_definition_v1_manifest Data Source - terraform-provider-k8s"
 subcategory: "apiextensions.crossplane.io"
 description: |-
-  A CompositeResourceDefinition defines a new kind of composite infrastructure resource. The new resource is composed of other composite or managed infrastructure resources.
+  A CompositeResourceDefinition defines a new kind of composite infrastructureresource. The new resource is composed of other composite or managedinfrastructure resources.
 ---
 
 # k8s_apiextensions_crossplane_io_composite_resource_definition_v1_manifest (Data Source)
 
-A CompositeResourceDefinition defines a new kind of composite infrastructure resource. The new resource is composed of other composite or managed infrastructure resources.
+A CompositeResourceDefinition defines a new kind of composite infrastructureresource. The new resource is composed of other composite or managedinfrastructure resources.
 
 ## Example Usage
 
@@ -16,6 +16,7 @@ A CompositeResourceDefinition defines a new kind of composite infrastructure res
 data "k8s_apiextensions_crossplane_io_composite_resource_definition_v1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -54,19 +55,19 @@ Optional:
 
 Required:
 
-- `group` (String) Group specifies the API group of the defined composite resource. Composite resources are served under '/apis/<group>/...'. Must match the name of the XRD (in the form '<names.plural>.<group>').
-- `names` (Attributes) Names specifies the resource and kind names of the defined composite resource. (see [below for nested schema](#nestedatt--spec--names))
-- `versions` (Attributes List) Versions is the list of all API versions of the defined composite resource. Version names are used to compute the order in which served versions are listed in API discovery. If the version string is 'kube-like', it will sort above non 'kube-like' version strings, which are ordered lexicographically. 'Kube-like' versions start with a 'v', then are followed by a number (the major version), then optionally the string 'alpha' or 'beta' and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10. (see [below for nested schema](#nestedatt--spec--versions))
+- `group` (String) Group specifies the API group of the defined composite resource.Composite resources are served under '/apis/<group>/...'. Must match thename of the XRD (in the form '<names.plural>.<group>').
+- `names` (Attributes) Names specifies the resource and kind names of the defined compositeresource. (see [below for nested schema](#nestedatt--spec--names))
+- `versions` (Attributes List) Versions is the list of all API versions of the defined compositeresource. Version names are used to compute the order in which servedversions are listed in API discovery. If the version string is'kube-like', it will sort above non 'kube-like' version strings, whichare ordered lexicographically. 'Kube-like' versions start with a 'v',then are followed by a number (the major version), then optionally thestring 'alpha' or 'beta' and another number (the minor version). Theseare sorted first by GA > beta > alpha (where GA is a version with nosuffix such as beta or alpha), and then by comparing major version, thenminor version. An example sorted list of versions: v10, v2, v1, v11beta2,v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10. (see [below for nested schema](#nestedatt--spec--versions))
 
 Optional:
 
-- `claim_names` (Attributes) ClaimNames specifies the names of an optional composite resource claim. When claim names are specified Crossplane will create a namespaced 'composite resource claim' CRD that corresponds to the defined composite resource. This composite resource claim acts as a namespaced proxy for the composite resource; creating, updating, or deleting the claim will create, update, or delete a corresponding composite resource. You may add claim names to an existing CompositeResourceDefinition, but they cannot be changed or removed once they have been set. (see [below for nested schema](#nestedatt--spec--claim_names))
-- `connection_secret_keys` (List of String) ConnectionSecretKeys is the list of keys that will be exposed to the end user of the defined kind. If the list is empty, all keys will be published.
+- `claim_names` (Attributes) ClaimNames specifies the names of an optional composite resource claim.When claim names are specified Crossplane will create a namespaced'composite resource claim' CRD that corresponds to the defined compositeresource. This composite resource claim acts as a namespaced proxy forthe composite resource; creating, updating, or deleting the claim willcreate, update, or delete a corresponding composite resource. You may addclaim names to an existing CompositeResourceDefinition, but they cannotbe changed or removed once they have been set. (see [below for nested schema](#nestedatt--spec--claim_names))
+- `connection_secret_keys` (List of String) ConnectionSecretKeys is the list of keys that will be exposed to the enduser of the defined kind.If the list is empty, all keys will be published.
 - `conversion` (Attributes) Conversion defines all conversion settings for the defined Composite resource. (see [below for nested schema](#nestedatt--spec--conversion))
-- `default_composite_delete_policy` (String) DefaultCompositeDeletePolicy is the policy used when deleting the Composite that is associated with the Claim if no policy has been specified.
-- `default_composition_ref` (Attributes) DefaultCompositionRef refers to the Composition resource that will be used in case no composition selector is given. (see [below for nested schema](#nestedatt--spec--default_composition_ref))
-- `default_composition_update_policy` (String) DefaultCompositionUpdatePolicy is the policy used when updating composites after a new Composition Revision has been created if no policy has been specified on the composite.
-- `enforced_composition_ref` (Attributes) EnforcedCompositionRef refers to the Composition resource that will be used by all composite instances whose schema is defined by this definition. (see [below for nested schema](#nestedatt--spec--enforced_composition_ref))
+- `default_composite_delete_policy` (String) DefaultCompositeDeletePolicy is the policy used when deleting the Compositethat is associated with the Claim if no policy has been specified.
+- `default_composition_ref` (Attributes) DefaultCompositionRef refers to the Composition resource that will be usedin case no composition selector is given. (see [below for nested schema](#nestedatt--spec--default_composition_ref))
+- `default_composition_update_policy` (String) DefaultCompositionUpdatePolicy is the policy used when updating composites after a newComposition Revision has been created if no policy has been specified on the composite.
+- `enforced_composition_ref` (Attributes) EnforcedCompositionRef refers to the Composition resource that will be usedby all composite instances whose schema is defined by this definition. (see [below for nested schema](#nestedatt--spec--enforced_composition_ref))
 - `metadata` (Attributes) Metadata specifies the desired metadata for the defined composite resource and claim CRD's. (see [below for nested schema](#nestedatt--spec--metadata))
 
 <a id="nestedatt--spec--names"></a>
@@ -74,14 +75,14 @@ Optional:
 
 Required:
 
-- `kind` (String) kind is the serialized kind of the resource. It is normally CamelCase and singular. Custom resource instances will use this value as the 'kind' attribute in API calls.
-- `plural` (String) plural is the plural name of the resource to serve. The custom resources are served under '/apis/<group>/<version>/.../<plural>'. Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>'). Must be all lowercase.
+- `kind` (String) kind is the serialized kind of the resource. It is normally CamelCase and singular.Custom resource instances will use this value as the 'kind' attribute in API calls.
+- `plural` (String) plural is the plural name of the resource to serve.The custom resources are served under '/apis/<group>/<version>/.../<plural>'.Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>').Must be all lowercase.
 
 Optional:
 
-- `categories` (List of String) categories is a list of grouped resources this custom resource belongs to (e.g. 'all'). This is published in API discovery documents, and used by clients to support invocations like 'kubectl get all'.
+- `categories` (List of String) categories is a list of grouped resources this custom resource belongs to (e.g. 'all').This is published in API discovery documents, and used by clients to support invocations like'kubectl get all'.
 - `list_kind` (String) listKind is the serialized kind of the list for this resource. Defaults to ''kind'List'.
-- `short_names` (List of String) shortNames are short names for the resource, exposed in API discovery documents, and used by clients to support invocations like 'kubectl get <shortname>'. It must be all lowercase.
+- `short_names` (List of String) shortNames are short names for the resource, exposed in API discovery documents,and used by clients to support invocations like 'kubectl get <shortname>'.It must be all lowercase.
 - `singular` (String) singular is the singular name of the resource. It must be all lowercase. Defaults to lowercased 'kind'.
 
 
@@ -90,31 +91,31 @@ Optional:
 
 Required:
 
-- `name` (String) Name of this version, e.g. “v1”, “v2beta1”, etc. Composite resources are served under this version at '/apis/<group>/<version>/...' if 'served' is true.
-- `referenceable` (Boolean) Referenceable specifies that this version may be referenced by a Composition in order to configure which resources an XR may be composed of. Exactly one version must be marked as referenceable; all Compositions must target only the referenceable version. The referenceable version must be served. It's mapped to the CRD's 'spec.versions[*].storage' field.
+- `name` (String) Name of this version, e.g. “v1”, “v2beta1”, etc. Composite resources areserved under this version at '/apis/<group>/<version>/...' if 'served' istrue.
+- `referenceable` (Boolean) Referenceable specifies that this version may be referenced by aComposition in order to configure which resources an XR may be composedof. Exactly one version must be marked as referenceable; all Compositionsmust target only the referenceable version. The referenceable versionmust be served. It's mapped to the CRD's 'spec.versions[*].storage' field.
 - `served` (Boolean) Served specifies that this version should be served via REST APIs.
 
 Optional:
 
-- `additional_printer_columns` (Attributes List) AdditionalPrinterColumns specifies additional columns returned in Table output. If no columns are specified, a single column displaying the age of the custom resource is used. See the following link for details: https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables (see [below for nested schema](#nestedatt--spec--versions--additional_printer_columns))
-- `deprecated` (Boolean) The deprecated field specifies that this version is deprecated and should not be used.
-- `deprecation_warning` (String) DeprecationWarning specifies the message that should be shown to the user when using this version.
-- `schema` (Attributes) Schema describes the schema used for validation, pruning, and defaulting of this version of the defined composite resource. Fields required by all composite resources will be injected into this schema automatically, and will override equivalently named fields in this schema. Omitting this schema results in a schema that contains only the fields required by all composite resources. (see [below for nested schema](#nestedatt--spec--versions--schema))
+- `additional_printer_columns` (Attributes List) AdditionalPrinterColumns specifies additional columns returned in Tableoutput. If no columns are specified, a single column displaying the ageof the custom resource is used. See the following link for details:https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables (see [below for nested schema](#nestedatt--spec--versions--additional_printer_columns))
+- `deprecated` (Boolean) The deprecated field specifies that this version is deprecated and shouldnot be used.
+- `deprecation_warning` (String) DeprecationWarning specifies the message that should be shown to the userwhen using this version.
+- `schema` (Attributes) Schema describes the schema used for validation, pruning, and defaultingof this version of the defined composite resource. Fields required by allcomposite resources will be injected into this schema automatically, andwill override equivalently named fields in this schema. Omitting thisschema results in a schema that contains only the fields required by allcomposite resources. (see [below for nested schema](#nestedatt--spec--versions--schema))
 
 <a id="nestedatt--spec--versions--additional_printer_columns"></a>
 ### Nested Schema for `spec.versions.additional_printer_columns`
 
 Required:
 
-- `json_path` (String) jsonPath is a simple JSON path (i.e. with array notation) which is evaluated against each custom resource to produce the value for this column.
+- `json_path` (String) jsonPath is a simple JSON path (i.e. with array notation) which is evaluated againsteach custom resource to produce the value for this column.
 - `name` (String) name is a human readable name for the column.
-- `type` (String) type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.
+- `type` (String) type is an OpenAPI type definition for this column.See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.
 
 Optional:
 
 - `description` (String) description is a human readable description of this column.
-- `format` (String) format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.
-- `priority` (Number) priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a priority greater than 0.
+- `format` (String) format is an optional OpenAPI type definition for this column. The 'name' format is appliedto the primary identifier column to assist in clients identifying column is the resource name.See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.
+- `priority` (Number) priority is an integer defining the relative importance of this column compared to others. Lowernumbers are considered higher priority. Columns that may be omitted in limited space scenariosshould be given a priority greater than 0.
 
 
 <a id="nestedatt--spec--versions--schema"></a>
@@ -122,7 +123,7 @@ Optional:
 
 Optional:
 
-- `open_apiv3_schema` (Map of String) OpenAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning.
+- `open_apiv3_schema` (Map of String) OpenAPIV3Schema is the OpenAPI v3 schema to use for validation andpruning.
 
 
 
@@ -131,14 +132,14 @@ Optional:
 
 Required:
 
-- `kind` (String) kind is the serialized kind of the resource. It is normally CamelCase and singular. Custom resource instances will use this value as the 'kind' attribute in API calls.
-- `plural` (String) plural is the plural name of the resource to serve. The custom resources are served under '/apis/<group>/<version>/.../<plural>'. Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>'). Must be all lowercase.
+- `kind` (String) kind is the serialized kind of the resource. It is normally CamelCase and singular.Custom resource instances will use this value as the 'kind' attribute in API calls.
+- `plural` (String) plural is the plural name of the resource to serve.The custom resources are served under '/apis/<group>/<version>/.../<plural>'.Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>').Must be all lowercase.
 
 Optional:
 
-- `categories` (List of String) categories is a list of grouped resources this custom resource belongs to (e.g. 'all'). This is published in API discovery documents, and used by clients to support invocations like 'kubectl get all'.
+- `categories` (List of String) categories is a list of grouped resources this custom resource belongs to (e.g. 'all').This is published in API discovery documents, and used by clients to support invocations like'kubectl get all'.
 - `list_kind` (String) listKind is the serialized kind of the list for this resource. Defaults to ''kind'List'.
-- `short_names` (List of String) shortNames are short names for the resource, exposed in API discovery documents, and used by clients to support invocations like 'kubectl get <shortname>'. It must be all lowercase.
+- `short_names` (List of String) shortNames are short names for the resource, exposed in API discovery documents,and used by clients to support invocations like 'kubectl get <shortname>'.It must be all lowercase.
 - `singular` (String) singular is the singular name of the resource. It must be all lowercase. Defaults to lowercased 'kind'.
 
 
@@ -147,7 +148,7 @@ Optional:
 
 Required:
 
-- `strategy` (String) strategy specifies how custom resources are converted between versions. Allowed values are: - ''None'': The converter only change the apiVersion and would not touch any other field in the custom resource. - ''Webhook'': API Server will call to an external webhook to do the conversion. Additional information is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set.
+- `strategy` (String) strategy specifies how custom resources are converted between versions. Allowed values are:- ''None'': The converter only change the apiVersion and would not touch any other field in the custom resource.- ''Webhook'': API Server will call to an external webhook to do the conversion. Additional information  is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set.
 
 Optional:
 
@@ -158,7 +159,7 @@ Optional:
 
 Required:
 
-- `conversion_review_versions` (List of String) conversionReviewVersions is an ordered list of preferred 'ConversionReview' versions the Webhook expects. The API server will use the first version in the list which it supports. If none of the versions specified in this list are supported by API server, conversion will fail for the custom resource. If a persisted Webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail.
+- `conversion_review_versions` (List of String) conversionReviewVersions is an ordered list of preferred 'ConversionReview'versions the Webhook expects. The API server will use the first version inthe list which it supports. If none of the versions specified in this listare supported by API server, conversion will fail for the custom resource.If a persisted Webhook configuration specifies allowed versions and does notinclude any versions known to the API Server, calls to the webhook will fail.
 
 Optional:
 
@@ -169,22 +170,22 @@ Optional:
 
 Optional:
 
-- `ca_bundle` (String) caBundle is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
-- `service` (Attributes) service is a reference to the service for this webhook. Either service or url must be specified.  If the webhook is running within the cluster, then you should use 'service'. (see [below for nested schema](#nestedatt--spec--conversion--webhook--client_config--service))
-- `url` (String) url gives the location of the webhook, in standard URL form ('scheme://host:port/path'). Exactly one of 'url' or 'service' must be specified.  The 'host' should not refer to a service running in the cluster; use the 'service' field instead. The host might be resolved via external DNS in some apiservers (e.g., 'kube-apiserver' cannot resolve in-cluster DNS as that would be a layering violation). 'host' may also be an IP address.  Please note that using 'localhost' or '127.0.0.1' as a 'host' is risky unless you take great care to run this webhook on all hosts which run an apiserver which might need to make calls to this webhook. Such installs are likely to be non-portable, i.e., not easy to turn up in a new cluster.  The scheme must be 'https'; the URL must begin with 'https://'.  A path is optional, and if present may be any string permissible in a URL. You may use the path to pass an arbitrary string to the webhook, for example, a cluster identifier.  Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed, either.
+- `ca_bundle` (String) caBundle is a PEM encoded CA bundle which will be used to validate the webhook's server certificate.If unspecified, system trust roots on the apiserver are used.
+- `service` (Attributes) service is a reference to the service for this webhook. Eitherservice or url must be specified.If the webhook is running within the cluster, then you should use 'service'. (see [below for nested schema](#nestedatt--spec--conversion--webhook--client_config--service))
+- `url` (String) url gives the location of the webhook, in standard URL form('scheme://host:port/path'). Exactly one of 'url' or 'service'must be specified.The 'host' should not refer to a service running in the cluster; usethe 'service' field instead. The host might be resolved via externalDNS in some apiservers (e.g., 'kube-apiserver' cannot resolvein-cluster DNS as that would be a layering violation). 'host' mayalso be an IP address.Please note that using 'localhost' or '127.0.0.1' as a 'host' isrisky unless you take great care to run this webhook on all hostswhich run an apiserver which might need to make calls to thiswebhook. Such installs are likely to be non-portable, i.e., not easyto turn up in a new cluster.The scheme must be 'https'; the URL must begin with 'https://'.A path is optional, and if present may be any string permissible ina URL. You may use the path to pass an arbitrary string to thewebhook, for example, a cluster identifier.Attempting to use a user or basic auth e.g. 'user:password@' is notallowed. Fragments ('#...') and query parameters ('?...') are notallowed, either.
 
 <a id="nestedatt--spec--conversion--webhook--client_config--service"></a>
 ### Nested Schema for `spec.conversion.webhook.client_config.service`
 
 Required:
 
-- `name` (String) name is the name of the service. Required
-- `namespace` (String) namespace is the namespace of the service. Required
+- `name` (String) name is the name of the service.Required
+- `namespace` (String) namespace is the namespace of the service.Required
 
 Optional:
 
 - `path` (String) path is an optional URL path at which the webhook will be contacted.
-- `port` (Number) port is an optional service port at which the webhook will be contacted. 'port' should be a valid port number (1-65535, inclusive). Defaults to 443 for backward compatibility.
+- `port` (Number) port is an optional service port at which the webhook will be contacted.'port' should be a valid port number (1-65535, inclusive).Defaults to 443 for backward compatibility.
 
 
 
@@ -211,5 +212,5 @@ Required:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels and services. These labels are added to the composite resource and claim CRD's in addition to any labels defined by 'CompositionResourceDefinition' 'metadata.labels'.
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labelsand services.These labels are added to the composite resource and claim CRD's in additionto any labels defined by 'CompositionResourceDefinition' 'metadata.labels'.

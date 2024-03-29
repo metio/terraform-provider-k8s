@@ -53,6 +53,7 @@ type KafkaStrimziIoKafkaConnectorV1Beta2ManifestData struct {
 		Class    *string            `tfsdk:"class" json:"class,omitempty"`
 		Config   *map[string]string `tfsdk:"config" json:"config,omitempty"`
 		Pause    *bool              `tfsdk:"pause" json:"pause,omitempty"`
+		State    *string            `tfsdk:"state" json:"state,omitempty"`
 		TasksMax *int64             `tfsdk:"tasks_max" json:"tasksMax,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -190,6 +191,17 @@ func (r *KafkaStrimziIoKafkaConnectorV1Beta2Manifest) Schema(_ context.Context, 
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"state": schema.StringAttribute{
+						Description:         "The state the connector should be in. Defaults to running.",
+						MarkdownDescription: "The state the connector should be in. Defaults to running.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("paused", "stopped", "running"),
+						},
 					},
 
 					"tasks_max": schema.Int64Attribute{

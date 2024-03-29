@@ -49,19 +49,26 @@ type LonghornIoReplicaV1Beta2ManifestData struct {
 		BackendStoreDriver               *string `tfsdk:"backend_store_driver" json:"backendStoreDriver,omitempty"`
 		BackingImage                     *string `tfsdk:"backing_image" json:"backingImage,omitempty"`
 		DataDirectoryName                *string `tfsdk:"data_directory_name" json:"dataDirectoryName,omitempty"`
+		DataEngine                       *string `tfsdk:"data_engine" json:"dataEngine,omitempty"`
 		DesireState                      *string `tfsdk:"desire_state" json:"desireState,omitempty"`
 		DiskID                           *string `tfsdk:"disk_id" json:"diskID,omitempty"`
 		DiskPath                         *string `tfsdk:"disk_path" json:"diskPath,omitempty"`
 		EngineImage                      *string `tfsdk:"engine_image" json:"engineImage,omitempty"`
 		EngineName                       *string `tfsdk:"engine_name" json:"engineName,omitempty"`
+		EvictionRequested                *bool   `tfsdk:"eviction_requested" json:"evictionRequested,omitempty"`
 		FailedAt                         *string `tfsdk:"failed_at" json:"failedAt,omitempty"`
 		HardNodeAffinity                 *string `tfsdk:"hard_node_affinity" json:"hardNodeAffinity,omitempty"`
 		HealthyAt                        *string `tfsdk:"healthy_at" json:"healthyAt,omitempty"`
+		Image                            *string `tfsdk:"image" json:"image,omitempty"`
+		LastFailedAt                     *string `tfsdk:"last_failed_at" json:"lastFailedAt,omitempty"`
+		LastHealthyAt                    *string `tfsdk:"last_healthy_at" json:"lastHealthyAt,omitempty"`
 		LogRequested                     *bool   `tfsdk:"log_requested" json:"logRequested,omitempty"`
 		NodeID                           *string `tfsdk:"node_id" json:"nodeID,omitempty"`
 		RebuildRetryCount                *int64  `tfsdk:"rebuild_retry_count" json:"rebuildRetryCount,omitempty"`
 		RevisionCounterDisabled          *bool   `tfsdk:"revision_counter_disabled" json:"revisionCounterDisabled,omitempty"`
 		SalvageRequested                 *bool   `tfsdk:"salvage_requested" json:"salvageRequested,omitempty"`
+		SnapshotMaxCount                 *int64  `tfsdk:"snapshot_max_count" json:"snapshotMaxCount,omitempty"`
+		SnapshotMaxSize                  *string `tfsdk:"snapshot_max_size" json:"snapshotMaxSize,omitempty"`
 		UnmapMarkDiskChainRemovedEnabled *bool   `tfsdk:"unmap_mark_disk_chain_removed_enabled" json:"unmapMarkDiskChainRemovedEnabled,omitempty"`
 		VolumeName                       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 		VolumeSize                       *string `tfsdk:"volume_size" json:"volumeSize,omitempty"`
@@ -162,14 +169,11 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"backend_store_driver": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Deprecated: Replaced by field 'dataEngine'.",
+						MarkdownDescription: "Deprecated: Replaced by field 'dataEngine'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.OneOf("v1", "v2"),
-						},
 					},
 
 					"backing_image": schema.StringAttribute{
@@ -186,6 +190,17 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"data_engine": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("v1", "v2"),
+						},
 					},
 
 					"desire_state": schema.StringAttribute{
@@ -213,8 +228,8 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"engine_image": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Deprecated: Replaced by field 'image'.",
+						MarkdownDescription: "Deprecated: Replaced by field 'image'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -228,9 +243,17 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 						Computed:            false,
 					},
 
-					"failed_at": schema.StringAttribute{
+					"eviction_requested": schema.BoolAttribute{
 						Description:         "",
 						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"failed_at": schema.StringAttribute{
+						Description:         "FailedAt is set when a running replica fails or when a running engine is unable to use a replica for any reason. FailedAt indicates the time the failure occurred. When FailedAt is set, a replica is likely to have useful (though possibly stale) data. A replica with FailedAt set must be rebuilt from a non-failed replica (or it can be used in a salvage if all replicas are failed). FailedAt is cleared before a rebuild or salvage. FailedAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
+						MarkdownDescription: "FailedAt is set when a running replica fails or when a running engine is unable to use a replica for any reason. FailedAt indicates the time the failure occurred. When FailedAt is set, a replica is likely to have useful (though possibly stale) data. A replica with FailedAt set must be rebuilt from a non-failed replica (or it can be used in a salvage if all replicas are failed). FailedAt is cleared before a rebuild or salvage. FailedAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -245,8 +268,32 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"healthy_at": schema.StringAttribute{
+						Description:         "HealthyAt is set the first time a replica becomes read/write in an engine after creation or rebuild. HealthyAt indicates the time the last successful rebuild occurred. When HealthyAt is set, a replica is likely to have useful (though possibly stale) data. HealthyAt is cleared before a rebuild. HealthyAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
+						MarkdownDescription: "HealthyAt is set the first time a replica becomes read/write in an engine after creation or rebuild. HealthyAt indicates the time the last successful rebuild occurred. When HealthyAt is set, a replica is likely to have useful (though possibly stale) data. HealthyAt is cleared before a rebuild. HealthyAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"image": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"last_failed_at": schema.StringAttribute{
+						Description:         "LastFailedAt is always set at the same time as FailedAt. Unlike FailedAt, LastFailedAt is never cleared. LastFailedAt is not a reliable indicator of the state of a replica's data. For example, a replica with LastFailedAt may already be healthy and in use again. However, because it is never cleared, it can be compared to LastHealthyAt to help prevent dangerous replica deletion in some corner cases. LastFailedAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
+						MarkdownDescription: "LastFailedAt is always set at the same time as FailedAt. Unlike FailedAt, LastFailedAt is never cleared. LastFailedAt is not a reliable indicator of the state of a replica's data. For example, a replica with LastFailedAt may already be healthy and in use again. However, because it is never cleared, it can be compared to LastHealthyAt to help prevent dangerous replica deletion in some corner cases. LastFailedAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"last_healthy_at": schema.StringAttribute{
+						Description:         "LastHealthyAt is set every time a replica becomes read/write in an engine. Unlike HealthyAt, LastHealthyAt is never cleared. LastHealthyAt is not a reliable indicator of the state of a replica's data. For example, a replica with LastHealthyAt set may be in the middle of a rebuild. However, because it is never cleared, it can be compared to LastFailedAt to help prevent dangerous replica deletion in some corner cases. LastHealthyAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
+						MarkdownDescription: "LastHealthyAt is set every time a replica becomes read/write in an engine. Unlike HealthyAt, LastHealthyAt is never cleared. LastHealthyAt is not a reliable indicator of the state of a replica's data. For example, a replica with LastHealthyAt set may be in the middle of a rebuild. However, because it is never cleared, it can be compared to LastFailedAt to help prevent dangerous replica deletion in some corner cases. LastHealthyAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -285,6 +332,22 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"salvage_requested": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"snapshot_max_count": schema.Int64Attribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"snapshot_max_size": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,

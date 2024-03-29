@@ -85,8 +85,126 @@ Optional:
 
 Optional:
 
+- `args_overriders` (Attributes List) ArgsOverriders represents the rules dedicated to handling container args (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--args_overriders))
+- `command_overriders` (Attributes List) CommandOverriders represents the rules dedicated to handling container command (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--command_overriders))
+- `env_overriders` (Attributes List) EnvOverriders will override the env field of the container (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders))
 - `image_overriders` (Attributes List) ImageOverriders represents the rules dedicated to handling image overrides. (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--image_overriders))
 - `replicas` (Number) Replicas will override the replicas field of deployment
+- `resources_overriders` (Attributes List) ResourcesOverriders will override the resources field of the container (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--resources_overriders))
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--args_overriders"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.args_overriders`
+
+Required:
+
+- `container_name` (String) The name of container
+- `operator` (String) Operator represents the operator which will apply on the command/args.
+
+Optional:
+
+- `value` (List of String) Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.
+
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--command_overriders"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.command_overriders`
+
+Required:
+
+- `container_name` (String) The name of container
+- `operator` (String) Operator represents the operator which will apply on the command/args.
+
+Optional:
+
+- `value` (List of String) Value to be applied to command/args. Items in Value which will be appended after command/args when Operator is 'add'. Items in Value which match in command/args will be deleted when Operator is 'remove'. If Value is empty, then the command/args will remain the same.
+
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders`
+
+Required:
+
+- `container_name` (String) The name of container
+- `operator` (String) Operator represents the operator which will apply on the env.
+
+Optional:
+
+- `value` (Attributes List) Value to be applied to env. Must not be empty when operator is 'add' or 'replace'. When the operator is 'remove', the matched value in env will be deleted and only the name of the value will be matched. If Value is empty, then the env will remain the same. (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value))
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value`
+
+Required:
+
+- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+
+Optional:
+
+- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from))
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--field_ref"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value.value_from.secret_key_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value.value_from.secret_key_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--env_overriders--value--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.env_overriders.value.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
 
 <a id="nestedatt--spec--workload_scope--target_node_groups--overriders--image_overriders"></a>
 ### Nested Schema for `spec.workload_scope.target_node_groups.overriders.image_overriders`
@@ -107,6 +225,36 @@ Optional:
 Required:
 
 - `path` (String) Path indicates the path of target field
+
+
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--resources_overriders"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.resources_overriders`
+
+Required:
+
+- `container_name` (String) The name of container
+
+Optional:
+
+- `value` (Attributes) Value to be applied to resources. Must not be empty (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--resources_overriders--value))
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--resources_overriders--value"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.resources_overriders.value`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--workload_scope--target_node_groups--overriders--resources_overriders--value--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--workload_scope--target_node_groups--overriders--resources_overriders--value--claims"></a>
+### Nested Schema for `spec.workload_scope.target_node_groups.overriders.resources_overriders.value.requests`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+
 
 
 

@@ -18,28 +18,6 @@ data "k8s_apps_gitlab_com_git_lab_v1beta1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    chart = {
-      version = "6.4.0"
-      values = {
-        certmanager = {
-          install = false
-        }
-        global = {
-          hosts = {
-            domain      = "example.com"
-            host_suffix = ""
-          }
-          ingress = {
-            configure_certmanager = false
-            tls = {
-              secret_name = "gitlab-tls"
-            }
-          }
-        }
-      }
-    }
-  }
 }
 ```
 
