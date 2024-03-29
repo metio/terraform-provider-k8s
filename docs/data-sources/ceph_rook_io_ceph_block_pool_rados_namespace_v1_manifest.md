@@ -57,3 +57,7 @@ Optional:
 Required:
 
 - `block_pool_name` (String) BlockPoolName is the name of Ceph BlockPool. Typically it's the name of the CephBlockPool CR.
+
+Optional:
+
+- `name` (String) The name of the CephBlockPoolRadosNamespaceSpec namespace. If not set, the default is the name of the CR.

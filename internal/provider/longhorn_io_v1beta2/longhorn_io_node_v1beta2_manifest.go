@@ -147,8 +147,8 @@ func (r *LonghornIoNodeV1Beta2Manifest) Schema(_ context.Context, _ datasource.S
 				MarkdownDescription: "NodeSpec defines the desired state of the Longhorn node",
 				Attributes: map[string]schema.Attribute{
 					"allow_scheduling": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Allow scheduling replicas on the node.",
+						MarkdownDescription: "Allow scheduling replicas on the node.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

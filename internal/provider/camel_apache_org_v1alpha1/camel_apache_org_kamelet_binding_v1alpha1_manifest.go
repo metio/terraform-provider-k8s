@@ -72,6 +72,7 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 				ContentKey     *string   `tfsdk:"content_key" json:"contentKey,omitempty"`
 				ContentRef     *string   `tfsdk:"content_ref" json:"contentRef,omitempty"`
 				ContentType    *string   `tfsdk:"content_type" json:"contentType,omitempty"`
+				From_kamelet   *bool     `tfsdk:"from_kamelet" json:"from-kamelet,omitempty"`
 				Interceptors   *[]string `tfsdk:"interceptors" json:"interceptors,omitempty"`
 				Language       *string   `tfsdk:"language" json:"language,omitempty"`
 				Loader         *string   `tfsdk:"loader" json:"loader,omitempty"`
@@ -1147,18 +1148,27 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 					PodAntiAffinityLabels *[]string          `tfsdk:"pod_anti_affinity_labels" json:"podAntiAffinityLabels,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
 				Builder *struct {
-					Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
-					Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-					LimitCPU      *string            `tfsdk:"limit_cpu" json:"limitCPU,omitempty"`
-					LimitMemory   *string            `tfsdk:"limit_memory" json:"limitMemory,omitempty"`
-					MavenProfiles *[]string          `tfsdk:"maven_profiles" json:"mavenProfiles,omitempty"`
-					OrderStrategy *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
-					Properties    *[]string          `tfsdk:"properties" json:"properties,omitempty"`
-					RequestCPU    *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
-					RequestMemory *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
-					Strategy      *string            `tfsdk:"strategy" json:"strategy,omitempty"`
-					Tasks         *[]string          `tfsdk:"tasks" json:"tasks,omitempty"`
-					Verbose       *bool              `tfsdk:"verbose" json:"verbose,omitempty"`
+					Annotations           *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					BaseImage             *string            `tfsdk:"base_image" json:"baseImage,omitempty"`
+					Configuration         *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+					Enabled               *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+					IncrementalImageBuild *bool              `tfsdk:"incremental_image_build" json:"incrementalImageBuild,omitempty"`
+					LimitCPU              *string            `tfsdk:"limit_cpu" json:"limitCPU,omitempty"`
+					LimitMemory           *string            `tfsdk:"limit_memory" json:"limitMemory,omitempty"`
+					MavenProfiles         *[]string          `tfsdk:"maven_profiles" json:"mavenProfiles,omitempty"`
+					NodeSelector          *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+					OrderStrategy         *string            `tfsdk:"order_strategy" json:"orderStrategy,omitempty"`
+					Properties            *[]string          `tfsdk:"properties" json:"properties,omitempty"`
+					RequestCPU            *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
+					RequestMemory         *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
+					Strategy              *string            `tfsdk:"strategy" json:"strategy,omitempty"`
+					Tasks                 *[]string          `tfsdk:"tasks" json:"tasks,omitempty"`
+					TasksFilter           *string            `tfsdk:"tasks_filter" json:"tasksFilter,omitempty"`
+					TasksLimitCPU         *[]string          `tfsdk:"tasks_limit_cpu" json:"tasksLimitCPU,omitempty"`
+					TasksLimitMemory      *[]string          `tfsdk:"tasks_limit_memory" json:"tasksLimitMemory,omitempty"`
+					TasksRequestCPU       *[]string          `tfsdk:"tasks_request_cpu" json:"tasksRequestCPU,omitempty"`
+					TasksRequestMemory    *[]string          `tfsdk:"tasks_request_memory" json:"tasksRequestMemory,omitempty"`
+					Verbose               *bool              `tfsdk:"verbose" json:"verbose,omitempty"`
 				} `tfsdk:"builder" json:"builder,omitempty"`
 				Camel *struct {
 					Configuration  *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
@@ -1300,6 +1310,7 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 					Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
 					Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 					List          *string            `tfsdk:"list" json:"list,omitempty"`
+					MountPoint    *string            `tfsdk:"mount_point" json:"mountPoint,omitempty"`
 				} `tfsdk:"kamelets" json:"kamelets,omitempty"`
 				Keda *struct {
 					Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
@@ -1320,6 +1331,7 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 					SinkBinding          *bool              `tfsdk:"sink_binding" json:"sinkBinding,omitempty"`
 				} `tfsdk:"knative" json:"knative,omitempty"`
 				Knative_service *struct {
+					Annotations       *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 					Auto              *bool              `tfsdk:"auto" json:"auto,omitempty"`
 					AutoscalingMetric *string            `tfsdk:"autoscaling_metric" json:"autoscalingMetric,omitempty"`
 					AutoscalingTarget *int64             `tfsdk:"autoscaling_target" json:"autoscalingTarget,omitempty"`
@@ -1393,9 +1405,12 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 					SecretName            *string            `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"pull_secret" json:"pull-secret,omitempty"`
 				Quarkus *struct {
-					Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
-					Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-					PackageTypes  *[]string          `tfsdk:"package_types" json:"packageTypes,omitempty"`
+					BuildMode          *[]string          `tfsdk:"build_mode" json:"buildMode,omitempty"`
+					Configuration      *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+					Enabled            *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+					NativeBaseImage    *string            `tfsdk:"native_base_image" json:"nativeBaseImage,omitempty"`
+					NativeBuilderImage *string            `tfsdk:"native_builder_image" json:"nativeBuilderImage,omitempty"`
+					PackageTypes       *[]string          `tfsdk:"package_types" json:"packageTypes,omitempty"`
 				} `tfsdk:"quarkus" json:"quarkus,omitempty"`
 				Registry *struct {
 					Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
@@ -1905,6 +1920,14 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 										"content_type": schema.StringAttribute{
 											Description:         "the content type (tipically text or binary)",
 											MarkdownDescription: "the content type (tipically text or binary)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"from_kamelet": schema.BoolAttribute{
+											Description:         "True if the spec is generated from a Kamelet",
+											MarkdownDescription: "True if the spec is generated from a Kamelet",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9063,8 +9086,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"pod_affinity": schema.BoolAttribute{
-												Description:         "Always co-locates multiple replicas of the integration in the same node (default *false*).",
-												MarkdownDescription: "Always co-locates multiple replicas of the integration in the same node (default *false*).",
+												Description:         "Always co-locates multiple replicas of the integration in the same node (default 'false').",
+												MarkdownDescription: "Always co-locates multiple replicas of the integration in the same node (default 'false').",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9080,8 +9103,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"pod_anti_affinity": schema.BoolAttribute{
-												Description:         "Never co-locates multiple replicas of the integration in the same node (default *false*).",
-												MarkdownDescription: "Never co-locates multiple replicas of the integration in the same node (default *false*).",
+												Description:         "Never co-locates multiple replicas of the integration in the same node (default 'false').",
+												MarkdownDescription: "Never co-locates multiple replicas of the integration in the same node (default 'false').",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9105,6 +9128,23 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 										Description:         "The configuration of Builder trait",
 										MarkdownDescription: "The configuration of Builder trait",
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "When using 'pod' strategy, annotation to use for the builder pod.",
+												MarkdownDescription: "When using 'pod' strategy, annotation to use for the builder pod.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"base_image": schema.StringAttribute{
+												Description:         "Specify a base image",
+												MarkdownDescription: "Specify a base image",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"configuration": schema.MapAttribute{
 												Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
 												MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
@@ -9115,24 +9155,32 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"incremental_image_build": schema.BoolAttribute{
+												Description:         "Use the incremental image build option, to reuse existing containers (default 'true')",
+												MarkdownDescription: "Use the incremental image build option, to reuse existing containers (default 'true')",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"limit_cpu": schema.StringAttribute{
-												Description:         "When using 'pod' strategy, the maximum amount of CPU required by the pod builder.",
-												MarkdownDescription: "When using 'pod' strategy, the maximum amount of CPU required by the pod builder.",
+												Description:         "When using 'pod' strategy, the maximum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+												MarkdownDescription: "When using 'pod' strategy, the maximum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"limit_memory": schema.StringAttribute{
-												Description:         "When using 'pod' strategy, the maximum amount of memory required by the pod builder.",
-												MarkdownDescription: "When using 'pod' strategy, the maximum amount of memory required by the pod builder.",
+												Description:         "When using 'pod' strategy, the maximum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+												MarkdownDescription: "When using 'pod' strategy, the maximum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9147,12 +9195,24 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 												Computed:            false,
 											},
 
-											"order_strategy": schema.StringAttribute{
-												Description:         "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default sequential)",
-												MarkdownDescription: "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default sequential)",
+											"node_selector": schema.MapAttribute{
+												Description:         "Defines a set of nodes the builder pod is eligible to be scheduled on, based on labels on the node.",
+												MarkdownDescription: "Defines a set of nodes the builder pod is eligible to be scheduled on, based on labels on the node.",
+												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"order_strategy": schema.StringAttribute{
+												Description:         "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')",
+												MarkdownDescription: "The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("dependencies", "fifo", "sequential"),
+												},
 											},
 
 											"properties": schema.ListAttribute{
@@ -9165,32 +9225,79 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"request_cpu": schema.StringAttribute{
-												Description:         "When using 'pod' strategy, the minimum amount of CPU required by the pod builder.",
-												MarkdownDescription: "When using 'pod' strategy, the minimum amount of CPU required by the pod builder.",
+												Description:         "When using 'pod' strategy, the minimum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+												MarkdownDescription: "When using 'pod' strategy, the minimum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"request_memory": schema.StringAttribute{
-												Description:         "When using 'pod' strategy, the minimum amount of memory required by the pod builder.",
-												MarkdownDescription: "When using 'pod' strategy, the minimum amount of memory required by the pod builder.",
+												Description:         "When using 'pod' strategy, the minimum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+												MarkdownDescription: "When using 'pod' strategy, the minimum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"strategy": schema.StringAttribute{
-												Description:         "The strategy to use, either 'pod' or 'routine' (default routine)",
-												MarkdownDescription: "The strategy to use, either 'pod' or 'routine' (default routine)",
+												Description:         "The strategy to use, either 'pod' or 'routine' (default 'routine')",
+												MarkdownDescription: "The strategy to use, either 'pod' or 'routine' (default 'routine')",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("pod", "routine"),
+												},
+											},
+
+											"tasks": schema.ListAttribute{
+												Description:         "A list of tasks to be executed (available only when using 'pod' strategy) with format '<name>;<container-image>;<container-command>'.",
+												MarkdownDescription: "A list of tasks to be executed (available only when using 'pod' strategy) with format '<name>;<container-image>;<container-command>'.",
+												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
-											"tasks": schema.ListAttribute{
-												Description:         "A list of tasks to be executed (available only when using 'pod' strategy) with format <name>;<container-image>;<container-command>",
-												MarkdownDescription: "A list of tasks to be executed (available only when using 'pod' strategy) with format <name>;<container-image>;<container-command>",
+											"tasks_filter": schema.StringAttribute{
+												Description:         "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 'spectrum', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
+												MarkdownDescription: "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 'spectrum', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tasks_limit_cpu": schema.ListAttribute{
+												Description:         "A list of limit cpu configuration for the specific task with format '<task-name>:<limit-cpu-conf>'.",
+												MarkdownDescription: "A list of limit cpu configuration for the specific task with format '<task-name>:<limit-cpu-conf>'.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tasks_limit_memory": schema.ListAttribute{
+												Description:         "A list of limit memory configuration for the specific task with format '<task-name>:<limit-memory-conf>'.",
+												MarkdownDescription: "A list of limit memory configuration for the specific task with format '<task-name>:<limit-memory-conf>'.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tasks_request_cpu": schema.ListAttribute{
+												Description:         "A list of request cpu configuration for the specific task with format '<task-name>:<request-cpu-conf>'.",
+												MarkdownDescription: "A list of request cpu configuration for the specific task with format '<task-name>:<request-cpu-conf>'.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tasks_request_memory": schema.ListAttribute{
+												Description:         "A list of request memory configuration for the specific task with format '<task-name>:<request-memory-conf>'.",
+												MarkdownDescription: "A list of request memory configuration for the specific task with format '<task-name>:<request-memory-conf>'.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -9198,8 +9305,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"verbose": schema.BoolAttribute{
-												Description:         "Enable verbose logging on build components that support it (e.g. Kaniko build pod).",
-												MarkdownDescription: "Enable verbose logging on build components that support it (e.g. Kaniko build pod).",
+												Description:         "Enable verbose logging on build components that support it (e.g. Kaniko build pod). Deprecated no longer in use",
+												MarkdownDescription: "Enable verbose logging on build components that support it (e.g. Kaniko build pod). Deprecated no longer in use",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9224,8 +9331,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9275,8 +9382,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9493,8 +9600,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9519,8 +9626,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9564,32 +9671,32 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"progress_deadline_seconds": schema.Int64Attribute{
-												Description:         "The maximum time in seconds for the deployment to make progress before it is considered to be failed. It defaults to 60s.",
-												MarkdownDescription: "The maximum time in seconds for the deployment to make progress before it is considered to be failed. It defaults to 60s.",
+												Description:         "The maximum time in seconds for the deployment to make progress before it is considered to be failed. It defaults to '60s'.",
+												MarkdownDescription: "The maximum time in seconds for the deployment to make progress before it is considered to be failed. It defaults to '60s'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"rolling_update_max_surge": schema.Int64Attribute{
-												Description:         "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%.",
-												MarkdownDescription: "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%.",
+												Description:         "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to '25%'.",
+												MarkdownDescription: "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to '25%'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"rolling_update_max_unavailable": schema.Int64Attribute{
-												Description:         "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%.",
-												MarkdownDescription: "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%.",
+												Description:         "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to '25%'.",
+												MarkdownDescription: "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to '25%'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9633,8 +9740,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9676,8 +9783,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10266,6 +10373,14 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 												Optional:            true,
 												Computed:            false,
 											},
+
+											"mount_point": schema.StringAttribute{
+												Description:         "The directory where the application mounts and reads Kamelet spec (default '/etc/camel/kamelets')",
+												MarkdownDescription: "The directory where the application mounts and reads Kamelet spec (default '/etc/camel/kamelets')",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
 										},
 										Required: false,
 										Optional: true,
@@ -10414,6 +10529,15 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 										Description:         "The configuration of Knative Service trait",
 										MarkdownDescription: "The configuration of Knative Service trait",
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "The annotations added to route. This can be used to set knative service specific annotations CLI usage example: -t 'knative-service.annotations.'haproxy.router.openshift.io/balance'=true'",
+												MarkdownDescription: "The annotations added to route. This can be used to set knative service specific annotations CLI usage example: -t 'knative-service.annotations.'haproxy.router.openshift.io/balance'=true'",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"auto": schema.BoolAttribute{
 												Description:         "Automatically deploy the integration as Knative service when all conditions hold:  * Integration is using the Knative profile * All routes are either starting from an HTTP based consumer or a passive consumer (e.g. 'direct' is a passive consumer)",
 												MarkdownDescription: "Automatically deploy the integration as Knative service when all conditions hold:  * Integration is using the Knative profile * All routes are either starting from an HTTP based consumer or a passive consumer (e.g. 'direct' is a passive consumer)",
@@ -10560,8 +10684,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"level": schema.StringAttribute{
-												Description:         "Adjust the logging level (defaults to INFO)",
-												MarkdownDescription: "Adjust the logging level (defaults to INFO)",
+												Description:         "Adjust the logging level (defaults to 'INFO')",
+												MarkdownDescription: "Adjust the logging level (defaults to 'INFO')",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10616,16 +10740,16 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"hot_reload": schema.BoolAttribute{
-												Description:         "Enable 'hot reload' when a secret/configmap mounted is edited (default false)",
-												MarkdownDescription: "Enable 'hot reload' when a secret/configmap mounted is edited (default false)",
+												Description:         "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account.",
+												MarkdownDescription: "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10677,8 +10801,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10805,8 +10929,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10948,6 +11072,15 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 										Description:         "The configuration of Quarkus trait",
 										MarkdownDescription: "The configuration of Quarkus trait",
 										Attributes: map[string]schema.Attribute{
+											"build_mode": schema.ListAttribute{
+												Description:         "The Quarkus mode to run: either 'jvm' or 'native' (default 'jvm'). In case both 'jvm' and 'native' are specified, two 'IntegrationKit' resources are created, with the 'native' kit having precedence over the 'jvm' one once ready.",
+												MarkdownDescription: "The Quarkus mode to run: either 'jvm' or 'native' (default 'jvm'). In case both 'jvm' and 'native' are specified, two 'IntegrationKit' resources are created, with the 'native' kit having precedence over the 'jvm' one once ready.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"configuration": schema.MapAttribute{
 												Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
 												MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
@@ -10958,16 +11091,32 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
-												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Description:         "Deprecated: no longer in use.",
+												MarkdownDescription: "Deprecated: no longer in use.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"native_base_image": schema.StringAttribute{
+												Description:         "The base image to use when running a native build (default 'quay.io/quarkus/quarkus-micro-image:2.0')",
+												MarkdownDescription: "The base image to use when running a native build (default 'quay.io/quarkus/quarkus-micro-image:2.0')",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"native_builder_image": schema.StringAttribute{
+												Description:         "The image containing the tooling required for a native build (by default it will use the one provided in the runtime catalog)",
+												MarkdownDescription: "The image containing the tooling required for a native build (by default it will use the one provided in the runtime catalog)",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"package_types": schema.ListAttribute{
-												Description:         "The Quarkus package types, either 'fast-jar' or 'native' (default 'fast-jar'). In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created, with the 'native' kit having precedence over the 'fast-jar' one once ready. The order influences the resolution of the current kit for the integration. The kit corresponding to the first package type will be assigned to the integration in case no existing kit that matches the integration exists.",
-												MarkdownDescription: "The Quarkus package types, either 'fast-jar' or 'native' (default 'fast-jar'). In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created, with the 'native' kit having precedence over the 'fast-jar' one once ready. The order influences the resolution of the current kit for the integration. The kit corresponding to the first package type will be assigned to the integration in case no existing kit that matches the integration exists.",
+												Description:         "The Quarkus package types, 'fast-jar' or 'native' (default 'fast-jar'). In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created, with the native kit having precedence over the 'fast-jar' one once ready. The order influences the resolution of the current kit for the integration. The kit corresponding to the first package type will be assigned to the integration in case no existing kit that matches the integration exists. Deprecated: use 'build-mode' instead.",
+												MarkdownDescription: "The Quarkus package types, 'fast-jar' or 'native' (default 'fast-jar'). In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created, with the native kit having precedence over the 'fast-jar' one once ready. The order influences the resolution of the current kit for the integration. The kit corresponding to the first package type will be assigned to the integration in case no existing kit that matches the integration exists. Deprecated: use 'build-mode' instead.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,

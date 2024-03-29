@@ -48,6 +48,7 @@ type ClusterClusterpediaIoPediaClusterV1Alpha2ManifestData struct {
 		CertData               *string `tfsdk:"cert_data" json:"certData,omitempty"`
 		KeyData                *string `tfsdk:"key_data" json:"keyData,omitempty"`
 		Kubeconfig             *string `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
+		ShardingName           *string `tfsdk:"sharding_name" json:"shardingName,omitempty"`
 		SyncAllCustomResources *bool   `tfsdk:"sync_all_custom_resources" json:"syncAllCustomResources,omitempty"`
 		SyncResources          *[]struct {
 			Group     *string   `tfsdk:"group" json:"group,omitempty"`
@@ -182,6 +183,14 @@ func (r *ClusterClusterpediaIoPediaClusterV1Alpha2Manifest) Schema(_ context.Con
 						Validators: []validator.String{
 							validators.Base64Validator(),
 						},
+					},
+
+					"sharding_name": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"sync_all_custom_resources": schema.BoolAttribute{

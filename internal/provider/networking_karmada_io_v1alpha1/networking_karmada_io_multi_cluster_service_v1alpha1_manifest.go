@@ -45,14 +45,22 @@ type NetworkingKarmadaIoMultiClusterServiceV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		ConsumerClusters *[]struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"consumer_clusters" json:"consumerClusters,omitempty"`
 		Ports *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 			Port *int64  `tfsdk:"port" json:"port,omitempty"`
 		} `tfsdk:"ports" json:"ports,omitempty"`
+		ProviderClusters *[]struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"provider_clusters" json:"providerClusters,omitempty"`
 		Range *struct {
 			ClusterNames *[]string `tfsdk:"cluster_names" json:"clusterNames,omitempty"`
 		} `tfsdk:"range" json:"range,omitempty"`
-		Types *[]string `tfsdk:"types" json:"types,omitempty"`
+		ServiceConsumptionClusters *[]string `tfsdk:"service_consumption_clusters" json:"serviceConsumptionClusters,omitempty"`
+		ServiceProvisionClusters   *[]string `tfsdk:"service_provision_clusters" json:"serviceProvisionClusters,omitempty"`
+		Types                      *[]string `tfsdk:"types" json:"types,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -141,6 +149,25 @@ func (r *NetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest) Schema(_ contex
 				Description:         "Spec is the desired state of the MultiClusterService.",
 				MarkdownDescription: "Spec is the desired state of the MultiClusterService.",
 				Attributes: map[string]schema.Attribute{
+					"consumer_clusters": schema.ListNestedAttribute{
+						Description:         "ConsumerClusters specifies the clusters where the service will be exposed, for clients. If leave it empty, the service will be exposed to all clusters.",
+						MarkdownDescription: "ConsumerClusters specifies the clusters where the service will be exposed, for clients. If leave it empty, the service will be exposed to all clusters.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Name is the name of the cluster to be selected.",
+									MarkdownDescription: "Name is the name of the cluster to be selected.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"ports": schema.ListNestedAttribute{
 						Description:         "Ports is the list of ports that are exposed by this MultiClusterService. No specified port will be filtered out during the service exposure and discovery process. All ports in the referencing service will be exposed by default.",
 						MarkdownDescription: "Ports is the list of ports that are exposed by this MultiClusterService. No specified port will be filtered out during the service exposure and discovery process. All ports in the referencing service will be exposed by default.",
@@ -168,9 +195,28 @@ func (r *NetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest) Schema(_ contex
 						Computed: false,
 					},
 
+					"provider_clusters": schema.ListNestedAttribute{
+						Description:         "ProviderClusters specifies the clusters which will provide the service backend. If leave it empty, we will collect the backend endpoints from all clusters and sync them to the ConsumerClusters.",
+						MarkdownDescription: "ProviderClusters specifies the clusters which will provide the service backend. If leave it empty, we will collect the backend endpoints from all clusters and sync them to the ConsumerClusters.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Name is the name of the cluster to be selected.",
+									MarkdownDescription: "Name is the name of the cluster to be selected.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"range": schema.SingleNestedAttribute{
-						Description:         "Range specifies the ranges where the referencing service should be exposed. Only valid and optional in case of Types contains CrossCluster. If not set and Types contains CrossCluster, all clusters will be selected, that means the referencing service will be exposed across all registered clusters.",
-						MarkdownDescription: "Range specifies the ranges where the referencing service should be exposed. Only valid and optional in case of Types contains CrossCluster. If not set and Types contains CrossCluster, all clusters will be selected, that means the referencing service will be exposed across all registered clusters.",
+						Description:         "Range specifies the ranges where the referencing service should be exposed. Only valid and optional in case of Types contains CrossCluster. If not set and Types contains CrossCluster, all clusters will be selected, that means the referencing service will be exposed across all registered clusters. Deprecated: in favor of ProviderClusters/ConsumerClusters.",
+						MarkdownDescription: "Range specifies the ranges where the referencing service should be exposed. Only valid and optional in case of Types contains CrossCluster. If not set and Types contains CrossCluster, all clusters will be selected, that means the referencing service will be exposed across all registered clusters. Deprecated: in favor of ProviderClusters/ConsumerClusters.",
 						Attributes: map[string]schema.Attribute{
 							"cluster_names": schema.ListAttribute{
 								Description:         "ClusterNames is the list of clusters to be selected.",
@@ -184,6 +230,24 @@ func (r *NetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest) Schema(_ contex
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"service_consumption_clusters": schema.ListAttribute{
+						Description:         "ServiceConsumptionClusters specifies the clusters where the service will be exposed, for clients. If leave it empty, the service will be exposed to all clusters. Deprecated: in favor of ProviderClusters/ConsumerClusters.",
+						MarkdownDescription: "ServiceConsumptionClusters specifies the clusters where the service will be exposed, for clients. If leave it empty, the service will be exposed to all clusters. Deprecated: in favor of ProviderClusters/ConsumerClusters.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"service_provision_clusters": schema.ListAttribute{
+						Description:         "ServiceProvisionClusters specifies the clusters which will provision the service backend. If leave it empty, we will collect the backend endpoints from all clusters and sync them to the ServiceConsumptionClusters. Deprecated: in favor of ProviderClusters/ConsumerClusters.",
+						MarkdownDescription: "ServiceProvisionClusters specifies the clusters which will provision the service backend. If leave it empty, we will collect the backend endpoints from all clusters and sync them to the ServiceConsumptionClusters. Deprecated: in favor of ProviderClusters/ConsumerClusters.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"types": schema.ListAttribute{

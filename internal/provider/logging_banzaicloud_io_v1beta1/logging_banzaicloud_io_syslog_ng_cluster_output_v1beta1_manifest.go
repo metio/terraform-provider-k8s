@@ -90,6 +90,7 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 			Persist_name    *string            `tfsdk:"persist_name" json:"persist_name,omitempty"`
 			Response_action *map[string]string `tfsdk:"response_action" json:"response-action,omitempty"`
 			Retries         *int64             `tfsdk:"retries" json:"retries,omitempty"`
+			Template        *string            `tfsdk:"template" json:"template,omitempty"`
 			Time_reopen     *int64             `tfsdk:"time_reopen" json:"time_reopen,omitempty"`
 			Timeout         *int64             `tfsdk:"timeout" json:"timeout,omitempty"`
 			Tls             *struct {
@@ -162,8 +163,9 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"key_file" json:"key_file,omitempty"`
-				Peer_verify           *bool `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
-				Use_system_cert_store *bool `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
+				Peer_verify           *bool   `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
+				Ssl_version           *string `tfsdk:"ssl_version" json:"ssl_version,omitempty"`
+				Use_system_cert_store *bool   `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
 			Type       *string `tfsdk:"type" json:"type,omitempty"`
 			Url        *string `tfsdk:"url" json:"url,omitempty"`
@@ -302,8 +304,9 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"key_file" json:"key_file,omitempty"`
-				Peer_verify           *bool `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
-				Use_system_cert_store *bool `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
+				Peer_verify           *bool   `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
+				Ssl_version           *string `tfsdk:"ssl_version" json:"ssl_version,omitempty"`
+				Use_system_cert_store *bool   `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
 			Url        *string `tfsdk:"url" json:"url,omitempty"`
 			User       *string `tfsdk:"user" json:"user,omitempty"`
@@ -402,8 +405,9 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"key_file" json:"key_file,omitempty"`
-				Peer_verify           *bool `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
-				Use_system_cert_store *bool `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
+				Peer_verify           *bool   `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
+				Ssl_version           *string `tfsdk:"ssl_version" json:"ssl_version,omitempty"`
+				Use_system_cert_store *bool   `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
 			Token *struct {
 				MountFrom *struct {
@@ -480,6 +484,88 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"url" json:"url,omitempty"`
 		} `tfsdk:"logscale" json:"logscale,omitempty"`
+		Loki *struct {
+			Auth *struct {
+				Adc  *map[string]string `tfsdk:"adc" json:"adc,omitempty"`
+				Alts *struct {
+					Target_service_accounts *[]string `tfsdk:"target_service_accounts" json:"target-service-accounts,omitempty"`
+				} `tfsdk:"alts" json:"alts,omitempty"`
+				Insecure *map[string]string `tfsdk:"insecure" json:"insecure,omitempty"`
+				Tls      *struct {
+					Ca_file *struct {
+						MountFrom *struct {
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"ca_file" json:"ca_file,omitempty"`
+					Cert_file *struct {
+						MountFrom *struct {
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"cert_file" json:"cert_file,omitempty"`
+					Key_file *struct {
+						MountFrom *struct {
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"key_file" json:"key_file,omitempty"`
+				} `tfsdk:"tls" json:"tls,omitempty"`
+			} `tfsdk:"auth" json:"auth,omitempty"`
+			Batch_lines   *int64 `tfsdk:"batch_lines" json:"batch-lines,omitempty"`
+			Batch_timeout *int64 `tfsdk:"batch_timeout" json:"batch-timeout,omitempty"`
+			Disk_buffer   *struct {
+				Compaction     *bool   `tfsdk:"compaction" json:"compaction,omitempty"`
+				Dir            *string `tfsdk:"dir" json:"dir,omitempty"`
+				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
+				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
+				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
+				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
+			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Log_fifo_size *int64             `tfsdk:"log_fifo_size" json:"log-fifo-size,omitempty"`
+			Persist_name  *string            `tfsdk:"persist_name" json:"persist_name,omitempty"`
+			Retries       *int64             `tfsdk:"retries" json:"retries,omitempty"`
+			Template      *string            `tfsdk:"template" json:"template,omitempty"`
+			Time_reopen   *int64             `tfsdk:"time_reopen" json:"time_reopen,omitempty"`
+			Timestamp     *string            `tfsdk:"timestamp" json:"timestamp,omitempty"`
+			Url           *string            `tfsdk:"url" json:"url,omitempty"`
+			Workers       *int64             `tfsdk:"workers" json:"workers,omitempty"`
+		} `tfsdk:"loki" json:"loki,omitempty"`
 		Mongodb *struct {
 			Batch_bytes            *int64  `tfsdk:"batch_bytes" json:"batch-bytes,omitempty"`
 			Batch_lines            *int64  `tfsdk:"batch_lines" json:"batch-lines,omitempty"`
@@ -488,7 +574,6 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 			Bulk_bypass_validation *bool   `tfsdk:"bulk_bypass_validation" json:"bulk_bypass_validation,omitempty"`
 			Bulk_unordered         *bool   `tfsdk:"bulk_unordered" json:"bulk_unordered,omitempty"`
 			Collection             *string `tfsdk:"collection" json:"collection,omitempty"`
-			Compaction             *bool   `tfsdk:"compaction" json:"compaction,omitempty"`
 			Dir                    *string `tfsdk:"dir" json:"dir,omitempty"`
 			Disk_buffer            *struct {
 				Compaction     *bool   `tfsdk:"compaction" json:"compaction,omitempty"`
@@ -503,24 +588,30 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 			Persist_name  *string `tfsdk:"persist_name" json:"persist_name,omitempty"`
 			Retries       *int64  `tfsdk:"retries" json:"retries,omitempty"`
 			Time_reopen   *int64  `tfsdk:"time_reopen" json:"time_reopen,omitempty"`
-			Uri           *string `tfsdk:"uri" json:"uri,omitempty"`
-			Value_pairs   *struct {
-				Exclude *struct {
-					Raw_string *string `tfsdk:"raw_string" json:"raw_string,omitempty"`
-				} `tfsdk:"exclude" json:"exclude,omitempty"`
-				Key *struct {
-					Raw_string *string `tfsdk:"raw_string" json:"raw_string,omitempty"`
-				} `tfsdk:"key" json:"key,omitempty"`
-				Pair *struct {
-					Raw_string *string `tfsdk:"raw_string" json:"raw_string,omitempty"`
-				} `tfsdk:"pair" json:"pair,omitempty"`
-				Scope *struct {
-					Raw_string *string `tfsdk:"raw_string" json:"raw_string,omitempty"`
-				} `tfsdk:"scope" json:"scope,omitempty"`
+			Uri           *struct {
+				MountFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"uri" json:"uri,omitempty"`
+			Value_pairs *struct {
+				Exclude *string `tfsdk:"exclude" json:"exclude,omitempty"`
+				Key     *string `tfsdk:"key" json:"key,omitempty"`
+				Pair    *string `tfsdk:"pair" json:"pair,omitempty"`
+				Scope   *string `tfsdk:"scope" json:"scope,omitempty"`
 			} `tfsdk:"value_pairs" json:"value_pairs,omitempty"`
-			Write_concern *struct {
-				Raw_string *string `tfsdk:"raw_string" json:"raw_string,omitempty"`
-			} `tfsdk:"write_concern" json:"write_concern,omitempty"`
+			Write_concern *string `tfsdk:"write_concern" json:"write_concern,omitempty"`
 		} `tfsdk:"mongodb" json:"mongodb,omitempty"`
 		Mqtt *struct {
 			Address        *string `tfsdk:"address" json:"address,omitempty"`
@@ -529,6 +620,131 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 			Template       *string `tfsdk:"template" json:"template,omitempty"`
 			Topic          *string `tfsdk:"topic" json:"topic,omitempty"`
 		} `tfsdk:"mqtt" json:"mqtt,omitempty"`
+		Openobserve *struct {
+			Batch_bytes   *int64  `tfsdk:"batch_bytes" json:"batch-bytes,omitempty"`
+			Batch_lines   *int64  `tfsdk:"batch_lines" json:"batch-lines,omitempty"`
+			Batch_timeout *int64  `tfsdk:"batch_timeout" json:"batch-timeout,omitempty"`
+			Body          *string `tfsdk:"body" json:"body,omitempty"`
+			Body_prefix   *string `tfsdk:"body_prefix" json:"body-prefix,omitempty"`
+			Body_suffix   *string `tfsdk:"body_suffix" json:"body-suffix,omitempty"`
+			Delimiter     *string `tfsdk:"delimiter" json:"delimiter,omitempty"`
+			Disk_buffer   *struct {
+				Compaction     *bool   `tfsdk:"compaction" json:"compaction,omitempty"`
+				Dir            *string `tfsdk:"dir" json:"dir,omitempty"`
+				Disk_buf_size  *int64  `tfsdk:"disk_buf_size" json:"disk_buf_size,omitempty"`
+				Mem_buf_length *int64  `tfsdk:"mem_buf_length" json:"mem_buf_length,omitempty"`
+				Mem_buf_size   *int64  `tfsdk:"mem_buf_size" json:"mem_buf_size,omitempty"`
+				Q_out_size     *int64  `tfsdk:"q_out_size" json:"q_out_size,omitempty"`
+				Reliable       *bool   `tfsdk:"reliable" json:"reliable,omitempty"`
+			} `tfsdk:"disk_buffer" json:"disk_buffer,omitempty"`
+			Headers       *[]string `tfsdk:"headers" json:"headers,omitempty"`
+			Log_fifo_size *int64    `tfsdk:"log_fifo_size" json:"log-fifo-size,omitempty"`
+			Method        *string   `tfsdk:"method" json:"method,omitempty"`
+			Organization  *string   `tfsdk:"organization" json:"organization,omitempty"`
+			Password      *struct {
+				MountFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"password" json:"password,omitempty"`
+			Persist_name    *string            `tfsdk:"persist_name" json:"persist_name,omitempty"`
+			Port            *int64             `tfsdk:"port" json:"port,omitempty"`
+			Record          *string            `tfsdk:"record" json:"record,omitempty"`
+			Response_action *map[string]string `tfsdk:"response_action" json:"response-action,omitempty"`
+			Retries         *int64             `tfsdk:"retries" json:"retries,omitempty"`
+			Stream          *string            `tfsdk:"stream" json:"stream,omitempty"`
+			Time_reopen     *int64             `tfsdk:"time_reopen" json:"time_reopen,omitempty"`
+			Timeout         *int64             `tfsdk:"timeout" json:"timeout,omitempty"`
+			Tls             *struct {
+				Ca_dir *struct {
+					MountFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"ca_dir" json:"ca_dir,omitempty"`
+				Ca_file *struct {
+					MountFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"ca_file" json:"ca_file,omitempty"`
+				Cert_file *struct {
+					MountFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"cert_file" json:"cert_file,omitempty"`
+				Cipher_suite *string `tfsdk:"cipher_suite" json:"cipher-suite,omitempty"`
+				Key_file     *struct {
+					MountFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"key_file" json:"key_file,omitempty"`
+				Peer_verify           *bool   `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
+				Ssl_version           *string `tfsdk:"ssl_version" json:"ssl_version,omitempty"`
+				Use_system_cert_store *bool   `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
+			} `tfsdk:"tls" json:"tls,omitempty"`
+			Url        *string `tfsdk:"url" json:"url,omitempty"`
+			User       *string `tfsdk:"user" json:"user,omitempty"`
+			User_agent *string `tfsdk:"user_agent" json:"user-agent,omitempty"`
+			Workers    *int64  `tfsdk:"workers" json:"workers,omitempty"`
+		} `tfsdk:"openobserve" json:"openobserve,omitempty"`
 		Redis *struct {
 			Auth *struct {
 				MountFrom *struct {
@@ -572,6 +788,61 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 			Time_reopen   *int64  `tfsdk:"time_reopen" json:"time-reopen,omitempty"`
 			Workers       *int64  `tfsdk:"workers" json:"workers,omitempty"`
 		} `tfsdk:"redis" json:"redis,omitempty"`
+		S3 *struct {
+			Access_key *struct {
+				MountFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"access_key" json:"access_key,omitempty"`
+			Bucket               *string `tfsdk:"bucket" json:"bucket,omitempty"`
+			Canned_acl           *string `tfsdk:"canned_acl" json:"canned_acl,omitempty"`
+			Chunk_size           *int64  `tfsdk:"chunk_size" json:"chunk_size,omitempty"`
+			Compression          *bool   `tfsdk:"compression" json:"compression,omitempty"`
+			Compresslevel        *int64  `tfsdk:"compresslevel" json:"compresslevel,omitempty"`
+			Flush_grace_period   *int64  `tfsdk:"flush_grace_period" json:"flush_grace_period,omitempty"`
+			Log_fifo_size        *int64  `tfsdk:"log_fifo_size" json:"log-fifo-size,omitempty"`
+			Max_object_size      *int64  `tfsdk:"max_object_size" json:"max_object_size,omitempty"`
+			Max_pending_uploads  *int64  `tfsdk:"max_pending_uploads" json:"max_pending_uploads,omitempty"`
+			Object_key           *string `tfsdk:"object_key" json:"object_key,omitempty"`
+			Object_key_timestamp *string `tfsdk:"object_key_timestamp" json:"object_key_timestamp,omitempty"`
+			Persist_name         *string `tfsdk:"persist_name" json:"persist_name,omitempty"`
+			Region               *string `tfsdk:"region" json:"region,omitempty"`
+			Retries              *int64  `tfsdk:"retries" json:"retries,omitempty"`
+			Secret_key           *struct {
+				MountFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"mount_from" json:"mountFrom,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"secret_key" json:"secret_key,omitempty"`
+			Storage_class  *string `tfsdk:"storage_class" json:"storage_class,omitempty"`
+			Template       *string `tfsdk:"template" json:"template,omitempty"`
+			Throttle       *int64  `tfsdk:"throttle" json:"throttle,omitempty"`
+			Upload_threads *int64  `tfsdk:"upload_threads" json:"upload_threads,omitempty"`
+			Url            *string `tfsdk:"url" json:"url,omitempty"`
+		} `tfsdk:"s3" json:"s3,omitempty"`
 		Splunk_hec_event *struct {
 			Batch_bytes        *int64  `tfsdk:"batch_bytes" json:"batch-bytes,omitempty"`
 			Batch_lines        *int64  `tfsdk:"batch_lines" json:"batch-lines,omitempty"`
@@ -697,8 +968,9 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"key_file" json:"key_file,omitempty"`
-				Peer_verify           *bool `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
-				Use_system_cert_store *bool `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
+				Peer_verify           *bool   `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
+				Ssl_version           *string `tfsdk:"ssl_version" json:"ssl_version,omitempty"`
+				Use_system_cert_store *bool   `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
 			Token *struct {
 				MountFrom *struct {
@@ -827,8 +1099,9 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"key_file" json:"key_file,omitempty"`
-				Peer_verify           *bool `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
-				Use_system_cert_store *bool `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
+				Peer_verify           *bool   `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
+				Ssl_version           *string `tfsdk:"ssl_version" json:"ssl_version,omitempty"`
+				Use_system_cert_store *bool   `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
 			Url *struct {
 				MountFrom *struct {
@@ -932,8 +1205,9 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"key_file" json:"key_file,omitempty"`
-				Peer_verify           *bool `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
-				Use_system_cert_store *bool `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
+				Peer_verify           *bool   `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
+				Ssl_version           *string `tfsdk:"ssl_version" json:"ssl_version,omitempty"`
+				Use_system_cert_store *bool   `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
 			Token *int64 `tfsdk:"token" json:"token,omitempty"`
 		} `tfsdk:"sumologic_syslog" json:"sumologic-syslog,omitempty"`
@@ -1027,8 +1301,9 @@ type LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1ManifestData struct {
 						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"key_file" json:"key_file,omitempty"`
-				Peer_verify           *bool `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
-				Use_system_cert_store *bool `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
+				Peer_verify           *bool   `tfsdk:"peer_verify" json:"peer_verify,omitempty"`
+				Ssl_version           *string `tfsdk:"ssl_version" json:"ssl_version,omitempty"`
+				Use_system_cert_store *bool   `tfsdk:"use_system_cert_store" json:"use-system-cert-store,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
 			Transport *string `tfsdk:"transport" json:"transport,omitempty"`
 			Ts_format *string `tfsdk:"ts_format" json:"ts_format,omitempty"`
@@ -1430,6 +1705,14 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 							},
 
 							"retries": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"template": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -1875,6 +2158,17 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"ssl_version": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("sslv3", "tlsv1", "tlsv1_0", "tlsv1_1", "tlsv1_2", "tlsv1_3"),
+										},
 									},
 
 									"use_system_cert_store": schema.BoolAttribute{
@@ -2790,6 +3084,17 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 										Computed:            false,
 									},
 
+									"ssl_version": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("sslv3", "tlsv1", "tlsv1_0", "tlsv1_1", "tlsv1_2", "tlsv1_3"),
+										},
+									},
+
 									"use_system_cert_store": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -3430,6 +3735,17 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 										Computed:            false,
 									},
 
+									"ssl_version": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("sslv3", "tlsv1", "tlsv1_0", "tlsv1_1", "tlsv1_2", "tlsv1_3"),
+										},
+									},
+
 									"use_system_cert_store": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -3921,6 +4237,529 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 						Computed: false,
 					},
 
+					"loki": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"auth": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"adc": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"alts": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"target_service_accounts": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"insecure": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tls": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"ca_file": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"mount_from": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"secret_key_ref": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"value": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"value_from": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"secret_key_ref": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"cert_file": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"mount_from": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"secret_key_ref": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"value": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"value_from": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"secret_key_ref": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"key_file": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"mount_from": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"secret_key_ref": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"value": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"value_from": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"secret_key_ref": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"batch_lines": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"batch_timeout": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"disk_buffer": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"compaction": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dir": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"disk_buf_size": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"mem_buf_length": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"mem_buf_size": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"q_out_size": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"reliable": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"log_fifo_size": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"persist_name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"retries": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"template": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"time_reopen": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"timestamp": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("current", "received", "msg"),
+								},
+							},
+
+							"url": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workers": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"mongodb": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -3974,14 +4813,6 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 							},
 
 							"collection": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-							},
-
-							"compaction": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            true,
@@ -4094,28 +4925,45 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 								Computed:            false,
 							},
 
-							"uri": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"value_pairs": schema.SingleNestedAttribute{
+							"uri": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
-									"exclude": schema.SingleNestedAttribute{
+									"mount_from": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
-											"raw_string": schema.StringAttribute{
+											"secret_key_ref": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 										Required: false,
@@ -4123,50 +4971,49 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 										Computed: false,
 									},
 
-									"key": schema.SingleNestedAttribute{
+									"value": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
-										Attributes: map[string]schema.Attribute{
-											"raw_string": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
-									"pair": schema.SingleNestedAttribute{
+									"value_from": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
-											"raw_string": schema.StringAttribute{
+											"secret_key_ref": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
 
-									"scope": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Attributes: map[string]schema.Attribute{
-											"raw_string": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 										Required: false,
@@ -4179,11 +5026,35 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 								Computed: false,
 							},
 
-							"write_concern": schema.SingleNestedAttribute{
+							"value_pairs": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
-									"raw_string": schema.StringAttribute{
+									"exclude": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"pair": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"scope": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -4194,6 +5065,17 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"write_concern": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("unacked", "acked", "majority"),
+								},
 							},
 						},
 						Required: false,
@@ -4238,6 +5120,815 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 							},
 
 							"topic": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"openobserve": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"batch_bytes": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"batch_lines": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"batch_timeout": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"body": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"body_prefix": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"body_suffix": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"delimiter": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"disk_buffer": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"compaction": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"dir": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"disk_buf_size": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"mem_buf_length": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"mem_buf_size": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"q_out_size": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"reliable": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"headers": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"log_fifo_size": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"method": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"organization": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"password": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"mount_from": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"secret_key_ref": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"value": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"value_from": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"secret_key_ref": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"persist_name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"port": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"record": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"response_action": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"retries": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"stream": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"time_reopen": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"timeout": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tls": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"ca_dir": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"mount_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"value_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ca_file": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"mount_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"value_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cert_file": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"mount_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"value_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cipher_suite": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_file": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"mount_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"value": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"value_from": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"secret_key_ref": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"peer_verify": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ssl_version": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("sslv3", "tlsv1", "tlsv1_0", "tlsv1_1", "tlsv1_2", "tlsv1_3"),
+										},
+									},
+
+									"use_system_cert_store": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"url": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"user": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"user_agent": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workers": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -4528,6 +6219,369 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 							},
 
 							"workers": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"s3": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"access_key": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"mount_from": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"secret_key_ref": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"value": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"value_from": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"secret_key_ref": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"bucket": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"canned_acl": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"chunk_size": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"compression": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"compresslevel": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"flush_grace_period": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"log_fifo_size": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"max_object_size": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"max_pending_uploads": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"object_key": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"object_key_timestamp": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"persist_name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"region": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"retries": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"secret_key": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"mount_from": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"secret_key_ref": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"value": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"value_from": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"secret_key_ref": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"storage_class": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"template": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"throttle": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"upload_threads": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"url": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -5362,6 +7416,17 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 										Computed:            false,
 									},
 
+									"ssl_version": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("sslv3", "tlsv1", "tlsv1_0", "tlsv1_1", "tlsv1_2", "tlsv1_3"),
+										},
+									},
+
 									"use_system_cert_store": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -6172,6 +8237,17 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 										Computed:            false,
 									},
 
+									"ssl_version": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("sslv3", "tlsv1", "tlsv1_0", "tlsv1_1", "tlsv1_2", "tlsv1_3"),
+										},
+									},
+
 									"use_system_cert_store": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -6816,6 +8892,17 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 										Computed:            false,
 									},
 
+									"ssl_version": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("sslv3", "tlsv1", "tlsv1_0", "tlsv1_1", "tlsv1_2", "tlsv1_3"),
+										},
+									},
+
 									"use_system_cert_store": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -7414,6 +9501,17 @@ func (r *LoggingBanzaicloudIoSyslogNgclusterOutputV1Beta1Manifest) Schema(_ cont
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"ssl_version": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("sslv3", "tlsv1", "tlsv1_0", "tlsv1_1", "tlsv1_2", "tlsv1_3"),
+										},
 									},
 
 									"use_system_cert_store": schema.BoolAttribute{

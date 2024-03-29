@@ -30,7 +30,7 @@ data "k8s_sagemaker_services_k8s_aws_processing_job_v1alpha1_manifest" "example"
 
 ### Optional
 
-- `spec` (Attributes) ProcessingJobSpec defines the desired state of ProcessingJob.  An Amazon SageMaker processing job that is used to analyze data and evaluate models. For more information, see Process Data and Evaluate Models (https://docs.aws.amazon.com/sagemaker/latest/dg/processing-job.html). (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ProcessingJobSpec defines the desired state of ProcessingJob.An Amazon SageMaker processing job that is used to analyze data and evaluatemodels. For more information, see Process Data and Evaluate Models (https://docs.aws.amazon.com/sagemaker/latest/dg/processing-job.html). (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -57,19 +57,19 @@ Optional:
 Required:
 
 - `app_specification` (Attributes) Configures the processing job to run a specified Docker container image. (see [below for nested schema](#nestedatt--spec--app_specification))
-- `processing_job_name` (String) The name of the processing job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.
-- `processing_resources` (Attributes) Identifies the resources, ML compute instances, and ML storage volumes to deploy for a processing job. In distributed training, you specify more than one instance. (see [below for nested schema](#nestedatt--spec--processing_resources))
-- `role_arn` (String) The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.
+- `processing_job_name` (String) The name of the processing job. The name must be unique within an AmazonWeb Services Region in the Amazon Web Services account.
+- `processing_resources` (Attributes) Identifies the resources, ML compute instances, and ML storage volumes todeploy for a processing job. In distributed training, you specify more thanone instance. (see [below for nested schema](#nestedatt--spec--processing_resources))
+- `role_arn` (String) The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assumeto perform tasks on your behalf.
 
 Optional:
 
-- `environment` (Map of String) The environment variables to set in the Docker container. Up to 100 key and values entries in the map are supported.
-- `experiment_config` (Attributes) Associates a SageMaker job as a trial component with an experiment and trial. Specified when you call the following APIs:  * CreateProcessingJob  * CreateTrainingJob  * CreateTransformJob (see [below for nested schema](#nestedatt--spec--experiment_config))
-- `network_config` (Attributes) Networking options for a processing job, such as whether to allow inbound and outbound network calls to and from processing containers, and the VPC subnets and security groups to use for VPC-enabled processing jobs. (see [below for nested schema](#nestedatt--spec--network_config))
+- `environment` (Map of String) The environment variables to set in the Docker container. Up to 100 key andvalues entries in the map are supported.
+- `experiment_config` (Attributes) Associates a SageMaker job as a trial component with an experiment and trial.Specified when you call the following APIs:   * CreateProcessingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateProcessingJob.html)   * CreateTrainingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)   * CreateTransformJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html) (see [below for nested schema](#nestedatt--spec--experiment_config))
+- `network_config` (Attributes) Networking options for a processing job, such as whether to allow inboundand outbound network calls to and from processing containers, and the VPCsubnets and security groups to use for VPC-enabled processing jobs. (see [below for nested schema](#nestedatt--spec--network_config))
 - `processing_inputs` (Attributes List) An array of inputs configuring the data to download into the processing container. (see [below for nested schema](#nestedatt--spec--processing_inputs))
 - `processing_output_config` (Attributes) Output configuration for the processing job. (see [below for nested schema](#nestedatt--spec--processing_output_config))
 - `stopping_condition` (Attributes) The time limit for how long the processing job is allowed to run. (see [below for nested schema](#nestedatt--spec--stopping_condition))
-- `tags` (Attributes List) (Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL) in the Amazon Web Services Billing and Cost Management User Guide. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) (Optional) An array of key-value pairs. For more information, see Using CostAllocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)in the Amazon Web Services Billing and Cost Management User Guide. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--app_specification"></a>
 ### Nested Schema for `spec.app_specification`
@@ -117,7 +117,7 @@ Optional:
 
 - `enable_inter_container_traffic_encryption` (Boolean)
 - `enable_network_isolation` (Boolean)
-- `vpc_config` (Attributes) Specifies a VPC that your training jobs and hosted models have access to. Control access to and from your training and model containers by configuring the VPC. For more information, see Protect Endpoints by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html) and Protect Training Jobs by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html). (see [below for nested schema](#nestedatt--spec--network_config--vpc_config))
+- `vpc_config` (Attributes) Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html). (see [below for nested schema](#nestedatt--spec--network_config--vpc_config))
 
 <a id="nestedatt--spec--network_config--vpc_config"></a>
 ### Nested Schema for `spec.network_config.vpc_config`
@@ -135,9 +135,9 @@ Optional:
 Optional:
 
 - `app_managed` (Boolean)
-- `dataset_definition` (Attributes) Configuration for Dataset Definition inputs. The Dataset Definition input must specify exactly one of either AthenaDatasetDefinition or RedshiftDatasetDefinition types. (see [below for nested schema](#nestedatt--spec--processing_inputs--dataset_definition))
+- `dataset_definition` (Attributes) Configuration for Dataset Definition inputs. The Dataset Definition inputmust specify exactly one of either AthenaDatasetDefinition or RedshiftDatasetDefinitiontypes. (see [below for nested schema](#nestedatt--spec--processing_inputs--dataset_definition))
 - `input_name` (String)
-- `s3_input` (Attributes) Configuration for downloading input data from Amazon S3 into the processing container. (see [below for nested schema](#nestedatt--spec--processing_inputs--s3_input))
+- `s3_input` (Attributes) Configuration for downloading input data from Amazon S3 into the processingcontainer. (see [below for nested schema](#nestedatt--spec--processing_inputs--s3_input))
 
 <a id="nestedatt--spec--processing_inputs--dataset_definition"></a>
 ### Nested Schema for `spec.processing_inputs.dataset_definition`
@@ -212,7 +212,7 @@ Optional:
 - `app_managed` (Boolean)
 - `feature_store_output` (Attributes) Configuration for processing job outputs in Amazon SageMaker Feature Store. (see [below for nested schema](#nestedatt--spec--processing_output_config--outputs--feature_store_output))
 - `output_name` (String)
-- `s3_output` (Attributes) Configuration for uploading output data to Amazon S3 from the processing container. (see [below for nested schema](#nestedatt--spec--processing_output_config--outputs--s3_output))
+- `s3_output` (Attributes) Configuration for uploading output data to Amazon S3 from the processingcontainer. (see [below for nested schema](#nestedatt--spec--processing_output_config--outputs--s3_output))
 
 <a id="nestedatt--spec--processing_output_config--outputs--feature_store_output"></a>
 ### Nested Schema for `spec.processing_output_config.outputs.s3_output`

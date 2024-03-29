@@ -187,8 +187,8 @@ func (r *KumaIoContainerPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"value": schema.StringAttribute{
-									Description:         "Value must be a string representing a valid json object used by replace and add operations. String has to be escaped with ' to be valid a json object.",
-									MarkdownDescription: "Value must be a string representing a valid json object used by replace and add operations. String has to be escaped with ' to be valid a json object.",
+									Description:         "Value must be a string representing a valid json object usedby replace and add operations. String has to be escaped with ' to be valid a json object.",
+									MarkdownDescription: "Value must be a string representing a valid json object usedby replace and add operations. String has to be escaped with ' to be valid a json object.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -233,8 +233,8 @@ func (r *KumaIoContainerPatchV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"value": schema.StringAttribute{
-									Description:         "Value must be a string representing a valid json object used by replace and add operations. String has to be escaped with ' to be valid a json object.",
-									MarkdownDescription: "Value must be a string representing a valid json object used by replace and add operations. String has to be escaped with ' to be valid a json object.",
+									Description:         "Value must be a string representing a valid json object usedby replace and add operations. String has to be escaped with ' to be valid a json object.",
+									MarkdownDescription: "Value must be a string representing a valid json object usedby replace and add operations. String has to be escaped with ' to be valid a json object.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

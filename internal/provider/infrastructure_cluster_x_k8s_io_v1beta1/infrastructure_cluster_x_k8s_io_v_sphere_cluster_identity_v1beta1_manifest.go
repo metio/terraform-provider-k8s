@@ -63,8 +63,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterIdentityV1Beta1Manifest) Metad
 
 func (r *InfrastructureClusterXK8SIoVsphereClusterIdentityV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereClusterIdentity defines the account to be used for reconciling clusters",
-		MarkdownDescription: "VSphereClusterIdentity defines the account to be used for reconciling clusters",
+		Description:         "VSphereClusterIdentity defines the account to be used for reconciling clusters.",
+		MarkdownDescription: "VSphereClusterIdentity defines the account to be used for reconciling clusters.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.name'.",
@@ -127,8 +127,8 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterIdentityV1Beta1Manifest) Schem
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "",
-				MarkdownDescription: "",
+				Description:         "VSphereClusterIdentitySpec contains a secret reference and a group of allowed namespaces.",
+				MarkdownDescription: "VSphereClusterIdentitySpec contains a secret reference and a group of allowed namespaces.",
 				Attributes: map[string]schema.Attribute{
 					"allowed_namespaces": schema.SingleNestedAttribute{
 						Description:         "AllowedNamespaces is used to identify which namespaces are allowed to use this account. Namespaces can be selected with a label selector. If this object is nil, no namespaces will be allowed",

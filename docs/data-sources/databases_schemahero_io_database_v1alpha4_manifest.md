@@ -4700,6 +4700,18 @@ Optional:
 
 - `image` (String)
 - `node_selector` (Map of String)
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--schemahero--tolerations))
+
+<a id="nestedatt--spec--schemahero--tolerations"></a>
+### Nested Schema for `spec.schemahero.tolerations`
+
+Optional:
+
+- `effect` (String)
+- `key` (String)
+- `operator` (String)
+- `value` (String)
+
 
 
 <a id="nestedatt--spec--template"></a>

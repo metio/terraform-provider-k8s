@@ -223,8 +223,8 @@ func (r *CephRookIoCephBucketTopicV1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"send_cloud_events": schema.BoolAttribute{
-										Description:         "Send the notifications with the CloudEvents header: https://github.com/cloudevents/spec/blob/main/cloudevents/adapters/aws-s3.md Supported for Ceph Quincy (v17) or newer.",
-										MarkdownDescription: "Send the notifications with the CloudEvents header: https://github.com/cloudevents/spec/blob/main/cloudevents/adapters/aws-s3.md Supported for Ceph Quincy (v17) or newer.",
+										Description:         "Send the notifications with the CloudEvents header: https://github.com/cloudevents/spec/blob/main/cloudevents/adapters/aws-s3.md",
+										MarkdownDescription: "Send the notifications with the CloudEvents header: https://github.com/cloudevents/spec/blob/main/cloudevents/adapters/aws-s3.md",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

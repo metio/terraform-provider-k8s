@@ -30,7 +30,7 @@ data "k8s_apigatewayv2_services_k8s_aws_integration_v1alpha1_manifest" "example"
 
 ### Optional
 
-- `spec` (Attributes) IntegrationSpec defines the desired state of Integration.  Represents an integration. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) IntegrationSpec defines the desired state of Integration.Represents an integration. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -61,9 +61,9 @@ Required:
 Optional:
 
 - `api_id` (String)
-- `api_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--api_ref))
+- `api_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--api_ref))
 - `connection_id` (String)
-- `connection_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--connection_ref))
+- `connection_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--connection_ref))
 - `connection_type` (String)
 - `content_handling_strategy` (String)
 - `credentials_arn` (String)
@@ -78,14 +78,14 @@ Optional:
 - `response_parameters` (Map of Map of String)
 - `template_selection_expression` (String)
 - `timeout_in_millis` (Number)
-- `tls_config` (Attributes) The TLS configuration for a private integration. If you specify a TLS configuration, private integration traffic uses the HTTPS protocol. Supported only for HTTP APIs. (see [below for nested schema](#nestedatt--spec--tls_config))
+- `tls_config` (Attributes) The TLS configuration for a private integration. If you specify a TLS configuration,private integration traffic uses the HTTPS protocol. Supported only for HTTPAPIs. (see [below for nested schema](#nestedatt--spec--tls_config))
 
 <a id="nestedatt--spec--api_ref"></a>
 ### Nested Schema for `spec.api_ref`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--api_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--api_ref--from))
 
 <a id="nestedatt--spec--api_ref--from"></a>
 ### Nested Schema for `spec.api_ref.from`
@@ -101,7 +101,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--connection_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--connection_ref--from))
 
 <a id="nestedatt--spec--connection_ref--from"></a>
 ### Nested Schema for `spec.connection_ref.from`

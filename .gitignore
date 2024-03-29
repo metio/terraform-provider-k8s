@@ -159,6 +159,6 @@ fabric.properties
 # Project specific ignores                                                                                             #
 ########################################################################################################################
 
-!schemas/crd_v1/*.com
 .terraform.lock.hcl
 testing/
+schemas/crd_v1/

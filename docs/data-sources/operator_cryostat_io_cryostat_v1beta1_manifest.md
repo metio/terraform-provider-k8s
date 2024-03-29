@@ -18,22 +18,6 @@ data "k8s_operator_cryostat_io_cryostat_v1beta1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    enable_cert_manager  = true
-    event_templates      = []
-    minimal              = false
-    trusted_cert_secrets = []
-    report_options = {
-      replicas = 0
-    }
-    storage_options = {
-      pvc = {
-        annotations = {}
-        labels      = {}
-        spec        = {}
-      }
-    }
-  }
 }
 ```
 
@@ -83,6 +67,7 @@ Optional:
 - `jmx_credentials_database_options` (Attributes) Options to configure the Cryostat application's credentials database. (see [below for nested schema](#nestedatt--spec--jmx_credentials_database_options))
 - `max_ws_connections` (Number) The maximum number of WebSocket client connections allowed (minimum 1, default unlimited).
 - `network_options` (Attributes) Options to control how the operator exposes the application outside of the cluster, such as using an Ingress or Route. (see [below for nested schema](#nestedatt--spec--network_options))
+- `operand_metadata` (Attributes) Options to configure the Cryostat deployments and pods metadata (see [below for nested schema](#nestedatt--spec--operand_metadata))
 - `report_options` (Attributes) Options to configure Cryostat Automated Report Analysis. (see [below for nested schema](#nestedatt--spec--report_options))
 - `resources` (Attributes) Resource requirements for the Cryostat deployment. (see [below for nested schema](#nestedatt--spec--resources))
 - `scheduling_options` (Attributes) Options to configure scheduling for the Cryostat deployment (see [below for nested schema](#nestedatt--spec--scheduling_options))
@@ -576,6 +561,33 @@ Optional:
 
 
 
+<a id="nestedatt--spec--operand_metadata"></a>
+### Nested Schema for `spec.operand_metadata`
+
+Optional:
+
+- `deployment_metadata` (Attributes) Options to configure the Cryostat deployments metadata (see [below for nested schema](#nestedatt--spec--operand_metadata--deployment_metadata))
+- `pod_metadata` (Attributes) Options to configure the Cryostat pods metadata (see [below for nested schema](#nestedatt--spec--operand_metadata--pod_metadata))
+
+<a id="nestedatt--spec--operand_metadata--deployment_metadata"></a>
+### Nested Schema for `spec.operand_metadata.deployment_metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations to add to the resources during its creation.
+- `labels` (Map of String) Labels to add to the resources during its creation. The labels with keys 'app' and 'component' are reserved for use by the operator.
+
+
+<a id="nestedatt--spec--operand_metadata--pod_metadata"></a>
+### Nested Schema for `spec.operand_metadata.pod_metadata`
+
+Optional:
+
+- `annotations` (Map of String) Annotations to add to the resources during its creation.
+- `labels` (Map of String) Labels to add to the resources during its creation. The labels with keys 'app' and 'component' are reserved for use by the operator.
+
+
+
 <a id="nestedatt--spec--report_options"></a>
 ### Nested Schema for `spec.report_options`
 
@@ -592,7 +604,7 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. (see [below for nested schema](#nestedatt--spec--report_options--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--report_options--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
@@ -1146,7 +1158,7 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. (see [below for nested schema](#nestedatt--spec--resources--core_resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--core_resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
@@ -1164,7 +1176,7 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. (see [below for nested schema](#nestedatt--spec--resources--data_source_resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--data_source_resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
@@ -1182,7 +1194,7 @@ Required:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. (see [below for nested schema](#nestedatt--spec--resources--grafana_resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--grafana_resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
@@ -1963,7 +1975,7 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. (see [below for nested schema](#nestedatt--spec--storage_options--pvc--spec--resources--claims))
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--storage_options--pvc--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
@@ -2006,7 +2018,11 @@ Optional:
 
 Optional:
 
-- `built_in_discovery_disabled` (Boolean) When true, the Cryostat application will disable the built-in discovery mechanisms. Defaults to false
+- `built_in_discovery_disabled` (Boolean) When true, the Cryostat application will disable the built-in discovery mechanisms. Defaults to false.
+- `disable_built_in_port_names` (Boolean) When true, the Cryostat application will use the default port name jfr-jmx to look for JMX connectable targets.
+- `disable_built_in_port_numbers` (Boolean) When true, the Cryostat application will use the default port number 9091 to look for JMX connectable targets.
+- `discovery_port_names` (List of String) List of port names that the Cryostat application should look for in order to consider a target as JMX connectable.
+- `discovery_port_numbers` (List of String) List of port numbers that the Cryostat application should look for in order to consider a target as JMX connectable.
 
 
 <a id="nestedatt--spec--trusted_cert_secrets"></a>

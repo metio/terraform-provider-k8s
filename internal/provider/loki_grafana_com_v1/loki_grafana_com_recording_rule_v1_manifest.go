@@ -151,8 +151,8 @@ func (r *LokiGrafanaComRecordingRuleV1Manifest) Schema(_ context.Context, _ data
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"interval": schema.StringAttribute{
-									Description:         "Interval defines the time interval between evaluation of the given recoding rule.",
-									MarkdownDescription: "Interval defines the time interval between evaluation of the given recoding rule.",
+									Description:         "Interval defines the time interval between evaluation of the givenrecoding rule.",
+									MarkdownDescription: "Interval defines the time interval between evaluation of the givenrecoding rule.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -183,8 +183,8 @@ func (r *LokiGrafanaComRecordingRuleV1Manifest) Schema(_ context.Context, _ data
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"expr": schema.StringAttribute{
-												Description:         "The LogQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts.",
-												MarkdownDescription: "The LogQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts.",
+												Description:         "The LogQL expression to evaluate. Every evaluation cycle this isevaluated at the current time, and all resultant time series becomepending/firing alerts.",
+												MarkdownDescription: "The LogQL expression to evaluate. Every evaluation cycle this isevaluated at the current time, and all resultant time series becomepending/firing alerts.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,

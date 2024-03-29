@@ -30,7 +30,7 @@ data "k8s_source_toolkit_fluxcd_io_git_repository_v1beta2_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) GitRepositorySpec specifies the required configuration to produce an Artifact for a Git repository. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) GitRepositorySpec specifies the required configuration to produce anArtifact for a Git repository. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -61,30 +61,30 @@ Required:
 
 Optional:
 
-- `access_from` (Attributes) AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092 (see [below for nested schema](#nestedatt--spec--access_from))
-- `git_implementation` (String) GitImplementation specifies which Git client library implementation to use. Defaults to 'go-git', valid values are ('go-git', 'libgit2'). Deprecated: gitImplementation is deprecated now that 'go-git' is the only supported implementation.
-- `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.
-- `include` (Attributes List) Include specifies a list of GitRepository resources which Artifacts should be included in the Artifact produced for this GitRepository. (see [below for nested schema](#nestedatt--spec--include))
-- `recurse_submodules` (Boolean) RecurseSubmodules enables the initialization of all submodules within the GitRepository as cloned from the URL, using their default settings.
-- `ref` (Attributes) Reference specifies the Git reference to resolve and monitor for changes, defaults to the 'master' branch. (see [below for nested schema](#nestedatt--spec--ref))
-- `secret_ref` (Attributes) SecretRef specifies the Secret containing authentication credentials for the GitRepository. For HTTPS repositories the Secret must contain 'username' and 'password' fields for basic auth or 'bearerToken' field for token auth. For SSH repositories the Secret must contain 'identity' and 'known_hosts' fields. (see [below for nested schema](#nestedatt--spec--secret_ref))
-- `suspend` (Boolean) Suspend tells the controller to suspend the reconciliation of this GitRepository.
+- `access_from` (Attributes) AccessFrom specifies an Access Control List for allowing cross-namespacereferences to this object.NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092 (see [below for nested schema](#nestedatt--spec--access_from))
+- `git_implementation` (String) GitImplementation specifies which Git client library implementation touse. Defaults to 'go-git', valid values are ('go-git', 'libgit2').Deprecated: gitImplementation is deprecated now that 'go-git' is theonly supported implementation.
+- `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.
+- `include` (Attributes List) Include specifies a list of GitRepository resources which Artifactsshould be included in the Artifact produced for this GitRepository. (see [below for nested schema](#nestedatt--spec--include))
+- `recurse_submodules` (Boolean) RecurseSubmodules enables the initialization of all submodules withinthe GitRepository as cloned from the URL, using their default settings.
+- `ref` (Attributes) Reference specifies the Git reference to resolve and monitor forchanges, defaults to the 'master' branch. (see [below for nested schema](#nestedatt--spec--ref))
+- `secret_ref` (Attributes) SecretRef specifies the Secret containing authentication credentials forthe GitRepository.For HTTPS repositories the Secret must contain 'username' and 'password'fields for basic auth or 'bearerToken' field for token auth.For SSH repositories the Secret must contain 'identity'and 'known_hosts' fields. (see [below for nested schema](#nestedatt--spec--secret_ref))
+- `suspend` (Boolean) Suspend tells the controller to suspend the reconciliation of thisGitRepository.
 - `timeout` (String) Timeout for Git operations like cloning, defaults to 60s.
-- `verify` (Attributes) Verification specifies the configuration to verify the Git commit signature(s). (see [below for nested schema](#nestedatt--spec--verify))
+- `verify` (Attributes) Verification specifies the configuration to verify the Git commitsignature(s). (see [below for nested schema](#nestedatt--spec--verify))
 
 <a id="nestedatt--spec--access_from"></a>
 ### Nested Schema for `spec.access_from`
 
 Required:
 
-- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
+- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
 
 <a id="nestedatt--spec--access_from--namespace_selectors"></a>
 ### Nested Schema for `spec.access_from.namespace_selectors`
 
 Optional:
 
-- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 
 
@@ -93,12 +93,12 @@ Optional:
 
 Required:
 
-- `repository` (Attributes) GitRepositoryRef specifies the GitRepository which Artifact contents must be included. (see [below for nested schema](#nestedatt--spec--include--repository))
+- `repository` (Attributes) GitRepositoryRef specifies the GitRepository which Artifact contentsmust be included. (see [below for nested schema](#nestedatt--spec--include--repository))
 
 Optional:
 
-- `from_path` (String) FromPath specifies the path to copy contents from, defaults to the root of the Artifact.
-- `to_path` (String) ToPath specifies the path to copy contents to, defaults to the name of the GitRepositoryRef.
+- `from_path` (String) FromPath specifies the path to copy contents from, defaults to the rootof the Artifact.
+- `to_path` (String) ToPath specifies the path to copy contents to, defaults to the name ofthe GitRepositoryRef.
 
 <a id="nestedatt--spec--include--repository"></a>
 ### Nested Schema for `spec.include.repository`
@@ -115,8 +115,8 @@ Required:
 Optional:
 
 - `branch` (String) Branch to check out, defaults to 'master' if no other field is defined.
-- `commit` (String) Commit SHA to check out, takes precedence over all reference fields.  This can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.
-- `name` (String) Name of the reference to check out; takes precedence over Branch, Tag and SemVer.  It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description Examples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'
+- `commit` (String) Commit SHA to check out, takes precedence over all reference fields.This can be combined with Branch to shallow clone the branch, in whichthe commit is expected to exist.
+- `name` (String) Name of the reference to check out; takes precedence over Branch, Tag and SemVer.It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_descriptionExamples: 'refs/heads/main', 'refs/tags/v0.1.0', 'refs/pull/420/head', 'refs/merge-requests/1/head'
 - `semver` (String) SemVer tag expression to check out, takes precedence over Tag.
 - `tag` (String) Tag to check out, takes precedence over Branch.
 
@@ -135,7 +135,7 @@ Required:
 Required:
 
 - `mode` (String) Mode specifies what Git object should be verified, currently ('head').
-- `secret_ref` (Attributes) SecretRef specifies the Secret containing the public keys of trusted Git authors. (see [below for nested schema](#nestedatt--spec--verify--secret_ref))
+- `secret_ref` (Attributes) SecretRef specifies the Secret containing the public keys of trusted Gitauthors. (see [below for nested schema](#nestedatt--spec--verify--secret_ref))
 
 <a id="nestedatt--spec--verify--secret_ref"></a>
 ### Nested Schema for `spec.verify.secret_ref`

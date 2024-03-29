@@ -49,6 +49,7 @@ type CephRookIoCephObjectZoneV1ManifestData struct {
 	Spec *struct {
 		CustomEndpoints *[]string `tfsdk:"custom_endpoints" json:"customEndpoints,omitempty"`
 		DataPool        *struct {
+			Application     *string `tfsdk:"application" json:"application,omitempty"`
 			CompressionMode *string `tfsdk:"compression_mode" json:"compressionMode,omitempty"`
 			CrushRoot       *string `tfsdk:"crush_root" json:"crushRoot,omitempty"`
 			DeviceClass     *string `tfsdk:"device_class" json:"deviceClass,omitempty"`
@@ -97,6 +98,7 @@ type CephRookIoCephObjectZoneV1ManifestData struct {
 			} `tfsdk:"status_check" json:"statusCheck,omitempty"`
 		} `tfsdk:"data_pool" json:"dataPool,omitempty"`
 		MetadataPool *struct {
+			Application     *string `tfsdk:"application" json:"application,omitempty"`
 			CompressionMode *string `tfsdk:"compression_mode" json:"compressionMode,omitempty"`
 			CrushRoot       *string `tfsdk:"crush_root" json:"crushRoot,omitempty"`
 			DeviceClass     *string `tfsdk:"device_class" json:"deviceClass,omitempty"`
@@ -144,8 +146,13 @@ type CephRookIoCephObjectZoneV1ManifestData struct {
 				} `tfsdk:"mirror" json:"mirror,omitempty"`
 			} `tfsdk:"status_check" json:"statusCheck,omitempty"`
 		} `tfsdk:"metadata_pool" json:"metadataPool,omitempty"`
-		PreservePoolsOnDelete *bool   `tfsdk:"preserve_pools_on_delete" json:"preservePoolsOnDelete,omitempty"`
-		ZoneGroup             *string `tfsdk:"zone_group" json:"zoneGroup,omitempty"`
+		PreservePoolsOnDelete *bool `tfsdk:"preserve_pools_on_delete" json:"preservePoolsOnDelete,omitempty"`
+		SharedPools           *struct {
+			DataPoolName                       *string `tfsdk:"data_pool_name" json:"dataPoolName,omitempty"`
+			MetadataPoolName                   *string `tfsdk:"metadata_pool_name" json:"metadataPoolName,omitempty"`
+			PreserveRadosNamespaceDataOnDelete *bool   `tfsdk:"preserve_rados_namespace_data_on_delete" json:"preserveRadosNamespaceDataOnDelete,omitempty"`
+		} `tfsdk:"shared_pools" json:"sharedPools,omitempty"`
+		ZoneGroup *string `tfsdk:"zone_group" json:"zoneGroup,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -247,6 +254,14 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 						Description:         "The data pool settings",
 						MarkdownDescription: "The data pool settings",
 						Attributes: map[string]schema.Attribute{
+							"application": schema.StringAttribute{
+								Description:         "The application name to set on the pool. Only expected to be set for rgw pools.",
+								MarkdownDescription: "The application name to set on the pool. Only expected to be set for rgw pools.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"compression_mode": schema.StringAttribute{
 								Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
 								MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
@@ -589,6 +604,14 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 						Description:         "The metadata pool settings",
 						MarkdownDescription: "The metadata pool settings",
 						Attributes: map[string]schema.Attribute{
+							"application": schema.StringAttribute{
+								Description:         "The application name to set on the pool. Only expected to be set for rgw pools.",
+								MarkdownDescription: "The application name to set on the pool. Only expected to be set for rgw pools.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"compression_mode": schema.StringAttribute{
 								Description:         "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
 								MarkdownDescription: "DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters",
@@ -933,6 +956,39 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasou
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"shared_pools": schema.SingleNestedAttribute{
+						Description:         "The pool information when configuring RADOS namespaces in existing pools.",
+						MarkdownDescription: "The pool information when configuring RADOS namespaces in existing pools.",
+						Attributes: map[string]schema.Attribute{
+							"data_pool_name": schema.StringAttribute{
+								Description:         "The data pool used for creating RADOS namespaces in the object store",
+								MarkdownDescription: "The data pool used for creating RADOS namespaces in the object store",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
+							"metadata_pool_name": schema.StringAttribute{
+								Description:         "The metadata pool used for creating RADOS namespaces in the object store",
+								MarkdownDescription: "The metadata pool used for creating RADOS namespaces in the object store",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
+							"preserve_rados_namespace_data_on_delete": schema.BoolAttribute{
+								Description:         "Whether the RADOS namespaces should be preserved on deletion of the object store",
+								MarkdownDescription: "Whether the RADOS namespaces should be preserved on deletion of the object store",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"zone_group": schema.StringAttribute{

@@ -15,6 +15,10 @@ type openapiv3TypeTranslator struct {
 	property *openapi3.Schema
 }
 
+func (t *openapiv3TypeTranslator) hasNoType() bool {
+	return t.property.Type == ""
+}
+
 func (t *openapiv3TypeTranslator) isIntOrString() bool {
 	_, ok := t.property.Extensions["x-kubernetes-int-or-string"]
 	return ok || t.property.Type == "string" && t.property.Format == "int-or-string"

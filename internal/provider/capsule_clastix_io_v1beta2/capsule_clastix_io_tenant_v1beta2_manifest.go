@@ -186,6 +186,12 @@ type CapsuleClastixIoTenantV1Beta2ManifestData struct {
 				Operations *[]string `tfsdk:"operations" json:"operations,omitempty"`
 			} `tfsdk:"proxy_settings" json:"proxySettings,omitempty"`
 		} `tfsdk:"owners" json:"owners,omitempty"`
+		PodOptions *struct {
+			AdditionalMetadata *struct {
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			} `tfsdk:"additional_metadata" json:"additionalMetadata,omitempty"`
+		} `tfsdk:"pod_options" json:"podOptions,omitempty"`
 		PreventDeletion *bool `tfsdk:"prevent_deletion" json:"preventDeletion,omitempty"`
 		PriorityClasses *struct {
 			Allowed          *[]string `tfsdk:"allowed" json:"allowed,omitempty"`
@@ -235,6 +241,14 @@ type CapsuleClastixIoTenantV1Beta2ManifestData struct {
 			ExternalIPs *struct {
 				Allowed *[]string `tfsdk:"allowed" json:"allowed,omitempty"`
 			} `tfsdk:"external_i_ps" json:"externalIPs,omitempty"`
+			ForbiddenAnnotations *struct {
+				Denied      *[]string `tfsdk:"denied" json:"denied,omitempty"`
+				DeniedRegex *string   `tfsdk:"denied_regex" json:"deniedRegex,omitempty"`
+			} `tfsdk:"forbidden_annotations" json:"forbiddenAnnotations,omitempty"`
+			ForbiddenLabels *struct {
+				Denied      *[]string `tfsdk:"denied" json:"denied,omitempty"`
+				DeniedRegex *string   `tfsdk:"denied_regex" json:"deniedRegex,omitempty"`
+			} `tfsdk:"forbidden_labels" json:"forbiddenLabels,omitempty"`
 		} `tfsdk:"service_options" json:"serviceOptions,omitempty"`
 		StorageClasses *struct {
 			Allowed          *[]string `tfsdk:"allowed" json:"allowed,omitempty"`
@@ -1288,6 +1302,42 @@ func (r *CapsuleClastixIoTenantV1Beta2Manifest) Schema(_ context.Context, _ data
 						Computed: false,
 					},
 
+					"pod_options": schema.SingleNestedAttribute{
+						Description:         "Specifies options for the Pods deployed in the Tenant namespaces, such as additional metadata.",
+						MarkdownDescription: "Specifies options for the Pods deployed in the Tenant namespaces, such as additional metadata.",
+						Attributes: map[string]schema.Attribute{
+							"additional_metadata": schema.SingleNestedAttribute{
+								Description:         "Specifies additional labels and annotations the Capsule operator places on any Pod resource in the Tenant. Optional.",
+								MarkdownDescription: "Specifies additional labels and annotations the Capsule operator places on any Pod resource in the Tenant. Optional.",
+								Attributes: map[string]schema.Attribute{
+									"annotations": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"labels": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"prevent_deletion": schema.BoolAttribute{
 						Description:         "Prevent accidental deletion of the Tenant. When enabled, the deletion request will be declined.",
 						MarkdownDescription: "Prevent accidental deletion of the Tenant. When enabled, the deletion request will be declined.",
@@ -1614,6 +1664,58 @@ func (r *CapsuleClastixIoTenantV1Beta2Manifest) Schema(_ context.Context, _ data
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"forbidden_annotations": schema.SingleNestedAttribute{
+								Description:         "Define the annotations that a Tenant Owner cannot set for their Service resources.",
+								MarkdownDescription: "Define the annotations that a Tenant Owner cannot set for their Service resources.",
+								Attributes: map[string]schema.Attribute{
+									"denied": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"denied_regex": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"forbidden_labels": schema.SingleNestedAttribute{
+								Description:         "Define the labels that a Tenant Owner cannot set for their Service resources.",
+								MarkdownDescription: "Define the labels that a Tenant Owner cannot set for their Service resources.",
+								Attributes: map[string]schema.Attribute{
+									"denied": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"denied_regex": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 								},

@@ -16,6 +16,7 @@ description: |-
 data "k8s_cluster_clusterpedia_io_pedia_cluster_v1alpha2_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -63,6 +64,7 @@ Optional:
 - `cert_data` (String)
 - `key_data` (String)
 - `kubeconfig` (String)
+- `sharding_name` (String)
 - `sync_all_custom_resources` (Boolean)
 - `sync_resources_ref_name` (String)
 - `token_data` (String)

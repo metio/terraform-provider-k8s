@@ -141,8 +141,8 @@ func (r *NetworkingIstioIoWorkloadEntryV1Alpha3Manifest) Schema(_ context.Contex
 				MarkdownDescription: "Configuration affecting VMs onboarded into the mesh. See more details at: https://istio.io/docs/reference/config/networking/workload-entry.html",
 				Attributes: map[string]schema.Attribute{
 					"address": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Address associated with the network endpoint without the port.",
+						MarkdownDescription: "Address associated with the network endpoint without the port.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -166,8 +166,8 @@ func (r *NetworkingIstioIoWorkloadEntryV1Alpha3Manifest) Schema(_ context.Contex
 					},
 
 					"network": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Network enables Istio to group endpoints resident in the same L3 domain/network.",
+						MarkdownDescription: "Network enables Istio to group endpoints resident in the same L3 domain/network.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -183,8 +183,8 @@ func (r *NetworkingIstioIoWorkloadEntryV1Alpha3Manifest) Schema(_ context.Contex
 					},
 
 					"service_account": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The service account associated with the workload if a sidecar is present in the workload.",
+						MarkdownDescription: "The service account associated with the workload if a sidecar is present in the workload.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

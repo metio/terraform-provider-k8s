@@ -258,8 +258,8 @@ func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name is an alternate way of specifying the target cluster by its symbolic name",
-									MarkdownDescription: "Name is an alternate way of specifying the target cluster by its symbolic name",
+									Description:         "Name is an alternate way of specifying the target cluster by its symbolic name. This must be set if Server is not set.",
+									MarkdownDescription: "Name is an alternate way of specifying the target cluster by its symbolic name. This must be set if Server is not set.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -274,8 +274,8 @@ func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"server": schema.StringAttribute{
-									Description:         "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
-									MarkdownDescription: "Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API",
+									Description:         "Server specifies the URL of the target cluster's Kubernetes control plane API. This must be set if Name is not set.",
+									MarkdownDescription: "Server specifies the URL of the target cluster's Kubernetes control plane API. This must be set if Name is not set.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

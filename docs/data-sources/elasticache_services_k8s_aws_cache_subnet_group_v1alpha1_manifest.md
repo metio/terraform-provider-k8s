@@ -58,11 +58,28 @@ Required:
 
 - `cache_subnet_group_description` (String) A description for the cache subnet group.
 - `cache_subnet_group_name` (String) A name for the cache subnet group. This value is stored as a lowercase string.  Constraints: Must contain no more than 255 alphanumeric characters or hyphens.  Example: mysubnetgroup
-- `subnet_i_ds` (List of String) A list of VPC subnet IDs for the cache subnet group.
 
 Optional:
 
+- `subnet_i_ds` (List of String) A list of VPC subnet IDs for the cache subnet group.
+- `subnet_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--subnet_refs))
 - `tags` (Attributes List) A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted. (see [below for nested schema](#nestedatt--spec--tags))
+
+<a id="nestedatt--spec--subnet_refs"></a>
+### Nested Schema for `spec.subnet_refs`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_refs--from))
+
+<a id="nestedatt--spec--subnet_refs--from"></a>
+### Nested Schema for `spec.subnet_refs.from`
+
+Optional:
+
+- `name` (String)
+
+
 
 <a id="nestedatt--spec--tags"></a>
 ### Nested Schema for `spec.tags`

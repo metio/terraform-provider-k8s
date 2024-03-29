@@ -16,6 +16,7 @@ SelectorSyncSet is the Schema for the SelectorSyncSet API
 data "k8s_hive_openshift_io_selector_sync_set_v1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -56,6 +57,7 @@ Optional:
 
 - `apply_behavior` (String) ApplyBehavior indicates how resources in this syncset will be applied to the target cluster. The default value of 'Apply' indicates that resources should be applied using the 'oc apply' command. If no value is set, 'Apply' is assumed. A value of 'CreateOnly' indicates that the resource will only be created if it does not already exist in the target cluster. Otherwise, it will be left alone. A value of 'CreateOrUpdate' indicates that the resource will be created/updated without the use of the 'oc apply' command, allowing larger resources to be synced, but losing some functionality of the 'oc apply' command such as the ability to remove annotations, labels, and other map entries in general.
 - `cluster_deployment_selector` (Attributes) ClusterDeploymentSelector is a LabelSelector indicating which clusters the SelectorSyncSet applies to in any namespace. (see [below for nested schema](#nestedatt--spec--cluster_deployment_selector))
+- `enable_resource_templates` (Boolean) EnableResourceTemplates, if True, causes hive to honor golang text/templates in Resources. While the standard syntax is supported, it won't do you a whole lot of good as the parser does not pass a data object (i.e. there is no 'dot' for you to use). This currently exists to expose a single function: {{ fromCDLabel 'some.label/key' }} will be substituted with the string value of ClusterDeployment.Labels['some.label/key']. The empty string is interpolated if there are no labels, or if the indicated key does not exist. Note that this only works in values (not e.g. map keys) that are of type string.
 - `patches` (Attributes List) Patches is the list of patches to apply. (see [below for nested schema](#nestedatt--spec--patches))
 - `resource_apply_mode` (String) ResourceApplyMode indicates if the Resource apply mode is 'Upsert' (default) or 'Sync'. ApplyMode 'Upsert' indicates create and update. ApplyMode 'Sync' indicates create, update and delete.
 - `resources` (List of Map of String) Resources is the list of objects to sync from RawExtension definitions.

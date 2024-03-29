@@ -52,7 +52,12 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 		Ingress            *struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			ClassName   *string            `tfsdk:"class_name" json:"className,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			Template    *string            `tfsdk:"template" json:"template,omitempty"`
+			Tls         *[]struct {
+				Hosts      *[]string `tfsdk:"hosts" json:"hosts,omitempty"`
+				SecretName *string   `tfsdk:"secret_name" json:"secretName,omitempty"`
+			} `tfsdk:"tls" json:"tls,omitempty"`
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
 		Job *struct {
 			AllowNonRestoredState  *bool     `tfsdk:"allow_non_restored_state" json:"allowNonRestoredState,omitempty"`
@@ -62,6 +67,7 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 			InitialSavepointPath   *string   `tfsdk:"initial_savepoint_path" json:"initialSavepointPath,omitempty"`
 			JarURI                 *string   `tfsdk:"jar_uri" json:"jarURI,omitempty"`
 			Parallelism            *int64    `tfsdk:"parallelism" json:"parallelism,omitempty"`
+			SavepointRedeployNonce *int64    `tfsdk:"savepoint_redeploy_nonce" json:"savepointRedeployNonce,omitempty"`
 			SavepointTriggerNonce  *int64    `tfsdk:"savepoint_trigger_nonce" json:"savepointTriggerNonce,omitempty"`
 			State                  *string   `tfsdk:"state" json:"state,omitempty"`
 			UpgradeMode            *string   `tfsdk:"upgrade_mode" json:"upgradeMode,omitempty"`
@@ -4621,7 +4627,7 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("v1_13", "v1_14", "v1_15", "v1_16", "v1_17", "v1_18"),
+							stringvalidator.OneOf("v1_13", "v1_14", "v1_15", "v1_16", "v1_17", "v1_18", "v1_19"),
 						},
 					},
 
@@ -4662,12 +4668,49 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 								Computed:            false,
 							},
 
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"template": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"tls": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"hosts": schema.ListAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"secret_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,
@@ -4729,6 +4772,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"parallelism": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"savepoint_redeploy_nonce": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

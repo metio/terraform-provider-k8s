@@ -80,7 +80,6 @@ Optional:
 
 Optional:
 
-- `alibabacloud` (Attributes) AlibabaCloud is the configuration used when installing on Alibaba Cloud. (see [below for nested schema](#nestedatt--spec--platform--alibabacloud))
 - `aws` (Attributes) AWS is the configuration used when installing on AWS. (see [below for nested schema](#nestedatt--spec--platform--aws))
 - `azure` (Attributes) Azure is the configuration used when installing on Azure. (see [below for nested schema](#nestedatt--spec--platform--azure))
 - `gcp` (Attributes) GCP is the configuration used when installing on GCP. (see [below for nested schema](#nestedatt--spec--platform--gcp))
@@ -88,18 +87,6 @@ Optional:
 - `openstack` (Attributes) OpenStack is the configuration used when installing on OpenStack. (see [below for nested schema](#nestedatt--spec--platform--openstack))
 - `ovirt` (Attributes) Ovirt is the configuration used when installing on oVirt. (see [below for nested schema](#nestedatt--spec--platform--ovirt))
 - `vsphere` (Attributes) VSphere is the configuration used when installing on vSphere (see [below for nested schema](#nestedatt--spec--platform--vsphere))
-
-<a id="nestedatt--spec--platform--alibabacloud"></a>
-### Nested Schema for `spec.platform.alibabacloud`
-
-Optional:
-
-- `image_id` (String) ImageID is the Image ID that should be used to create ECS instance. If set, the ImageID should belong to the same region as the cluster.
-- `instance_type` (String) InstanceType defines the ECS instance type. eg. ecs.g6.large
-- `system_disk_category` (String) SystemDiskCategory defines the category of the system disk.
-- `system_disk_size` (Number) SystemDiskSize defines the size of the system disk in gibibytes (GiB).
-- `zones` (List of String) Zones is list of availability zones that can be used. eg. ['cn-hangzhou-i', 'cn-hangzhou-h', 'cn-hangzhou-j']
-
 
 <a id="nestedatt--spec--platform--aws"></a>
 ### Nested Schema for `spec.platform.aws`
@@ -111,6 +98,7 @@ Required:
 
 Optional:
 
+- `additional_security_group_i_ds` (List of String) AdditionalSecurityGroupIDs contains IDs of additional security groups for machines, where each ID is presented in the format sg-xxxx.
 - `metadata_service` (Attributes) EC2MetadataOptions defines metadata service interaction options for EC2 instances in the machine pool. (see [below for nested schema](#nestedatt--spec--platform--aws--metadata_service))
 - `spot_market_options` (Attributes) SpotMarketOptions allows users to configure instances to be run using AWS Spot instances. (see [below for nested schema](#nestedatt--spec--platform--aws--spot_market_options))
 - `subnets` (List of String) Subnets is the list of IDs of subnets to which to attach the machines. There must be exactly one subnet for each availability zone used. These subnets may be public or private. As a special case, for consistency with install-config, you may specify exactly one private and one public subnet for each availability zone. In this case, the public subnets will be filtered out and only the private subnets will be used. If empty/omitted, we will look for subnets in each availability zone tagged with Name=<clusterID>-private-<az>.
@@ -207,7 +195,9 @@ Required:
 
 Optional:
 
+- `network_project_id` (String) NetworkProjectID specifies which project the network and subnets exist in when they are not in the main ProjectID.
 - `os_disk` (Attributes) OSDisk defines the storage for instances. (see [below for nested schema](#nestedatt--spec--platform--gcp--os_disk))
+- `secure_boot` (String) SecureBoot Defines whether the instance should have secure boot enabled. Verifies the digital signature of all boot components, and halts the boot process if signature verification fails. If omitted, the platform chooses a default, which is subject to change over time. Currently that default is 'Disabled'.
 - `zones` (List of String) Zones is list of availability zones that can be used.
 
 <a id="nestedatt--spec--platform--gcp--os_disk"></a>
@@ -331,8 +321,12 @@ Required:
 - `memory_mb` (Number) Memory is the size of a VM's memory in MB.
 - `os_disk` (Attributes) OSDisk defines the storage for instance. (see [below for nested schema](#nestedatt--spec--platform--vsphere--os_disk))
 
+Optional:
+
+- `resource_pool` (String) ResourcePool is the name of the resource pool that will be used for virtual machines. If it is not present, a default value will be used.
+
 <a id="nestedatt--spec--platform--vsphere--os_disk"></a>
-### Nested Schema for `spec.platform.vsphere.os_disk`
+### Nested Schema for `spec.platform.vsphere.resource_pool`
 
 Required:
 

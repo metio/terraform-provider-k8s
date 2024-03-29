@@ -237,8 +237,8 @@ func (r *DataFluidIoDatasetV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"mounts": schema.ListNestedAttribute{
-						Description:         "Mount Points to be mounted on Alluxio.",
-						MarkdownDescription: "Mount Points to be mounted on Alluxio.",
+						Description:         "Mount Points to be mounted on cache runtime. <br> This field can be empty because some runtimes don't need to mount external storage (e.g. <a href='https://v6d.io/'>Vineyard</a>).",
+						MarkdownDescription: "Mount Points to be mounted on cache runtime. <br> This field can be empty because some runtimes don't need to mount external storage (e.g. <a href='https://v6d.io/'>Vineyard</a>).",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"encrypt_options": schema.ListNestedAttribute{
@@ -249,8 +249,8 @@ func (r *DataFluidIoDatasetV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 											"name": schema.StringAttribute{
 												Description:         "The name of encryptOption",
 												MarkdownDescription: "The name of encryptOption",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -273,8 +273,8 @@ func (r *DataFluidIoDatasetV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 															"name": schema.StringAttribute{
 																Description:         "The name of required secret",
 																MarkdownDescription: "The name of required secret",
-																Required:            false,
-																Optional:            true,
+																Required:            true,
+																Optional:            false,
 																Computed:            false,
 															},
 														},
@@ -297,8 +297,8 @@ func (r *DataFluidIoDatasetV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								"mount_point": schema.StringAttribute{
 									Description:         "MountPoint is the mount point of source.",
 									MarkdownDescription: "MountPoint is the mount point of source.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.LengthAtLeast(5),
@@ -350,8 +350,8 @@ func (r *DataFluidIoDatasetV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								},
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -567,8 +567,8 @@ func (r *DataFluidIoDatasetV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								"name": schema.StringAttribute{
 									Description:         "The name of encryptOption",
 									MarkdownDescription: "The name of encryptOption",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 
@@ -591,8 +591,8 @@ func (r *DataFluidIoDatasetV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 												"name": schema.StringAttribute{
 													Description:         "The name of required secret",
 													MarkdownDescription: "The name of required secret",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 											},

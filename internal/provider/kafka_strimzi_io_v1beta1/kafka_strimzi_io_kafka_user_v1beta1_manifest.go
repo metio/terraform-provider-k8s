@@ -340,8 +340,8 @@ func (r *KafkaStrimziIoKafkaUserV1Beta1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "Authorization type. Currently the only supported type is 'simple'. 'simple' authorization type uses Kafka's 'kafka.security.authorizer.AclAuthorizer' class for authorization.",
-								MarkdownDescription: "Authorization type. Currently the only supported type is 'simple'. 'simple' authorization type uses Kafka's 'kafka.security.authorizer.AclAuthorizer' class for authorization.",
+								Description:         "Authorization type. Currently the only supported type is 'simple'. 'simple' authorization type uses the Kafka Admin API for managing the ACL rules.",
+								MarkdownDescription: "Authorization type. Currently the only supported type is 'simple'. 'simple' authorization type uses the Kafka Admin API for managing the ACL rules.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

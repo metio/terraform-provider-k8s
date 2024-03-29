@@ -70,12 +70,14 @@ Required:
 
 Optional:
 
+- `classifier` (String) Maven Classifier
 - `dataformats` (List of String) accepted data formats
 - `dependencies` (Attributes List) required dependencies (see [below for nested schema](#nestedatt--spec--artifacts--dependencies))
 - `exclusions` (Attributes List) provide a list of artifacts to exclude for this dependency (see [below for nested schema](#nestedatt--spec--artifacts--exclusions))
 - `java_types` (List of String) the Java types used by the artifact feature (ie, component, data format, ...)
 - `languages` (List of String) accepted languages
 - `schemes` (Attributes List) accepted URI schemes (see [below for nested schema](#nestedatt--spec--artifacts--schemes))
+- `type` (String) Maven Type
 - `version` (String) Maven Version
 
 <a id="nestedatt--spec--artifacts--dependencies"></a>
@@ -88,7 +90,9 @@ Required:
 
 Optional:
 
+- `classifier` (String) Maven Classifier
 - `exclusions` (Attributes List) provide a list of artifacts to exclude for this dependency (see [below for nested schema](#nestedatt--spec--artifacts--dependencies--exclusions))
+- `type` (String) Maven Type
 - `version` (String) Maven Version
 
 <a id="nestedatt--spec--artifacts--dependencies--exclusions"></a>
@@ -141,7 +145,9 @@ Required:
 
 Optional:
 
+- `classifier` (String) Maven Classifier
 - `exclusions` (Attributes List) provide a list of artifacts to exclude for this dependency (see [below for nested schema](#nestedatt--spec--artifacts--schemes--producer--dependencies--exclusions))
+- `type` (String) Maven Type
 - `version` (String) Maven Version
 
 <a id="nestedatt--spec--artifacts--schemes--producer--dependencies--exclusions"></a>
@@ -172,7 +178,9 @@ Required:
 
 Optional:
 
+- `classifier` (String) Maven Classifier
 - `exclusions` (Attributes List) provide a list of artifacts to exclude for this dependency (see [below for nested schema](#nestedatt--spec--artifacts--schemes--producer--dependencies--exclusions))
+- `type` (String) Maven Type
 - `version` (String) Maven Version
 
 <a id="nestedatt--spec--artifacts--schemes--producer--dependencies--exclusions"></a>
@@ -198,9 +206,11 @@ Required:
 
 Optional:
 
+- `classifier` (String) Maven Classifier
 - `dependencies` (Attributes List) a list of additional dependencies required beside the base one (see [below for nested schema](#nestedatt--spec--loaders--dependencies))
 - `languages` (List of String) a list of DSLs supported
 - `metadata` (Map of String) the metadata of the loader
+- `type` (String) Maven Type
 - `version` (String) Maven Version
 
 <a id="nestedatt--spec--loaders--dependencies"></a>
@@ -213,6 +223,8 @@ Required:
 
 Optional:
 
+- `classifier` (String) Maven Classifier
+- `type` (String) Maven Type
 - `version` (String) Maven Version
 
 
@@ -242,6 +254,8 @@ Required:
 
 Optional:
 
+- `classifier` (String) Maven Classifier
+- `type` (String) Maven Type
 - `version` (String) Maven Version
 
 
@@ -262,4 +276,6 @@ Required:
 
 Optional:
 
+- `classifier` (String) Maven Classifier
+- `type` (String) Maven Type
 - `version` (String) Maven Version

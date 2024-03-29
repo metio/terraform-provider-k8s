@@ -78,17 +78,18 @@ type Metal3IoHardwareDataV1Alpha1ManifestData struct {
 			} `tfsdk:"nics" json:"nics,omitempty"`
 			RamMebibytes *int64 `tfsdk:"ram_mebibytes" json:"ramMebibytes,omitempty"`
 			Storage      *[]struct {
-				Hctl               *string `tfsdk:"hctl" json:"hctl,omitempty"`
-				Model              *string `tfsdk:"model" json:"model,omitempty"`
-				Name               *string `tfsdk:"name" json:"name,omitempty"`
-				Rotational         *bool   `tfsdk:"rotational" json:"rotational,omitempty"`
-				SerialNumber       *string `tfsdk:"serial_number" json:"serialNumber,omitempty"`
-				SizeBytes          *int64  `tfsdk:"size_bytes" json:"sizeBytes,omitempty"`
-				Type               *string `tfsdk:"type" json:"type,omitempty"`
-				Vendor             *string `tfsdk:"vendor" json:"vendor,omitempty"`
-				Wwn                *string `tfsdk:"wwn" json:"wwn,omitempty"`
-				WwnVendorExtension *string `tfsdk:"wwn_vendor_extension" json:"wwnVendorExtension,omitempty"`
-				WwnWithExtension   *string `tfsdk:"wwn_with_extension" json:"wwnWithExtension,omitempty"`
+				AlternateNames     *[]string `tfsdk:"alternate_names" json:"alternateNames,omitempty"`
+				Hctl               *string   `tfsdk:"hctl" json:"hctl,omitempty"`
+				Model              *string   `tfsdk:"model" json:"model,omitempty"`
+				Name               *string   `tfsdk:"name" json:"name,omitempty"`
+				Rotational         *bool     `tfsdk:"rotational" json:"rotational,omitempty"`
+				SerialNumber       *string   `tfsdk:"serial_number" json:"serialNumber,omitempty"`
+				SizeBytes          *int64    `tfsdk:"size_bytes" json:"sizeBytes,omitempty"`
+				Type               *string   `tfsdk:"type" json:"type,omitempty"`
+				Vendor             *string   `tfsdk:"vendor" json:"vendor,omitempty"`
+				Wwn                *string   `tfsdk:"wwn" json:"wwn,omitempty"`
+				WwnVendorExtension *string   `tfsdk:"wwn_vendor_extension" json:"wwnVendorExtension,omitempty"`
+				WwnWithExtension   *string   `tfsdk:"wwn_with_extension" json:"wwnWithExtension,omitempty"`
 			} `tfsdk:"storage" json:"storage,omitempty"`
 			SystemVendor *struct {
 				Manufacturer *string `tfsdk:"manufacturer" json:"manufacturer,omitempty"`
@@ -406,6 +407,15 @@ func (r *Metal3IoHardwareDataV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"alternate_names": schema.ListAttribute{
+											Description:         "A list of alternate Linux device names of the disk, e.g. '/dev/sda'. Note that this list is not exhaustive, and names may not be stable across reboots.",
+											MarkdownDescription: "A list of alternate Linux device names of the disk, e.g. '/dev/sda'. Note that this list is not exhaustive, and names may not be stable across reboots.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"hctl": schema.StringAttribute{
 											Description:         "The SCSI location of the device",
 											MarkdownDescription: "The SCSI location of the device",
@@ -423,8 +433,8 @@ func (r *Metal3IoHardwareDataV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "The Linux device name of the disk, e.g. '/dev/sda'. Note that this may not be stable across reboots.",
-											MarkdownDescription: "The Linux device name of the disk, e.g. '/dev/sda'. Note that this may not be stable across reboots.",
+											Description:         "A Linux device name of the disk, e.g. '/dev/disk/by-path/pci-0000:01:00.0-scsi-0:2:0:0'. This will be a name that is stable across reboots if one is available.",
+											MarkdownDescription: "A Linux device name of the disk, e.g. '/dev/disk/by-path/pci-0000:01:00.0-scsi-0:2:0:0'. This will be a name that is stable across reboots if one is available.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

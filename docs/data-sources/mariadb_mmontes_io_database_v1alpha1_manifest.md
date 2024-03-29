@@ -3,12 +3,12 @@
 page_title: "k8s_mariadb_mmontes_io_database_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "mariadb.mmontes.io"
 description: |-
-  Database is the Schema for the databases API
+  Database is the Schema for the databases API. It is used to define a logical database as if you were running a 'CREATE DATABASE' statement.
 ---
 
 # k8s_mariadb_mmontes_io_database_v1alpha1_manifest (Data Source)
 
-Database is the Schema for the databases API
+Database is the Schema for the databases API. It is used to define a logical database as if you were running a 'CREATE DATABASE' statement.
 
 ## Example Usage
 
@@ -56,13 +56,15 @@ Optional:
 
 Required:
 
-- `maria_db_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--maria_db_ref))
+- `maria_db_ref` (Attributes) MariaDBRef is a reference to a MariaDB object. (see [below for nested schema](#nestedatt--spec--maria_db_ref))
 
 Optional:
 
-- `character_set` (String)
-- `collate` (String)
-- `name` (String)
+- `character_set` (String) CharacterSet to use in the Database.
+- `collate` (String) CharacterSet to use in the Database.
+- `name` (String) Name overrides the default Database name provided by metadata.name.
+- `requeue_interval` (String) RequeueInterval is used to perform requeue reconcilizations.
+- `retry_interval` (String) RetryInterval is the interval used to perform retries.
 
 <a id="nestedatt--spec--maria_db_ref"></a>
 ### Nested Schema for `spec.maria_db_ref`
@@ -76,4 +78,4 @@ Optional:
 - `namespace` (String) Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `resource_version` (String) Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 - `uid` (String) UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
-- `wait_for_it` (Boolean)
+- `wait_for_it` (Boolean) WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.

@@ -223,8 +223,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 				MarkdownDescription: "FunctionSpec defines the desired state of Function.",
 				Attributes: map[string]schema.Attribute{
 					"architectures": schema.ListAttribute{
-						Description:         "The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64.",
-						MarkdownDescription: "The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64.",
+						Description:         "The instruction set architecture that the function supports. Enter a stringarray with one of the valid values (arm64 or x86_64). The default value isx86_64.",
+						MarkdownDescription: "The instruction set architecture that the function supports. Enter a stringarray with one of the valid values (arm64 or x86_64). The default value isx86_64.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -256,8 +256,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 								MarkdownDescription: "Reference field for S3Bucket",
 								Attributes: map[string]schema.Attribute{
 									"from": schema.SingleNestedAttribute{
-										Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-										MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+										Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+										MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
 												Description:         "",
@@ -310,16 +310,16 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"code_signing_config_arn": schema.StringAttribute{
-						Description:         "To enable code signing for this function, specify the ARN of a code-signing configuration. A code-signing configuration includes a set of signing profiles, which define the trusted publishers for this function.",
-						MarkdownDescription: "To enable code signing for this function, specify the ARN of a code-signing configuration. A code-signing configuration includes a set of signing profiles, which define the trusted publishers for this function.",
+						Description:         "To enable code signing for this function, specify the ARN of a code-signingconfiguration. A code-signing configuration includes a set of signing profiles,which define the trusted publishers for this function.",
+						MarkdownDescription: "To enable code signing for this function, specify the ARN of a code-signingconfiguration. A code-signing configuration includes a set of signing profiles,which define the trusted publishers for this function.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"dead_letter_config": schema.SingleNestedAttribute{
-						Description:         "A dead-letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see Dead-letter queues (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq).",
-						MarkdownDescription: "A dead-letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see Dead-letter queues (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq).",
+						Description:         "A dead-letter queue configuration that specifies the queue or topic whereLambda sends asynchronous events when they fail processing. For more information,see Dead-letter queues (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq).",
+						MarkdownDescription: "A dead-letter queue configuration that specifies the queue or topic whereLambda sends asynchronous events when they fail processing. For more information,see Dead-letter queues (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq).",
 						Attributes: map[string]schema.Attribute{
 							"target_arn": schema.StringAttribute{
 								Description:         "",
@@ -361,8 +361,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"ephemeral_storage": schema.SingleNestedAttribute{
-						Description:         "The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB.",
-						MarkdownDescription: "The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB.",
+						Description:         "The size of the function's /tmp directory in MB. The default value is 512,but can be any whole number between 512 and 10,240 MB.",
+						MarkdownDescription: "The size of the function's /tmp directory in MB. The default value is 512,but can be any whole number between 512 and 10,240 MB.",
 						Attributes: map[string]schema.Attribute{
 							"size": schema.Int64Attribute{
 								Description:         "",
@@ -405,12 +405,12 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"function_event_invoke_config": schema.SingleNestedAttribute{
-						Description:         "Configures options for asynchronous invocation on a function.  - DestinationConfig A destination for events after they have been sent to a function for processing.  Types of Destinations: Function - The Amazon Resource Name (ARN) of a Lambda function. Queue - The ARN of a standard SQS queue. Topic - The ARN of a standard SNS topic. Event Bus - The ARN of an Amazon EventBridge event bus.  - MaximumEventAgeInSeconds The maximum age of a request that Lambda sends to a function for processing.  - MaximumRetryAttempts The maximum number of times to retry when the function returns an error.",
-						MarkdownDescription: "Configures options for asynchronous invocation on a function.  - DestinationConfig A destination for events after they have been sent to a function for processing.  Types of Destinations: Function - The Amazon Resource Name (ARN) of a Lambda function. Queue - The ARN of a standard SQS queue. Topic - The ARN of a standard SNS topic. Event Bus - The ARN of an Amazon EventBridge event bus.  - MaximumEventAgeInSeconds The maximum age of a request that Lambda sends to a function for processing.  - MaximumRetryAttempts The maximum number of times to retry when the function returns an error.",
+						Description:         "Configures options for asynchronous invocation on a function.- DestinationConfigA destination for events after they have been sent to a function for processing.Types of Destinations:Function - The Amazon Resource Name (ARN) of a Lambda function.Queue - The ARN of a standard SQS queue.Topic - The ARN of a standard SNS topic.Event Bus - The ARN of an Amazon EventBridge event bus.- MaximumEventAgeInSecondsThe maximum age of a request that Lambda sends to a function for processing.- MaximumRetryAttemptsThe maximum number of times to retry when the function returns an error.",
+						MarkdownDescription: "Configures options for asynchronous invocation on a function.- DestinationConfigA destination for events after they have been sent to a function for processing.Types of Destinations:Function - The Amazon Resource Name (ARN) of a Lambda function.Queue - The ARN of a standard SQS queue.Topic - The ARN of a standard SNS topic.Event Bus - The ARN of an Amazon EventBridge event bus.- MaximumEventAgeInSecondsThe maximum age of a request that Lambda sends to a function for processing.- MaximumRetryAttemptsThe maximum number of times to retry when the function returns an error.",
 						Attributes: map[string]schema.Attribute{
 							"destination_config": schema.SingleNestedAttribute{
-								Description:         "A configuration object that specifies the destination of an event after Lambda processes it.",
-								MarkdownDescription: "A configuration object that specifies the destination of an event after Lambda processes it.",
+								Description:         "A configuration object that specifies the destination of an event after Lambdaprocesses it.",
+								MarkdownDescription: "A configuration object that specifies the destination of an event after Lambdaprocesses it.",
 								Attributes: map[string]schema.Attribute{
 									"on_failure": schema.SingleNestedAttribute{
 										Description:         "A destination for events that failed processing.",
@@ -489,16 +489,16 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"handler": schema.StringAttribute{
-						Description:         "The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see Lambda programming model (https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html).",
-						MarkdownDescription: "The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see Lambda programming model (https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html).",
+						Description:         "The name of the method within your code that Lambda calls to run your function.Handler is required if the deployment package is a .zip file archive. Theformat includes the file name. It can also include namespaces and other qualifiers,depending on the runtime. For more information, see Lambda programming model(https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html).",
+						MarkdownDescription: "The name of the method within your code that Lambda calls to run your function.Handler is required if the deployment package is a .zip file archive. Theformat includes the file name. It can also include namespaces and other qualifiers,depending on the runtime. For more information, see Lambda programming model(https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"image_config": schema.SingleNestedAttribute{
-						Description:         "Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings) that override the values in the container image Dockerfile.",
-						MarkdownDescription: "Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings) that override the values in the container image Dockerfile.",
+						Description:         "Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings)that override the values in the container image Dockerfile.",
+						MarkdownDescription: "Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings)that override the values in the container image Dockerfile.",
 						Attributes: map[string]schema.Attribute{
 							"command": schema.ListAttribute{
 								Description:         "",
@@ -532,20 +532,20 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"kms_key_arn": schema.StringAttribute{
-						Description:         "The ARN of the Key Management Service (KMS) key that's used to encrypt your function's environment variables. If it's not provided, Lambda uses a default service key.",
-						MarkdownDescription: "The ARN of the Key Management Service (KMS) key that's used to encrypt your function's environment variables. If it's not provided, Lambda uses a default service key.",
+						Description:         "The ARN of the Key Management Service (KMS) key that's used to encrypt yourfunction's environment variables. If it's not provided, Lambda uses a defaultservice key.",
+						MarkdownDescription: "The ARN of the Key Management Service (KMS) key that's used to encrypt yourfunction's environment variables. If it's not provided, Lambda uses a defaultservice key.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"kms_key_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -566,8 +566,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"layers": schema.ListAttribute{
-						Description:         "A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) to add to the function's execution environment. Specify each layer by its ARN, including the version.",
-						MarkdownDescription: "A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) to add to the function's execution environment. Specify each layer by its ARN, including the version.",
+						Description:         "A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)to add to the function's execution environment. Specify each layer by itsARN, including the version.",
+						MarkdownDescription: "A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)to add to the function's execution environment. Specify each layer by itsARN, including the version.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -575,24 +575,24 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"memory_size": schema.Int64Attribute{
-						Description:         "The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console) at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.",
-						MarkdownDescription: "The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console) at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.",
+						Description:         "The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console)at runtime. Increasing the function memory also increases its CPU allocation.The default value is 128 MB. The value can be any multiple of 1 MB.",
+						MarkdownDescription: "The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console)at runtime. Increasing the function memory also increases its CPU allocation.The default value is 128 MB. The value can be any multiple of 1 MB.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the Lambda function.  Name formats  * Function name – my-function.  * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function.  * Partial ARN – 123456789012:function:my-function.  The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
-						MarkdownDescription: "The name of the Lambda function.  Name formats  * Function name – my-function.  * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function.  * Partial ARN – 123456789012:function:my-function.  The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+						Description:         "The name of the Lambda function.Name formats   * Function name – my-function.   * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function.   * Partial ARN – 123456789012:function:my-function.The length constraint applies only to the full ARN. If you specify only thefunction name, it is limited to 64 characters in length.",
+						MarkdownDescription: "The name of the Lambda function.Name formats   * Function name – my-function.   * Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function.   * Partial ARN – 123456789012:function:my-function.The length constraint applies only to the full ARN. If you specify only thefunction name, it is limited to 64 characters in length.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"package_type": schema.StringAttribute{
-						Description:         "The type of deployment package. Set to Image for container image and set to Zip for .zip file archive.",
-						MarkdownDescription: "The type of deployment package. Set to Image for container image and set to Zip for .zip file archive.",
+						Description:         "The type of deployment package. Set to Image for container image and setto Zip for .zip file archive.",
+						MarkdownDescription: "The type of deployment package. Set to Image for container image and setto Zip for .zip file archive.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -623,12 +623,12 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"role_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -649,16 +649,16 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"runtime": schema.StringAttribute{
-						Description:         "The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive.",
-						MarkdownDescription: "The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). Runtime is required if the deployment package is a .zip file archive.",
+						Description:         "The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).Runtime is required if the deployment package is a .zip file archive.",
+						MarkdownDescription: "The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).Runtime is required if the deployment package is a .zip file archive.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"snap_start": schema.SingleNestedAttribute{
-						Description:         "The function's SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html) setting.",
-						MarkdownDescription: "The function's SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html) setting.",
+						Description:         "The function's SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html)setting.",
+						MarkdownDescription: "The function's SnapStart (https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html)setting.",
 						Attributes: map[string]schema.Attribute{
 							"apply_on": schema.StringAttribute{
 								Description:         "",
@@ -674,8 +674,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "A list of tags (https://docs.aws.amazon.com/lambda/latest/dg/tagging.html) to apply to the function.",
-						MarkdownDescription: "A list of tags (https://docs.aws.amazon.com/lambda/latest/dg/tagging.html) to apply to the function.",
+						Description:         "A list of tags (https://docs.aws.amazon.com/lambda/latest/dg/tagging.html)to apply to the function.",
+						MarkdownDescription: "A list of tags (https://docs.aws.amazon.com/lambda/latest/dg/tagging.html)to apply to the function.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -683,16 +683,16 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"timeout": schema.Int64Attribute{
-						Description:         "The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).",
-						MarkdownDescription: "The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).",
+						Description:         "The amount of time (in seconds) that Lambda allows a function to run beforestopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.For more information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).",
+						MarkdownDescription: "The amount of time (in seconds) that Lambda allows a function to run beforestopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.For more information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tracing_config": schema.SingleNestedAttribute{
-						Description:         "Set Mode to Active to sample and trace a subset of incoming requests with X-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).",
-						MarkdownDescription: "Set Mode to Active to sample and trace a subset of incoming requests with X-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).",
+						Description:         "Set Mode to Active to sample and trace a subset of incoming requests withX-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).",
+						MarkdownDescription: "Set Mode to Active to sample and trace a subset of incoming requests withX-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
 								Description:         "",
@@ -708,8 +708,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"vpc_config": schema.SingleNestedAttribute{
-						Description:         "For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see Configuring a Lambda function to access resources in a VPC (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).",
-						MarkdownDescription: "For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see Configuring a Lambda function to access resources in a VPC (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).",
+						Description:         "For network connectivity to Amazon Web Services resources in a VPC, specifya list of security groups and subnets in the VPC. When you connect a functionto a VPC, it can access resources and the internet only through that VPC.For more information, see Configuring a Lambda function to access resourcesin a VPC (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).",
+						MarkdownDescription: "For network connectivity to Amazon Web Services resources in a VPC, specifya list of security groups and subnets in the VPC. When you connect a functionto a VPC, it can access resources and the internet only through that VPC.For more information, see Configuring a Lambda function to access resourcesin a VPC (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).",
 						Attributes: map[string]schema.Attribute{
 							"security_group_i_ds": schema.ListAttribute{
 								Description:         "",
@@ -726,8 +726,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"from": schema.SingleNestedAttribute{
-											Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "",
@@ -763,8 +763,8 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"from": schema.SingleNestedAttribute{
-											Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "",

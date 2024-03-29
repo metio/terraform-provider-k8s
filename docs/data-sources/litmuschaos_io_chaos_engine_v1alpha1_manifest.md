@@ -415,6 +415,7 @@ Optional:
 - `probe_polling_interval` (String)
 - `retry` (Number)
 - `stop_on_failure` (Boolean)
+- `verbosity` (String)
 
 
 <a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs"></a>
@@ -459,6 +460,7 @@ Optional:
 - `labels` (Map of String) Labels for the source pod
 - `node_selector` (Map of String) NodeSelector for the source pod
 - `privileged` (Boolean) Privileged for the source pod
+- `tolerations` (Attributes List) Tolerations for the source pod (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--tolerations))
 - `volume_mount` (Attributes List) VolumesMount for the source pod (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volume_mount))
 - `volumes` (Attributes List) Volumes for the source pod (see [below for nested schema](#nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volumes))
 
@@ -543,6 +545,18 @@ Optional:
 Optional:
 
 - `name` (String) Name of the referent
+
+
+<a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--tolerations"></a>
+### Nested Schema for `spec.experiments.spec.probe.cmd_probe_inputs.source.volumes`
+
+Optional:
+
+- `effect` (String) Effect to match. Empty means all effects.
+- `key` (String) Taint key the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists.
+- `operator` (String) Operators are Exists or Equal. Defaults to Equal.
+- `toleration_seconds` (Number) Period of time the toleration tolerates the taint.
+- `value` (String) If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 <a id="nestedatt--spec--experiments--spec--probe--cmd_probe_inputs--source--volume_mount"></a>

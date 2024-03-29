@@ -96,7 +96,6 @@ Required:
 Optional:
 
 - `agent_bare_metal` (Attributes) AgentBareMetal is the configuration used when performing an Assisted Agent based installation to bare metal. (see [below for nested schema](#nestedatt--spec--platform--agent_bare_metal))
-- `alibabacloud` (Attributes) AlibabaCloud is the configuration used when installing on Alibaba Cloud (see [below for nested schema](#nestedatt--spec--platform--alibabacloud))
 - `aws` (Attributes) AWS is the configuration used when installing on AWS. (see [below for nested schema](#nestedatt--spec--platform--aws))
 - `azure` (Attributes) Azure is the configuration used when installing on Azure. (see [below for nested schema](#nestedatt--spec--platform--azure))
 - `baremetal` (Attributes) BareMetal is the configuration used when installing on bare metal. (see [below for nested schema](#nestedatt--spec--platform--baremetal))
@@ -134,23 +133,6 @@ Optional:
 
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
-
-
-
-<a id="nestedatt--spec--platform--alibabacloud"></a>
-### Nested Schema for `spec.platform.alibabacloud`
-
-Required:
-
-- `credentials_secret_ref` (Attributes) CredentialsSecretRef refers to a secret that contains Alibaba Cloud account access credentials. (see [below for nested schema](#nestedatt--spec--platform--alibabacloud--credentials_secret_ref))
-- `region` (String) Region specifies the Alibaba Cloud region where the cluster will be created.
-
-<a id="nestedatt--spec--platform--alibabacloud--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.alibabacloud.region`
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
 

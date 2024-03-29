@@ -3,12 +3,12 @@
 page_title: "k8s_scylla_scylladb_com_scylla_operator_config_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "scylla.scylladb.com"
 description: |-
-  
+  ScyllaOperatorConfig describes the Scylla Operator configuration.
 ---
 
 # k8s_scylla_scylladb_com_scylla_operator_config_v1alpha1_manifest (Data Source)
 
-
+ScyllaOperatorConfig describes the Scylla Operator configuration.
 
 ## Example Usage
 
@@ -16,6 +16,7 @@ description: |-
 data "k8s_scylla_scylladb_com_scylla_operator_config_v1alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```

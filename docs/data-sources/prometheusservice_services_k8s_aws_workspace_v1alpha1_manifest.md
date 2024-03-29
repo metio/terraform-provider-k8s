@@ -56,5 +56,5 @@ Optional:
 
 Optional:
 
-- `alias` (String) An optional user-assigned alias for this workspace. This alias is for user reference and does not need to be unique.
+- `alias` (String) An optional user-assigned alias for this workspace. This alias is for userreference and does not need to be unique.
 - `tags` (Map of String) Optional, user-provided tags for this workspace.

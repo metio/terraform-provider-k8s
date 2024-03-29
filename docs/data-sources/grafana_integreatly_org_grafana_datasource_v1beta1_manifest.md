@@ -69,24 +69,21 @@ Optional:
 <a id="nestedatt--spec--datasource"></a>
 ### Nested Schema for `spec.datasource`
 
-Required:
-
-- `access` (String)
-- `name` (String)
-- `type` (String)
-- `url` (String)
-
 Optional:
 
+- `access` (String)
 - `basic_auth` (Boolean)
 - `basic_auth_user` (String)
 - `database` (String)
 - `editable` (Boolean)
 - `is_default` (Boolean)
 - `json_data` (Map of String)
+- `name` (String)
 - `org_id` (Number)
 - `secure_json_data` (Map of String)
+- `type` (String)
 - `uid` (String)
+- `url` (String)
 - `user` (String)
 
 

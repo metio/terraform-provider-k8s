@@ -30,7 +30,7 @@ data "k8s_ec2_services_k8s_aws_nat_gateway_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) NatGatewaySpec defines the desired state of NatGateway.  Describes a NAT gateway. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) NatGatewaySpec defines the desired state of NatGateway.Describes a NAT gateway. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,19 +56,19 @@ Optional:
 
 Optional:
 
-- `allocation_id` (String) [Public NAT gateways only] The allocation ID of an Elastic IP address to associate with the NAT gateway. You cannot specify an Elastic IP address with a private NAT gateway. If the Elastic IP address is associated with another resource, you must first disassociate it.
-- `allocation_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--allocation_ref))
-- `connectivity_type` (String) Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.
+- `allocation_id` (String) [Public NAT gateways only] The allocation ID of an Elastic IP address toassociate with the NAT gateway. You cannot specify an Elastic IP addresswith a private NAT gateway. If the Elastic IP address is associated withanother resource, you must first disassociate it.
+- `allocation_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--allocation_ref))
+- `connectivity_type` (String) Indicates whether the NAT gateway supports public or private connectivity.The default is public connectivity.
 - `subnet_id` (String) The subnet in which to create the NAT gateway.
-- `subnet_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--subnet_ref))
-- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string. (see [below for nested schema](#nestedatt--spec--tags))
+- `subnet_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--subnet_ref))
+- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--allocation_ref"></a>
 ### Nested Schema for `spec.allocation_ref`
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--allocation_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--allocation_ref--from))
 
 <a id="nestedatt--spec--allocation_ref--from"></a>
 ### Nested Schema for `spec.allocation_ref.from`
@@ -84,7 +84,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_ref--from))
 
 <a id="nestedatt--spec--subnet_ref--from"></a>
 ### Nested Schema for `spec.subnet_ref.from`

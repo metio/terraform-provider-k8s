@@ -77,57 +77,140 @@ Optional:
 - `annotations` (Map of String) The annotations-related configuration to add/set on each Pod related object.
 - `host_network` (Boolean) Whether host networking is enabled for the Ganesha server. If not set, the network settings from the cluster CR will be applied.
 - `labels` (Map of String) The labels-related configuration to add/set on each Pod related object.
+- `liveness_probe` (Attributes) A liveness-probe to verify that Ganesha server has valid run-time state. If LivenessProbe.Disabled is false and LivenessProbe.Probe is nil uses default probe. (see [below for nested schema](#nestedatt--spec--server--liveness_probe))
 - `log_level` (String) LogLevel set logging level
-- `placement` (Attributes) The affinity to place the ganesha pods (see [below for nested schema](#nestedatt--spec--server--placement))
+- `placement` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement))
 - `priority_class_name` (String) PriorityClassName sets the priority class on the pods
 - `resources` (Attributes) Resources set resource requests and limits (see [below for nested schema](#nestedatt--spec--server--resources))
+
+<a id="nestedatt--spec--server--liveness_probe"></a>
+### Nested Schema for `spec.server.liveness_probe`
+
+Optional:
+
+- `disabled` (Boolean) Disabled determines whether probe is disable or not
+- `probe` (Attributes) Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe))
+
+<a id="nestedatt--spec--server--liveness_probe--probe"></a>
+### Nested Schema for `spec.server.liveness_probe.probe`
+
+Optional:
+
+- `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe--exec))
+- `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe--grpc))
+- `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe--http_get))
+- `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+- `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+- `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
+- `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe--tcp_socket))
+- `termination_grace_period_seconds` (Number)
+- `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+
+<a id="nestedatt--spec--server--liveness_probe--probe--exec"></a>
+### Nested Schema for `spec.server.liveness_probe.probe.exec`
+
+Optional:
+
+- `command` (List of String) Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+
+
+<a id="nestedatt--spec--server--liveness_probe--probe--grpc"></a>
+### Nested Schema for `spec.server.liveness_probe.probe.grpc`
+
+Required:
+
+- `port` (Number) Port number of the gRPC service. Number must be in the range 1 to 65535.
+
+Optional:
+
+- `service` (String) Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.
+
+
+<a id="nestedatt--spec--server--liveness_probe--probe--http_get"></a>
+### Nested Schema for `spec.server.liveness_probe.probe.http_get`
+
+Required:
+
+- `port` (String) Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+
+Optional:
+
+- `host` (String) Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.
+- `http_headers` (Attributes List) Custom headers to set in the request. HTTP allows repeated headers. (see [below for nested schema](#nestedatt--spec--server--liveness_probe--probe--http_get--http_headers))
+- `path` (String) Path to access on the HTTP server.
+- `scheme` (String) Scheme to use for connecting to the host. Defaults to HTTP.
+
+<a id="nestedatt--spec--server--liveness_probe--probe--http_get--http_headers"></a>
+### Nested Schema for `spec.server.liveness_probe.probe.http_get.scheme`
+
+Required:
+
+- `name` (String) The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.
+- `value` (String) The header field value
+
+
+
+<a id="nestedatt--spec--server--liveness_probe--probe--tcp_socket"></a>
+### Nested Schema for `spec.server.liveness_probe.probe.tcp_socket`
+
+Required:
+
+- `port` (String) Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+
+Optional:
+
+- `host` (String) Optional: Host name to connect to, defaults to the pod IP.
+
+
+
 
 <a id="nestedatt--spec--server--placement"></a>
 ### Nested Schema for `spec.server.placement`
 
 Optional:
 
-- `node_affinity` (Attributes) NodeAffinity is a group of node affinity scheduling rules (see [below for nested schema](#nestedatt--spec--server--placement--node_affinity))
-- `pod_affinity` (Attributes) PodAffinity is a group of inter pod affinity scheduling rules (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity))
-- `pod_anti_affinity` (Attributes) PodAntiAffinity is a group of inter pod anti affinity scheduling rules (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity))
-- `tolerations` (Attributes List) The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator> (see [below for nested schema](#nestedatt--spec--server--placement--tolerations))
-- `topology_spread_constraints` (Attributes List) TopologySpreadConstraint specifies how to spread matching pods among the given topology (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--pod_anti_affinity))
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints))
 
 <a id="nestedatt--spec--server--placement--node_affinity"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--preference))
-- `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--preference"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_fields"></a>
@@ -135,12 +218,12 @@ Optional:
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -150,27 +233,27 @@ Optional:
 
 Required:
 
-- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms))
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.node_selector_terms`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -178,12 +261,12 @@ Optional:
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -194,49 +277,51 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -245,20 +330,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -269,33 +354,35 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -304,20 +391,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -328,49 +415,51 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -379,20 +468,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -403,33 +492,35 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -438,20 +529,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -462,11 +553,11 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String)
+- `key` (String)
+- `operator` (String)
+- `toleration_seconds` (Number)
+- `value` (String)
 
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints"></a>
@@ -474,37 +565,37 @@ Optional:
 
 Required:
 
-- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
-- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.
-- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+- `max_skew` (Number)
+- `topology_key` (String)
+- `when_unsatisfiable` (String)
 
 Optional:
 
-- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
-- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
-- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--label_selector"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--server--placement--topology_spread_constraints--label_selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--server--placement--topology_spread_constraints--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.server.placement.topology_spread_constraints.label_selector.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -534,8 +625,8 @@ Required:
 
 Optional:
 
-- `namespace` (String) The namespace inside the Ceph pool (set by 'pool') where shared NFS-Ganesha config is stored. This setting is required for Ceph v15 and ignored for Ceph v16. As of Ceph Pacific v16+, this is internally set to the name of the CephNFS.
-- `pool` (String) The Ceph pool used store the shared configuration for NFS-Ganesha daemons. This setting is required for Ceph v15 and ignored for Ceph v16. As of Ceph Pacific 16.2.7+, this is internally hardcoded to '.nfs'.
+- `namespace` (String) The namespace inside the Ceph pool (set by 'pool') where shared NFS-Ganesha config is stored. This setting is deprecated as it is internally set to the name of the CephNFS.
+- `pool` (String) The Ceph pool used store the shared configuration for NFS-Ganesha daemons. This setting is deprecated, as it is internally required to be '.nfs'.
 
 
 <a id="nestedatt--spec--security"></a>
@@ -561,41 +652,41 @@ Optional:
 
 Optional:
 
-- `volume_source` (Attributes) VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for Kerberos configuration files like what is normally used to configure Volumes for a Pod. For example, a ConfigMap, Secret, or HostPath. The volume may contain multiple files, all of which will be loaded. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source))
+- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source))
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source`
 
 Optional:
 
-- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--config_map))
-- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--empty_dir))
-- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--host_path))
-- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--persistent_volume_claim))
-- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--projected))
-- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--config_map))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--empty_dir))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--host_path))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--persistent_volume_claim))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--projected))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret))
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--config_map"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret`
 
 Optional:
 
-- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.optional`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -604,8 +695,8 @@ Optional:
 
 Optional:
 
-- `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `medium` (String)
+- `size_limit` (String)
 
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--host_path"></a>
@@ -613,11 +704,11 @@ Optional:
 
 Required:
 
-- `path` (String) path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+- `path` (String)
 
 Optional:
 
-- `type` (String) type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+- `type` (String)
 
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--persistent_volume_claim"></a>
@@ -625,11 +716,11 @@ Optional:
 
 Required:
 
-- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+- `claim_name` (String)
 
 Optional:
 
-- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
+- `read_only` (Boolean)
 
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--projected"></a>
@@ -637,39 +728,77 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources))
+- `default_mode` (Number)
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources))
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources`
 
 Optional:
 
-- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--config_map))
-- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--downward_api))
-- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--secret))
-- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token))
+
+<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector"></a>
+### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector--match_expressions"></a>
+### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.label_selector.match_labels`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--config_map"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -678,31 +807,31 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
 
 Required:
 
-- `path` (String) Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+- `path` (String)
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--field_ref))
-- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--resource_field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--field_ref))
+- `mode` (Number)
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--field_ref"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items.resource_field_ref`
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--resource_field_ref"></a>
@@ -710,12 +839,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 
@@ -725,21 +854,21 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional field specify whether the Secret or its key must be defined
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -748,12 +877,12 @@ Optional:
 
 Required:
 
-- `path` (String) path is the path relative to the mount point of the file to project the token into.
+- `path` (String)
 
 Optional:
 
-- `audience` (String) audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
-- `expiration_seconds` (Number) expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
+- `audience` (String)
+- `expiration_seconds` (Number)
 
 
 
@@ -763,22 +892,22 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
-- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
-- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
+- `optional` (Boolean)
+- `secret_name` (String)
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.secret_name`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -789,41 +918,41 @@ Optional:
 
 Optional:
 
-- `volume_source` (Attributes) VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for the Kerberos keytab file like what is normally used to configure Volumes for a Pod. For example, a Secret or HostPath. There are two requirements for the source's content: 1. The config file must be mountable via 'subPath: krb5.keytab'. For example, in a Secret, the data item must be named 'krb5.keytab', or 'items' must be defined to select the key and give it path 'krb5.keytab'. A HostPath directory must have the 'krb5.keytab' file. 2. The volume or config file must have mode 0600. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source))
+- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source))
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source`
 
 Optional:
 
-- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--config_map))
-- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--empty_dir))
-- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--host_path))
-- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--persistent_volume_claim))
-- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--projected))
-- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--config_map))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--empty_dir))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--host_path))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--persistent_volume_claim))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--projected))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret))
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--config_map"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret`
 
 Optional:
 
-- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.optional`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -832,8 +961,8 @@ Optional:
 
 Optional:
 
-- `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `medium` (String)
+- `size_limit` (String)
 
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--host_path"></a>
@@ -841,11 +970,11 @@ Optional:
 
 Required:
 
-- `path` (String) path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+- `path` (String)
 
 Optional:
 
-- `type` (String) type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+- `type` (String)
 
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--persistent_volume_claim"></a>
@@ -853,11 +982,11 @@ Optional:
 
 Required:
 
-- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+- `claim_name` (String)
 
 Optional:
 
-- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
+- `read_only` (Boolean)
 
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--projected"></a>
@@ -865,39 +994,77 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources))
+- `default_mode` (Number)
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources))
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources`
 
 Optional:
 
-- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--config_map))
-- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--downward_api))
-- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--secret))
-- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token))
+
+<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector"></a>
+### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--label_selector--match_expressions"></a>
+### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.label_selector.match_labels`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--config_map"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -906,31 +1073,31 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
 
 Required:
 
-- `path` (String) Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+- `path` (String)
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--field_ref))
-- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--resource_field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--field_ref))
+- `mode` (Number)
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--resource_field_ref))
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--field_ref"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items.resource_field_ref`
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items--resource_field_ref"></a>
@@ -938,12 +1105,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 
@@ -953,21 +1120,21 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional field specify whether the Secret or its key must be defined
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--sources--service_account_token--items"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.sources.service_account_token.items`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -976,12 +1143,12 @@ Optional:
 
 Required:
 
-- `path` (String) path is the path relative to the mount point of the file to project the token into.
+- `path` (String)
 
 Optional:
 
-- `audience` (String) audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
-- `expiration_seconds` (Number) expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
+- `audience` (String)
+- `expiration_seconds` (Number)
 
 
 
@@ -991,22 +1158,22 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
-- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
-- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items))
+- `optional` (Boolean)
+- `secret_name` (String)
 
 <a id="nestedatt--spec--security--kerberos--principal_name--volume_source--secret--items"></a>
 ### Nested Schema for `spec.security.kerberos.principal_name.volume_source.secret.secret_name`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -1040,41 +1207,41 @@ Optional:
 Required:
 
 - `sub_path` (String) SubPath defines the sub-path in '/etc/sssd/rook-additional/' where the additional file(s) will be placed. Each subPath definition must be unique and must not contain ':'.
-- `volume_source` (Attributes) VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for the additional file(s) like what is normally used to configure Volumes for a Pod. Fore example, a ConfigMap, Secret, or HostPath. Each VolumeSource adds one or more additional files to the SSSD sidecar container in the '/etc/sssd/rook-additional/<subPath>' directory. Be aware that some files may need to have a specific file mode like 0600 due to requirements by SSSD for some files. For example, CA or TLS certificates. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source))
+- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source))
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source`
 
 Optional:
 
-- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--config_map))
-- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--empty_dir))
-- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--host_path))
-- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--persistent_volume_claim))
-- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected))
-- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--config_map))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--empty_dir))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--host_path))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--persistent_volume_claim))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret))
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--config_map"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret`
 
 Optional:
 
-- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--items"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.optional`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -1083,8 +1250,8 @@ Optional:
 
 Optional:
 
-- `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `medium` (String)
+- `size_limit` (String)
 
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--host_path"></a>
@@ -1092,11 +1259,11 @@ Optional:
 
 Required:
 
-- `path` (String) path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+- `path` (String)
 
 Optional:
 
-- `type` (String) type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+- `type` (String)
 
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--persistent_volume_claim"></a>
@@ -1104,11 +1271,11 @@ Optional:
 
 Required:
 
-- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+- `claim_name` (String)
 
 Optional:
 
-- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
+- `read_only` (Boolean)
 
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--projected"></a>
@@ -1116,39 +1283,77 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources))
+- `default_mode` (Number)
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources))
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources`
 
 Optional:
 
-- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--config_map))
-- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api))
-- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--secret))
-- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--service_account_token))
+
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.cluster_trust_bundle.signer_name`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle--signer_name--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--cluster_trust_bundle--signer_name--match_expressions"></a>
+### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.cluster_trust_bundle.signer_name.match_labels`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--config_map"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--config_map--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--config_map--items"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.config_map.optional`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -1157,31 +1362,31 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items))
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.downward_api.items`
 
 Required:
 
-- `path` (String) Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+- `path` (String)
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items--field_ref))
-- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items--resource_field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items--field_ref))
+- `mode` (Number)
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items--field_ref"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.downward_api.items.resource_field_ref`
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--downward_api--items--resource_field_ref"></a>
@@ -1189,12 +1394,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 
@@ -1204,21 +1409,21 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--secret--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional field specify whether the Secret or its key must be defined
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--secret--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--sources--secret--items"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.sources.secret.optional`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -1227,12 +1432,12 @@ Optional:
 
 Required:
 
-- `path` (String) path is the path relative to the mount point of the file to project the token into.
+- `path` (String)
 
 Optional:
 
-- `audience` (String) audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
-- `expiration_seconds` (Number) expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
+- `audience` (String)
+- `expiration_seconds` (Number)
 
 
 
@@ -1242,22 +1447,22 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--items))
-- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
-- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--items))
+- `optional` (Boolean)
+- `secret_name` (String)
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source--secret--items"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.additional_files.volume_source.secret.secret_name`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -1286,41 +1491,41 @@ Required:
 
 Optional:
 
-- `volume_source` (Attributes) VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for the SSSD configuration file like what is normally used to configure Volumes for a Pod. For example, a ConfigMap, Secret, or HostPath. There are two requirements for the source's content: 1. The config file must be mountable via 'subPath: sssd.conf'. For example, in a ConfigMap, the data item must be named 'sssd.conf', or 'items' must be defined to select the key and give it path 'sssd.conf'. A HostPath directory must have the 'sssd.conf' file. 2. The volume or config file must have mode 0600. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source))
+- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source))
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source`
 
 Optional:
 
-- `config_map` (Attributes) configMap represents a configMap that should populate this volume (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--config_map))
-- `empty_dir` (Attributes) emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--empty_dir))
-- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--host_path))
-- `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--persistent_volume_claim))
-- `projected` (Attributes) projected items for all in one resources secrets, configmaps, and downward API (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected))
-- `secret` (Attributes) secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--config_map))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--empty_dir))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--host_path))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--persistent_volume_claim))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret))
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--config_map"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret`
 
 Optional:
 
-- `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--items"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.optional`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -1329,8 +1534,8 @@ Optional:
 
 Optional:
 
-- `medium` (String) medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+- `medium` (String)
+- `size_limit` (String)
 
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--host_path"></a>
@@ -1338,11 +1543,11 @@ Optional:
 
 Required:
 
-- `path` (String) path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+- `path` (String)
 
 Optional:
 
-- `type` (String) type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+- `type` (String)
 
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--persistent_volume_claim"></a>
@@ -1350,11 +1555,11 @@ Optional:
 
 Required:
 
-- `claim_name` (String) claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+- `claim_name` (String)
 
 Optional:
 
-- `read_only` (Boolean) readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
+- `read_only` (Boolean)
 
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--projected"></a>
@@ -1362,39 +1567,77 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources))
+- `default_mode` (Number)
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources))
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources`
 
 Optional:
 
-- `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--config_map))
-- `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api))
-- `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--secret))
-- `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--service_account_token))
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--service_account_token))
+
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.cluster_trust_bundle.signer_name`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle--signer_name--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--cluster_trust_bundle--signer_name--match_expressions"></a>
+### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.cluster_trust_bundle.signer_name.match_labels`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--config_map"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.config_map`
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--config_map--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--config_map--items"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.config_map.optional`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -1403,31 +1646,31 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) Items is a list of DownwardAPIVolume file (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items))
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items))
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.downward_api.items`
 
 Required:
 
-- `path` (String) Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+- `path` (String)
 
 Optional:
 
-- `field_ref` (Attributes) Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items--field_ref))
-- `mode` (Number) Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items--resource_field_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items--field_ref))
+- `mode` (Number)
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items--resource_field_ref))
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items--field_ref"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.downward_api.items.resource_field_ref`
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--downward_api--items--resource_field_ref"></a>
@@ -1435,12 +1678,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 
@@ -1450,21 +1693,21 @@ Optional:
 
 Optional:
 
-- `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--secret--items))
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) optional field specify whether the Secret or its key must be defined
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--secret--items))
+- `name` (String)
+- `optional` (Boolean)
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--sources--secret--items"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.sources.secret.optional`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)
 
 
 
@@ -1473,12 +1716,12 @@ Optional:
 
 Required:
 
-- `path` (String) path is the path relative to the mount point of the file to project the token into.
+- `path` (String)
 
 Optional:
 
-- `audience` (String) audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
-- `expiration_seconds` (Number) expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
+- `audience` (String)
+- `expiration_seconds` (Number)
 
 
 
@@ -1488,19 +1731,19 @@ Optional:
 
 Optional:
 
-- `default_mode` (Number) defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-- `items` (Attributes List) items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--items))
-- `optional` (Boolean) optional field specify whether the Secret or its keys must be defined
-- `secret_name` (String) secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--items))
+- `optional` (Boolean)
+- `secret_name` (String)
 
 <a id="nestedatt--spec--security--sssd--sidecar--sssd_config_file--volume_source--secret--items"></a>
 ### Nested Schema for `spec.security.sssd.sidecar.sssd_config_file.volume_source.secret.secret_name`
 
 Required:
 
-- `key` (String) key is the key to project.
-- `path` (String) path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+- `key` (String)
+- `path` (String)
 
 Optional:
 
-- `mode` (Number) mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+- `mode` (Number)

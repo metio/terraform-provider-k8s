@@ -58,9 +58,11 @@ Optional:
 - `data_pool` (Attributes) The data pool settings (see [below for nested schema](#nestedatt--spec--data_pool))
 - `gateway` (Attributes) The rgw pod info (see [below for nested schema](#nestedatt--spec--gateway))
 - `health_check` (Attributes) The RGW health probes (see [below for nested schema](#nestedatt--spec--health_check))
+- `hosting` (Attributes) Hosting settings for the object store (see [below for nested schema](#nestedatt--spec--hosting))
 - `metadata_pool` (Attributes) The metadata pool settings (see [below for nested schema](#nestedatt--spec--metadata_pool))
 - `preserve_pools_on_delete` (Boolean) Preserve pools on object store deletion
 - `security` (Attributes) Security represents security settings (see [below for nested schema](#nestedatt--spec--security))
+- `shared_pools` (Attributes) The pool information when configuring RADOS namespaces in existing pools. (see [below for nested schema](#nestedatt--spec--shared_pools))
 - `zone` (Attributes) The multisite info (see [below for nested schema](#nestedatt--spec--zone))
 
 <a id="nestedatt--spec--data_pool"></a>
@@ -68,6 +70,7 @@ Optional:
 
 Optional:
 
+- `application` (String) The application name to set on the pool. Only expected to be set for rgw pools.
 - `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters
 - `crush_root` (String) The root of the crush hierarchy utilized by the pool
 - `device_class` (String) The device class the OSD should set to for use in the pool
@@ -189,7 +192,7 @@ Optional:
 - `host_network` (Boolean) Whether host networking is enabled for the rgw daemon. If not set, the network settings from the cluster CR will be applied.
 - `instances` (Number) The number of pods in the rgw replicaset.
 - `labels` (Map of String) The labels-related configuration to add/set on each Pod related object.
-- `placement` (Attributes) The affinity to place the rgw pods (default is to place on any available node) (see [below for nested schema](#nestedatt--spec--gateway--placement))
+- `placement` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement))
 - `port` (Number) The port the rgw service will be listening on (http)
 - `priority_class_name` (String) PriorityClassName sets priority classes on the rgw pods
 - `resources` (Attributes) The resource requirements for the rgw pods (see [below for nested schema](#nestedatt--spec--gateway--resources))
@@ -211,47 +214,47 @@ Optional:
 
 Optional:
 
-- `node_affinity` (Attributes) NodeAffinity is a group of node affinity scheduling rules (see [below for nested schema](#nestedatt--spec--gateway--placement--node_affinity))
-- `pod_affinity` (Attributes) PodAffinity is a group of inter pod affinity scheduling rules (see [below for nested schema](#nestedatt--spec--gateway--placement--pod_affinity))
-- `pod_anti_affinity` (Attributes) PodAntiAffinity is a group of inter pod anti affinity scheduling rules (see [below for nested schema](#nestedatt--spec--gateway--placement--pod_anti_affinity))
-- `tolerations` (Attributes List) The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator> (see [below for nested schema](#nestedatt--spec--gateway--placement--tolerations))
-- `topology_spread_constraints` (Attributes List) TopologySpreadConstraint specifies how to spread matching pods among the given topology (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints))
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--pod_anti_affinity))
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints))
 
 <a id="nestedatt--spec--gateway--placement--node_affinity"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints`
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `preference` (Attributes) A node selector term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--preference))
-- `weight` (Number) Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--preference"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_fields))
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_expressions"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.match_fields`
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--match_fields"></a>
@@ -259,12 +262,12 @@ Optional:
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -274,27 +277,27 @@ Optional:
 
 Required:
 
-- `node_selector_terms` (Attributes List) Required. A list of node selector terms. The terms are ORed. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms))
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms))
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.node_selector_terms`
 
 Optional:
 
-- `match_expressions` (Attributes List) A list of node selector requirements by node's labels. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
-- `match_fields` (Attributes List) A list of node selector requirements by node's fields. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -302,12 +305,12 @@ Optional:
 
 Required:
 
-- `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -318,49 +321,51 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -369,20 +374,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -393,33 +398,35 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -428,20 +435,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -452,49 +459,51 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution`
 
 Required:
 
-- `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--label_selector"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -503,20 +512,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--preferred_during_scheduling_ignored_during_execution--weight--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.preferred_during_scheduling_ignored_during_execution.weight.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -527,33 +536,35 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String)
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -562,20 +573,20 @@ Optional:
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--required_during_scheduling_ignored_during_execution--namespaces--match_expressions"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.required_during_scheduling_ignored_during_execution.namespaces.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -586,11 +597,11 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String)
+- `key` (String)
+- `operator` (String)
+- `toleration_seconds` (Number)
+- `value` (String)
 
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints"></a>
@@ -598,37 +609,37 @@ Optional:
 
 Required:
 
-- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
-- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.
-- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+- `max_skew` (Number)
+- `topology_key` (String)
+- `when_unsatisfiable` (String)
 
 Optional:
 
-- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
-- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
-- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--label_selector"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.label_selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--placement--topology_spread_constraints--label_selector--match_expressions))
+- `match_labels` (Map of String)
 
 <a id="nestedatt--spec--gateway--placement--topology_spread_constraints--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.gateway.placement.topology_spread_constraints.label_selector.match_labels`
 
 Required:
 
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `key` (String)
+- `operator` (String)
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String)
 
 
 
@@ -690,7 +701,7 @@ Optional:
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
 - `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--health_check--readiness_probe--probe--tcp_socket))
-- `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
+- `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--health_check--readiness_probe--probe--exec"></a>
@@ -772,7 +783,7 @@ Optional:
 - `period_seconds` (Number) How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
 - `success_threshold` (Number) Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
 - `tcp_socket` (Attributes) TCPSocket specifies an action involving a TCP port. (see [below for nested schema](#nestedatt--spec--health_check--startup_probe--probe--tcp_socket))
-- `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
+- `termination_grace_period_seconds` (Number)
 - `timeout_seconds` (Number) Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 
 <a id="nestedatt--spec--health_check--startup_probe--probe--exec"></a>
@@ -834,11 +845,20 @@ Optional:
 
 
 
+<a id="nestedatt--spec--hosting"></a>
+### Nested Schema for `spec.hosting`
+
+Optional:
+
+- `dns_names` (List of String) A list of DNS names in which bucket can be accessed via virtual host path. These names need to valid according RFC-1123. Each domain requires wildcard support like ingress loadbalancer. Do not include the wildcard itself in the list of hostnames (e.g. use 'mystore.example.com' instead of '*.mystore.example.com'). Add all hostnames including user-created Kubernetes Service endpoints to the list. CephObjectStore Service Endpoints and CephObjectZone customEndpoints are automatically added to the list. The feature is supported only for Ceph v18 and later versions.
+
+
 <a id="nestedatt--spec--metadata_pool"></a>
 ### Nested Schema for `spec.metadata_pool`
 
 Optional:
 
+- `application` (String) The application name to set on the pool. Only expected to be set for rgw pools.
 - `compression_mode` (String) DEPRECATED: use Parameters instead, e.g., Parameters['compression_mode'] = 'force' The inline compression mode in Bluestore OSD to set to (options are: none, passive, aggressive, force) Do NOT set a default value for kubebuilder as this will override the Parameters
 - `crush_root` (String) The root of the crush hierarchy utilized by the pool
 - `device_class` (String) The device class the OSD should set to for use in the pool
@@ -982,6 +1002,19 @@ Optional:
 - `connection_details` (Map of String) ConnectionDetails contains the KMS connection details (address, port etc)
 - `token_secret_name` (String) TokenSecretName is the kubernetes secret containing the KMS token
 
+
+
+<a id="nestedatt--spec--shared_pools"></a>
+### Nested Schema for `spec.shared_pools`
+
+Required:
+
+- `data_pool_name` (String) The data pool used for creating RADOS namespaces in the object store
+- `metadata_pool_name` (String) The metadata pool used for creating RADOS namespaces in the object store
+
+Optional:
+
+- `preserve_rados_namespace_data_on_delete` (Boolean) Whether the RADOS namespaces should be preserved on deletion of the object store
 
 
 <a id="nestedatt--spec--zone"></a>

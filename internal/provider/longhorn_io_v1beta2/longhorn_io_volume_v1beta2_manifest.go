@@ -50,6 +50,7 @@ type LonghornIoVolumeV1Beta2ManifestData struct {
 		BackendStoreDriver          *string   `tfsdk:"backend_store_driver" json:"backendStoreDriver,omitempty"`
 		BackingImage                *string   `tfsdk:"backing_image" json:"backingImage,omitempty"`
 		BackupCompressionMethod     *string   `tfsdk:"backup_compression_method" json:"backupCompressionMethod,omitempty"`
+		DataEngine                  *string   `tfsdk:"data_engine" json:"dataEngine,omitempty"`
 		DataLocality                *string   `tfsdk:"data_locality" json:"dataLocality,omitempty"`
 		DataSource                  *string   `tfsdk:"data_source" json:"dataSource,omitempty"`
 		DisableFrontend             *bool     `tfsdk:"disable_frontend" json:"disableFrontend,omitempty"`
@@ -58,6 +59,7 @@ type LonghornIoVolumeV1Beta2ManifestData struct {
 		EngineImage                 *string   `tfsdk:"engine_image" json:"engineImage,omitempty"`
 		FromBackup                  *string   `tfsdk:"from_backup" json:"fromBackup,omitempty"`
 		Frontend                    *string   `tfsdk:"frontend" json:"frontend,omitempty"`
+		Image                       *string   `tfsdk:"image" json:"image,omitempty"`
 		LastAttachedBy              *string   `tfsdk:"last_attached_by" json:"lastAttachedBy,omitempty"`
 		Migratable                  *bool     `tfsdk:"migratable" json:"migratable,omitempty"`
 		MigrationNodeID             *string   `tfsdk:"migration_node_id" json:"migrationNodeID,omitempty"`
@@ -73,6 +75,8 @@ type LonghornIoVolumeV1Beta2ManifestData struct {
 		RevisionCounterDisabled     *bool     `tfsdk:"revision_counter_disabled" json:"revisionCounterDisabled,omitempty"`
 		Size                        *string   `tfsdk:"size" json:"size,omitempty"`
 		SnapshotDataIntegrity       *string   `tfsdk:"snapshot_data_integrity" json:"snapshotDataIntegrity,omitempty"`
+		SnapshotMaxCount            *int64    `tfsdk:"snapshot_max_count" json:"snapshotMaxCount,omitempty"`
+		SnapshotMaxSize             *string   `tfsdk:"snapshot_max_size" json:"snapshotMaxSize,omitempty"`
 		StaleReplicaTimeout         *int64    `tfsdk:"stale_replica_timeout" json:"staleReplicaTimeout,omitempty"`
 		UnmapMarkSnapChainRemoved   *string   `tfsdk:"unmap_mark_snap_chain_removed" json:"unmapMarkSnapChainRemoved,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -183,14 +187,11 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"backend_store_driver": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Deprecated: Replaced by field 'dataEngine'.",
+						MarkdownDescription: "Deprecated: Replaced by field 'dataEngine'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.OneOf("v1", "v2"),
-						},
 					},
 
 					"backing_image": schema.StringAttribute{
@@ -209,6 +210,17 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.OneOf("none", "lz4", "gzip"),
+						},
+					},
+
+					"data_engine": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("v1", "v2"),
 						},
 					},
 
@@ -257,8 +269,8 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"engine_image": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Deprecated: Replaced by field 'image'.",
+						MarkdownDescription: "Deprecated: Replaced by field 'image'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -281,6 +293,14 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Validators: []validator.String{
 							stringvalidator.OneOf("blockdev", "iscsi", "nvmf", ""),
 						},
+					},
+
+					"image": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"last_attached_by": schema.StringAttribute{
@@ -423,6 +443,22 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Validators: []validator.String{
 							stringvalidator.OneOf("ignored", "disabled", "enabled", "fast-check"),
 						},
+					},
+
+					"snapshot_max_count": schema.Int64Attribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"snapshot_max_size": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"stale_replica_timeout": schema.Int64Attribute{

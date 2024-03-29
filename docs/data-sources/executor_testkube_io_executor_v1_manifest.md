@@ -66,8 +66,10 @@ Optional:
 - `job_template` (String) Job template to launch executor
 - `job_template_reference` (String) name of the template resource
 - `meta` (Attributes) Meta data about executor (see [below for nested schema](#nestedatt--spec--meta))
+- `slaves` (Attributes) Slaves data to run test in distributed environment (see [below for nested schema](#nestedatt--spec--slaves))
 - `types` (List of String) Types defines what types can be handled by executor e.g. 'postman/collection', ':curl/command' etc
 - `uri` (String) URI for rest based executors
+- `use_data_dir_as_working_dir` (Boolean) use data dir as working dir for executor
 
 <a id="nestedatt--spec--image_pull_secrets"></a>
 ### Nested Schema for `spec.image_pull_secrets`
@@ -85,3 +87,11 @@ Optional:
 - `docs_uri` (String) URI for executor docs
 - `icon_uri` (String) URI for executor icon
 - `tooltips` (Map of String) executor tooltips
+
+
+<a id="nestedatt--spec--slaves"></a>
+### Nested Schema for `spec.slaves`
+
+Required:
+
+- `image` (String)

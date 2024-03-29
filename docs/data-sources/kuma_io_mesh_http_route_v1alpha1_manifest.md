@@ -56,7 +56,7 @@ Optional:
 
 Optional:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
 - `to` (Attributes List) To matches destination services of requests and holds configuration. (see [below for nested schema](#nestedatt--spec--to))
 
 <a id="nestedatt--spec--target_ref"></a>
@@ -66,8 +66,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--to"></a>
@@ -75,16 +76,17 @@ Optional:
 
 Optional:
 
-- `rules` (Attributes List) Rules contains the routing rules applies to a combination of top-level targetRef and the targetRef in this entry. (see [below for nested schema](#nestedatt--spec--to--rules))
-- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group of request destinations. (see [below for nested schema](#nestedatt--spec--to--target_ref))
+- `hostnames` (List of String) Hostnames is only valid when targeting MeshGateway and limits theeffects of the rules to requests to this hostname.Given hostnames must intersect with the hostname of the listeners theroute attaches to.
+- `rules` (Attributes List) Rules contains the routing rules applies to a combination of top-leveltargetRef and the targetRef in this entry. (see [below for nested schema](#nestedatt--spec--to--rules))
+- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group ofrequest destinations. (see [below for nested schema](#nestedatt--spec--to--target_ref))
 
 <a id="nestedatt--spec--to--rules"></a>
 ### Nested Schema for `spec.to.rules`
 
 Required:
 
-- `default` (Attributes) Default holds routing rules that can be merged with rules from other policies. (see [below for nested schema](#nestedatt--spec--to--rules--default))
-- `matches` (Attributes List) Matches describes how to match HTTP requests this rule should be applied to. (see [below for nested schema](#nestedatt--spec--to--rules--matches))
+- `default` (Attributes) Default holds routing rules that can be merged with rules from otherpolicies. (see [below for nested schema](#nestedatt--spec--to--rules--default))
+- `matches` (Attributes List) Matches describes how to match HTTP requests this rule should be appliedto. (see [below for nested schema](#nestedatt--spec--to--rules--matches))
 
 <a id="nestedatt--spec--to--rules--default"></a>
 ### Nested Schema for `spec.to.rules.matches`
@@ -101,8 +103,10 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `port` (Number) Port is only supported when this ref refers to a real MeshService object
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 - `weight` (Number)
 
 
@@ -115,10 +119,10 @@ Required:
 
 Optional:
 
-- `request_header_modifier` (Attributes) Only one action is supported per header name. Configuration to set or add multiple values for a header must use RFC 7230 header value formatting, separating each value with a comma. (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--request_header_modifier))
+- `request_header_modifier` (Attributes) Only one action is supported per header name.Configuration to set or add multiple values for a header must use RFC 7230header value formatting, separating each value with a comma. (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--request_header_modifier))
 - `request_mirror` (Attributes) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--request_mirror))
 - `request_redirect` (Attributes) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--request_redirect))
-- `response_header_modifier` (Attributes) Only one action is supported per header name. Configuration to set or add multiple values for a header must use RFC 7230 header value formatting, separating each value with a comma. (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--response_header_modifier))
+- `response_header_modifier` (Attributes) Only one action is supported per header name.Configuration to set or add multiple values for a header must use RFC 7230header value formatting, separating each value with a comma. (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--response_header_modifier))
 - `url_rewrite` (Attributes) (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite))
 
 <a id="nestedatt--spec--to--rules--matches--filters--request_header_modifier"></a>
@@ -154,11 +158,11 @@ Required:
 
 Required:
 
-- `backend_ref` (Attributes) TargetRef defines structure that allows attaching policy to various objects (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--backend_ref))
+- `backend_ref` (Attributes) TODO forbid weight (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--backend_ref))
 
 Optional:
 
-- `percentage` (String) Percentage of requests to mirror. If not specified, all requests to the target cluster will be mirrored.
+- `percentage` (String) Percentage of requests to mirror. If not specified, all requeststo the target cluster will be mirrored.
 
 <a id="nestedatt--spec--to--rules--matches--filters--url_rewrite--backend_ref"></a>
 ### Nested Schema for `spec.to.rules.matches.filters.url_rewrite.percentage`
@@ -167,8 +171,11 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `port` (Number) Port is only supported when this ref refers to a real MeshService object
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
+- `weight` (Number)
 
 
 
@@ -177,9 +184,9 @@ Optional:
 
 Optional:
 
-- `hostname` (String) PreciseHostname is the fully qualified domain name of a network host. This matches the RFC 1123 definition of a hostname with 1 notable exception that numeric IP addresses are not allowed.  Note that as per RFC1035 and RFC1123, a *label* must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character. No other punctuation is allowed.
-- `path` (Attributes) Path defines parameters used to modify the path of the incoming request. The modified path is then used to construct the location header. When empty, the request path is used as-is. (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--path))
-- `port` (Number) Port is the port to be used in the value of the 'Location' header in the response. When empty, port (if specified) of the request is used.
+- `hostname` (String) PreciseHostname is the fully qualified domain name of a network host. Thismatches the RFC 1123 definition of a hostname with 1 notable exception thatnumeric IP addresses are not allowed.Note that as per RFC1035 and RFC1123, a *label* must consist of lower casealphanumeric characters or '-', and must start and end with an alphanumericcharacter. No other punctuation is allowed.
+- `path` (Attributes) Path defines parameters used to modify the path of the incoming request.The modified path is then used to construct the location header.When empty, the request path is used as-is. (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--path))
+- `port` (Number) Port is the port to be used in the value of the 'Location'header in the response.When empty, port (if specified) of the request is used.
 - `scheme` (String)
 - `status_code` (Number) StatusCode is the HTTP status code to be used in response.
 
@@ -230,6 +237,7 @@ Required:
 
 Optional:
 
+- `host_to_backend_hostname` (Boolean) HostToBackendHostname rewrites the hostname to the hostname of theupstream host. This option is only available when targeting MeshGateways.
 - `hostname` (String) Hostname is the value to be used to replace the host header value during forwarding.
 - `path` (Attributes) Path defines a path rewrite. (see [below for nested schema](#nestedatt--spec--to--rules--matches--filters--url_rewrite--path))
 
@@ -257,14 +265,14 @@ Optional:
 - `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--to--rules--matches--headers))
 - `method` (String)
 - `path` (Attributes) (see [below for nested schema](#nestedatt--spec--to--rules--matches--path))
-- `query_params` (Attributes List) QueryParams matches based on HTTP URL query parameters. Multiple matches are ANDed together such that all listed matches must succeed. (see [below for nested schema](#nestedatt--spec--to--rules--matches--query_params))
+- `query_params` (Attributes List) QueryParams matches based on HTTP URL query parameters. Multiple matchesare ANDed together such that all listed matches must succeed. (see [below for nested schema](#nestedatt--spec--to--rules--matches--query_params))
 
 <a id="nestedatt--spec--to--rules--matches--headers"></a>
 ### Nested Schema for `spec.to.rules.matches.headers`
 
 Required:
 
-- `name` (String) Name is the name of the HTTP Header to be matched. Name MUST be lower case as they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).
+- `name` (String) Name is the name of the HTTP Header to be matched. Name MUST be lower caseas they will be handled with case insensitivity (See https://tools.ietf.org/html/rfc7230#section-3.2).
 
 Optional:
 
@@ -278,7 +286,7 @@ Optional:
 Required:
 
 - `type` (String)
-- `value` (String) Exact or prefix matches must be an absolute path. A prefix matches only if separated by a slash or the entire path.
+- `value` (String) Exact or prefix matches must be an absolute path. A prefix matches onlyif separated by a slash or the entire path.
 
 
 <a id="nestedatt--spec--to--rules--matches--query_params"></a>
@@ -300,5 +308,6 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'

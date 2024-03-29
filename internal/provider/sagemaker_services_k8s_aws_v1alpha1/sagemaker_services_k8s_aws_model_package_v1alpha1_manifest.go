@@ -47,6 +47,11 @@ type SagemakerServicesK8SAwsModelPackageV1Alpha1ManifestData struct {
 	Spec *struct {
 		AdditionalInferenceSpecifications *[]struct {
 			Containers *[]struct {
+				AdditionalS3DataSource *struct {
+					CompressionType *string `tfsdk:"compression_type" json:"compressionType,omitempty"`
+					S3DataType      *string `tfsdk:"s3_data_type" json:"s3DataType,omitempty"`
+					S3URI           *string `tfsdk:"s3_uri" json:"s3URI,omitempty"`
+				} `tfsdk:"additional_s3_data_source" json:"additionalS3DataSource,omitempty"`
 				ContainerHostname *string            `tfsdk:"container_hostname" json:"containerHostname,omitempty"`
 				Environment       *map[string]string `tfsdk:"environment" json:"environment,omitempty"`
 				Framework         *string            `tfsdk:"framework" json:"framework,omitempty"`
@@ -129,6 +134,11 @@ type SagemakerServicesK8SAwsModelPackageV1Alpha1ManifestData struct {
 		} `tfsdk:"drift_check_baselines" json:"driftCheckBaselines,omitempty"`
 		InferenceSpecification *struct {
 			Containers *[]struct {
+				AdditionalS3DataSource *struct {
+					CompressionType *string `tfsdk:"compression_type" json:"compressionType,omitempty"`
+					S3DataType      *string `tfsdk:"s3_data_type" json:"s3DataType,omitempty"`
+					S3URI           *string `tfsdk:"s3_uri" json:"s3URI,omitempty"`
+				} `tfsdk:"additional_s3_data_source" json:"additionalS3DataSource,omitempty"`
 				ContainerHostname *string            `tfsdk:"container_hostname" json:"containerHostname,omitempty"`
 				Environment       *map[string]string `tfsdk:"environment" json:"environment,omitempty"`
 				Framework         *string            `tfsdk:"framework" json:"framework,omitempty"`
@@ -208,6 +218,7 @@ type SagemakerServicesK8SAwsModelPackageV1Alpha1ManifestData struct {
 		ModelPackageGroupName        *string `tfsdk:"model_package_group_name" json:"modelPackageGroupName,omitempty"`
 		ModelPackageName             *string `tfsdk:"model_package_name" json:"modelPackageName,omitempty"`
 		SamplePayloadURL             *string `tfsdk:"sample_payload_url" json:"samplePayloadURL,omitempty"`
+		SkipModelValidation          *string `tfsdk:"skip_model_validation" json:"skipModelValidation,omitempty"`
 		SourceAlgorithmSpecification *struct {
 			SourceAlgorithms *[]struct {
 				AlgorithmName *string `tfsdk:"algorithm_name" json:"algorithmName,omitempty"`
@@ -338,12 +349,12 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ModelPackageSpec defines the desired state of ModelPackage.  A versioned model that can be deployed for SageMaker inference.",
-				MarkdownDescription: "ModelPackageSpec defines the desired state of ModelPackage.  A versioned model that can be deployed for SageMaker inference.",
+				Description:         "ModelPackageSpec defines the desired state of ModelPackage.A versioned model that can be deployed for SageMaker inference.",
+				MarkdownDescription: "ModelPackageSpec defines the desired state of ModelPackage.A versioned model that can be deployed for SageMaker inference.",
 				Attributes: map[string]schema.Attribute{
 					"additional_inference_specifications": schema.ListNestedAttribute{
-						Description:         "An array of additional Inference Specification objects. Each additional Inference Specification specifies artifacts based on this model package that can be used on inference endpoints. Generally used with SageMaker Neo to store the compiled artifacts.",
-						MarkdownDescription: "An array of additional Inference Specification objects. Each additional Inference Specification specifies artifacts based on this model package that can be used on inference endpoints. Generally used with SageMaker Neo to store the compiled artifacts.",
+						Description:         "An array of additional Inference Specification objects. Each additional InferenceSpecification specifies artifacts based on this model package that can beused on inference endpoints. Generally used with SageMaker Neo to store thecompiled artifacts.",
+						MarkdownDescription: "An array of additional Inference Specification objects. Each additional InferenceSpecification specifies artifacts based on this model package that can beused on inference endpoints. Generally used with SageMaker Neo to store thecompiled artifacts.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"containers": schema.ListNestedAttribute{
@@ -351,6 +362,39 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
+											"additional_s3_data_source": schema.SingleNestedAttribute{
+												Description:         "A data source used for training or inference that is in addition to the inputdataset or model data.",
+												MarkdownDescription: "A data source used for training or inference that is in addition to the inputdataset or model data.",
+												Attributes: map[string]schema.Attribute{
+													"compression_type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"s3_data_type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"s3_uri": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"container_hostname": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -514,8 +558,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"certify_for_marketplace": schema.BoolAttribute{
-						Description:         "Whether to certify the model package for listing on Amazon Web Services Marketplace.  This parameter is optional for unversioned models, and does not apply to versioned models.",
-						MarkdownDescription: "Whether to certify the model package for listing on Amazon Web Services Marketplace.  This parameter is optional for unversioned models, and does not apply to versioned models.",
+						Description:         "Whether to certify the model package for listing on Amazon Web Services Marketplace.This parameter is optional for unversioned models, and does not apply toversioned models.",
+						MarkdownDescription: "Whether to certify the model package for listing on Amazon Web Services Marketplace.This parameter is optional for unversioned models, and does not apply toversioned models.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -539,20 +583,20 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"domain": schema.StringAttribute{
-						Description:         "The machine learning domain of your model package and its components. Common machine learning domains include computer vision and natural language processing.",
-						MarkdownDescription: "The machine learning domain of your model package and its components. Common machine learning domains include computer vision and natural language processing.",
+						Description:         "The machine learning domain of your model package and its components. Commonmachine learning domains include computer vision and natural language processing.",
+						MarkdownDescription: "The machine learning domain of your model package and its components. Commonmachine learning domains include computer vision and natural language processing.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"drift_check_baselines": schema.SingleNestedAttribute{
-						Description:         "Represents the drift check baselines that can be used when the model monitor is set using the model package. For more information, see the topic on Drift Detection against Previous Baselines in SageMaker Pipelines (https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-quality-clarify-baseline-lifecycle.html#pipelines-quality-clarify-baseline-drift-detection) in the Amazon SageMaker Developer Guide.",
-						MarkdownDescription: "Represents the drift check baselines that can be used when the model monitor is set using the model package. For more information, see the topic on Drift Detection against Previous Baselines in SageMaker Pipelines (https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-quality-clarify-baseline-lifecycle.html#pipelines-quality-clarify-baseline-drift-detection) in the Amazon SageMaker Developer Guide.",
+						Description:         "Represents the drift check baselines that can be used when the model monitoris set using the model package. For more information, see the topic on DriftDetection against Previous Baselines in SageMaker Pipelines (https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-quality-clarify-baseline-lifecycle.html#pipelines-quality-clarify-baseline-drift-detection)in the Amazon SageMaker Developer Guide.",
+						MarkdownDescription: "Represents the drift check baselines that can be used when the model monitoris set using the model package. For more information, see the topic on DriftDetection against Previous Baselines in SageMaker Pipelines (https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-quality-clarify-baseline-lifecycle.html#pipelines-quality-clarify-baseline-drift-detection)in the Amazon SageMaker Developer Guide.",
 						Attributes: map[string]schema.Attribute{
 							"bias": schema.SingleNestedAttribute{
-								Description:         "Represents the drift check bias baselines that can be used when the model monitor is set using the model package.",
-								MarkdownDescription: "Represents the drift check bias baselines that can be used when the model monitor is set using the model package.",
+								Description:         "Represents the drift check bias baselines that can be used when the modelmonitor is set using the model package.",
+								MarkdownDescription: "Represents the drift check bias baselines that can be used when the modelmonitor is set using the model package.",
 								Attributes: map[string]schema.Attribute{
 									"config_file": schema.SingleNestedAttribute{
 										Description:         "Contains details regarding the file source.",
@@ -659,8 +703,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"explainability": schema.SingleNestedAttribute{
-								Description:         "Represents the drift check explainability baselines that can be used when the model monitor is set using the model package.",
-								MarkdownDescription: "Represents the drift check explainability baselines that can be used when the model monitor is set using the model package.",
+								Description:         "Represents the drift check explainability baselines that can be used whenthe model monitor is set using the model package.",
+								MarkdownDescription: "Represents the drift check explainability baselines that can be used whenthe model monitor is set using the model package.",
 								Attributes: map[string]schema.Attribute{
 									"config_file": schema.SingleNestedAttribute{
 										Description:         "Contains details regarding the file source.",
@@ -734,8 +778,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"model_data_quality": schema.SingleNestedAttribute{
-								Description:         "Represents the drift check data quality baselines that can be used when the model monitor is set using the model package.",
-								MarkdownDescription: "Represents the drift check data quality baselines that can be used when the model monitor is set using the model package.",
+								Description:         "Represents the drift check data quality baselines that can be used when themodel monitor is set using the model package.",
+								MarkdownDescription: "Represents the drift check data quality baselines that can be used when themodel monitor is set using the model package.",
 								Attributes: map[string]schema.Attribute{
 									"constraints": schema.SingleNestedAttribute{
 										Description:         "Details about the metrics source.",
@@ -809,8 +853,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"model_quality": schema.SingleNestedAttribute{
-								Description:         "Represents the drift check model quality baselines that can be used when the model monitor is set using the model package.",
-								MarkdownDescription: "Represents the drift check model quality baselines that can be used when the model monitor is set using the model package.",
+								Description:         "Represents the drift check model quality baselines that can be used whenthe model monitor is set using the model package.",
+								MarkdownDescription: "Represents the drift check model quality baselines that can be used whenthe model monitor is set using the model package.",
 								Attributes: map[string]schema.Attribute{
 									"constraints": schema.SingleNestedAttribute{
 										Description:         "Details about the metrics source.",
@@ -889,14 +933,47 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"inference_specification": schema.SingleNestedAttribute{
-						Description:         "Specifies details about inference jobs that can be run with models based on this model package, including the following:  * The Amazon ECR paths of containers that contain the inference code and model artifacts.  * The instance types that the model package supports for transform jobs and real-time endpoints used for inference.  * The input and output content formats that the model package supports for inference.",
-						MarkdownDescription: "Specifies details about inference jobs that can be run with models based on this model package, including the following:  * The Amazon ECR paths of containers that contain the inference code and model artifacts.  * The instance types that the model package supports for transform jobs and real-time endpoints used for inference.  * The input and output content formats that the model package supports for inference.",
+						Description:         "Specifies details about inference jobs that can be run with models basedon this model package, including the following:   * The Amazon ECR paths of containers that contain the inference code and   model artifacts.   * The instance types that the model package supports for transform jobs   and real-time endpoints used for inference.   * The input and output content formats that the model package supports   for inference.",
+						MarkdownDescription: "Specifies details about inference jobs that can be run with models basedon this model package, including the following:   * The Amazon ECR paths of containers that contain the inference code and   model artifacts.   * The instance types that the model package supports for transform jobs   and real-time endpoints used for inference.   * The input and output content formats that the model package supports   for inference.",
 						Attributes: map[string]schema.Attribute{
 							"containers": schema.ListNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"additional_s3_data_source": schema.SingleNestedAttribute{
+											Description:         "A data source used for training or inference that is in addition to the inputdataset or model data.",
+											MarkdownDescription: "A data source used for training or inference that is in addition to the inputdataset or model data.",
+											Attributes: map[string]schema.Attribute{
+												"compression_type": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"s3_data_type": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"s3_uri": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"container_hostname": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -1076,8 +1153,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"model_approval_status": schema.StringAttribute{
-						Description:         "Whether the model is approved for deployment.  This parameter is optional for versioned models, and does not apply to unversioned models.  For versioned models, the value of this parameter must be set to Approved to deploy the model.",
-						MarkdownDescription: "Whether the model is approved for deployment.  This parameter is optional for versioned models, and does not apply to unversioned models.  For versioned models, the value of this parameter must be set to Approved to deploy the model.",
+						Description:         "Whether the model is approved for deployment.This parameter is optional for versioned models, and does not apply to unversionedmodels.For versioned models, the value of this parameter must be set to Approvedto deploy the model.",
+						MarkdownDescription: "Whether the model is approved for deployment.This parameter is optional for versioned models, and does not apply to unversionedmodels.For versioned models, the value of this parameter must be set to Approvedto deploy the model.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1401,24 +1478,32 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"model_package_group_name": schema.StringAttribute{
-						Description:         "The name or Amazon Resource Name (ARN) of the model package group that this model version belongs to.  This parameter is required for versioned models, and does not apply to unversioned models.",
-						MarkdownDescription: "The name or Amazon Resource Name (ARN) of the model package group that this model version belongs to.  This parameter is required for versioned models, and does not apply to unversioned models.",
+						Description:         "The name or Amazon Resource Name (ARN) of the model package group that thismodel version belongs to.This parameter is required for versioned models, and does not apply to unversionedmodels.",
+						MarkdownDescription: "The name or Amazon Resource Name (ARN) of the model package group that thismodel version belongs to.This parameter is required for versioned models, and does not apply to unversionedmodels.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"model_package_name": schema.StringAttribute{
-						Description:         "The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).  This parameter is required for unversioned models. It is not applicable to versioned models.",
-						MarkdownDescription: "The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).  This parameter is required for unversioned models. It is not applicable to versioned models.",
+						Description:         "The name of the model package. The name must have 1 to 63 characters. Validcharacters are a-z, A-Z, 0-9, and - (hyphen).This parameter is required for unversioned models. It is not applicable toversioned models.",
+						MarkdownDescription: "The name of the model package. The name must have 1 to 63 characters. Validcharacters are a-z, A-Z, 0-9, and - (hyphen).This parameter is required for unversioned models. It is not applicable toversioned models.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"sample_payload_url": schema.StringAttribute{
-						Description:         "The Amazon Simple Storage Service (Amazon S3) path where the sample payload is stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). This archive can hold multiple files that are all equally used in the load test. Each file in the archive must satisfy the size constraints of the InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#API_runtime_InvokeEndpoint_RequestSyntax) call.",
-						MarkdownDescription: "The Amazon Simple Storage Service (Amazon S3) path where the sample payload is stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). This archive can hold multiple files that are all equally used in the load test. Each file in the archive must satisfy the size constraints of the InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#API_runtime_InvokeEndpoint_RequestSyntax) call.",
+						Description:         "The Amazon Simple Storage Service (Amazon S3) path where the sample payloadis stored. This path must point to a single gzip compressed tar archive (.tar.gzsuffix). This archive can hold multiple files that are all equally used inthe load test. Each file in the archive must satisfy the size constraintsof the InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#API_runtime_InvokeEndpoint_RequestSyntax)call.",
+						MarkdownDescription: "The Amazon Simple Storage Service (Amazon S3) path where the sample payloadis stored. This path must point to a single gzip compressed tar archive (.tar.gzsuffix). This archive can hold multiple files that are all equally used inthe load test. Each file in the archive must satisfy the size constraintsof the InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#API_runtime_InvokeEndpoint_RequestSyntax)call.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"skip_model_validation": schema.StringAttribute{
+						Description:         "Indicates if you want to skip model validation.",
+						MarkdownDescription: "Indicates if you want to skip model validation.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1461,8 +1546,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "A list of key value pairs associated with the model. For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the Amazon Web Services General Reference Guide.",
-						MarkdownDescription: "A list of key value pairs associated with the model. For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the Amazon Web Services General Reference Guide.",
+						Description:         "A list of key value pairs associated with the model. For more information,see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)in the Amazon Web Services General Reference Guide.If you supply ModelPackageGroupName, your model package belongs to the modelgroup you specify and uses the tags associated with the model group. In thiscase, you cannot supply a tag argument.",
+						MarkdownDescription: "A list of key value pairs associated with the model. For more information,see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)in the Amazon Web Services General Reference Guide.If you supply ModelPackageGroupName, your model package belongs to the modelgroup you specify and uses the tags associated with the model group. In thiscase, you cannot supply a tag argument.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -1488,16 +1573,16 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"task": schema.StringAttribute{
-						Description:         "The machine learning task your model package accomplishes. Common machine learning tasks include object detection and image classification. The following tasks are supported by Inference Recommender: 'IMAGE_CLASSIFICATION' | 'OBJECT_DETECTION' | 'TEXT_GENERATION' |'IMAGE_SEGMENTATION' | 'FILL_MASK' | 'CLASSIFICATION' | 'REGRESSION' | 'OTHER'.  Specify 'OTHER' if none of the tasks listed fit your use case.",
-						MarkdownDescription: "The machine learning task your model package accomplishes. Common machine learning tasks include object detection and image classification. The following tasks are supported by Inference Recommender: 'IMAGE_CLASSIFICATION' | 'OBJECT_DETECTION' | 'TEXT_GENERATION' |'IMAGE_SEGMENTATION' | 'FILL_MASK' | 'CLASSIFICATION' | 'REGRESSION' | 'OTHER'.  Specify 'OTHER' if none of the tasks listed fit your use case.",
+						Description:         "The machine learning task your model package accomplishes. Common machinelearning tasks include object detection and image classification. The followingtasks are supported by Inference Recommender: 'IMAGE_CLASSIFICATION' | 'OBJECT_DETECTION'| 'TEXT_GENERATION' |'IMAGE_SEGMENTATION' | 'FILL_MASK' | 'CLASSIFICATION'| 'REGRESSION' | 'OTHER'.Specify 'OTHER' if none of the tasks listed fit your use case.",
+						MarkdownDescription: "The machine learning task your model package accomplishes. Common machinelearning tasks include object detection and image classification. The followingtasks are supported by Inference Recommender: 'IMAGE_CLASSIFICATION' | 'OBJECT_DETECTION'| 'TEXT_GENERATION' |'IMAGE_SEGMENTATION' | 'FILL_MASK' | 'CLASSIFICATION'| 'REGRESSION' | 'OTHER'.Specify 'OTHER' if none of the tasks listed fit your use case.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"validation_specification": schema.SingleNestedAttribute{
-						Description:         "Specifies configurations for one or more transform jobs that SageMaker runs to test the model package.",
-						MarkdownDescription: "Specifies configurations for one or more transform jobs that SageMaker runs to test the model package.",
+						Description:         "Specifies configurations for one or more transform jobs that SageMaker runsto test the model package.",
+						MarkdownDescription: "Specifies configurations for one or more transform jobs that SageMaker runsto test the model package.",
 						Attributes: map[string]schema.Attribute{
 							"validation_profiles": schema.ListNestedAttribute{
 								Description:         "",
@@ -1513,8 +1598,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 										},
 
 										"transform_job_definition": schema.SingleNestedAttribute{
-											Description:         "Defines the input needed to run a transform job using the inference specification specified in the algorithm.",
-											MarkdownDescription: "Defines the input needed to run a transform job using the inference specification specified in the algorithm.",
+											Description:         "Defines the input needed to run a transform job using the inference specificationspecified in the algorithm.",
+											MarkdownDescription: "Defines the input needed to run a transform job using the inference specificationspecified in the algorithm.",
 											Attributes: map[string]schema.Attribute{
 												"batch_strategy": schema.StringAttribute{
 													Description:         "",
@@ -1550,8 +1635,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 												},
 
 												"transform_input": schema.SingleNestedAttribute{
-													Description:         "Describes the input source of a transform job and the way the transform job consumes it.",
-													MarkdownDescription: "Describes the input source of a transform job and the way the transform job consumes it.",
+													Description:         "Describes the input source of a transform job and the way the transform jobconsumes it.",
+													MarkdownDescription: "Describes the input source of a transform job and the way the transform jobconsumes it.",
 													Attributes: map[string]schema.Attribute{
 														"compression_type": schema.StringAttribute{
 															Description:         "",
@@ -1658,8 +1743,8 @@ func (r *SagemakerServicesK8SAwsModelPackageV1Alpha1Manifest) Schema(_ context.C
 												},
 
 												"transform_resources": schema.SingleNestedAttribute{
-													Description:         "Describes the resources, including ML instance types and ML instance count, to use for transform job.",
-													MarkdownDescription: "Describes the resources, including ML instance types and ML instance count, to use for transform job.",
+													Description:         "Describes the resources, including ML instance types and ML instance count,to use for transform job.",
+													MarkdownDescription: "Describes the resources, including ML instance types and ML instance count,to use for transform job.",
 													Attributes: map[string]schema.Attribute{
 														"instance_count": schema.Int64Attribute{
 															Description:         "",

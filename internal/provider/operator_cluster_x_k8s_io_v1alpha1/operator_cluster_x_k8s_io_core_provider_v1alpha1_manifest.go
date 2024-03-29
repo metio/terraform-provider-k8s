@@ -289,8 +289,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Metadata(_ context.C
 
 func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CoreProvider is the Schema for the coreproviders API.",
-		MarkdownDescription: "CoreProvider is the Schema for the coreproviders API.",
+		Description:         "CoreProvider is the Schema for the coreproviders API.Deprecated: This type will be removed in one of the next releases.",
+		MarkdownDescription: "CoreProvider is the Schema for the coreproviders API.Deprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -369,8 +369,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 				MarkdownDescription: "CoreProviderSpec defines the desired state of CoreProvider.",
 				Attributes: map[string]schema.Attribute{
 					"additional_manifests": schema.SingleNestedAttribute{
-						Description:         "AdditionalManifests is reference to configmap that contains additional manifests that will be applied together with the provider components. The key for storing these manifests has to be 'manifests'. The manifests are applied only once when a certain release is installed/upgraded. If namespace is not specified, the namespace of the provider will be used. There is no validation of the yaml content inside the configmap.",
-						MarkdownDescription: "AdditionalManifests is reference to configmap that contains additional manifests that will be applied together with the provider components. The key for storing these manifests has to be 'manifests'. The manifests are applied only once when a certain release is installed/upgraded. If namespace is not specified, the namespace of the provider will be used. There is no validation of the yaml content inside the configmap.",
+						Description:         "AdditionalManifests is reference to configmap that contains additional manifests that will be appliedtogether with the provider components. The key for storing these manifests has to be 'manifests'.The manifests are applied only once when a certain release is installed/upgraded. If namespace is not specified, thenamespace of the provider will be used. There is no validation of the yaml content inside the configmap.",
+						MarkdownDescription: "AdditionalManifests is reference to configmap that contains additional manifests that will be appliedtogether with the provider components. The key for storing these manifests has to be 'manifests'.The manifests are applied only once when a certain release is installed/upgraded. If namespace is not specified, thenamespace of the provider will be used. There is no validation of the yaml content inside the configmap.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name defines the name of the configmap.",
@@ -406,8 +406,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 										MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"preference": schema.SingleNestedAttribute{
@@ -428,16 +428,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -464,16 +464,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -506,8 +506,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-												Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
-												MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+												Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
+												MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node.",
 												Attributes: map[string]schema.Attribute{
 													"node_selector_terms": schema.ListNestedAttribute{
 														Description:         "Required. A list of node selector terms. The terms are ORed.",
@@ -528,16 +528,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -564,16 +564,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				Description:         "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				MarkdownDescription: "Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				Description:         "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -607,8 +607,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 										MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
@@ -633,16 +633,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -656,8 +656,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -670,8 +670,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -687,16 +687,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -710,8 +710,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -724,8 +724,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -733,8 +733,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -746,8 +746,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -760,8 +760,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												MarkdownDescription: "If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
@@ -782,16 +782,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -805,8 +805,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -819,8 +819,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -836,16 +836,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -859,8 +859,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -873,8 +873,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -882,8 +882,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -905,8 +905,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 										MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
+												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
@@ -931,16 +931,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -954,8 +954,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -968,8 +968,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+																	MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -985,16 +985,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -1008,8 +1008,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1022,8 +1022,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1031,8 +1031,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -1044,8 +1044,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
+															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm,in the range 1-100.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1058,8 +1058,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
@@ -1080,16 +1080,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -1103,8 +1103,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1117,8 +1117,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
+															MarkdownDescription: "A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1134,16 +1134,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -1157,8 +1157,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1171,8 +1171,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1180,8 +1180,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
+															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1209,8 +1209,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"args": schema.MapAttribute{
-											Description:         "Args represents extra provider specific flags that are not encoded as fields in this API. Explicit controller manager properties defined in the 'Provider.ManagerSpec' will have higher precedence than those defined in 'ContainerSpec.Args'. For example, 'ManagerSpec.SyncPeriod' will be used instead of the container arg '--sync-period' if both are defined. The same holds for 'ManagerSpec.FeatureGates' and '--feature-gates'.",
-											MarkdownDescription: "Args represents extra provider specific flags that are not encoded as fields in this API. Explicit controller manager properties defined in the 'Provider.ManagerSpec' will have higher precedence than those defined in 'ContainerSpec.Args'. For example, 'ManagerSpec.SyncPeriod' will be used instead of the container arg '--sync-period' if both are defined. The same holds for 'ManagerSpec.FeatureGates' and '--feature-gates'.",
+											Description:         "Args represents extra provider specific flags that are not encoded as fields in this API.Explicit controller manager properties defined in the 'Provider.ManagerSpec'will have higher precedence than those defined in 'ContainerSpec.Args'.For example, 'ManagerSpec.SyncPeriod' will be used instead of thecontainer arg '--sync-period' if both are defined.The same holds for 'ManagerSpec.FeatureGates' and '--feature-gates'.",
+											MarkdownDescription: "Args represents extra provider specific flags that are not encoded as fields in this API.Explicit controller manager properties defined in the 'Provider.ManagerSpec'will have higher precedence than those defined in 'ContainerSpec.Args'.For example, 'ManagerSpec.SyncPeriod' will be used instead of thecontainer arg '--sync-period' if both are defined.The same holds for 'ManagerSpec.FeatureGates' and '--feature-gates'.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -1240,8 +1240,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 													},
 
 													"value": schema.StringAttribute{
-														Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
-														MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+														Description:         "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
+														MarkdownDescription: "Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1264,8 +1264,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1285,8 +1285,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 															},
 
 															"field_ref": schema.SingleNestedAttribute{
-																Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
-																MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 																Attributes: map[string]schema.Attribute{
 																	"api_version": schema.StringAttribute{
 																		Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -1310,8 +1310,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 															},
 
 															"resource_field_ref": schema.SingleNestedAttribute{
-																Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
-																MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																Description:         "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																MarkdownDescription: "Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
 																Attributes: map[string]schema.Attribute{
 																	"container_name": schema.StringAttribute{
 																		Description:         "Container name: required for volumes, optional for env vars",
@@ -1355,8 +1355,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+																		MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1432,13 +1432,13 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 											MarkdownDescription: "Compute resources required by this container.",
 											Attributes: map[string]schema.Attribute{
 												"claims": schema.ListNestedAttribute{
-													Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-													MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+													Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+													MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -1451,8 +1451,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 												},
 
 												"limits": schema.MapAttribute{
-													Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-													MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1460,8 +1460,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 												},
 
 												"requests": schema.MapAttribute{
-													Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-													MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1485,8 +1485,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1499,8 +1499,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"node_selector": schema.MapAttribute{
-								Description:         "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-								MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+								Description:         "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+								MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1532,40 +1532,40 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"effect": schema.StringAttribute{
-											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"key": schema.StringAttribute{
-											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-											MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+											Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+											MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"toleration_seconds": schema.Int64Attribute{
-											Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+											Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-											MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1583,12 +1583,12 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"fetch_config": schema.SingleNestedAttribute{
-						Description:         "FetchConfig determines how the operator will fetch the components and metadata for the provider. If nil, the operator will try to fetch components according to default embedded fetch configuration for the given kind and 'ObjectMeta.Name'. For example, the infrastructure name 'aws' will fetch artifacts from https://github.com/kubernetes-sigs/cluster-api-provider-aws/releases.",
-						MarkdownDescription: "FetchConfig determines how the operator will fetch the components and metadata for the provider. If nil, the operator will try to fetch components according to default embedded fetch configuration for the given kind and 'ObjectMeta.Name'. For example, the infrastructure name 'aws' will fetch artifacts from https://github.com/kubernetes-sigs/cluster-api-provider-aws/releases.",
+						Description:         "FetchConfig determines how the operator will fetch the components and metadata for the provider.If nil, the operator will try to fetch components according to defaultembedded fetch configuration for the given kind and 'ObjectMeta.Name'.For example, the infrastructure name 'aws' will fetch artifacts fromhttps://github.com/kubernetes-sigs/cluster-api-provider-aws/releases.",
+						MarkdownDescription: "FetchConfig determines how the operator will fetch the components and metadata for the provider.If nil, the operator will try to fetch components according to defaultembedded fetch configuration for the given kind and 'ObjectMeta.Name'.For example, the infrastructure name 'aws' will fetch artifacts fromhttps://github.com/kubernetes-sigs/cluster-api-provider-aws/releases.",
 						Attributes: map[string]schema.Attribute{
 							"selector": schema.SingleNestedAttribute{
-								Description:         "Selector to be used for fetching provider’s components and metadata from ConfigMaps stored inside the cluster. Each ConfigMap is expected to contain components and metadata for a specific version only. Note: the name of the ConfigMap should be set to the version or to override this add a label like the following: provider.cluster.x-k8s.io/version=v1.4.3",
-								MarkdownDescription: "Selector to be used for fetching provider’s components and metadata from ConfigMaps stored inside the cluster. Each ConfigMap is expected to contain components and metadata for a specific version only. Note: the name of the ConfigMap should be set to the version or to override this add a label like the following: provider.cluster.x-k8s.io/version=v1.4.3",
+								Description:         "Selector to be used for fetching provider’s components and metadata fromConfigMaps stored inside the cluster. Each ConfigMap is expected to containcomponents and metadata for a specific version only.Note: the name of the ConfigMap should be set to the version or to override thisadd a label like the following: provider.cluster.x-k8s.io/version=v1.4.3",
+								MarkdownDescription: "Selector to be used for fetching provider’s components and metadata fromConfigMaps stored inside the cluster. Each ConfigMap is expected to containcomponents and metadata for a specific version only.Note: the name of the ConfigMap should be set to the version or to override thisadd a label like the following: provider.cluster.x-k8s.io/version=v1.4.3",
 								Attributes: map[string]schema.Attribute{
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1604,16 +1604,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1627,8 +1627,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 									},
 
 									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1641,8 +1641,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"url": schema.StringAttribute{
-								Description:         "URL to be used for fetching the provider’s components and metadata from a remote Github repository. For example, https://github.com/{owner}/{repository}/releases You must set 'providerSpec.Version' field for operator to pick up desired version of the release from GitHub.",
-								MarkdownDescription: "URL to be used for fetching the provider’s components and metadata from a remote Github repository. For example, https://github.com/{owner}/{repository}/releases You must set 'providerSpec.Version' field for operator to pick up desired version of the release from GitHub.",
+								Description:         "URL to be used for fetching the provider’s components and metadata from a remote Github repository.For example, https://github.com/{owner}/{repository}/releasesYou must set 'providerSpec.Version' field for operator to pick updesired version of the release from GitHub.",
+								MarkdownDescription: "URL to be used for fetching the provider’s components and metadata from a remote Github repository.For example, https://github.com/{owner}/{repository}/releasesYou must set 'providerSpec.Version' field for operator to pick updesired version of the release from GitHub.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1658,28 +1658,28 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 						MarkdownDescription: "Manager defines the properties that can be enabled on the controller manager for the provider.",
 						Attributes: map[string]schema.Attribute{
 							"cache_namespace": schema.StringAttribute{
-								Description:         "CacheNamespace if specified restricts the manager's cache to watch objects in the desired namespace Defaults to all namespaces  Note: If a namespace is specified, controllers can still Watch for a cluster-scoped resource (e.g Node).  For namespaced resources the cache will only hold objects from the desired namespace.",
-								MarkdownDescription: "CacheNamespace if specified restricts the manager's cache to watch objects in the desired namespace Defaults to all namespaces  Note: If a namespace is specified, controllers can still Watch for a cluster-scoped resource (e.g Node).  For namespaced resources the cache will only hold objects from the desired namespace.",
+								Description:         "CacheNamespace if specified restricts the manager's cache to watch objects inthe desired namespace Defaults to all namespacesNote: If a namespace is specified, controllers can still Watch for acluster-scoped resource (e.g Node).  For namespaced resources the cachewill only hold objects from the desired namespace.",
+								MarkdownDescription: "CacheNamespace if specified restricts the manager's cache to watch objects inthe desired namespace Defaults to all namespacesNote: If a namespace is specified, controllers can still Watch for acluster-scoped resource (e.g Node).  For namespaced resources the cachewill only hold objects from the desired namespace.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"controller": schema.SingleNestedAttribute{
-								Description:         "Controller contains global configuration options for controllers registered within this manager.",
-								MarkdownDescription: "Controller contains global configuration options for controllers registered within this manager.",
+								Description:         "Controller contains global configuration options for controllersregistered within this manager.",
+								MarkdownDescription: "Controller contains global configuration options for controllersregistered within this manager.",
 								Attributes: map[string]schema.Attribute{
 									"cache_sync_timeout": schema.Int64Attribute{
-										Description:         "CacheSyncTimeout refers to the time limit set to wait for syncing caches. Defaults to 2 minutes if not set.",
-										MarkdownDescription: "CacheSyncTimeout refers to the time limit set to wait for syncing caches. Defaults to 2 minutes if not set.",
+										Description:         "CacheSyncTimeout refers to the time limit set to wait for syncing caches.Defaults to 2 minutes if not set.",
+										MarkdownDescription: "CacheSyncTimeout refers to the time limit set to wait for syncing caches.Defaults to 2 minutes if not set.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"group_kind_concurrency": schema.MapAttribute{
-										Description:         "GroupKindConcurrency is a map from a Kind to the number of concurrent reconciliation allowed for that controller.  When a controller is registered within this manager using the builder utilities, users have to specify the type the controller reconciles in the For(...) call. If the object's kind passed matches one of the keys in this map, the concurrency for that controller is set to the number specified.  The key is expected to be consistent in form with GroupKind.String(), e.g. ReplicaSet in apps group (regardless of version) would be 'ReplicaSet.apps'.",
-										MarkdownDescription: "GroupKindConcurrency is a map from a Kind to the number of concurrent reconciliation allowed for that controller.  When a controller is registered within this manager using the builder utilities, users have to specify the type the controller reconciles in the For(...) call. If the object's kind passed matches one of the keys in this map, the concurrency for that controller is set to the number specified.  The key is expected to be consistent in form with GroupKind.String(), e.g. ReplicaSet in apps group (regardless of version) would be 'ReplicaSet.apps'.",
+										Description:         "GroupKindConcurrency is a map from a Kind to the number of concurrent reconciliationallowed for that controller.When a controller is registered within this manager using the builder utilities,users have to specify the type the controller reconciles in the For(...) call.If the object's kind passed matches one of the keys in this map, the concurrencyfor that controller is set to the number specified.The key is expected to be consistent in form with GroupKind.String(),e.g. ReplicaSet in apps group (regardless of version) would be 'ReplicaSet.apps'.",
+										MarkdownDescription: "GroupKindConcurrency is a map from a Kind to the number of concurrent reconciliationallowed for that controller.When a controller is registered within this manager using the builder utilities,users have to specify the type the controller reconciles in the For(...) call.If the object's kind passed matches one of the keys in this map, the concurrencyfor that controller is set to the number specified.The key is expected to be consistent in form with GroupKind.String(),e.g. ReplicaSet in apps group (regardless of version) would be 'ReplicaSet.apps'.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1700,8 +1700,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"feature_gates": schema.MapAttribute{
-								Description:         "FeatureGates define provider specific feature flags that will be passed in as container args to the provider's controller manager. Controller Manager flag is --feature-gates.",
-								MarkdownDescription: "FeatureGates define provider specific feature flags that will be passed in as container args to the provider's controller manager. Controller Manager flag is --feature-gates.",
+								Description:         "FeatureGates define provider specific feature flags that will be passedin as container args to the provider's controller manager.Controller Manager flag is --feature-gates.",
+								MarkdownDescription: "FeatureGates define provider specific feature flags that will be passedin as container args to the provider's controller manager.Controller Manager flag is --feature-gates.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -1709,8 +1709,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"graceful_shut_down": schema.StringAttribute{
-								Description:         "GracefulShutdownTimeout is the duration given to runnable to stop before the manager actually returns on stop. To disable graceful shutdown, set to time.Duration(0) To use graceful shutdown without timeout, set to a negative duration, e.G. time.Duration(-1) The graceful shutdown is skipped for safety reasons in case the leader election lease is lost.",
-								MarkdownDescription: "GracefulShutdownTimeout is the duration given to runnable to stop before the manager actually returns on stop. To disable graceful shutdown, set to time.Duration(0) To use graceful shutdown without timeout, set to a negative duration, e.G. time.Duration(-1) The graceful shutdown is skipped for safety reasons in case the leader election lease is lost.",
+								Description:         "GracefulShutdownTimeout is the duration given to runnable to stop before the manager actually returns on stop.To disable graceful shutdown, set to time.Duration(0)To use graceful shutdown without timeout, set to a negative duration, e.G. time.Duration(-1)The graceful shutdown is skipped for safety reasons in case the leader election lease is lost.",
+								MarkdownDescription: "GracefulShutdownTimeout is the duration given to runnable to stop before the manager actually returns on stop.To disable graceful shutdown, set to time.Duration(0)To use graceful shutdown without timeout, set to a negative duration, e.G. time.Duration(-1)The graceful shutdown is skipped for safety reasons in case the leader election lease is lost.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1721,8 +1721,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 								MarkdownDescription: "Health contains the controller health configuration",
 								Attributes: map[string]schema.Attribute{
 									"health_probe_bind_address": schema.StringAttribute{
-										Description:         "HealthProbeBindAddress is the TCP address that the controller should bind to for serving health probes It can be set to '0' or '' to disable serving the health probe.",
-										MarkdownDescription: "HealthProbeBindAddress is the TCP address that the controller should bind to for serving health probes It can be set to '0' or '' to disable serving the health probe.",
+										Description:         "HealthProbeBindAddress is the TCP address that the controller should bind tofor serving health probesIt can be set to '0' or '' to disable serving the health probe.",
+										MarkdownDescription: "HealthProbeBindAddress is the TCP address that the controller should bind tofor serving health probesIt can be set to '0' or '' to disable serving the health probe.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1750,60 +1750,60 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"leader_election": schema.SingleNestedAttribute{
-								Description:         "LeaderElection is the LeaderElection config to be used when configuring the manager.Manager leader election",
-								MarkdownDescription: "LeaderElection is the LeaderElection config to be used when configuring the manager.Manager leader election",
+								Description:         "LeaderElection is the LeaderElection config to be used when configuringthe manager.Manager leader election",
+								MarkdownDescription: "LeaderElection is the LeaderElection config to be used when configuringthe manager.Manager leader election",
 								Attributes: map[string]schema.Attribute{
 									"leader_elect": schema.BoolAttribute{
-										Description:         "leaderElect enables a leader election client to gain leadership before executing the main loop. Enable this when running replicated components for high availability.",
-										MarkdownDescription: "leaderElect enables a leader election client to gain leadership before executing the main loop. Enable this when running replicated components for high availability.",
+										Description:         "leaderElect enables a leader election client to gain leadershipbefore executing the main loop. Enable this when running replicatedcomponents for high availability.",
+										MarkdownDescription: "leaderElect enables a leader election client to gain leadershipbefore executing the main loop. Enable this when running replicatedcomponents for high availability.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"lease_duration": schema.StringAttribute{
-										Description:         "leaseDuration is the duration that non-leader candidates will wait after observing a leadership renewal until attempting to acquire leadership of a led but unrenewed leader slot. This is effectively the maximum duration that a leader can be stopped before it is replaced by another candidate. This is only applicable if leader election is enabled.",
-										MarkdownDescription: "leaseDuration is the duration that non-leader candidates will wait after observing a leadership renewal until attempting to acquire leadership of a led but unrenewed leader slot. This is effectively the maximum duration that a leader can be stopped before it is replaced by another candidate. This is only applicable if leader election is enabled.",
+										Description:         "leaseDuration is the duration that non-leader candidates will waitafter observing a leadership renewal until attempting to acquireleadership of a led but unrenewed leader slot. This is effectively themaximum duration that a leader can be stopped before it is replacedby another candidate. This is only applicable if leader election isenabled.",
+										MarkdownDescription: "leaseDuration is the duration that non-leader candidates will waitafter observing a leadership renewal until attempting to acquireleadership of a led but unrenewed leader slot. This is effectively themaximum duration that a leader can be stopped before it is replacedby another candidate. This is only applicable if leader election isenabled.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"renew_deadline": schema.StringAttribute{
-										Description:         "renewDeadline is the interval between attempts by the acting master to renew a leadership slot before it stops leading. This must be less than or equal to the lease duration. This is only applicable if leader election is enabled.",
-										MarkdownDescription: "renewDeadline is the interval between attempts by the acting master to renew a leadership slot before it stops leading. This must be less than or equal to the lease duration. This is only applicable if leader election is enabled.",
+										Description:         "renewDeadline is the interval between attempts by the acting master torenew a leadership slot before it stops leading. This must be lessthan or equal to the lease duration. This is only applicable if leaderelection is enabled.",
+										MarkdownDescription: "renewDeadline is the interval between attempts by the acting master torenew a leadership slot before it stops leading. This must be lessthan or equal to the lease duration. This is only applicable if leaderelection is enabled.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"resource_lock": schema.StringAttribute{
-										Description:         "resourceLock indicates the resource object type that will be used to lock during leader election cycles.",
-										MarkdownDescription: "resourceLock indicates the resource object type that will be used to lock during leader election cycles.",
+										Description:         "resourceLock indicates the resource object type that will be used to lockduring leader election cycles.",
+										MarkdownDescription: "resourceLock indicates the resource object type that will be used to lockduring leader election cycles.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"resource_name": schema.StringAttribute{
-										Description:         "resourceName indicates the name of resource object that will be used to lock during leader election cycles.",
-										MarkdownDescription: "resourceName indicates the name of resource object that will be used to lock during leader election cycles.",
+										Description:         "resourceName indicates the name of resource object that will be used to lockduring leader election cycles.",
+										MarkdownDescription: "resourceName indicates the name of resource object that will be used to lockduring leader election cycles.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"resource_namespace": schema.StringAttribute{
-										Description:         "resourceName indicates the namespace of resource object that will be used to lock during leader election cycles.",
-										MarkdownDescription: "resourceName indicates the namespace of resource object that will be used to lock during leader election cycles.",
+										Description:         "resourceName indicates the namespace of resource object that will be used to lockduring leader election cycles.",
+										MarkdownDescription: "resourceName indicates the namespace of resource object that will be used to lockduring leader election cycles.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
 									},
 
 									"retry_period": schema.StringAttribute{
-										Description:         "retryPeriod is the duration the clients should wait between attempting acquisition and renewal of a leadership. This is only applicable if leader election is enabled.",
-										MarkdownDescription: "retryPeriod is the duration the clients should wait between attempting acquisition and renewal of a leadership. This is only applicable if leader election is enabled.",
+										Description:         "retryPeriod is the duration the clients should wait between attemptingacquisition and renewal of a leadership. This is only applicable ifleader election is enabled.",
+										MarkdownDescription: "retryPeriod is the duration the clients should wait between attemptingacquisition and renewal of a leadership. This is only applicable ifleader election is enabled.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -1815,8 +1815,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"max_concurrent_reconciles": schema.Int64Attribute{
-								Description:         "MaxConcurrentReconciles is the maximum number of concurrent Reconciles which can be run.",
-								MarkdownDescription: "MaxConcurrentReconciles is the maximum number of concurrent Reconciles which can be run.",
+								Description:         "MaxConcurrentReconciles is the maximum number of concurrent Reconcileswhich can be run.",
+								MarkdownDescription: "MaxConcurrentReconciles is the maximum number of concurrent Reconcileswhich can be run.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1830,8 +1830,8 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 								MarkdownDescription: "Metrics contains the controller metrics configuration",
 								Attributes: map[string]schema.Attribute{
 									"bind_address": schema.StringAttribute{
-										Description:         "BindAddress is the TCP address that the controller should bind to for serving prometheus metrics. It can be set to '0' to disable the metrics serving.",
-										MarkdownDescription: "BindAddress is the TCP address that the controller should bind to for serving prometheus metrics. It can be set to '0' to disable the metrics serving.",
+										Description:         "BindAddress is the TCP address that the controller should bind tofor serving prometheus metrics.It can be set to '0' to disable the metrics serving.",
+										MarkdownDescription: "BindAddress is the TCP address that the controller should bind tofor serving prometheus metrics.It can be set to '0' to disable the metrics serving.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1843,24 +1843,24 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"profiler_address": schema.StringAttribute{
-								Description:         "ProfilerAddress defines the bind address to expose the pprof profiler (e.g. localhost:6060). Default empty, meaning the profiler is disabled. Controller Manager flag is --profiler-address.",
-								MarkdownDescription: "ProfilerAddress defines the bind address to expose the pprof profiler (e.g. localhost:6060). Default empty, meaning the profiler is disabled. Controller Manager flag is --profiler-address.",
+								Description:         "ProfilerAddress defines the bind address to expose the pprof profiler (e.g. localhost:6060).Default empty, meaning the profiler is disabled.Controller Manager flag is --profiler-address.",
+								MarkdownDescription: "ProfilerAddress defines the bind address to expose the pprof profiler (e.g. localhost:6060).Default empty, meaning the profiler is disabled.Controller Manager flag is --profiler-address.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"sync_period": schema.StringAttribute{
-								Description:         "SyncPeriod determines the minimum frequency at which watched resources are reconciled. A lower period will correct entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing. Defaults to 10 hours if unset. there will a 10 percent jitter between the SyncPeriod of all controllers so that all controllers will not send list requests simultaneously.",
-								MarkdownDescription: "SyncPeriod determines the minimum frequency at which watched resources are reconciled. A lower period will correct entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing. Defaults to 10 hours if unset. there will a 10 percent jitter between the SyncPeriod of all controllers so that all controllers will not send list requests simultaneously.",
+								Description:         "SyncPeriod determines the minimum frequency at which watched resources arereconciled. A lower period will correct entropy more quickly, but reduceresponsiveness to change if there are many watched resources. Change thisvalue only if you know what you are doing. Defaults to 10 hours if unset.there will a 10 percent jitter between the SyncPeriod of all controllersso that all controllers will not send list requests simultaneously.",
+								MarkdownDescription: "SyncPeriod determines the minimum frequency at which watched resources arereconciled. A lower period will correct entropy more quickly, but reduceresponsiveness to change if there are many watched resources. Change thisvalue only if you know what you are doing. Defaults to 10 hours if unset.there will a 10 percent jitter between the SyncPeriod of all controllersso that all controllers will not send list requests simultaneously.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"verbosity": schema.Int64Attribute{
-								Description:         "Verbosity set the logs verbosity. Defaults to 1. Controller Manager flag is --verbosity.",
-								MarkdownDescription: "Verbosity set the logs verbosity. Defaults to 1. Controller Manager flag is --verbosity.",
+								Description:         "Verbosity set the logs verbosity. Defaults to 1.Controller Manager flag is --verbosity.",
+								MarkdownDescription: "Verbosity set the logs verbosity. Defaults to 1.Controller Manager flag is --verbosity.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1874,24 +1874,24 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 								MarkdownDescription: "Webhook contains the controllers webhook configuration",
 								Attributes: map[string]schema.Attribute{
 									"cert_dir": schema.StringAttribute{
-										Description:         "CertDir is the directory that contains the server key and certificate. if not set, webhook server would look up the server key and certificate in {TempDir}/k8s-webhook-server/serving-certs. The server key and certificate must be named tls.key and tls.crt, respectively.",
-										MarkdownDescription: "CertDir is the directory that contains the server key and certificate. if not set, webhook server would look up the server key and certificate in {TempDir}/k8s-webhook-server/serving-certs. The server key and certificate must be named tls.key and tls.crt, respectively.",
+										Description:         "CertDir is the directory that contains the server key and certificate.if not set, webhook server would look up the server key and certificate in{TempDir}/k8s-webhook-server/serving-certs. The server key and certificatemust be named tls.key and tls.crt, respectively.",
+										MarkdownDescription: "CertDir is the directory that contains the server key and certificate.if not set, webhook server would look up the server key and certificate in{TempDir}/k8s-webhook-server/serving-certs. The server key and certificatemust be named tls.key and tls.crt, respectively.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"host": schema.StringAttribute{
-										Description:         "Host is the hostname that the webhook server binds to. It is used to set webhook.Server.Host.",
-										MarkdownDescription: "Host is the hostname that the webhook server binds to. It is used to set webhook.Server.Host.",
+										Description:         "Host is the hostname that the webhook server binds to.It is used to set webhook.Server.Host.",
+										MarkdownDescription: "Host is the hostname that the webhook server binds to.It is used to set webhook.Server.Host.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "Port is the port that the webhook server serves at. It is used to set webhook.Server.Port.",
-										MarkdownDescription: "Port is the port that the webhook server serves at. It is used to set webhook.Server.Port.",
+										Description:         "Port is the port that the webhook server serves at.It is used to set webhook.Server.Port.",
+										MarkdownDescription: "Port is the port that the webhook server serves at.It is used to set webhook.Server.Port.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1908,16 +1908,16 @@ func (r *OperatorClusterXK8SIoCoreProviderV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"secret_name": schema.StringAttribute{
-						Description:         "SecretName is the name of the Secret providing the configuration variables for the current provider instance, like e.g. credentials. Such configurations will be used when creating or upgrading provider components. The contents of the secret will be treated as immutable. If changes need to be made, a new object can be created and the name should be updated. The contents should be in the form of key:value. This secret must be in the same namespace as the provider.",
-						MarkdownDescription: "SecretName is the name of the Secret providing the configuration variables for the current provider instance, like e.g. credentials. Such configurations will be used when creating or upgrading provider components. The contents of the secret will be treated as immutable. If changes need to be made, a new object can be created and the name should be updated. The contents should be in the form of key:value. This secret must be in the same namespace as the provider.",
+						Description:         "SecretName is the name of the Secret providing the configurationvariables for the current provider instance, like e.g. credentials.Such configurations will be used when creating or upgrading provider components.The contents of the secret will be treated as immutable. If changes needto be made, a new object can be created and the name should be updated.The contents should be in the form of key:value. This secret must be inthe same namespace as the provider.",
+						MarkdownDescription: "SecretName is the name of the Secret providing the configurationvariables for the current provider instance, like e.g. credentials.Such configurations will be used when creating or upgrading provider components.The contents of the secret will be treated as immutable. If changes needto be made, a new object can be created and the name should be updated.The contents should be in the form of key:value. This secret must be inthe same namespace as the provider.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"secret_namespace": schema.StringAttribute{
-						Description:         "SecretNamespace is the namespace of the Secret providing the configuration variables. If not specified, the namespace of the provider will be used.",
-						MarkdownDescription: "SecretNamespace is the namespace of the Secret providing the configuration variables. If not specified, the namespace of the provider will be used.",
+						Description:         "SecretNamespace is the namespace of the Secret providing the configuration variables. If not specified,the namespace of the provider will be used.",
+						MarkdownDescription: "SecretNamespace is the namespace of the Secret providing the configuration variables. If not specified,the namespace of the provider will be used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

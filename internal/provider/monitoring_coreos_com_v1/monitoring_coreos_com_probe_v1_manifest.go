@@ -115,10 +115,12 @@ type MonitoringCoreosComProbeV1ManifestData struct {
 			Scheme   *string `tfsdk:"scheme" json:"scheme,omitempty"`
 			Url      *string `tfsdk:"url" json:"url,omitempty"`
 		} `tfsdk:"prober" json:"prober,omitempty"`
-		SampleLimit   *int64  `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
-		ScrapeTimeout *string `tfsdk:"scrape_timeout" json:"scrapeTimeout,omitempty"`
-		TargetLimit   *int64  `tfsdk:"target_limit" json:"targetLimit,omitempty"`
-		Targets       *struct {
+		SampleLimit     *int64    `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
+		ScrapeClass     *string   `tfsdk:"scrape_class" json:"scrapeClass,omitempty"`
+		ScrapeProtocols *[]string `tfsdk:"scrape_protocols" json:"scrapeProtocols,omitempty"`
+		ScrapeTimeout   *string   `tfsdk:"scrape_timeout" json:"scrapeTimeout,omitempty"`
+		TargetLimit     *int64    `tfsdk:"target_limit" json:"targetLimit,omitempty"`
+		Targets         *struct {
 			Ingress *struct {
 				NamespaceSelector *struct {
 					Any        *bool     `tfsdk:"any" json:"any,omitempty"`
@@ -332,8 +334,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 						MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authentication. More info: https://prometheus.io/docs/operating/configuration/#endpoint",
 						Attributes: map[string]schema.Attribute{
 							"password": schema.SingleNestedAttribute{
-								Description:         "The secret in the service monitor namespace that contains the password for authentication.",
-								MarkdownDescription: "The secret in the service monitor namespace that contains the password for authentication.",
+								Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+								MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -365,8 +367,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"username": schema.SingleNestedAttribute{
-								Description:         "The secret in the service monitor namespace that contains the username for authentication.",
-								MarkdownDescription: "The secret in the service monitor namespace that contains the username for authentication.",
+								Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+								MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -570,8 +572,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 						MarkdownDescription: "OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.",
 						Attributes: map[string]schema.Attribute{
 							"client_id": schema.SingleNestedAttribute{
-								Description:         "The secret or configmap containing the OAuth2 client id",
-								MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+								Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+								MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
 								Attributes: map[string]schema.Attribute{
 									"config_map": schema.SingleNestedAttribute{
 										Description:         "ConfigMap containing data to use for the targets.",
@@ -645,8 +647,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"client_secret": schema.SingleNestedAttribute{
-								Description:         "The secret containing the OAuth2 client secret",
-								MarkdownDescription: "The secret containing the OAuth2 client secret",
+								Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+								MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -678,8 +680,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"endpoint_params": schema.MapAttribute{
-								Description:         "Parameters to append to the token URL",
-								MarkdownDescription: "Parameters to append to the token URL",
+								Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+								MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -687,8 +689,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"scopes": schema.ListAttribute{
-								Description:         "OAuth2 scopes used for the token request",
-								MarkdownDescription: "OAuth2 scopes used for the token request",
+								Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+								MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -696,8 +698,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"token_url": schema.StringAttribute{
-								Description:         "The URL to fetch the token from",
-								MarkdownDescription: "The URL to fetch the token from",
+								Description:         "'tokenURL' configures the URL to fetch the token from.",
+								MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -758,6 +760,26 @@ func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasou
 					"sample_limit": schema.Int64Attribute{
 						Description:         "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
 						MarkdownDescription: "SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"scrape_class": schema.StringAttribute{
+						Description:         "The scrape class to apply.",
+						MarkdownDescription: "The scrape class to apply.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+						},
+					},
+
+					"scrape_protocols": schema.ListAttribute{
+						Description:         "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
+						MarkdownDescription: "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).  If unset, Prometheus uses its default value.  It requires Prometheus >= v2.49.0.",
+						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -73,7 +73,18 @@ Required:
 
 Optional:
 
+- `download_artifacts` (Attributes) options to download artifacts from previous steps (see [below for nested schema](#nestedatt--spec--after--download_artifacts))
 - `execute` (Attributes List) (see [below for nested schema](#nestedatt--spec--after--execute))
+
+<a id="nestedatt--spec--after--download_artifacts"></a>
+### Nested Schema for `spec.after.download_artifacts`
+
+Optional:
+
+- `all_previous_steps` (Boolean)
+- `previous_step_numbers` (List of String) previous step numbers starting from 1
+- `previous_test_names` (List of String) previous test names
+
 
 <a id="nestedatt--spec--after--execute"></a>
 ### Nested Schema for `spec.after.execute`
@@ -81,7 +92,118 @@ Optional:
 Optional:
 
 - `delay` (String) delay duration in time units
+- `execution_request` (Attributes) TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions. (see [below for nested schema](#nestedatt--spec--after--execute--execution_request))
 - `test` (String) object name
+
+<a id="nestedatt--spec--after--execute--execution_request"></a>
+### Nested Schema for `spec.after.execute.test`
+
+Optional:
+
+- `args` (List of String) additional executor binary arguments
+- `args_mode` (String) usage mode for arguments
+- `command` (List of String) executor binary command
+- `cron_job_template` (String) cron job template extensions
+- `cron_job_template_reference` (String) cron job template extensions reference
+- `execution_labels` (Map of String) test execution labels
+- `http_proxy` (String) http proxy for executor containers
+- `https_proxy` (String) https proxy for executor containers
+- `job_template` (String) job template extensions
+- `job_template_reference` (String) job template extensions reference
+- `negative_test` (Boolean) negative test will fail the execution if it is a success and it will succeed if it is a failure
+- `pvc_template` (String) pvc template extensions
+- `pvc_template_reference` (String) pvc template extensions reference
+- `running_context` (Attributes) RunningContext for test or test suite execution (see [below for nested schema](#nestedatt--spec--after--execute--test--running_context))
+- `scraper_template` (String) scraper template extensions
+- `scraper_template_reference` (String) scraper template extensions reference
+- `sync` (Boolean) whether to start execution sync or async
+- `variables` (Attributes) (see [below for nested schema](#nestedatt--spec--after--execute--test--variables))
+
+<a id="nestedatt--spec--after--execute--test--running_context"></a>
+### Nested Schema for `spec.after.execute.test.running_context`
+
+Required:
+
+- `type` (String) One of possible context types
+
+Optional:
+
+- `context` (String) Context value depending from its type
+
+
+<a id="nestedatt--spec--after--execute--test--variables"></a>
+### Nested Schema for `spec.after.execute.test.variables`
+
+Optional:
+
+- `name` (String) variable name
+- `type` (String) variable type
+- `value` (String) variable string value
+- `value_from` (Attributes) or load it from var source (see [below for nested schema](#nestedatt--spec--after--execute--test--variables--value_from))
+
+<a id="nestedatt--spec--after--execute--test--variables--value_from"></a>
+### Nested Schema for `spec.after.execute.test.variables.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--after--execute--test--variables--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--after--execute--test--variables--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--after--execute--test--variables--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--after--execute--test--variables--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--after--execute--test--variables--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.after.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--after--execute--test--variables--value_from--field_ref"></a>
+### Nested Schema for `spec.after.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--after--execute--test--variables--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.after.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+<a id="nestedatt--spec--after--execute--test--variables--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.after.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
 
 
 
@@ -94,7 +216,18 @@ Required:
 
 Optional:
 
+- `download_artifacts` (Attributes) options to download artifacts from previous steps (see [below for nested schema](#nestedatt--spec--before--download_artifacts))
 - `execute` (Attributes List) (see [below for nested schema](#nestedatt--spec--before--execute))
+
+<a id="nestedatt--spec--before--download_artifacts"></a>
+### Nested Schema for `spec.before.download_artifacts`
+
+Optional:
+
+- `all_previous_steps` (Boolean)
+- `previous_step_numbers` (List of String) previous step numbers starting from 1
+- `previous_test_names` (List of String) previous test names
+
 
 <a id="nestedatt--spec--before--execute"></a>
 ### Nested Schema for `spec.before.execute`
@@ -102,7 +235,118 @@ Optional:
 Optional:
 
 - `delay` (String) delay duration in time units
+- `execution_request` (Attributes) TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions. (see [below for nested schema](#nestedatt--spec--before--execute--execution_request))
 - `test` (String) object name
+
+<a id="nestedatt--spec--before--execute--execution_request"></a>
+### Nested Schema for `spec.before.execute.test`
+
+Optional:
+
+- `args` (List of String) additional executor binary arguments
+- `args_mode` (String) usage mode for arguments
+- `command` (List of String) executor binary command
+- `cron_job_template` (String) cron job template extensions
+- `cron_job_template_reference` (String) cron job template extensions reference
+- `execution_labels` (Map of String) test execution labels
+- `http_proxy` (String) http proxy for executor containers
+- `https_proxy` (String) https proxy for executor containers
+- `job_template` (String) job template extensions
+- `job_template_reference` (String) job template extensions reference
+- `negative_test` (Boolean) negative test will fail the execution if it is a success and it will succeed if it is a failure
+- `pvc_template` (String) pvc template extensions
+- `pvc_template_reference` (String) pvc template extensions reference
+- `running_context` (Attributes) RunningContext for test or test suite execution (see [below for nested schema](#nestedatt--spec--before--execute--test--running_context))
+- `scraper_template` (String) scraper template extensions
+- `scraper_template_reference` (String) scraper template extensions reference
+- `sync` (Boolean) whether to start execution sync or async
+- `variables` (Attributes) (see [below for nested schema](#nestedatt--spec--before--execute--test--variables))
+
+<a id="nestedatt--spec--before--execute--test--running_context"></a>
+### Nested Schema for `spec.before.execute.test.running_context`
+
+Required:
+
+- `type` (String) One of possible context types
+
+Optional:
+
+- `context` (String) Context value depending from its type
+
+
+<a id="nestedatt--spec--before--execute--test--variables"></a>
+### Nested Schema for `spec.before.execute.test.variables`
+
+Optional:
+
+- `name` (String) variable name
+- `type` (String) variable type
+- `value` (String) variable string value
+- `value_from` (Attributes) or load it from var source (see [below for nested schema](#nestedatt--spec--before--execute--test--variables--value_from))
+
+<a id="nestedatt--spec--before--execute--test--variables--value_from"></a>
+### Nested Schema for `spec.before.execute.test.variables.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--before--execute--test--variables--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--before--execute--test--variables--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--before--execute--test--variables--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--before--execute--test--variables--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--before--execute--test--variables--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.before.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--before--execute--test--variables--value_from--field_ref"></a>
+### Nested Schema for `spec.before.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--before--execute--test--variables--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.before.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+<a id="nestedatt--spec--before--execute--test--variables--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.before.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
 
 
 
@@ -213,7 +457,18 @@ Required:
 
 Optional:
 
+- `download_artifacts` (Attributes) options to download artifacts from previous steps (see [below for nested schema](#nestedatt--spec--steps--download_artifacts))
 - `execute` (Attributes List) (see [below for nested schema](#nestedatt--spec--steps--execute))
+
+<a id="nestedatt--spec--steps--download_artifacts"></a>
+### Nested Schema for `spec.steps.download_artifacts`
+
+Optional:
+
+- `all_previous_steps` (Boolean)
+- `previous_step_numbers` (List of String) previous step numbers starting from 1
+- `previous_test_names` (List of String) previous test names
+
 
 <a id="nestedatt--spec--steps--execute"></a>
 ### Nested Schema for `spec.steps.execute`
@@ -221,4 +476,111 @@ Optional:
 Optional:
 
 - `delay` (String) delay duration in time units
+- `execution_request` (Attributes) TestSuiteStepExecutionRequest contains parameters to be used by the executions. These fields will be passed to the execution when a Test Suite is queued for execution. TestSuiteStepExecutionRequest parameters have the highest priority. They override the values coming from Test Suites, Tests, and Test Executions. (see [below for nested schema](#nestedatt--spec--steps--execute--execution_request))
 - `test` (String) object name
+
+<a id="nestedatt--spec--steps--execute--execution_request"></a>
+### Nested Schema for `spec.steps.execute.test`
+
+Optional:
+
+- `args` (List of String) additional executor binary arguments
+- `args_mode` (String) usage mode for arguments
+- `command` (List of String) executor binary command
+- `cron_job_template` (String) cron job template extensions
+- `cron_job_template_reference` (String) cron job template extensions reference
+- `execution_labels` (Map of String) test execution labels
+- `http_proxy` (String) http proxy for executor containers
+- `https_proxy` (String) https proxy for executor containers
+- `job_template` (String) job template extensions
+- `job_template_reference` (String) job template extensions reference
+- `negative_test` (Boolean) negative test will fail the execution if it is a success and it will succeed if it is a failure
+- `pvc_template` (String) pvc template extensions
+- `pvc_template_reference` (String) pvc template extensions reference
+- `running_context` (Attributes) RunningContext for test or test suite execution (see [below for nested schema](#nestedatt--spec--steps--execute--test--running_context))
+- `scraper_template` (String) scraper template extensions
+- `scraper_template_reference` (String) scraper template extensions reference
+- `sync` (Boolean) whether to start execution sync or async
+- `variables` (Attributes) (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables))
+
+<a id="nestedatt--spec--steps--execute--test--running_context"></a>
+### Nested Schema for `spec.steps.execute.test.running_context`
+
+Required:
+
+- `type` (String) One of possible context types
+
+Optional:
+
+- `context` (String) Context value depending from its type
+
+
+<a id="nestedatt--spec--steps--execute--test--variables"></a>
+### Nested Schema for `spec.steps.execute.test.variables`
+
+Optional:
+
+- `name` (String) variable name
+- `type` (String) variable type
+- `value` (String) variable string value
+- `value_from` (Attributes) or load it from var source (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables--value_from))
+
+<a id="nestedatt--spec--steps--execute--test--variables--value_from"></a>
+### Nested Schema for `spec.steps.execute.test.variables.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--steps--execute--test--variables--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--steps--execute--test--variables--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.steps.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--steps--execute--test--variables--value_from--field_ref"></a>
+### Nested Schema for `spec.steps.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--steps--execute--test--variables--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.steps.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+<a id="nestedatt--spec--steps--execute--test--variables--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.steps.execute.test.variables.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined

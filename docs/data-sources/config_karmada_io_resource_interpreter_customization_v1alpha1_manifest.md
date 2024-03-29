@@ -16,6 +16,7 @@ ResourceInterpreterCustomization describes the configuration of a specific resou
 data "k8s_config_karmada_io_resource_interpreter_customization_v1alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -72,7 +73,7 @@ Optional:
 
 Required:
 
-- `lua_script` (String) LuaScript holds the Lua script that is used to interpret the dependencies of a specific resource. The script should implement a function as follows: luaScript: > function GetDependencies(desiredObj) dependencies = {} if desiredObj.spec.serviceAccountName ~= nil and desiredObj.spec.serviceAccountName ~= 'default' then dependency = {} dependency.apiVersion = 'v1' dependency.kind = 'ServiceAccount' dependency.name = desiredObj.spec.serviceAccountName dependency.namespace = desiredObj.namespace dependencies[1] = {} dependencies[1] = dependency end return dependencies end  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster.  The returned value should be expressed by a slice of DependentObjectReference.
+- `lua_script` (String) LuaScript holds the Lua script that is used to interpret the dependencies of a specific resource. The script should implement a function as follows:  ''' luaScript: > function GetDependencies(desiredObj) dependencies = {} if desiredObj.spec.serviceAccountName ~= nil and desiredObj.spec.serviceAccountName ~= 'default' then dependency = {} dependency.apiVersion = 'v1' dependency.kind = 'ServiceAccount' dependency.name = desiredObj.spec.serviceAccountName dependency.namespace = desiredObj.namespace dependencies[1] = {} dependencies[1] = dependency end return dependencies end '''  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster.  The returned value should be expressed by a slice of DependentObjectReference.
 
 
 <a id="nestedatt--spec--customizations--health_interpretation"></a>
@@ -80,7 +81,7 @@ Required:
 
 Required:
 
-- `lua_script` (String) LuaScript holds the Lua script that is used to assess the health state of a specific resource. The script should implement a function as follows: luaScript: > function InterpretHealth(observedObj) if observedObj.status.readyReplicas == observedObj.spec.replicas then return true end end  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - observedObj: the object represents the configuration that is observed from a specific member cluster.  The returned boolean value indicates the health status.
+- `lua_script` (String) LuaScript holds the Lua script that is used to assess the health state of a specific resource. The script should implement a function as follows:  ''' luaScript: > function InterpretHealth(observedObj) if observedObj.status.readyReplicas == observedObj.spec.replicas then return true end end '''  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - observedObj: the object represents the configuration that is observed from a specific member cluster.  The returned boolean value indicates the health status.
 
 
 <a id="nestedatt--spec--customizations--replica_resource"></a>
@@ -88,7 +89,7 @@ Required:
 
 Required:
 
-- `lua_script` (String) LuaScript holds the Lua script that is used to discover the resource's replica as well as resource requirements  The script should implement a function as follows: luaScript: > function GetReplicas(desiredObj) replica = desiredObj.spec.replicas requirement = {} requirement.nodeClaim = {} requirement.nodeClaim.nodeSelector = desiredObj.spec.template.spec.nodeSelector requirement.nodeClaim.tolerations = desiredObj.spec.template.spec.tolerations requirement.resourceRequest = desiredObj.spec.template.spec.containers[1].resources.limits return replica, requirement end  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster.  The function expects two return values: - replica: the declared replica number - requirement: the resource required by each replica expressed with a ResourceBindingSpec.ReplicaRequirements. The returned values will be set into a ResourceBinding or ClusterResourceBinding.
+- `lua_script` (String) LuaScript holds the Lua script that is used to discover the resource's replica as well as resource requirements  The script should implement a function as follows:  ''' luaScript: > function GetReplicas(desiredObj) replica = desiredObj.spec.replicas requirement = {} requirement.nodeClaim = {} requirement.nodeClaim.nodeSelector = desiredObj.spec.template.spec.nodeSelector requirement.nodeClaim.tolerations = desiredObj.spec.template.spec.tolerations requirement.resourceRequest = desiredObj.spec.template.spec.containers[1].resources.limits return replica, requirement end '''  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster.  The function expects two return values: - replica: the declared replica number - requirement: the resource required by each replica expressed with a ResourceBindingSpec.ReplicaRequirements. The returned values will be set into a ResourceBinding or ClusterResourceBinding.
 
 
 <a id="nestedatt--spec--customizations--replica_revision"></a>
@@ -96,7 +97,7 @@ Required:
 
 Required:
 
-- `lua_script` (String) LuaScript holds the Lua script that is used to revise replicas in the desired specification. The script should implement a function as follows: luaScript: > function ReviseReplica(desiredObj, desiredReplica) desiredObj.spec.replicas = desiredReplica return desiredObj end  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster. - desiredReplica: the replica number should be applied with.  The returned object should be a revised configuration which will be applied to member cluster eventually.
+- `lua_script` (String) LuaScript holds the Lua script that is used to revise replicas in the desired specification. The script should implement a function as follows:  ''' luaScript: > function ReviseReplica(desiredObj, desiredReplica) desiredObj.spec.replicas = desiredReplica return desiredObj end '''  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster. - desiredReplica: the replica number should be applied with.  The returned object should be a revised configuration which will be applied to member cluster eventually.
 
 
 <a id="nestedatt--spec--customizations--retention"></a>
@@ -104,7 +105,7 @@ Required:
 
 Required:
 
-- `lua_script` (String) LuaScript holds the Lua script that is used to retain runtime values to the desired specification.  The script should implement a function as follows: luaScript: > function Retain(desiredObj, observedObj) desiredObj.spec.fieldFoo = observedObj.spec.fieldFoo return desiredObj end  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster. - observedObj: the object represents the configuration that is observed from a specific member cluster.  The returned object should be a retained configuration which will be applied to member cluster eventually.
+- `lua_script` (String) LuaScript holds the Lua script that is used to retain runtime values to the desired specification.  The script should implement a function as follows:  ''' luaScript: > function Retain(desiredObj, observedObj) desiredObj.spec.fieldFoo = observedObj.spec.fieldFoo return desiredObj end '''  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster. - observedObj: the object represents the configuration that is observed from a specific member cluster.  The returned object should be a retained configuration which will be applied to member cluster eventually.
 
 
 <a id="nestedatt--spec--customizations--status_aggregation"></a>
@@ -112,7 +113,7 @@ Required:
 
 Required:
 
-- `lua_script` (String) LuaScript holds the Lua script that is used to aggregate decentralized statuses to the desired specification. The script should implement a function as follows: luaScript: > function AggregateStatus(desiredObj, statusItems) for i = 1, #statusItems do desiredObj.status.readyReplicas = desiredObj.status.readyReplicas + items[i].readyReplicas end return desiredObj end  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents a resource template. - statusItems: the slice of status expressed with AggregatedStatusItem.  The returned object should be a whole object with status aggregated.
+- `lua_script` (String) LuaScript holds the Lua script that is used to aggregate decentralized statuses to the desired specification. The script should implement a function as follows:  ''' luaScript: > function AggregateStatus(desiredObj, statusItems) for i = 1, #statusItems do desiredObj.status.readyReplicas = desiredObj.status.readyReplicas + items[i].readyReplicas end return desiredObj end '''  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - desiredObj: the object represents a resource template. - statusItems: the slice of status expressed with AggregatedStatusItem.  The returned object should be a whole object with status aggregated.
 
 
 <a id="nestedatt--spec--customizations--status_reflection"></a>
@@ -120,7 +121,7 @@ Required:
 
 Required:
 
-- `lua_script` (String) LuaScript holds the Lua script that is used to get the status from the observed specification. The script should implement a function as follows: luaScript: > function ReflectStatus(observedObj) status = {} status.readyReplicas = observedObj.status.observedObj return status end  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - observedObj: the object represents the configuration that is observed from a specific member cluster.  The returned status could be the whole status or part of it and will be set into both Work and ResourceBinding(ClusterResourceBinding).
+- `lua_script` (String) LuaScript holds the Lua script that is used to get the status from the observed specification. The script should implement a function as follows:  ''' luaScript: > function ReflectStatus(observedObj) status = {} status.readyReplicas = observedObj.status.observedObj return status end '''  The content of the LuaScript needs to be a whole function including both declaration and implementation.  The parameters will be supplied by the system: - observedObj: the object represents the configuration that is observed from a specific member cluster.  The returned status could be the whole status or part of it and will be set into both Work and ResourceBinding(ClusterResourceBinding).
 
 
 

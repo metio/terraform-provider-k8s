@@ -30,7 +30,7 @@ data "k8s_iam_services_k8s_aws_group_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) GroupSpec defines the desired state of Group.  Contains information about an IAM group entity.  This data type is used as a response element in the following operations:  * CreateGroup  * GetGroup  * ListGroups (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) GroupSpec defines the desired state of Group.Contains information about an IAM group entity.This data type is used as a response element in the following operations:   * CreateGroup   * GetGroup   * ListGroups (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,12 +56,12 @@ Optional:
 
 Required:
 
-- `name` (String) The name of the group to create. Do not include the path in this value.  IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both 'MyResource' and 'myresource'.
+- `name` (String) The name of the group to create. Do not include the path in this value.IAM user, group, role, and policy names must be unique within the account.Names are not distinguished by case. For example, you cannot create resourcesnamed both 'MyResource' and 'myresource'.
 
 Optional:
 
 - `inline_policies` (Map of String)
-- `path` (String) The path to the group. For more information about paths, see IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) in the IAM User Guide.  This parameter is optional. If it is not included, it defaults to a slash (/).  This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex)) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (u0021) through the DEL character (u007F), including most punctuation characters, digits, and upper and lowercased letters.
+- `path` (String) The path to the group. For more information about paths, see IAM identifiers(https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)in the IAM User Guide.This parameter is optional. If it is not included, it defaults to a slash(/).This parameter allows (through its regex pattern (http://wikipedia.org/wiki/regex))a string of characters consisting of either a forward slash (/) by itselfor a string that must begin and end with forward slashes. In addition, itcan contain any ASCII character from the ! (u0021) through the DEL character(u007F), including most punctuation characters, digits, and upper and lowercasedletters.
 - `policies` (List of String)
 - `policy_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--policy_refs))
 
@@ -70,7 +70,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--policy_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--policy_refs--from))
 
 <a id="nestedatt--spec--policy_refs--from"></a>
 ### Nested Schema for `spec.policy_refs.from`

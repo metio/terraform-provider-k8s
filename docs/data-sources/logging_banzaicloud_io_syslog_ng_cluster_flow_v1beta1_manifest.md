@@ -60,6 +60,7 @@ Optional:
 - `global_output_refs` (List of String)
 - `logging_ref` (String)
 - `match` (Attributes) (see [below for nested schema](#nestedatt--spec--match))
+- `output_metrics` (Attributes List) (see [below for nested schema](#nestedatt--spec--output_metrics))
 
 <a id="nestedatt--spec--filters"></a>
 ### Nested Schema for `spec.filters`
@@ -371,3 +372,14 @@ Optional:
 - `template` (String)
 - `type` (String)
 - `value` (String)
+
+
+
+<a id="nestedatt--spec--output_metrics"></a>
+### Nested Schema for `spec.output_metrics`
+
+Optional:
+
+- `key` (String)
+- `labels` (Map of String)
+- `level` (Number)

@@ -149,24 +149,24 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta2Manifest) Schema(_ context.Contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ImagePolicySpec defines the parameters for calculating the ImagePolicy.",
-				MarkdownDescription: "ImagePolicySpec defines the parameters for calculating the ImagePolicy.",
+				Description:         "ImagePolicySpec defines the parameters for calculating theImagePolicy.",
+				MarkdownDescription: "ImagePolicySpec defines the parameters for calculating theImagePolicy.",
 				Attributes: map[string]schema.Attribute{
 					"filter_tags": schema.SingleNestedAttribute{
-						Description:         "FilterTags enables filtering for only a subset of tags based on a set of rules. If no rules are provided, all the tags from the repository will be ordered and compared.",
-						MarkdownDescription: "FilterTags enables filtering for only a subset of tags based on a set of rules. If no rules are provided, all the tags from the repository will be ordered and compared.",
+						Description:         "FilterTags enables filtering for only a subset of tags based on a set ofrules. If no rules are provided, all the tags from the repository will beordered and compared.",
+						MarkdownDescription: "FilterTags enables filtering for only a subset of tags based on a set ofrules. If no rules are provided, all the tags from the repository will beordered and compared.",
 						Attributes: map[string]schema.Attribute{
 							"extract": schema.StringAttribute{
-								Description:         "Extract allows a capture group to be extracted from the specified regular expression pattern, useful before tag evaluation.",
-								MarkdownDescription: "Extract allows a capture group to be extracted from the specified regular expression pattern, useful before tag evaluation.",
+								Description:         "Extract allows a capture group to be extracted from the specified regularexpression pattern, useful before tag evaluation.",
+								MarkdownDescription: "Extract allows a capture group to be extracted from the specified regularexpression pattern, useful before tag evaluation.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"pattern": schema.StringAttribute{
-								Description:         "Pattern specifies a regular expression pattern used to filter for image tags.",
-								MarkdownDescription: "Pattern specifies a regular expression pattern used to filter for image tags.",
+								Description:         "Pattern specifies a regular expression pattern used to filter for imagetags.",
+								MarkdownDescription: "Pattern specifies a regular expression pattern used to filter for imagetags.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -178,8 +178,8 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta2Manifest) Schema(_ context.Contex
 					},
 
 					"image_repository_ref": schema.SingleNestedAttribute{
-						Description:         "ImageRepositoryRef points at the object specifying the image being scanned",
-						MarkdownDescription: "ImageRepositoryRef points at the object specifying the image being scanned",
+						Description:         "ImageRepositoryRef points at the object specifying the imagebeing scanned",
+						MarkdownDescription: "ImageRepositoryRef points at the object specifying the imagebeing scanned",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -203,16 +203,16 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta2Manifest) Schema(_ context.Contex
 					},
 
 					"policy": schema.SingleNestedAttribute{
-						Description:         "Policy gives the particulars of the policy to be followed in selecting the most recent image",
-						MarkdownDescription: "Policy gives the particulars of the policy to be followed in selecting the most recent image",
+						Description:         "Policy gives the particulars of the policy to be followed inselecting the most recent image",
+						MarkdownDescription: "Policy gives the particulars of the policy to be followed inselecting the most recent image",
 						Attributes: map[string]schema.Attribute{
 							"alphabetical": schema.SingleNestedAttribute{
 								Description:         "Alphabetical set of rules to use for alphabetical ordering of the tags.",
 								MarkdownDescription: "Alphabetical set of rules to use for alphabetical ordering of the tags.",
 								Attributes: map[string]schema.Attribute{
 									"order": schema.StringAttribute{
-										Description:         "Order specifies the sorting order of the tags. Given the letters of the alphabet as tags, ascending order would select Z, and descending order would select A.",
-										MarkdownDescription: "Order specifies the sorting order of the tags. Given the letters of the alphabet as tags, ascending order would select Z, and descending order would select A.",
+										Description:         "Order specifies the sorting order of the tags. Given the letters of thealphabet as tags, ascending order would select Z, and descending orderwould select A.",
+										MarkdownDescription: "Order specifies the sorting order of the tags. Given the letters of thealphabet as tags, ascending order would select Z, and descending orderwould select A.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -231,8 +231,8 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta2Manifest) Schema(_ context.Contex
 								MarkdownDescription: "Numerical set of rules to use for numerical ordering of the tags.",
 								Attributes: map[string]schema.Attribute{
 									"order": schema.StringAttribute{
-										Description:         "Order specifies the sorting order of the tags. Given the integer values from 0 to 9 as tags, ascending order would select 9, and descending order would select 0.",
-										MarkdownDescription: "Order specifies the sorting order of the tags. Given the integer values from 0 to 9 as tags, ascending order would select 9, and descending order would select 0.",
+										Description:         "Order specifies the sorting order of the tags. Given the integer valuesfrom 0 to 9 as tags, ascending order would select 9, and descending orderwould select 0.",
+										MarkdownDescription: "Order specifies the sorting order of the tags. Given the integer valuesfrom 0 to 9 as tags, ascending order would select 9, and descending orderwould select 0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -247,12 +247,12 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta2Manifest) Schema(_ context.Contex
 							},
 
 							"semver": schema.SingleNestedAttribute{
-								Description:         "SemVer gives a semantic version range to check against the tags available.",
-								MarkdownDescription: "SemVer gives a semantic version range to check against the tags available.",
+								Description:         "SemVer gives a semantic version range to check against the tagsavailable.",
+								MarkdownDescription: "SemVer gives a semantic version range to check against the tagsavailable.",
 								Attributes: map[string]schema.Attribute{
 									"range": schema.StringAttribute{
-										Description:         "Range gives a semver range for the image tag; the highest version within the range that's a tag yields the latest image.",
-										MarkdownDescription: "Range gives a semver range for the image tag; the highest version within the range that's a tag yields the latest image.",
+										Description:         "Range gives a semver range for the image tag; the highestversion within the range that's a tag yields the latest image.",
+										MarkdownDescription: "Range gives a semver range for the image tag; the highestversion within the range that's a tag yields the latest image.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,

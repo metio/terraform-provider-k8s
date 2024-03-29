@@ -58,9 +58,11 @@ type MariadbMmontesIoGrantV1Alpha1ManifestData struct {
 			Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 			WaitForIt       *bool   `tfsdk:"wait_for_it" json:"waitForIt,omitempty"`
 		} `tfsdk:"maria_db_ref" json:"mariaDbRef,omitempty"`
-		Privileges *[]string `tfsdk:"privileges" json:"privileges,omitempty"`
-		Table      *string   `tfsdk:"table" json:"table,omitempty"`
-		Username   *string   `tfsdk:"username" json:"username,omitempty"`
+		Privileges      *[]string `tfsdk:"privileges" json:"privileges,omitempty"`
+		RequeueInterval *string   `tfsdk:"requeue_interval" json:"requeueInterval,omitempty"`
+		RetryInterval   *string   `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+		Table           *string   `tfsdk:"table" json:"table,omitempty"`
+		Username        *string   `tfsdk:"username" json:"username,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -70,8 +72,8 @@ func (r *MariadbMmontesIoGrantV1Alpha1Manifest) Metadata(_ context.Context, requ
 
 func (r *MariadbMmontesIoGrantV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Grant is the Schema for the grants API",
-		MarkdownDescription: "Grant is the Schema for the grants API",
+		Description:         "Grant is the Schema for the grants API. It is used to define grants as if you were running a 'GRANT' statement.",
+		MarkdownDescription: "Grant is the Schema for the grants API. It is used to define grants as if you were running a 'GRANT' statement.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -150,32 +152,32 @@ func (r *MariadbMmontesIoGrantV1Alpha1Manifest) Schema(_ context.Context, _ data
 				MarkdownDescription: "GrantSpec defines the desired state of Grant",
 				Attributes: map[string]schema.Attribute{
 					"database": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Database to use in the Grant.",
+						MarkdownDescription: "Database to use in the Grant.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"grant_option": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "GrantOption to use in the Grant.",
+						MarkdownDescription: "GrantOption to use in the Grant.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"host": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Host to use in the Grant.",
+						MarkdownDescription: "Host to use in the Grant.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"maria_db_ref": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "MariaDBRef is a reference to a MariaDB object.",
+						MarkdownDescription: "MariaDBRef is a reference to a MariaDB object.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -234,8 +236,8 @@ func (r *MariadbMmontesIoGrantV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"wait_for_it": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.",
+								MarkdownDescription: "WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -247,25 +249,41 @@ func (r *MariadbMmontesIoGrantV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"privileges": schema.ListAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Privileges to use in the Grant.",
+						MarkdownDescription: "Privileges to use in the Grant.",
 						ElementType:         types.StringType,
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
+					"requeue_interval": schema.StringAttribute{
+						Description:         "RequeueInterval is used to perform requeue reconcilizations.",
+						MarkdownDescription: "RequeueInterval is used to perform requeue reconcilizations.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"retry_interval": schema.StringAttribute{
+						Description:         "RetryInterval is the interval used to perform retries.",
+						MarkdownDescription: "RetryInterval is the interval used to perform retries.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"table": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Table to use in the Grant.",
+						MarkdownDescription: "Table to use in the Grant.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"username": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Username to use in the Grant.",
+						MarkdownDescription: "Username to use in the Grant.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

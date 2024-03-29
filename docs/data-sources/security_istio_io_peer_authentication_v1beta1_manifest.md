@@ -30,7 +30,7 @@ data "k8s_security_istio_io_peer_authentication_v1beta1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) PeerAuthentication defines how traffic will be tunneled (or not) to the sidecar. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Peer authentication configuration for workloads. See more details at: https://istio.io/docs/reference/config/security/peer_authentication.html (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -58,14 +58,14 @@ Optional:
 
 - `mtls` (Attributes) Mutual TLS settings for workload. (see [below for nested schema](#nestedatt--spec--mtls))
 - `port_level_mtls` (Attributes) Port specific mutual TLS settings. (see [below for nested schema](#nestedatt--spec--port_level_mtls))
-- `selector` (Attributes) The selector determines the workloads to apply the ChannelAuthentication on. (see [below for nested schema](#nestedatt--spec--selector))
+- `selector` (Attributes) The selector determines the workloads to apply the PeerAuthentication on. (see [below for nested schema](#nestedatt--spec--selector))
 
 <a id="nestedatt--spec--mtls"></a>
 ### Nested Schema for `spec.mtls`
 
 Optional:
 
-- `mode` (String) Defines the mTLS mode used for peer authentication.
+- `mode` (String) Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT
 
 
 <a id="nestedatt--spec--port_level_mtls"></a>
@@ -73,7 +73,7 @@ Optional:
 
 Optional:
 
-- `mode` (String) Defines the mTLS mode used for peer authentication.
+- `mode` (String) Defines the mTLS mode used for peer authentication.Valid Options: DISABLE, PERMISSIVE, STRICT
 
 
 <a id="nestedatt--spec--selector"></a>
@@ -81,4 +81,4 @@ Optional:
 
 Optional:
 
-- `match_labels` (Map of String)
+- `match_labels` (Map of String) One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.

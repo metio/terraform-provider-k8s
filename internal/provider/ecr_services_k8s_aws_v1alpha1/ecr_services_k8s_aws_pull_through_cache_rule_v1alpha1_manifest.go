@@ -133,8 +133,8 @@ func (r *EcrServicesK8SAwsPullThroughCacheRuleV1Alpha1Manifest) Schema(_ context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "PullThroughCacheRuleSpec defines the desired state of PullThroughCacheRule.  The details of a pull through cache rule.",
-				MarkdownDescription: "PullThroughCacheRuleSpec defines the desired state of PullThroughCacheRule.  The details of a pull through cache rule.",
+				Description:         "PullThroughCacheRuleSpec defines the desired state of PullThroughCacheRule.The details of a pull through cache rule.",
+				MarkdownDescription: "PullThroughCacheRuleSpec defines the desired state of PullThroughCacheRule.The details of a pull through cache rule.",
 				Attributes: map[string]schema.Attribute{
 					"ecr_repository_prefix": schema.StringAttribute{
 						Description:         "The repository name prefix to use when caching images from the source registry.",
@@ -145,16 +145,16 @@ func (r *EcrServicesK8SAwsPullThroughCacheRuleV1Alpha1Manifest) Schema(_ context
 					},
 
 					"registry_id": schema.StringAttribute{
-						Description:         "The Amazon Web Services account ID associated with the registry to create the pull through cache rule for. If you do not specify a registry, the default registry is assumed.",
-						MarkdownDescription: "The Amazon Web Services account ID associated with the registry to create the pull through cache rule for. If you do not specify a registry, the default registry is assumed.",
+						Description:         "The Amazon Web Services account ID associated with the registry to createthe pull through cache rule for. If you do not specify a registry, the defaultregistry is assumed.",
+						MarkdownDescription: "The Amazon Web Services account ID associated with the registry to createthe pull through cache rule for. If you do not specify a registry, the defaultregistry is assumed.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"upstream_registry_url": schema.StringAttribute{
-						Description:         "The registry URL of the upstream public registry to use as the source for the pull through cache rule.",
-						MarkdownDescription: "The registry URL of the upstream public registry to use as the source for the pull through cache rule.",
+						Description:         "The registry URL of the upstream public registry to use as the source forthe pull through cache rule.",
+						MarkdownDescription: "The registry URL of the upstream public registry to use as the source forthe pull through cache rule.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

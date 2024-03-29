@@ -224,6 +224,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -246,6 +248,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -269,6 +273,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -291,6 +297,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -507,6 +515,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -529,6 +539,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -552,6 +564,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -574,6 +588,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1021,6 +1037,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1043,6 +1061,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1066,6 +1086,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1088,6 +1110,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1194,6 +1218,7 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 				GrantsRefreshPeriodSeconds     *int64    `tfsdk:"grants_refresh_period_seconds" json:"grantsRefreshPeriodSeconds,omitempty"`
 				GrantsRefreshPoolSize          *int64    `tfsdk:"grants_refresh_pool_size" json:"grantsRefreshPoolSize,omitempty"`
 				HttpRetries                    *int64    `tfsdk:"http_retries" json:"httpRetries,omitempty"`
+				IncludeAcceptHeader            *bool     `tfsdk:"include_accept_header" json:"includeAcceptHeader,omitempty"`
 				InitialCacheCapacity           *int64    `tfsdk:"initial_cache_capacity" json:"initialCacheCapacity,omitempty"`
 				MaximumCacheSize               *int64    `tfsdk:"maximum_cache_size" json:"maximumCacheSize,omitempty"`
 				ReadTimeoutSeconds             *int64    `tfsdk:"read_timeout_seconds" json:"readTimeoutSeconds,omitempty"`
@@ -1252,6 +1277,7 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					GroupsClaimDelimiter              *string            `tfsdk:"groups_claim_delimiter" json:"groupsClaimDelimiter,omitempty"`
 					HttpRetries                       *int64             `tfsdk:"http_retries" json:"httpRetries,omitempty"`
 					HttpRetryPauseMs                  *int64             `tfsdk:"http_retry_pause_ms" json:"httpRetryPauseMs,omitempty"`
+					IncludeAcceptHeader               *bool              `tfsdk:"include_accept_header" json:"includeAcceptHeader,omitempty"`
 					IntrospectionEndpointUri          *string            `tfsdk:"introspection_endpoint_uri" json:"introspectionEndpointUri,omitempty"`
 					JwksEndpointUri                   *string            `tfsdk:"jwks_endpoint_uri" json:"jwksEndpointUri,omitempty"`
 					JwksExpirySeconds                 *int64             `tfsdk:"jwks_expiry_seconds" json:"jwksExpirySeconds,omitempty"`
@@ -1358,7 +1384,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"logging" json:"logging,omitempty"`
-			MetricsConfig *struct {
+			MetadataVersion *string `tfsdk:"metadata_version" json:"metadataVersion,omitempty"`
+			MetricsConfig   *struct {
 				Type      *string `tfsdk:"type" json:"type,omitempty"`
 				ValueFrom *struct {
 					ConfigMapKeyRef *struct {
@@ -1603,6 +1630,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1625,6 +1654,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1648,6 +1679,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1670,6 +1703,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1779,6 +1814,14 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					PodManagementPolicy *string `tfsdk:"pod_management_policy" json:"podManagementPolicy,omitempty"`
 				} `tfsdk:"statefulset" json:"statefulset,omitempty"`
 			} `tfsdk:"template" json:"template,omitempty"`
+			TieredStorage *struct {
+				RemoteStorageManager *struct {
+					ClassName *string            `tfsdk:"class_name" json:"className,omitempty"`
+					ClassPath *string            `tfsdk:"class_path" json:"classPath,omitempty"`
+					Config    *map[string]string `tfsdk:"config" json:"config,omitempty"`
+				} `tfsdk:"remote_storage_manager" json:"remoteStorageManager,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"tiered_storage" json:"tieredStorage,omitempty"`
 			Version *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"kafka" json:"kafka,omitempty"`
 		KafkaExporter *struct {
@@ -1808,7 +1851,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
-			Template *struct {
+			ShowAllOffsets *bool `tfsdk:"show_all_offsets" json:"showAllOffsets,omitempty"`
+			Template       *struct {
 				Container *struct {
 					Env *[]struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -1895,6 +1939,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1917,6 +1963,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1940,6 +1988,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1962,6 +2012,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -2208,6 +2260,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -2230,6 +2284,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -2253,6 +2309,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -2275,6 +2333,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -2756,8 +2816,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "The docker image for the pods.",
-								MarkdownDescription: "The docker image for the pods.",
+								Description:         "The container image used for Cruise Control pods. If no image name is explicitly specified, the image name corresponds to the name specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used.",
+								MarkdownDescription: "The container image used for Cruise Control pods. If no image name is explicitly specified, the image name corresponds to the name specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2989,8 +3049,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"value_from": schema.SingleNestedAttribute{
-										Description:         "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. For details of the structure of this configuration, see the {JMXExporter}.",
-										MarkdownDescription: "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. For details of the structure of this configuration, see the {JMXExporter}.",
+										Description:         "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. ",
+										MarkdownDescription: "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. ",
 										Attributes: map[string]schema.Attribute{
 											"config_map_key_ref": schema.SingleNestedAttribute{
 												Description:         "Reference to the key in the ConfigMap containing the configuration.",
@@ -3763,6 +3823,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -3910,6 +3988,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -4061,6 +4157,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -4208,6 +4322,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -4380,8 +4512,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"priority_class_name": schema.StringAttribute{
-												Description:         "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
-												MarkdownDescription: "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
+												Description:         "The name of the priority class used to assign priority to the pods. ",
+												MarkdownDescription: "The name of the priority class used to assign priority to the pods. ",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5684,6 +5816,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -5831,6 +5981,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -5982,6 +6150,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -6129,6 +6315,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -6301,8 +6505,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"priority_class_name": schema.StringAttribute{
-												Description:         "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
-												MarkdownDescription: "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
+												Description:         "The name of the priority class used to assign priority to the pods. ",
+												MarkdownDescription: "The name of the priority class used to assign priority to the pods. ",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -9275,6 +9479,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -9422,6 +9644,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -9573,6 +9813,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -9720,6 +9978,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -9892,8 +10168,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"priority_class_name": schema.StringAttribute{
-												Description:         "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
-												MarkdownDescription: "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
+												Description:         "The name of the priority class used to assign priority to the pods. ",
+												MarkdownDescription: "The name of the priority class used to assign priority to the pods. ",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10483,6 +10759,14 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 										},
 									},
 
+									"include_accept_header": schema.BoolAttribute{
+										Description:         "Whether the Accept header should be set in requests to the authorization servers. The default value is 'true'.",
+										MarkdownDescription: "Whether the Accept header should be set in requests to the authorization servers. The default value is 'true'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"initial_cache_capacity": schema.Int64Attribute{
 										Description:         "Initial capacity of the local cache used by the authorizer to avoid querying the Open Policy Agent for every request Defaults to '5000'.",
 										MarkdownDescription: "Initial capacity of the local cache used by the authorizer to avoid querying the Open Policy Agent for every request Defaults to '5000'.",
@@ -10563,8 +10847,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"type": schema.StringAttribute{
-										Description:         "Authorization type. Currently, the supported types are 'simple', 'keycloak', 'opa' and 'custom'. 'simple' authorization type uses Kafka's 'kafka.security.authorizer.AclAuthorizer' class for authorization. 'keycloak' authorization type uses Keycloak Authorization Services for authorization. 'opa' authorization type uses Open Policy Agent based authorization.'custom' authorization type uses user-provided implementation for authorization.",
-										MarkdownDescription: "Authorization type. Currently, the supported types are 'simple', 'keycloak', 'opa' and 'custom'. 'simple' authorization type uses Kafka's 'kafka.security.authorizer.AclAuthorizer' class for authorization. 'keycloak' authorization type uses Keycloak Authorization Services for authorization. 'opa' authorization type uses Open Policy Agent based authorization.'custom' authorization type uses user-provided implementation for authorization.",
+										Description:         "Authorization type. Currently, the supported types are 'simple', 'keycloak', 'opa' and 'custom'. 'simple' authorization type uses Kafka's built-in authorizer for authorization. 'keycloak' authorization type uses Keycloak Authorization Services for authorization. 'opa' authorization type uses Open Policy Agent based authorization.'custom' authorization type uses user-provided implementation for authorization.",
+										MarkdownDescription: "Authorization type. Currently, the supported types are 'simple', 'keycloak', 'opa' and 'custom'. 'simple' authorization type uses Kafka's built-in authorizer for authorization. 'keycloak' authorization type uses Keycloak Authorization Services for authorization. 'opa' authorization type uses Open Policy Agent based authorization.'custom' authorization type uses user-provided implementation for authorization.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -10595,8 +10879,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"config": schema.MapAttribute{
-								Description:         "Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers,node.id, process.roles, controller., metadata.log.dir (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size,ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation,cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms,cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms,cruise.control.metrics.topic.min.insync.replicas,controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).",
-								MarkdownDescription: "Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers,node.id, process.roles, controller., metadata.log.dir (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size,ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation,cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms,cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms,cruise.control.metrics.topic.min.insync.replicas,controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).",
+								Description:         "Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers, node.id, process.roles, controller., metadata.log.dir, zookeeper.metadata.migration.enable (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation, cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms, cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms, cruise.control.metrics.topic.min.insync.replicas, controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).",
+								MarkdownDescription: "Kafka broker config properties with the following prefixes cannot be set: listeners, advertised., broker., listener., host.name, port, inter.broker.listener.name, sasl., ssl., security., password., log.dir, zookeeper.connect, zookeeper.set.acl, zookeeper.ssl, zookeeper.clientCnxnSocket, authorizer., super.user, cruise.control.metrics.topic, cruise.control.metrics.reporter.bootstrap.servers, node.id, process.roles, controller., metadata.log.dir, zookeeper.metadata.migration.enable (with the exception of: zookeeper.connection.timeout.ms, sasl.server.max.receive.size, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, ssl.secure.random.implementation, cruise.control.metrics.topic.num.partitions, cruise.control.metrics.topic.replication.factor, cruise.control.metrics.topic.retention.ms, cruise.control.metrics.topic.auto.create.retries, cruise.control.metrics.topic.auto.create.timeout.ms, cruise.control.metrics.topic.min.insync.replicas, controller.quorum.election.backoff.max.ms, controller.quorum.election.timeout.ms, controller.quorum.fetch.timeout.ms).",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -10604,8 +10888,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "The docker image for the pods. The default value depends on the configured 'Kafka.spec.kafka.version'.",
-								MarkdownDescription: "The docker image for the pods. The default value depends on the configured 'Kafka.spec.kafka.version'.",
+								Description:         "The container image used for Kafka pods. If the property is not set, the default Kafka image version is determined based on the 'version' configuration. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration. Changing the Kafka image version does not automatically update the image versions for other components, such as Kafka Exporter. ",
+								MarkdownDescription: "The container image used for Kafka pods. If the property is not set, the default Kafka image version is determined based on the 'version' configuration. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration. Changing the Kafka image version does not automatically update the image versions for other components, such as Kafka Exporter. ",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -10912,6 +11196,14 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												"http_retry_pause_ms": schema.Int64Attribute{
 													Description:         "The pause to take before retrying a failed HTTP request. If not set, the default is to not pause at all but to immediately repeat a request.",
 													MarkdownDescription: "The pause to take before retrying a failed HTTP request. If not set, the default is to not pause at all but to immediately repeat a request.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"include_accept_header": schema.BoolAttribute{
+													Description:         "Whether the Accept header should be set in requests to the authorization servers. The default value is 'true'.",
+													MarkdownDescription: "Whether the Accept header should be set in requests to the authorization servers. The default value is 'true'.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -11572,8 +11864,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "Type of the listener. Currently the supported types are 'internal', 'route', 'loadbalancer', 'nodeport' and 'ingress'. * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka with TLS passthrough.* 'cluster-ip' type uses a per-broker 'ClusterIP' service.",
-											MarkdownDescription: "Type of the listener. Currently the supported types are 'internal', 'route', 'loadbalancer', 'nodeport' and 'ingress'. * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka with TLS passthrough.* 'cluster-ip' type uses a per-broker 'ClusterIP' service.",
+											Description:         "Type of the listener. The supported types are as follows: * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka with TLS passthrough.* 'cluster-ip' type uses a per-broker 'ClusterIP' service.",
+											MarkdownDescription: "Type of the listener. The supported types are as follows: * 'internal' type exposes Kafka internally only within the Kubernetes cluster.* 'route' type uses OpenShift Routes to expose Kafka.* 'loadbalancer' type uses LoadBalancer type services to expose Kafka.* 'nodeport' type uses NodePort type services to expose Kafka.* 'ingress' type uses Kubernetes Nginx Ingress to expose Kafka with TLS passthrough.* 'cluster-ip' type uses a per-broker 'ClusterIP' service.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -11723,6 +12015,14 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 								Computed: false,
 							},
 
+							"metadata_version": schema.StringAttribute{
+								Description:         "The KRaft metadata version used by the Kafka cluster. This property is ignored when running in ZooKeeper mode. If the property is not set, it defaults to the metadata version that corresponds to the 'version' property.",
+								MarkdownDescription: "The KRaft metadata version used by the Kafka cluster. This property is ignored when running in ZooKeeper mode. If the property is not set, it defaults to the metadata version that corresponds to the 'version' property.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"metrics_config": schema.SingleNestedAttribute{
 								Description:         "Metrics configuration.",
 								MarkdownDescription: "Metrics configuration.",
@@ -11739,8 +12039,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"value_from": schema.SingleNestedAttribute{
-										Description:         "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. For details of the structure of this configuration, see the {JMXExporter}.",
-										MarkdownDescription: "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. For details of the structure of this configuration, see the {JMXExporter}.",
+										Description:         "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. ",
+										MarkdownDescription: "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. ",
 										Attributes: map[string]schema.Attribute{
 											"config_map_key_ref": schema.SingleNestedAttribute{
 												Description:         "Reference to the key in the ConfigMap containing the configuration.",
@@ -11867,10 +12167,10 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"replicas": schema.Int64Attribute{
-								Description:         "The number of pods in the cluster.",
-								MarkdownDescription: "The number of pods in the cluster.",
-								Required:            true,
-								Optional:            false,
+								Description:         "The number of pods in the cluster. This property is required when node pools are not used.",
+								MarkdownDescription: "The number of pods in the cluster. This property is required when node pools are not used.",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 								Validators: []validator.Int64{
 									int64validator.AtLeast(1),
@@ -11924,8 +12224,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"storage": schema.SingleNestedAttribute{
-								Description:         "Storage configuration (disk). Cannot be updated.",
-								MarkdownDescription: "Storage configuration (disk). Cannot be updated.",
+								Description:         "Storage configuration (disk). Cannot be updated. This property is required when node pools are not used.",
+								MarkdownDescription: "Storage configuration (disk). Cannot be updated. This property is required when node pools are not used.",
 								Attributes: map[string]schema.Attribute{
 									"class": schema.StringAttribute{
 										Description:         "The storage class to use for dynamic volume allocation.",
@@ -11991,8 +12291,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"size": schema.StringAttribute{
-										Description:         "When type=persistent-claim, defines the size of the persistent volume claim (i.e 1Gi). Mandatory when type=persistent-claim.",
-										MarkdownDescription: "When type=persistent-claim, defines the size of the persistent volume claim (i.e 1Gi). Mandatory when type=persistent-claim.",
+										Description:         "When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.",
+										MarkdownDescription: "When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -12089,8 +12389,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"size": schema.StringAttribute{
-													Description:         "When type=persistent-claim, defines the size of the persistent volume claim (i.e 1Gi). Mandatory when type=persistent-claim.",
-													MarkdownDescription: "When type=persistent-claim, defines the size of the persistent volume claim (i.e 1Gi). Mandatory when type=persistent-claim.",
+													Description:         "When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.",
+													MarkdownDescription: "When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -12124,8 +12424,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 										Computed: false,
 									},
 								},
-								Required: true,
-								Optional: false,
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 
@@ -13351,6 +13651,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -13498,6 +13816,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -13649,6 +13985,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -13796,6 +14150,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -13968,8 +14340,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"priority_class_name": schema.StringAttribute{
-												Description:         "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
-												MarkdownDescription: "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
+												Description:         "The name of the priority class used to assign priority to the pods. ",
+												MarkdownDescription: "The name of the priority class used to assign priority to the pods. ",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -14546,9 +14918,63 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 								Computed: false,
 							},
 
+							"tiered_storage": schema.SingleNestedAttribute{
+								Description:         "Configure the tiered storage feature for Kafka brokers.",
+								MarkdownDescription: "Configure the tiered storage feature for Kafka brokers.",
+								Attributes: map[string]schema.Attribute{
+									"remote_storage_manager": schema.SingleNestedAttribute{
+										Description:         "Configuration for the Remote Storage Manager.",
+										MarkdownDescription: "Configuration for the Remote Storage Manager.",
+										Attributes: map[string]schema.Attribute{
+											"class_name": schema.StringAttribute{
+												Description:         "The class name for the 'RemoteStorageManager' implementation.",
+												MarkdownDescription: "The class name for the 'RemoteStorageManager' implementation.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"class_path": schema.StringAttribute{
+												Description:         "The class path for the 'RemoteStorageManager' implementation.",
+												MarkdownDescription: "The class path for the 'RemoteStorageManager' implementation.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"config": schema.MapAttribute{
+												Description:         "The additional configuration map for the 'RemoteStorageManager' implementation. Keys will be automatically prefixed with 'rsm.config.', and added to Kafka broker configuration.",
+												MarkdownDescription: "The additional configuration map for the 'RemoteStorageManager' implementation. Keys will be automatically prefixed with 'rsm.config.', and added to Kafka broker configuration.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "Storage type, only 'custom' is supported at the moment.",
+										MarkdownDescription: "Storage type, only 'custom' is supported at the moment.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("custom"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"version": schema.StringAttribute{
-								Description:         "The kafka broker version. Defaults to {DefaultKafkaVersion}. Consult the user documentation to understand the process required to upgrade or downgrade the version.",
-								MarkdownDescription: "The kafka broker version. Defaults to {DefaultKafkaVersion}. Consult the user documentation to understand the process required to upgrade or downgrade the version.",
+								Description:         "The Kafka broker version. Defaults to the latest version. Consult the user documentation to understand the process required to upgrade or downgrade the version.",
+								MarkdownDescription: "The Kafka broker version. Defaults to the latest version. Consult the user documentation to understand the process required to upgrade or downgrade the version.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -14588,8 +15014,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "The docker image for the pods.",
-								MarkdownDescription: "The docker image for the pods.",
+								Description:         "The container image used for the Kafka Exporter pods. If no image name is explicitly specified, the image name corresponds to the version specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used.",
+								MarkdownDescription: "The container image used for the Kafka Exporter pods. If no image name is explicitly specified, the image name corresponds to the version specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -14775,6 +15201,14 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"show_all_offsets": schema.BoolAttribute{
+								Description:         "Whether show the offset/lag for all consumer group, otherwise, only show connected consumer groups.",
+								MarkdownDescription: "Whether show the offset/lag for all consumer group, otherwise, only show connected consumer groups.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"template": schema.SingleNestedAttribute{
@@ -15339,6 +15773,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -15486,6 +15938,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -15637,6 +16107,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -15784,6 +16272,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -15956,8 +16462,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"priority_class_name": schema.StringAttribute{
-												Description:         "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
-												MarkdownDescription: "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
+												Description:         "The name of the priority class used to assign priority to the pods. ",
+												MarkdownDescription: "The name of the priority class used to assign priority to the pods. ",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -16471,8 +16977,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"zookeeper": schema.SingleNestedAttribute{
-						Description:         "Configuration of the ZooKeeper cluster.",
-						MarkdownDescription: "Configuration of the ZooKeeper cluster.",
+						Description:         "Configuration of the ZooKeeper cluster. This section is required when running a ZooKeeper-based Apache Kafka cluster.",
+						MarkdownDescription: "Configuration of the ZooKeeper cluster. This section is required when running a ZooKeeper-based Apache Kafka cluster.",
 						Attributes: map[string]schema.Attribute{
 							"config": schema.MapAttribute{
 								Description:         "The ZooKeeper broker config. Properties with the following prefixes cannot be set: server., dataDir, dataLogDir, clientPort, authProvider, quorum.auth, requireClientAuthScheme, snapshot.trust.empty, standaloneEnabled, reconfigEnabled, 4lw.commands.whitelist, secureClientPort, ssl., serverCnxnFactory, sslQuorum (with the exception of: ssl.protocol, ssl.quorum.protocol, ssl.enabledProtocols, ssl.quorum.enabledProtocols, ssl.ciphersuites, ssl.quorum.ciphersuites, ssl.hostnameVerification, ssl.quorum.hostnameVerification).",
@@ -16484,8 +16990,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "The docker image for the pods.",
-								MarkdownDescription: "The docker image for the pods.",
+								Description:         "The container image used for ZooKeeper pods. If no image name is explicitly specified, it is determined based on the Kafka version set in 'spec.kafka.version'. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration.",
+								MarkdownDescription: "The container image used for ZooKeeper pods. If no image name is explicitly specified, it is determined based on the Kafka version set in 'spec.kafka.version'. The image names are specifically mapped to corresponding versions in the Cluster Operator configuration.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -16746,8 +17252,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"value_from": schema.SingleNestedAttribute{
-										Description:         "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. For details of the structure of this configuration, see the {JMXExporter}.",
-										MarkdownDescription: "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. For details of the structure of this configuration, see the {JMXExporter}.",
+										Description:         "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. ",
+										MarkdownDescription: "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. ",
 										Attributes: map[string]schema.Attribute{
 											"config_map_key_ref": schema.SingleNestedAttribute{
 												Description:         "Reference to the key in the ConfigMap containing the configuration.",
@@ -16981,8 +17487,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"size": schema.StringAttribute{
-										Description:         "When type=persistent-claim, defines the size of the persistent volume claim (i.e 1Gi). Mandatory when type=persistent-claim.",
-										MarkdownDescription: "When type=persistent-claim, defines the size of the persistent volume claim (i.e 1Gi). Mandatory when type=persistent-claim.",
+										Description:         "When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.",
+										MarkdownDescription: "When 'type=persistent-claim', defines the size of the persistent volume claim, such as 100Gi. Mandatory when 'type=persistent-claim'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -17479,6 +17985,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -17626,6 +18150,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -17777,6 +18319,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																					Computed: false,
 																				},
 
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"namespace_selector": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -17924,6 +18484,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 																			Required: false,
 																			Optional: true,
 																			Computed: false,
+																		},
+
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
 																		},
 
 																		"namespace_selector": schema.SingleNestedAttribute{
@@ -18096,8 +18674,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"priority_class_name": schema.StringAttribute{
-												Description:         "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
-												MarkdownDescription: "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
+												Description:         "The name of the priority class used to assign priority to the pods. ",
+												MarkdownDescription: "The name of the priority class used to assign priority to the pods. ",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -18909,8 +19487,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 								Computed: false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				},

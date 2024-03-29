@@ -84,17 +84,19 @@ type KumaIoMeshAccessLogV1Alpha1ManifestData struct {
 				} `tfsdk:"backends" json:"backends,omitempty"`
 			} `tfsdk:"default" json:"default,omitempty"`
 			TargetRef *struct {
-				Kind *string            `tfsdk:"kind" json:"kind,omitempty"`
-				Mesh *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-				Name *string            `tfsdk:"name" json:"name,omitempty"`
-				Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+				Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+				Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+				Name       *string            `tfsdk:"name" json:"name,omitempty"`
+				ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+				Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		} `tfsdk:"from" json:"from,omitempty"`
 		TargetRef *struct {
-			Kind *string            `tfsdk:"kind" json:"kind,omitempty"`
-			Mesh *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-			Name *string            `tfsdk:"name" json:"name,omitempty"`
-			Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+			Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+			Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+			Name       *string            `tfsdk:"name" json:"name,omitempty"`
+			ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+			Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		To *[]struct {
 			Default *struct {
@@ -135,10 +137,11 @@ type KumaIoMeshAccessLogV1Alpha1ManifestData struct {
 				} `tfsdk:"backends" json:"backends,omitempty"`
 			} `tfsdk:"default" json:"default,omitempty"`
 			TargetRef *struct {
-				Kind *string            `tfsdk:"kind" json:"kind,omitempty"`
-				Mesh *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-				Name *string            `tfsdk:"name" json:"name,omitempty"`
-				Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+				Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+				Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+				Name       *string            `tfsdk:"name" json:"name,omitempty"`
+				ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+				Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		} `tfsdk:"to" json:"to,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -235,8 +238,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.SingleNestedAttribute{
-									Description:         "Default is a configuration specific to the group of clients referenced in 'targetRef'",
-									MarkdownDescription: "Default is a configuration specific to the group of clients referenced in 'targetRef'",
+									Description:         "Default is a configuration specific to the group of clients referenced in'targetRef'",
+									MarkdownDescription: "Default is a configuration specific to the group of clients referenced in'targetRef'",
 									Attributes: map[string]schema.Attribute{
 										"backends": schema.ListNestedAttribute{
 											Description:         "",
@@ -248,8 +251,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														MarkdownDescription: "FileBackend defines configuration for file based access logs",
 														Attributes: map[string]schema.Attribute{
 															"format": schema.SingleNestedAttribute{
-																Description:         "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
-																MarkdownDescription: "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																Description:         "Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
 																Attributes: map[string]schema.Attribute{
 																	"json": schema.ListNestedAttribute{
 																		Description:         "",
@@ -316,6 +319,9 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
 															},
 														},
 														Required: false,
@@ -328,8 +334,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														MarkdownDescription: "Defines an OpenTelemetry logging backend.",
 														Attributes: map[string]schema.Attribute{
 															"attributes": schema.ListNestedAttribute{
-																Description:         "Attributes can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
-																MarkdownDescription: "Attributes can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																Description:         "Attributes can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Attributes can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
@@ -355,8 +361,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 															},
 
 															"body": schema.MapAttribute{
-																Description:         "Body is a raw string or an OTLP any value as described at https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body It can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
-																MarkdownDescription: "Body is a raw string or an OTLP any value as described at https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body It can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																Description:         "Body is a raw string or an OTLP any value as described athttps://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-bodyIt can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Body is a raw string or an OTLP any value as described athttps://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-bodyIt can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -389,11 +395,14 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
 															},
 
 															"format": schema.SingleNestedAttribute{
-																Description:         "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
-																MarkdownDescription: "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																Description:         "Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
 																Attributes: map[string]schema.Attribute{
 																	"json": schema.ListNestedAttribute{
 																		Description:         "",
@@ -482,8 +491,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group of clients.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of clients.",
+									Description:         "TargetRef is a reference to the resource that represents a group ofclients.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofclients.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -505,16 +514,25 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_types": schema.ListAttribute{
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -533,8 +551,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
-						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
+						Description:         "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined in-place.",
+						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined in-place.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
@@ -556,16 +574,25 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
-								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_types": schema.ListAttribute{
+								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tags": schema.MapAttribute{
-								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
-								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -583,8 +610,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.SingleNestedAttribute{
-									Description:         "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
-									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
+									Description:         "Default is a configuration specific to the group of destinations referenced in'targetRef'",
+									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in'targetRef'",
 									Attributes: map[string]schema.Attribute{
 										"backends": schema.ListNestedAttribute{
 											Description:         "",
@@ -596,8 +623,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														MarkdownDescription: "FileBackend defines configuration for file based access logs",
 														Attributes: map[string]schema.Attribute{
 															"format": schema.SingleNestedAttribute{
-																Description:         "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
-																MarkdownDescription: "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																Description:         "Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
 																Attributes: map[string]schema.Attribute{
 																	"json": schema.ListNestedAttribute{
 																		Description:         "",
@@ -664,6 +691,9 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
 															},
 														},
 														Required: false,
@@ -676,8 +706,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 														MarkdownDescription: "Defines an OpenTelemetry logging backend.",
 														Attributes: map[string]schema.Attribute{
 															"attributes": schema.ListNestedAttribute{
-																Description:         "Attributes can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
-																MarkdownDescription: "Attributes can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																Description:         "Attributes can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Attributes can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
@@ -703,8 +733,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 															},
 
 															"body": schema.MapAttribute{
-																Description:         "Body is a raw string or an OTLP any value as described at https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body It can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
-																MarkdownDescription: "Body is a raw string or an OTLP any value as described at https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-body It can contain placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																Description:         "Body is a raw string or an OTLP any value as described athttps://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-bodyIt can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Body is a raw string or an OTLP any value as described athttps://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/data-model.md#field-bodyIt can contain placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -737,11 +767,14 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
 															},
 
 															"format": schema.SingleNestedAttribute{
-																Description:         "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
-																MarkdownDescription: "Format of access logs. Placeholders available on https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																Description:         "Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
+																MarkdownDescription: "Format of access logs. Placeholders available onhttps://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators",
 																Attributes: map[string]schema.Attribute{
 																	"json": schema.ListNestedAttribute{
 																		Description:         "",
@@ -830,8 +863,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group of destinations.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of destinations.",
+									Description:         "TargetRef is a reference to the resource that represents a group ofdestinations.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofdestinations.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -853,16 +886,25 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_types": schema.ListAttribute{
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

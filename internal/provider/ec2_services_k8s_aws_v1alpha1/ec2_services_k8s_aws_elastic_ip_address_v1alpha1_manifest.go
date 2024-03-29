@@ -142,40 +142,40 @@ func (r *Ec2ServicesK8SAwsElasticIpaddressV1Alpha1Manifest) Schema(_ context.Con
 				MarkdownDescription: "ElasticIPAddressSpec defines the desired state of ElasticIPAddress.",
 				Attributes: map[string]schema.Attribute{
 					"address": schema.StringAttribute{
-						Description:         "[EC2-VPC] The Elastic IP address to recover or an IPv4 address from an address pool.",
-						MarkdownDescription: "[EC2-VPC] The Elastic IP address to recover or an IPv4 address from an address pool.",
+						Description:         "[EC2-VPC] The Elastic IP address to recover or an IPv4 address from an addresspool.",
+						MarkdownDescription: "[EC2-VPC] The Elastic IP address to recover or an IPv4 address from an addresspool.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"customer_owned_i_pv4_pool": schema.StringAttribute{
-						Description:         "The ID of a customer-owned address pool. Use this parameter to let Amazon EC2 select an address from the address pool. Alternatively, specify a specific address from the address pool.",
-						MarkdownDescription: "The ID of a customer-owned address pool. Use this parameter to let Amazon EC2 select an address from the address pool. Alternatively, specify a specific address from the address pool.",
+						Description:         "The ID of a customer-owned address pool. Use this parameter to let AmazonEC2 select an address from the address pool. Alternatively, specify a specificaddress from the address pool.",
+						MarkdownDescription: "The ID of a customer-owned address pool. Use this parameter to let AmazonEC2 select an address from the address pool. Alternatively, specify a specificaddress from the address pool.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"network_border_group": schema.StringAttribute{
-						Description:         "A unique set of Availability Zones, Local Zones, or Wavelength Zones from which Amazon Web Services advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups.  Use DescribeAvailabilityZones (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html) to view the network border groups.  You cannot use a network border group with EC2 Classic. If you attempt this operation on EC2 Classic, you receive an InvalidParameterCombination error.",
-						MarkdownDescription: "A unique set of Availability Zones, Local Zones, or Wavelength Zones from which Amazon Web Services advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups.  Use DescribeAvailabilityZones (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html) to view the network border groups.  You cannot use a network border group with EC2 Classic. If you attempt this operation on EC2 Classic, you receive an InvalidParameterCombination error.",
+						Description:         "A unique set of Availability Zones, Local Zones, or Wavelength Zones fromwhich Amazon Web Services advertises IP addresses. Use this parameter tolimit the IP address to this location. IP addresses cannot move between networkborder groups.Use DescribeAvailabilityZones (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html)to view the network border groups.You cannot use a network border group with EC2 Classic. If you attempt thisoperation on EC2 Classic, you receive an InvalidParameterCombination error.",
+						MarkdownDescription: "A unique set of Availability Zones, Local Zones, or Wavelength Zones fromwhich Amazon Web Services advertises IP addresses. Use this parameter tolimit the IP address to this location. IP addresses cannot move between networkborder groups.Use DescribeAvailabilityZones (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html)to view the network border groups.You cannot use a network border group with EC2 Classic. If you attempt thisoperation on EC2 Classic, you receive an InvalidParameterCombination error.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"public_i_pv4_pool": schema.StringAttribute{
-						Description:         "The ID of an address pool that you own. Use this parameter to let Amazon EC2 select an address from the address pool. To specify a specific address from the address pool, use the Address parameter instead.",
-						MarkdownDescription: "The ID of an address pool that you own. Use this parameter to let Amazon EC2 select an address from the address pool. To specify a specific address from the address pool, use the Address parameter instead.",
+						Description:         "The ID of an address pool that you own. Use this parameter to let AmazonEC2 select an address from the address pool. To specify a specific addressfrom the address pool, use the Address parameter instead.",
+						MarkdownDescription: "The ID of an address pool that you own. Use this parameter to let AmazonEC2 select an address from the address pool. To specify a specific addressfrom the address pool, use the Address parameter instead.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
-						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
+						Description:         "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
+						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

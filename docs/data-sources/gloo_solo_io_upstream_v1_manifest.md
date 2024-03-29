@@ -62,6 +62,7 @@ Optional:
 - `circuit_breakers` (Attributes) (see [below for nested schema](#nestedatt--spec--circuit_breakers))
 - `connection_config` (Attributes) (see [below for nested schema](#nestedatt--spec--connection_config))
 - `consul` (Attributes) (see [below for nested schema](#nestedatt--spec--consul))
+- `disable_istio_auto_mtls` (Boolean)
 - `discovery_metadata` (Attributes) (see [below for nested schema](#nestedatt--spec--discovery_metadata))
 - `dns_refresh_rate` (String)
 - `failover` (Attributes) (see [below for nested schema](#nestedatt--spec--failover))
@@ -79,6 +80,7 @@ Optional:
 - `outlier_detection` (Attributes) (see [below for nested schema](#nestedatt--spec--outlier_detection))
 - `override_stream_error_on_invalid_http_message` (Boolean)
 - `pipe` (Attributes) (see [below for nested schema](#nestedatt--spec--pipe))
+- `preconnect_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--preconnect_policy))
 - `protocol_selection` (String)
 - `proxy_protocol_version` (String)
 - `respect_dns_ttl` (Boolean)
@@ -440,7 +442,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -1076,7 +1080,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -1149,6 +1155,7 @@ Optional:
 - `ring_hash` (Attributes) (see [below for nested schema](#nestedatt--spec--load_balancer_config--ring_hash))
 - `round_robin` (Attributes) (see [below for nested schema](#nestedatt--spec--load_balancer_config--round_robin))
 - `update_merge_window` (String)
+- `use_hostname_for_hashing` (Boolean)
 
 <a id="nestedatt--spec--load_balancer_config--least_request"></a>
 ### Nested Schema for `spec.load_balancer_config.least_request`
@@ -1402,7 +1409,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 
@@ -1433,6 +1442,15 @@ Optional:
 
 
 
+
+
+<a id="nestedatt--spec--preconnect_policy"></a>
+### Nested Schema for `spec.preconnect_policy`
+
+Optional:
+
+- `per_upstream_preconnect_ratio` (Number)
+- `predictive_preconnect_ratio` (Number)
 
 
 <a id="nestedatt--spec--ssl_config"></a>
@@ -1700,7 +1718,9 @@ Optional:
 
 - `body` (Map of String)
 - `header` (String)
+- `mode` (String)
 - `regex` (String)
+- `replacement_text` (String)
 - `subgroup` (Number)
 
 

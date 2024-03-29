@@ -212,6 +212,16 @@ type OperatorCryostatIoCryostatV1Beta1ManifestData struct {
 				Labels *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			} `tfsdk:"grafana_config" json:"grafanaConfig,omitempty"`
 		} `tfsdk:"network_options" json:"networkOptions,omitempty"`
+		OperandMetadata *struct {
+			DeploymentMetadata *struct {
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			} `tfsdk:"deployment_metadata" json:"deploymentMetadata,omitempty"`
+			PodMetadata *struct {
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			} `tfsdk:"pod_metadata" json:"podMetadata,omitempty"`
+		} `tfsdk:"operand_metadata" json:"operandMetadata,omitempty"`
 		ReportOptions *struct {
 			Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resources *struct {
@@ -753,7 +763,11 @@ type OperatorCryostatIoCryostatV1Beta1ManifestData struct {
 			} `tfsdk:"pvc" json:"pvc,omitempty"`
 		} `tfsdk:"storage_options" json:"storageOptions,omitempty"`
 		TargetDiscoveryOptions *struct {
-			BuiltInDiscoveryDisabled *bool `tfsdk:"built_in_discovery_disabled" json:"builtInDiscoveryDisabled,omitempty"`
+			BuiltInDiscoveryDisabled  *bool     `tfsdk:"built_in_discovery_disabled" json:"builtInDiscoveryDisabled,omitempty"`
+			DisableBuiltInPortNames   *bool     `tfsdk:"disable_built_in_port_names" json:"disableBuiltInPortNames,omitempty"`
+			DisableBuiltInPortNumbers *bool     `tfsdk:"disable_built_in_port_numbers" json:"disableBuiltInPortNumbers,omitempty"`
+			DiscoveryPortNames        *[]string `tfsdk:"discovery_port_names" json:"discoveryPortNames,omitempty"`
+			DiscoveryPortNumbers      *[]string `tfsdk:"discovery_port_numbers" json:"discoveryPortNumbers,omitempty"`
 		} `tfsdk:"target_discovery_options" json:"targetDiscoveryOptions,omitempty"`
 		TrustedCertSecrets *[]struct {
 			CertificateKey *string `tfsdk:"certificate_key" json:"certificateKey,omitempty"`
@@ -1876,6 +1890,69 @@ func (r *OperatorCryostatIoCryostatV1Beta1Manifest) Schema(_ context.Context, _ 
 						Computed: false,
 					},
 
+					"operand_metadata": schema.SingleNestedAttribute{
+						Description:         "Options to configure the Cryostat deployments and pods metadata",
+						MarkdownDescription: "Options to configure the Cryostat deployments and pods metadata",
+						Attributes: map[string]schema.Attribute{
+							"deployment_metadata": schema.SingleNestedAttribute{
+								Description:         "Options to configure the Cryostat deployments metadata",
+								MarkdownDescription: "Options to configure the Cryostat deployments metadata",
+								Attributes: map[string]schema.Attribute{
+									"annotations": schema.MapAttribute{
+										Description:         "Annotations to add to the resources during its creation.",
+										MarkdownDescription: "Annotations to add to the resources during its creation.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"labels": schema.MapAttribute{
+										Description:         "Labels to add to the resources during its creation. The labels with keys 'app' and 'component' are reserved for use by the operator.",
+										MarkdownDescription: "Labels to add to the resources during its creation. The labels with keys 'app' and 'component' are reserved for use by the operator.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pod_metadata": schema.SingleNestedAttribute{
+								Description:         "Options to configure the Cryostat pods metadata",
+								MarkdownDescription: "Options to configure the Cryostat pods metadata",
+								Attributes: map[string]schema.Attribute{
+									"annotations": schema.MapAttribute{
+										Description:         "Annotations to add to the resources during its creation.",
+										MarkdownDescription: "Annotations to add to the resources during its creation.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"labels": schema.MapAttribute{
+										Description:         "Labels to add to the resources during its creation. The labels with keys 'app' and 'component' are reserved for use by the operator.",
+										MarkdownDescription: "Labels to add to the resources during its creation. The labels with keys 'app' and 'component' are reserved for use by the operator.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"report_options": schema.SingleNestedAttribute{
 						Description:         "Options to configure Cryostat Automated Report Analysis.",
 						MarkdownDescription: "Options to configure Cryostat Automated Report Analysis.",
@@ -1893,8 +1970,8 @@ func (r *OperatorCryostatIoCryostatV1Beta1Manifest) Schema(_ context.Context, _ 
 								MarkdownDescription: "The resources allocated to each sidecar replica. A replica with more resources can handle larger input recordings and will process them faster.",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -3231,8 +3308,8 @@ func (r *OperatorCryostatIoCryostatV1Beta1Manifest) Schema(_ context.Context, _ 
 								MarkdownDescription: "Resource requirements for the Cryostat application. If specifying a memory limit, at least 768MiB is recommended.",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -3277,8 +3354,8 @@ func (r *OperatorCryostatIoCryostatV1Beta1Manifest) Schema(_ context.Context, _ 
 								MarkdownDescription: "Resource requirements for the JFR Data Source container.",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -3323,8 +3400,8 @@ func (r *OperatorCryostatIoCryostatV1Beta1Manifest) Schema(_ context.Context, _ 
 								MarkdownDescription: "Resource requirements for the Grafana container.",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -5342,8 +5419,8 @@ func (r *OperatorCryostatIoCryostatV1Beta1Manifest) Schema(_ context.Context, _ 
 												MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 												Attributes: map[string]schema.Attribute{
 													"claims": schema.ListNestedAttribute{
-														Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.",
-														MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable.",
+														Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+														MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
@@ -5481,8 +5558,42 @@ func (r *OperatorCryostatIoCryostatV1Beta1Manifest) Schema(_ context.Context, _ 
 						MarkdownDescription: "Options to configure the Cryostat application's target discovery mechanisms.",
 						Attributes: map[string]schema.Attribute{
 							"built_in_discovery_disabled": schema.BoolAttribute{
-								Description:         "When true, the Cryostat application will disable the built-in discovery mechanisms. Defaults to false",
-								MarkdownDescription: "When true, the Cryostat application will disable the built-in discovery mechanisms. Defaults to false",
+								Description:         "When true, the Cryostat application will disable the built-in discovery mechanisms. Defaults to false.",
+								MarkdownDescription: "When true, the Cryostat application will disable the built-in discovery mechanisms. Defaults to false.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"disable_built_in_port_names": schema.BoolAttribute{
+								Description:         "When true, the Cryostat application will use the default port name jfr-jmx to look for JMX connectable targets.",
+								MarkdownDescription: "When true, the Cryostat application will use the default port name jfr-jmx to look for JMX connectable targets.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"disable_built_in_port_numbers": schema.BoolAttribute{
+								Description:         "When true, the Cryostat application will use the default port number 9091 to look for JMX connectable targets.",
+								MarkdownDescription: "When true, the Cryostat application will use the default port number 9091 to look for JMX connectable targets.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"discovery_port_names": schema.ListAttribute{
+								Description:         "List of port names that the Cryostat application should look for in order to consider a target as JMX connectable.",
+								MarkdownDescription: "List of port names that the Cryostat application should look for in order to consider a target as JMX connectable.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"discovery_port_numbers": schema.ListAttribute{
+								Description:         "List of port numbers that the Cryostat application should look for in order to consider a target as JMX connectable.",
+								MarkdownDescription: "List of port numbers that the Cryostat application should look for in order to consider a target as JMX connectable.",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

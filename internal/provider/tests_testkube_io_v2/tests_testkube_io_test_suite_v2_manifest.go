@@ -360,8 +360,8 @@ func (r *TestsTestkubeIoTestSuiteV2Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"execution_request": schema.SingleNestedAttribute{
-						Description:         "test suite execution request body",
-						MarkdownDescription: "test suite execution request body",
+						Description:         "TestSuiteExecutionRequest defines the execution request body",
+						MarkdownDescription: "TestSuiteExecutionRequest defines the execution request body",
 						Attributes: map[string]schema.Attribute{
 							"cron_job_template": schema.StringAttribute{
 								Description:         "cron job template extensions",

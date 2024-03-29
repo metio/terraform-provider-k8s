@@ -56,6 +56,7 @@ type SourceToolkitFluxcdIoBucketV1Beta2ManifestData struct {
 		Ignore     *string `tfsdk:"ignore" json:"ignore,omitempty"`
 		Insecure   *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
 		Interval   *string `tfsdk:"interval" json:"interval,omitempty"`
+		Prefix     *string `tfsdk:"prefix" json:"prefix,omitempty"`
 		Provider   *string `tfsdk:"provider" json:"provider,omitempty"`
 		Region     *string `tfsdk:"region" json:"region,omitempty"`
 		SecretRef  *struct {
@@ -148,21 +149,21 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "BucketSpec specifies the required configuration to produce an Artifact for an object storage bucket.",
-				MarkdownDescription: "BucketSpec specifies the required configuration to produce an Artifact for an object storage bucket.",
+				Description:         "BucketSpec specifies the required configuration to produce an Artifact foran object storage bucket.",
+				MarkdownDescription: "BucketSpec specifies the required configuration to produce an Artifact foran object storage bucket.",
 				Attributes: map[string]schema.Attribute{
 					"access_from": schema.SingleNestedAttribute{
-						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
-						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
+						Description:         "AccessFrom specifies an Access Control List for allowing cross-namespacereferences to this object.NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
+						MarkdownDescription: "AccessFrom specifies an Access Control List for allowing cross-namespacereferences to this object.NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092",
 						Attributes: map[string]schema.Attribute{
 							"namespace_selectors": schema.ListNestedAttribute{
-								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
-								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
+								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
+								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"match_labels": schema.MapAttribute{
-											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -197,8 +198,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"ignore": schema.StringAttribute{
-						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
-						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.",
+						Description:         "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
+						MarkdownDescription: "Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -213,8 +214,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"interval": schema.StringAttribute{
-						Description:         "Interval at which the Bucket Endpoint is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
-						MarkdownDescription: "Interval at which the Bucket Endpoint is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.",
+						Description:         "Interval at which the Bucket Endpoint is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.",
+						MarkdownDescription: "Interval at which the Bucket Endpoint is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -223,9 +224,17 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 						},
 					},
 
+					"prefix": schema.StringAttribute{
+						Description:         "Prefix to use for server-side filtering of files in the Bucket.",
+						MarkdownDescription: "Prefix to use for server-side filtering of files in the Bucket.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"provider": schema.StringAttribute{
-						Description:         "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
-						MarkdownDescription: "Provider of the object storage bucket. Defaults to 'generic', which expects an S3 (API) compatible object storage.",
+						Description:         "Provider of the object storage bucket.Defaults to 'generic', which expects an S3 (API) compatible objectstorage.",
+						MarkdownDescription: "Provider of the object storage bucket.Defaults to 'generic', which expects an S3 (API) compatible objectstorage.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -243,8 +252,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
-						Description:         "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
-						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentials for the Bucket.",
+						Description:         "SecretRef specifies the Secret containing authentication credentialsfor the Bucket.",
+						MarkdownDescription: "SecretRef specifies the Secret containing authentication credentialsfor the Bucket.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -260,8 +269,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"suspend": schema.BoolAttribute{
-						Description:         "Suspend tells the controller to suspend the reconciliation of this Bucket.",
-						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of this Bucket.",
+						Description:         "Suspend tells the controller to suspend the reconciliation of thisBucket.",
+						MarkdownDescription: "Suspend tells the controller to suspend the reconciliation of thisBucket.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

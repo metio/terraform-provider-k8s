@@ -211,16 +211,16 @@ func (r *AppsClusternetIoHelmChartV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"force": schema.BoolAttribute{
-						Description:         "Force will, if set to 'true', ignore certain warnings and perform the upgrade anyway. This should be used with caution.",
-						MarkdownDescription: "Force will, if set to 'true', ignore certain warnings and perform the upgrade anyway. This should be used with caution.",
+						Description:         "Force will, if set to 'true', ignore certain warnings and perform the upgrade anyway.This should be used with caution.",
+						MarkdownDescription: "Force will, if set to 'true', ignore certain warnings and perform the upgrade anyway.This should be used with caution.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"replace": schema.BoolAttribute{
-						Description:         "Replace will re-use the given name, only if that name is a deleted release that remains in the history. This is unsafe in production.",
-						MarkdownDescription: "Replace will re-use the given name, only if that name is a deleted release that remains in the history. This is unsafe in production.",
+						Description:         "Replace will re-use the given name, only if that name is a deleted release that remains in the history.This is unsafe in production.",
+						MarkdownDescription: "Replace will re-use the given name, only if that name is a deleted release that remains in the history.This is unsafe in production.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -235,8 +235,8 @@ func (r *AppsClusternetIoHelmChartV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"repo": schema.StringAttribute{
-						Description:         "a Helm Repository to be used. OCI-based registries are also supported. For example, https://charts.bitnami.com/bitnami or oci://localhost:5000/helm-charts",
-						MarkdownDescription: "a Helm Repository to be used. OCI-based registries are also supported. For example, https://charts.bitnami.com/bitnami or oci://localhost:5000/helm-charts",
+						Description:         "a Helm Repository to be used.OCI-based registries are also supported.For example, https://charts.bitnami.com/bitnami or oci://localhost:5000/helm-charts",
+						MarkdownDescription: "a Helm Repository to be used.OCI-based registries are also supported.For example, https://charts.bitnami.com/bitnami or oci://localhost:5000/helm-charts",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -278,8 +278,8 @@ func (r *AppsClusternetIoHelmChartV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"version": schema.StringAttribute{
-						Description:         "ChartVersion is the version of the chart to be deployed. It will be defaulted with current latest version if empty.",
-						MarkdownDescription: "ChartVersion is the version of the chart to be deployed. It will be defaulted with current latest version if empty.",
+						Description:         "ChartVersion is the version of the chart to be deployed.It will be defaulted with current latest version if empty.",
+						MarkdownDescription: "ChartVersion is the version of the chart to be deployed.It will be defaulted with current latest version if empty.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

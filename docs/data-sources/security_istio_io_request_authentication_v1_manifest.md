@@ -30,7 +30,7 @@ data "k8s_security_istio_io_request_authentication_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) RequestAuthentication defines what request authentication methods are supported by a workload. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) Request authentication configuration for workloads. See more details at: https://istio.io/docs/reference/config/security/request_authentication.html (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -58,29 +58,37 @@ Optional:
 
 - `jwt_rules` (Attributes List) Define the list of JWTs that can be validated at the selected workloads' proxy. (see [below for nested schema](#nestedatt--spec--jwt_rules))
 - `selector` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--selector))
-- `target_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 <a id="nestedatt--spec--jwt_rules"></a>
 ### Nested Schema for `spec.jwt_rules`
 
+Required:
+
+- `issuer` (String) Identifies the issuer that issued the JWT.
+
 Optional:
 
-- `audiences` (List of String)
+- `audiences` (List of String) The list of JWT [audiences](https://tools.ietf.org/html/rfc7519#section-4.1.3) that are allowed to access.
 - `forward_original_token` (Boolean) If set to true, the original token will be kept for the upstream request.
+- `from_cookies` (List of String) List of cookie names from which JWT is expected.
 - `from_headers` (Attributes List) List of header locations from which JWT is expected. (see [below for nested schema](#nestedatt--spec--jwt_rules--from_headers))
 - `from_params` (List of String) List of query parameters from which JWT is expected.
-- `issuer` (String) Identifies the issuer that issued the JWT.
 - `jwks` (String) JSON Web Key Set of public keys to validate signature of the JWT.
-- `jwks_uri` (String)
+- `jwks_uri` (String) URL of the provider's public key set to validate signature of the JWT.
 - `output_claim_to_headers` (Attributes List) This field specifies a list of operations to copy the claim to HTTP headers on a successfully verified token. (see [below for nested schema](#nestedatt--spec--jwt_rules--output_claim_to_headers))
-- `output_payload_to_header` (String)
+- `output_payload_to_header` (String) This field specifies the header name to output a successfully verified JWT payload to the backend.
+- `timeout` (String) The maximum amount of time that the resolver, determined by the PILOT_JWT_ENABLE_REMOTE_JWKS environment variable, will spend waiting for the JWKS to be fetched.
 
 <a id="nestedatt--spec--jwt_rules--from_headers"></a>
 ### Nested Schema for `spec.jwt_rules.from_headers`
 
-Optional:
+Required:
 
 - `name` (String) The HTTP header name.
+
+Optional:
+
 - `prefix` (String) The prefix that should be stripped before decoding the token.
 
 
@@ -99,7 +107,7 @@ Optional:
 
 Optional:
 
-- `match_labels` (Map of String)
+- `match_labels` (Map of String) One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.
 
 
 <a id="nestedatt--spec--target_ref"></a>

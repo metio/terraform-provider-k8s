@@ -56,15 +56,9 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 		Labels   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		Name     *string            `tfsdk:"name" json:"name,omitempty"`
 		Platform *struct {
-			Alibabacloud *struct {
-				ImageID            *string   `tfsdk:"image_id" json:"imageID,omitempty"`
-				InstanceType       *string   `tfsdk:"instance_type" json:"instanceType,omitempty"`
-				SystemDiskCategory *string   `tfsdk:"system_disk_category" json:"systemDiskCategory,omitempty"`
-				SystemDiskSize     *int64    `tfsdk:"system_disk_size" json:"systemDiskSize,omitempty"`
-				Zones              *[]string `tfsdk:"zones" json:"zones,omitempty"`
-			} `tfsdk:"alibabacloud" json:"alibabacloud,omitempty"`
 			Aws *struct {
-				MetadataService *struct {
+				AdditionalSecurityGroupIDs *[]string `tfsdk:"additional_security_group_i_ds" json:"additionalSecurityGroupIDs,omitempty"`
+				MetadataService            *struct {
 					Authentication *string `tfsdk:"authentication" json:"authentication,omitempty"`
 				} `tfsdk:"metadata_service" json:"metadataService,omitempty"`
 				RootVolume *struct {
@@ -100,7 +94,8 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 				Zones *[]string `tfsdk:"zones" json:"zones,omitempty"`
 			} `tfsdk:"azure" json:"azure,omitempty"`
 			Gcp *struct {
-				OsDisk *struct {
+				NetworkProjectID *string `tfsdk:"network_project_id" json:"networkProjectID,omitempty"`
+				OsDisk           *struct {
 					DiskSizeGB    *int64  `tfsdk:"disk_size_gb" json:"diskSizeGB,omitempty"`
 					DiskType      *string `tfsdk:"disk_type" json:"diskType,omitempty"`
 					EncryptionKey *struct {
@@ -113,8 +108,9 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 						KmsKeyServiceAccount *string `tfsdk:"kms_key_service_account" json:"kmsKeyServiceAccount,omitempty"`
 					} `tfsdk:"encryption_key" json:"encryptionKey,omitempty"`
 				} `tfsdk:"os_disk" json:"osDisk,omitempty"`
-				Type  *string   `tfsdk:"type" json:"type,omitempty"`
-				Zones *[]string `tfsdk:"zones" json:"zones,omitempty"`
+				SecureBoot *string   `tfsdk:"secure_boot" json:"secureBoot,omitempty"`
+				Type       *string   `tfsdk:"type" json:"type,omitempty"`
+				Zones      *[]string `tfsdk:"zones" json:"zones,omitempty"`
 			} `tfsdk:"gcp" json:"gcp,omitempty"`
 			Ibmcloud *struct {
 				BootVolume *struct {
@@ -152,6 +148,7 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 				OsDisk         *struct {
 					DiskSizeGB *int64 `tfsdk:"disk_size_gb" json:"diskSizeGB,omitempty"`
 				} `tfsdk:"os_disk" json:"osDisk,omitempty"`
+				ResourcePool *string `tfsdk:"resource_pool" json:"resourcePool,omitempty"`
 			} `tfsdk:"vsphere" json:"vsphere,omitempty"`
 		} `tfsdk:"platform" json:"platform,omitempty"`
 		Replicas *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
@@ -312,66 +309,19 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 						Description:         "Platform is configuration for machine pool specific to the platform.",
 						MarkdownDescription: "Platform is configuration for machine pool specific to the platform.",
 						Attributes: map[string]schema.Attribute{
-							"alibabacloud": schema.SingleNestedAttribute{
-								Description:         "AlibabaCloud is the configuration used when installing on Alibaba Cloud.",
-								MarkdownDescription: "AlibabaCloud is the configuration used when installing on Alibaba Cloud.",
+							"aws": schema.SingleNestedAttribute{
+								Description:         "AWS is the configuration used when installing on AWS.",
+								MarkdownDescription: "AWS is the configuration used when installing on AWS.",
 								Attributes: map[string]schema.Attribute{
-									"image_id": schema.StringAttribute{
-										Description:         "ImageID is the Image ID that should be used to create ECS instance. If set, the ImageID should belong to the same region as the cluster.",
-										MarkdownDescription: "ImageID is the Image ID that should be used to create ECS instance. If set, the ImageID should belong to the same region as the cluster.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"instance_type": schema.StringAttribute{
-										Description:         "InstanceType defines the ECS instance type. eg. ecs.g6.large",
-										MarkdownDescription: "InstanceType defines the ECS instance type. eg. ecs.g6.large",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"system_disk_category": schema.StringAttribute{
-										Description:         "SystemDiskCategory defines the category of the system disk.",
-										MarkdownDescription: "SystemDiskCategory defines the category of the system disk.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.OneOf("", "cloud_efficiency", "cloud_essd"),
-										},
-									},
-
-									"system_disk_size": schema.Int64Attribute{
-										Description:         "SystemDiskSize defines the size of the system disk in gibibytes (GiB).",
-										MarkdownDescription: "SystemDiskSize defines the size of the system disk in gibibytes (GiB).",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-										Validators: []validator.Int64{
-											int64validator.AtLeast(120),
-										},
-									},
-
-									"zones": schema.ListAttribute{
-										Description:         "Zones is list of availability zones that can be used. eg. ['cn-hangzhou-i', 'cn-hangzhou-h', 'cn-hangzhou-j']",
-										MarkdownDescription: "Zones is list of availability zones that can be used. eg. ['cn-hangzhou-i', 'cn-hangzhou-h', 'cn-hangzhou-j']",
+									"additional_security_group_i_ds": schema.ListAttribute{
+										Description:         "AdditionalSecurityGroupIDs contains IDs of additional security groups for machines, where each ID is presented in the format sg-xxxx.",
+										MarkdownDescription: "AdditionalSecurityGroupIDs contains IDs of additional security groups for machines, where each ID is presented in the format sg-xxxx.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
 
-							"aws": schema.SingleNestedAttribute{
-								Description:         "AWS is the configuration used when installing on AWS.",
-								MarkdownDescription: "AWS is the configuration used when installing on AWS.",
-								Attributes: map[string]schema.Attribute{
 									"metadata_service": schema.SingleNestedAttribute{
 										Description:         "EC2MetadataOptions defines metadata service interaction options for EC2 instances in the machine pool.",
 										MarkdownDescription: "EC2MetadataOptions defines metadata service interaction options for EC2 instances in the machine pool.",
@@ -613,6 +563,14 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 								Description:         "GCP is the configuration used when installing on GCP.",
 								MarkdownDescription: "GCP is the configuration used when installing on GCP.",
 								Attributes: map[string]schema.Attribute{
+									"network_project_id": schema.StringAttribute{
+										Description:         "NetworkProjectID specifies which project the network and subnets exist in when they are not in the main ProjectID.",
+										MarkdownDescription: "NetworkProjectID specifies which project the network and subnets exist in when they are not in the main ProjectID.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"os_disk": schema.SingleNestedAttribute{
 										Description:         "OSDisk defines the storage for instances.",
 										MarkdownDescription: "OSDisk defines the storage for instances.",
@@ -701,6 +659,17 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"secure_boot": schema.StringAttribute{
+										Description:         "SecureBoot Defines whether the instance should have secure boot enabled. Verifies the digital signature of all boot components, and halts the boot process if signature verification fails. If omitted, the platform chooses a default, which is subject to change over time. Currently that default is 'Disabled'.",
+										MarkdownDescription: "SecureBoot Defines whether the instance should have secure boot enabled. Verifies the digital signature of all boot components, and halts the boot process if signature verification fails. If omitted, the platform chooses a default, which is subject to change over time. Currently that default is 'Disabled'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Enabled", "Disabled"),
+										},
 									},
 
 									"type": schema.StringAttribute{
@@ -950,6 +919,14 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 										Required: true,
 										Optional: false,
 										Computed: false,
+									},
+
+									"resource_pool": schema.StringAttribute{
+										Description:         "ResourcePool is the name of the resource pool that will be used for virtual machines. If it is not present, a default value will be used.",
+										MarkdownDescription: "ResourcePool is the name of the resource pool that will be used for virtual machines. If it is not present, a default value will be used.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,

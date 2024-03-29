@@ -67,8 +67,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetV1Alpha4Manifest) Metadata(_ conte
 
 func (r *AddonsClusterXK8SIoClusterResourceSetV1Alpha4Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ClusterResourceSet is the Schema for the clusterresourcesets API.  Deprecated: This type will be removed in one of the next releases.",
-		MarkdownDescription: "ClusterResourceSet is the Schema for the clusterresourcesets API.  Deprecated: This type will be removed in one of the next releases.",
+		Description:         "ClusterResourceSet is the Schema for the clusterresourcesets API.Deprecated: This type will be removed in one of the next releases.",
+		MarkdownDescription: "ClusterResourceSet is the Schema for the clusterresourcesets API.Deprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -147,8 +147,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetV1Alpha4Manifest) Schema(_ context
 				MarkdownDescription: "ClusterResourceSetSpec defines the desired state of ClusterResourceSet.",
 				Attributes: map[string]schema.Attribute{
 					"cluster_selector": schema.SingleNestedAttribute{
-						Description:         "Label selector for Clusters. The Clusters that are selected by this will be the ones affected by this ClusterResourceSet. It must match the Cluster labels. This field is immutable. Label selector cannot be empty.",
-						MarkdownDescription: "Label selector for Clusters. The Clusters that are selected by this will be the ones affected by this ClusterResourceSet. It must match the Cluster labels. This field is immutable. Label selector cannot be empty.",
+						Description:         "Label selector for Clusters. The Clusters that areselected by this will be the ones affected by this ClusterResourceSet.It must match the Cluster labels. This field is immutable.Label selector cannot be empty.",
+						MarkdownDescription: "Label selector for Clusters. The Clusters that areselected by this will be the ones affected by this ClusterResourceSet.It must match the Cluster labels. This field is immutable.Label selector cannot be empty.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -164,16 +164,16 @@ func (r *AddonsClusterXK8SIoClusterResourceSetV1Alpha4Manifest) Schema(_ context
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -187,8 +187,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetV1Alpha4Manifest) Schema(_ context
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

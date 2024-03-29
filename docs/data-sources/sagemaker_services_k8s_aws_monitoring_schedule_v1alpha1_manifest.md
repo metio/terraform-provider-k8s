@@ -30,7 +30,7 @@ data "k8s_sagemaker_services_k8s_aws_monitoring_schedule_v1alpha1_manifest" "exa
 
 ### Optional
 
-- `spec` (Attributes) MonitoringScheduleSpec defines the desired state of MonitoringSchedule.  A schedule for a model monitoring job. For information about model monitor, see Amazon SageMaker Model Monitor (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html). (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) MonitoringScheduleSpec defines the desired state of MonitoringSchedule.A schedule for a model monitoring job. For information about model monitor,see Amazon SageMaker Model Monitor (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html). (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,12 +56,12 @@ Optional:
 
 Required:
 
-- `monitoring_schedule_config` (Attributes) The configuration object that specifies the monitoring schedule and defines the monitoring job. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config))
-- `monitoring_schedule_name` (String) The name of the monitoring schedule. The name must be unique within an Amazon Web Services Region within an Amazon Web Services account.
+- `monitoring_schedule_config` (Attributes) The configuration object that specifies the monitoring schedule and definesthe monitoring job. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config))
+- `monitoring_schedule_name` (String) The name of the monitoring schedule. The name must be unique within an AmazonWeb Services Region within an Amazon Web Services account.
 
 Optional:
 
-- `tags` (Attributes List) (Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL) in the Amazon Web Services Billing and Cost Management User Guide. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) (Optional) An array of key-value pairs. For more information, see Using CostAllocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)in the Amazon Web Services Billing and Cost Management User Guide. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--monitoring_schedule_config"></a>
 ### Nested Schema for `spec.monitoring_schedule_config`
@@ -78,13 +78,13 @@ Optional:
 
 Optional:
 
-- `baseline_config` (Attributes) Configuration for monitoring constraints and monitoring statistics. These baseline resources are compared against the results of the current job from the series of jobs scheduled to collect data periodically. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--baseline_config))
+- `baseline_config` (Attributes) Configuration for monitoring constraints and monitoring statistics. Thesebaseline resources are compared against the results of the current job fromthe series of jobs scheduled to collect data periodically. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--baseline_config))
 - `environment` (Map of String)
 - `monitoring_app_specification` (Attributes) Container image configuration object for the monitoring job. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_app_specification))
 - `monitoring_inputs` (Attributes List) (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_inputs))
 - `monitoring_output_config` (Attributes) The output configuration for monitoring jobs. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_output_config))
 - `monitoring_resources` (Attributes) Identifies the resources to deploy for a monitoring job. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--monitoring_resources))
-- `network_config` (Attributes) Networking options for a job, such as network traffic encryption between containers, whether to allow inbound and outbound network calls to and from containers, and the VPC subnets and security groups to use for VPC-enabled jobs. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--network_config))
+- `network_config` (Attributes) Networking options for a job, such as network traffic encryption betweencontainers, whether to allow inbound and outbound network calls to and fromcontainers, and the VPC subnets and security groups to use for VPC-enabledjobs. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--network_config))
 - `role_arn` (String)
 - `stopping_condition` (Attributes) A time limit for how long the monitoring job is allowed to run before stopping. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition))
 
@@ -140,6 +140,7 @@ Optional:
 
 - `end_time_offset` (String)
 - `endpoint_name` (String)
+- `exclude_features_attribute` (String)
 - `features_attribute` (String)
 - `inference_attribute` (String)
 - `local_path` (String)
@@ -164,7 +165,7 @@ Optional:
 
 Optional:
 
-- `s3_output` (Attributes) Information about where and how you want to store the results of a monitoring job. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--monitoring_outputs--s3_output))
+- `s3_output` (Attributes) Information about where and how you want to store the results of a monitoringjob. (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--monitoring_outputs--s3_output))
 
 <a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--monitoring_outputs--s3_output"></a>
 ### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition.monitoring_outputs.s3_output`
@@ -204,7 +205,7 @@ Optional:
 
 - `enable_inter_container_traffic_encryption` (Boolean)
 - `enable_network_isolation` (Boolean)
-- `vpc_config` (Attributes) Specifies a VPC that your training jobs and hosted models have access to. Control access to and from your training and model containers by configuring the VPC. For more information, see Protect Endpoints by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html) and Protect Training Jobs by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html). (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--vpc_config))
+- `vpc_config` (Attributes) Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html). (see [below for nested schema](#nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--vpc_config))
 
 <a id="nestedatt--spec--monitoring_schedule_config--monitoring_job_definition--stopping_condition--vpc_config"></a>
 ### Nested Schema for `spec.monitoring_schedule_config.monitoring_job_definition.stopping_condition.vpc_config`
@@ -230,6 +231,8 @@ Optional:
 
 Optional:
 
+- `data_analysis_end_time` (String)
+- `data_analysis_start_time` (String)
 - `schedule_expression` (String)
 
 

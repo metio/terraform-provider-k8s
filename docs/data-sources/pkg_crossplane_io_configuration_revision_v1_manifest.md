@@ -57,32 +57,19 @@ Required:
 
 - `desired_state` (String) DesiredState of the PackageRevision. Can be either Active or Inactive.
 - `image` (String) Package image used by install Pod to extract package contents.
-- `revision` (Number) Revision number. Indicates when the revision will be garbage collected based on the parent's RevisionHistoryLimit.
+- `revision` (Number) Revision number. Indicates when the revision will be garbage collectedbased on the parent's RevisionHistoryLimit.
 
 Optional:
 
-- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
-- `controller_config_ref` (Attributes) ControllerConfigRef references a ControllerConfig resource that will be used to configure the packaged controller Deployment. (see [below for nested schema](#nestedatt--spec--controller_config_ref))
-- `ess_tls_secret_name` (String) ESSTLSSecretName is the secret name of the TLS certificates that will be used by the provider for External Secret Stores.
-- `ignore_crossplane_constraints` (Boolean) IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.
-- `package_pull_policy` (String) PackagePullPolicy defines the pull policy for the package. It is also applied to any images pulled for the package, such as a provider's controller image. Default is IfNotPresent.
-- `package_pull_secrets` (Attributes List) PackagePullSecrets are named secrets in the same namespace that can be used to fetch packages from private registries. They are also applied to any images pulled for the package, such as a provider's controller image. (see [below for nested schema](#nestedatt--spec--package_pull_secrets))
-- `skip_dependency_resolution` (Boolean) SkipDependencyResolution indicates to the package manager whether to skip resolving dependencies for a package. Setting this value to true may have unintended consequences. Default is false.
-- `tls_client_secret_name` (String) TLSClientSecretName is the name of the TLS Secret that stores client certificates of the Provider.
-- `tls_server_secret_name` (String) TLSServerSecretName is the name of the TLS Secret that stores server certificates of the Provider.
-- `webhook_tls_secret_name` (String) WebhookTLSSecretName is the name of the TLS Secret that will be used by the provider to serve a TLS-enabled webhook server. The certificate will be injected to webhook configurations as well as CRD conversion webhook strategy if needed. If it's not given, provider will not have a certificate mounted to its filesystem, webhook configurations won't be deployed and if there is a CRD with webhook conversion strategy, the installation will fail.
-
-<a id="nestedatt--spec--controller_config_ref"></a>
-### Nested Schema for `spec.controller_config_ref`
-
-Required:
-
-- `name` (String) Name of the ControllerConfig.
-
+- `common_labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels
+- `ignore_crossplane_constraints` (Boolean) IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.
+- `package_pull_policy` (String) PackagePullPolicy defines the pull policy for the package. It is alsoapplied to any images pulled for the package, such as a provider'scontroller image.Default is IfNotPresent.
+- `package_pull_secrets` (Attributes List) PackagePullSecrets are named secrets in the same namespace that can beused to fetch packages from private registries. They are also applied toany images pulled for the package, such as a provider's controller image. (see [below for nested schema](#nestedatt--spec--package_pull_secrets))
+- `skip_dependency_resolution` (Boolean) SkipDependencyResolution indicates to the package manager whether to skipresolving dependencies for a package. Setting this value to true may haveunintended consequences.Default is false.
 
 <a id="nestedatt--spec--package_pull_secrets"></a>
 ### Nested Schema for `spec.package_pull_secrets`
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?

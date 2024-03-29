@@ -8,6 +8,7 @@ package telemetry_istio_io_v1alpha1
 import (
 	"context"
 	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -231,8 +232,8 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 									MarkdownDescription: "Allows tailoring of logging behavior to specific conditions.",
 									Attributes: map[string]schema.Attribute{
 										"mode": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "This determines whether or not to apply the access logging configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
+											MarkdownDescription: "This determines whether or not to apply the access logging configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -254,9 +255,12 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 											"name": schema.StringAttribute{
 												Description:         "Required.",
 												MarkdownDescription: "Required.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 										},
 									},
@@ -290,8 +294,8 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 											},
 
 											"match": schema.SingleNestedAttribute{
-												Description:         "Match allows provides the scope of the override.",
-												MarkdownDescription: "Match allows provides the scope of the override.",
+												Description:         "Match allows providing the scope of the override.",
+												MarkdownDescription: "Match allows providing the scope of the override.",
 												Attributes: map[string]schema.Attribute{
 													"custom_metric": schema.StringAttribute{
 														Description:         "Allows free-form specification of a metric.",
@@ -299,11 +303,14 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+														},
 													},
 
 													"metric": schema.StringAttribute{
-														Description:         "One of the well-known Istio Standard Metrics.",
-														MarkdownDescription: "One of the well-known Istio Standard Metrics.",
+														Description:         "One of the well-known [Istio Standard Metrics](https://istio.io/latest/docs/reference/config/metrics/).Valid Options: ALL_METRICS, REQUEST_COUNT, REQUEST_DURATION, REQUEST_SIZE, RESPONSE_SIZE, TCP_OPENED_CONNECTIONS, TCP_CLOSED_CONNECTIONS, TCP_SENT_BYTES, TCP_RECEIVED_BYTES, GRPC_REQUEST_MESSAGES, GRPC_RESPONSE_MESSAGES",
+														MarkdownDescription: "One of the well-known [Istio Standard Metrics](https://istio.io/latest/docs/reference/config/metrics/).Valid Options: ALL_METRICS, REQUEST_COUNT, REQUEST_DURATION, REQUEST_SIZE, RESPONSE_SIZE, TCP_OPENED_CONNECTIONS, TCP_CLOSED_CONNECTIONS, TCP_SENT_BYTES, TCP_RECEIVED_BYTES, GRPC_REQUEST_MESSAGES, GRPC_RESPONSE_MESSAGES",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -313,8 +320,8 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 													},
 
 													"mode": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Controls which mode of metrics generation is selected: 'CLIENT', 'SERVER', or 'CLIENT_AND_SERVER'.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
+														MarkdownDescription: "Controls which mode of metrics generation is selected: 'CLIENT', 'SERVER', or 'CLIENT_AND_SERVER'.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -333,8 +340,8 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 												MarkdownDescription: "Optional.",
 												Attributes: map[string]schema.Attribute{
 													"operation": schema.StringAttribute{
-														Description:         "Operation controls whether or not to update/add a tag, or to remove it.",
-														MarkdownDescription: "Operation controls whether or not to update/add a tag, or to remove it.",
+														Description:         "Operation controls whether or not to update/add a tag, or to remove it.Valid Options: UPSERT, REMOVE",
+														MarkdownDescription: "Operation controls whether or not to update/add a tag, or to remove it.Valid Options: UPSERT, REMOVE",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -370,9 +377,12 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 											"name": schema.StringAttribute{
 												Description:         "Required.",
 												MarkdownDescription: "Required.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 										},
 									},
@@ -400,8 +410,8 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 						MarkdownDescription: "Optional.",
 						Attributes: map[string]schema.Attribute{
 							"match_labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
+								MarkdownDescription: "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -414,8 +424,8 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Optional.",
+						MarkdownDescription: "Optional.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "group is the group of the target resource.",
@@ -478,9 +488,12 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 												"name": schema.StringAttribute{
 													Description:         "Name of the environment variable from which to extract the tag value.",
 													MarkdownDescription: "Name of the environment variable from which to extract the tag value.",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+													},
 												},
 											},
 											Required: false,
@@ -489,8 +502,8 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 										},
 
 										"header": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "RequestHeader adds the value of an header from the request to each span.",
+											MarkdownDescription: "RequestHeader adds the value of an header from the request to each span.",
 											Attributes: map[string]schema.Attribute{
 												"default_value": schema.StringAttribute{
 													Description:         "Optional.",
@@ -503,9 +516,12 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 												"name": schema.StringAttribute{
 													Description:         "Name of the header from which to extract the tag value.",
 													MarkdownDescription: "Name of the header from which to extract the tag value.",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+													},
 												},
 											},
 											Required: false,
@@ -520,9 +536,12 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 												"value": schema.StringAttribute{
 													Description:         "The tag value to use.",
 													MarkdownDescription: "The tag value to use.",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+													},
 												},
 											},
 											Required: false,
@@ -548,8 +567,8 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 									MarkdownDescription: "Allows tailoring of behavior to specific conditions.",
 									Attributes: map[string]schema.Attribute{
 										"mode": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "This determines whether or not to apply the tracing configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
+											MarkdownDescription: "This determines whether or not to apply the tracing configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -571,9 +590,12 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 											"name": schema.StringAttribute{
 												Description:         "Required.",
 												MarkdownDescription: "Required.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 										},
 									},
@@ -583,11 +605,15 @@ func (r *TelemetryIstioIoTelemetryV1Alpha1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"random_sampling_percentage": schema.Float64Attribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Controls the rate at which traffic will be selected for tracing if no prior sampling decision has been made.",
+									MarkdownDescription: "Controls the rate at which traffic will be selected for tracing if no prior sampling decision has been made.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.Float64{
+										float64validator.AtLeast(0),
+										float64validator.AtMost(100),
+									},
 								},
 
 								"use_request_id_for_trace_sampling": schema.BoolAttribute{

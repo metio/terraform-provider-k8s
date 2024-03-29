@@ -13,6 +13,10 @@ type crd1TypeTranslator struct {
 	property *apiextensionsv1.JSONSchemaProps
 }
 
+func (t *crd1TypeTranslator) hasNoType() bool {
+	return t.property.Type == ""
+}
+
 func (t *crd1TypeTranslator) isIntOrString() bool {
 	return t.property.XIntOrString || t.property.Type == "string" && t.property.Format == "int-or-string"
 }

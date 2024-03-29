@@ -46,6 +46,7 @@ type CephRookIoCephBlockPoolRadosNamespaceV1ManifestData struct {
 
 	Spec *struct {
 		BlockPoolName *string `tfsdk:"block_pool_name" json:"blockPoolName,omitempty"`
+		Name          *string `tfsdk:"name" json:"name,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -139,6 +140,14 @@ func (r *CephRookIoCephBlockPoolRadosNamespaceV1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "BlockPoolName is the name of Ceph BlockPool. Typically it's the name of the CephBlockPool CR.",
 						Required:            true,
 						Optional:            false,
+						Computed:            false,
+					},
+
+					"name": schema.StringAttribute{
+						Description:         "The name of the CephBlockPoolRadosNamespaceSpec namespace. If not set, the default is the name of the CR.",
+						MarkdownDescription: "The name of the CephBlockPoolRadosNamespaceSpec namespace. If not set, the default is the name of the CR.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 				},

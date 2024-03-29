@@ -3,12 +3,12 @@
 page_title: "k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_template_v1beta1_manifest Data Source - terraform-provider-k8s"
 subcategory: "infrastructure.cluster.x-k8s.io"
 description: |-
-  VSphereClusterTemplate is the Schema for the vsphereclustertemplates API
+  VSphereClusterTemplate is the Schema for the vsphereclustertemplates API.
 ---
 
 # k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_template_v1beta1_manifest (Data Source)
 
-VSphereClusterTemplate is the Schema for the vsphereclustertemplates API
+VSphereClusterTemplate is the Schema for the vsphereclustertemplates API.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_infrastructure_cluster_x_k8s_io_v_sphere_cluster_template_v1beta1_mani
 
 ### Optional
 
-- `spec` (Attributes) VSphereClusterTemplateSpec defines the desired state of VSphereClusterTemplate (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) VSphereClusterTemplateSpec defines the desired state of VSphereClusterTemplate. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,14 +56,14 @@ Optional:
 
 Required:
 
-- `template` (Attributes) (see [below for nested schema](#nestedatt--spec--template))
+- `template` (Attributes) VSphereClusterTemplateResource describes the data for creating a VSphereCluster from a template. (see [below for nested schema](#nestedatt--spec--template))
 
 <a id="nestedatt--spec--template"></a>
 ### Nested Schema for `spec.template`
 
 Required:
 
-- `spec` (Attributes) VSphereClusterSpec defines the desired state of VSphereCluster (see [below for nested schema](#nestedatt--spec--template--spec))
+- `spec` (Attributes) VSphereClusterSpec defines the desired state of VSphereCluster. (see [below for nested schema](#nestedatt--spec--template--spec))
 
 <a id="nestedatt--spec--template--spec"></a>
 ### Nested Schema for `spec.template.spec`

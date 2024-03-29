@@ -61,9 +61,14 @@ type InfrastructureClusterXK8SIoIbmpowerVsmachineTemplateV1Beta2ManifestData str
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 					Regex *string `tfsdk:"regex" json:"regex,omitempty"`
 				} `tfsdk:"network" json:"network,omitempty"`
-				ProcessorType     *string `tfsdk:"processor_type" json:"processorType,omitempty"`
-				Processors        *string `tfsdk:"processors" json:"processors,omitempty"`
-				ProviderID        *string `tfsdk:"provider_id" json:"providerID,omitempty"`
+				ProcessorType   *string `tfsdk:"processor_type" json:"processorType,omitempty"`
+				Processors      *string `tfsdk:"processors" json:"processors,omitempty"`
+				ProviderID      *string `tfsdk:"provider_id" json:"providerID,omitempty"`
+				ServiceInstance *struct {
+					Id    *string `tfsdk:"id" json:"id,omitempty"`
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+					Regex *string `tfsdk:"regex" json:"regex,omitempty"`
+				} `tfsdk:"service_instance" json:"serviceInstance,omitempty"`
 				ServiceInstanceID *string `tfsdk:"service_instance_id" json:"serviceInstanceID,omitempty"`
 				SshKey            *string `tfsdk:"ssh_key" json:"sshKey,omitempty"`
 				SystemType        *string `tfsdk:"system_type" json:"systemType,omitempty"`
@@ -301,15 +306,54 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsmachineTemplateV1Beta2Manifest) Sc
 										Computed:            false,
 									},
 
+									"service_instance": schema.SingleNestedAttribute{
+										Description:         "serviceInstance is the reference to the Power VS workspace on which the server instance(VM) will be created. Power VS workspace is a container for all Power VS instances at a specific geographic region. serviceInstance can be created via IBM Cloud catalog or CLI. supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli. More detail about Power VS service instance. https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server when omitted system will dynamically create the service instance",
+										MarkdownDescription: "serviceInstance is the reference to the Power VS workspace on which the server instance(VM) will be created. Power VS workspace is a container for all Power VS instances at a specific geographic region. serviceInstance can be created via IBM Cloud catalog or CLI. supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli. More detail about Power VS service instance. https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server when omitted system will dynamically create the service instance",
+										Attributes: map[string]schema.Attribute{
+											"id": schema.StringAttribute{
+												Description:         "ID of resource",
+												MarkdownDescription: "ID of resource",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of resource",
+												MarkdownDescription: "Name of resource",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"regex": schema.StringAttribute{
+												Description:         "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												MarkdownDescription: "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"service_instance_id": schema.StringAttribute{
-										Description:         "ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed.",
-										MarkdownDescription: "ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed.",
+										Description:         "ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed. Deprecated: use ServiceInstance instead",
+										MarkdownDescription: "ServiceInstanceID is the id of the power cloud instance where the vsi instance will get deployed. Deprecated: use ServiceInstance instead",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtLeast(1),
-										},
 									},
 
 									"ssh_key": schema.StringAttribute{
@@ -327,7 +371,7 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsmachineTemplateV1Beta2Manifest) Sc
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("s922", "e880", "e980", ""),
+											stringvalidator.OneOf("s922", "e880", "e980", "s1022", ""),
 										},
 									},
 								},

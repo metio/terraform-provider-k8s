@@ -9,6 +9,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	{{ if .AdditionalImports.BoolValidator -}}
+	"github.com/hashicorp/terraform-plugin-framework-validators/boolvalidator"
+	{{ end -}}
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	{{ if .AdditionalImports.Float64Validator -}}
 	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"

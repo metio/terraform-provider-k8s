@@ -50,6 +50,9 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		AdvancedNetwork *struct {
+			ClientServerSocketEndpointConfig *struct {
+				Interfaces *[]string `tfsdk:"interfaces" json:"interfaces,omitempty"`
+			} `tfsdk:"client_server_socket_endpoint_config" json:"clientServerSocketEndpointConfig,omitempty"`
 			MemberServerSocketEndpointConfig *struct {
 				Interfaces *[]string `tfsdk:"interfaces" json:"interfaces,omitempty"`
 			} `tfsdk:"member_server_socket_endpoint_config" json:"memberServerSocketEndpointConfig,omitempty"`
@@ -62,10 +65,32 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 		} `tfsdk:"advanced_network" json:"advancedNetwork,omitempty"`
 		Agent *struct {
 			Repository *string `tfsdk:"repository" json:"repository,omitempty"`
-			Version    *string `tfsdk:"version" json:"version,omitempty"`
+			Resources  *struct {
+				Claims *[]struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
+				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+			} `tfsdk:"resources" json:"resources,omitempty"`
+			Version *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"agent" json:"agent,omitempty"`
-		ClusterName             *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
-		ClusterSize             *int64  `tfsdk:"cluster_size" json:"clusterSize,omitempty"`
+		Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+		ClusterName *string            `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+		ClusterSize *int64             `tfsdk:"cluster_size" json:"clusterSize,omitempty"`
+		CpSubsystem *struct {
+			DataLoadTimeoutSeconds            *int64 `tfsdk:"data_load_timeout_seconds" json:"dataLoadTimeoutSeconds,omitempty"`
+			FailOnIndeterminateOperationState *bool  `tfsdk:"fail_on_indeterminate_operation_state" json:"failOnIndeterminateOperationState,omitempty"`
+			GroupSize                         *int64 `tfsdk:"group_size" json:"groupSize,omitempty"`
+			MemberCount                       *int64 `tfsdk:"member_count" json:"memberCount,omitempty"`
+			MissingCpMemberAutoRemovalSeconds *int64 `tfsdk:"missing_cp_member_auto_removal_seconds" json:"missingCpMemberAutoRemovalSeconds,omitempty"`
+			Pvc                               *struct {
+				AccessModes      *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
+				RequestStorage   *string   `tfsdk:"request_storage" json:"requestStorage,omitempty"`
+				StorageClassName *string   `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+			} `tfsdk:"pvc" json:"pvc,omitempty"`
+			SessionHeartbeatIntervalSeconds *int64 `tfsdk:"session_heartbeat_interval_seconds" json:"sessionHeartbeatIntervalSeconds,omitempty"`
+			SessionTTLSeconds               *int64 `tfsdk:"session_ttl_seconds" json:"sessionTTLSeconds,omitempty"`
+		} `tfsdk:"cp_subsystem" json:"cpSubsystem,omitempty"`
 		CustomConfigCmName      *string `tfsdk:"custom_config_cm_name" json:"customConfigCmName,omitempty"`
 		DurableExecutorServices *[]struct {
 			Capacity   *int64  `tfsdk:"capacity" json:"capacity,omitempty"`
@@ -124,10 +149,22 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 				MinRAMPercentage     *string `tfsdk:"min_ram_percentage" json:"minRAMPercentage,omitempty"`
 			} `tfsdk:"memory" json:"memory,omitempty"`
 		} `tfsdk:"jvm" json:"jvm,omitempty"`
-		LicenseKeySecret     *string `tfsdk:"license_key_secret" json:"licenseKeySecret,omitempty"`
-		LicenseKeySecretName *string `tfsdk:"license_key_secret_name" json:"licenseKeySecretName,omitempty"`
-		LoggingLevel         *string `tfsdk:"logging_level" json:"loggingLevel,omitempty"`
-		ManagementCenter     *struct {
+		Labels               *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		LicenseKeySecret     *string            `tfsdk:"license_key_secret" json:"licenseKeySecret,omitempty"`
+		LicenseKeySecretName *string            `tfsdk:"license_key_secret_name" json:"licenseKeySecretName,omitempty"`
+		LocalDevices         *[]struct {
+			BlockSize *int64  `tfsdk:"block_size" json:"blockSize,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Pvc       *struct {
+				AccessModes      *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
+				RequestStorage   *string   `tfsdk:"request_storage" json:"requestStorage,omitempty"`
+				StorageClassName *string   `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+			} `tfsdk:"pvc" json:"pvc,omitempty"`
+			ReadIOThreadCount  *int64 `tfsdk:"read_io_thread_count" json:"readIOThreadCount,omitempty"`
+			WriteIOThreadCount *int64 `tfsdk:"write_io_thread_count" json:"writeIOThreadCount,omitempty"`
+		} `tfsdk:"local_devices" json:"localDevices,omitempty"`
+		LoggingLevel     *string `tfsdk:"logging_level" json:"loggingLevel,omitempty"`
+		ManagementCenter *struct {
 			ConsoleEnabled    *bool `tfsdk:"console_enabled" json:"consoleEnabled,omitempty"`
 			DataAccessEnabled *bool `tfsdk:"data_access_enabled" json:"dataAccessEnabled,omitempty"`
 			ScriptingEnabled  *bool `tfsdk:"scripting_enabled" json:"scriptingEnabled,omitempty"`
@@ -140,7 +177,6 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 			Size                    *string `tfsdk:"size" json:"size,omitempty"`
 		} `tfsdk:"native_memory" json:"nativeMemory,omitempty"`
 		Persistence *struct {
-			BaseDir                   *string `tfsdk:"base_dir" json:"baseDir,omitempty"`
 			ClusterDataRecoveryPolicy *string `tfsdk:"cluster_data_recovery_policy" json:"clusterDataRecoveryPolicy,omitempty"`
 			DataRecoveryTimeout       *int64  `tfsdk:"data_recovery_timeout" json:"dataRecoveryTimeout,omitempty"`
 			Pvc                       *struct {
@@ -161,6 +197,9 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 		Properties *map[string]string `tfsdk:"properties" json:"properties,omitempty"`
 		Repository *string            `tfsdk:"repository" json:"repository,omitempty"`
 		Resources  *struct {
+			Claims *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
@@ -354,7 +393,8 @@ type HazelcastComHazelcastV1Alpha1ManifestData struct {
 				TypeClass *string `tfsdk:"type_class" json:"typeClass,omitempty"`
 			} `tfsdk:"serializers" json:"serializers,omitempty"`
 		} `tfsdk:"serialization" json:"serialization,omitempty"`
-		Sql *struct {
+		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+		Sql                *struct {
 			CatalogPersistenceEnabled *bool  `tfsdk:"catalog_persistence_enabled" json:"catalogPersistenceEnabled,omitempty"`
 			StatementTimeout          *int64 `tfsdk:"statement_timeout" json:"statementTimeout,omitempty"`
 		} `tfsdk:"sql" json:"sql,omitempty"`
@@ -466,6 +506,24 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Description:         "Hazelcast Advanced Network configuration",
 						MarkdownDescription: "Hazelcast Advanced Network configuration",
 						Attributes: map[string]schema.Attribute{
+							"client_server_socket_endpoint_config": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"interfaces": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"member_server_socket_endpoint_config": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -495,6 +553,9 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtMost(8),
+											},
 										},
 
 										"port": schema.Int64Attribute{
@@ -544,6 +605,52 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Computed:            false,
 							},
 
+							"resources": schema.SingleNestedAttribute{
+								Description:         "Compute Resources required by the Agent container.",
+								MarkdownDescription: "Compute Resources required by the Agent container.",
+								Attributes: map[string]schema.Attribute{
+									"claims": schema.ListNestedAttribute{
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"limits": schema.MapAttribute{
+										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"requests": schema.MapAttribute{
+										Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"version": schema.StringAttribute{
 								Description:         "Version of Hazelcast Platform Operator Agent.",
 								MarkdownDescription: "Version of Hazelcast Platform Operator Agent.",
@@ -555,6 +662,15 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"annotations": schema.MapAttribute{
+						Description:         "Hazelcast Kubernetes resource annotations",
+						MarkdownDescription: "Hazelcast Kubernetes resource annotations",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"cluster_name": schema.StringAttribute{
@@ -574,6 +690,105 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Validators: []validator.Int64{
 							int64validator.AtLeast(0),
 						},
+					},
+
+					"cp_subsystem": schema.SingleNestedAttribute{
+						Description:         "CPSubsystem is the configuration of the Hazelcast CP Subsystem.",
+						MarkdownDescription: "CPSubsystem is the configuration of the Hazelcast CP Subsystem.",
+						Attributes: map[string]schema.Attribute{
+							"data_load_timeout_seconds": schema.Int64Attribute{
+								Description:         "DataLoadTimeoutSeconds is the timeout duration in seconds for CP members to restore their persisted data from disk",
+								MarkdownDescription: "DataLoadTimeoutSeconds is the timeout duration in seconds for CP members to restore their persisted data from disk",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"fail_on_indeterminate_operation_state": schema.BoolAttribute{
+								Description:         "FailOnIndeterminateOperationState indicated whether CP Subsystem operations use at-least-once and at-most-once execution guarantees.",
+								MarkdownDescription: "FailOnIndeterminateOperationState indicated whether CP Subsystem operations use at-least-once and at-most-once execution guarantees.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"group_size": schema.Int64Attribute{
+								Description:         "GroupSize is the number of CP members to participate in each CP group. Allowed values are 3, 5, and 7.",
+								MarkdownDescription: "GroupSize is the number of CP members to participate in each CP group. Allowed values are 3, 5, and 7.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"member_count": schema.Int64Attribute{
+								Description:         "MemberCount is the number of CP members to initialize the CP Subsystem.",
+								MarkdownDescription: "MemberCount is the number of CP members to initialize the CP Subsystem.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
+							"missing_cp_member_auto_removal_seconds": schema.Int64Attribute{
+								Description:         "MissingCpMemberAutoRemovalSeconds is the duration in seconds to wait before automatically removing a missing CP member from the CP Subsystem.",
+								MarkdownDescription: "MissingCpMemberAutoRemovalSeconds is the duration in seconds to wait before automatically removing a missing CP member from the CP Subsystem.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"pvc": schema.SingleNestedAttribute{
+								Description:         "PVC is the configuration of PersistenceVolumeClaim.",
+								MarkdownDescription: "PVC is the configuration of PersistenceVolumeClaim.",
+								Attributes: map[string]schema.Attribute{
+									"access_modes": schema.ListAttribute{
+										Description:         "AccessModes contains the actual access modes of the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+										MarkdownDescription: "AccessModes contains the actual access modes of the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"request_storage": schema.StringAttribute{
+										Description:         "A description of the PVC request capacity.",
+										MarkdownDescription: "A description of the PVC request capacity.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"storage_class_name": schema.StringAttribute{
+										Description:         "Name of StorageClass which this persistent volume belongs to.",
+										MarkdownDescription: "Name of StorageClass which this persistent volume belongs to.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"session_heartbeat_interval_seconds": schema.Int64Attribute{
+								Description:         "SessionHeartbeatIntervalSeconds Interval in seconds for the periodically committed CP session heartbeats. Must be greater than or equal to SessionTTLSeconds.",
+								MarkdownDescription: "SessionHeartbeatIntervalSeconds Interval in seconds for the periodically committed CP session heartbeats. Must be greater than or equal to SessionTTLSeconds.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"session_ttl_seconds": schema.Int64Attribute{
+								Description:         "SessionTTLSeconds is the duration for a CP session to be kept alive after the last received heartbeat. Must be greater than or equal to SessionTTLSeconds.",
+								MarkdownDescription: "SessionTTLSeconds is the duration for a CP session to be kept alive after the last received heartbeat. Must be greater than or equal to SessionTTLSeconds.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"custom_config_cm_name": schema.StringAttribute{
@@ -1002,6 +1217,15 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Computed: false,
 					},
 
+					"labels": schema.MapAttribute{
+						Description:         "Hazelcast Kubernetes resource labels",
+						MarkdownDescription: "Hazelcast Kubernetes resource labels",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"license_key_secret": schema.StringAttribute{
 						Description:         "licenseKeySecret is a deprecated alias for licenseKeySecretName.",
 						MarkdownDescription: "licenseKeySecret is a deprecated alias for licenseKeySecretName.",
@@ -1016,6 +1240,92 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"local_devices": schema.ListNestedAttribute{
+						Description:         "Hazelcast LocalDevice configuration",
+						MarkdownDescription: "Hazelcast LocalDevice configuration",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"block_size": schema.Int64Attribute{
+									Description:         "BlockSize defines Device block/sector size in bytes.",
+									MarkdownDescription: "BlockSize defines Device block/sector size in bytes.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.Int64{
+										int64validator.AtLeast(512),
+									},
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name represents the name of the local device",
+									MarkdownDescription: "Name represents the name of the local device",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"pvc": schema.SingleNestedAttribute{
+									Description:         "Configuration of PersistenceVolumeClaim.",
+									MarkdownDescription: "Configuration of PersistenceVolumeClaim.",
+									Attributes: map[string]schema.Attribute{
+										"access_modes": schema.ListAttribute{
+											Description:         "AccessModes contains the actual access modes of the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+											MarkdownDescription: "AccessModes contains the actual access modes of the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"request_storage": schema.StringAttribute{
+											Description:         "A description of the PVC request capacity.",
+											MarkdownDescription: "A description of the PVC request capacity.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"storage_class_name": schema.StringAttribute{
+											Description:         "Name of StorageClass which this persistent volume belongs to.",
+											MarkdownDescription: "Name of StorageClass which this persistent volume belongs to.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"read_io_thread_count": schema.Int64Attribute{
+									Description:         "ReadIOThreadCount is Read IO thread count.",
+									MarkdownDescription: "ReadIOThreadCount is Read IO thread count.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.Int64{
+										int64validator.AtLeast(1),
+									},
+								},
+
+								"write_io_thread_count": schema.Int64Attribute{
+									Description:         "WriteIOThreadCount is Write IO thread count.",
+									MarkdownDescription: "WriteIOThreadCount is Write IO thread count.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.Int64{
+										int64validator.AtLeast(1),
+									},
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"logging_level": schema.StringAttribute{
@@ -1118,14 +1428,6 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Description:         "Persistence configuration",
 						MarkdownDescription: "Persistence configuration",
 						Attributes: map[string]schema.Attribute{
-							"base_dir": schema.StringAttribute{
-								Description:         "Persistence base directory.",
-								MarkdownDescription: "Persistence base directory.",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-							},
-
 							"cluster_data_recovery_policy": schema.StringAttribute{
 								Description:         "Configuration of the cluster recovery strategy.",
 								MarkdownDescription: "Configuration of the cluster recovery strategy.",
@@ -1269,6 +1571,25 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Description:         "Compute Resources required by the Hazelcast container.",
 						MarkdownDescription: "Compute Resources required by the Hazelcast container.",
 						Attributes: map[string]schema.Attribute{
+							"claims": schema.ListNestedAttribute{
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"limits": schema.MapAttribute{
 								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -1279,8 +1600,8 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"requests": schema.MapAttribute{
-								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -2279,8 +2600,8 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"match_label_keys": schema.ListAttribute{
-											Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.",
-											MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.",
+											Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+											MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -2304,16 +2625,16 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"node_affinity_policy": schema.StringAttribute{
-											Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-											MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+											Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+											MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"node_taints_policy": schema.StringAttribute{
-											Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-											MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+											Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+											MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2604,6 +2925,14 @@ func (r *HazelcastComHazelcastV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"service_account_name": schema.StringAttribute{
+						Description:         "ServiceAccountName is the name of the ServiceAccount to use to run Hazelcast cluster. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+						MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run Hazelcast cluster. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"sql": schema.SingleNestedAttribute{

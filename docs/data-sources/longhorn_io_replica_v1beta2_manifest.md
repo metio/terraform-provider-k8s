@@ -57,22 +57,29 @@ Optional:
 Optional:
 
 - `active` (Boolean)
-- `backend_store_driver` (String)
+- `backend_store_driver` (String) Deprecated: Replaced by field 'dataEngine'.
 - `backing_image` (String)
 - `data_directory_name` (String)
+- `data_engine` (String)
 - `desire_state` (String)
 - `disk_id` (String)
 - `disk_path` (String)
-- `engine_image` (String)
+- `engine_image` (String) Deprecated: Replaced by field 'image'.
 - `engine_name` (String)
-- `failed_at` (String)
+- `eviction_requested` (Boolean)
+- `failed_at` (String) FailedAt is set when a running replica fails or when a running engine is unable to use a replica for any reason. FailedAt indicates the time the failure occurred. When FailedAt is set, a replica is likely to have useful (though possibly stale) data. A replica with FailedAt set must be rebuilt from a non-failed replica (or it can be used in a salvage if all replicas are failed). FailedAt is cleared before a rebuild or salvage. FailedAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.
 - `hard_node_affinity` (String)
-- `healthy_at` (String)
+- `healthy_at` (String) HealthyAt is set the first time a replica becomes read/write in an engine after creation or rebuild. HealthyAt indicates the time the last successful rebuild occurred. When HealthyAt is set, a replica is likely to have useful (though possibly stale) data. HealthyAt is cleared before a rebuild. HealthyAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.
+- `image` (String)
+- `last_failed_at` (String) LastFailedAt is always set at the same time as FailedAt. Unlike FailedAt, LastFailedAt is never cleared. LastFailedAt is not a reliable indicator of the state of a replica's data. For example, a replica with LastFailedAt may already be healthy and in use again. However, because it is never cleared, it can be compared to LastHealthyAt to help prevent dangerous replica deletion in some corner cases. LastFailedAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.
+- `last_healthy_at` (String) LastHealthyAt is set every time a replica becomes read/write in an engine. Unlike HealthyAt, LastHealthyAt is never cleared. LastHealthyAt is not a reliable indicator of the state of a replica's data. For example, a replica with LastHealthyAt set may be in the middle of a rebuild. However, because it is never cleared, it can be compared to LastFailedAt to help prevent dangerous replica deletion in some corner cases. LastHealthyAt may be later than the corresponding entry in an engine's replicaTransitionTimeMap because it is set when the volume controller acknowledges the change.
 - `log_requested` (Boolean)
 - `node_id` (String)
 - `rebuild_retry_count` (Number)
 - `revision_counter_disabled` (Boolean)
 - `salvage_requested` (Boolean)
+- `snapshot_max_count` (Number)
+- `snapshot_max_size` (String)
 - `unmap_mark_disk_chain_removed_enabled` (Boolean)
 - `volume_name` (String)
 - `volume_size` (String)

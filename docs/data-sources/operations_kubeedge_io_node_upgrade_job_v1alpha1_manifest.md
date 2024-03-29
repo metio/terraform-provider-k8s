@@ -16,6 +16,7 @@ NodeUpgradeJob is used to upgrade edge node from cloud side.
 data "k8s_operations_kubeedge_io_node_upgrade_job_v1alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -54,12 +55,13 @@ Optional:
 
 Optional:
 
+- `check_items` (List of String) CheckItems specifies the items need to be checked before the task is executed. The default CheckItems value is nil.
 - `concurrency` (Number) Concurrency specifies the max number of edge nodes that can be upgraded at the same time. The default Concurrency value is 1.
+- `failure_tolerate` (String) FailureTolerate specifies the task tolerance failure ratio. The default FailureTolerate value is 0.1.
 - `image` (String) Image specifies a container image name, the image contains: keadm and edgecore. keadm is used as upgradetool, to install the new version of edgecore. The image name consists of registry hostname and repository name, if it includes the tag or digest, the tag or digest will be overwritten by Version field above. If the registry hostname is empty, docker.io will be used as default. The default image name is: kubeedge/installation-package.
 - `label_selector` (Attributes) LabelSelector is a filter to select member clusters by labels. It must match a node's labels for the NodeUpgradeJob to be operated on that node. Please note that sets of NodeNames and LabelSelector are ORed. Users must set one and can only set one. (see [below for nested schema](#nestedatt--spec--label_selector))
 - `node_names` (List of String) NodeNames is a request to select some specific nodes. If it is non-empty, the upgrade job simply select these edge nodes to do upgrade operation. Please note that sets of NodeNames and LabelSelector are ORed. Users must set one and can only set one.
 - `timeout_seconds` (Number) TimeoutSeconds limits the duration of the node upgrade job. Default to 300. If set to 0, we'll use the default value 300.
-- `upgrade_tool` (String) UpgradeTool is a request to decide use which upgrade tool. If it is empty, the upgrade job simply use default upgrade tool keadm to do upgrade operation.
 - `version` (String)
 
 <a id="nestedatt--spec--label_selector"></a>

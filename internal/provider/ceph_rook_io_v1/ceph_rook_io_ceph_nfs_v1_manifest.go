@@ -80,6 +80,20 @@ type CephRookIoCephNfsV1ManifestData struct {
 						Projected *struct {
 							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 							Sources     *[]struct {
+								ClusterTrustBundle *struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									Name       *string `tfsdk:"name" json:"name,omitempty"`
+									Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+									Path       *string `tfsdk:"path" json:"path,omitempty"`
+									SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+								} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 								ConfigMap *struct {
 									Items *[]struct {
 										Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -160,6 +174,20 @@ type CephRookIoCephNfsV1ManifestData struct {
 						Projected *struct {
 							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 							Sources     *[]struct {
+								ClusterTrustBundle *struct {
+									LabelSelector *struct {
+										MatchExpressions *[]struct {
+											Key      *string   `tfsdk:"key" json:"key,omitempty"`
+											Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+											Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									Name       *string `tfsdk:"name" json:"name,omitempty"`
+									Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+									Path       *string `tfsdk:"path" json:"path,omitempty"`
+									SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+								} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 								ConfigMap *struct {
 									Items *[]struct {
 										Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -244,6 +272,20 @@ type CephRookIoCephNfsV1ManifestData struct {
 							Projected *struct {
 								DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 								Sources     *[]struct {
+									ClusterTrustBundle *struct {
+										LabelSelector *struct {
+											MatchExpressions *[]struct {
+												Key      *string   `tfsdk:"key" json:"key,omitempty"`
+												Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+												Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+											} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+											MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+										} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+										Name       *string `tfsdk:"name" json:"name,omitempty"`
+										Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+										Path       *string `tfsdk:"path" json:"path,omitempty"`
+										SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+									} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 									ConfigMap *struct {
 										Items *[]struct {
 											Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -332,6 +374,20 @@ type CephRookIoCephNfsV1ManifestData struct {
 							Projected *struct {
 								DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 								Sources     *[]struct {
+									ClusterTrustBundle *struct {
+										LabelSelector *struct {
+											MatchExpressions *[]struct {
+												Key      *string   `tfsdk:"key" json:"key,omitempty"`
+												Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+												Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+											} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+											MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+										} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+										Name       *string `tfsdk:"name" json:"name,omitempty"`
+										Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+										Path       *string `tfsdk:"path" json:"path,omitempty"`
+										SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+									} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 									ConfigMap *struct {
 										Items *[]struct {
 											Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -388,12 +444,44 @@ type CephRookIoCephNfsV1ManifestData struct {
 			} `tfsdk:"sssd" json:"sssd,omitempty"`
 		} `tfsdk:"security" json:"security,omitempty"`
 		Server *struct {
-			Active      *int64             `tfsdk:"active" json:"active,omitempty"`
-			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-			HostNetwork *bool              `tfsdk:"host_network" json:"hostNetwork,omitempty"`
-			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			LogLevel    *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
-			Placement   *struct {
+			Active        *int64             `tfsdk:"active" json:"active,omitempty"`
+			Annotations   *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			HostNetwork   *bool              `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			LivenessProbe *struct {
+				Disabled *bool `tfsdk:"disabled" json:"disabled,omitempty"`
+				Probe    *struct {
+					Exec *struct {
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+					Grpc             *struct {
+						Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+						Service *string `tfsdk:"service" json:"service,omitempty"`
+					} `tfsdk:"grpc" json:"grpc,omitempty"`
+					HttpGet *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+					PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+					TcpSocket           *struct {
+						Host *string `tfsdk:"host" json:"host,omitempty"`
+						Port *string `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+					TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"probe" json:"probe,omitempty"`
+			} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
+			LogLevel  *string `tfsdk:"log_level" json:"logLevel,omitempty"`
+			Placement *struct {
 				NodeAffinity *struct {
 					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
 						Preference *struct {
@@ -436,6 +524,8 @@ type CephRookIoCephNfsV1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -458,6 +548,8 @@ type CephRookIoCephNfsV1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -481,6 +573,8 @@ type CephRookIoCephNfsV1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -503,6 +597,8 @@ type CephRookIoCephNfsV1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -642,16 +738,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 						MarkdownDescription: "RADOS is the Ganesha RADOS specification",
 						Attributes: map[string]schema.Attribute{
 							"namespace": schema.StringAttribute{
-								Description:         "The namespace inside the Ceph pool (set by 'pool') where shared NFS-Ganesha config is stored. This setting is required for Ceph v15 and ignored for Ceph v16. As of Ceph Pacific v16+, this is internally set to the name of the CephNFS.",
-								MarkdownDescription: "The namespace inside the Ceph pool (set by 'pool') where shared NFS-Ganesha config is stored. This setting is required for Ceph v15 and ignored for Ceph v16. As of Ceph Pacific v16+, this is internally set to the name of the CephNFS.",
+								Description:         "The namespace inside the Ceph pool (set by 'pool') where shared NFS-Ganesha config is stored. This setting is deprecated as it is internally set to the name of the CephNFS.",
+								MarkdownDescription: "The namespace inside the Ceph pool (set by 'pool') where shared NFS-Ganesha config is stored. This setting is deprecated as it is internally set to the name of the CephNFS.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"pool": schema.StringAttribute{
-								Description:         "The Ceph pool used store the shared configuration for NFS-Ganesha daemons. This setting is required for Ceph v15 and ignored for Ceph v16. As of Ceph Pacific 16.2.7+, this is internally hardcoded to '.nfs'.",
-								MarkdownDescription: "The Ceph pool used store the shared configuration for NFS-Ganesha daemons. This setting is required for Ceph v15 and ignored for Ceph v16. As of Ceph Pacific 16.2.7+, this is internally hardcoded to '.nfs'.",
+								Description:         "The Ceph pool used store the shared configuration for NFS-Ganesha daemons. This setting is deprecated, as it is internally required to be '.nfs'.",
+								MarkdownDescription: "The Ceph pool used store the shared configuration for NFS-Ganesha daemons. This setting is deprecated, as it is internally required to be '.nfs'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -675,45 +771,45 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 										MarkdownDescription: "ConfigFiles defines where the Kerberos configuration should be sourced from. Config files will be placed into the '/etc/krb5.conf.rook/' directory.  If this is left empty, Rook will not add any files. This allows you to manage the files yourself however you wish. For example, you may build them into your custom Ceph container image or use the Vault agent injector to securely add the files via annotations on the CephNFS spec (passed to the NFS server pods).  Rook configures Kerberos to log to stderr. We suggest removing logging sections from config files to avoid consuming unnecessary disk space from logging to files.",
 										Attributes: map[string]schema.Attribute{
 											"volume_source": schema.SingleNestedAttribute{
-												Description:         "VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for Kerberos configuration files like what is normally used to configure Volumes for a Pod. For example, a ConfigMap, Secret, or HostPath. The volume may contain multiple files, all of which will be loaded.",
-												MarkdownDescription: "VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for Kerberos configuration files like what is normally used to configure Volumes for a Pod. For example, a ConfigMap, Secret, or HostPath. The volume may contain multiple files, all of which will be loaded.",
+												Description:         "",
+												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"config_map": schema.SingleNestedAttribute{
-														Description:         "configMap represents a configMap that should populate this volume",
-														MarkdownDescription: "configMap represents a configMap that should populate this volume",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"default_mode": schema.Int64Attribute{
-																Description:         "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																MarkdownDescription: "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"items": schema.ListNestedAttribute{
-																Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																Description:         "",
+																MarkdownDescription: "",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "key is the key to project.",
-																			MarkdownDescription: "key is the key to project.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"mode": schema.Int64Attribute{
-																			Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																			MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"path": schema.StringAttribute{
-																			Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																			MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -726,16 +822,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"optional": schema.BoolAttribute{
-																Description:         "optional specify whether the ConfigMap or its keys must be defined",
-																MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -747,20 +843,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 													},
 
 													"empty_dir": schema.SingleNestedAttribute{
-														Description:         "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-														MarkdownDescription: "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"medium": schema.StringAttribute{
-																Description:         "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																MarkdownDescription: "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"size_limit": schema.StringAttribute{
-																Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -772,20 +868,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 													},
 
 													"host_path": schema.SingleNestedAttribute{
-														Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath ---",
-														MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath ---",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"path": schema.StringAttribute{
-																Description:         "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-																MarkdownDescription: "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-																MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -797,20 +893,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 													},
 
 													"persistent_volume_claim": schema.SingleNestedAttribute{
-														Description:         "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-														MarkdownDescription: "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"claim_name": schema.StringAttribute{
-																Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"read_only": schema.BoolAttribute{
-																Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
-																MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -822,50 +918,145 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 													},
 
 													"projected": schema.SingleNestedAttribute{
-														Description:         "projected items for all in one resources secrets, configmaps, and downward API",
-														MarkdownDescription: "projected items for all in one resources secrets, configmaps, and downward API",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"default_mode": schema.Int64Attribute{
-																Description:         "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																MarkdownDescription: "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"sources": schema.ListNestedAttribute{
-																Description:         "sources is the list of volume projections",
-																MarkdownDescription: "sources is the list of volume projections",
+																Description:         "",
+																MarkdownDescription: "",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
+																		"cluster_trust_bundle": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"label_selector": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"path": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"signer_name": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"config_map": schema.SingleNestedAttribute{
-																			Description:         "configMap information about the configMap data to project",
-																			MarkdownDescription: "configMap information about the configMap data to project",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Attributes: map[string]schema.Attribute{
 																				"items": schema.ListNestedAttribute{
-																					Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																					MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"key": schema.StringAttribute{
-																								Description:         "key is the key to project.",
-																								MarkdownDescription: "key is the key to project.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"mode": schema.Int64Attribute{
-																								Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																								MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"path": schema.StringAttribute{
-																								Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																								MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -878,16 +1069,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"optional": schema.BoolAttribute{
-																					Description:         "optional specify whether the ConfigMap or its keys must be defined",
-																					MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -899,29 +1090,29 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"downward_api": schema.SingleNestedAttribute{
-																			Description:         "downwardAPI information about the downwardAPI data to project",
-																			MarkdownDescription: "downwardAPI information about the downwardAPI data to project",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Attributes: map[string]schema.Attribute{
 																				"items": schema.ListNestedAttribute{
-																					Description:         "Items is a list of DownwardAPIVolume file",
-																					MarkdownDescription: "Items is a list of DownwardAPIVolume file",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"field_ref": schema.SingleNestedAttribute{
-																								Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																								MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Attributes: map[string]schema.Attribute{
 																									"api_version": schema.StringAttribute{
-																										Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																										MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"field_path": schema.StringAttribute{
-																										Description:         "Path of the field to select in the specified API version.",
-																										MarkdownDescription: "Path of the field to select in the specified API version.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -933,44 +1124,44 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																							},
 
 																							"mode": schema.Int64Attribute{
-																								Description:         "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																								MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"path": schema.StringAttribute{
-																								Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
-																								MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"resource_field_ref": schema.SingleNestedAttribute{
-																								Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
-																								MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Attributes: map[string]schema.Attribute{
 																									"container_name": schema.StringAttribute{
-																										Description:         "Container name: required for volumes, optional for env vars",
-																										MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"divisor": schema.StringAttribute{
-																										Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																										MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"resource": schema.StringAttribute{
-																										Description:         "Required: resource to select",
-																										MarkdownDescription: "Required: resource to select",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -993,33 +1184,33 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"secret": schema.SingleNestedAttribute{
-																			Description:         "secret information about the secret data to project",
-																			MarkdownDescription: "secret information about the secret data to project",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Attributes: map[string]schema.Attribute{
 																				"items": schema.ListNestedAttribute{
-																					Description:         "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																					MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"key": schema.StringAttribute{
-																								Description:         "key is the key to project.",
-																								MarkdownDescription: "key is the key to project.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"mode": schema.Int64Attribute{
-																								Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																								MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"path": schema.StringAttribute{
-																								Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																								MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -1032,16 +1223,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"optional": schema.BoolAttribute{
-																					Description:         "optional field specify whether the Secret or its key must be defined",
-																					MarkdownDescription: "optional field specify whether the Secret or its key must be defined",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -1053,28 +1244,28 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"service_account_token": schema.SingleNestedAttribute{
-																			Description:         "serviceAccountToken is information about the serviceAccountToken data to project",
-																			MarkdownDescription: "serviceAccountToken is information about the serviceAccountToken data to project",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Attributes: map[string]schema.Attribute{
 																				"audience": schema.StringAttribute{
-																					Description:         "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
-																					MarkdownDescription: "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"expiration_seconds": schema.Int64Attribute{
-																					Description:         "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
-																					MarkdownDescription: "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "path is the path relative to the mount point of the file to project the token into.",
-																					MarkdownDescription: "path is the path relative to the mount point of the file to project the token into.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -1097,41 +1288,41 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 													},
 
 													"secret": schema.SingleNestedAttribute{
-														Description:         "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-														MarkdownDescription: "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"default_mode": schema.Int64Attribute{
-																Description:         "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																MarkdownDescription: "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"items": schema.ListNestedAttribute{
-																Description:         "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																MarkdownDescription: "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																Description:         "",
+																MarkdownDescription: "",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "key is the key to project.",
-																			MarkdownDescription: "key is the key to project.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"mode": schema.Int64Attribute{
-																			Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																			MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"path": schema.StringAttribute{
-																			Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																			MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -1144,16 +1335,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 															},
 
 															"optional": schema.BoolAttribute{
-																Description:         "optional field specify whether the Secret or its keys must be defined",
-																MarkdownDescription: "optional field specify whether the Secret or its keys must be defined",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"secret_name": schema.StringAttribute{
-																Description:         "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-																MarkdownDescription: "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1187,45 +1378,45 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 										MarkdownDescription: "KeytabFile defines where the Kerberos keytab should be sourced from. The keytab file will be placed into '/etc/krb5.keytab'. If this is left empty, Rook will not add the file. This allows you to manage the 'krb5.keytab' file yourself however you wish. For example, you may build it into your custom Ceph container image or use the Vault agent injector to securely add the file via annotations on the CephNFS spec (passed to the NFS server pods).",
 										Attributes: map[string]schema.Attribute{
 											"volume_source": schema.SingleNestedAttribute{
-												Description:         "VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for the Kerberos keytab file like what is normally used to configure Volumes for a Pod. For example, a Secret or HostPath. There are two requirements for the source's content: 1. The config file must be mountable via 'subPath: krb5.keytab'. For example, in a Secret, the data item must be named 'krb5.keytab', or 'items' must be defined to select the key and give it path 'krb5.keytab'. A HostPath directory must have the 'krb5.keytab' file. 2. The volume or config file must have mode 0600.",
-												MarkdownDescription: "VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for the Kerberos keytab file like what is normally used to configure Volumes for a Pod. For example, a Secret or HostPath. There are two requirements for the source's content: 1. The config file must be mountable via 'subPath: krb5.keytab'. For example, in a Secret, the data item must be named 'krb5.keytab', or 'items' must be defined to select the key and give it path 'krb5.keytab'. A HostPath directory must have the 'krb5.keytab' file. 2. The volume or config file must have mode 0600.",
+												Description:         "",
+												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"config_map": schema.SingleNestedAttribute{
-														Description:         "configMap represents a configMap that should populate this volume",
-														MarkdownDescription: "configMap represents a configMap that should populate this volume",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"default_mode": schema.Int64Attribute{
-																Description:         "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																MarkdownDescription: "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"items": schema.ListNestedAttribute{
-																Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																Description:         "",
+																MarkdownDescription: "",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "key is the key to project.",
-																			MarkdownDescription: "key is the key to project.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"mode": schema.Int64Attribute{
-																			Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																			MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"path": schema.StringAttribute{
-																			Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																			MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -1238,16 +1429,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"optional": schema.BoolAttribute{
-																Description:         "optional specify whether the ConfigMap or its keys must be defined",
-																MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1259,20 +1450,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 													},
 
 													"empty_dir": schema.SingleNestedAttribute{
-														Description:         "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-														MarkdownDescription: "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"medium": schema.StringAttribute{
-																Description:         "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																MarkdownDescription: "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"size_limit": schema.StringAttribute{
-																Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1284,20 +1475,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 													},
 
 													"host_path": schema.SingleNestedAttribute{
-														Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath ---",
-														MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath ---",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"path": schema.StringAttribute{
-																Description:         "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-																MarkdownDescription: "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"type": schema.StringAttribute{
-																Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-																MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1309,20 +1500,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 													},
 
 													"persistent_volume_claim": schema.SingleNestedAttribute{
-														Description:         "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-														MarkdownDescription: "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"claim_name": schema.StringAttribute{
-																Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"read_only": schema.BoolAttribute{
-																Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
-																MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1334,50 +1525,145 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 													},
 
 													"projected": schema.SingleNestedAttribute{
-														Description:         "projected items for all in one resources secrets, configmaps, and downward API",
-														MarkdownDescription: "projected items for all in one resources secrets, configmaps, and downward API",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"default_mode": schema.Int64Attribute{
-																Description:         "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																MarkdownDescription: "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"sources": schema.ListNestedAttribute{
-																Description:         "sources is the list of volume projections",
-																MarkdownDescription: "sources is the list of volume projections",
+																Description:         "",
+																MarkdownDescription: "",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
+																		"cluster_trust_bundle": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"label_selector": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"path": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"signer_name": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"config_map": schema.SingleNestedAttribute{
-																			Description:         "configMap information about the configMap data to project",
-																			MarkdownDescription: "configMap information about the configMap data to project",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Attributes: map[string]schema.Attribute{
 																				"items": schema.ListNestedAttribute{
-																					Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																					MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"key": schema.StringAttribute{
-																								Description:         "key is the key to project.",
-																								MarkdownDescription: "key is the key to project.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"mode": schema.Int64Attribute{
-																								Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																								MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"path": schema.StringAttribute{
-																								Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																								MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -1390,16 +1676,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"optional": schema.BoolAttribute{
-																					Description:         "optional specify whether the ConfigMap or its keys must be defined",
-																					MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -1411,29 +1697,29 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"downward_api": schema.SingleNestedAttribute{
-																			Description:         "downwardAPI information about the downwardAPI data to project",
-																			MarkdownDescription: "downwardAPI information about the downwardAPI data to project",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Attributes: map[string]schema.Attribute{
 																				"items": schema.ListNestedAttribute{
-																					Description:         "Items is a list of DownwardAPIVolume file",
-																					MarkdownDescription: "Items is a list of DownwardAPIVolume file",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"field_ref": schema.SingleNestedAttribute{
-																								Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																								MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Attributes: map[string]schema.Attribute{
 																									"api_version": schema.StringAttribute{
-																										Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																										MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"field_path": schema.StringAttribute{
-																										Description:         "Path of the field to select in the specified API version.",
-																										MarkdownDescription: "Path of the field to select in the specified API version.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -1445,44 +1731,44 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																							},
 
 																							"mode": schema.Int64Attribute{
-																								Description:         "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																								MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"path": schema.StringAttribute{
-																								Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
-																								MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"resource_field_ref": schema.SingleNestedAttribute{
-																								Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
-																								MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Attributes: map[string]schema.Attribute{
 																									"container_name": schema.StringAttribute{
-																										Description:         "Container name: required for volumes, optional for env vars",
-																										MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"divisor": schema.StringAttribute{
-																										Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																										MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"resource": schema.StringAttribute{
-																										Description:         "Required: resource to select",
-																										MarkdownDescription: "Required: resource to select",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -1505,33 +1791,33 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"secret": schema.SingleNestedAttribute{
-																			Description:         "secret information about the secret data to project",
-																			MarkdownDescription: "secret information about the secret data to project",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Attributes: map[string]schema.Attribute{
 																				"items": schema.ListNestedAttribute{
-																					Description:         "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																					MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					NestedObject: schema.NestedAttributeObject{
 																						Attributes: map[string]schema.Attribute{
 																							"key": schema.StringAttribute{
-																								Description:         "key is the key to project.",
-																								MarkdownDescription: "key is the key to project.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
 																							},
 
 																							"mode": schema.Int64Attribute{
-																								Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																								MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"path": schema.StringAttribute{
-																								Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																								MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -1544,16 +1830,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																				},
 
 																				"name": schema.StringAttribute{
-																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"optional": schema.BoolAttribute{
-																					Description:         "optional field specify whether the Secret or its key must be defined",
-																					MarkdownDescription: "optional field specify whether the Secret or its key must be defined",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -1565,28 +1851,28 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"service_account_token": schema.SingleNestedAttribute{
-																			Description:         "serviceAccountToken is information about the serviceAccountToken data to project",
-																			MarkdownDescription: "serviceAccountToken is information about the serviceAccountToken data to project",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Attributes: map[string]schema.Attribute{
 																				"audience": schema.StringAttribute{
-																					Description:         "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
-																					MarkdownDescription: "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"expiration_seconds": schema.Int64Attribute{
-																					Description:         "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
-																					MarkdownDescription: "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "path is the path relative to the mount point of the file to project the token into.",
-																					MarkdownDescription: "path is the path relative to the mount point of the file to project the token into.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -1609,41 +1895,41 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 													},
 
 													"secret": schema.SingleNestedAttribute{
-														Description:         "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-														MarkdownDescription: "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"default_mode": schema.Int64Attribute{
-																Description:         "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																MarkdownDescription: "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"items": schema.ListNestedAttribute{
-																Description:         "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																MarkdownDescription: "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																Description:         "",
+																MarkdownDescription: "",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "key is the key to project.",
-																			MarkdownDescription: "key is the key to project.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"mode": schema.Int64Attribute{
-																			Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																			MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"path": schema.StringAttribute{
-																			Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																			MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -1656,16 +1942,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 															},
 
 															"optional": schema.BoolAttribute{
-																Description:         "optional field specify whether the Secret or its keys must be defined",
-																MarkdownDescription: "optional field specify whether the Secret or its keys must be defined",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"secret_name": schema.StringAttribute{
-																Description:         "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-																MarkdownDescription: "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1725,45 +2011,45 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 														},
 
 														"volume_source": schema.SingleNestedAttribute{
-															Description:         "VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for the additional file(s) like what is normally used to configure Volumes for a Pod. Fore example, a ConfigMap, Secret, or HostPath. Each VolumeSource adds one or more additional files to the SSSD sidecar container in the '/etc/sssd/rook-additional/<subPath>' directory. Be aware that some files may need to have a specific file mode like 0600 due to requirements by SSSD for some files. For example, CA or TLS certificates.",
-															MarkdownDescription: "VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for the additional file(s) like what is normally used to configure Volumes for a Pod. Fore example, a ConfigMap, Secret, or HostPath. Each VolumeSource adds one or more additional files to the SSSD sidecar container in the '/etc/sssd/rook-additional/<subPath>' directory. Be aware that some files may need to have a specific file mode like 0600 due to requirements by SSSD for some files. For example, CA or TLS certificates.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"config_map": schema.SingleNestedAttribute{
-																	Description:         "configMap represents a configMap that should populate this volume",
-																	MarkdownDescription: "configMap represents a configMap that should populate this volume",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"default_mode": schema.Int64Attribute{
-																			Description:         "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																			MarkdownDescription: "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"items": schema.ListNestedAttribute{
-																			Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																			MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the key to project.",
-																						MarkdownDescription: "key is the key to project.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"mode": schema.Int64Attribute{
-																						Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																						MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"path": schema.StringAttribute{
-																						Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																						MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -1776,16 +2062,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"optional": schema.BoolAttribute{
-																			Description:         "optional specify whether the ConfigMap or its keys must be defined",
-																			MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1797,20 +2083,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"empty_dir": schema.SingleNestedAttribute{
-																	Description:         "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																	MarkdownDescription: "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"medium": schema.StringAttribute{
-																			Description:         "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																			MarkdownDescription: "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"size_limit": schema.StringAttribute{
-																			Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																			MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1822,20 +2108,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"host_path": schema.SingleNestedAttribute{
-																	Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath ---",
-																	MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath ---",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"path": schema.StringAttribute{
-																			Description:         "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-																			MarkdownDescription: "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"type": schema.StringAttribute{
-																			Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-																			MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1847,20 +2133,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"persistent_volume_claim": schema.SingleNestedAttribute{
-																	Description:         "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																	MarkdownDescription: "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"claim_name": schema.StringAttribute{
-																			Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																			MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
-																			MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1872,50 +2158,145 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"projected": schema.SingleNestedAttribute{
-																	Description:         "projected items for all in one resources secrets, configmaps, and downward API",
-																	MarkdownDescription: "projected items for all in one resources secrets, configmaps, and downward API",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"default_mode": schema.Int64Attribute{
-																			Description:         "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																			MarkdownDescription: "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"sources": schema.ListNestedAttribute{
-																			Description:         "sources is the list of volume projections",
-																			MarkdownDescription: "sources is the list of volume projections",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
+																					"cluster_trust_bundle": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"label_selector": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"match_expressions": schema.ListNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										NestedObject: schema.NestedAttributeObject{
+																											Attributes: map[string]schema.Attribute{
+																												"key": schema.StringAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Required:            true,
+																													Optional:            false,
+																													Computed:            false,
+																												},
+
+																												"operator": schema.StringAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Required:            true,
+																													Optional:            false,
+																													Computed:            false,
+																												},
+
+																												"values": schema.ListAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													ElementType:         types.StringType,
+																													Required:            false,
+																													Optional:            true,
+																													Computed:            false,
+																												},
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"match_labels": schema.MapAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"optional": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"signer_name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
 																					"config_map": schema.SingleNestedAttribute{
-																						Description:         "configMap information about the configMap data to project",
-																						MarkdownDescription: "configMap information about the configMap data to project",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
 																							"items": schema.ListNestedAttribute{
-																								Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																								MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								NestedObject: schema.NestedAttributeObject{
 																									Attributes: map[string]schema.Attribute{
 																										"key": schema.StringAttribute{
-																											Description:         "key is the key to project.",
-																											MarkdownDescription: "key is the key to project.",
+																											Description:         "",
+																											MarkdownDescription: "",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
 																										},
 
 																										"mode": schema.Int64Attribute{
-																											Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																											MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																											Description:         "",
+																											MarkdownDescription: "",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
 																										},
 
 																										"path": schema.StringAttribute{
-																											Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																											MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																											Description:         "",
+																											MarkdownDescription: "",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
@@ -1928,16 +2309,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"optional": schema.BoolAttribute{
-																								Description:         "optional specify whether the ConfigMap or its keys must be defined",
-																								MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -1949,29 +2330,29 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																					},
 
 																					"downward_api": schema.SingleNestedAttribute{
-																						Description:         "downwardAPI information about the downwardAPI data to project",
-																						MarkdownDescription: "downwardAPI information about the downwardAPI data to project",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
 																							"items": schema.ListNestedAttribute{
-																								Description:         "Items is a list of DownwardAPIVolume file",
-																								MarkdownDescription: "Items is a list of DownwardAPIVolume file",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								NestedObject: schema.NestedAttributeObject{
 																									Attributes: map[string]schema.Attribute{
 																										"field_ref": schema.SingleNestedAttribute{
-																											Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																											MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																											Description:         "",
+																											MarkdownDescription: "",
 																											Attributes: map[string]schema.Attribute{
 																												"api_version": schema.StringAttribute{
-																													Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																													MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																													Description:         "",
+																													MarkdownDescription: "",
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
 																												},
 
 																												"field_path": schema.StringAttribute{
-																													Description:         "Path of the field to select in the specified API version.",
-																													MarkdownDescription: "Path of the field to select in the specified API version.",
+																													Description:         "",
+																													MarkdownDescription: "",
 																													Required:            true,
 																													Optional:            false,
 																													Computed:            false,
@@ -1983,44 +2364,44 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																										},
 
 																										"mode": schema.Int64Attribute{
-																											Description:         "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																											MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																											Description:         "",
+																											MarkdownDescription: "",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
 																										},
 
 																										"path": schema.StringAttribute{
-																											Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
-																											MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																											Description:         "",
+																											MarkdownDescription: "",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
 																										},
 
 																										"resource_field_ref": schema.SingleNestedAttribute{
-																											Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
-																											MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+																											Description:         "",
+																											MarkdownDescription: "",
 																											Attributes: map[string]schema.Attribute{
 																												"container_name": schema.StringAttribute{
-																													Description:         "Container name: required for volumes, optional for env vars",
-																													MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																													Description:         "",
+																													MarkdownDescription: "",
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
 																												},
 
 																												"divisor": schema.StringAttribute{
-																													Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																													MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																													Description:         "",
+																													MarkdownDescription: "",
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
 																												},
 
 																												"resource": schema.StringAttribute{
-																													Description:         "Required: resource to select",
-																													MarkdownDescription: "Required: resource to select",
+																													Description:         "",
+																													MarkdownDescription: "",
 																													Required:            true,
 																													Optional:            false,
 																													Computed:            false,
@@ -2043,33 +2424,33 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																					},
 
 																					"secret": schema.SingleNestedAttribute{
-																						Description:         "secret information about the secret data to project",
-																						MarkdownDescription: "secret information about the secret data to project",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
 																							"items": schema.ListNestedAttribute{
-																								Description:         "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																								MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								NestedObject: schema.NestedAttributeObject{
 																									Attributes: map[string]schema.Attribute{
 																										"key": schema.StringAttribute{
-																											Description:         "key is the key to project.",
-																											MarkdownDescription: "key is the key to project.",
+																											Description:         "",
+																											MarkdownDescription: "",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
 																										},
 
 																										"mode": schema.Int64Attribute{
-																											Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																											MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																											Description:         "",
+																											MarkdownDescription: "",
 																											Required:            false,
 																											Optional:            true,
 																											Computed:            false,
 																										},
 
 																										"path": schema.StringAttribute{
-																											Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																											MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																											Description:         "",
+																											MarkdownDescription: "",
 																											Required:            true,
 																											Optional:            false,
 																											Computed:            false,
@@ -2082,16 +2463,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"optional": schema.BoolAttribute{
-																								Description:         "optional field specify whether the Secret or its key must be defined",
-																								MarkdownDescription: "optional field specify whether the Secret or its key must be defined",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -2103,28 +2484,28 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																					},
 
 																					"service_account_token": schema.SingleNestedAttribute{
-																						Description:         "serviceAccountToken is information about the serviceAccountToken data to project",
-																						MarkdownDescription: "serviceAccountToken is information about the serviceAccountToken data to project",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Attributes: map[string]schema.Attribute{
 																							"audience": schema.StringAttribute{
-																								Description:         "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
-																								MarkdownDescription: "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"expiration_seconds": schema.Int64Attribute{
-																								Description:         "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
-																								MarkdownDescription: "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
 																							},
 
 																							"path": schema.StringAttribute{
-																								Description:         "path is the path relative to the mount point of the file to project the token into.",
-																								MarkdownDescription: "path is the path relative to the mount point of the file to project the token into.",
+																								Description:         "",
+																								MarkdownDescription: "",
 																								Required:            true,
 																								Optional:            false,
 																								Computed:            false,
@@ -2147,41 +2528,41 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"secret": schema.SingleNestedAttribute{
-																	Description:         "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-																	MarkdownDescription: "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"default_mode": schema.Int64Attribute{
-																			Description:         "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																			MarkdownDescription: "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"items": schema.ListNestedAttribute{
-																			Description:         "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																			MarkdownDescription: "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the key to project.",
-																						MarkdownDescription: "key is the key to project.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"mode": schema.Int64Attribute{
-																						Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																						MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
 																					},
 
 																					"path": schema.StringAttribute{
-																						Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																						MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
@@ -2194,16 +2575,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"optional": schema.BoolAttribute{
-																			Description:         "optional field specify whether the Secret or its keys must be defined",
-																			MarkdownDescription: "optional field specify whether the Secret or its keys must be defined",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"secret_name": schema.StringAttribute{
-																			Description:         "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-																			MarkdownDescription: "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -2299,45 +2680,45 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 												MarkdownDescription: "SSSDConfigFile defines where the SSSD configuration should be sourced from. The config file will be placed into '/etc/sssd/sssd.conf'. If this is left empty, Rook will not add the file. This allows you to manage the 'sssd.conf' file yourself however you wish. For example, you may build it into your custom Ceph container image or use the Vault agent injector to securely add the file via annotations on the CephNFS spec (passed to the NFS server pods).",
 												Attributes: map[string]schema.Attribute{
 													"volume_source": schema.SingleNestedAttribute{
-														Description:         "VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for the SSSD configuration file like what is normally used to configure Volumes for a Pod. For example, a ConfigMap, Secret, or HostPath. There are two requirements for the source's content: 1. The config file must be mountable via 'subPath: sssd.conf'. For example, in a ConfigMap, the data item must be named 'sssd.conf', or 'items' must be defined to select the key and give it path 'sssd.conf'. A HostPath directory must have the 'sssd.conf' file. 2. The volume or config file must have mode 0600.",
-														MarkdownDescription: "VolumeSource accepts a pared down version of the standard Kubernetes VolumeSource for the SSSD configuration file like what is normally used to configure Volumes for a Pod. For example, a ConfigMap, Secret, or HostPath. There are two requirements for the source's content: 1. The config file must be mountable via 'subPath: sssd.conf'. For example, in a ConfigMap, the data item must be named 'sssd.conf', or 'items' must be defined to select the key and give it path 'sssd.conf'. A HostPath directory must have the 'sssd.conf' file. 2. The volume or config file must have mode 0600.",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"config_map": schema.SingleNestedAttribute{
-																Description:         "configMap represents a configMap that should populate this volume",
-																MarkdownDescription: "configMap represents a configMap that should populate this volume",
+																Description:         "",
+																MarkdownDescription: "",
 																Attributes: map[string]schema.Attribute{
 																	"default_mode": schema.Int64Attribute{
-																		Description:         "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																		MarkdownDescription: "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"items": schema.ListNestedAttribute{
-																		Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																		MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.StringAttribute{
-																					Description:         "key is the key to project.",
-																					MarkdownDescription: "key is the key to project.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"mode": schema.Int64Attribute{
-																					Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																					MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																					MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -2350,16 +2731,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"optional": schema.BoolAttribute{
-																		Description:         "optional specify whether the ConfigMap or its keys must be defined",
-																		MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2371,20 +2752,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 															},
 
 															"empty_dir": schema.SingleNestedAttribute{
-																Description:         "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																MarkdownDescription: "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																Description:         "",
+																MarkdownDescription: "",
 																Attributes: map[string]schema.Attribute{
 																	"medium": schema.StringAttribute{
-																		Description:         "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																		MarkdownDescription: "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"size_limit": schema.StringAttribute{
-																		Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-																		MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2396,20 +2777,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 															},
 
 															"host_path": schema.SingleNestedAttribute{
-																Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath ---",
-																MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath ---",
+																Description:         "",
+																MarkdownDescription: "",
 																Attributes: map[string]schema.Attribute{
 																	"path": schema.StringAttribute{
-																		Description:         "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-																		MarkdownDescription: "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"type": schema.StringAttribute{
-																		Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-																		MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2421,20 +2802,20 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 															},
 
 															"persistent_volume_claim": schema.SingleNestedAttribute{
-																Description:         "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																MarkdownDescription: "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																Description:         "",
+																MarkdownDescription: "",
 																Attributes: map[string]schema.Attribute{
 																	"claim_name": schema.StringAttribute{
-																		Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																		MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"read_only": schema.BoolAttribute{
-																		Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
-																		MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2446,50 +2827,145 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 															},
 
 															"projected": schema.SingleNestedAttribute{
-																Description:         "projected items for all in one resources secrets, configmaps, and downward API",
-																MarkdownDescription: "projected items for all in one resources secrets, configmaps, and downward API",
+																Description:         "",
+																MarkdownDescription: "",
 																Attributes: map[string]schema.Attribute{
 																	"default_mode": schema.Int64Attribute{
-																		Description:         "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																		MarkdownDescription: "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"sources": schema.ListNestedAttribute{
-																		Description:         "sources is the list of volume projections",
-																		MarkdownDescription: "sources is the list of volume projections",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
+																				"cluster_trust_bundle": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"label_selector": schema.SingleNestedAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Attributes: map[string]schema.Attribute{
+																								"match_expressions": schema.ListNestedAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									NestedObject: schema.NestedAttributeObject{
+																										Attributes: map[string]schema.Attribute{
+																											"key": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            true,
+																												Optional:            false,
+																												Computed:            false,
+																											},
+
+																											"operator": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            true,
+																												Optional:            false,
+																												Computed:            false,
+																											},
+
+																											"values": schema.ListAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												ElementType:         types.StringType,
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																									},
+																									Required: false,
+																									Optional: true,
+																									Computed: false,
+																								},
+
+																								"match_labels": schema.MapAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"optional": schema.BoolAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"path": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"signer_name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
 																				"config_map": schema.SingleNestedAttribute{
-																					Description:         "configMap information about the configMap data to project",
-																					MarkdownDescription: "configMap information about the configMap data to project",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Attributes: map[string]schema.Attribute{
 																						"items": schema.ListNestedAttribute{
-																							Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																							MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																							Description:         "",
+																							MarkdownDescription: "",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"key": schema.StringAttribute{
-																										Description:         "key is the key to project.",
-																										MarkdownDescription: "key is the key to project.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"mode": schema.Int64Attribute{
-																										Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																										MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"path": schema.StringAttribute{
-																										Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																										MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -2502,16 +2978,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																							MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																							Description:         "",
+																							MarkdownDescription: "",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"optional": schema.BoolAttribute{
-																							Description:         "optional specify whether the ConfigMap or its keys must be defined",
-																							MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+																							Description:         "",
+																							MarkdownDescription: "",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2523,29 +2999,29 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																				},
 
 																				"downward_api": schema.SingleNestedAttribute{
-																					Description:         "downwardAPI information about the downwardAPI data to project",
-																					MarkdownDescription: "downwardAPI information about the downwardAPI data to project",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Attributes: map[string]schema.Attribute{
 																						"items": schema.ListNestedAttribute{
-																							Description:         "Items is a list of DownwardAPIVolume file",
-																							MarkdownDescription: "Items is a list of DownwardAPIVolume file",
+																							Description:         "",
+																							MarkdownDescription: "",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"field_ref": schema.SingleNestedAttribute{
-																										Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																										MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Attributes: map[string]schema.Attribute{
 																											"api_version": schema.StringAttribute{
-																												Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																												MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																												Description:         "",
+																												MarkdownDescription: "",
 																												Required:            false,
 																												Optional:            true,
 																												Computed:            false,
 																											},
 
 																											"field_path": schema.StringAttribute{
-																												Description:         "Path of the field to select in the specified API version.",
-																												MarkdownDescription: "Path of the field to select in the specified API version.",
+																												Description:         "",
+																												MarkdownDescription: "",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
@@ -2557,44 +3033,44 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																									},
 
 																									"mode": schema.Int64Attribute{
-																										Description:         "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																										MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"path": schema.StringAttribute{
-																										Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
-																										MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"resource_field_ref": schema.SingleNestedAttribute{
-																										Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
-																										MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Attributes: map[string]schema.Attribute{
 																											"container_name": schema.StringAttribute{
-																												Description:         "Container name: required for volumes, optional for env vars",
-																												MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																												Description:         "",
+																												MarkdownDescription: "",
 																												Required:            false,
 																												Optional:            true,
 																												Computed:            false,
 																											},
 
 																											"divisor": schema.StringAttribute{
-																												Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																												MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																												Description:         "",
+																												MarkdownDescription: "",
 																												Required:            false,
 																												Optional:            true,
 																												Computed:            false,
 																											},
 
 																											"resource": schema.StringAttribute{
-																												Description:         "Required: resource to select",
-																												MarkdownDescription: "Required: resource to select",
+																												Description:         "",
+																												MarkdownDescription: "",
 																												Required:            true,
 																												Optional:            false,
 																												Computed:            false,
@@ -2617,33 +3093,33 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																				},
 
 																				"secret": schema.SingleNestedAttribute{
-																					Description:         "secret information about the secret data to project",
-																					MarkdownDescription: "secret information about the secret data to project",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Attributes: map[string]schema.Attribute{
 																						"items": schema.ListNestedAttribute{
-																							Description:         "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																							MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																							Description:         "",
+																							MarkdownDescription: "",
 																							NestedObject: schema.NestedAttributeObject{
 																								Attributes: map[string]schema.Attribute{
 																									"key": schema.StringAttribute{
-																										Description:         "key is the key to project.",
-																										MarkdownDescription: "key is the key to project.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
 																									},
 
 																									"mode": schema.Int64Attribute{
-																										Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																										MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            false,
 																										Optional:            true,
 																										Computed:            false,
 																									},
 
 																									"path": schema.StringAttribute{
-																										Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																										MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																										Description:         "",
+																										MarkdownDescription: "",
 																										Required:            true,
 																										Optional:            false,
 																										Computed:            false,
@@ -2656,16 +3132,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																						},
 
 																						"name": schema.StringAttribute{
-																							Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																							MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																							Description:         "",
+																							MarkdownDescription: "",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"optional": schema.BoolAttribute{
-																							Description:         "optional field specify whether the Secret or its key must be defined",
-																							MarkdownDescription: "optional field specify whether the Secret or its key must be defined",
+																							Description:         "",
+																							MarkdownDescription: "",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -2677,28 +3153,28 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																				},
 
 																				"service_account_token": schema.SingleNestedAttribute{
-																					Description:         "serviceAccountToken is information about the serviceAccountToken data to project",
-																					MarkdownDescription: "serviceAccountToken is information about the serviceAccountToken data to project",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Attributes: map[string]schema.Attribute{
 																						"audience": schema.StringAttribute{
-																							Description:         "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
-																							MarkdownDescription: "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.",
+																							Description:         "",
+																							MarkdownDescription: "",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"expiration_seconds": schema.Int64Attribute{
-																							Description:         "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
-																							MarkdownDescription: "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.",
+																							Description:         "",
+																							MarkdownDescription: "",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
 																						},
 
 																						"path": schema.StringAttribute{
-																							Description:         "path is the path relative to the mount point of the file to project the token into.",
-																							MarkdownDescription: "path is the path relative to the mount point of the file to project the token into.",
+																							Description:         "",
+																							MarkdownDescription: "",
 																							Required:            true,
 																							Optional:            false,
 																							Computed:            false,
@@ -2721,41 +3197,41 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 															},
 
 															"secret": schema.SingleNestedAttribute{
-																Description:         "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-																MarkdownDescription: "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																Description:         "",
+																MarkdownDescription: "",
 																Attributes: map[string]schema.Attribute{
 																	"default_mode": schema.Int64Attribute{
-																		Description:         "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																		MarkdownDescription: "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"items": schema.ListNestedAttribute{
-																		Description:         "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
-																		MarkdownDescription: "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"key": schema.StringAttribute{
-																					Description:         "key is the key to project.",
-																					MarkdownDescription: "key is the key to project.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"mode": schema.Int64Attribute{
-																					Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
-																					MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"path": schema.StringAttribute{
-																					Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																					MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -2768,16 +3244,16 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																	},
 
 																	"optional": schema.BoolAttribute{
-																		Description:         "optional field specify whether the Secret or its keys must be defined",
-																		MarkdownDescription: "optional field specify whether the Secret or its keys must be defined",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
 																	},
 
 																	"secret_name": schema.StringAttribute{
-																		Description:         "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-																		MarkdownDescription: "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2851,6 +3327,216 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 								Computed:            false,
 							},
 
+							"liveness_probe": schema.SingleNestedAttribute{
+								Description:         "A liveness-probe to verify that Ganesha server has valid run-time state. If LivenessProbe.Disabled is false and LivenessProbe.Probe is nil uses default probe.",
+								MarkdownDescription: "A liveness-probe to verify that Ganesha server has valid run-time state. If LivenessProbe.Disabled is false and LivenessProbe.Probe is nil uses default probe.",
+								Attributes: map[string]schema.Attribute{
+									"disabled": schema.BoolAttribute{
+										Description:         "Disabled determines whether probe is disable or not",
+										MarkdownDescription: "Disabled determines whether probe is disable or not",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"probe": schema.SingleNestedAttribute{
+										Description:         "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
+										MarkdownDescription: "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
+										Attributes: map[string]schema.Attribute{
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Exec specifies the action to take.",
+												MarkdownDescription: "Exec specifies the action to take.",
+												Attributes: map[string]schema.Attribute{
+													"command": schema.ListAttribute{
+														Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": schema.Int64Attribute{
+												Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+												MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"grpc": schema.SingleNestedAttribute{
+												Description:         "GRPC specifies an action involving a GRPC port.",
+												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+												Attributes: map[string]schema.Attribute{
+													"port": schema.Int64Attribute{
+														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+														MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"service": schema.StringAttribute{
+														Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+														MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).  If this is not specified, the default behavior is defined by gRPC.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": schema.SingleNestedAttribute{
+												Description:         "HTTPGet specifies the http request to perform.",
+												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+														MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+														MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Path to access on the HTTP server.",
+														MarkdownDescription: "Path to access on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+														MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": schema.Int64Attribute{
+												Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"period_seconds": schema.Int64Attribute{
+												Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+												MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"success_threshold": schema.Int64Attribute{
+												Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+												MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tcp_socket": schema.SingleNestedAttribute{
+												Description:         "TCPSocket specifies an action involving a TCP port.",
+												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+														MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"termination_grace_period_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"log_level": schema.StringAttribute{
 								Description:         "LogLevel set logging level",
 								MarkdownDescription: "LogLevel set logging level",
@@ -2860,46 +3546,46 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 							},
 
 							"placement": schema.SingleNestedAttribute{
-								Description:         "The affinity to place the ganesha pods",
-								MarkdownDescription: "The affinity to place the ganesha pods",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"node_affinity": schema.SingleNestedAttribute{
-										Description:         "NodeAffinity is a group of node affinity scheduling rules",
-										MarkdownDescription: "NodeAffinity is a group of node affinity scheduling rules",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+												Description:         "",
+												MarkdownDescription: "",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"preference": schema.SingleNestedAttribute{
-															Description:         "A node selector term, associated with the corresponding weight.",
-															MarkdownDescription: "A node selector term, associated with the corresponding weight.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "A list of node selector requirements by node's labels.",
-																	MarkdownDescription: "A list of node selector requirements by node's labels.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The label key that the selector applies to.",
-																				MarkdownDescription: "The label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -2913,29 +3599,29 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"match_fields": schema.ListNestedAttribute{
-																	Description:         "A list of node selector requirements by node's fields.",
-																	MarkdownDescription: "A list of node selector requirements by node's fields.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The label key that the selector applies to.",
-																				MarkdownDescription: "The label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -2954,8 +3640,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-															MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2968,38 +3654,38 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-												Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
-												MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.",
+												Description:         "",
+												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"node_selector_terms": schema.ListNestedAttribute{
-														Description:         "Required. A list of node selector terms. The terms are ORed.",
-														MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
+														Description:         "",
+														MarkdownDescription: "",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "A list of node selector requirements by node's labels.",
-																	MarkdownDescription: "A list of node selector requirements by node's labels.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The label key that the selector applies to.",
-																				MarkdownDescription: "The label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3013,29 +3699,29 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"match_fields": schema.ListNestedAttribute{
-																	Description:         "A list of node selector requirements by node's fields.",
-																	MarkdownDescription: "A list of node selector requirements by node's fields.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The label key that the selector applies to.",
-																				MarkdownDescription: "The label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																				MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3065,46 +3751,46 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 									},
 
 									"pod_affinity": schema.SingleNestedAttribute{
-										Description:         "PodAffinity is a group of inter pod affinity scheduling rules",
-										MarkdownDescription: "PodAffinity is a group of inter pod affinity scheduling rules",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "",
+												MarkdownDescription: "",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
-															Description:         "Required. A pod affinity term, associated with the corresponding weight.",
-															MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"label_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over a set of resources, in this case pods.",
-																	MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3118,8 +3804,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3131,34 +3817,52 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																	Computed: false,
 																},
 
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3172,8 +3876,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3186,8 +3890,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3195,8 +3899,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -3208,8 +3912,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3222,38 +3926,38 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "",
+												MarkdownDescription: "",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over a set of resources, in this case pods.",
-															MarkdownDescription: "A label query over a set of resources, in this case pods.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3267,8 +3971,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3280,34 +3984,52 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 															Computed: false,
 														},
 
+														"match_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3321,8 +4043,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3335,8 +4057,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3344,8 +4066,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3363,46 +4085,46 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 									},
 
 									"pod_anti_affinity": schema.SingleNestedAttribute{
-										Description:         "PodAntiAffinity is a group of inter pod anti affinity scheduling rules",
-										MarkdownDescription: "PodAntiAffinity is a group of inter pod anti affinity scheduling rules",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-												MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+												Description:         "",
+												MarkdownDescription: "",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"pod_affinity_term": schema.SingleNestedAttribute{
-															Description:         "Required. A pod affinity term, associated with the corresponding weight.",
-															MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"label_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over a set of resources, in this case pods.",
-																	MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3416,8 +4138,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3429,34 +4151,52 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																	Computed: false,
 																},
 
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"namespace_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-																	MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
-																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																			MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
 																					"key": schema.StringAttribute{
-																						Description:         "key is the label key that the selector applies to.",
-																						MarkdownDescription: "key is the label key that the selector applies to.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"operator": schema.StringAttribute{
-																						Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																						MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						Required:            true,
 																						Optional:            false,
 																						Computed:            false,
 																					},
 
 																					"values": schema.ListAttribute{
-																						Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																						MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																						Description:         "",
+																						MarkdownDescription: "",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -3470,8 +4210,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																		},
 
 																		"match_labels": schema.MapAttribute{
-																			Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																			MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -3484,8 +4224,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"namespaces": schema.ListAttribute{
-																	Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-																	MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3493,8 +4233,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"topology_key": schema.StringAttribute{
-																	Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-																	MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -3506,8 +4246,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 														},
 
 														"weight": schema.Int64Attribute{
-															Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-															MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3520,38 +4260,38 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 											},
 
 											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-												Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
-												MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+												Description:         "",
+												MarkdownDescription: "",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over a set of resources, in this case pods.",
-															MarkdownDescription: "A label query over a set of resources, in this case pods.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3565,8 +4305,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3578,34 +4318,52 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 															Computed: false,
 														},
 
+														"match_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3619,8 +4377,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3633,8 +4391,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3642,8 +4400,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3661,45 +4419,45 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 									},
 
 									"tolerations": schema.ListNestedAttribute{
-										Description:         "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>",
-										MarkdownDescription: "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"effect": schema.StringAttribute{
-													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"key": schema.StringAttribute{
-													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"operator": schema.StringAttribute{
-													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
-													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"toleration_seconds": schema.Int64Attribute{
-													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
-													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3712,38 +4470,38 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 									},
 
 									"topology_spread_constraints": schema.ListNestedAttribute{
-										Description:         "TopologySpreadConstraint specifies how to spread matching pods among the given topology",
-										MarkdownDescription: "TopologySpreadConstraint specifies how to spread matching pods among the given topology",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"label_selector": schema.SingleNestedAttribute{
-													Description:         "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
-													MarkdownDescription: "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
-															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "key is the label key that the selector applies to.",
-																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3757,8 +4515,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3771,8 +4529,8 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -3780,48 +4538,48 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 												},
 
 												"max_skew": schema.Int64Attribute{
-													Description:         "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
-													MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"min_domains": schema.Int64Attribute{
-													Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
-													MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"node_affinity_policy": schema.StringAttribute{
-													Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-													MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"node_taints_policy": schema.StringAttribute{
-													Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-													MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"topology_key": schema.StringAttribute{
-													Description:         "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.",
-													MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"when_unsatisfiable": schema.StringAttribute{
-													Description:         "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.",
-													MarkdownDescription: "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,

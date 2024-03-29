@@ -59,7 +59,7 @@ Optional:
 Required:
 
 - `chart` (String) Chart is the name of a Helm Chart in the Repository.
-- `repo` (String) a Helm Repository to be used. OCI-based registries are also supported. For example, https://charts.bitnami.com/bitnami or oci://localhost:5000/helm-charts
+- `repo` (String) a Helm Repository to be used.OCI-based registries are also supported.For example, https://charts.bitnami.com/bitnami or oci://localhost:5000/helm-charts
 - `target_namespace` (String) TargetNamespace specifies the namespace to install the chart
 
 Optional:
@@ -68,15 +68,15 @@ Optional:
 - `chart_pull_secret` (Attributes) ChartPullSecret is the name of the secret that contains the auth information for the chart repository. (see [below for nested schema](#nestedatt--spec--chart_pull_secret))
 - `create_namespace` (Boolean) CreateNamespace create namespace when install helm release
 - `disable_hooks` (Boolean) DisableHooks disables hook processing if set to true.
-- `force` (Boolean) Force will, if set to 'true', ignore certain warnings and perform the upgrade anyway. This should be used with caution.
+- `force` (Boolean) Force will, if set to 'true', ignore certain warnings and perform the upgrade anyway.This should be used with caution.
 - `overrides` (String) Overrides specifies the override values for this release.
-- `release_name` (String) ReleaseName specifies the desired release name in child cluster. If nil, the default release name will be in the format of '{Description Name}-{HelmChart Namespace}-{HelmChart Name}'
-- `replace` (Boolean) Replace will re-use the given name, only if that name is a deleted release that remains in the history. This is unsafe in production.
+- `release_name` (String) ReleaseName specifies the desired release name in child cluster.If nil, the default release name will be in the format of '{Description Name}-{HelmChart Namespace}-{HelmChart Name}'
+- `replace` (Boolean) Replace will re-use the given name, only if that name is a deleted release that remains in the history.This is unsafe in production.
 - `replace_cr_ds` (Boolean) ReplaceCRDs replace all crds in chart and sub charts before upgrade and install, not working when SkipCRDs true
 - `skip_cr_ds` (Boolean) SkipCRDs skips installing CRDs when install flag is enabled during upgrade
 - `timeout_seconds` (Number) TimeoutSeconds is the timeout of the chart to be install/upgrade/rollback/uninstall
 - `upgrade_atomic` (Boolean) UpgradeAtomic, for upgrade case, if true, will roll back failed release.
-- `version` (String) ChartVersion is the version of the chart to be deployed. It will be defaulted with current latest version if empty.
+- `version` (String) ChartVersion is the version of the chart to be deployed.It will be defaulted with current latest version if empty.
 - `wait` (Boolean) Wait determines whether the wait operation should be performed after helm install, upgrade or uninstall is requested.
 - `wait_for_job` (Boolean) WaitForJobs determines whether the wait operation for the Jobs should be performed after the upgrade is requested.
 

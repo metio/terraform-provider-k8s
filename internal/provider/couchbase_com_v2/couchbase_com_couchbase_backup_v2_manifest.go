@@ -58,8 +58,9 @@ type CouchbaseComCouchbaseBackupV2ManifestData struct {
 			Exclude *[]string `tfsdk:"exclude" json:"exclude,omitempty"`
 			Include *[]string `tfsdk:"include" json:"include,omitempty"`
 		} `tfsdk:"data" json:"data,omitempty"`
-		EphemeralVolume        *bool  `tfsdk:"ephemeral_volume" json:"ephemeralVolume,omitempty"`
-		FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
+		DefaultRecoveryMethod  *string `tfsdk:"default_recovery_method" json:"defaultRecoveryMethod,omitempty"`
+		EphemeralVolume        *bool   `tfsdk:"ephemeral_volume" json:"ephemeralVolume,omitempty"`
+		FailedJobsHistoryLimit *int64  `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
 		Full                   *struct {
 			Schedule *string `tfsdk:"schedule" json:"schedule,omitempty"`
 		} `tfsdk:"full" json:"full,omitempty"`
@@ -269,6 +270,17 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ data
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"default_recovery_method": schema.StringAttribute{
+						Description:         "DefaultRecoveryMethod specifies how cbbackupmgr should recover from broken backup/restore attempts.",
+						MarkdownDescription: "DefaultRecoveryMethod specifies how cbbackupmgr should recover from broken backup/restore attempts.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("none", "resume", "purge"),
+						},
 					},
 
 					"ephemeral_volume": schema.BoolAttribute{

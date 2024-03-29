@@ -84,7 +84,7 @@ Optional:
 - `platform` (String) Platform gives a hint as to what platform we are running on and how to configure services.  This field must be one of 'aws', 'gke' or 'azure'.
 - `recovery_policy` (String) RecoveryPolicy controls how aggressive the Operator is when recovering cluster topology.  When PrioritizeDataIntegrity, the Operator will delegate failover exclusively to Couchbase server, relying on it to only allow recovery when safe to do so.  When PrioritizeUptime, the Operator will wait for a period after the expected auto-failover of the cluster, before forcefully failing-over the pods. This may cause data loss, and is only expected to be used on clusters with ephemeral data, where the loss of the pod means that the data is known to be unrecoverable. This field must be either 'PrioritizeDataIntegrity' or 'PrioritizeUptime', defaulting to 'PrioritizeDataIntegrity'.
 - `rolling_upgrade` (Attributes) When 'spec.upgradeStrategy' is set to 'RollingUpgrade' it will, by default, upgrade one pod at a time.  If this field is specified then that number can be increased. (see [below for nested schema](#nestedatt--spec--rolling_upgrade))
-- `security_context` (Attributes) SecurityContext allows the configuration of the security context for all Couchbase server pods.  When using persistent volumes you may need to set the fsGroup field in order to write to the volume.  For non-root clusters you must also set runAsUser to 1000, corresponding to the Couchbase user in official container images.  More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--security_context))
+- `security_context` (Attributes) DEPRECATED - by spec.security.securityContext SecurityContext allows the configuration of the security context for all Couchbase server pods.  When using persistent volumes you may need to set the fsGroup field in order to write to the volume.  For non-root clusters you must also set runAsUser to 1000, corresponding to the Couchbase user in official container images.  More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--security_context))
 - `server_groups` (List of String) ServerGroups define the set of availability zones you want to distribute pods over, and construct Couchbase server groups for.  By default, most cloud providers will label nodes with the key 'topology.kubernetes.io/zone', the values associated with that key are used here to provide explicit scheduling by the Operator.  You may manually label nodes using the 'topology.kubernetes.io/zone' key, to provide failure-domain aware scheduling when none is provided for you.  Global server groups are applied to all server classes, and may be overridden on a per-server class basis to give more control over scheduling and server groups.
 - `software_update_notifications` (Boolean) SoftwareUpdateNotifications enables software update notifications in the UI. When enabled, the UI will alert when a Couchbase server upgrade is available.
 - `upgrade_strategy` (String) UpgradeStrategy controls how aggressive the Operator is when performing a cluster upgrade.  When a rolling upgrade is requested, pods are upgraded one at a time.  This strategy is slower, however less disruptive.  When an immediate upgrade strategy is requested, all pods are upgraded at the same time.  This strategy is faster, but more disruptive.  This field must be either 'RollingUpgrade' or 'ImmediateUpgrade', defaulting to 'RollingUpgrade'.
@@ -101,7 +101,9 @@ Required:
 Optional:
 
 - `ldap` (Attributes) LDAP provides settings to authenticate and authorize LDAP users with Couchbase Server. When specified, the Operator keeps these settings in sync with Cocuhbase Server's LDAP configuration. Leave empty to manually manage LDAP configuration. (see [below for nested schema](#nestedatt--spec--security--ldap))
+- `pod_security_context` (Attributes) PodSecurityContext allows the configuration of the security context for all Couchbase server pods.  When using persistent volumes you may need to set the fsGroup field in order to write to the volume.  For non-root clusters you must also set runAsUser to 1000, corresponding to the Couchbase user in official container images.  More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--security--pod_security_context))
 - `rbac` (Attributes) RBAC is the options provided for enabling and selecting RBAC User resources to manage. (see [below for nested schema](#nestedatt--spec--security--rbac))
+- `security_context` (Attributes) SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. Use securityContext.allowPrivilegeEscalation field to grant more privileges than its parent process. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--security--security_context))
 - `ui_session_timeout` (Number) UISessionTimeout sets how long, in minutes, before a user is declared inactive and signed out from the Couchbase Server UI. 0 represents no time out.
 
 <a id="nestedatt--spec--security--ldap"></a>
@@ -138,6 +140,66 @@ Optional:
 
 
 
+<a id="nestedatt--spec--security--pod_security_context"></a>
+### Nested Schema for `spec.security.pod_security_context`
+
+Optional:
+
+- `fs_group` (Number) A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
+- `fs_group_change_policy` (String) fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.
+- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
+- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
+- `se_linux_options` (Attributes) The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--seccomp_profile))
+- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.
+- `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--sysctls))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--security--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.security.pod_security_context.windows_options`
+
+Optional:
+
+- `level` (String) Level is SELinux level label that applies to the container.
+- `role` (String) Role is a SELinux role label that applies to the container.
+- `type` (String) Type is a SELinux type label that applies to the container.
+- `user` (String) User is a SELinux user label that applies to the container.
+
+
+<a id="nestedatt--spec--security--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.security.pod_security_context.windows_options`
+
+Required:
+
+- `type` (String) type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
+
+Optional:
+
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+
+
+<a id="nestedatt--spec--security--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.security.pod_security_context.windows_options`
+
+Required:
+
+- `name` (String) Name of a property to set
+- `value` (String) Value of a property to set
+
+
+<a id="nestedatt--spec--security--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.security.pod_security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
+- `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+
+
+
 <a id="nestedatt--spec--security--rbac"></a>
 ### Nested Schema for `spec.security.rbac`
 
@@ -166,6 +228,67 @@ Optional:
 
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
+
+
+
+<a id="nestedatt--spec--security--security_context"></a>
+### Nested Schema for `spec.security.security_context`
+
+Optional:
+
+- `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
+- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--security_context--capabilities))
+- `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
+- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.
+- `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.
+- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
+- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
+- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--security_context--seccomp_profile))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security--security_context--windows_options))
+
+<a id="nestedatt--spec--security--security_context--capabilities"></a>
+### Nested Schema for `spec.security.security_context.windows_options`
+
+Optional:
+
+- `add` (List of String) Added capabilities
+- `drop` (List of String) Removed capabilities
+
+
+<a id="nestedatt--spec--security--security_context--se_linux_options"></a>
+### Nested Schema for `spec.security.security_context.windows_options`
+
+Optional:
+
+- `level` (String) Level is SELinux level label that applies to the container.
+- `role` (String) Role is a SELinux role label that applies to the container.
+- `type` (String) Type is a SELinux type label that applies to the container.
+- `user` (String) User is a SELinux user label that applies to the container.
+
+
+<a id="nestedatt--spec--security--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.security.security_context.windows_options`
+
+Required:
+
+- `type` (String) type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
+
+Optional:
+
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+
+
+<a id="nestedatt--spec--security--security_context--windows_options"></a>
+### Nested Schema for `spec.security.security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
+- `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
 
@@ -961,7 +1084,7 @@ Optional:
 
 - `analytics_service_memory_quota` (String) AnalyticsServiceMemQuota is the amount of memory that should be allocated to the analytics service. This value is per-pod, and only applicable to pods belonging to server classes running the analytics service.  This field must be a quantity greater than or equal to 1Gi.  This field defaults to 1Gi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 - `auto_compaction` (Attributes) AutoCompaction allows the configuration of auto-compaction, including on what conditions disk space is reclaimed and when it is allowed to run. (see [below for nested schema](#nestedatt--spec--cluster--auto_compaction))
-- `auto_failover_max_count` (Number) AutoFailoverMaxCount is the maximum number of automatic failovers Couchbase server will allow before not allowing any more.  This field must be between 1-3 for server versions prior to 7.1.0 default is 3.
+- `auto_failover_max_count` (Number) AutoFailoverMaxCount is the maximum number of automatic failovers Couchbase server will allow before not allowing any more.  This field must be between 1-3 for server versions prior to 7.1.0 default is 1.
 - `auto_failover_on_data_disk_issues` (Boolean) AutoFailoverOnDataDiskIssues defines whether Couchbase server should failover a pod if a disk issue was detected.
 - `auto_failover_on_data_disk_issues_time_period` (String) AutoFailoverOnDataDiskIssuesTimePeriod defines how long to wait for transient errors before failing over a faulty disk.  This field must be in the range 5-3600s, defaulting to 120s.  More info:  https://golang.org/pkg/time/#ParseDuration
 - `auto_failover_server_group` (Boolean) AutoFailoverServerGroup whether to enable failing over a server group. This field is ignored in server versions 7.1+ as it has been removed from the Couchbase API
@@ -1022,8 +1145,10 @@ Optional:
 
 Optional:
 
+- `aux_io_threads` (Number) AuxIOThreads allows the number of threads used by the data service, per pod, to be altered.  This indicates the number of threads that are to be used in the AuxIO thread pool to run auxiliary I/O tasks. This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.
+- `non_io_threads` (Number) NonIOThreads allows the number of threads used by the data service, per pod, to be altered.  This indicates the number of threads that are to be used in the NonIO thread pool to run in memory tasks. This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.
 - `reader_threads` (Number) ReaderThreads allows the number of threads used by the data service, per pod, to be altered.  This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use.  If not specified, this defaults to the default value set by Couchbase Server.
-- `writer_threads` (Number) ReaderThreads allows the number of threads used by the data service, per pod, to be altered.  This setting is especially relevant when using 'durable writes', increasing this field will have a large impact on performance.  This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.
+- `writer_threads` (Number) WriterThreads allows the number of threads used by the data service, per pod, to be altered.  This setting is especially relevant when using 'durable writes', increasing this field will have a large impact on performance.  This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.
 
 
 <a id="nestedatt--spec--cluster--indexer"></a>
@@ -1155,12 +1280,12 @@ Optional:
 
 Required:
 
-- `image` (String) Image is the metrics image to be used to collect metrics. No validation is carried out as this can be any arbitrary repo and tag.
+- `image` (String) Image is the metrics image to be used to collect metrics. No validation is carried out as this can be any arbitrary repo and tag. enabled must be set to true, when image is provided.
 
 Optional:
 
 - `authorization_secret` (String) AuthorizationSecret is the name of a Kubernetes secret that contains a bearer token to authorize GET requests to the metrics endpoint
-- `enabled` (Boolean) Enabled is a boolean that enables/disables the metrics sidecar container.
+- `enabled` (Boolean) Enabled is a boolean that enables/disables the metrics sidecar container. This must be set to true, when image is provided.
 - `refresh_rate` (Number) RefreshRate is the frequency in which cached statistics are updated in seconds. Shorter intervals will add additional resource overhead to clusters running Couchbase Server 7.0+ Default is 60 seconds, Maximum value is 600 seconds, and minimum value is 1 second.
 - `resources` (Attributes) Resources is the resource requirements for the metrics container. Will be populated by Kubernetes defaults if not specified. (see [below for nested schema](#nestedatt--spec--monitoring--prometheus--resources))
 
@@ -1184,6 +1309,7 @@ Optional:
 - `admin_console_service_template` (Attributes) AdminConsoleServiceTemplate provides a template used by the Operator to create and manage the admin console service.  This allows services to be annotated, the service type defined and any other options that Kubernetes provides.  When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operator reserves the right to modify or replace any field.  More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#service-v1-core (see [below for nested schema](#nestedatt--spec--networking--admin_console_service_template))
 - `admin_console_service_type` (String) DEPRECATED - by adminConsoleServiceTemplate. AdminConsoleServiceType defines whether to create a node port or load balancer service. When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.
 - `admin_console_services` (List of String) DEPRECATED - not required by Couchbase Server. AdminConsoleServices is a selector to choose specific services to expose via the admin console. This field may contain any of 'data', 'index', 'query', 'search', 'eventing' and 'analytics'.  Each service may only be included once.
+- `cloud_native_gateway` (Attributes) DEVELOPER PREVIEW - This feature is in developer preview. CloudNativeGateway is used to provision a gRPC gateway proxying a Couchbase cluster. (see [below for nested schema](#nestedatt--spec--networking--cloud_native_gateway))
 - `disable_ui_over_http` (Boolean) DisableUIOverHTTP is used to explicitly enable and disable UI access over the HTTP protocol.  If not specified, this field defaults to false.
 - `disable_ui_over_https` (Boolean) DisableUIOverHTTPS is used to explicitly enable and disable UI access over the HTTPS protocol.  If not specified, this field defaults to false.
 - `dns` (Attributes) DNS defines information required for Dynamic DNS support. (see [below for nested schema](#nestedatt--spec--networking--dns))
@@ -1253,6 +1379,26 @@ Optional:
 - `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).
 
 
+
+
+
+<a id="nestedatt--spec--networking--cloud_native_gateway"></a>
+### Nested Schema for `spec.networking.cloud_native_gateway`
+
+Required:
+
+- `image` (String) DEVELOPER PREVIEW - This feature is in developer preview. Image is the Cloud Native Gateway image to be used to run the sidecar container. No validation is carried out as this can be any arbitrary repo and tag. TODO: provide a default kubebuilder default image tag as field is mandatory.
+
+Optional:
+
+- `tls` (Attributes) DEVELOPER PREVIEW - This feature is in developer preview. TLS defines the TLS configuration for the Cloud Native Gateway server including server and client certificate configuration, and TLS security policies. (see [below for nested schema](#nestedatt--spec--networking--cloud_native_gateway--tls))
+
+<a id="nestedatt--spec--networking--cloud_native_gateway--tls"></a>
+### Nested Schema for `spec.networking.cloud_native_gateway.tls`
+
+Optional:
+
+- `server_secret_name` (String) DEVELOPER PREVIEW - This feature is in developer preview. ServerSecretName specifies the secret name, in the same namespace as the cluster, that contains Cloud Native Gateway gRPC server TLS data. The secret is expected to contain 'tls.crt' and 'tls.key' as per the kubernetes.io/tls secret type.
 
 
 
@@ -1568,7 +1714,7 @@ Optional:
 Required:
 
 - `hostname` (String) Hostname is the connection string to use to connect the remote cluster.  To use IPv6, place brackets ('[', ']') around the IPv6 value.
-- `name` (String) Name of the remote cluster.
+- `name` (String) Name of the remote cluster. Note that, -operator-managed is added as suffix by operator automatically to the name in order to diffrentiate from non operator managed remote clusters.
 - `uuid` (String) UUID of the remote cluster.  The UUID of a CouchbaseCluster resource is advertised in the status.clusterId field of the resource.
 
 Optional:

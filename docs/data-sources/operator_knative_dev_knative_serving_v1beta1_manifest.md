@@ -635,9 +635,10 @@ Optional:
 
 - `hosts` (List of String) One or more hosts exposed by this gateway.
 - `port` (Attributes) (see [below for nested schema](#nestedatt--spec--ingress--istio--knative_local_gateway--servers--port))
+- `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--ingress--istio--knative_local_gateway--servers--tls))
 
 <a id="nestedatt--spec--ingress--istio--knative_local_gateway--servers--port"></a>
-### Nested Schema for `spec.ingress.istio.knative_local_gateway.servers.port`
+### Nested Schema for `spec.ingress.istio.knative_local_gateway.servers.tls`
 
 Optional:
 
@@ -645,6 +646,15 @@ Optional:
 - `number` (Number) A valid non-negative integer port number.
 - `protocol` (String) The protocol exposed on the port.
 - `target_port` (Number) A valid non-negative integer target port number.
+
+
+<a id="nestedatt--spec--ingress--istio--knative_local_gateway--servers--tls"></a>
+### Nested Schema for `spec.ingress.istio.knative_local_gateway.servers.tls`
+
+Optional:
+
+- `credential_name` (String) TLS certificate name.
+- `mode` (String) TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.
 
 
 
@@ -664,9 +674,10 @@ Optional:
 
 - `hosts` (List of String) One or more hosts exposed by this gateway.
 - `port` (Attributes) (see [below for nested schema](#nestedatt--spec--ingress--istio--knative_local_gateway--servers--port))
+- `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--ingress--istio--knative_local_gateway--servers--tls))
 
 <a id="nestedatt--spec--ingress--istio--knative_local_gateway--servers--port"></a>
-### Nested Schema for `spec.ingress.istio.knative_local_gateway.servers.port`
+### Nested Schema for `spec.ingress.istio.knative_local_gateway.servers.tls`
 
 Optional:
 
@@ -674,6 +685,15 @@ Optional:
 - `number` (Number) A valid non-negative integer port number.
 - `protocol` (String) The protocol exposed on the port.
 - `target_port` (Number) A valid non-negative integer target port number.
+
+
+<a id="nestedatt--spec--ingress--istio--knative_local_gateway--servers--tls"></a>
+### Nested Schema for `spec.ingress.istio.knative_local_gateway.servers.tls`
+
+Optional:
+
+- `credential_name` (String) TLS certificate name.
+- `mode` (String) TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.
 
 
 

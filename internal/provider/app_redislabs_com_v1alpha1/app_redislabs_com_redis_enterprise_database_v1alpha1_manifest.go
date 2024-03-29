@@ -159,6 +159,7 @@ type AppRedislabsComRedisEnterpriseDatabaseV1Alpha1ManifestData struct {
 			TlsSniName        *string `tfsdk:"tls_sni_name" json:"tlsSniName,omitempty"`
 		} `tfsdk:"replica_sources" json:"replicaSources,omitempty"`
 		Replication      *bool   `tfsdk:"replication" json:"replication,omitempty"`
+		Resp3            *bool   `tfsdk:"resp3" json:"resp3,omitempty"`
 		RofRamSize       *string `tfsdk:"rof_ram_size" json:"rofRamSize,omitempty"`
 		RolesPermissions *[]struct {
 			Acl  *string `tfsdk:"acl" json:"acl,omitempty"`
@@ -166,6 +167,7 @@ type AppRedislabsComRedisEnterpriseDatabaseV1Alpha1ManifestData struct {
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"roles_permissions" json:"rolesPermissions,omitempty"`
 		ShardCount      *int64  `tfsdk:"shard_count" json:"shardCount,omitempty"`
+		ShardingEnabled *bool   `tfsdk:"sharding_enabled" json:"shardingEnabled,omitempty"`
 		ShardsPlacement *string `tfsdk:"shards_placement" json:"shardsPlacement,omitempty"`
 		TlsMode         *string `tfsdk:"tls_mode" json:"tlsMode,omitempty"`
 		Type            *string `tfsdk:"type" json:"type,omitempty"`
@@ -992,6 +994,14 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 						Computed:            false,
 					},
 
+					"resp3": schema.BoolAttribute{
+						Description:         "Whether this database supports RESP3 protocol. Note - Deleting this property after explicitly setting its value shall have no effect. Please view the corresponding field in RS doc for more info.",
+						MarkdownDescription: "Whether this database supports RESP3 protocol. Note - Deleting this property after explicitly setting its value shall have no effect. Please view the corresponding field in RS doc for more info.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"rof_ram_size": schema.StringAttribute{
 						Description:         "The size of the RAM portion of an RoF database. Similarly to 'memorySize' use formats like 100MB, 0.1GB. It must be at least 10% of combined memory size (RAM and Flash), as specified by 'memorySize'.",
 						MarkdownDescription: "The size of the RAM portion of an RoF database. Similarly to 'memorySize' use formats like 100MB, 0.1GB. It must be at least 10% of combined memory size (RAM and Flash), as specified by 'memorySize'.",
@@ -1038,6 +1048,14 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 					"shard_count": schema.Int64Attribute{
 						Description:         "Number of database server-side shards",
 						MarkdownDescription: "Number of database server-side shards",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"sharding_enabled": schema.BoolAttribute{
+						Description:         "Toggles database sharding for REAADBs (Active Active databases) and enabled by default. This field is blocked for REDB (non-Active Active databases) and sharding is toggled via the shardCount field - when shardCount is 1 this is disabled otherwise enabled.",
+						MarkdownDescription: "Toggles database sharding for REAADBs (Active Active databases) and enabled by default. This field is blocked for REDB (non-Active Active databases) and sharding is toggled via the shardCount field - when shardCount is 1 this is disabled otherwise enabled.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

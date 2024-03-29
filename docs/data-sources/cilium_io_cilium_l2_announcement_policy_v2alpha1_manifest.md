@@ -16,6 +16,7 @@ CiliumL2AnnouncementPolicy is a Kubernetes third-party resource which is used to
 data "k8s_cilium_io_cilium_l2_announcement_policy_v2alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -58,7 +59,7 @@ Optional:
 - `interfaces` (List of String) A list of regular expressions that express which network interface(s) should be used to announce the services over. If nil, all network interfaces are used.
 - `load_balancer_i_ps` (Boolean) If true, the loadbalancer IPs of the services are announced  If nil this policy applies to all services.
 - `node_selector` (Attributes) NodeSelector selects a group of nodes which will announce the IPs for the services selected by the service selector.  If nil this policy applies to all nodes. (see [below for nested schema](#nestedatt--spec--node_selector))
-- `service_selector` (Attributes) ServiceSelector selects a set of services which will be announced over L2 networks  If nil this policy applies to all services. (see [below for nested schema](#nestedatt--spec--service_selector))
+- `service_selector` (Attributes) ServiceSelector selects a set of services which will be announced over L2 networks. The loadBalancerClass for a service must be nil or specify a supported class, e.g. 'io.cilium/l2-announcer'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If nil this policy applies to all services. (see [below for nested schema](#nestedatt--spec--service_selector))
 
 <a id="nestedatt--spec--node_selector"></a>
 ### Nested Schema for `spec.node_selector`

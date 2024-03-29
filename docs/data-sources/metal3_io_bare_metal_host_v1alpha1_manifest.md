@@ -70,7 +70,7 @@ Optional:
 - `description` (String) Description is a human-entered text used to help identify the host
 - `externally_provisioned` (Boolean) ExternallyProvisioned means something else is managing the image running on the host and the operator should only manage the power status and hardware inventory inspection. If the Image field is filled in, this field is ignored.
 - `firmware` (Attributes) BIOS configuration for bare metal server (see [below for nested schema](#nestedatt--spec--firmware))
-- `hardware_profile` (String) What is the name of the hardware profile for this host? It should only be necessary to set this when inspection cannot automatically determine the profile.
+- `hardware_profile` (String) What is the name of the hardware profile for this host? Hardware profiles are deprecated and should not be used. Use the separate fields Architecture and RootDeviceHints instead. Set to 'empty' to prepare for the future version of the API without hardware profiles.
 - `image` (Attributes) Image holds the details of the image to be provisioned. (see [below for nested schema](#nestedatt--spec--image))
 - `meta_data` (Attributes) MetaData holds the reference to the Secret containing host metadata (e.g. meta_data.json) which is passed to the Config Drive. (see [below for nested schema](#nestedatt--spec--meta_data))
 - `network_data` (Attributes) NetworkData holds the reference to the Secret containing network configuration (e.g content of network_data.json) which is passed to the Config Drive. (see [below for nested schema](#nestedatt--spec--network_data))

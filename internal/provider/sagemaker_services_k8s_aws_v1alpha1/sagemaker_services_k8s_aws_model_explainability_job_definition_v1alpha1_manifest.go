@@ -69,6 +69,7 @@ type SagemakerServicesK8SAwsModelExplainabilityJobDefinitionV1Alpha1ManifestData
 			EndpointInput *struct {
 				EndTimeOffset                 *string  `tfsdk:"end_time_offset" json:"endTimeOffset,omitempty"`
 				EndpointName                  *string  `tfsdk:"endpoint_name" json:"endpointName,omitempty"`
+				ExcludeFeaturesAttribute      *string  `tfsdk:"exclude_features_attribute" json:"excludeFeaturesAttribute,omitempty"`
 				FeaturesAttribute             *string  `tfsdk:"features_attribute" json:"featuresAttribute,omitempty"`
 				InferenceAttribute            *string  `tfsdk:"inference_attribute" json:"inferenceAttribute,omitempty"`
 				LocalPath                     *string  `tfsdk:"local_path" json:"localPath,omitempty"`
@@ -194,8 +195,8 @@ func (r *SagemakerServicesK8SAwsModelExplainabilityJobDefinitionV1Alpha1Manifest
 				MarkdownDescription: "ModelExplainabilityJobDefinitionSpec defines the desired state of ModelExplainabilityJobDefinition.",
 				Attributes: map[string]schema.Attribute{
 					"job_definition_name": schema.StringAttribute{
-						Description:         "The name of the model explainability job definition. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.",
-						MarkdownDescription: "The name of the model explainability job definition. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.",
+						Description:         "The name of the model explainability job definition. The name must be uniquewithin an Amazon Web Services Region in the Amazon Web Services account.",
+						MarkdownDescription: "The name of the model explainability job definition. The name must be uniquewithin an Amazon Web Services Region in the Amazon Web Services account.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -252,8 +253,8 @@ func (r *SagemakerServicesK8SAwsModelExplainabilityJobDefinitionV1Alpha1Manifest
 					},
 
 					"model_explainability_app_specification": schema.SingleNestedAttribute{
-						Description:         "Configures the model explainability job to run a specified Docker container image.",
-						MarkdownDescription: "Configures the model explainability job to run a specified Docker container image.",
+						Description:         "Configures the model explainability job to run a specified Docker containerimage.",
+						MarkdownDescription: "Configures the model explainability job to run a specified Docker containerimage.",
 						Attributes: map[string]schema.Attribute{
 							"config_uri": schema.StringAttribute{
 								Description:         "",
@@ -336,6 +337,14 @@ func (r *SagemakerServicesK8SAwsModelExplainabilityJobDefinitionV1Alpha1Manifest
 									},
 
 									"endpoint_name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"exclude_features_attribute": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -435,8 +444,8 @@ func (r *SagemakerServicesK8SAwsModelExplainabilityJobDefinitionV1Alpha1Manifest
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"s3_output": schema.SingleNestedAttribute{
-											Description:         "Information about where and how you want to store the results of a monitoring job.",
-											MarkdownDescription: "Information about where and how you want to store the results of a monitoring job.",
+											Description:         "Information about where and how you want to store the results of a monitoringjob.",
+											MarkdownDescription: "Information about where and how you want to store the results of a monitoringjob.",
 											Attributes: map[string]schema.Attribute{
 												"local_path": schema.StringAttribute{
 													Description:         "",
@@ -499,8 +508,8 @@ func (r *SagemakerServicesK8SAwsModelExplainabilityJobDefinitionV1Alpha1Manifest
 							},
 
 							"vpc_config": schema.SingleNestedAttribute{
-								Description:         "Specifies a VPC that your training jobs and hosted models have access to. Control access to and from your training and model containers by configuring the VPC. For more information, see Protect Endpoints by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html) and Protect Training Jobs by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html).",
-								MarkdownDescription: "Specifies a VPC that your training jobs and hosted models have access to. Control access to and from your training and model containers by configuring the VPC. For more information, see Protect Endpoints by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html) and Protect Training Jobs by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html).",
+								Description:         "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
+								MarkdownDescription: "Specifies an Amazon Virtual Private Cloud (VPC) that your SageMaker jobs,hosted models, and compute resources have access to. You can control accessto and from your resources by configuring a VPC. For more information, seeGive SageMaker Access to Resources in your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).",
 								Attributes: map[string]schema.Attribute{
 									"security_group_i_ds": schema.ListAttribute{
 										Description:         "",
@@ -531,8 +540,8 @@ func (r *SagemakerServicesK8SAwsModelExplainabilityJobDefinitionV1Alpha1Manifest
 					},
 
 					"role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.",
+						Description:         "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assumeto perform tasks on your behalf.",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assumeto perform tasks on your behalf.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -556,8 +565,8 @@ func (r *SagemakerServicesK8SAwsModelExplainabilityJobDefinitionV1Alpha1Manifest
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL) in the Amazon Web Services Billing and Cost Management User Guide.",
-						MarkdownDescription: "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL) in the Amazon Web Services Billing and Cost Management User Guide.",
+						Description:         "(Optional) An array of key-value pairs. For more information, see Using CostAllocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)in the Amazon Web Services Billing and Cost Management User Guide.",
+						MarkdownDescription: "(Optional) An array of key-value pairs. For more information, see Using CostAllocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)in the Amazon Web Services Billing and Cost Management User Guide.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

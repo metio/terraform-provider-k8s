@@ -59,6 +59,7 @@ Optional:
 - `auth_lifetime` (Number) AuthLifetime defines the lifetime of 'longterm' authentication credentials in seconds.
 - `auth_ref` (Attributes) Note that externally set credentials override any inline auth credentials (AuthType, AuthUsername, etc.): if AuthRef is nonempty then it is expected that the referenced Secret exists and *all* authentication credentials are correctly set in the referenced Secret (username/password or shared secret). Mixing of credential sources (inline/external) is not supported. (see [below for nested schema](#nestedatt--spec--auth_ref))
 - `auth_type` (String) AuthType is the type of the STUN/TURN authentication mechanism.
+- `dataplane` (String) Dataplane defines the TURN server to set up for the STUNner Gateways using this GatewayConfig. Can be used to select the stunnerd image repo and version or deploy into the host-network namespace.
 - `health_check_endpoint` (String) HealthCheckEndpoint is the URI of the form 'http://address:port' exposed for external HTTP health-checking. A liveness probe responder will be exposed on path '/live' and readiness probe on path '/ready'. The scheme ('http://') is mandatory, default is to enable health-checking at 'http://0.0.0.0:8086'.
 - `load_balancer_service_annotations` (Map of String) LoadBalancerServiceAnnotations is a list of annotations that will go into the LoadBalancer services created automatically by the operator to wrap Gateways.  NOTE: removing annotations from a GatewayConfig will not result in the removal of the corresponding annotations from the LoadBalancer service, in order to prevent the accidental removal of an annotation installed there by Kubernetes or the cloud provider. If you really want to remove an annotation, do this manually or simply remove all Gateways (which will remove the corresponding LoadBalancer services), update the GatewayConfig and then recreate the Gateways, so that the newly created LoadBalancer services will contain the required annotations.
 - `log_level` (String) LogLevel specifies the default loglevel for the STUNner daemon.
@@ -81,5 +82,5 @@ Required:
 Optional:
 
 - `group` (String) Group is the group of the referent. For example, 'gateway.networking.k8s.io'. When unspecified or empty string, core API group is inferred.
-- `kind` (String) Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.
-- `namespace` (String) Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core
+- `kind` (String) Kind is kind of the referent. For example 'Secret'.
+- `namespace` (String) Namespace is the namespace of the referenced object. When unspecified, the local namespace is inferred.  Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core

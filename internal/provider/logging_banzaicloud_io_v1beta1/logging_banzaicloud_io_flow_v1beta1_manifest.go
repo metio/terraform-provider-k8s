@@ -478,6 +478,12 @@ type LoggingBanzaicloudIoFlowV1Beta1ManifestData struct {
 				Group_reset_rate_s    *int64  `tfsdk:"group_reset_rate_s" json:"group_reset_rate_s,omitempty"`
 				Group_warning_delay_s *int64  `tfsdk:"group_warning_delay_s" json:"group_warning_delay_s,omitempty"`
 			} `tfsdk:"throttle" json:"throttle,omitempty"`
+			Useragent *struct {
+				Delete_key *bool   `tfsdk:"delete_key" json:"delete_key,omitempty"`
+				Flatten    *bool   `tfsdk:"flatten" json:"flatten,omitempty"`
+				Key_name   *string `tfsdk:"key_name" json:"key_name,omitempty"`
+				Out_key    *string `tfsdk:"out_key" json:"out_key,omitempty"`
+			} `tfsdk:"useragent" json:"useragent,omitempty"`
 		} `tfsdk:"filters" json:"filters,omitempty"`
 		FlowLabel            *string   `tfsdk:"flow_label" json:"flowLabel,omitempty"`
 		GlobalOutputRefs     *[]string `tfsdk:"global_output_refs" json:"globalOutputRefs,omitempty"`
@@ -3599,6 +3605,47 @@ func (r *LoggingBanzaicloudIoFlowV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"group_warning_delay_s": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"useragent": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"delete_key": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"flatten": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"out_key": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,

@@ -16,6 +16,7 @@ CiliumBGPPeeringPolicy is a Kubernetes third-party resource for instructing Cili
 data "k8s_cilium_io_cilium_bgp_peering_policy_v2alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -71,6 +72,8 @@ Required:
 Optional:
 
 - `export_pod_cidr` (Boolean) ExportPodCIDR determines whether to export the Node's private CIDR block to the configured neighbors.
+- `pod_ip_pool_selector` (Attributes) PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools.  If empty / nil no CiliumPodIPPools will be announced. (see [below for nested schema](#nestedatt--spec--virtual_routers--pod_ip_pool_selector))
+- `service_advertisements` (List of String) ServiceAdvertisements selects a group of BGP Advertisement(s) to advertise for the selected services.
 - `service_selector` (Attributes) ServiceSelector selects a group of load balancer services which this virtual router will announce. The loadBalancerClass for a service must be nil or specify a class supported by Cilium, e.g. 'io.cilium/bgp-control-plane'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If empty / nil no services will be announced. (see [below for nested schema](#nestedatt--spec--virtual_routers--service_selector))
 
 <a id="nestedatt--spec--virtual_routers--neighbors"></a>
@@ -84,6 +87,7 @@ Required:
 Optional:
 
 - `advertised_path_attributes` (Attributes List) AdvertisedPathAttributes can be used to apply additional path attributes to selected routes when advertising them to the peer. If empty / nil, no additional path attributes are advertised. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--advertised_path_attributes))
+- `auth_secret_ref` (String) AuthSecretRef is the name of the secret to use to fetch a TCP authentication password for this peer.
 - `connect_retry_time_seconds` (Number) ConnectRetryTimeSeconds defines the initial value for the BGP ConnectRetryTimer (RFC 4271, Section 8).
 - `e_bgp_multihop_ttl` (Number) EBGPMultihopTTL controls the multi-hop feature for eBGP peers. Its value defines the Time To Live (TTL) value used in BGP packets sent to the neighbor. The value 1 implies that eBGP multi-hop feature is disabled (only a single hop is allowed). This field is ignored for iBGP peers.
 - `families` (Attributes List) Families, if provided, defines a set of AFI/SAFIs the speaker will negotiate with it's peer.  If this slice is not provided the default families of IPv6 and IPv4 will be provided. (see [below for nested schema](#nestedatt--spec--virtual_routers--neighbors--families))
@@ -97,7 +101,7 @@ Optional:
 
 Required:
 
-- `selector_type` (String) SelectorType defines the object type on which the Selector applies: - For 'PodCIDR' the Selector matches k8s CiliumNode resources (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes. Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs. - For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools).
+- `selector_type` (String) SelectorType defines the object type on which the Selector applies: - For 'PodCIDR' the Selector matches k8s CiliumNode resources (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes. Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs. - For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools). - For 'CiliumPodIPPool' the Selector matches CiliumPodIPPool custom resources (path attributes apply to routes announced for allocated CIDRs of selected CiliumPodIPPools).
 
 Optional:
 
@@ -111,7 +115,8 @@ Optional:
 Optional:
 
 - `large` (List of String) Large holds a list of the BGP Large Communities Attribute (RFC 8092) values.
-- `standard` (List of String) Standard holds a list of 'standard' 32-bit BGP Communities Attribute (RFC 1997) values.
+- `standard` (List of String) Standard holds a list of 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined as numeric values.
+- `well_known` (List of String) WellKnown holds a list 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined as well-known string aliases to their numeric values.
 
 
 <a id="nestedatt--spec--virtual_routers--neighbors--peer_port--selector"></a>
@@ -142,8 +147,8 @@ Optional:
 
 Required:
 
-- `afi` (String)
-- `safi` (String)
+- `afi` (String) Afi is the Address Family Identifier (AFI) of the family.
+- `safi` (String) Safi is the Subsequent Address Family Identifier (SAFI) of the family.
 
 
 <a id="nestedatt--spec--virtual_routers--neighbors--graceful_restart"></a>
@@ -156,6 +161,28 @@ Required:
 Optional:
 
 - `restart_time_seconds` (Number) RestartTimeSeconds is the estimated time it will take for the BGP session to be re-established with peer after a restart. After this period, peer will remove stale routes. This is described RFC 4724 section 4.2.
+
+
+
+<a id="nestedatt--spec--virtual_routers--pod_ip_pool_selector"></a>
+### Nested Schema for `spec.virtual_routers.pod_ip_pool_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--virtual_routers--pod_ip_pool_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--virtual_routers--pod_ip_pool_selector--match_expressions"></a>
+### Nested Schema for `spec.virtual_routers.pod_ip_pool_selector.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 

@@ -46,15 +46,19 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 
 	Spec *struct {
 		Allow *struct {
-			App_labels                   *map[string]string `tfsdk:"app_labels" json:"app_labels,omitempty"`
-			App_labels_expression        *string            `tfsdk:"app_labels_expression" json:"app_labels_expression,omitempty"`
-			Aws_role_arns                *[]string          `tfsdk:"aws_role_arns" json:"aws_role_arns,omitempty"`
-			Azure_identities             *[]string          `tfsdk:"azure_identities" json:"azure_identities,omitempty"`
-			Cluster_labels               *map[string]string `tfsdk:"cluster_labels" json:"cluster_labels,omitempty"`
-			Cluster_labels_expression    *string            `tfsdk:"cluster_labels_expression" json:"cluster_labels_expression,omitempty"`
-			Db_labels                    *map[string]string `tfsdk:"db_labels" json:"db_labels,omitempty"`
-			Db_labels_expression         *string            `tfsdk:"db_labels_expression" json:"db_labels_expression,omitempty"`
-			Db_names                     *[]string          `tfsdk:"db_names" json:"db_names,omitempty"`
+			App_labels                *map[string]string `tfsdk:"app_labels" json:"app_labels,omitempty"`
+			App_labels_expression     *string            `tfsdk:"app_labels_expression" json:"app_labels_expression,omitempty"`
+			Aws_role_arns             *[]string          `tfsdk:"aws_role_arns" json:"aws_role_arns,omitempty"`
+			Azure_identities          *[]string          `tfsdk:"azure_identities" json:"azure_identities,omitempty"`
+			Cluster_labels            *map[string]string `tfsdk:"cluster_labels" json:"cluster_labels,omitempty"`
+			Cluster_labels_expression *string            `tfsdk:"cluster_labels_expression" json:"cluster_labels_expression,omitempty"`
+			Db_labels                 *map[string]string `tfsdk:"db_labels" json:"db_labels,omitempty"`
+			Db_labels_expression      *string            `tfsdk:"db_labels_expression" json:"db_labels_expression,omitempty"`
+			Db_names                  *[]string          `tfsdk:"db_names" json:"db_names,omitempty"`
+			Db_permissions            *[]struct {
+				Match       *map[string]string `tfsdk:"match" json:"match,omitempty"`
+				Permissions *[]string          `tfsdk:"permissions" json:"permissions,omitempty"`
+			} `tfsdk:"db_permissions" json:"db_permissions,omitempty"`
 			Db_roles                     *[]string          `tfsdk:"db_roles" json:"db_roles,omitempty"`
 			Db_service_labels            *map[string]string `tfsdk:"db_service_labels" json:"db_service_labels,omitempty"`
 			Db_service_labels_expression *string            `tfsdk:"db_service_labels_expression" json:"db_service_labels_expression,omitempty"`
@@ -131,20 +135,31 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 				Verbs     *[]string `tfsdk:"verbs" json:"verbs,omitempty"`
 				Where     *string   `tfsdk:"where" json:"where,omitempty"`
 			} `tfsdk:"rules" json:"rules,omitempty"`
+			Saml_idp_service_provider_labels            *map[string]string `tfsdk:"saml_idp_service_provider_labels" json:"saml_idp_service_provider_labels,omitempty"`
+			Saml_idp_service_provider_labels_expression *string            `tfsdk:"saml_idp_service_provider_labels_expression" json:"saml_idp_service_provider_labels_expression,omitempty"`
+			Spiffe                                      *[]struct {
+				Dns_sans *[]string `tfsdk:"dns_sans" json:"dns_sans,omitempty"`
+				Ip_sans  *[]string `tfsdk:"ip_sans" json:"ip_sans,omitempty"`
+				Path     *string   `tfsdk:"path" json:"path,omitempty"`
+			} `tfsdk:"spiffe" json:"spiffe,omitempty"`
 			Windows_desktop_labels            *map[string]string `tfsdk:"windows_desktop_labels" json:"windows_desktop_labels,omitempty"`
 			Windows_desktop_labels_expression *string            `tfsdk:"windows_desktop_labels_expression" json:"windows_desktop_labels_expression,omitempty"`
 			Windows_desktop_logins            *[]string          `tfsdk:"windows_desktop_logins" json:"windows_desktop_logins,omitempty"`
 		} `tfsdk:"allow" json:"allow,omitempty"`
 		Deny *struct {
-			App_labels                   *map[string]string `tfsdk:"app_labels" json:"app_labels,omitempty"`
-			App_labels_expression        *string            `tfsdk:"app_labels_expression" json:"app_labels_expression,omitempty"`
-			Aws_role_arns                *[]string          `tfsdk:"aws_role_arns" json:"aws_role_arns,omitempty"`
-			Azure_identities             *[]string          `tfsdk:"azure_identities" json:"azure_identities,omitempty"`
-			Cluster_labels               *map[string]string `tfsdk:"cluster_labels" json:"cluster_labels,omitempty"`
-			Cluster_labels_expression    *string            `tfsdk:"cluster_labels_expression" json:"cluster_labels_expression,omitempty"`
-			Db_labels                    *map[string]string `tfsdk:"db_labels" json:"db_labels,omitempty"`
-			Db_labels_expression         *string            `tfsdk:"db_labels_expression" json:"db_labels_expression,omitempty"`
-			Db_names                     *[]string          `tfsdk:"db_names" json:"db_names,omitempty"`
+			App_labels                *map[string]string `tfsdk:"app_labels" json:"app_labels,omitempty"`
+			App_labels_expression     *string            `tfsdk:"app_labels_expression" json:"app_labels_expression,omitempty"`
+			Aws_role_arns             *[]string          `tfsdk:"aws_role_arns" json:"aws_role_arns,omitempty"`
+			Azure_identities          *[]string          `tfsdk:"azure_identities" json:"azure_identities,omitempty"`
+			Cluster_labels            *map[string]string `tfsdk:"cluster_labels" json:"cluster_labels,omitempty"`
+			Cluster_labels_expression *string            `tfsdk:"cluster_labels_expression" json:"cluster_labels_expression,omitempty"`
+			Db_labels                 *map[string]string `tfsdk:"db_labels" json:"db_labels,omitempty"`
+			Db_labels_expression      *string            `tfsdk:"db_labels_expression" json:"db_labels_expression,omitempty"`
+			Db_names                  *[]string          `tfsdk:"db_names" json:"db_names,omitempty"`
+			Db_permissions            *[]struct {
+				Match       *map[string]string `tfsdk:"match" json:"match,omitempty"`
+				Permissions *[]string          `tfsdk:"permissions" json:"permissions,omitempty"`
+			} `tfsdk:"db_permissions" json:"db_permissions,omitempty"`
 			Db_roles                     *[]string          `tfsdk:"db_roles" json:"db_roles,omitempty"`
 			Db_service_labels            *map[string]string `tfsdk:"db_service_labels" json:"db_service_labels,omitempty"`
 			Db_service_labels_expression *string            `tfsdk:"db_service_labels_expression" json:"db_service_labels_expression,omitempty"`
@@ -221,23 +236,31 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 				Verbs     *[]string `tfsdk:"verbs" json:"verbs,omitempty"`
 				Where     *string   `tfsdk:"where" json:"where,omitempty"`
 			} `tfsdk:"rules" json:"rules,omitempty"`
+			Saml_idp_service_provider_labels            *map[string]string `tfsdk:"saml_idp_service_provider_labels" json:"saml_idp_service_provider_labels,omitempty"`
+			Saml_idp_service_provider_labels_expression *string            `tfsdk:"saml_idp_service_provider_labels_expression" json:"saml_idp_service_provider_labels_expression,omitempty"`
+			Spiffe                                      *[]struct {
+				Dns_sans *[]string `tfsdk:"dns_sans" json:"dns_sans,omitempty"`
+				Ip_sans  *[]string `tfsdk:"ip_sans" json:"ip_sans,omitempty"`
+				Path     *string   `tfsdk:"path" json:"path,omitempty"`
+			} `tfsdk:"spiffe" json:"spiffe,omitempty"`
 			Windows_desktop_labels            *map[string]string `tfsdk:"windows_desktop_labels" json:"windows_desktop_labels,omitempty"`
 			Windows_desktop_labels_expression *string            `tfsdk:"windows_desktop_labels_expression" json:"windows_desktop_labels_expression,omitempty"`
 			Windows_desktop_logins            *[]string          `tfsdk:"windows_desktop_logins" json:"windows_desktop_logins,omitempty"`
 		} `tfsdk:"deny" json:"deny,omitempty"`
 		Options *struct {
 			Cert_extensions *[]struct {
-				Mode  *int64  `tfsdk:"mode" json:"mode,omitempty"`
+				Mode  *string `tfsdk:"mode" json:"mode,omitempty"`
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
-				Type  *int64  `tfsdk:"type" json:"type,omitempty"`
+				Type  *string `tfsdk:"type" json:"type,omitempty"`
 				Value *string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"cert_extensions" json:"cert_extensions,omitempty"`
 			Cert_format               *string   `tfsdk:"cert_format" json:"cert_format,omitempty"`
 			Client_idle_timeout       *string   `tfsdk:"client_idle_timeout" json:"client_idle_timeout,omitempty"`
 			Create_db_user            *bool     `tfsdk:"create_db_user" json:"create_db_user,omitempty"`
+			Create_db_user_mode       *string   `tfsdk:"create_db_user_mode" json:"create_db_user_mode,omitempty"`
 			Create_desktop_user       *bool     `tfsdk:"create_desktop_user" json:"create_desktop_user,omitempty"`
 			Create_host_user          *bool     `tfsdk:"create_host_user" json:"create_host_user,omitempty"`
-			Create_host_user_mode     *int64    `tfsdk:"create_host_user_mode" json:"create_host_user_mode,omitempty"`
+			Create_host_user_mode     *string   `tfsdk:"create_host_user_mode" json:"create_host_user_mode,omitempty"`
 			Desktop_clipboard         *bool     `tfsdk:"desktop_clipboard" json:"desktop_clipboard,omitempty"`
 			Desktop_directory_sharing *bool     `tfsdk:"desktop_directory_sharing" json:"desktop_directory_sharing,omitempty"`
 			Device_trust_mode         *string   `tfsdk:"device_trust_mode" json:"device_trust_mode,omitempty"`
@@ -264,7 +287,7 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 			} `tfsdk:"record_session" json:"record_session,omitempty"`
 			Request_access      *string `tfsdk:"request_access" json:"request_access,omitempty"`
 			Request_prompt      *string `tfsdk:"request_prompt" json:"request_prompt,omitempty"`
-			Require_session_mfa *int64  `tfsdk:"require_session_mfa" json:"require_session_mfa,omitempty"`
+			Require_session_mfa *string `tfsdk:"require_session_mfa" json:"require_session_mfa,omitempty"`
 			Ssh_file_copy       *bool   `tfsdk:"ssh_file_copy" json:"ssh_file_copy,omitempty"`
 		} `tfsdk:"options" json:"options,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -437,6 +460,35 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"db_permissions": schema.ListNestedAttribute{
+								Description:         "DatabasePermissions specifies a set of permissions that will be granted to the database user when using automatic database user provisioning.",
+								MarkdownDescription: "DatabasePermissions specifies a set of permissions that will be granted to the database user when using automatic database user provisioning.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"match": schema.MapAttribute{
+											Description:         "Match is a list of object labels that must be matched for the permission to be granted.",
+											MarkdownDescription: "Match is a list of object labels that must be matched for the permission to be granted.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"permissions": schema.ListAttribute{
+											Description:         "Permission is the list of string representations of the permission to be given, e.g. SELECT, INSERT, UPDATE, ...",
+											MarkdownDescription: "Permission is the list of string representations of the permission to be given, e.g. SELECT, INSERT, UPDATE, ...",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"db_roles": schema.ListAttribute{
 								Description:         "DatabaseRoles is a list of databases roles for automatic user creation.",
 								MarkdownDescription: "DatabaseRoles is a list of databases roles for automatic user creation.",
@@ -1010,6 +1062,60 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 										"where": schema.StringAttribute{
 											Description:         "Where specifies optional advanced matcher",
 											MarkdownDescription: "Where specifies optional advanced matcher",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"saml_idp_service_provider_labels": schema.MapAttribute{
+								Description:         "SAMLIdPServiceProviderLabels is a labels map used in RBAC system to allow/deny access to saml_idp_service_provider resource.",
+								MarkdownDescription: "SAMLIdPServiceProviderLabels is a labels map used in RBAC system to allow/deny access to saml_idp_service_provider resource.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"saml_idp_service_provider_labels_expression": schema.StringAttribute{
+								Description:         "SAMLIdPServiceProviderLabelsExpression is a predicate expression used to allow/deny access to saml_idp_service_provider resource.",
+								MarkdownDescription: "SAMLIdPServiceProviderLabelsExpression is a predicate expression used to allow/deny access to saml_idp_service_provider resource.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"spiffe": schema.ListNestedAttribute{
+								Description:         "SPIFFE is used to allow or deny access to a role holder to generating a SPIFFE SVID.",
+								MarkdownDescription: "SPIFFE is used to allow or deny access to a role holder to generating a SPIFFE SVID.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"dns_sans": schema.ListAttribute{
+											Description:         "DNSSANs specifies matchers for the SPIFFE ID DNS SANs.  Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: *.example.com would match foo.example.com",
+											MarkdownDescription: "DNSSANs specifies matchers for the SPIFFE ID DNS SANs.  Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: *.example.com would match foo.example.com",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ip_sans": schema.ListAttribute{
+											Description:         "IPSANs specifies matchers for the SPIFFE ID IP SANs.  Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matchers should be specified using CIDR notation, it supports IPv4 and IPv6.  Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
+											MarkdownDescription: "IPSANs specifies matchers for the SPIFFE ID IP SANs.  Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matchers should be specified using CIDR notation, it supports IPv4 and IPv6.  Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"path": schema.StringAttribute{
+											Description:         "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
+											MarkdownDescription: "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1134,6 +1240,35 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"db_permissions": schema.ListNestedAttribute{
+								Description:         "DatabasePermissions specifies a set of permissions that will be granted to the database user when using automatic database user provisioning.",
+								MarkdownDescription: "DatabasePermissions specifies a set of permissions that will be granted to the database user when using automatic database user provisioning.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"match": schema.MapAttribute{
+											Description:         "Match is a list of object labels that must be matched for the permission to be granted.",
+											MarkdownDescription: "Match is a list of object labels that must be matched for the permission to be granted.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"permissions": schema.ListAttribute{
+											Description:         "Permission is the list of string representations of the permission to be given, e.g. SELECT, INSERT, UPDATE, ...",
+											MarkdownDescription: "Permission is the list of string representations of the permission to be given, e.g. SELECT, INSERT, UPDATE, ...",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"db_roles": schema.ListAttribute{
 								Description:         "DatabaseRoles is a list of databases roles for automatic user creation.",
 								MarkdownDescription: "DatabaseRoles is a list of databases roles for automatic user creation.",
@@ -1718,6 +1853,60 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Computed: false,
 							},
 
+							"saml_idp_service_provider_labels": schema.MapAttribute{
+								Description:         "SAMLIdPServiceProviderLabels is a labels map used in RBAC system to allow/deny access to saml_idp_service_provider resource.",
+								MarkdownDescription: "SAMLIdPServiceProviderLabels is a labels map used in RBAC system to allow/deny access to saml_idp_service_provider resource.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"saml_idp_service_provider_labels_expression": schema.StringAttribute{
+								Description:         "SAMLIdPServiceProviderLabelsExpression is a predicate expression used to allow/deny access to saml_idp_service_provider resource.",
+								MarkdownDescription: "SAMLIdPServiceProviderLabelsExpression is a predicate expression used to allow/deny access to saml_idp_service_provider resource.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"spiffe": schema.ListNestedAttribute{
+								Description:         "SPIFFE is used to allow or deny access to a role holder to generating a SPIFFE SVID.",
+								MarkdownDescription: "SPIFFE is used to allow or deny access to a role holder to generating a SPIFFE SVID.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"dns_sans": schema.ListAttribute{
+											Description:         "DNSSANs specifies matchers for the SPIFFE ID DNS SANs.  Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: *.example.com would match foo.example.com",
+											MarkdownDescription: "DNSSANs specifies matchers for the SPIFFE ID DNS SANs.  Each requested DNS SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: *.example.com would match foo.example.com",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ip_sans": schema.ListAttribute{
+											Description:         "IPSANs specifies matchers for the SPIFFE ID IP SANs.  Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matchers should be specified using CIDR notation, it supports IPv4 and IPv6.  Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
+											MarkdownDescription: "IPSANs specifies matchers for the SPIFFE ID IP SANs.  Each requested IP SAN is compared against all matchers configured and if any match, the condition is considered to be met.  The matchers should be specified using CIDR notation, it supports IPv4 and IPv6.  Examples: - 10.0.0.0/24 would match 10.0.0.0 to 10.255.255.255 - 10.0.0.42/32 would match only 10.0.0.42",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"path": schema.StringAttribute{
+											Description:         "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
+											MarkdownDescription: "Path specifies a matcher for the SPIFFE ID path. It should not include the trust domain and should start with a leading slash.  The matcher by default allows '*' to be used to indicate zero or more of any character. Prepend '^' and append '$' to instead switch to matching using the Go regex syntax.  Example: - /svc/foo/*/bar would match /svc/foo/baz/bar - ^/svc/foo/.*/bar$ would match /svc/foo/baz/bar",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"windows_desktop_labels": schema.MapAttribute{
 								Description:         "WindowsDesktopLabels are used in the RBAC system to allow/deny access to Windows desktops.",
 								MarkdownDescription: "WindowsDesktopLabels are used in the RBAC system to allow/deny access to Windows desktops.",
@@ -1758,7 +1947,7 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "CertExtensions specifies the key/values",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
-										"mode": schema.Int64Attribute{
+										"mode": schema.StringAttribute{
 											Description:         "Mode is the type of extension to be used -- currently critical-option is not supported",
 											MarkdownDescription: "Mode is the type of extension to be used -- currently critical-option is not supported",
 											Required:            false,
@@ -1774,7 +1963,7 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 											Computed:            false,
 										},
 
-										"type": schema.Int64Attribute{
+										"type": schema.StringAttribute{
 											Description:         "Type represents the certificate type being extended, only ssh is supported at this time.",
 											MarkdownDescription: "Type represents the certificate type being extended, only ssh is supported at this time.",
 											Required:            false,
@@ -1820,6 +2009,14 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"create_db_user_mode": schema.StringAttribute{
+								Description:         "CreateDatabaseUserMode allows users to be automatically created on a database when not set to off.",
+								MarkdownDescription: "CreateDatabaseUserMode allows users to be automatically created on a database when not set to off.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"create_desktop_user": schema.BoolAttribute{
 								Description:         "CreateDesktopUser allows users to be automatically created on a Windows desktop",
 								MarkdownDescription: "CreateDesktopUser allows users to be automatically created on a Windows desktop",
@@ -1836,7 +2033,7 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
-							"create_host_user_mode": schema.Int64Attribute{
+							"create_host_user_mode": schema.StringAttribute{
 								Description:         "CreateHostUserMode allows users to be automatically created on a host when not set to off",
 								MarkdownDescription: "CreateHostUserMode allows users to be automatically created on a host when not set to off",
 								Required:            false,
@@ -2032,7 +2229,7 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
-							"require_session_mfa": schema.Int64Attribute{
+							"require_session_mfa": schema.StringAttribute{
 								Description:         "RequireMFAType is the type of MFA requirement enforced for this user.",
 								MarkdownDescription: "RequireMFAType is the type of MFA requirement enforced for this user.",
 								Required:            false,

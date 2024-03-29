@@ -63,11 +63,11 @@ Required:
 Optional:
 
 - `access_from` (Attributes) AccessFrom defines an Access Control List for allowing cross-namespace references to this object. (see [below for nested schema](#nestedatt--spec--access_from))
-- `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.
+- `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.
 - `insecure` (Boolean) Insecure allows connecting to a non-TLS S3 HTTP endpoint.
 - `provider` (String) The S3 compatible storage provider name, default ('generic').
 - `region` (String) The bucket region.
-- `secret_ref` (Attributes) The name of the secret containing authentication credentials for the Bucket. (see [below for nested schema](#nestedatt--spec--secret_ref))
+- `secret_ref` (Attributes) The name of the secret containing authentication credentialsfor the Bucket. (see [below for nested schema](#nestedatt--spec--secret_ref))
 - `suspend` (Boolean) This flag tells the controller to suspend the reconciliation of this source.
 - `timeout` (String) The timeout for download operations, defaults to 60s.
 
@@ -76,14 +76,14 @@ Optional:
 
 Required:
 
-- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
+- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
 
 <a id="nestedatt--spec--access_from--namespace_selectors"></a>
 ### Nested Schema for `spec.access_from.namespace_selectors`
 
 Optional:
 
-- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 
 

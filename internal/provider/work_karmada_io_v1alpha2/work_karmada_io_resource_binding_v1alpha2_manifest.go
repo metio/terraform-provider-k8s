@@ -156,6 +156,7 @@ type WorkKarmadaIoResourceBindingV1Alpha2ManifestData struct {
 		} `tfsdk:"placement" json:"placement,omitempty"`
 		PropagateDeps       *bool `tfsdk:"propagate_deps" json:"propagateDeps,omitempty"`
 		ReplicaRequirements *struct {
+			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			NodeClaim *struct {
 				HardNodeAffinity *struct {
 					NodeSelectorTerms *[]struct {
@@ -180,7 +181,8 @@ type WorkKarmadaIoResourceBindingV1Alpha2ManifestData struct {
 					Value             *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 			} `tfsdk:"node_claim" json:"nodeClaim,omitempty"`
-			ResourceRequest *map[string]string `tfsdk:"resource_request" json:"resourceRequest,omitempty"`
+			PriorityClassName *string            `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
+			ResourceRequest   *map[string]string `tfsdk:"resource_request" json:"resourceRequest,omitempty"`
 		} `tfsdk:"replica_requirements" json:"replicaRequirements,omitempty"`
 		Replicas   *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		RequiredBy *[]struct {
@@ -1046,6 +1048,14 @@ func (r *WorkKarmadaIoResourceBindingV1Alpha2Manifest) Schema(_ context.Context,
 						Description:         "ReplicaRequirements represents the requirements required by each replica.",
 						MarkdownDescription: "ReplicaRequirements represents the requirements required by each replica.",
 						Attributes: map[string]schema.Attribute{
+							"namespace": schema.StringAttribute{
+								Description:         "Namespace represents the resources namespaces",
+								MarkdownDescription: "Namespace represents the resources namespaces",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"node_claim": schema.SingleNestedAttribute{
 								Description:         "NodeClaim represents the node claim HardNodeAffinity, NodeSelector and Tolerations required by each replica.",
 								MarkdownDescription: "NodeClaim represents the node claim HardNodeAffinity, NodeSelector and Tolerations required by each replica.",
@@ -1205,6 +1215,14 @@ func (r *WorkKarmadaIoResourceBindingV1Alpha2Manifest) Schema(_ context.Context,
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"priority_class_name": schema.StringAttribute{
+								Description:         "PriorityClassName represents the resources priorityClassName",
+								MarkdownDescription: "PriorityClassName represents the resources priorityClassName",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"resource_request": schema.MapAttribute{

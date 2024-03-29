@@ -65,6 +65,7 @@ Required:
 
 Optional:
 
+- `concurrency_policy` (String) ConcurrencyPolicy defines concurrency policy for selected Execution
 - `condition_spec` (Attributes) What resource conditions should be matched (see [below for nested schema](#nestedatt--spec--condition_spec))
 - `delay` (String) Delay is a duration string which specifies how long should the test be delayed after a trigger is matched
 - `probe_spec` (Attributes) What resource probes should be matched (see [below for nested schema](#nestedatt--spec--probe_spec))
@@ -76,6 +77,7 @@ Optional:
 
 - `label_selector` (Attributes) LabelSelector is used to identify a group of Kubernetes Objects based on their metadata labels (see [below for nested schema](#nestedatt--spec--resource_selector--label_selector))
 - `name` (String) Name selector is used to identify a Kubernetes Object based on the metadata name
+- `name_regex` (String) kubernetes resource name regex
 - `namespace` (String) Namespace of the Kubernetes object
 
 <a id="nestedatt--spec--resource_selector--label_selector"></a>
@@ -108,6 +110,7 @@ Optional:
 
 - `label_selector` (Attributes) LabelSelector is used to identify a group of Kubernetes Objects based on their metadata labels (see [below for nested schema](#nestedatt--spec--test_selector--label_selector))
 - `name` (String) Name selector is used to identify a Kubernetes Object based on the metadata name
+- `name_regex` (String) kubernetes resource name regex
 - `namespace` (String) Namespace of the Kubernetes object
 
 <a id="nestedatt--spec--test_selector--label_selector"></a>

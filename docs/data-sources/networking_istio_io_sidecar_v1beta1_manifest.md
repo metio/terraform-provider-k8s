@@ -56,19 +56,23 @@ Optional:
 
 Optional:
 
-- `egress` (Attributes List) (see [below for nested schema](#nestedatt--spec--egress))
-- `ingress` (Attributes List) (see [below for nested schema](#nestedatt--spec--ingress))
+- `egress` (Attributes List) Egress specifies the configuration of the sidecar for processing outbound traffic from the attached workload instance to other services in the mesh. (see [below for nested schema](#nestedatt--spec--egress))
+- `inbound_connection_pool` (Attributes) Settings controlling the volume of connections Envoy will accept from the network. (see [below for nested schema](#nestedatt--spec--inbound_connection_pool))
+- `ingress` (Attributes List) Ingress specifies the configuration of the sidecar for processing inbound traffic to the attached workload instance. (see [below for nested schema](#nestedatt--spec--ingress))
 - `outbound_traffic_policy` (Attributes) Configuration for the outbound traffic policy. (see [below for nested schema](#nestedatt--spec--outbound_traffic_policy))
-- `workload_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_selector))
+- `workload_selector` (Attributes) Criteria used to select the specific set of pods/VMs on which this 'Sidecar' configuration should be applied. (see [below for nested schema](#nestedatt--spec--workload_selector))
 
 <a id="nestedatt--spec--egress"></a>
 ### Nested Schema for `spec.egress`
 
+Required:
+
+- `hosts` (List of String) One or more service hosts exposed by the listener in 'namespace/dnsName' format.
+
 Optional:
 
-- `bind` (String)
-- `capture_mode` (String)
-- `hosts` (List of String)
+- `bind` (String) The IP(IPv4 or IPv6) or the Unix domain socket to which the listener should be bound to.
+- `capture_mode` (String) When the bind address is an IP, the captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE
 - `port` (Attributes) The port associated with the listener. (see [below for nested schema](#nestedatt--spec--egress--port))
 
 <a id="nestedatt--spec--egress--port"></a>
@@ -83,16 +87,66 @@ Optional:
 
 
 
+<a id="nestedatt--spec--inbound_connection_pool"></a>
+### Nested Schema for `spec.inbound_connection_pool`
+
+Optional:
+
+- `http` (Attributes) HTTP connection pool settings. (see [below for nested schema](#nestedatt--spec--inbound_connection_pool--http))
+- `tcp` (Attributes) Settings common to both HTTP and TCP upstream connections. (see [below for nested schema](#nestedatt--spec--inbound_connection_pool--tcp))
+
+<a id="nestedatt--spec--inbound_connection_pool--http"></a>
+### Nested Schema for `spec.inbound_connection_pool.http`
+
+Optional:
+
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
+- `http2_max_requests` (Number) Maximum number of active requests to a destination.
+- `idle_timeout` (String) The idle timeout for upstream connection pool connections.
+- `max_concurrent_streams` (Number) The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.
+- `max_requests_per_connection` (Number) Maximum number of requests per connection to a backend.
+- `max_retries` (Number) Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.
+- `use_client_protocol` (Boolean) If set to true, client protocol will be preserved while initiating connection to backend.
+
+
+<a id="nestedatt--spec--inbound_connection_pool--tcp"></a>
+### Nested Schema for `spec.inbound_connection_pool.tcp`
+
+Optional:
+
+- `connect_timeout` (String) TCP connection timeout.
+- `idle_timeout` (String) The idle timeout for TCP connections.
+- `max_connection_duration` (String) The maximum duration of a connection.
+- `max_connections` (Number) Maximum number of HTTP1 /TCP connections to a destination host.
+- `tcp_keepalive` (Attributes) If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives. (see [below for nested schema](#nestedatt--spec--inbound_connection_pool--tcp--tcp_keepalive))
+
+<a id="nestedatt--spec--inbound_connection_pool--tcp--tcp_keepalive"></a>
+### Nested Schema for `spec.inbound_connection_pool.tcp.tcp_keepalive`
+
+Optional:
+
+- `interval` (String) The time duration between keep-alive probes.
+- `probes` (Number) Maximum number of keepalive probes to send without response before deciding the connection is dead.
+- `time` (String) The time duration a connection needs to be idle before keep-alive probes start being sent.
+
+
+
+
 <a id="nestedatt--spec--ingress"></a>
 ### Nested Schema for `spec.ingress`
+
+Required:
+
+- `port` (Attributes) The port associated with the listener. (see [below for nested schema](#nestedatt--spec--ingress--port))
 
 Optional:
 
 - `bind` (String) The IP(IPv4 or IPv6) to which the listener should be bound.
-- `capture_mode` (String)
-- `default_endpoint` (String)
-- `port` (Attributes) The port associated with the listener. (see [below for nested schema](#nestedatt--spec--ingress--port))
-- `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--ingress--tls))
+- `capture_mode` (String) The captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE
+- `connection_pool` (Attributes) Settings controlling the volume of connections Envoy will accept from the network. (see [below for nested schema](#nestedatt--spec--ingress--connection_pool))
+- `default_endpoint` (String) The IP endpoint or Unix domain socket to which traffic should be forwarded to.
+- `tls` (Attributes) Set of TLS related options that will enable TLS termination on the sidecar for requests originating from outside the mesh. (see [below for nested schema](#nestedatt--spec--ingress--tls))
 
 <a id="nestedatt--spec--ingress--port"></a>
 ### Nested Schema for `spec.ingress.port`
@@ -105,23 +159,70 @@ Optional:
 - `target_port` (Number)
 
 
+<a id="nestedatt--spec--ingress--connection_pool"></a>
+### Nested Schema for `spec.ingress.connection_pool`
+
+Optional:
+
+- `http` (Attributes) HTTP connection pool settings. (see [below for nested schema](#nestedatt--spec--ingress--connection_pool--http))
+- `tcp` (Attributes) Settings common to both HTTP and TCP upstream connections. (see [below for nested schema](#nestedatt--spec--ingress--connection_pool--tcp))
+
+<a id="nestedatt--spec--ingress--connection_pool--http"></a>
+### Nested Schema for `spec.ingress.connection_pool.tcp`
+
+Optional:
+
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
+- `http2_max_requests` (Number) Maximum number of active requests to a destination.
+- `idle_timeout` (String) The idle timeout for upstream connection pool connections.
+- `max_concurrent_streams` (Number) The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.
+- `max_requests_per_connection` (Number) Maximum number of requests per connection to a backend.
+- `max_retries` (Number) Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.
+- `use_client_protocol` (Boolean) If set to true, client protocol will be preserved while initiating connection to backend.
+
+
+<a id="nestedatt--spec--ingress--connection_pool--tcp"></a>
+### Nested Schema for `spec.ingress.connection_pool.tcp`
+
+Optional:
+
+- `connect_timeout` (String) TCP connection timeout.
+- `idle_timeout` (String) The idle timeout for TCP connections.
+- `max_connection_duration` (String) The maximum duration of a connection.
+- `max_connections` (Number) Maximum number of HTTP1 /TCP connections to a destination host.
+- `tcp_keepalive` (Attributes) If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives. (see [below for nested schema](#nestedatt--spec--ingress--connection_pool--tcp--tcp_keepalive))
+
+<a id="nestedatt--spec--ingress--connection_pool--tcp--tcp_keepalive"></a>
+### Nested Schema for `spec.ingress.connection_pool.tcp.tcp_keepalive`
+
+Optional:
+
+- `interval` (String) The time duration between keep-alive probes.
+- `probes` (Number) Maximum number of keepalive probes to send without response before deciding the connection is dead.
+- `time` (String) The time duration a connection needs to be idle before keep-alive probes start being sent.
+
+
+
+
 <a id="nestedatt--spec--ingress--tls"></a>
 ### Nested Schema for `spec.ingress.tls`
 
 Optional:
 
 - `ca_certificates` (String) REQUIRED if mode is 'MUTUAL' or 'OPTIONAL_MUTUAL'.
+- `ca_crl` (String) OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented client side certificate.
 - `cipher_suites` (List of String) Optional: If specified, only support the specified cipher list.
-- `credential_name` (String)
-- `https_redirect` (Boolean)
-- `max_protocol_version` (String) Optional: Maximum TLS protocol version.
-- `min_protocol_version` (String) Optional: Minimum TLS protocol version.
-- `mode` (String)
+- `credential_name` (String) For gateways running on Kubernetes, the name of the secret that holds the TLS certs including the CA certificates.
+- `https_redirect` (Boolean) If set to true, the load balancer will send a 301 redirect for all http connections, asking the clients to use HTTPS.
+- `max_protocol_version` (String) Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
+- `min_protocol_version` (String) Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3
+- `mode` (String) Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.
 - `server_certificate` (String) REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.
-- `subject_alt_names` (List of String)
-- `verify_certificate_hash` (List of String)
-- `verify_certificate_spki` (List of String)
+- `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate presented by the client.
+- `verify_certificate_hash` (List of String) An optional list of hex-encoded SHA-256 hashes of the authorized client certificates.
+- `verify_certificate_spki` (List of String) An optional list of base64-encoded SHA-256 hashes of the SPKIs of authorized client certificates.
 
 
 
@@ -131,14 +232,17 @@ Optional:
 Optional:
 
 - `egress_proxy` (Attributes) (see [below for nested schema](#nestedatt--spec--outbound_traffic_policy--egress_proxy))
-- `mode` (String)
+- `mode` (String) Valid Options: REGISTRY_ONLY, ALLOW_ANY
 
 <a id="nestedatt--spec--outbound_traffic_policy--egress_proxy"></a>
 ### Nested Schema for `spec.outbound_traffic_policy.egress_proxy`
 
-Optional:
+Required:
 
 - `host` (String) The name of a service from the service registry.
+
+Optional:
+
 - `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--outbound_traffic_policy--egress_proxy--port))
 - `subset` (String) The name of a subset within the service.
 
@@ -157,4 +261,4 @@ Optional:
 
 Optional:
 
-- `labels` (Map of String)
+- `labels` (Map of String) One or more labels that indicate a specific set of pods/VMs on which the configuration should be applied.

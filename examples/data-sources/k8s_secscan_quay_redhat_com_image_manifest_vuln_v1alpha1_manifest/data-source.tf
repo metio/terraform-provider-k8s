@@ -3,5 +3,7 @@ data "k8s_secscan_quay_redhat_com_image_manifest_vuln_v1alpha1_manifest" "exampl
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {}
+  spec = {
+
+  }
 }

@@ -47,16 +47,18 @@ type KumaIoMeshLoadBalancingStrategyV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		TargetRef *struct {
-			Kind *string            `tfsdk:"kind" json:"kind,omitempty"`
-			Mesh *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-			Name *string            `tfsdk:"name" json:"name,omitempty"`
-			Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+			Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+			Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+			Name       *string            `tfsdk:"name" json:"name,omitempty"`
+			ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+			Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		To *[]struct {
 			Default *struct {
 				LoadBalancer *struct {
 					LeastRequest *struct {
-						ChoiceCount *int64 `tfsdk:"choice_count" json:"choiceCount,omitempty"`
+						ActiveRequestBias *string `tfsdk:"active_request_bias" json:"activeRequestBias,omitempty"`
+						ChoiceCount       *int64  `tfsdk:"choice_count" json:"choiceCount,omitempty"`
 					} `tfsdk:"least_request" json:"leastRequest,omitempty"`
 					Maglev *struct {
 						HashPolicies *[]struct {
@@ -113,14 +115,35 @@ type KumaIoMeshLoadBalancingStrategyV1Alpha1ManifestData struct {
 					Type       *string            `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"load_balancer" json:"loadBalancer,omitempty"`
 				LocalityAwareness *struct {
-					Disabled *bool `tfsdk:"disabled" json:"disabled,omitempty"`
+					CrossZone *struct {
+						Failover *[]struct {
+							From *struct {
+								Zones *[]string `tfsdk:"zones" json:"zones,omitempty"`
+							} `tfsdk:"from" json:"from,omitempty"`
+							To *struct {
+								Type  *string   `tfsdk:"type" json:"type,omitempty"`
+								Zones *[]string `tfsdk:"zones" json:"zones,omitempty"`
+							} `tfsdk:"to" json:"to,omitempty"`
+						} `tfsdk:"failover" json:"failover,omitempty"`
+						FailoverThreshold *struct {
+							Percentage *string `tfsdk:"percentage" json:"percentage,omitempty"`
+						} `tfsdk:"failover_threshold" json:"failoverThreshold,omitempty"`
+					} `tfsdk:"cross_zone" json:"crossZone,omitempty"`
+					Disabled  *bool `tfsdk:"disabled" json:"disabled,omitempty"`
+					LocalZone *struct {
+						AffinityTags *[]struct {
+							Key    *string `tfsdk:"key" json:"key,omitempty"`
+							Weight *int64  `tfsdk:"weight" json:"weight,omitempty"`
+						} `tfsdk:"affinity_tags" json:"affinityTags,omitempty"`
+					} `tfsdk:"local_zone" json:"localZone,omitempty"`
 				} `tfsdk:"locality_awareness" json:"localityAwareness,omitempty"`
 			} `tfsdk:"default" json:"default,omitempty"`
 			TargetRef *struct {
-				Kind *string            `tfsdk:"kind" json:"kind,omitempty"`
-				Mesh *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-				Name *string            `tfsdk:"name" json:"name,omitempty"`
-				Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+				Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+				Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+				Name       *string            `tfsdk:"name" json:"name,omitempty"`
+				ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+				Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		} `tfsdk:"to" json:"to,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -212,8 +235,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 				MarkdownDescription: "Spec is the specification of the Kuma MeshLoadBalancingStrategy resource.",
 				Attributes: map[string]schema.Attribute{
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
-						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
+						Description:         "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
+						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
@@ -235,16 +258,25 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
-								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_types": schema.ListAttribute{
+								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tags": schema.MapAttribute{
-								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
-								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -262,20 +294,28 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default": schema.SingleNestedAttribute{
-									Description:         "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
-									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
+									Description:         "Default is a configuration specific to the group of destinations referenced in'targetRef'",
+									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in'targetRef'",
 									Attributes: map[string]schema.Attribute{
 										"load_balancer": schema.SingleNestedAttribute{
 											Description:         "LoadBalancer allows to specify load balancing algorithm.",
 											MarkdownDescription: "LoadBalancer allows to specify load balancing algorithm.",
 											Attributes: map[string]schema.Attribute{
 												"least_request": schema.SingleNestedAttribute{
-													Description:         "LeastRequest selects N random available hosts as specified in 'choiceCount' (2 by default) and picks the host which has the fewest active requests",
-													MarkdownDescription: "LeastRequest selects N random available hosts as specified in 'choiceCount' (2 by default) and picks the host which has the fewest active requests",
+													Description:         "LeastRequest selects N random available hosts as specified in 'choiceCount' (2 by default)and picks the host which has the fewest active requests",
+													MarkdownDescription: "LeastRequest selects N random available hosts as specified in 'choiceCount' (2 by default)and picks the host which has the fewest active requests",
 													Attributes: map[string]schema.Attribute{
+														"active_request_bias": schema.StringAttribute{
+															Description:         "ActiveRequestBias refers to dynamic weights applied when hosts have varying loadbalancing weights. A higher value here aggressively reduces the weight of endpointsthat are currently handling active requests. In essence, the higher the ActiveRequestBiasvalue, the more forcefully it reduces the load balancing weight of endpoints that areactively serving requests.",
+															MarkdownDescription: "ActiveRequestBias refers to dynamic weights applied when hosts have varying loadbalancing weights. A higher value here aggressively reduces the weight of endpointsthat are currently handling active requests. In essence, the higher the ActiveRequestBiasvalue, the more forcefully it reduces the load balancing weight of endpoints that areactively serving requests.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"choice_count": schema.Int64Attribute{
-															Description:         "ChoiceCount is the number of random healthy hosts from which the host with the fewest active requests will be chosen. Defaults to 2 so that Envoy performs two-choice selection if the field is not set.",
-															MarkdownDescription: "ChoiceCount is the number of random healthy hosts from which the host with the fewest active requests will be chosen. Defaults to 2 so that Envoy performs two-choice selection if the field is not set.",
+															Description:         "ChoiceCount is the number of random healthy hosts from which the host withthe fewest active requests will be chosen. Defaults to 2 so that Envoy performstwo-choice selection if the field is not set.",
+															MarkdownDescription: "ChoiceCount is the number of random healthy hosts from which the host withthe fewest active requests will be chosen. Defaults to 2 so that Envoy performstwo-choice selection if the field is not set.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -290,12 +330,12 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"maglev": schema.SingleNestedAttribute{
-													Description:         "Maglev implements consistent hashing to upstream hosts. Maglev can be used as a drop in replacement for the ring hash load balancer any place in which consistent hashing is desired.",
-													MarkdownDescription: "Maglev implements consistent hashing to upstream hosts. Maglev can be used as a drop in replacement for the ring hash load balancer any place in which consistent hashing is desired.",
+													Description:         "Maglev implements consistent hashing to upstream hosts. Maglev can be used asa drop in replacement for the ring hash load balancer any place in whichconsistent hashing is desired.",
+													MarkdownDescription: "Maglev implements consistent hashing to upstream hosts. Maglev can be used asa drop in replacement for the ring hash load balancer any place in whichconsistent hashing is desired.",
 													Attributes: map[string]schema.Attribute{
 														"hash_policies": schema.ListNestedAttribute{
-															Description:         "HashPolicies specify a list of request/connection properties that are used to calculate a hash. These hash policies are executed in the specified order. If a hash policy has the “terminal” attribute set to true, and there is already a hash generated, the hash is returned immediately, ignoring the rest of the hash policy list.",
-															MarkdownDescription: "HashPolicies specify a list of request/connection properties that are used to calculate a hash. These hash policies are executed in the specified order. If a hash policy has the “terminal” attribute set to true, and there is already a hash generated, the hash is returned immediately, ignoring the rest of the hash policy list.",
+															Description:         "HashPolicies specify a list of request/connection properties that are used to calculate a hash.These hash policies are executed in the specified order. If a hash policy has the “terminal” attributeset to true, and there is already a hash generated, the hash is returned immediately,ignoring the rest of the hash policy list.",
+															MarkdownDescription: "HashPolicies specify a list of request/connection properties that are used to calculate a hash.These hash policies are executed in the specified order. If a hash policy has the “terminal” attributeset to true, and there is already a hash generated, the hash is returned immediately,ignoring the rest of the hash policy list.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"connection": schema.SingleNestedAttribute{
@@ -356,8 +396,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The name of the Object in the per-request filterState, which is an Envoy::Hashable object. If there is no data associated with the key, or the stored object is not Envoy::Hashable, no hash will be produced.",
-																				MarkdownDescription: "The name of the Object in the per-request filterState, which is an Envoy::Hashable object. If there is no data associated with the key, or the stored object is not Envoy::Hashable, no hash will be produced.",
+																				Description:         "The name of the Object in the per-request filterState, which isan Envoy::Hashable object. If there is no data associated with the key,or the stored object is not Envoy::Hashable, no hash will be produced.",
+																				MarkdownDescription: "The name of the Object in the per-request filterState, which isan Envoy::Hashable object. If there is no data associated with the key,or the stored object is not Envoy::Hashable, no hash will be produced.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -396,8 +436,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "The name of the URL query parameter that will be used to obtain the hash key. If the parameter is not present, no hash will be produced. Query parameter names are case-sensitive.",
-																				MarkdownDescription: "The name of the URL query parameter that will be used to obtain the hash key. If the parameter is not present, no hash will be produced. Query parameter names are case-sensitive.",
+																				Description:         "The name of the URL query parameter that will be used to obtain the hash key.If the parameter is not present, no hash will be produced. Query parameter namesare case-sensitive.",
+																				MarkdownDescription: "The name of the URL query parameter that will be used to obtain the hash key.If the parameter is not present, no hash will be produced. Query parameter namesare case-sensitive.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -412,8 +452,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 																	},
 
 																	"terminal": schema.BoolAttribute{
-																		Description:         "Terminal is a flag that short-circuits the hash computing. This field provides a ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallback to rest of the policy list”, it saves time when the terminal policy works. If true, and there is already a hash computed, ignore rest of the list of hash polices.",
-																		MarkdownDescription: "Terminal is a flag that short-circuits the hash computing. This field provides a ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallback to rest of the policy list”, it saves time when the terminal policy works. If true, and there is already a hash computed, ignore rest of the list of hash polices.",
+																		Description:         "Terminal is a flag that short-circuits the hash computing. This field providesa ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallbackto rest of the policy list”, it saves time when the terminal policy works.If true, and there is already a hash computed, ignore rest of the list of hash polices.",
+																		MarkdownDescription: "Terminal is a flag that short-circuits the hash computing. This field providesa ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallbackto rest of the policy list”, it saves time when the terminal policy works.If true, and there is already a hash computed, ignore rest of the list of hash polices.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -437,8 +477,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"table_size": schema.Int64Attribute{
-															Description:         "The table size for Maglev hashing. Maglev aims for “minimal disruption” rather than an absolute guarantee. Minimal disruption means that when the set of upstream hosts change, a connection will likely be sent to the same upstream as it was before. Increasing the table size reduces the amount of disruption. The table size must be prime number limited to 5000011. If it is not specified, the default is 65537.",
-															MarkdownDescription: "The table size for Maglev hashing. Maglev aims for “minimal disruption” rather than an absolute guarantee. Minimal disruption means that when the set of upstream hosts change, a connection will likely be sent to the same upstream as it was before. Increasing the table size reduces the amount of disruption. The table size must be prime number limited to 5000011. If it is not specified, the default is 65537.",
+															Description:         "The table size for Maglev hashing. Maglev aims for “minimal disruption”rather than an absolute guarantee. Minimal disruption means that whenthe set of upstream hosts change, a connection will likely be sentto the same upstream as it was before. Increasing the table size reducesthe amount of disruption. The table size must be prime number limited to 5000011.If it is not specified, the default is 65537.",
+															MarkdownDescription: "The table size for Maglev hashing. Maglev aims for “minimal disruption”rather than an absolute guarantee. Minimal disruption means that whenthe set of upstream hosts change, a connection will likely be sentto the same upstream as it was before. Increasing the table size reducesthe amount of disruption. The table size must be prime number limited to 5000011.If it is not specified, the default is 65537.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -454,8 +494,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"random": schema.MapAttribute{
-													Description:         "Random selects a random available host. The random load balancer generally performs better than round-robin if no health checking policy is configured. Random selection avoids bias towards the host in the set that comes after a failed host.",
-													MarkdownDescription: "Random selects a random available host. The random load balancer generally performs better than round-robin if no health checking policy is configured. Random selection avoids bias towards the host in the set that comes after a failed host.",
+													Description:         "Random selects a random available host. The random load balancer generallyperforms better than round-robin if no health checking policy is configured.Random selection avoids bias towards the host in the set that comes after a failed host.",
+													MarkdownDescription: "Random selects a random available host. The random load balancer generallyperforms better than round-robin if no health checking policy is configured.Random selection avoids bias towards the host in the set that comes after a failed host.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -463,12 +503,12 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"ring_hash": schema.SingleNestedAttribute{
-													Description:         "RingHash  implements consistent hashing to upstream hosts. Each host is mapped onto a circle (the “ring”) by hashing its address; each request is then routed to a host by hashing some property of the request, and finding the nearest corresponding host clockwise around the ring.",
-													MarkdownDescription: "RingHash  implements consistent hashing to upstream hosts. Each host is mapped onto a circle (the “ring”) by hashing its address; each request is then routed to a host by hashing some property of the request, and finding the nearest corresponding host clockwise around the ring.",
+													Description:         "RingHash  implements consistent hashing to upstream hosts. Each host is mappedonto a circle (the “ring”) by hashing its address; each request is then routedto a host by hashing some property of the request, and finding the nearestcorresponding host clockwise around the ring.",
+													MarkdownDescription: "RingHash  implements consistent hashing to upstream hosts. Each host is mappedonto a circle (the “ring”) by hashing its address; each request is then routedto a host by hashing some property of the request, and finding the nearestcorresponding host clockwise around the ring.",
 													Attributes: map[string]schema.Attribute{
 														"hash_function": schema.StringAttribute{
-															Description:         "HashFunction is a function used to hash hosts onto the ketama ring. The value defaults to XX_HASH. Available values – XX_HASH, MURMUR_HASH_2.",
-															MarkdownDescription: "HashFunction is a function used to hash hosts onto the ketama ring. The value defaults to XX_HASH. Available values – XX_HASH, MURMUR_HASH_2.",
+															Description:         "HashFunction is a function used to hash hosts onto the ketama ring.The value defaults to XX_HASH. Available values – XX_HASH, MURMUR_HASH_2.",
+															MarkdownDescription: "HashFunction is a function used to hash hosts onto the ketama ring.The value defaults to XX_HASH. Available values – XX_HASH, MURMUR_HASH_2.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -478,8 +518,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"hash_policies": schema.ListNestedAttribute{
-															Description:         "HashPolicies specify a list of request/connection properties that are used to calculate a hash. These hash policies are executed in the specified order. If a hash policy has the “terminal” attribute set to true, and there is already a hash generated, the hash is returned immediately, ignoring the rest of the hash policy list.",
-															MarkdownDescription: "HashPolicies specify a list of request/connection properties that are used to calculate a hash. These hash policies are executed in the specified order. If a hash policy has the “terminal” attribute set to true, and there is already a hash generated, the hash is returned immediately, ignoring the rest of the hash policy list.",
+															Description:         "HashPolicies specify a list of request/connection properties that are used to calculate a hash.These hash policies are executed in the specified order. If a hash policy has the “terminal” attributeset to true, and there is already a hash generated, the hash is returned immediately,ignoring the rest of the hash policy list.",
+															MarkdownDescription: "HashPolicies specify a list of request/connection properties that are used to calculate a hash.These hash policies are executed in the specified order. If a hash policy has the “terminal” attributeset to true, and there is already a hash generated, the hash is returned immediately,ignoring the rest of the hash policy list.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"connection": schema.SingleNestedAttribute{
@@ -540,8 +580,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "The name of the Object in the per-request filterState, which is an Envoy::Hashable object. If there is no data associated with the key, or the stored object is not Envoy::Hashable, no hash will be produced.",
-																				MarkdownDescription: "The name of the Object in the per-request filterState, which is an Envoy::Hashable object. If there is no data associated with the key, or the stored object is not Envoy::Hashable, no hash will be produced.",
+																				Description:         "The name of the Object in the per-request filterState, which isan Envoy::Hashable object. If there is no data associated with the key,or the stored object is not Envoy::Hashable, no hash will be produced.",
+																				MarkdownDescription: "The name of the Object in the per-request filterState, which isan Envoy::Hashable object. If there is no data associated with the key,or the stored object is not Envoy::Hashable, no hash will be produced.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -580,8 +620,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 																		MarkdownDescription: "",
 																		Attributes: map[string]schema.Attribute{
 																			"name": schema.StringAttribute{
-																				Description:         "The name of the URL query parameter that will be used to obtain the hash key. If the parameter is not present, no hash will be produced. Query parameter names are case-sensitive.",
-																				MarkdownDescription: "The name of the URL query parameter that will be used to obtain the hash key. If the parameter is not present, no hash will be produced. Query parameter names are case-sensitive.",
+																				Description:         "The name of the URL query parameter that will be used to obtain the hash key.If the parameter is not present, no hash will be produced. Query parameter namesare case-sensitive.",
+																				MarkdownDescription: "The name of the URL query parameter that will be used to obtain the hash key.If the parameter is not present, no hash will be produced. Query parameter namesare case-sensitive.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -596,8 +636,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 																	},
 
 																	"terminal": schema.BoolAttribute{
-																		Description:         "Terminal is a flag that short-circuits the hash computing. This field provides a ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallback to rest of the policy list”, it saves time when the terminal policy works. If true, and there is already a hash computed, ignore rest of the list of hash polices.",
-																		MarkdownDescription: "Terminal is a flag that short-circuits the hash computing. This field provides a ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallback to rest of the policy list”, it saves time when the terminal policy works. If true, and there is already a hash computed, ignore rest of the list of hash polices.",
+																		Description:         "Terminal is a flag that short-circuits the hash computing. This field providesa ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallbackto rest of the policy list”, it saves time when the terminal policy works.If true, and there is already a hash computed, ignore rest of the list of hash polices.",
+																		MarkdownDescription: "Terminal is a flag that short-circuits the hash computing. This field providesa ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallbackto rest of the policy list”, it saves time when the terminal policy works.If true, and there is already a hash computed, ignore rest of the list of hash polices.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -621,8 +661,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"max_ring_size": schema.Int64Attribute{
-															Description:         "Maximum hash ring size. Defaults to 8M entries, and limited to 8M entries, but can be lowered to further constrain resource use.",
-															MarkdownDescription: "Maximum hash ring size. Defaults to 8M entries, and limited to 8M entries, but can be lowered to further constrain resource use.",
+															Description:         "Maximum hash ring size. Defaults to 8M entries, and limited to 8M entries,but can be lowered to further constrain resource use.",
+															MarkdownDescription: "Maximum hash ring size. Defaults to 8M entries, and limited to 8M entries,but can be lowered to further constrain resource use.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -633,8 +673,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 														},
 
 														"min_ring_size": schema.Int64Attribute{
-															Description:         "Minimum hash ring size. The larger the ring is (that is, the more hashes there are for each provided host) the better the request distribution will reflect the desired weights. Defaults to 1024 entries, and limited to 8M entries.",
-															MarkdownDescription: "Minimum hash ring size. The larger the ring is (that is, the more hashes there are for each provided host) the better the request distribution will reflect the desired weights. Defaults to 1024 entries, and limited to 8M entries.",
+															Description:         "Minimum hash ring size. The larger the ring is (that is,the more hashes there are for each provided host) the better the request distributionwill reflect the desired weights. Defaults to 1024 entries, and limited to 8M entries.",
+															MarkdownDescription: "Minimum hash ring size. The larger the ring is (that is,the more hashes there are for each provided host) the better the request distributionwill reflect the desired weights. Defaults to 1024 entries, and limited to 8M entries.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -650,8 +690,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 												},
 
 												"round_robin": schema.MapAttribute{
-													Description:         "RoundRobin is a load balancing algorithm that distributes requests across available upstream hosts in round-robin order.",
-													MarkdownDescription: "RoundRobin is a load balancing algorithm that distributes requests across available upstream hosts in round-robin order.",
+													Description:         "RoundRobin is a load balancing algorithm that distributes requestsacross available upstream hosts in round-robin order.",
+													MarkdownDescription: "RoundRobin is a load balancing algorithm that distributes requestsacross available upstream hosts in round-robin order.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -678,12 +718,132 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 											Description:         "LocalityAwareness contains configuration for locality aware load balancing.",
 											MarkdownDescription: "LocalityAwareness contains configuration for locality aware load balancing.",
 											Attributes: map[string]schema.Attribute{
+												"cross_zone": schema.SingleNestedAttribute{
+													Description:         "CrossZone defines locality aware load balancing priorities when dataplane proxies inside local zoneare unavailable",
+													MarkdownDescription: "CrossZone defines locality aware load balancing priorities when dataplane proxies inside local zoneare unavailable",
+													Attributes: map[string]schema.Attribute{
+														"failover": schema.ListNestedAttribute{
+															Description:         "Failover defines list of load balancing rules in order of priority",
+															MarkdownDescription: "Failover defines list of load balancing rules in order of priority",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"from": schema.SingleNestedAttribute{
+																		Description:         "From defines the list of zones to which the rule applies",
+																		MarkdownDescription: "From defines the list of zones to which the rule applies",
+																		Attributes: map[string]schema.Attribute{
+																			"zones": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"to": schema.SingleNestedAttribute{
+																		Description:         "To defines to which zones the traffic should be load balanced",
+																		MarkdownDescription: "To defines to which zones the traffic should be load balanced",
+																		Attributes: map[string]schema.Attribute{
+																			"type": schema.StringAttribute{
+																				Description:         "Type defines how target zones will be picked from available zones",
+																				MarkdownDescription: "Type defines how target zones will be picked from available zones",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																				Validators: []validator.String{
+																					stringvalidator.OneOf("None", "Only", "Any", "AnyExcept"),
+																				},
+																			},
+
+																			"zones": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: true,
+																		Optional: false,
+																		Computed: false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"failover_threshold": schema.SingleNestedAttribute{
+															Description:         "FailoverThreshold defines the percentage of live destination dataplane proxies below which load balancing to thenext priority starts.Example: If you configure failoverThreshold to 70, and you have deployed 10 destination dataplane proxies.Load balancing to next priority will start when number of live destination dataplane proxies drops below 7.Default 50",
+															MarkdownDescription: "FailoverThreshold defines the percentage of live destination dataplane proxies below which load balancing to thenext priority starts.Example: If you configure failoverThreshold to 70, and you have deployed 10 destination dataplane proxies.Load balancing to next priority will start when number of live destination dataplane proxies drops below 7.Default 50",
+															Attributes: map[string]schema.Attribute{
+																"percentage": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"disabled": schema.BoolAttribute{
-													Description:         "Disabled allows to disable locality-aware load balancing. When disabled requests are distributed across all endpoints regardless of locality.",
-													MarkdownDescription: "Disabled allows to disable locality-aware load balancing. When disabled requests are distributed across all endpoints regardless of locality.",
+													Description:         "Disabled allows to disable locality-aware load balancing.When disabled requests are distributed across all endpoints regardless of locality.",
+													MarkdownDescription: "Disabled allows to disable locality-aware load balancing.When disabled requests are distributed across all endpoints regardless of locality.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"local_zone": schema.SingleNestedAttribute{
+													Description:         "LocalZone defines locality aware load balancing priorities between dataplane proxies inside a zone",
+													MarkdownDescription: "LocalZone defines locality aware load balancing priorities between dataplane proxies inside a zone",
+													Attributes: map[string]schema.Attribute{
+														"affinity_tags": schema.ListNestedAttribute{
+															Description:         "AffinityTags list of tags for local zone load balancing.",
+															MarkdownDescription: "AffinityTags list of tags for local zone load balancing.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "Key defines tag for which affinity is configured",
+																		MarkdownDescription: "Key defines tag for which affinity is configured",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"weight": schema.Int64Attribute{
+																		Description:         "Weight of the tag used for load balancing. The bigger the weight the bigger the priority.Percentage of local traffic load balanced to tag is computed by dividing weight by sum of weights from all tags.For example with two affinity tags first with weight 80 and second with weight 20,then 80% of traffic will be redirected to the first tag, and 20% of traffic will be redirected to second one.Setting weights is not mandatory. When weights are not set control plane will compute default weight based on list order.Default: If you do not specify weight we will adjust them so that 90% traffic goes to first tag, 9% to next, and 1% to third and so on.",
+																		MarkdownDescription: "Weight of the tag used for load balancing. The bigger the weight the bigger the priority.Percentage of local traffic load balanced to tag is computed by dividing weight by sum of weights from all tags.For example with two affinity tags first with weight 80 and second with weight 20,then 80% of traffic will be redirected to the first tag, and 20% of traffic will be redirected to second one.Setting weights is not mandatory. When weights are not set control plane will compute default weight based on list order.Default: If you do not specify weight we will adjust them so that 90% traffic goes to first tag, 9% to next, and 1% to third and so on.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 											Required: false,
@@ -697,8 +857,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group of destinations.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of destinations.",
+									Description:         "TargetRef is a reference to the resource that represents a group ofdestinations.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofdestinations.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -720,16 +880,25 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_types": schema.ListAttribute{
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

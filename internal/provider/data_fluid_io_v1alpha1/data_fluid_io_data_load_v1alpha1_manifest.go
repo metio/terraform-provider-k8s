@@ -179,7 +179,11 @@ type DataFluidIoDataLoadV1Alpha1ManifestData struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		} `tfsdk:"pod_metadata" json:"podMetadata,omitempty"`
-		Policy   *string `tfsdk:"policy" json:"policy,omitempty"`
+		Policy    *string `tfsdk:"policy" json:"policy,omitempty"`
+		Resources *struct {
+			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+		} `tfsdk:"resources" json:"resources,omitempty"`
 		RunAfter *struct {
 			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -199,6 +203,7 @@ type DataFluidIoDataLoadV1Alpha1ManifestData struct {
 			TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
 			Value             *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
+		TtlSecondsAfterFinished *int64 `tfsdk:"ttl_seconds_after_finished" json:"ttlSecondsAfterFinished,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -1182,6 +1187,33 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						},
 					},
 
+					"resources": schema.SingleNestedAttribute{
+						Description:         "Resources that will be requested by the DataLoad job. <br>",
+						MarkdownDescription: "Resources that will be requested by the DataLoad job. <br>",
+						Attributes: map[string]schema.Attribute{
+							"limits": schema.MapAttribute{
+								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"requests": schema.MapAttribute{
+								Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"run_after": schema.SingleNestedAttribute{
 						Description:         "Specifies that the preceding operation in a workflow",
 						MarkdownDescription: "Specifies that the preceding operation in a workflow",
@@ -1318,6 +1350,14 @@ func (r *DataFluidIoDataLoadV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"ttl_seconds_after_finished": schema.Int64Attribute{
+						Description:         "TTLSecondsAfterFinished is the time second to clean up data operations after finished or failed",
+						MarkdownDescription: "TTLSecondsAfterFinished is the time second to clean up data operations after finished or failed",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

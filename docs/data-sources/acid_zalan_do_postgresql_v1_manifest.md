@@ -115,6 +115,7 @@ Optional:
 - `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--tolerations))
 - `use_load_balancer` (Boolean) deprecated
 - `users` (Map of List of String)
+- `users_ignoring_secret_rotation` (List of String)
 - `users_with_in_place_secret_rotation` (List of String)
 - `users_with_secret_rotation` (List of String)
 
@@ -390,6 +391,8 @@ Optional:
 Optional:
 
 - `cpu` (String)
+- `hugepages_1_gi` (String)
+- `hugepages_2_mi` (String)
 - `memory` (String)
 
 
@@ -399,6 +402,8 @@ Optional:
 Optional:
 
 - `cpu` (String)
+- `hugepages_1_gi` (String)
+- `hugepages_2_mi` (String)
 - `memory` (String)
 
 
@@ -426,6 +431,7 @@ Required:
 Optional:
 
 - `batch_size` (Number)
+- `enable_recovery` (Boolean)
 - `filter` (Map of String)
 
 <a id="nestedatt--spec--streams--tables"></a>
@@ -439,6 +445,7 @@ Optional:
 
 - `id_column` (String)
 - `payload_column` (String)
+- `recovery_event_type` (String)
 
 
 

@@ -215,7 +215,14 @@ type LitmuschaosIoChaosEngineV1Alpha1ManifestData struct {
 							Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 							NodeSelector  *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 							Privileged    *bool              `tfsdk:"privileged" json:"privileged,omitempty"`
-							VolumeMount   *[]struct {
+							Tolerations   *[]struct {
+								Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+								Key               *string `tfsdk:"key" json:"key,omitempty"`
+								Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+								TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+								Value             *string `tfsdk:"value" json:"value,omitempty"`
+							} `tfsdk:"tolerations" json:"tolerations,omitempty"`
+							VolumeMount *[]struct {
 								MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
 								MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
 								Name             *string `tfsdk:"name" json:"name,omitempty"`
@@ -528,6 +535,7 @@ type LitmuschaosIoChaosEngineV1Alpha1ManifestData struct {
 						ProbeTimeout         *string `tfsdk:"probe_timeout" json:"probeTimeout,omitempty"`
 						Retry                *int64  `tfsdk:"retry" json:"retry,omitempty"`
 						StopOnFailure        *bool   `tfsdk:"stop_on_failure" json:"stopOnFailure,omitempty"`
+						Verbosity            *string `tfsdk:"verbosity" json:"verbosity,omitempty"`
 					} `tfsdk:"run_properties" json:"runProperties,omitempty"`
 					SloProbe_inputs *struct {
 						Comparator *struct {
@@ -1782,6 +1790,57 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
+																	},
+
+																	"tolerations": schema.ListNestedAttribute{
+																		Description:         "Tolerations for the source pod",
+																		MarkdownDescription: "Tolerations for the source pod",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"effect": schema.StringAttribute{
+																					Description:         "Effect to match. Empty means all effects.",
+																					MarkdownDescription: "Effect to match. Empty means all effects.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"key": schema.StringAttribute{
+																					Description:         "Taint key the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists.",
+																					MarkdownDescription: "Taint key the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"operator": schema.StringAttribute{
+																					Description:         "Operators are Exists or Equal. Defaults to Equal.",
+																					MarkdownDescription: "Operators are Exists or Equal. Defaults to Equal.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"toleration_seconds": schema.Int64Attribute{
+																					Description:         "Period of time the toleration tolerates the taint.",
+																					MarkdownDescription: "Period of time the toleration tolerates the taint.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"value": schema.StringAttribute{
+																					Description:         "If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																					MarkdownDescription: "If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
 																	},
 
 																	"volume_mount": schema.ListNestedAttribute{
@@ -3908,6 +3967,14 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ d
 															},
 
 															"stop_on_failure": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"verbosity": schema.StringAttribute{
 																Description:         "",
 																MarkdownDescription: "",
 																Required:            false,

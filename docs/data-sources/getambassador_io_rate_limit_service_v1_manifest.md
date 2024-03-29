@@ -66,4 +66,12 @@ Optional:
 - `protocol_version` (String)
 - `timeout_ms` (Number)
 - `tls` (Boolean)
+- `v3_grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--v3_grpc))
 - `v3_stats_name` (String)
+
+<a id="nestedatt--spec--v3_grpc"></a>
+### Nested Schema for `spec.v3_grpc`
+
+Optional:
+
+- `use_resource_exhausted_code` (Boolean) UseResourceExhaustedCode, when set to true, will cause envoy to return a 'RESOURCE_EXHAUSTED' gRPC code instead of the default 'UNAVAILABLE' gRPC code.

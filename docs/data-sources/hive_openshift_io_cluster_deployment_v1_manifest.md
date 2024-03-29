@@ -62,7 +62,7 @@ Required:
 
 Optional:
 
-- `bound_service_account_signing_key_secret_ref` (Attributes) BoundServiceAccountSignkingKeySecretRef refers to a Secret that contains a 'bound-service-account-signing-key.key' data key pointing to the private key that will be used to sign ServiceAccount objects. Primarily used to provision AWS clusters to use Amazon's Security Token Service. (see [below for nested schema](#nestedatt--spec--bound_service_account_signing_key_secret_ref))
+- `bound_service_account_signing_key_secret_ref` (Attributes) BoundServiceAccountSigningKeySecretRef refers to a Secret that contains a 'bound-service-account-signing-key.key' data key pointing to the private key that will be used to sign ServiceAccount objects. Primarily used to provision AWS clusters to use Amazon's Security Token Service. (see [below for nested schema](#nestedatt--spec--bound_service_account_signing_key_secret_ref))
 - `certificate_bundles` (Attributes List) CertificateBundles is a list of certificate bundles associated with this cluster (see [below for nested schema](#nestedatt--spec--certificate_bundles))
 - `cluster_install_ref` (Attributes) ClusterInstallLocalReference provides reference to an object that implements the hivecontract ClusterInstall. The namespace of the object is same as the ClusterDeployment. This cannot be set when Provisioning is also set. (see [below for nested schema](#nestedatt--spec--cluster_install_ref))
 - `cluster_metadata` (Attributes) ClusterMetadata contains metadata information about the installed cluster. (see [below for nested schema](#nestedatt--spec--cluster_metadata))
@@ -84,7 +84,6 @@ Optional:
 Optional:
 
 - `agent_bare_metal` (Attributes) AgentBareMetal is the configuration used when performing an Assisted Agent based installation to bare metal. (see [below for nested schema](#nestedatt--spec--platform--agent_bare_metal))
-- `alibabacloud` (Attributes) AlibabaCloud is the configuration used when installing on Alibaba Cloud (see [below for nested schema](#nestedatt--spec--platform--alibabacloud))
 - `aws` (Attributes) AWS is the configuration used when installing on AWS. (see [below for nested schema](#nestedatt--spec--platform--aws))
 - `azure` (Attributes) Azure is the configuration used when installing on Azure. (see [below for nested schema](#nestedatt--spec--platform--azure))
 - `baremetal` (Attributes) BareMetal is the configuration used when installing on bare metal. (see [below for nested schema](#nestedatt--spec--platform--baremetal))
@@ -122,23 +121,6 @@ Optional:
 
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
-
-
-
-<a id="nestedatt--spec--platform--alibabacloud"></a>
-### Nested Schema for `spec.platform.alibabacloud`
-
-Required:
-
-- `credentials_secret_ref` (Attributes) CredentialsSecretRef refers to a secret that contains Alibaba Cloud account access credentials. (see [below for nested schema](#nestedatt--spec--platform--alibabacloud--credentials_secret_ref))
-- `region` (String) Region specifies the Alibaba Cloud region where the cluster will be created.
-
-<a id="nestedatt--spec--platform--alibabacloud--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.alibabacloud.region`
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
 
 
 
@@ -439,9 +421,10 @@ Optional:
 
 - `aws` (Attributes) AWS holds AWS-specific cluster metadata (see [below for nested schema](#nestedatt--spec--cluster_metadata--platform--aws))
 - `azure` (Attributes) Azure holds azure-specific cluster metadata (see [below for nested schema](#nestedatt--spec--cluster_metadata--platform--azure))
+- `gcp` (Attributes) GCP holds GCP-specific cluster metadata (see [below for nested schema](#nestedatt--spec--cluster_metadata--platform--gcp))
 
 <a id="nestedatt--spec--cluster_metadata--platform--aws"></a>
-### Nested Schema for `spec.cluster_metadata.platform.azure`
+### Nested Schema for `spec.cluster_metadata.platform.gcp`
 
 Optional:
 
@@ -449,11 +432,19 @@ Optional:
 
 
 <a id="nestedatt--spec--cluster_metadata--platform--azure"></a>
-### Nested Schema for `spec.cluster_metadata.platform.azure`
+### Nested Schema for `spec.cluster_metadata.platform.gcp`
 
 Required:
 
 - `resource_group_name` (String) ResourceGroupName is the name of the resource group in which the cluster resources were created.
+
+
+<a id="nestedatt--spec--cluster_metadata--platform--gcp"></a>
+### Nested Schema for `spec.cluster_metadata.platform.gcp`
+
+Optional:
+
+- `network_project_id` (String) NetworkProjectID is used for shared VPC setups
 
 
 

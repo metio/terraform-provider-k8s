@@ -57,8 +57,8 @@ func (r *GatewayNginxOrgNginxGatewayV1Alpha1Manifest) Metadata(_ context.Context
 
 func (r *GatewayNginxOrgNginxGatewayV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "NginxGateway represents the dynamic configuration for an NGINX Kubernetes Gateway control plane.",
-		MarkdownDescription: "NginxGateway represents the dynamic configuration for an NGINX Kubernetes Gateway control plane.",
+		Description:         "NginxGateway represents the dynamic configuration for an NGINX Gateway Fabric control plane.",
+		MarkdownDescription: "NginxGateway represents the dynamic configuration for an NGINX Gateway Fabric control plane.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",

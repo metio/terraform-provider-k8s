@@ -80,7 +80,10 @@ type ChaosMeshOrgNetworkChaosV1Alpha1ManifestData struct {
 			Correlation *string `tfsdk:"correlation" json:"correlation,omitempty"`
 			Loss        *string `tfsdk:"loss" json:"loss,omitempty"`
 		} `tfsdk:"loss" json:"loss,omitempty"`
-		Mode          *string `tfsdk:"mode" json:"mode,omitempty"`
+		Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+		Rate *struct {
+			Rate *string `tfsdk:"rate" json:"rate,omitempty"`
+		} `tfsdk:"rate" json:"rate,omitempty"`
 		RemoteCluster *string `tfsdk:"remote_cluster" json:"remoteCluster,omitempty"`
 		Selector      *struct {
 			AnnotationSelectors *map[string]string `tfsdk:"annotation_selectors" json:"annotationSelectors,omitempty"`
@@ -464,6 +467,23 @@ func (r *ChaosMeshOrgNetworkChaosV1Alpha1Manifest) Schema(_ context.Context, _ d
 						Validators: []validator.String{
 							stringvalidator.OneOf("one", "all", "fixed", "fixed-percent", "random-max-percent"),
 						},
+					},
+
+					"rate": schema.SingleNestedAttribute{
+						Description:         "Rate represents the detail about rate control action",
+						MarkdownDescription: "Rate represents the detail about rate control action",
+						Attributes: map[string]schema.Attribute{
+							"rate": schema.StringAttribute{
+								Description:         "Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.",
+								MarkdownDescription: "Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"remote_cluster": schema.StringAttribute{

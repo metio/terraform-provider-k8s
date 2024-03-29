@@ -16,6 +16,7 @@ CiliumClusterwideNetworkPolicy is a Kubernetes third-party resource with an modi
 data "k8s_cilium_io_cilium_clusterwide_network_policy_v2_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -58,6 +59,7 @@ Optional:
 - `description` (String) Description is a free form string, it can be used by the creator of the rule to store human readable explanation of the purpose of this rule. Rules cannot be identified by comment.
 - `egress` (Attributes List) Egress is a list of EgressRule which are enforced at egress. If omitted or empty, this rule does not apply at egress. (see [below for nested schema](#nestedatt--spec--egress))
 - `egress_deny` (Attributes List) EgressDeny is a list of EgressDenyRule which are enforced at egress. Any rule inserted here will be denied regardless of the allowed egress rules in the 'egress' field. If omitted or empty, this rule does not apply at egress. (see [below for nested schema](#nestedatt--spec--egress_deny))
+- `enable_default_deny` (Attributes) EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.  If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.  If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.  This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode. (see [below for nested schema](#nestedatt--spec--enable_default_deny))
 - `endpoint_selector` (Attributes) EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive. (see [below for nested schema](#nestedatt--spec--endpoint_selector))
 - `ingress` (Attributes List) Ingress is a list of IngressRule which are enforced at ingress. If omitted or empty, this rule does not apply at ingress. (see [below for nested schema](#nestedatt--spec--ingress))
 - `ingress_deny` (Attributes List) IngressDeny is a list of IngressDenyRule which are enforced at ingress. Any rule inserted here will be denied regardless of the allowed ingress rules in the 'ingress' field. If omitted or empty, this rule does not apply at ingress. (see [below for nested schema](#nestedatt--spec--ingress_deny))
@@ -77,6 +79,7 @@ Optional:
 - `to_entities` (List of String) ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.
 - `to_fqd_ns` (Attributes List) ToFQDN allows whitelisting DNS names in place of IPs. The IPs that result from DNS resolution of 'ToFQDN.MatchName's are added to the same EgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 and L7 rules within this EgressRule will also apply to these IPs. The DNS -> IP mapping is re-resolved periodically from within the cilium-agent, and the IPs in the DNS response are effected in the policy for selected pods as-is (i.e. the list of IPs is not modified in any way). Note: An explicit rule to allow for DNS traffic is needed for the pods, as ToFQDN counts as an egress rule and will enforce egress policy when PolicyEnforcment=default. Note: If the resolved IPs are IPs within the kubernetes cluster, the ToFQDN rule will not apply to that IP. Note: ToFQDN cannot occur in the same policy as other To* rules. (see [below for nested schema](#nestedatt--spec--egress--to_fqd_ns))
 - `to_groups` (Attributes List) ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' (see [below for nested schema](#nestedatt--spec--egress--to_groups))
+- `to_nodes` (Attributes List) ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate. (see [below for nested schema](#nestedatt--spec--egress--to_nodes))
 - `to_ports` (Attributes List) ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is allowed to initiate connections to destination port 8080/tcp (see [below for nested schema](#nestedatt--spec--egress--to_ports))
 - `to_requires` (Attributes List) ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'. (see [below for nested schema](#nestedatt--spec--egress--to_requires))
 - `to_services` (Attributes List) ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service (see [below for nested schema](#nestedatt--spec--egress--to_services))
@@ -101,7 +104,7 @@ Optional:
 
 Required:
 
-- `type` (Number) Type is a ICMP-type. It should be 0-255 (8bit).
+- `type` (String) Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply
 
 Optional:
 
@@ -115,7 +118,7 @@ Optional:
 Optional:
 
 - `cidr` (String) CIDR is a CIDR prefix / IP Block.
-- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.
+- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.
 - `except` (List of String) ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.
 
 
@@ -169,6 +172,28 @@ Optional:
 
 
 
+<a id="nestedatt--spec--egress--to_nodes"></a>
+### Nested Schema for `spec.egress.to_nodes`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--egress--to_nodes--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--egress--to_nodes--match_expressions"></a>
+### Nested Schema for `spec.egress.to_nodes.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
 <a id="nestedatt--spec--egress--to_ports"></a>
 ### Nested Schema for `spec.egress.to_ports`
 
@@ -186,8 +211,12 @@ Optional:
 
 Required:
 
-- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined. (see [below for nested schema](#nestedatt--spec--egress--to_ports--terminating_tls--envoy_config))
+- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--spec--egress--to_ports--terminating_tls--envoy_config))
 - `name` (String) Name is the name of the listener.
+
+Optional:
+
+- `priority` (Number) Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.
 
 <a id="nestedatt--spec--egress--to_ports--terminating_tls--envoy_config"></a>
 ### Nested Schema for `spec.egress.to_ports.terminating_tls.envoy_config`
@@ -424,6 +453,7 @@ Optional:
 - `to_endpoints` (Attributes List) ToEndpoints is a list of endpoints identified by an EndpointSelector to which the endpoints subject to the rule are allowed to communicate.  Example: Any endpoint with the label 'role=frontend' can communicate with any endpoint carrying the label 'role=backend'. (see [below for nested schema](#nestedatt--spec--egress_deny--to_endpoints))
 - `to_entities` (List of String) ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.
 - `to_groups` (Attributes List) ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' (see [below for nested schema](#nestedatt--spec--egress_deny--to_groups))
+- `to_nodes` (Attributes List) ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate. (see [below for nested schema](#nestedatt--spec--egress_deny--to_nodes))
 - `to_ports` (Attributes List) ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is not allowed to initiate connections to destination port 8080/tcp (see [below for nested schema](#nestedatt--spec--egress_deny--to_ports))
 - `to_requires` (Attributes List) ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'. (see [below for nested schema](#nestedatt--spec--egress_deny--to_requires))
 - `to_services` (Attributes List) ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service (see [below for nested schema](#nestedatt--spec--egress_deny--to_services))
@@ -440,7 +470,7 @@ Optional:
 
 Required:
 
-- `type` (Number) Type is a ICMP-type. It should be 0-255 (8bit).
+- `type` (String) Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply
 
 Optional:
 
@@ -454,7 +484,7 @@ Optional:
 Optional:
 
 - `cidr` (String) CIDR is a CIDR prefix / IP Block.
-- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.
+- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.
 - `except` (List of String) ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.
 
 
@@ -496,6 +526,28 @@ Optional:
 - `region` (String)
 - `security_groups_ids` (List of String)
 - `security_groups_names` (List of String)
+
+
+
+<a id="nestedatt--spec--egress_deny--to_nodes"></a>
+### Nested Schema for `spec.egress_deny.to_nodes`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--egress_deny--to_nodes--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--egress_deny--to_nodes--match_expressions"></a>
+### Nested Schema for `spec.egress_deny.to_nodes.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -594,6 +646,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--enable_default_deny"></a>
+### Nested Schema for `spec.enable_default_deny`
+
+Optional:
+
+- `egress` (Boolean) Whether or not the endpoint should have a default-deny rule applied to egress traffic.
+- `ingress` (Boolean) Whether or not the endpoint should have a default-deny rule applied to ingress traffic.
+
+
 <a id="nestedatt--spec--endpoint_selector"></a>
 ### Nested Schema for `spec.endpoint_selector`
 
@@ -626,6 +687,8 @@ Optional:
 - `from_cidr_set` (Attributes List) FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12. (see [below for nested schema](#nestedatt--spec--ingress--from_cidr_set))
 - `from_endpoints` (Attributes List) FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'. (see [below for nested schema](#nestedatt--spec--ingress--from_endpoints))
 - `from_entities` (List of String) FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'
+- `from_groups` (Attributes List) FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' (see [below for nested schema](#nestedatt--spec--ingress--from_groups))
+- `from_nodes` (Attributes List) FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule. (see [below for nested schema](#nestedatt--spec--ingress--from_nodes))
 - `from_requires` (Attributes List) FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'. (see [below for nested schema](#nestedatt--spec--ingress--from_requires))
 - `icmps` (Attributes List) ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming type 8 ICMP connections. (see [below for nested schema](#nestedatt--spec--ingress--icmps))
 - `to_ports` (Attributes List) ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming connections on port 80/tcp. (see [below for nested schema](#nestedatt--spec--ingress--to_ports))
@@ -644,7 +707,7 @@ Required:
 Optional:
 
 - `cidr` (String) CIDR is a CIDR prefix / IP Block.
-- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.
+- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.
 - `except` (List of String) ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.
 
 
@@ -658,6 +721,47 @@ Optional:
 
 <a id="nestedatt--spec--ingress--from_endpoints--match_expressions"></a>
 ### Nested Schema for `spec.ingress.from_endpoints.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--ingress--from_groups"></a>
+### Nested Schema for `spec.ingress.from_groups`
+
+Optional:
+
+- `aws` (Attributes) AWSGroup is an structure that can be used to whitelisting information from AWS integration (see [below for nested schema](#nestedatt--spec--ingress--from_groups--aws))
+
+<a id="nestedatt--spec--ingress--from_groups--aws"></a>
+### Nested Schema for `spec.ingress.from_groups.aws`
+
+Optional:
+
+- `labels` (Map of String)
+- `region` (String)
+- `security_groups_ids` (List of String)
+- `security_groups_names` (List of String)
+
+
+
+<a id="nestedatt--spec--ingress--from_nodes"></a>
+### Nested Schema for `spec.ingress.from_nodes`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--ingress--from_nodes--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--ingress--from_nodes--match_expressions"></a>
+### Nested Schema for `spec.ingress.from_nodes.match_labels`
 
 Required:
 
@@ -704,7 +808,7 @@ Optional:
 
 Required:
 
-- `type` (Number) Type is a ICMP-type. It should be 0-255 (8bit).
+- `type` (String) Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply
 
 Optional:
 
@@ -729,8 +833,12 @@ Optional:
 
 Required:
 
-- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--terminating_tls--envoy_config))
+- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--terminating_tls--envoy_config))
 - `name` (String) Name is the name of the listener.
+
+Optional:
+
+- `priority` (Number) Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.
 
 <a id="nestedatt--spec--ingress--to_ports--terminating_tls--envoy_config"></a>
 ### Nested Schema for `spec.ingress.to_ports.terminating_tls.envoy_config`
@@ -891,6 +999,8 @@ Optional:
 - `from_cidr_set` (Attributes List) FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12. (see [below for nested schema](#nestedatt--spec--ingress_deny--from_cidr_set))
 - `from_endpoints` (Attributes List) FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'. (see [below for nested schema](#nestedatt--spec--ingress_deny--from_endpoints))
 - `from_entities` (List of String) FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'
+- `from_groups` (Attributes List) FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' (see [below for nested schema](#nestedatt--spec--ingress_deny--from_groups))
+- `from_nodes` (Attributes List) FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule. (see [below for nested schema](#nestedatt--spec--ingress_deny--from_nodes))
 - `from_requires` (Attributes List) FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'. (see [below for nested schema](#nestedatt--spec--ingress_deny--from_requires))
 - `icmps` (Attributes List) ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming type 8 ICMP connections. (see [below for nested schema](#nestedatt--spec--ingress_deny--icmps))
 - `to_ports` (Attributes List) ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming connections on port 80/tcp. (see [below for nested schema](#nestedatt--spec--ingress_deny--to_ports))
@@ -901,7 +1011,7 @@ Optional:
 Optional:
 
 - `cidr` (String) CIDR is a CIDR prefix / IP Block.
-- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.
+- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.
 - `except` (List of String) ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.
 
 
@@ -915,6 +1025,47 @@ Optional:
 
 <a id="nestedatt--spec--ingress_deny--from_endpoints--match_expressions"></a>
 ### Nested Schema for `spec.ingress_deny.from_endpoints.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--spec--ingress_deny--from_groups"></a>
+### Nested Schema for `spec.ingress_deny.from_groups`
+
+Optional:
+
+- `aws` (Attributes) AWSGroup is an structure that can be used to whitelisting information from AWS integration (see [below for nested schema](#nestedatt--spec--ingress_deny--from_groups--aws))
+
+<a id="nestedatt--spec--ingress_deny--from_groups--aws"></a>
+### Nested Schema for `spec.ingress_deny.from_groups.aws`
+
+Optional:
+
+- `labels` (Map of String)
+- `region` (String)
+- `security_groups_ids` (List of String)
+- `security_groups_names` (List of String)
+
+
+
+<a id="nestedatt--spec--ingress_deny--from_nodes"></a>
+### Nested Schema for `spec.ingress_deny.from_nodes`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--ingress_deny--from_nodes--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--ingress_deny--from_nodes--match_expressions"></a>
+### Nested Schema for `spec.ingress_deny.from_nodes.match_labels`
 
 Required:
 
@@ -961,7 +1112,7 @@ Optional:
 
 Required:
 
-- `type` (Number) Type is a ICMP-type. It should be 0-255 (8bit).
+- `type` (String) Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply
 
 Optional:
 
@@ -1034,6 +1185,7 @@ Optional:
 - `description` (String) Description is a free form string, it can be used by the creator of the rule to store human readable explanation of the purpose of this rule. Rules cannot be identified by comment.
 - `egress` (Attributes List) Egress is a list of EgressRule which are enforced at egress. If omitted or empty, this rule does not apply at egress. (see [below for nested schema](#nestedatt--specs--egress))
 - `egress_deny` (Attributes List) EgressDeny is a list of EgressDenyRule which are enforced at egress. Any rule inserted here will be denied regardless of the allowed egress rules in the 'egress' field. If omitted or empty, this rule does not apply at egress. (see [below for nested schema](#nestedatt--specs--egress_deny))
+- `enable_default_deny` (Attributes) EnableDefaultDeny determines whether this policy configures the subject endpoint(s) to have a default deny mode. If enabled, this causes all traffic not explicitly allowed by a network policy to be dropped.  If not specified, the default is true for each traffic direction that has rules, and false otherwise. For example, if a policy only has Ingress or IngressDeny rules, then the default for ingress is true and egress is false.  If multiple policies apply to an endpoint, that endpoint's default deny will be enabled if any policy requests it.  This is useful for creating broad-based network policies that will not cause endpoints to enter default-deny mode. (see [below for nested schema](#nestedatt--specs--enable_default_deny))
 - `endpoint_selector` (Attributes) EndpointSelector selects all endpoints which should be subject to this rule. EndpointSelector and NodeSelector cannot be both empty and are mutually exclusive. (see [below for nested schema](#nestedatt--specs--endpoint_selector))
 - `ingress` (Attributes List) Ingress is a list of IngressRule which are enforced at ingress. If omitted or empty, this rule does not apply at ingress. (see [below for nested schema](#nestedatt--specs--ingress))
 - `ingress_deny` (Attributes List) IngressDeny is a list of IngressDenyRule which are enforced at ingress. Any rule inserted here will be denied regardless of the allowed ingress rules in the 'ingress' field. If omitted or empty, this rule does not apply at ingress. (see [below for nested schema](#nestedatt--specs--ingress_deny))
@@ -1053,6 +1205,7 @@ Optional:
 - `to_entities` (List of String) ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.
 - `to_fqd_ns` (Attributes List) ToFQDN allows whitelisting DNS names in place of IPs. The IPs that result from DNS resolution of 'ToFQDN.MatchName's are added to the same EgressRule object as ToCIDRSet entries, and behave accordingly. Any L4 and L7 rules within this EgressRule will also apply to these IPs. The DNS -> IP mapping is re-resolved periodically from within the cilium-agent, and the IPs in the DNS response are effected in the policy for selected pods as-is (i.e. the list of IPs is not modified in any way). Note: An explicit rule to allow for DNS traffic is needed for the pods, as ToFQDN counts as an egress rule and will enforce egress policy when PolicyEnforcment=default. Note: If the resolved IPs are IPs within the kubernetes cluster, the ToFQDN rule will not apply to that IP. Note: ToFQDN cannot occur in the same policy as other To* rules. (see [below for nested schema](#nestedatt--specs--egress--to_fqd_ns))
 - `to_groups` (Attributes List) ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' (see [below for nested schema](#nestedatt--specs--egress--to_groups))
+- `to_nodes` (Attributes List) ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate. (see [below for nested schema](#nestedatt--specs--egress--to_nodes))
 - `to_ports` (Attributes List) ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is allowed to initiate connections to destination port 8080/tcp (see [below for nested schema](#nestedatt--specs--egress--to_ports))
 - `to_requires` (Attributes List) ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'. (see [below for nested schema](#nestedatt--specs--egress--to_requires))
 - `to_services` (Attributes List) ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service (see [below for nested schema](#nestedatt--specs--egress--to_services))
@@ -1077,7 +1230,7 @@ Optional:
 
 Required:
 
-- `type` (Number) Type is a ICMP-type. It should be 0-255 (8bit).
+- `type` (String) Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply
 
 Optional:
 
@@ -1091,7 +1244,7 @@ Optional:
 Optional:
 
 - `cidr` (String) CIDR is a CIDR prefix / IP Block.
-- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.
+- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.
 - `except` (List of String) ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.
 
 
@@ -1145,6 +1298,28 @@ Optional:
 
 
 
+<a id="nestedatt--specs--egress--to_nodes"></a>
+### Nested Schema for `specs.egress.to_nodes`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--specs--egress--to_nodes--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--specs--egress--to_nodes--match_expressions"></a>
+### Nested Schema for `specs.egress.to_nodes.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
 <a id="nestedatt--specs--egress--to_ports"></a>
 ### Nested Schema for `specs.egress.to_ports`
 
@@ -1162,8 +1337,12 @@ Optional:
 
 Required:
 
-- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined. (see [below for nested schema](#nestedatt--specs--egress--to_ports--terminating_tls--envoy_config))
+- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--specs--egress--to_ports--terminating_tls--envoy_config))
 - `name` (String) Name is the name of the listener.
+
+Optional:
+
+- `priority` (Number) Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.
 
 <a id="nestedatt--specs--egress--to_ports--terminating_tls--envoy_config"></a>
 ### Nested Schema for `specs.egress.to_ports.terminating_tls.envoy_config`
@@ -1400,6 +1579,7 @@ Optional:
 - `to_endpoints` (Attributes List) ToEndpoints is a list of endpoints identified by an EndpointSelector to which the endpoints subject to the rule are allowed to communicate.  Example: Any endpoint with the label 'role=frontend' can communicate with any endpoint carrying the label 'role=backend'. (see [below for nested schema](#nestedatt--specs--egress_deny--to_endpoints))
 - `to_entities` (List of String) ToEntities is a list of special entities to which the endpoint subject to the rule is allowed to initiate connections. Supported entities are 'world', 'cluster','host','remote-node','kube-apiserver', 'init', 'health','unmanaged' and 'all'.
 - `to_groups` (Attributes List) ToGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: toGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' (see [below for nested schema](#nestedatt--specs--egress_deny--to_groups))
+- `to_nodes` (Attributes List) ToNodes is a list of nodes identified by an EndpointSelector to which endpoints subject to the rule is allowed to communicate. (see [below for nested schema](#nestedatt--specs--egress_deny--to_nodes))
 - `to_ports` (Attributes List) ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to connect to.  Example: Any endpoint with the label 'role=frontend' is not allowed to initiate connections to destination port 8080/tcp (see [below for nested schema](#nestedatt--specs--egress_deny--to_ports))
 - `to_requires` (Attributes List) ToRequires is a list of additional constraints which must be met in order for the selected endpoints to be able to connect to other endpoints. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching ToEndpoints.  Example: Any Endpoint with the label 'team=A' requires any endpoint to which it communicates to also carry the label 'team=A'. (see [below for nested schema](#nestedatt--specs--egress_deny--to_requires))
 - `to_services` (Attributes List) ToServices is a list of services to which the endpoint subject to the rule is allowed to initiate connections. Currently Cilium only supports toServices for K8s services without selectors.  Example: Any endpoint with the label 'app=backend-app' is allowed to initiate connections to all cidrs backing the 'external-service' service (see [below for nested schema](#nestedatt--specs--egress_deny--to_services))
@@ -1416,7 +1596,7 @@ Optional:
 
 Required:
 
-- `type` (Number) Type is a ICMP-type. It should be 0-255 (8bit).
+- `type` (String) Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply
 
 Optional:
 
@@ -1430,7 +1610,7 @@ Optional:
 Optional:
 
 - `cidr` (String) CIDR is a CIDR prefix / IP Block.
-- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.
+- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.
 - `except` (List of String) ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.
 
 
@@ -1472,6 +1652,28 @@ Optional:
 - `region` (String)
 - `security_groups_ids` (List of String)
 - `security_groups_names` (List of String)
+
+
+
+<a id="nestedatt--specs--egress_deny--to_nodes"></a>
+### Nested Schema for `specs.egress_deny.to_nodes`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--specs--egress_deny--to_nodes--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--specs--egress_deny--to_nodes--match_expressions"></a>
+### Nested Schema for `specs.egress_deny.to_nodes.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
 
 
 
@@ -1570,6 +1772,15 @@ Optional:
 
 
 
+<a id="nestedatt--specs--enable_default_deny"></a>
+### Nested Schema for `specs.enable_default_deny`
+
+Optional:
+
+- `egress` (Boolean) Whether or not the endpoint should have a default-deny rule applied to egress traffic.
+- `ingress` (Boolean) Whether or not the endpoint should have a default-deny rule applied to ingress traffic.
+
+
 <a id="nestedatt--specs--endpoint_selector"></a>
 ### Nested Schema for `specs.endpoint_selector`
 
@@ -1602,6 +1813,8 @@ Optional:
 - `from_cidr_set` (Attributes List) FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12. (see [below for nested schema](#nestedatt--specs--ingress--from_cidr_set))
 - `from_endpoints` (Attributes List) FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'. (see [below for nested schema](#nestedatt--specs--ingress--from_endpoints))
 - `from_entities` (List of String) FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'
+- `from_groups` (Attributes List) FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' (see [below for nested schema](#nestedatt--specs--ingress--from_groups))
+- `from_nodes` (Attributes List) FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule. (see [below for nested schema](#nestedatt--specs--ingress--from_nodes))
 - `from_requires` (Attributes List) FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'. (see [below for nested schema](#nestedatt--specs--ingress--from_requires))
 - `icmps` (Attributes List) ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming type 8 ICMP connections. (see [below for nested schema](#nestedatt--specs--ingress--icmps))
 - `to_ports` (Attributes List) ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can only accept incoming connections on port 80/tcp. (see [below for nested schema](#nestedatt--specs--ingress--to_ports))
@@ -1620,7 +1833,7 @@ Required:
 Optional:
 
 - `cidr` (String) CIDR is a CIDR prefix / IP Block.
-- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.
+- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.
 - `except` (List of String) ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.
 
 
@@ -1634,6 +1847,47 @@ Optional:
 
 <a id="nestedatt--specs--ingress--from_endpoints--match_expressions"></a>
 ### Nested Schema for `specs.ingress.from_endpoints.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--specs--ingress--from_groups"></a>
+### Nested Schema for `specs.ingress.from_groups`
+
+Optional:
+
+- `aws` (Attributes) AWSGroup is an structure that can be used to whitelisting information from AWS integration (see [below for nested schema](#nestedatt--specs--ingress--from_groups--aws))
+
+<a id="nestedatt--specs--ingress--from_groups--aws"></a>
+### Nested Schema for `specs.ingress.from_groups.aws`
+
+Optional:
+
+- `labels` (Map of String)
+- `region` (String)
+- `security_groups_ids` (List of String)
+- `security_groups_names` (List of String)
+
+
+
+<a id="nestedatt--specs--ingress--from_nodes"></a>
+### Nested Schema for `specs.ingress.from_nodes`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--specs--ingress--from_nodes--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--specs--ingress--from_nodes--match_expressions"></a>
+### Nested Schema for `specs.ingress.from_nodes.match_labels`
 
 Required:
 
@@ -1680,7 +1934,7 @@ Optional:
 
 Required:
 
-- `type` (Number) Type is a ICMP-type. It should be 0-255 (8bit).
+- `type` (String) Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply
 
 Optional:
 
@@ -1705,8 +1959,12 @@ Optional:
 
 Required:
 
-- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCNP resource in which the listener is defined. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--terminating_tls--envoy_config))
+- `envoy_config` (Attributes) EnvoyConfig is a reference to the CEC or CCEC resource in which the listener is defined. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--terminating_tls--envoy_config))
 - `name` (String) Name is the name of the listener.
+
+Optional:
+
+- `priority` (Number) Priority for this Listener that is used when multiple rules would apply different listeners to a policy map entry. Behavior of this is implementation dependent.
 
 <a id="nestedatt--specs--ingress--to_ports--terminating_tls--envoy_config"></a>
 ### Nested Schema for `specs.ingress.to_ports.terminating_tls.envoy_config`
@@ -1867,6 +2125,8 @@ Optional:
 - `from_cidr_set` (Attributes List) FromCIDRSet is a list of IP blocks which the endpoint subject to the rule is allowed to receive connections from in addition to FromEndpoints, along with a list of subnets contained within their corresponding IP block from which traffic should not be allowed. This will match on the source IP address of incoming connections. Adding a prefix into FromCIDR or into FromCIDRSet with no ExcludeCIDRs is equivalent. Overlaps are allowed between FromCIDR and FromCIDRSet.  Example: Any endpoint with the label 'app=my-legacy-pet' is allowed to receive connections from 10.0.0.0/8 except from IPs in subnet 10.96.0.0/12. (see [below for nested schema](#nestedatt--specs--ingress_deny--from_cidr_set))
 - `from_endpoints` (Attributes List) FromEndpoints is a list of endpoints identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule.  Example: Any endpoint with the label 'role=backend' can be consumed by any endpoint carrying the label 'role=frontend'. (see [below for nested schema](#nestedatt--specs--ingress_deny--from_endpoints))
 - `from_entities` (List of String) FromEntities is a list of special entities which the endpoint subject to the rule is allowed to receive connections from. Supported entities are 'world', 'cluster' and 'host'
+- `from_groups` (Attributes List) FromGroups is a directive that allows the integration with multiple outside providers. Currently, only AWS is supported, and the rule can select by multiple sub directives:  Example: FromGroups: - aws: securityGroupsIds: - 'sg-XXXXXXXXXXXXX' (see [below for nested schema](#nestedatt--specs--ingress_deny--from_groups))
+- `from_nodes` (Attributes List) FromNodes is a list of nodes identified by an EndpointSelector which are allowed to communicate with the endpoint subject to the rule. (see [below for nested schema](#nestedatt--specs--ingress_deny--from_nodes))
 - `from_requires` (Attributes List) FromRequires is a list of additional constraints which must be met in order for the selected endpoints to be reachable. These additional constraints do no by itself grant access privileges and must always be accompanied with at least one matching FromEndpoints.  Example: Any Endpoint with the label 'team=A' requires consuming endpoint to also carry the label 'team=A'. (see [below for nested schema](#nestedatt--specs--ingress_deny--from_requires))
 - `icmps` (Attributes List) ICMPs is a list of ICMP rule identified by type number which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming type 8 ICMP connections. (see [below for nested schema](#nestedatt--specs--ingress_deny--icmps))
 - `to_ports` (Attributes List) ToPorts is a list of destination ports identified by port number and protocol which the endpoint subject to the rule is not allowed to receive connections on.  Example: Any endpoint with the label 'app=httpd' can not accept incoming connections on port 80/tcp. (see [below for nested schema](#nestedatt--specs--ingress_deny--to_ports))
@@ -1877,7 +2137,7 @@ Optional:
 Optional:
 
 - `cidr` (String) CIDR is a CIDR prefix / IP Block.
-- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress) or cannot (IngressDeny) receive connections from.
+- `cidr_group_ref` (String) CIDRGroupRef is a reference to a CiliumCIDRGroup object. A CiliumCIDRGroup contains a list of CIDRs that the endpoint, subject to the rule, can (Ingress/Egress) or cannot (IngressDeny) receive connections from.
 - `except` (List of String) ExceptCIDRs is a list of IP blocks which the endpoint subject to the rule is not allowed to initiate connections to. These CIDR prefixes should be contained within Cidr, using ExceptCIDRs together with CIDRGroupRef is not supported yet. These exceptions are only applied to the Cidr in this CIDRRule, and do not apply to any other CIDR prefixes in any other CIDRRules.
 
 
@@ -1891,6 +2151,47 @@ Optional:
 
 <a id="nestedatt--specs--ingress_deny--from_endpoints--match_expressions"></a>
 ### Nested Schema for `specs.ingress_deny.from_endpoints.match_labels`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
+<a id="nestedatt--specs--ingress_deny--from_groups"></a>
+### Nested Schema for `specs.ingress_deny.from_groups`
+
+Optional:
+
+- `aws` (Attributes) AWSGroup is an structure that can be used to whitelisting information from AWS integration (see [below for nested schema](#nestedatt--specs--ingress_deny--from_groups--aws))
+
+<a id="nestedatt--specs--ingress_deny--from_groups--aws"></a>
+### Nested Schema for `specs.ingress_deny.from_groups.aws`
+
+Optional:
+
+- `labels` (Map of String)
+- `region` (String)
+- `security_groups_ids` (List of String)
+- `security_groups_names` (List of String)
+
+
+
+<a id="nestedatt--specs--ingress_deny--from_nodes"></a>
+### Nested Schema for `specs.ingress_deny.from_nodes`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--specs--ingress_deny--from_nodes--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--specs--ingress_deny--from_nodes--match_expressions"></a>
+### Nested Schema for `specs.ingress_deny.from_nodes.match_labels`
 
 Required:
 
@@ -1937,7 +2238,7 @@ Optional:
 
 Required:
 
-- `type` (Number) Type is a ICMP-type. It should be 0-255 (8bit).
+- `type` (String) Type is a ICMP-type. It should be an 8bit code (0-255), or it's CamelCase name (for example, 'EchoReply'). Allowed ICMP types are: Ipv4: EchoReply | DestinationUnreachable | Redirect | Echo | EchoRequest | RouterAdvertisement | RouterSelection | TimeExceeded | ParameterProblem | Timestamp | TimestampReply | Photuris | ExtendedEcho Request | ExtendedEcho Reply Ipv6: DestinationUnreachable | PacketTooBig | TimeExceeded | ParameterProblem | EchoRequest | EchoReply | MulticastListenerQuery| MulticastListenerReport | MulticastListenerDone | RouterSolicitation | RouterAdvertisement | NeighborSolicitation | NeighborAdvertisement | RedirectMessage | RouterRenumbering | ICMPNodeInformationQuery | ICMPNodeInformationResponse | InverseNeighborDiscoverySolicitation | InverseNeighborDiscoveryAdvertisement | HomeAgentAddressDiscoveryRequest | HomeAgentAddressDiscoveryReply | MobilePrefixSolicitation | MobilePrefixAdvertisement | DuplicateAddressRequestCodeSuffix | DuplicateAddressConfirmationCodeSuffix | ExtendedEchoRequest | ExtendedEchoReply
 
 Optional:
 

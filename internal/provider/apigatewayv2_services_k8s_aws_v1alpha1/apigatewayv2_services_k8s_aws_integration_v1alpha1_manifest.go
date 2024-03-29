@@ -160,8 +160,8 @@ func (r *Apigatewayv2ServicesK8SAwsIntegrationV1Alpha1Manifest) Schema(_ context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "IntegrationSpec defines the desired state of Integration.  Represents an integration.",
-				MarkdownDescription: "IntegrationSpec defines the desired state of Integration.  Represents an integration.",
+				Description:         "IntegrationSpec defines the desired state of Integration.Represents an integration.",
+				MarkdownDescription: "IntegrationSpec defines the desired state of Integration.Represents an integration.",
 				Attributes: map[string]schema.Attribute{
 					"api_id": schema.StringAttribute{
 						Description:         "",
@@ -172,12 +172,12 @@ func (r *Apigatewayv2ServicesK8SAwsIntegrationV1Alpha1Manifest) Schema(_ context
 					},
 
 					"api_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -206,12 +206,12 @@ func (r *Apigatewayv2ServicesK8SAwsIntegrationV1Alpha1Manifest) Schema(_ context
 					},
 
 					"connection_ref": schema.SingleNestedAttribute{
-						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
-						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api",
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api",
 						Attributes: map[string]schema.Attribute{
 							"from": schema.SingleNestedAttribute{
-								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "",
@@ -355,8 +355,8 @@ func (r *Apigatewayv2ServicesK8SAwsIntegrationV1Alpha1Manifest) Schema(_ context
 					},
 
 					"tls_config": schema.SingleNestedAttribute{
-						Description:         "The TLS configuration for a private integration. If you specify a TLS configuration, private integration traffic uses the HTTPS protocol. Supported only for HTTP APIs.",
-						MarkdownDescription: "The TLS configuration for a private integration. If you specify a TLS configuration, private integration traffic uses the HTTPS protocol. Supported only for HTTP APIs.",
+						Description:         "The TLS configuration for a private integration. If you specify a TLS configuration,private integration traffic uses the HTTPS protocol. Supported only for HTTPAPIs.",
+						MarkdownDescription: "The TLS configuration for a private integration. If you specify a TLS configuration,private integration traffic uses the HTTPS protocol. Supported only for HTTPAPIs.",
 						Attributes: map[string]schema.Attribute{
 							"server_name_to_verify": schema.StringAttribute{
 								Description:         "A string with a length between [1-512].",

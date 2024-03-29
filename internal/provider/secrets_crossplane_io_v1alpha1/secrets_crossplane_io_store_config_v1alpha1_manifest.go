@@ -146,24 +146,24 @@ func (r *SecretsCrossplaneIoStoreConfigV1Alpha1Manifest) Schema(_ context.Contex
 				MarkdownDescription: "A StoreConfigSpec defines the desired state of a StoreConfig.",
 				Attributes: map[string]schema.Attribute{
 					"default_scope": schema.StringAttribute{
-						Description:         "DefaultScope used for scoping secrets for 'cluster-scoped' resources. If store type is 'Kubernetes', this would mean the default namespace to store connection secrets for cluster scoped resources. In case of 'Vault', this would be used as the default parent path. Typically, should be set as Crossplane installation namespace.",
-						MarkdownDescription: "DefaultScope used for scoping secrets for 'cluster-scoped' resources. If store type is 'Kubernetes', this would mean the default namespace to store connection secrets for cluster scoped resources. In case of 'Vault', this would be used as the default parent path. Typically, should be set as Crossplane installation namespace.",
+						Description:         "DefaultScope used for scoping secrets for 'cluster-scoped' resources.If store type is 'Kubernetes', this would mean the default namespace tostore connection secrets for cluster scoped resources.In case of 'Vault', this would be used as the default parent path.Typically, should be set as Crossplane installation namespace.",
+						MarkdownDescription: "DefaultScope used for scoping secrets for 'cluster-scoped' resources.If store type is 'Kubernetes', this would mean the default namespace tostore connection secrets for cluster scoped resources.In case of 'Vault', this would be used as the default parent path.Typically, should be set as Crossplane installation namespace.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"kubernetes": schema.SingleNestedAttribute{
-						Description:         "Kubernetes configures a Kubernetes secret store. If the 'type' is 'Kubernetes' but no config provided, in cluster config will be used.",
-						MarkdownDescription: "Kubernetes configures a Kubernetes secret store. If the 'type' is 'Kubernetes' but no config provided, in cluster config will be used.",
+						Description:         "Kubernetes configures a Kubernetes secret store.If the 'type' is 'Kubernetes' but no config provided, in cluster configwill be used.",
+						MarkdownDescription: "Kubernetes configures a Kubernetes secret store.If the 'type' is 'Kubernetes' but no config provided, in cluster configwill be used.",
 						Attributes: map[string]schema.Attribute{
 							"auth": schema.SingleNestedAttribute{
 								Description:         "Credentials used to connect to the Kubernetes API.",
 								MarkdownDescription: "Credentials used to connect to the Kubernetes API.",
 								Attributes: map[string]schema.Attribute{
 									"env": schema.SingleNestedAttribute{
-										Description:         "Env is a reference to an environment variable that contains credentials that must be used to connect to the provider.",
-										MarkdownDescription: "Env is a reference to an environment variable that contains credentials that must be used to connect to the provider.",
+										Description:         "Env is a reference to an environment variable that contains credentialsthat must be used to connect to the provider.",
+										MarkdownDescription: "Env is a reference to an environment variable that contains credentialsthat must be used to connect to the provider.",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
 												Description:         "Name is the name of an environment variable.",
@@ -179,8 +179,8 @@ func (r *SecretsCrossplaneIoStoreConfigV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"fs": schema.SingleNestedAttribute{
-										Description:         "Fs is a reference to a filesystem location that contains credentials that must be used to connect to the provider.",
-										MarkdownDescription: "Fs is a reference to a filesystem location that contains credentials that must be used to connect to the provider.",
+										Description:         "Fs is a reference to a filesystem location that contains credentials thatmust be used to connect to the provider.",
+										MarkdownDescription: "Fs is a reference to a filesystem location that contains credentials thatmust be used to connect to the provider.",
 										Attributes: map[string]schema.Attribute{
 											"path": schema.StringAttribute{
 												Description:         "Path is a filesystem path.",
@@ -196,8 +196,8 @@ func (r *SecretsCrossplaneIoStoreConfigV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"secret_ref": schema.SingleNestedAttribute{
-										Description:         "A SecretRef is a reference to a secret key that contains the credentials that must be used to connect to the provider.",
-										MarkdownDescription: "A SecretRef is a reference to a secret key that contains the credentials that must be used to connect to the provider.",
+										Description:         "A SecretRef is a reference to a secret key that contains the credentialsthat must be used to connect to the provider.",
+										MarkdownDescription: "A SecretRef is a reference to a secret key that contains the credentialsthat must be used to connect to the provider.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key to select.",
@@ -300,8 +300,8 @@ func (r *SecretsCrossplaneIoStoreConfigV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "Type configures which secret store to be used. Only the configuration block for this store will be used and others will be ignored if provided. Default is Kubernetes.",
-						MarkdownDescription: "Type configures which secret store to be used. Only the configuration block for this store will be used and others will be ignored if provided. Default is Kubernetes.",
+						Description:         "Type configures which secret store to be used. Only the configurationblock for this store will be used and others will be ignored if provided.Default is Kubernetes.",
+						MarkdownDescription: "Type configures which secret store to be used. Only the configurationblock for this store will be used and others will be ignored if provided.Default is Kubernetes.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

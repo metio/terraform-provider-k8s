@@ -180,8 +180,8 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Manifest) Schema(_ context.Con
 				MarkdownDescription: "Configuration for access control on workloads. See more details at: https://istio.io/docs/reference/config/security/authorization-policy.html",
 				Attributes: map[string]schema.Attribute{
 					"action": schema.StringAttribute{
-						Description:         "Optional.",
-						MarkdownDescription: "Optional.",
+						Description:         "Optional.Valid Options: ALLOW, DENY, AUDIT, CUSTOM",
+						MarkdownDescription: "Optional.Valid Options: ALLOW, DENY, AUDIT, CUSTOM",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -422,8 +422,8 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Manifest) Schema(_ context.Con
 											"key": schema.StringAttribute{
 												Description:         "The name of an Istio attribute.",
 												MarkdownDescription: "The name of an Istio attribute.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -462,8 +462,8 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Manifest) Schema(_ context.Con
 						MarkdownDescription: "Optional.",
 						Attributes: map[string]schema.Attribute{
 							"match_labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
+								MarkdownDescription: "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -476,8 +476,8 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Optional.",
+						MarkdownDescription: "Optional.",
 						Attributes: map[string]schema.Attribute{
 							"group": schema.StringAttribute{
 								Description:         "group is the group of the target resource.",

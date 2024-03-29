@@ -213,6 +213,7 @@ Optional:
 
 - `metadata` (Map of String) Metadata (key-value pairs) for this webhook
 - `mute_alert` (Boolean) Mute all alerts for the webhook
+- `retries` (Number) Number of retries for this webhook
 - `timeout` (String) Request timeout for this webhook
 - `type` (String) Type of the webhook pre, post or during rollout
 
@@ -239,6 +240,7 @@ Optional:
 - `hosts` (List of String) The list of host names for this service
 - `match` (Attributes List) URI match conditions (see [below for nested schema](#nestedatt--spec--service--match))
 - `mesh_name` (String) AppMesh mesh name
+- `mirror` (Attributes List) Mirror defines a schema for a filter that mirrors requests. (see [below for nested schema](#nestedatt--spec--service--mirror))
 - `name` (String) Kubernetes service name
 - `port_discovery` (Boolean) Enable port dicovery
 - `port_name` (String) Container port name
@@ -426,6 +428,29 @@ Optional:
 
 
 
+<a id="nestedatt--spec--service--mirror"></a>
+### Nested Schema for `spec.service.mirror`
+
+Optional:
+
+- `backend_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--service--mirror--backend_ref))
+
+<a id="nestedatt--spec--service--mirror--backend_ref"></a>
+### Nested Schema for `spec.service.mirror.backend_ref`
+
+Required:
+
+- `name` (String)
+
+Optional:
+
+- `group` (String)
+- `kind` (String)
+- `namespace` (String)
+- `port` (Number)
+
+
+
 <a id="nestedatt--spec--service--primary"></a>
 ### Nested Schema for `spec.service.primary`
 
@@ -450,6 +475,8 @@ Optional:
 
 Optional:
 
+- `authority` (String)
+- `type` (String)
 - `uri` (String)
 
 
@@ -492,6 +519,7 @@ Optional:
 - `consistent_hash` (Attributes) (see [below for nested schema](#nestedatt--spec--service--traffic_policy--tls--consistent_hash))
 - `locality_lb_setting` (Attributes) (see [below for nested schema](#nestedatt--spec--service--traffic_policy--tls--locality_lb_setting))
 - `simple` (String)
+- `warmup_duration_secs` (String) Represents the warmup duration of Service.
 
 <a id="nestedatt--spec--service--traffic_policy--tls--consistent_hash"></a>
 ### Nested Schema for `spec.service.traffic_policy.tls.consistent_hash`

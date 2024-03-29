@@ -16,6 +16,7 @@ Reservation is the Schema for the reservation API. A Reservation object is non-n
 data "k8s_scheduling_koordinator_sh_reservation_v1alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```

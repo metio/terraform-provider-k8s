@@ -16,6 +16,7 @@ description: |-
 data "k8s_logging_banzaicloud_io_fluentbit_agent_v1beta1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -62,6 +63,7 @@ Optional:
 - `buffer_volume_image` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_image))
 - `buffer_volume_metrics` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_metrics))
 - `buffer_volume_resources` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_resources))
+- `config_hot_reload` (Attributes) (see [below for nested schema](#nestedatt--spec--config_hot_reload))
 - `coro_stack_size` (Number)
 - `custom_config_secret` (String)
 - `custom_parsers` (String)
@@ -78,6 +80,7 @@ Optional:
 - `flush` (Number)
 - `forward_options` (Attributes) (see [below for nested schema](#nestedatt--spec--forward_options))
 - `grace` (Number)
+- `health_check` (Attributes) (see [below for nested schema](#nestedatt--spec--health_check))
 - `host_network` (Boolean)
 - `image` (Attributes) (see [below for nested schema](#nestedatt--spec--image))
 - `input_tail` (Attributes) (see [below for nested schema](#nestedatt--spec--input_tail))
@@ -235,6 +238,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -294,6 +299,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -369,6 +376,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 
@@ -428,6 +437,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 
@@ -485,6 +496,8 @@ Optional:
 
 - `storage_backlog_mem_limit` (String)
 - `storage_checksum` (String)
+- `storage_delete_irrecoverable_chunks` (String)
+- `storage_metrics` (String)
 - `storage_path` (String)
 - `storage_sync` (String)
 
@@ -551,6 +564,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume--pvc--spec--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume--pvc--spec--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -586,17 +600,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--buffer_storage_volume--pvc--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
-
-<a id="nestedatt--spec--buffer_storage_volume--pvc--spec--resources--claims"></a>
-### Nested Schema for `spec.buffer_storage_volume.pvc.spec.resources.requests`
-
-Required:
-
-- `name` (String)
-
 
 
 <a id="nestedatt--spec--buffer_storage_volume--pvc--spec--selector"></a>
@@ -836,6 +841,52 @@ Optional:
 Required:
 
 - `name` (String)
+
+
+
+<a id="nestedatt--spec--config_hot_reload"></a>
+### Nested Schema for `spec.config_hot_reload`
+
+Optional:
+
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--config_hot_reload--image))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--config_hot_reload--resources))
+
+<a id="nestedatt--spec--config_hot_reload--image"></a>
+### Nested Schema for `spec.config_hot_reload.image`
+
+Optional:
+
+- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--config_hot_reload--image--image_pull_secrets))
+- `pull_policy` (String)
+- `repository` (String)
+- `tag` (String)
+
+<a id="nestedatt--spec--config_hot_reload--image--image_pull_secrets"></a>
+### Nested Schema for `spec.config_hot_reload.image.tag`
+
+Optional:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--config_hot_reload--resources"></a>
+### Nested Schema for `spec.config_hot_reload.resources`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--config_hot_reload--resources--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--config_hot_reload--resources--claims"></a>
+### Nested Schema for `spec.config_hot_reload.resources.requests`
+
+Required:
+
+- `name` (String)
+
 
 
 
@@ -1217,6 +1268,17 @@ Optional:
 - `storage_total_limit_size` (String)
 - `tag` (String)
 - `time_as__integer` (Boolean)
+- `workers` (Number)
+
+
+<a id="nestedatt--spec--health_check"></a>
+### Nested Schema for `spec.health_check`
+
+Optional:
+
+- `hc_errors_count` (Number)
+- `hc_period` (Number)
+- `hc_retry_failure_count` (Number)
 
 
 <a id="nestedatt--spec--image"></a>
@@ -1578,6 +1640,7 @@ Optional:
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--positiondb--pvc--spec--resources))
 - `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--positiondb--pvc--spec--selector))
 - `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
 - `volume_mode` (String)
 - `volume_name` (String)
 
@@ -1613,17 +1676,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--positiondb--pvc--spec--resources--claims))
 - `limits` (Map of String)
 - `requests` (Map of String)
-
-<a id="nestedatt--spec--positiondb--pvc--spec--resources--claims"></a>
-### Nested Schema for `spec.positiondb.pvc.spec.resources.requests`
-
-Required:
-
-- `name` (String)
-
 
 
 <a id="nestedatt--spec--positiondb--pvc--spec--selector"></a>
@@ -1948,6 +2002,7 @@ Optional:
 
 - `json_date_format` (String)
 - `json_date_key` (String)
+- `workers` (Number)
 
 
 <a id="nestedatt--spec--tls"></a>

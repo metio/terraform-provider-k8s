@@ -78,6 +78,10 @@ Optional:
 
 Required:
 
+- `database_name` (String)
+
+Optional:
+
 - `operations` (List of String)
 - `table` (String)
 

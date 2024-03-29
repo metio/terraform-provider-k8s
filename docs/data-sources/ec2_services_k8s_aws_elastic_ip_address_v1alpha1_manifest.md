@@ -56,11 +56,11 @@ Optional:
 
 Optional:
 
-- `address` (String) [EC2-VPC] The Elastic IP address to recover or an IPv4 address from an address pool.
-- `customer_owned_i_pv4_pool` (String) The ID of a customer-owned address pool. Use this parameter to let Amazon EC2 select an address from the address pool. Alternatively, specify a specific address from the address pool.
-- `network_border_group` (String) A unique set of Availability Zones, Local Zones, or Wavelength Zones from which Amazon Web Services advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups.  Use DescribeAvailabilityZones (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html) to view the network border groups.  You cannot use a network border group with EC2 Classic. If you attempt this operation on EC2 Classic, you receive an InvalidParameterCombination error.
-- `public_i_pv4_pool` (String) The ID of an address pool that you own. Use this parameter to let Amazon EC2 select an address from the address pool. To specify a specific address from the address pool, use the Address parameter instead.
-- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string. (see [below for nested schema](#nestedatt--spec--tags))
+- `address` (String) [EC2-VPC] The Elastic IP address to recover or an IPv4 address from an addresspool.
+- `customer_owned_i_pv4_pool` (String) The ID of a customer-owned address pool. Use this parameter to let AmazonEC2 select an address from the address pool. Alternatively, specify a specificaddress from the address pool.
+- `network_border_group` (String) A unique set of Availability Zones, Local Zones, or Wavelength Zones fromwhich Amazon Web Services advertises IP addresses. Use this parameter tolimit the IP address to this location. IP addresses cannot move between networkborder groups.Use DescribeAvailabilityZones (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html)to view the network border groups.You cannot use a network border group with EC2 Classic. If you attempt thisoperation on EC2 Classic, you receive an InvalidParameterCombination error.
+- `public_i_pv4_pool` (String) The ID of an address pool that you own. Use this parameter to let AmazonEC2 select an address from the address pool. To specify a specific addressfrom the address pool, use the Address parameter instead.
+- `tags` (Attributes List) The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--tags"></a>
 ### Nested Schema for `spec.tags`

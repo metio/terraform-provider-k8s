@@ -56,9 +56,55 @@ type NetworkingIstioIoSidecarV1Beta1ManifestData struct {
 				TargetPort *int64  `tfsdk:"target_port" json:"targetPort,omitempty"`
 			} `tfsdk:"port" json:"port,omitempty"`
 		} `tfsdk:"egress" json:"egress,omitempty"`
+		InboundConnectionPool *struct {
+			Http *struct {
+				H2UpgradePolicy          *string `tfsdk:"h2_upgrade_policy" json:"h2UpgradePolicy,omitempty"`
+				Http1MaxPendingRequests  *int64  `tfsdk:"http1_max_pending_requests" json:"http1MaxPendingRequests,omitempty"`
+				Http2MaxRequests         *int64  `tfsdk:"http2_max_requests" json:"http2MaxRequests,omitempty"`
+				IdleTimeout              *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
+				MaxConcurrentStreams     *int64  `tfsdk:"max_concurrent_streams" json:"maxConcurrentStreams,omitempty"`
+				MaxRequestsPerConnection *int64  `tfsdk:"max_requests_per_connection" json:"maxRequestsPerConnection,omitempty"`
+				MaxRetries               *int64  `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+				UseClientProtocol        *bool   `tfsdk:"use_client_protocol" json:"useClientProtocol,omitempty"`
+			} `tfsdk:"http" json:"http,omitempty"`
+			Tcp *struct {
+				ConnectTimeout        *string `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+				IdleTimeout           *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
+				MaxConnectionDuration *string `tfsdk:"max_connection_duration" json:"maxConnectionDuration,omitempty"`
+				MaxConnections        *int64  `tfsdk:"max_connections" json:"maxConnections,omitempty"`
+				TcpKeepalive          *struct {
+					Interval *string `tfsdk:"interval" json:"interval,omitempty"`
+					Probes   *int64  `tfsdk:"probes" json:"probes,omitempty"`
+					Time     *string `tfsdk:"time" json:"time,omitempty"`
+				} `tfsdk:"tcp_keepalive" json:"tcpKeepalive,omitempty"`
+			} `tfsdk:"tcp" json:"tcp,omitempty"`
+		} `tfsdk:"inbound_connection_pool" json:"inboundConnectionPool,omitempty"`
 		Ingress *[]struct {
-			Bind            *string `tfsdk:"bind" json:"bind,omitempty"`
-			CaptureMode     *string `tfsdk:"capture_mode" json:"captureMode,omitempty"`
+			Bind           *string `tfsdk:"bind" json:"bind,omitempty"`
+			CaptureMode    *string `tfsdk:"capture_mode" json:"captureMode,omitempty"`
+			ConnectionPool *struct {
+				Http *struct {
+					H2UpgradePolicy          *string `tfsdk:"h2_upgrade_policy" json:"h2UpgradePolicy,omitempty"`
+					Http1MaxPendingRequests  *int64  `tfsdk:"http1_max_pending_requests" json:"http1MaxPendingRequests,omitempty"`
+					Http2MaxRequests         *int64  `tfsdk:"http2_max_requests" json:"http2MaxRequests,omitempty"`
+					IdleTimeout              *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
+					MaxConcurrentStreams     *int64  `tfsdk:"max_concurrent_streams" json:"maxConcurrentStreams,omitempty"`
+					MaxRequestsPerConnection *int64  `tfsdk:"max_requests_per_connection" json:"maxRequestsPerConnection,omitempty"`
+					MaxRetries               *int64  `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+					UseClientProtocol        *bool   `tfsdk:"use_client_protocol" json:"useClientProtocol,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				Tcp *struct {
+					ConnectTimeout        *string `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+					IdleTimeout           *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
+					MaxConnectionDuration *string `tfsdk:"max_connection_duration" json:"maxConnectionDuration,omitempty"`
+					MaxConnections        *int64  `tfsdk:"max_connections" json:"maxConnections,omitempty"`
+					TcpKeepalive          *struct {
+						Interval *string `tfsdk:"interval" json:"interval,omitempty"`
+						Probes   *int64  `tfsdk:"probes" json:"probes,omitempty"`
+						Time     *string `tfsdk:"time" json:"time,omitempty"`
+					} `tfsdk:"tcp_keepalive" json:"tcpKeepalive,omitempty"`
+				} `tfsdk:"tcp" json:"tcp,omitempty"`
+			} `tfsdk:"connection_pool" json:"connectionPool,omitempty"`
 			DefaultEndpoint *string `tfsdk:"default_endpoint" json:"defaultEndpoint,omitempty"`
 			Port            *struct {
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
@@ -68,6 +114,7 @@ type NetworkingIstioIoSidecarV1Beta1ManifestData struct {
 			} `tfsdk:"port" json:"port,omitempty"`
 			Tls *struct {
 				CaCertificates        *string   `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
+				CaCrl                 *string   `tfsdk:"ca_crl" json:"caCrl,omitempty"`
 				CipherSuites          *[]string `tfsdk:"cipher_suites" json:"cipherSuites,omitempty"`
 				CredentialName        *string   `tfsdk:"credential_name" json:"credentialName,omitempty"`
 				HttpsRedirect         *bool     `tfsdk:"https_redirect" json:"httpsRedirect,omitempty"`
@@ -183,21 +230,21 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 				MarkdownDescription: "Configuration affecting network reachability of a sidecar. See more details at: https://istio.io/docs/reference/config/networking/sidecar.html",
 				Attributes: map[string]schema.Attribute{
 					"egress": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Egress specifies the configuration of the sidecar for processing outbound traffic from the attached workload instance to other services in the mesh.",
+						MarkdownDescription: "Egress specifies the configuration of the sidecar for processing outbound traffic from the attached workload instance to other services in the mesh.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"bind": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The IP(IPv4 or IPv6) or the Unix domain socket to which the listener should be bound to.",
+									MarkdownDescription: "The IP(IPv4 or IPv6) or the Unix domain socket to which the listener should be bound to.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"capture_mode": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "When the bind address is an IP, the captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE",
+									MarkdownDescription: "When the bind address is an IP, the captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -207,11 +254,11 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"hosts": schema.ListAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "One or more service hosts exposed by the listener in 'namespace/dnsName' format.",
+									MarkdownDescription: "One or more service hosts exposed by the listener in 'namespace/dnsName' format.",
 									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 
@@ -262,9 +309,168 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 						Computed: false,
 					},
 
+					"inbound_connection_pool": schema.SingleNestedAttribute{
+						Description:         "Settings controlling the volume of connections Envoy will accept from the network.",
+						MarkdownDescription: "Settings controlling the volume of connections Envoy will accept from the network.",
+						Attributes: map[string]schema.Attribute{
+							"http": schema.SingleNestedAttribute{
+								Description:         "HTTP connection pool settings.",
+								MarkdownDescription: "HTTP connection pool settings.",
+								Attributes: map[string]schema.Attribute{
+									"h2_upgrade_policy": schema.StringAttribute{
+										Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+										MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("DEFAULT", "DO_NOT_UPGRADE", "UPGRADE"),
+										},
+									},
+
+									"http1_max_pending_requests": schema.Int64Attribute{
+										Description:         "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
+										MarkdownDescription: "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"http2_max_requests": schema.Int64Attribute{
+										Description:         "Maximum number of active requests to a destination.",
+										MarkdownDescription: "Maximum number of active requests to a destination.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"idle_timeout": schema.StringAttribute{
+										Description:         "The idle timeout for upstream connection pool connections.",
+										MarkdownDescription: "The idle timeout for upstream connection pool connections.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_concurrent_streams": schema.Int64Attribute{
+										Description:         "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+										MarkdownDescription: "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_requests_per_connection": schema.Int64Attribute{
+										Description:         "Maximum number of requests per connection to a backend.",
+										MarkdownDescription: "Maximum number of requests per connection to a backend.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_retries": schema.Int64Attribute{
+										Description:         "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
+										MarkdownDescription: "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"use_client_protocol": schema.BoolAttribute{
+										Description:         "If set to true, client protocol will be preserved while initiating connection to backend.",
+										MarkdownDescription: "If set to true, client protocol will be preserved while initiating connection to backend.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tcp": schema.SingleNestedAttribute{
+								Description:         "Settings common to both HTTP and TCP upstream connections.",
+								MarkdownDescription: "Settings common to both HTTP and TCP upstream connections.",
+								Attributes: map[string]schema.Attribute{
+									"connect_timeout": schema.StringAttribute{
+										Description:         "TCP connection timeout.",
+										MarkdownDescription: "TCP connection timeout.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"idle_timeout": schema.StringAttribute{
+										Description:         "The idle timeout for TCP connections.",
+										MarkdownDescription: "The idle timeout for TCP connections.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_connection_duration": schema.StringAttribute{
+										Description:         "The maximum duration of a connection.",
+										MarkdownDescription: "The maximum duration of a connection.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_connections": schema.Int64Attribute{
+										Description:         "Maximum number of HTTP1 /TCP connections to a destination host.",
+										MarkdownDescription: "Maximum number of HTTP1 /TCP connections to a destination host.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tcp_keepalive": schema.SingleNestedAttribute{
+										Description:         "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
+										MarkdownDescription: "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
+										Attributes: map[string]schema.Attribute{
+											"interval": schema.StringAttribute{
+												Description:         "The time duration between keep-alive probes.",
+												MarkdownDescription: "The time duration between keep-alive probes.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"probes": schema.Int64Attribute{
+												Description:         "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
+												MarkdownDescription: "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"time": schema.StringAttribute{
+												Description:         "The time duration a connection needs to be idle before keep-alive probes start being sent.",
+												MarkdownDescription: "The time duration a connection needs to be idle before keep-alive probes start being sent.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"ingress": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Ingress specifies the configuration of the sidecar for processing inbound traffic to the attached workload instance.",
+						MarkdownDescription: "Ingress specifies the configuration of the sidecar for processing inbound traffic to the attached workload instance.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"bind": schema.StringAttribute{
@@ -276,8 +482,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"capture_mode": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE",
+									MarkdownDescription: "The captureMode option dictates how traffic to the listener is expected to be captured (or not).Valid Options: DEFAULT, IPTABLES, NONE",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -286,9 +492,168 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 									},
 								},
 
+								"connection_pool": schema.SingleNestedAttribute{
+									Description:         "Settings controlling the volume of connections Envoy will accept from the network.",
+									MarkdownDescription: "Settings controlling the volume of connections Envoy will accept from the network.",
+									Attributes: map[string]schema.Attribute{
+										"http": schema.SingleNestedAttribute{
+											Description:         "HTTP connection pool settings.",
+											MarkdownDescription: "HTTP connection pool settings.",
+											Attributes: map[string]schema.Attribute{
+												"h2_upgrade_policy": schema.StringAttribute{
+													Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+													MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("DEFAULT", "DO_NOT_UPGRADE", "UPGRADE"),
+													},
+												},
+
+												"http1_max_pending_requests": schema.Int64Attribute{
+													Description:         "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
+													MarkdownDescription: "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"http2_max_requests": schema.Int64Attribute{
+													Description:         "Maximum number of active requests to a destination.",
+													MarkdownDescription: "Maximum number of active requests to a destination.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"idle_timeout": schema.StringAttribute{
+													Description:         "The idle timeout for upstream connection pool connections.",
+													MarkdownDescription: "The idle timeout for upstream connection pool connections.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"max_concurrent_streams": schema.Int64Attribute{
+													Description:         "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+													MarkdownDescription: "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"max_requests_per_connection": schema.Int64Attribute{
+													Description:         "Maximum number of requests per connection to a backend.",
+													MarkdownDescription: "Maximum number of requests per connection to a backend.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"max_retries": schema.Int64Attribute{
+													Description:         "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
+													MarkdownDescription: "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"use_client_protocol": schema.BoolAttribute{
+													Description:         "If set to true, client protocol will be preserved while initiating connection to backend.",
+													MarkdownDescription: "If set to true, client protocol will be preserved while initiating connection to backend.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"tcp": schema.SingleNestedAttribute{
+											Description:         "Settings common to both HTTP and TCP upstream connections.",
+											MarkdownDescription: "Settings common to both HTTP and TCP upstream connections.",
+											Attributes: map[string]schema.Attribute{
+												"connect_timeout": schema.StringAttribute{
+													Description:         "TCP connection timeout.",
+													MarkdownDescription: "TCP connection timeout.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"idle_timeout": schema.StringAttribute{
+													Description:         "The idle timeout for TCP connections.",
+													MarkdownDescription: "The idle timeout for TCP connections.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"max_connection_duration": schema.StringAttribute{
+													Description:         "The maximum duration of a connection.",
+													MarkdownDescription: "The maximum duration of a connection.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"max_connections": schema.Int64Attribute{
+													Description:         "Maximum number of HTTP1 /TCP connections to a destination host.",
+													MarkdownDescription: "Maximum number of HTTP1 /TCP connections to a destination host.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"tcp_keepalive": schema.SingleNestedAttribute{
+													Description:         "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
+													MarkdownDescription: "If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives.",
+													Attributes: map[string]schema.Attribute{
+														"interval": schema.StringAttribute{
+															Description:         "The time duration between keep-alive probes.",
+															MarkdownDescription: "The time duration between keep-alive probes.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"probes": schema.Int64Attribute{
+															Description:         "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
+															MarkdownDescription: "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"time": schema.StringAttribute{
+															Description:         "The time duration a connection needs to be idle before keep-alive probes start being sent.",
+															MarkdownDescription: "The time duration a connection needs to be idle before keep-alive probes start being sent.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"default_endpoint": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The IP endpoint or Unix domain socket to which traffic should be forwarded to.",
+									MarkdownDescription: "The IP endpoint or Unix domain socket to which traffic should be forwarded to.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -330,18 +695,26 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 											Computed:            false,
 										},
 									},
-									Required: false,
-									Optional: true,
+									Required: true,
+									Optional: false,
 									Computed: false,
 								},
 
 								"tls": schema.SingleNestedAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Set of TLS related options that will enable TLS termination on the sidecar for requests originating from outside the mesh.",
+									MarkdownDescription: "Set of TLS related options that will enable TLS termination on the sidecar for requests originating from outside the mesh.",
 									Attributes: map[string]schema.Attribute{
 										"ca_certificates": schema.StringAttribute{
 											Description:         "REQUIRED if mode is 'MUTUAL' or 'OPTIONAL_MUTUAL'.",
 											MarkdownDescription: "REQUIRED if mode is 'MUTUAL' or 'OPTIONAL_MUTUAL'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"ca_crl": schema.StringAttribute{
+											Description:         "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented client side certificate.",
+											MarkdownDescription: "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented client side certificate.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -357,24 +730,24 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"credential_name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "For gateways running on Kubernetes, the name of the secret that holds the TLS certs including the CA certificates.",
+											MarkdownDescription: "For gateways running on Kubernetes, the name of the secret that holds the TLS certs including the CA certificates.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"https_redirect": schema.BoolAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "If set to true, the load balancer will send a 301 redirect for all http connections, asking the clients to use HTTPS.",
+											MarkdownDescription: "If set to true, the load balancer will send a 301 redirect for all http connections, asking the clients to use HTTPS.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"max_protocol_version": schema.StringAttribute{
-											Description:         "Optional: Maximum TLS protocol version.",
-											MarkdownDescription: "Optional: Maximum TLS protocol version.",
+											Description:         "Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											MarkdownDescription: "Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -384,8 +757,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"min_protocol_version": schema.StringAttribute{
-											Description:         "Optional: Minimum TLS protocol version.",
-											MarkdownDescription: "Optional: Minimum TLS protocol version.",
+											Description:         "Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											MarkdownDescription: "Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -395,8 +768,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"mode": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
+											MarkdownDescription: "Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -422,8 +795,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"subject_alt_names": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "A list of alternate names to verify the subject identity in the certificate presented by the client.",
+											MarkdownDescription: "A list of alternate names to verify the subject identity in the certificate presented by the client.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -431,8 +804,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"verify_certificate_hash": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "An optional list of hex-encoded SHA-256 hashes of the authorized client certificates.",
+											MarkdownDescription: "An optional list of hex-encoded SHA-256 hashes of the authorized client certificates.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -440,8 +813,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"verify_certificate_spki": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "An optional list of base64-encoded SHA-256 hashes of the SPKIs of authorized client certificates.",
+											MarkdownDescription: "An optional list of base64-encoded SHA-256 hashes of the SPKIs of authorized client certificates.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -470,8 +843,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 									"host": schema.StringAttribute{
 										Description:         "The name of a service from the service registry.",
 										MarkdownDescription: "The name of a service from the service registry.",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 
@@ -506,8 +879,8 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"mode": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Valid Options: REGISTRY_ONLY, ALLOW_ANY",
+								MarkdownDescription: "Valid Options: REGISTRY_ONLY, ALLOW_ANY",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -522,12 +895,12 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"workload_selector": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Criteria used to select the specific set of pods/VMs on which this 'Sidecar' configuration should be applied.",
+						MarkdownDescription: "Criteria used to select the specific set of pods/VMs on which this 'Sidecar' configuration should be applied.",
 						Attributes: map[string]schema.Attribute{
 							"labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "One or more labels that indicate a specific set of pods/VMs on which the configuration should be applied.",
+								MarkdownDescription: "One or more labels that indicate a specific set of pods/VMs on which the configuration should be applied.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

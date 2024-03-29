@@ -47,14 +47,17 @@ type CamelApacheOrgCamelCatalogV1ManifestData struct {
 	Spec *struct {
 		Artifacts *struct {
 			ArtifactId   *string   `tfsdk:"artifact_id" json:"artifactId,omitempty"`
+			Classifier   *string   `tfsdk:"classifier" json:"classifier,omitempty"`
 			Dataformats  *[]string `tfsdk:"dataformats" json:"dataformats,omitempty"`
 			Dependencies *[]struct {
 				ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
+				Classifier *string `tfsdk:"classifier" json:"classifier,omitempty"`
 				Exclusions *[]struct {
 					ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
 					GroupId    *string `tfsdk:"group_id" json:"groupId,omitempty"`
 				} `tfsdk:"exclusions" json:"exclusions,omitempty"`
 				GroupId *string `tfsdk:"group_id" json:"groupId,omitempty"`
+				Type    *string `tfsdk:"type" json:"type,omitempty"`
 				Version *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"dependencies" json:"dependencies,omitempty"`
 			Exclusions *[]struct {
@@ -68,11 +71,13 @@ type CamelApacheOrgCamelCatalogV1ManifestData struct {
 				Consumer *struct {
 					Dependencies *[]struct {
 						ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
+						Classifier *string `tfsdk:"classifier" json:"classifier,omitempty"`
 						Exclusions *[]struct {
 							ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
 							GroupId    *string `tfsdk:"group_id" json:"groupId,omitempty"`
 						} `tfsdk:"exclusions" json:"exclusions,omitempty"`
 						GroupId *string `tfsdk:"group_id" json:"groupId,omitempty"`
+						Type    *string `tfsdk:"type" json:"type,omitempty"`
 						Version *string `tfsdk:"version" json:"version,omitempty"`
 					} `tfsdk:"dependencies" json:"dependencies,omitempty"`
 				} `tfsdk:"consumer" json:"consumer,omitempty"`
@@ -82,27 +87,34 @@ type CamelApacheOrgCamelCatalogV1ManifestData struct {
 				Producer *struct {
 					Dependencies *[]struct {
 						ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
+						Classifier *string `tfsdk:"classifier" json:"classifier,omitempty"`
 						Exclusions *[]struct {
 							ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
 							GroupId    *string `tfsdk:"group_id" json:"groupId,omitempty"`
 						} `tfsdk:"exclusions" json:"exclusions,omitempty"`
 						GroupId *string `tfsdk:"group_id" json:"groupId,omitempty"`
+						Type    *string `tfsdk:"type" json:"type,omitempty"`
 						Version *string `tfsdk:"version" json:"version,omitempty"`
 					} `tfsdk:"dependencies" json:"dependencies,omitempty"`
 				} `tfsdk:"producer" json:"producer,omitempty"`
 			} `tfsdk:"schemes" json:"schemes,omitempty"`
+			Type    *string `tfsdk:"type" json:"type,omitempty"`
 			Version *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"artifacts" json:"artifacts,omitempty"`
 		Loaders *struct {
 			ArtifactId   *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
+			Classifier   *string `tfsdk:"classifier" json:"classifier,omitempty"`
 			Dependencies *[]struct {
 				ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
+				Classifier *string `tfsdk:"classifier" json:"classifier,omitempty"`
 				GroupId    *string `tfsdk:"group_id" json:"groupId,omitempty"`
+				Type       *string `tfsdk:"type" json:"type,omitempty"`
 				Version    *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"dependencies" json:"dependencies,omitempty"`
 			GroupId   *string            `tfsdk:"group_id" json:"groupId,omitempty"`
 			Languages *[]string          `tfsdk:"languages" json:"languages,omitempty"`
 			Metadata  *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
+			Type      *string            `tfsdk:"type" json:"type,omitempty"`
 			Version   *string            `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"loaders" json:"loaders,omitempty"`
 		Runtime *struct {
@@ -110,13 +122,17 @@ type CamelApacheOrgCamelCatalogV1ManifestData struct {
 			Capabilities     *struct {
 				Dependencies *[]struct {
 					ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
+					Classifier *string `tfsdk:"classifier" json:"classifier,omitempty"`
 					GroupId    *string `tfsdk:"group_id" json:"groupId,omitempty"`
+					Type       *string `tfsdk:"type" json:"type,omitempty"`
 					Version    *string `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"dependencies" json:"dependencies,omitempty"`
 			} `tfsdk:"capabilities" json:"capabilities,omitempty"`
 			Dependencies *[]struct {
 				ArtifactId *string `tfsdk:"artifact_id" json:"artifactId,omitempty"`
+				Classifier *string `tfsdk:"classifier" json:"classifier,omitempty"`
 				GroupId    *string `tfsdk:"group_id" json:"groupId,omitempty"`
+				Type       *string `tfsdk:"type" json:"type,omitempty"`
 				Version    *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"dependencies" json:"dependencies,omitempty"`
 			Metadata *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -223,6 +239,14 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 								Computed:            false,
 							},
 
+							"classifier": schema.StringAttribute{
+								Description:         "Maven Classifier",
+								MarkdownDescription: "Maven Classifier",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"dataformats": schema.ListAttribute{
 								Description:         "accepted data formats",
 								MarkdownDescription: "accepted data formats",
@@ -242,6 +266,14 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 											MarkdownDescription: "Maven Artifact",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"classifier": schema.StringAttribute{
+											Description:         "Maven Classifier",
+											MarkdownDescription: "Maven Classifier",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 
@@ -277,6 +309,14 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 											MarkdownDescription: "Maven Group",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "Maven Type",
+											MarkdownDescription: "Maven Type",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 
@@ -369,6 +409,14 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 																Computed:            false,
 															},
 
+															"classifier": schema.StringAttribute{
+																Description:         "Maven Classifier",
+																MarkdownDescription: "Maven Classifier",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"exclusions": schema.ListNestedAttribute{
 																Description:         "provide a list of artifacts to exclude for this dependency",
 																MarkdownDescription: "provide a list of artifacts to exclude for this dependency",
@@ -401,6 +449,14 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 																MarkdownDescription: "Maven Group",
 																Required:            true,
 																Optional:            false,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Maven Type",
+																MarkdownDescription: "Maven Type",
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 															},
 
@@ -464,6 +520,14 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 																Computed:            false,
 															},
 
+															"classifier": schema.StringAttribute{
+																Description:         "Maven Classifier",
+																MarkdownDescription: "Maven Classifier",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"exclusions": schema.ListNestedAttribute{
 																Description:         "provide a list of artifacts to exclude for this dependency",
 																MarkdownDescription: "provide a list of artifacts to exclude for this dependency",
@@ -499,6 +563,14 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 																Computed:            false,
 															},
 
+															"type": schema.StringAttribute{
+																Description:         "Maven Type",
+																MarkdownDescription: "Maven Type",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"version": schema.StringAttribute{
 																Description:         "Maven Version",
 																MarkdownDescription: "Maven Version",
@@ -522,6 +594,14 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"type": schema.StringAttribute{
+								Description:         "Maven Type",
+								MarkdownDescription: "Maven Type",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"version": schema.StringAttribute{
@@ -549,6 +629,14 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 								Computed:            false,
 							},
 
+							"classifier": schema.StringAttribute{
+								Description:         "Maven Classifier",
+								MarkdownDescription: "Maven Classifier",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"dependencies": schema.ListNestedAttribute{
 								Description:         "a list of additional dependencies required beside the base one",
 								MarkdownDescription: "a list of additional dependencies required beside the base one",
@@ -562,11 +650,27 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 											Computed:            false,
 										},
 
+										"classifier": schema.StringAttribute{
+											Description:         "Maven Classifier",
+											MarkdownDescription: "Maven Classifier",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"group_id": schema.StringAttribute{
 											Description:         "Maven Group",
 											MarkdownDescription: "Maven Group",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "Maven Type",
+											MarkdownDescription: "Maven Type",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 
@@ -605,6 +709,14 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 								Description:         "the metadata of the loader",
 								MarkdownDescription: "the metadata of the loader",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"type": schema.StringAttribute{
+								Description:         "Maven Type",
+								MarkdownDescription: "Maven Type",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -652,11 +764,27 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 													Computed:            false,
 												},
 
+												"classifier": schema.StringAttribute{
+													Description:         "Maven Classifier",
+													MarkdownDescription: "Maven Classifier",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"group_id": schema.StringAttribute{
 													Description:         "Maven Group",
 													MarkdownDescription: "Maven Group",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"type": schema.StringAttribute{
+													Description:         "Maven Type",
+													MarkdownDescription: "Maven Type",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 
@@ -692,11 +820,27 @@ func (r *CamelApacheOrgCamelCatalogV1Manifest) Schema(_ context.Context, _ datas
 											Computed:            false,
 										},
 
+										"classifier": schema.StringAttribute{
+											Description:         "Maven Classifier",
+											MarkdownDescription: "Maven Classifier",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"group_id": schema.StringAttribute{
 											Description:         "Maven Group",
 											MarkdownDescription: "Maven Group",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "Maven Type",
+											MarkdownDescription: "Maven Type",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 

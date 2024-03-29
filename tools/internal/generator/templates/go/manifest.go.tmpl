@@ -10,6 +10,9 @@ import (
 	{{ if .Namespaced -}}
 	"fmt"
 	{{ end -}}
+	{{ if .AdditionalImports.BoolValidator -}}
+	"github.com/hashicorp/terraform-plugin-framework-validators/boolvalidator"
+	{{ end -}}
 	{{ if .AdditionalImports.Int64Validator -}}
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	{{ end -}}

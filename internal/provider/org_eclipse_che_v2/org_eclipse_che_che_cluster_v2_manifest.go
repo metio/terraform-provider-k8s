@@ -163,6 +163,7 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 					Show *bool   `tfsdk:"show" json:"show,omitempty"`
 					Text *string `tfsdk:"text" json:"text,omitempty"`
 				} `tfsdk:"header_message" json:"headerMessage,omitempty"`
+				LogLevel *string `tfsdk:"log_level" json:"logLevel,omitempty"`
 			} `tfsdk:"dashboard" json:"dashboard,omitempty"`
 			DevWorkspace *struct {
 				RunningLimit *string `tfsdk:"running_limit" json:"runningLimit,omitempty"`
@@ -767,6 +768,12 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 		Networking *struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			Auth        *struct {
+				AdvancedAuthorization *struct {
+					AllowGroups *[]string `tfsdk:"allow_groups" json:"allowGroups,omitempty"`
+					AllowUsers  *[]string `tfsdk:"allow_users" json:"allowUsers,omitempty"`
+					DenyGroups  *[]string `tfsdk:"deny_groups" json:"denyGroups,omitempty"`
+					DenyUsers   *[]string `tfsdk:"deny_users" json:"denyUsers,omitempty"`
+				} `tfsdk:"advanced_authorization" json:"advancedAuthorization,omitempty"`
 				Gateway *struct {
 					ConfigLabels *map[string]string `tfsdk:"config_labels" json:"configLabels,omitempty"`
 					Deployment   *struct {
@@ -815,6 +822,15 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 							RunAsUser *int64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
 						} `tfsdk:"security_context" json:"securityContext,omitempty"`
 					} `tfsdk:"deployment" json:"deployment,omitempty"`
+					KubeRbacProxy *struct {
+						LogLevel *int64 `tfsdk:"log_level" json:"logLevel,omitempty"`
+					} `tfsdk:"kube_rbac_proxy" json:"kubeRbacProxy,omitempty"`
+					OAuthProxy *struct {
+						CookieExpireSeconds *int64 `tfsdk:"cookie_expire_seconds" json:"cookieExpireSeconds,omitempty"`
+					} `tfsdk:"o_auth_proxy" json:"oAuthProxy,omitempty"`
+					Traefik *struct {
+						LogLevel *string `tfsdk:"log_level" json:"logLevel,omitempty"`
+					} `tfsdk:"traefik" json:"traefik,omitempty"`
 				} `tfsdk:"gateway" json:"gateway,omitempty"`
 				IdentityProviderURL                      *string `tfsdk:"identity_provider_url" json:"identityProviderURL,omitempty"`
 				IdentityToken                            *string `tfsdk:"identity_token" json:"identityToken,omitempty"`
@@ -1650,6 +1666,17 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"log_level": schema.StringAttribute{
+										Description:         "The log level for the Dashboard.",
+										MarkdownDescription: "The log level for the Dashboard.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("DEBUG", "INFO", "WARN", "ERROR", "FATAL", "TRACE", "SILENT"),
+										},
 									},
 								},
 								Required: false,
@@ -5866,6 +5893,51 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 								Description:         "Authentication settings.",
 								MarkdownDescription: "Authentication settings.",
 								Attributes: map[string]schema.Attribute{
+									"advanced_authorization": schema.SingleNestedAttribute{
+										Description:         "Advance authorization settings. Determines which users and groups are allowed to access Che. User is allowed to access Che if he/she is either in the 'allowUsers' list or is member of group from 'allowGroups' list and not in neither the 'denyUsers' list nor is member of group from 'denyGroups' list. If 'allowUsers' and 'allowGroups' are empty, then all users are allowed to access Che. if 'denyUsers' and 'denyGroups' are empty, then no users are denied to access Che.",
+										MarkdownDescription: "Advance authorization settings. Determines which users and groups are allowed to access Che. User is allowed to access Che if he/she is either in the 'allowUsers' list or is member of group from 'allowGroups' list and not in neither the 'denyUsers' list nor is member of group from 'denyGroups' list. If 'allowUsers' and 'allowGroups' are empty, then all users are allowed to access Che. if 'denyUsers' and 'denyGroups' are empty, then no users are denied to access Che.",
+										Attributes: map[string]schema.Attribute{
+											"allow_groups": schema.ListAttribute{
+												Description:         "List of groups allowed to access Che (currently supported in OpenShift only).",
+												MarkdownDescription: "List of groups allowed to access Che (currently supported in OpenShift only).",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"allow_users": schema.ListAttribute{
+												Description:         "List of users allowed to access Che.",
+												MarkdownDescription: "List of users allowed to access Che.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"deny_groups": schema.ListAttribute{
+												Description:         "List of groups denied to access Che (currently supported in OpenShift only).",
+												MarkdownDescription: "List of groups denied to access Che (currently supported in OpenShift only).",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"deny_users": schema.ListAttribute{
+												Description:         "List of users denied to access Che.",
+												MarkdownDescription: "List of users denied to access Che.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"gateway": schema.SingleNestedAttribute{
 										Description:         "Gateway settings.",
 										MarkdownDescription: "Gateway settings.",
@@ -6163,6 +6235,66 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 														Required: false,
 														Optional: true,
 														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"kube_rbac_proxy": schema.SingleNestedAttribute{
+												Description:         "Configuration for kube-rbac-proxy within the Che gateway pod.",
+												MarkdownDescription: "Configuration for kube-rbac-proxy within the Che gateway pod.",
+												Attributes: map[string]schema.Attribute{
+													"log_level": schema.Int64Attribute{
+														Description:         "The glog log level for the kube-rbac-proxy container within the gateway pod. Larger values represent a higher verbosity. The default value is '0'.",
+														MarkdownDescription: "The glog log level for the kube-rbac-proxy container within the gateway pod. Larger values represent a higher verbosity. The default value is '0'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"o_auth_proxy": schema.SingleNestedAttribute{
+												Description:         "Configuration for oauth-proxy within the Che gateway pod.",
+												MarkdownDescription: "Configuration for oauth-proxy within the Che gateway pod.",
+												Attributes: map[string]schema.Attribute{
+													"cookie_expire_seconds": schema.Int64Attribute{
+														Description:         "Expire timeframe for cookie. If set to 0, cookie becomes a session-cookie which will expire when the browser is closed.",
+														MarkdownDescription: "Expire timeframe for cookie. If set to 0, cookie becomes a session-cookie which will expire when the browser is closed.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"traefik": schema.SingleNestedAttribute{
+												Description:         "Configuration for Traefik within the Che gateway pod.",
+												MarkdownDescription: "Configuration for Traefik within the Che gateway pod.",
+												Attributes: map[string]schema.Attribute{
+													"log_level": schema.StringAttribute{
+														Description:         "The log level for the Traefik container within the gateway pod: 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FATAL', or 'PANIC'. The default value is 'INFO'",
+														MarkdownDescription: "The log level for the Traefik container within the gateway pod: 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FATAL', or 'PANIC'. The default value is 'INFO'",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("DEBUG", "INFO", "WARN", "ERROR", "FATAL", "PANIC"),
+														},
 													},
 												},
 												Required: false,

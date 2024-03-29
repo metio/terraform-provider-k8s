@@ -66,6 +66,7 @@ Optional:
 Optional:
 
 - `data` (Map of String) Keys that should be templated using decrypted data
+- `immutable` (Boolean) Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.
 - `metadata` (Attributes) Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata (see [below for nested schema](#nestedatt--spec--template--metadata))
 - `type` (String) Used to facilitate programmatic handling of secret data.
 

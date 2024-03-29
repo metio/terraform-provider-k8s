@@ -63,11 +63,20 @@ Optional:
 - `ambassador_id` (List of String) Common to all Ambassador objects.
 - `domain` (String)
 - `failure_mode_deny` (Boolean) FailureModeDeny when set to true, envoy will deny traffic if it is unable to communicate with the rate limit service.
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--grpc))
 - `protocol_version` (String) ProtocolVersion is the envoy api transport protocol version
 - `stats_name` (String)
 - `timeout_ms` (Number)
 - `tls` (String)
 - `v2_explicit_tls` (Attributes) V2ExplicitTLS controls some vanity/stylistic elements when converting from v3alpha1 to v2.  The values in an V2ExplicitTLS should not in any way affect the runtime operation of Emissary; except that it may affect internal names in the Envoy config, which may in turn affect stats names.  But it should not affect any end-user observable behavior. (see [below for nested schema](#nestedatt--spec--v2_explicit_tls))
+
+<a id="nestedatt--spec--grpc"></a>
+### Nested Schema for `spec.grpc`
+
+Optional:
+
+- `use_resource_exhausted_code` (Boolean) UseResourceExhaustedCode, when set to true, will cause envoy to return a 'RESOURCE_EXHAUSTED' gRPC code instead of the default 'UNAVAILABLE' gRPC code.
+
 
 <a id="nestedatt--spec--v2_explicit_tls"></a>
 ### Nested Schema for `spec.v2_explicit_tls`

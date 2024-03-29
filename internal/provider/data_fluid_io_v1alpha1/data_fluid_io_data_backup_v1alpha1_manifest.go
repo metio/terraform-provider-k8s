@@ -59,6 +59,7 @@ type DataFluidIoDataBackupV1Alpha1ManifestData struct {
 			Uid   *int64  `tfsdk:"uid" json:"uid,omitempty"`
 			User  *string `tfsdk:"user" json:"user,omitempty"`
 		} `tfsdk:"run_as" json:"runAs,omitempty"`
+		TtlSecondsAfterFinished *int64 `tfsdk:"ttl_seconds_after_finished" json:"ttlSecondsAfterFinished,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -246,6 +247,14 @@ func (r *DataFluidIoDataBackupV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"ttl_seconds_after_finished": schema.Int64Attribute{
+						Description:         "TTLSecondsAfterFinished is the time second to clean up data operations after finished or failed",
+						MarkdownDescription: "TTLSecondsAfterFinished is the time second to clean up data operations after finished or failed",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

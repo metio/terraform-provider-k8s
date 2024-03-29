@@ -55,7 +55,12 @@ type PkgCrossplaneIoProviderV1ManifestData struct {
 		} `tfsdk:"package_pull_secrets" json:"packagePullSecrets,omitempty"`
 		RevisionActivationPolicy *string `tfsdk:"revision_activation_policy" json:"revisionActivationPolicy,omitempty"`
 		RevisionHistoryLimit     *int64  `tfsdk:"revision_history_limit" json:"revisionHistoryLimit,omitempty"`
-		SkipDependencyResolution *bool   `tfsdk:"skip_dependency_resolution" json:"skipDependencyResolution,omitempty"`
+		RuntimeConfigRef         *struct {
+			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+			Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+			Name       *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"runtime_config_ref" json:"runtimeConfigRef,omitempty"`
+		SkipDependencyResolution *bool `tfsdk:"skip_dependency_resolution" json:"skipDependencyResolution,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -129,12 +134,12 @@ func (r *PkgCrossplaneIoProviderV1Manifest) Schema(_ context.Context, _ datasour
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ProviderSpec specifies details about a request to install a provider to Crossplane.",
-				MarkdownDescription: "ProviderSpec specifies details about a request to install a provider to Crossplane.",
+				Description:         "ProviderSpec specifies details about a request to install a provider toCrossplane.",
+				MarkdownDescription: "ProviderSpec specifies details about a request to install a provider toCrossplane.",
 				Attributes: map[string]schema.Attribute{
 					"common_labels": schema.MapAttribute{
-						Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-						MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+						Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
+						MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -142,8 +147,8 @@ func (r *PkgCrossplaneIoProviderV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"controller_config_ref": schema.SingleNestedAttribute{
-						Description:         "ControllerConfigRef references a ControllerConfig resource that will be used to configure the packaged controller Deployment.",
-						MarkdownDescription: "ControllerConfigRef references a ControllerConfig resource that will be used to configure the packaged controller Deployment.",
+						Description:         "ControllerConfigRef references a ControllerConfig resource that will beused to configure the packaged controller Deployment.Deprecated: Use RuntimeConfigReference instead.",
+						MarkdownDescription: "ControllerConfigRef references a ControllerConfig resource that will beused to configure the packaged controller Deployment.Deprecated: Use RuntimeConfigReference instead.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the ControllerConfig.",
@@ -159,8 +164,8 @@ func (r *PkgCrossplaneIoProviderV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"ignore_crossplane_constraints": schema.BoolAttribute{
-						Description:         "IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.",
-						MarkdownDescription: "IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.",
+						Description:         "IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.",
+						MarkdownDescription: "IgnoreCrossplaneConstraints indicates to the package manager whether tohonor Crossplane version constrains specified by the package.Default is false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -175,21 +180,21 @@ func (r *PkgCrossplaneIoProviderV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"package_pull_policy": schema.StringAttribute{
-						Description:         "PackagePullPolicy defines the pull policy for the package. Default is IfNotPresent.",
-						MarkdownDescription: "PackagePullPolicy defines the pull policy for the package. Default is IfNotPresent.",
+						Description:         "PackagePullPolicy defines the pull policy for the package.Default is IfNotPresent.",
+						MarkdownDescription: "PackagePullPolicy defines the pull policy for the package.Default is IfNotPresent.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"package_pull_secrets": schema.ListNestedAttribute{
-						Description:         "PackagePullSecrets are named secrets in the same namespace that can be used to fetch packages from private registries.",
-						MarkdownDescription: "PackagePullSecrets are named secrets in the same namespace that can be used to fetch packages from private registries.",
+						Description:         "PackagePullSecrets are named secrets in the same namespace that can be usedto fetch packages from private registries.",
+						MarkdownDescription: "PackagePullSecrets are named secrets in the same namespace that can be usedto fetch packages from private registries.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-									MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+									MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -202,24 +207,57 @@ func (r *PkgCrossplaneIoProviderV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"revision_activation_policy": schema.StringAttribute{
-						Description:         "RevisionActivationPolicy specifies how the package controller should update from one revision to the next. Options are Automatic or Manual. Default is Automatic.",
-						MarkdownDescription: "RevisionActivationPolicy specifies how the package controller should update from one revision to the next. Options are Automatic or Manual. Default is Automatic.",
+						Description:         "RevisionActivationPolicy specifies how the package controller shouldupdate from one revision to the next. Options are Automatic or Manual.Default is Automatic.",
+						MarkdownDescription: "RevisionActivationPolicy specifies how the package controller shouldupdate from one revision to the next. Options are Automatic or Manual.Default is Automatic.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"revision_history_limit": schema.Int64Attribute{
-						Description:         "RevisionHistoryLimit dictates how the package controller cleans up old inactive package revisions. Defaults to 1. Can be disabled by explicitly setting to 0.",
-						MarkdownDescription: "RevisionHistoryLimit dictates how the package controller cleans up old inactive package revisions. Defaults to 1. Can be disabled by explicitly setting to 0.",
+						Description:         "RevisionHistoryLimit dictates how the package controller cleans up oldinactive package revisions.Defaults to 1. Can be disabled by explicitly setting to 0.",
+						MarkdownDescription: "RevisionHistoryLimit dictates how the package controller cleans up oldinactive package revisions.Defaults to 1. Can be disabled by explicitly setting to 0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
+					"runtime_config_ref": schema.SingleNestedAttribute{
+						Description:         "RuntimeConfigRef references a RuntimeConfig resource that will be usedto configure the package runtime.",
+						MarkdownDescription: "RuntimeConfigRef references a RuntimeConfig resource that will be usedto configure the package runtime.",
+						Attributes: map[string]schema.Attribute{
+							"api_version": schema.StringAttribute{
+								Description:         "API version of the referent.",
+								MarkdownDescription: "API version of the referent.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kind": schema.StringAttribute{
+								Description:         "Kind of the referent.",
+								MarkdownDescription: "Kind of the referent.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "Name of the RuntimeConfig.",
+								MarkdownDescription: "Name of the RuntimeConfig.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"skip_dependency_resolution": schema.BoolAttribute{
-						Description:         "SkipDependencyResolution indicates to the package manager whether to skip resolving dependencies for a package. Setting this value to true may have unintended consequences. Default is false.",
-						MarkdownDescription: "SkipDependencyResolution indicates to the package manager whether to skip resolving dependencies for a package. Setting this value to true may have unintended consequences. Default is false.",
+						Description:         "SkipDependencyResolution indicates to the package manager whether to skipresolving dependencies for a package. Setting this value to true may haveunintended consequences.Default is false.",
+						MarkdownDescription: "SkipDependencyResolution indicates to the package manager whether to skipresolving dependencies for a package. Setting this value to true may haveunintended consequences.Default is false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

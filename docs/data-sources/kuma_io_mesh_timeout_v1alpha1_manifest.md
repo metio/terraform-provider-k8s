@@ -56,7 +56,7 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 Optional:
 
@@ -70,8 +70,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--from"></a>
@@ -79,11 +80,11 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group of clients. (see [below for nested schema](#nestedatt--spec--from--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group ofclients. (see [below for nested schema](#nestedatt--spec--from--target_ref))
 
 Optional:
 
-- `default` (Attributes) Default is a configuration specific to the group of clients referenced in 'targetRef' (see [below for nested schema](#nestedatt--spec--from--default))
+- `default` (Attributes) Default is a configuration specific to the group of clients referenced in'targetRef' (see [below for nested schema](#nestedatt--spec--from--default))
 
 <a id="nestedatt--spec--from--target_ref"></a>
 ### Nested Schema for `spec.from.target_ref`
@@ -92,8 +93,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--from--default"></a>
@@ -101,19 +103,20 @@ Optional:
 
 Optional:
 
-- `connection_timeout` (String) ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established. Default value is 5 seconds. Cannot be set to 0.
+- `connection_timeout` (String) ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established.Default value is 5 seconds. Cannot be set to 0.
 - `http` (Attributes) Http provides configuration for HTTP specific timeouts (see [below for nested schema](#nestedatt--spec--from--default--http))
-- `idle_timeout` (String) IdleTimeout is defined as the period in which there are no bytes sent or received on connection Setting this timeout to 0 will disable it. Be cautious when disabling it because it can lead to connection leaking. Default value is 1h.
+- `idle_timeout` (String) IdleTimeout is defined as the period in which there are no bytes sent or received on connectionSetting this timeout to 0 will disable it. Be cautious when disabling it becauseit can lead to connection leaking. Default value is 1h.
 
 <a id="nestedatt--spec--from--default--http"></a>
 ### Nested Schema for `spec.from.default.idle_timeout`
 
 Optional:
 
-- `max_connection_duration` (String) MaxConnectionDuration is the time after which a connection will be drained and/or closed, starting from when it was first established. Setting this timeout to 0 will disable it. Disabled by default.
-- `max_stream_duration` (String) MaxStreamDuration is the maximum time that a stream’s lifetime will span. Setting this timeout to 0 will disable it. Disabled by default.
-- `request_timeout` (String) RequestTimeout The amount of time that proxy will wait for the entire request to be received. The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent, OR when the response is initiated. Setting this timeout to 0 will disable it. Default is 15s.
-- `stream_idle_timeout` (String) StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity. Setting this timeout to 0 will disable it. Default is 30m
+- `max_connection_duration` (String) MaxConnectionDuration is the time after which a connection will be drained and/or closed,starting from when it was first established. Setting this timeout to 0 will disable it.Disabled by default.
+- `max_stream_duration` (String) MaxStreamDuration is the maximum time that a stream’s lifetime will span.Setting this timeout to 0 will disable it. Disabled by default.
+- `request_headers_timeout` (String) RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer isactivated when the first byte of the headers is received, and is disarmed when the last byte ofthe headers has been received. If not specified or set to 0, this timeout is disabled.Disabled by default.
+- `request_timeout` (String) RequestTimeout The amount of time that proxy will wait for the entire request to be received.The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent,OR when the response is initiated. Setting this timeout to 0 will disable it.Default is 15s.
+- `stream_idle_timeout` (String) StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity.Setting this timeout to 0 will disable it. Default is 30m
 
 
 
@@ -123,11 +126,11 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group of destinations. (see [below for nested schema](#nestedatt--spec--to--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group ofdestinations. (see [below for nested schema](#nestedatt--spec--to--target_ref))
 
 Optional:
 
-- `default` (Attributes) Default is a configuration specific to the group of destinations referenced in 'targetRef' (see [below for nested schema](#nestedatt--spec--to--default))
+- `default` (Attributes) Default is a configuration specific to the group of destinations referenced in'targetRef' (see [below for nested schema](#nestedatt--spec--to--default))
 
 <a id="nestedatt--spec--to--target_ref"></a>
 ### Nested Schema for `spec.to.target_ref`
@@ -136,8 +139,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--to--default"></a>
@@ -145,16 +149,17 @@ Optional:
 
 Optional:
 
-- `connection_timeout` (String) ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established. Default value is 5 seconds. Cannot be set to 0.
+- `connection_timeout` (String) ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established.Default value is 5 seconds. Cannot be set to 0.
 - `http` (Attributes) Http provides configuration for HTTP specific timeouts (see [below for nested schema](#nestedatt--spec--to--default--http))
-- `idle_timeout` (String) IdleTimeout is defined as the period in which there are no bytes sent or received on connection Setting this timeout to 0 will disable it. Be cautious when disabling it because it can lead to connection leaking. Default value is 1h.
+- `idle_timeout` (String) IdleTimeout is defined as the period in which there are no bytes sent or received on connectionSetting this timeout to 0 will disable it. Be cautious when disabling it becauseit can lead to connection leaking. Default value is 1h.
 
 <a id="nestedatt--spec--to--default--http"></a>
 ### Nested Schema for `spec.to.default.idle_timeout`
 
 Optional:
 
-- `max_connection_duration` (String) MaxConnectionDuration is the time after which a connection will be drained and/or closed, starting from when it was first established. Setting this timeout to 0 will disable it. Disabled by default.
-- `max_stream_duration` (String) MaxStreamDuration is the maximum time that a stream’s lifetime will span. Setting this timeout to 0 will disable it. Disabled by default.
-- `request_timeout` (String) RequestTimeout The amount of time that proxy will wait for the entire request to be received. The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent, OR when the response is initiated. Setting this timeout to 0 will disable it. Default is 15s.
-- `stream_idle_timeout` (String) StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity. Setting this timeout to 0 will disable it. Default is 30m
+- `max_connection_duration` (String) MaxConnectionDuration is the time after which a connection will be drained and/or closed,starting from when it was first established. Setting this timeout to 0 will disable it.Disabled by default.
+- `max_stream_duration` (String) MaxStreamDuration is the maximum time that a stream’s lifetime will span.Setting this timeout to 0 will disable it. Disabled by default.
+- `request_headers_timeout` (String) RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer isactivated when the first byte of the headers is received, and is disarmed when the last byte ofthe headers has been received. If not specified or set to 0, this timeout is disabled.Disabled by default.
+- `request_timeout` (String) RequestTimeout The amount of time that proxy will wait for the entire request to be received.The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent,OR when the response is initiated. Setting this timeout to 0 will disable it.Default is 15s.
+- `stream_idle_timeout` (String) StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity.Setting this timeout to 0 will disable it. Default is 30m

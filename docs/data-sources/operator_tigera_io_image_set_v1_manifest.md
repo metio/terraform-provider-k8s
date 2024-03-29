@@ -16,6 +16,7 @@ ImageSet is used to specify image digests for the images that the operator deplo
 data "k8s_operator_tigera_io_image_set_v1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```

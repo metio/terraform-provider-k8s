@@ -60,22 +60,23 @@ Required:
 
 Optional:
 
-- `entry_points` (List of String) EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/entrypoints/ Default: all.
-- `tls` (Attributes) TLS defines the TLS configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#tls (see [below for nested schema](#nestedatt--spec--tls))
+- `entry_points` (List of String) EntryPoints defines the list of entry point names to bind to.Entry points have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/entrypoints/Default: all.
+- `tls` (Attributes) TLS defines the TLS configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#tls (see [below for nested schema](#nestedatt--spec--tls))
 
 <a id="nestedatt--spec--routes"></a>
 ### Nested Schema for `spec.routes`
 
 Required:
 
-- `kind` (String) Kind defines the kind of the route. Rule is the only supported kind.
-- `match` (String) Match defines the router's rule. More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#rule
+- `kind` (String) Kind defines the kind of the route.Rule is the only supported kind.
+- `match` (String) Match defines the router's rule.More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#rule
 
 Optional:
 
-- `middlewares` (Attributes List) Middlewares defines the list of references to Middleware resources. More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-middleware (see [below for nested schema](#nestedatt--spec--routes--middlewares))
-- `priority` (Number) Priority defines the router's priority. More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#priority
-- `services` (Attributes List) Services defines the list of Service. It can contain any combination of TraefikService and/or reference to a Kubernetes Service. (see [below for nested schema](#nestedatt--spec--routes--services))
+- `middlewares` (Attributes List) Middlewares defines the list of references to Middleware resources.More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-middleware (see [below for nested schema](#nestedatt--spec--routes--middlewares))
+- `priority` (Number) Priority defines the router's priority.More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#priority
+- `services` (Attributes List) Services defines the list of Service.It can contain any combination of TraefikService and/or reference to a Kubernetes Service. (see [below for nested schema](#nestedatt--spec--routes--services))
+- `syntax` (String) Syntax defines the router's rule syntax.More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#rulesyntax
 
 <a id="nestedatt--spec--routes--middlewares"></a>
 ### Nested Schema for `spec.routes.middlewares`
@@ -94,28 +95,29 @@ Optional:
 
 Required:
 
-- `name` (String) Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.
+- `name` (String) Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.
 
 Optional:
 
 - `kind` (String) Kind defines the kind of the Service.
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.
-- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.
-- `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.
-- `port` (String) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
+- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.
+- `node_port_lb` (Boolean) NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.
+- `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.
+- `port` (String) Port defines the port of a Kubernetes Service.This can be a reference to a named port.
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--routes--services--response_forwarding))
-- `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.
-- `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.
-- `sticky` (Attributes) Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--routes--services--sticky))
-- `strategy` (String) Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.
-- `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).
+- `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.
+- `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.
+- `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--routes--services--sticky))
+- `strategy` (String) Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.
+- `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
 
 <a id="nestedatt--spec--routes--services--response_forwarding"></a>
 ### Nested Schema for `spec.routes.services.weight`
 
 Optional:
 
-- `flush_interval` (String) FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms
+- `flush_interval` (String) FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms
 
 
 <a id="nestedatt--spec--routes--services--sticky"></a>
@@ -131,8 +133,9 @@ Optional:
 Optional:
 
 - `http_only` (Boolean) HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.
+- `max_age` (Number) MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.
 - `name` (String) Name defines the Cookie name.
-- `same_site` (String) SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+- `same_site` (String) SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
 - `secure` (Boolean) Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).
 
 
@@ -144,11 +147,11 @@ Optional:
 
 Optional:
 
-- `cert_resolver` (String) CertResolver defines the name of the certificate resolver to use. Cert resolvers have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.0/https/acme/#certificate-resolvers
-- `domains` (Attributes List) Domains defines the list of domains that will be used to issue certificates. More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#domains (see [below for nested schema](#nestedatt--spec--tls--domains))
-- `options` (Attributes) Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection. If not defined, the 'default' TLSOption is used. More info: https://doc.traefik.io/traefik/v3.0/https/tls/#tls-options (see [below for nested schema](#nestedatt--spec--tls--options))
+- `cert_resolver` (String) CertResolver defines the name of the certificate resolver to use.Cert resolvers have to be configured in the static configuration.More info: https://doc.traefik.io/traefik/v3.0/https/acme/#certificate-resolvers
+- `domains` (Attributes List) Domains defines the list of domains that will be used to issue certificates.More info: https://doc.traefik.io/traefik/v3.0/routing/routers/#domains (see [below for nested schema](#nestedatt--spec--tls--domains))
+- `options` (Attributes) Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection.If not defined, the 'default' TLSOption is used.More info: https://doc.traefik.io/traefik/v3.0/https/tls/#tls-options (see [below for nested schema](#nestedatt--spec--tls--options))
 - `secret_name` (String) SecretName is the name of the referenced Kubernetes Secret to specify the certificate details.
-- `store` (Attributes) Store defines the reference to the TLSStore, that will be used to store certificates. Please note that only 'default' TLSStore can be used. (see [below for nested schema](#nestedatt--spec--tls--store))
+- `store` (Attributes) Store defines the reference to the TLSStore, that will be used to store certificates.Please note that only 'default' TLSStore can be used. (see [below for nested schema](#nestedatt--spec--tls--store))
 
 <a id="nestedatt--spec--tls--domains"></a>
 ### Nested Schema for `spec.tls.domains`
@@ -164,11 +167,11 @@ Optional:
 
 Required:
 
-- `name` (String) Name defines the name of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsoption
+- `name` (String) Name defines the name of the referenced TLSOption.More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsoption
 
 Optional:
 
-- `namespace` (String) Namespace defines the namespace of the referenced TLSOption. More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsoption
+- `namespace` (String) Namespace defines the namespace of the referenced TLSOption.More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsoption
 
 
 <a id="nestedatt--spec--tls--store"></a>
@@ -176,8 +179,8 @@ Optional:
 
 Required:
 
-- `name` (String) Name defines the name of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsstore
+- `name` (String) Name defines the name of the referenced TLSStore.More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsstore
 
 Optional:
 
-- `namespace` (String) Namespace defines the namespace of the referenced TLSStore. More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsstore
+- `namespace` (String) Namespace defines the namespace of the referenced TLSStore.More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsstore

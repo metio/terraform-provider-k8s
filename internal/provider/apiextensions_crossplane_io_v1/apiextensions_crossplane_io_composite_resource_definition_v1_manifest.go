@@ -116,8 +116,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Metadat
 
 func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "A CompositeResourceDefinition defines a new kind of composite infrastructure resource. The new resource is composed of other composite or managed infrastructure resources.",
-		MarkdownDescription: "A CompositeResourceDefinition defines a new kind of composite infrastructure resource. The new resource is composed of other composite or managed infrastructure resources.",
+		Description:         "A CompositeResourceDefinition defines a new kind of composite infrastructureresource. The new resource is composed of other composite or managedinfrastructure resources.",
+		MarkdownDescription: "A CompositeResourceDefinition defines a new kind of composite infrastructureresource. The new resource is composed of other composite or managedinfrastructure resources.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.name'.",
@@ -184,12 +184,12 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 				MarkdownDescription: "CompositeResourceDefinitionSpec specifies the desired state of the definition.",
 				Attributes: map[string]schema.Attribute{
 					"claim_names": schema.SingleNestedAttribute{
-						Description:         "ClaimNames specifies the names of an optional composite resource claim. When claim names are specified Crossplane will create a namespaced 'composite resource claim' CRD that corresponds to the defined composite resource. This composite resource claim acts as a namespaced proxy for the composite resource; creating, updating, or deleting the claim will create, update, or delete a corresponding composite resource. You may add claim names to an existing CompositeResourceDefinition, but they cannot be changed or removed once they have been set.",
-						MarkdownDescription: "ClaimNames specifies the names of an optional composite resource claim. When claim names are specified Crossplane will create a namespaced 'composite resource claim' CRD that corresponds to the defined composite resource. This composite resource claim acts as a namespaced proxy for the composite resource; creating, updating, or deleting the claim will create, update, or delete a corresponding composite resource. You may add claim names to an existing CompositeResourceDefinition, but they cannot be changed or removed once they have been set.",
+						Description:         "ClaimNames specifies the names of an optional composite resource claim.When claim names are specified Crossplane will create a namespaced'composite resource claim' CRD that corresponds to the defined compositeresource. This composite resource claim acts as a namespaced proxy forthe composite resource; creating, updating, or deleting the claim willcreate, update, or delete a corresponding composite resource. You may addclaim names to an existing CompositeResourceDefinition, but they cannotbe changed or removed once they have been set.",
+						MarkdownDescription: "ClaimNames specifies the names of an optional composite resource claim.When claim names are specified Crossplane will create a namespaced'composite resource claim' CRD that corresponds to the defined compositeresource. This composite resource claim acts as a namespaced proxy forthe composite resource; creating, updating, or deleting the claim willcreate, update, or delete a corresponding composite resource. You may addclaim names to an existing CompositeResourceDefinition, but they cannotbe changed or removed once they have been set.",
 						Attributes: map[string]schema.Attribute{
 							"categories": schema.ListAttribute{
-								Description:         "categories is a list of grouped resources this custom resource belongs to (e.g. 'all'). This is published in API discovery documents, and used by clients to support invocations like 'kubectl get all'.",
-								MarkdownDescription: "categories is a list of grouped resources this custom resource belongs to (e.g. 'all'). This is published in API discovery documents, and used by clients to support invocations like 'kubectl get all'.",
+								Description:         "categories is a list of grouped resources this custom resource belongs to (e.g. 'all').This is published in API discovery documents, and used by clients to support invocations like'kubectl get all'.",
+								MarkdownDescription: "categories is a list of grouped resources this custom resource belongs to (e.g. 'all').This is published in API discovery documents, and used by clients to support invocations like'kubectl get all'.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -197,8 +197,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "kind is the serialized kind of the resource. It is normally CamelCase and singular. Custom resource instances will use this value as the 'kind' attribute in API calls.",
-								MarkdownDescription: "kind is the serialized kind of the resource. It is normally CamelCase and singular. Custom resource instances will use this value as the 'kind' attribute in API calls.",
+								Description:         "kind is the serialized kind of the resource. It is normally CamelCase and singular.Custom resource instances will use this value as the 'kind' attribute in API calls.",
+								MarkdownDescription: "kind is the serialized kind of the resource. It is normally CamelCase and singular.Custom resource instances will use this value as the 'kind' attribute in API calls.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -213,16 +213,16 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 							},
 
 							"plural": schema.StringAttribute{
-								Description:         "plural is the plural name of the resource to serve. The custom resources are served under '/apis/<group>/<version>/.../<plural>'. Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>'). Must be all lowercase.",
-								MarkdownDescription: "plural is the plural name of the resource to serve. The custom resources are served under '/apis/<group>/<version>/.../<plural>'. Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>'). Must be all lowercase.",
+								Description:         "plural is the plural name of the resource to serve.The custom resources are served under '/apis/<group>/<version>/.../<plural>'.Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>').Must be all lowercase.",
+								MarkdownDescription: "plural is the plural name of the resource to serve.The custom resources are served under '/apis/<group>/<version>/.../<plural>'.Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>').Must be all lowercase.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"short_names": schema.ListAttribute{
-								Description:         "shortNames are short names for the resource, exposed in API discovery documents, and used by clients to support invocations like 'kubectl get <shortname>'. It must be all lowercase.",
-								MarkdownDescription: "shortNames are short names for the resource, exposed in API discovery documents, and used by clients to support invocations like 'kubectl get <shortname>'. It must be all lowercase.",
+								Description:         "shortNames are short names for the resource, exposed in API discovery documents,and used by clients to support invocations like 'kubectl get <shortname>'.It must be all lowercase.",
+								MarkdownDescription: "shortNames are short names for the resource, exposed in API discovery documents,and used by clients to support invocations like 'kubectl get <shortname>'.It must be all lowercase.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -243,8 +243,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 					},
 
 					"connection_secret_keys": schema.ListAttribute{
-						Description:         "ConnectionSecretKeys is the list of keys that will be exposed to the end user of the defined kind. If the list is empty, all keys will be published.",
-						MarkdownDescription: "ConnectionSecretKeys is the list of keys that will be exposed to the end user of the defined kind. If the list is empty, all keys will be published.",
+						Description:         "ConnectionSecretKeys is the list of keys that will be exposed to the enduser of the defined kind.If the list is empty, all keys will be published.",
+						MarkdownDescription: "ConnectionSecretKeys is the list of keys that will be exposed to the enduser of the defined kind.If the list is empty, all keys will be published.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -256,8 +256,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 						MarkdownDescription: "Conversion defines all conversion settings for the defined Composite resource.",
 						Attributes: map[string]schema.Attribute{
 							"strategy": schema.StringAttribute{
-								Description:         "strategy specifies how custom resources are converted between versions. Allowed values are: - ''None'': The converter only change the apiVersion and would not touch any other field in the custom resource. - ''Webhook'': API Server will call to an external webhook to do the conversion. Additional information is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set.",
-								MarkdownDescription: "strategy specifies how custom resources are converted between versions. Allowed values are: - ''None'': The converter only change the apiVersion and would not touch any other field in the custom resource. - ''Webhook'': API Server will call to an external webhook to do the conversion. Additional information is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set.",
+								Description:         "strategy specifies how custom resources are converted between versions. Allowed values are:- ''None'': The converter only change the apiVersion and would not touch any other field in the custom resource.- ''Webhook'': API Server will call to an external webhook to do the conversion. Additional information  is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set.",
+								MarkdownDescription: "strategy specifies how custom resources are converted between versions. Allowed values are:- ''None'': The converter only change the apiVersion and would not touch any other field in the custom resource.- ''Webhook'': API Server will call to an external webhook to do the conversion. Additional information  is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -272,8 +272,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 										MarkdownDescription: "clientConfig is the instructions for how to call the webhook if strategy is 'Webhook'.",
 										Attributes: map[string]schema.Attribute{
 											"ca_bundle": schema.StringAttribute{
-												Description:         "caBundle is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.",
-												MarkdownDescription: "caBundle is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.",
+												Description:         "caBundle is a PEM encoded CA bundle which will be used to validate the webhook's server certificate.If unspecified, system trust roots on the apiserver are used.",
+												MarkdownDescription: "caBundle is a PEM encoded CA bundle which will be used to validate the webhook's server certificate.If unspecified, system trust roots on the apiserver are used.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -283,20 +283,20 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 											},
 
 											"service": schema.SingleNestedAttribute{
-												Description:         "service is a reference to the service for this webhook. Either service or url must be specified.  If the webhook is running within the cluster, then you should use 'service'.",
-												MarkdownDescription: "service is a reference to the service for this webhook. Either service or url must be specified.  If the webhook is running within the cluster, then you should use 'service'.",
+												Description:         "service is a reference to the service for this webhook. Eitherservice or url must be specified.If the webhook is running within the cluster, then you should use 'service'.",
+												MarkdownDescription: "service is a reference to the service for this webhook. Eitherservice or url must be specified.If the webhook is running within the cluster, then you should use 'service'.",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "name is the name of the service. Required",
-														MarkdownDescription: "name is the name of the service. Required",
+														Description:         "name is the name of the service.Required",
+														MarkdownDescription: "name is the name of the service.Required",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "namespace is the namespace of the service. Required",
-														MarkdownDescription: "namespace is the namespace of the service. Required",
+														Description:         "namespace is the namespace of the service.Required",
+														MarkdownDescription: "namespace is the namespace of the service.Required",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -311,8 +311,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 													},
 
 													"port": schema.Int64Attribute{
-														Description:         "port is an optional service port at which the webhook will be contacted. 'port' should be a valid port number (1-65535, inclusive). Defaults to 443 for backward compatibility.",
-														MarkdownDescription: "port is an optional service port at which the webhook will be contacted. 'port' should be a valid port number (1-65535, inclusive). Defaults to 443 for backward compatibility.",
+														Description:         "port is an optional service port at which the webhook will be contacted.'port' should be a valid port number (1-65535, inclusive).Defaults to 443 for backward compatibility.",
+														MarkdownDescription: "port is an optional service port at which the webhook will be contacted.'port' should be a valid port number (1-65535, inclusive).Defaults to 443 for backward compatibility.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -324,8 +324,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 											},
 
 											"url": schema.StringAttribute{
-												Description:         "url gives the location of the webhook, in standard URL form ('scheme://host:port/path'). Exactly one of 'url' or 'service' must be specified.  The 'host' should not refer to a service running in the cluster; use the 'service' field instead. The host might be resolved via external DNS in some apiservers (e.g., 'kube-apiserver' cannot resolve in-cluster DNS as that would be a layering violation). 'host' may also be an IP address.  Please note that using 'localhost' or '127.0.0.1' as a 'host' is risky unless you take great care to run this webhook on all hosts which run an apiserver which might need to make calls to this webhook. Such installs are likely to be non-portable, i.e., not easy to turn up in a new cluster.  The scheme must be 'https'; the URL must begin with 'https://'.  A path is optional, and if present may be any string permissible in a URL. You may use the path to pass an arbitrary string to the webhook, for example, a cluster identifier.  Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed, either.",
-												MarkdownDescription: "url gives the location of the webhook, in standard URL form ('scheme://host:port/path'). Exactly one of 'url' or 'service' must be specified.  The 'host' should not refer to a service running in the cluster; use the 'service' field instead. The host might be resolved via external DNS in some apiservers (e.g., 'kube-apiserver' cannot resolve in-cluster DNS as that would be a layering violation). 'host' may also be an IP address.  Please note that using 'localhost' or '127.0.0.1' as a 'host' is risky unless you take great care to run this webhook on all hosts which run an apiserver which might need to make calls to this webhook. Such installs are likely to be non-portable, i.e., not easy to turn up in a new cluster.  The scheme must be 'https'; the URL must begin with 'https://'.  A path is optional, and if present may be any string permissible in a URL. You may use the path to pass an arbitrary string to the webhook, for example, a cluster identifier.  Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed, either.",
+												Description:         "url gives the location of the webhook, in standard URL form('scheme://host:port/path'). Exactly one of 'url' or 'service'must be specified.The 'host' should not refer to a service running in the cluster; usethe 'service' field instead. The host might be resolved via externalDNS in some apiservers (e.g., 'kube-apiserver' cannot resolvein-cluster DNS as that would be a layering violation). 'host' mayalso be an IP address.Please note that using 'localhost' or '127.0.0.1' as a 'host' isrisky unless you take great care to run this webhook on all hostswhich run an apiserver which might need to make calls to thiswebhook. Such installs are likely to be non-portable, i.e., not easyto turn up in a new cluster.The scheme must be 'https'; the URL must begin with 'https://'.A path is optional, and if present may be any string permissible ina URL. You may use the path to pass an arbitrary string to thewebhook, for example, a cluster identifier.Attempting to use a user or basic auth e.g. 'user:password@' is notallowed. Fragments ('#...') and query parameters ('?...') are notallowed, either.",
+												MarkdownDescription: "url gives the location of the webhook, in standard URL form('scheme://host:port/path'). Exactly one of 'url' or 'service'must be specified.The 'host' should not refer to a service running in the cluster; usethe 'service' field instead. The host might be resolved via externalDNS in some apiservers (e.g., 'kube-apiserver' cannot resolvein-cluster DNS as that would be a layering violation). 'host' mayalso be an IP address.Please note that using 'localhost' or '127.0.0.1' as a 'host' isrisky unless you take great care to run this webhook on all hostswhich run an apiserver which might need to make calls to thiswebhook. Such installs are likely to be non-portable, i.e., not easyto turn up in a new cluster.The scheme must be 'https'; the URL must begin with 'https://'.A path is optional, and if present may be any string permissible ina URL. You may use the path to pass an arbitrary string to thewebhook, for example, a cluster identifier.Attempting to use a user or basic auth e.g. 'user:password@' is notallowed. Fragments ('#...') and query parameters ('?...') are notallowed, either.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -337,8 +337,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 									},
 
 									"conversion_review_versions": schema.ListAttribute{
-										Description:         "conversionReviewVersions is an ordered list of preferred 'ConversionReview' versions the Webhook expects. The API server will use the first version in the list which it supports. If none of the versions specified in this list are supported by API server, conversion will fail for the custom resource. If a persisted Webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail.",
-										MarkdownDescription: "conversionReviewVersions is an ordered list of preferred 'ConversionReview' versions the Webhook expects. The API server will use the first version in the list which it supports. If none of the versions specified in this list are supported by API server, conversion will fail for the custom resource. If a persisted Webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail.",
+										Description:         "conversionReviewVersions is an ordered list of preferred 'ConversionReview'versions the Webhook expects. The API server will use the first version inthe list which it supports. If none of the versions specified in this listare supported by API server, conversion will fail for the custom resource.If a persisted Webhook configuration specifies allowed versions and does notinclude any versions known to the API Server, calls to the webhook will fail.",
+										MarkdownDescription: "conversionReviewVersions is an ordered list of preferred 'ConversionReview'versions the Webhook expects. The API server will use the first version inthe list which it supports. If none of the versions specified in this listare supported by API server, conversion will fail for the custom resource.If a persisted Webhook configuration specifies allowed versions and does notinclude any versions known to the API Server, calls to the webhook will fail.",
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
@@ -356,8 +356,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 					},
 
 					"default_composite_delete_policy": schema.StringAttribute{
-						Description:         "DefaultCompositeDeletePolicy is the policy used when deleting the Composite that is associated with the Claim if no policy has been specified.",
-						MarkdownDescription: "DefaultCompositeDeletePolicy is the policy used when deleting the Composite that is associated with the Claim if no policy has been specified.",
+						Description:         "DefaultCompositeDeletePolicy is the policy used when deleting the Compositethat is associated with the Claim if no policy has been specified.",
+						MarkdownDescription: "DefaultCompositeDeletePolicy is the policy used when deleting the Compositethat is associated with the Claim if no policy has been specified.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -367,8 +367,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 					},
 
 					"default_composition_ref": schema.SingleNestedAttribute{
-						Description:         "DefaultCompositionRef refers to the Composition resource that will be used in case no composition selector is given.",
-						MarkdownDescription: "DefaultCompositionRef refers to the Composition resource that will be used in case no composition selector is given.",
+						Description:         "DefaultCompositionRef refers to the Composition resource that will be usedin case no composition selector is given.",
+						MarkdownDescription: "DefaultCompositionRef refers to the Composition resource that will be usedin case no composition selector is given.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the Composition.",
@@ -384,8 +384,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 					},
 
 					"default_composition_update_policy": schema.StringAttribute{
-						Description:         "DefaultCompositionUpdatePolicy is the policy used when updating composites after a new Composition Revision has been created if no policy has been specified on the composite.",
-						MarkdownDescription: "DefaultCompositionUpdatePolicy is the policy used when updating composites after a new Composition Revision has been created if no policy has been specified on the composite.",
+						Description:         "DefaultCompositionUpdatePolicy is the policy used when updating composites after a newComposition Revision has been created if no policy has been specified on the composite.",
+						MarkdownDescription: "DefaultCompositionUpdatePolicy is the policy used when updating composites after a newComposition Revision has been created if no policy has been specified on the composite.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -395,8 +395,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 					},
 
 					"enforced_composition_ref": schema.SingleNestedAttribute{
-						Description:         "EnforcedCompositionRef refers to the Composition resource that will be used by all composite instances whose schema is defined by this definition.",
-						MarkdownDescription: "EnforcedCompositionRef refers to the Composition resource that will be used by all composite instances whose schema is defined by this definition.",
+						Description:         "EnforcedCompositionRef refers to the Composition resource that will be usedby all composite instances whose schema is defined by this definition.",
+						MarkdownDescription: "EnforcedCompositionRef refers to the Composition resource that will be usedby all composite instances whose schema is defined by this definition.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the Composition.",
@@ -412,8 +412,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 					},
 
 					"group": schema.StringAttribute{
-						Description:         "Group specifies the API group of the defined composite resource. Composite resources are served under '/apis/<group>/...'. Must match the name of the XRD (in the form '<names.plural>.<group>').",
-						MarkdownDescription: "Group specifies the API group of the defined composite resource. Composite resources are served under '/apis/<group>/...'. Must match the name of the XRD (in the form '<names.plural>.<group>').",
+						Description:         "Group specifies the API group of the defined composite resource.Composite resources are served under '/apis/<group>/...'. Must match thename of the XRD (in the form '<names.plural>.<group>').",
+						MarkdownDescription: "Group specifies the API group of the defined composite resource.Composite resources are served under '/apis/<group>/...'. Must match thename of the XRD (in the form '<names.plural>.<group>').",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -424,8 +424,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 						MarkdownDescription: "Metadata specifies the desired metadata for the defined composite resource and claim CRD's.",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
-								Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
-								MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+								Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+								MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -433,8 +433,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 							},
 
 							"labels": schema.MapAttribute{
-								Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels and services. These labels are added to the composite resource and claim CRD's in addition to any labels defined by 'CompositionResourceDefinition' 'metadata.labels'.",
-								MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels and services. These labels are added to the composite resource and claim CRD's in addition to any labels defined by 'CompositionResourceDefinition' 'metadata.labels'.",
+								Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labelsand services.These labels are added to the composite resource and claim CRD's in additionto any labels defined by 'CompositionResourceDefinition' 'metadata.labels'.",
+								MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labelsand services.These labels are added to the composite resource and claim CRD's in additionto any labels defined by 'CompositionResourceDefinition' 'metadata.labels'.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -447,12 +447,12 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 					},
 
 					"names": schema.SingleNestedAttribute{
-						Description:         "Names specifies the resource and kind names of the defined composite resource.",
-						MarkdownDescription: "Names specifies the resource and kind names of the defined composite resource.",
+						Description:         "Names specifies the resource and kind names of the defined compositeresource.",
+						MarkdownDescription: "Names specifies the resource and kind names of the defined compositeresource.",
 						Attributes: map[string]schema.Attribute{
 							"categories": schema.ListAttribute{
-								Description:         "categories is a list of grouped resources this custom resource belongs to (e.g. 'all'). This is published in API discovery documents, and used by clients to support invocations like 'kubectl get all'.",
-								MarkdownDescription: "categories is a list of grouped resources this custom resource belongs to (e.g. 'all'). This is published in API discovery documents, and used by clients to support invocations like 'kubectl get all'.",
+								Description:         "categories is a list of grouped resources this custom resource belongs to (e.g. 'all').This is published in API discovery documents, and used by clients to support invocations like'kubectl get all'.",
+								MarkdownDescription: "categories is a list of grouped resources this custom resource belongs to (e.g. 'all').This is published in API discovery documents, and used by clients to support invocations like'kubectl get all'.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -460,8 +460,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "kind is the serialized kind of the resource. It is normally CamelCase and singular. Custom resource instances will use this value as the 'kind' attribute in API calls.",
-								MarkdownDescription: "kind is the serialized kind of the resource. It is normally CamelCase and singular. Custom resource instances will use this value as the 'kind' attribute in API calls.",
+								Description:         "kind is the serialized kind of the resource. It is normally CamelCase and singular.Custom resource instances will use this value as the 'kind' attribute in API calls.",
+								MarkdownDescription: "kind is the serialized kind of the resource. It is normally CamelCase and singular.Custom resource instances will use this value as the 'kind' attribute in API calls.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -476,16 +476,16 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 							},
 
 							"plural": schema.StringAttribute{
-								Description:         "plural is the plural name of the resource to serve. The custom resources are served under '/apis/<group>/<version>/.../<plural>'. Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>'). Must be all lowercase.",
-								MarkdownDescription: "plural is the plural name of the resource to serve. The custom resources are served under '/apis/<group>/<version>/.../<plural>'. Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>'). Must be all lowercase.",
+								Description:         "plural is the plural name of the resource to serve.The custom resources are served under '/apis/<group>/<version>/.../<plural>'.Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>').Must be all lowercase.",
+								MarkdownDescription: "plural is the plural name of the resource to serve.The custom resources are served under '/apis/<group>/<version>/.../<plural>'.Must match the name of the CustomResourceDefinition (in the form '<names.plural>.<group>').Must be all lowercase.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"short_names": schema.ListAttribute{
-								Description:         "shortNames are short names for the resource, exposed in API discovery documents, and used by clients to support invocations like 'kubectl get <shortname>'. It must be all lowercase.",
-								MarkdownDescription: "shortNames are short names for the resource, exposed in API discovery documents, and used by clients to support invocations like 'kubectl get <shortname>'. It must be all lowercase.",
+								Description:         "shortNames are short names for the resource, exposed in API discovery documents,and used by clients to support invocations like 'kubectl get <shortname>'.It must be all lowercase.",
+								MarkdownDescription: "shortNames are short names for the resource, exposed in API discovery documents,and used by clients to support invocations like 'kubectl get <shortname>'.It must be all lowercase.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -506,13 +506,13 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 					},
 
 					"versions": schema.ListNestedAttribute{
-						Description:         "Versions is the list of all API versions of the defined composite resource. Version names are used to compute the order in which served versions are listed in API discovery. If the version string is 'kube-like', it will sort above non 'kube-like' version strings, which are ordered lexicographically. 'Kube-like' versions start with a 'v', then are followed by a number (the major version), then optionally the string 'alpha' or 'beta' and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.",
-						MarkdownDescription: "Versions is the list of all API versions of the defined composite resource. Version names are used to compute the order in which served versions are listed in API discovery. If the version string is 'kube-like', it will sort above non 'kube-like' version strings, which are ordered lexicographically. 'Kube-like' versions start with a 'v', then are followed by a number (the major version), then optionally the string 'alpha' or 'beta' and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.",
+						Description:         "Versions is the list of all API versions of the defined compositeresource. Version names are used to compute the order in which servedversions are listed in API discovery. If the version string is'kube-like', it will sort above non 'kube-like' version strings, whichare ordered lexicographically. 'Kube-like' versions start with a 'v',then are followed by a number (the major version), then optionally thestring 'alpha' or 'beta' and another number (the minor version). Theseare sorted first by GA > beta > alpha (where GA is a version with nosuffix such as beta or alpha), and then by comparing major version, thenminor version. An example sorted list of versions: v10, v2, v1, v11beta2,v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.",
+						MarkdownDescription: "Versions is the list of all API versions of the defined compositeresource. Version names are used to compute the order in which servedversions are listed in API discovery. If the version string is'kube-like', it will sort above non 'kube-like' version strings, whichare ordered lexicographically. 'Kube-like' versions start with a 'v',then are followed by a number (the major version), then optionally thestring 'alpha' or 'beta' and another number (the minor version). Theseare sorted first by GA > beta > alpha (where GA is a version with nosuffix such as beta or alpha), and then by comparing major version, thenminor version. An example sorted list of versions: v10, v2, v1, v11beta2,v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"additional_printer_columns": schema.ListNestedAttribute{
-									Description:         "AdditionalPrinterColumns specifies additional columns returned in Table output. If no columns are specified, a single column displaying the age of the custom resource is used. See the following link for details: https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables",
-									MarkdownDescription: "AdditionalPrinterColumns specifies additional columns returned in Table output. If no columns are specified, a single column displaying the age of the custom resource is used. See the following link for details: https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables",
+									Description:         "AdditionalPrinterColumns specifies additional columns returned in Tableoutput. If no columns are specified, a single column displaying the ageof the custom resource is used. See the following link for details:https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables",
+									MarkdownDescription: "AdditionalPrinterColumns specifies additional columns returned in Tableoutput. If no columns are specified, a single column displaying the ageof the custom resource is used. See the following link for details:https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"description": schema.StringAttribute{
@@ -524,16 +524,16 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 											},
 
 											"format": schema.StringAttribute{
-												Description:         "format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.",
-												MarkdownDescription: "format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.",
+												Description:         "format is an optional OpenAPI type definition for this column. The 'name' format is appliedto the primary identifier column to assist in clients identifying column is the resource name.See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.",
+												MarkdownDescription: "format is an optional OpenAPI type definition for this column. The 'name' format is appliedto the primary identifier column to assist in clients identifying column is the resource name.See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"json_path": schema.StringAttribute{
-												Description:         "jsonPath is a simple JSON path (i.e. with array notation) which is evaluated against each custom resource to produce the value for this column.",
-												MarkdownDescription: "jsonPath is a simple JSON path (i.e. with array notation) which is evaluated against each custom resource to produce the value for this column.",
+												Description:         "jsonPath is a simple JSON path (i.e. with array notation) which is evaluated againsteach custom resource to produce the value for this column.",
+												MarkdownDescription: "jsonPath is a simple JSON path (i.e. with array notation) which is evaluated againsteach custom resource to produce the value for this column.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -548,16 +548,16 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 											},
 
 											"priority": schema.Int64Attribute{
-												Description:         "priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a priority greater than 0.",
-												MarkdownDescription: "priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a priority greater than 0.",
+												Description:         "priority is an integer defining the relative importance of this column compared to others. Lowernumbers are considered higher priority. Columns that may be omitted in limited space scenariosshould be given a priority greater than 0.",
+												MarkdownDescription: "priority is an integer defining the relative importance of this column compared to others. Lowernumbers are considered higher priority. Columns that may be omitted in limited space scenariosshould be given a priority greater than 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"type": schema.StringAttribute{
-												Description:         "type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.",
-												MarkdownDescription: "type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.",
+												Description:         "type is an OpenAPI type definition for this column.See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.",
+												MarkdownDescription: "type is an OpenAPI type definition for this column.See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -570,44 +570,47 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 								},
 
 								"deprecated": schema.BoolAttribute{
-									Description:         "The deprecated field specifies that this version is deprecated and should not be used.",
-									MarkdownDescription: "The deprecated field specifies that this version is deprecated and should not be used.",
+									Description:         "The deprecated field specifies that this version is deprecated and shouldnot be used.",
+									MarkdownDescription: "The deprecated field specifies that this version is deprecated and shouldnot be used.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"deprecation_warning": schema.StringAttribute{
-									Description:         "DeprecationWarning specifies the message that should be shown to the user when using this version.",
-									MarkdownDescription: "DeprecationWarning specifies the message that should be shown to the user when using this version.",
+									Description:         "DeprecationWarning specifies the message that should be shown to the userwhen using this version.",
+									MarkdownDescription: "DeprecationWarning specifies the message that should be shown to the userwhen using this version.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(256),
+									},
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name of this version, e.g. “v1”, “v2beta1”, etc. Composite resources are served under this version at '/apis/<group>/<version>/...' if 'served' is true.",
-									MarkdownDescription: "Name of this version, e.g. “v1”, “v2beta1”, etc. Composite resources are served under this version at '/apis/<group>/<version>/...' if 'served' is true.",
+									Description:         "Name of this version, e.g. “v1”, “v2beta1”, etc. Composite resources areserved under this version at '/apis/<group>/<version>/...' if 'served' istrue.",
+									MarkdownDescription: "Name of this version, e.g. “v1”, “v2beta1”, etc. Composite resources areserved under this version at '/apis/<group>/<version>/...' if 'served' istrue.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"referenceable": schema.BoolAttribute{
-									Description:         "Referenceable specifies that this version may be referenced by a Composition in order to configure which resources an XR may be composed of. Exactly one version must be marked as referenceable; all Compositions must target only the referenceable version. The referenceable version must be served. It's mapped to the CRD's 'spec.versions[*].storage' field.",
-									MarkdownDescription: "Referenceable specifies that this version may be referenced by a Composition in order to configure which resources an XR may be composed of. Exactly one version must be marked as referenceable; all Compositions must target only the referenceable version. The referenceable version must be served. It's mapped to the CRD's 'spec.versions[*].storage' field.",
+									Description:         "Referenceable specifies that this version may be referenced by aComposition in order to configure which resources an XR may be composedof. Exactly one version must be marked as referenceable; all Compositionsmust target only the referenceable version. The referenceable versionmust be served. It's mapped to the CRD's 'spec.versions[*].storage' field.",
+									MarkdownDescription: "Referenceable specifies that this version may be referenced by aComposition in order to configure which resources an XR may be composedof. Exactly one version must be marked as referenceable; all Compositionsmust target only the referenceable version. The referenceable versionmust be served. It's mapped to the CRD's 'spec.versions[*].storage' field.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"schema": schema.SingleNestedAttribute{
-									Description:         "Schema describes the schema used for validation, pruning, and defaulting of this version of the defined composite resource. Fields required by all composite resources will be injected into this schema automatically, and will override equivalently named fields in this schema. Omitting this schema results in a schema that contains only the fields required by all composite resources.",
-									MarkdownDescription: "Schema describes the schema used for validation, pruning, and defaulting of this version of the defined composite resource. Fields required by all composite resources will be injected into this schema automatically, and will override equivalently named fields in this schema. Omitting this schema results in a schema that contains only the fields required by all composite resources.",
+									Description:         "Schema describes the schema used for validation, pruning, and defaultingof this version of the defined composite resource. Fields required by allcomposite resources will be injected into this schema automatically, andwill override equivalently named fields in this schema. Omitting thisschema results in a schema that contains only the fields required by allcomposite resources.",
+									MarkdownDescription: "Schema describes the schema used for validation, pruning, and defaultingof this version of the defined composite resource. Fields required by allcomposite resources will be injected into this schema automatically, andwill override equivalently named fields in this schema. Omitting thisschema results in a schema that contains only the fields required by allcomposite resources.",
 									Attributes: map[string]schema.Attribute{
 										"open_apiv3_schema": schema.MapAttribute{
-											Description:         "OpenAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning.",
-											MarkdownDescription: "OpenAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning.",
+											Description:         "OpenAPIV3Schema is the OpenAPI v3 schema to use for validation andpruning.",
+											MarkdownDescription: "OpenAPIV3Schema is the OpenAPI v3 schema to use for validation andpruning.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

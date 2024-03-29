@@ -68,8 +68,10 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String) Annotation to use for the builder pod. Only used for 'pod' strategy
 - `limit_cpu` (String) The maximum amount of CPU required. Only used for 'pod' strategy
 - `limit_memory` (String) The maximum amount of memory required. Only used for 'pod' strategy
+- `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
 - `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
 - `order_strategy` (String) the build order strategy to adopt
 - `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
@@ -83,11 +85,12 @@ Optional:
 
 Optional:
 
-- `buildah` (Attributes) a BuildahTask, for Buildah strategy (see [below for nested schema](#nestedatt--spec--tasks--buildah))
-- `builder` (Attributes) a BuilderTask, used to generate and package the project (see [below for nested schema](#nestedatt--spec--tasks--builder))
-- `custom` (Attributes) UserTask is used to execute any generic custom operation. (see [below for nested schema](#nestedatt--spec--tasks--custom))
+- `buildah` (Attributes) a BuildahTask, for Buildah strategy Deprecated: use spectrum, jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--buildah))
+- `builder` (Attributes) a BuilderTask, used to generate and build the project (see [below for nested schema](#nestedatt--spec--tasks--builder))
+- `custom` (Attributes) User customizable task execution. These are executed after the build and before the package task. (see [below for nested schema](#nestedatt--spec--tasks--custom))
 - `jib` (Attributes) a JibTask, for Jib strategy (see [below for nested schema](#nestedatt--spec--tasks--jib))
-- `kaniko` (Attributes) a KanikoTask, for Kaniko strategy (see [below for nested schema](#nestedatt--spec--tasks--kaniko))
+- `kaniko` (Attributes) a KanikoTask, for Kaniko strategy Deprecated: use spectrum, jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--kaniko))
+- `package` (Attributes) Application pre publishing a PackageTask, used to package the project (see [below for nested schema](#nestedatt--spec--tasks--package))
 - `s2i` (Attributes) a S2iTask, for S2I strategy (see [below for nested schema](#nestedatt--spec--tasks--s2i))
 - `spectrum` (Attributes) a SpectrumTask, for Spectrum strategy (see [below for nested schema](#nestedatt--spec--tasks--spectrum))
 
@@ -97,6 +100,7 @@ Optional:
 Optional:
 
 - `base_image` (String) base image layer
+- `configuration` (Attributes) The configuration that should be used to perform the Build. (see [below for nested schema](#nestedatt--spec--tasks--buildah--configuration))
 - `context_dir` (String) can be useful to share info with other tasks
 - `executor_image` (String) docker image to use
 - `image` (String) final image name
@@ -104,6 +108,23 @@ Optional:
 - `platform` (String) The platform of build image
 - `registry` (Attributes) where to publish the final image (see [below for nested schema](#nestedatt--spec--tasks--buildah--registry))
 - `verbose` (Boolean) log more information
+
+<a id="nestedatt--spec--tasks--buildah--configuration"></a>
+### Nested Schema for `spec.tasks.buildah.verbose`
+
+Optional:
+
+- `annotations` (Map of String) Annotation to use for the builder pod. Only used for 'pod' strategy
+- `limit_cpu` (String) The maximum amount of CPU required. Only used for 'pod' strategy
+- `limit_memory` (String) The maximum amount of memory required. Only used for 'pod' strategy
+- `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
+- `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
+- `order_strategy` (String) the build order strategy to adopt
+- `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
+- `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
+- `strategy` (String) the strategy to adopt
+- `tool_image` (String) The container image to be used to run the build.
+
 
 <a id="nestedatt--spec--tasks--buildah--registry"></a>
 ### Nested Schema for `spec.tasks.buildah.verbose`
@@ -138,8 +159,10 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String) Annotation to use for the builder pod. Only used for 'pod' strategy
 - `limit_cpu` (String) The maximum amount of CPU required. Only used for 'pod' strategy
 - `limit_memory` (String) The maximum amount of memory required. Only used for 'pod' strategy
+- `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
 - `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
 - `order_strategy` (String) the build order strategy to adopt
 - `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
@@ -187,6 +210,8 @@ Required:
 
 Optional:
 
+- `classifier` (String) Maven Classifier
+- `type` (String) Maven Type
 - `version` (String) Maven Version
 
 
@@ -271,7 +296,7 @@ Optional:
 
 Optional:
 
-- `configuration` (Map of String)
+- `configuration` (Map of String) Properties -- .
 - `id` (String)
 - `password` (String)
 - `username` (String)
@@ -373,6 +398,8 @@ Required:
 
 Optional:
 
+- `classifier` (String) Maven Classifier
+- `type` (String) Maven Type
 - `version` (String) Maven Version
 
 
@@ -393,6 +420,8 @@ Required:
 
 Optional:
 
+- `classifier` (String) Maven Classifier
+- `type` (String) Maven Type
 - `version` (String) Maven Version
 
 
@@ -408,6 +437,7 @@ Optional:
 - `content_key` (String) the confimap key holding the source content
 - `content_ref` (String) the confimap reference holding the source content
 - `content_type` (String) the content type (tipically text or binary)
+- `from_kamelet` (Boolean) True if the spec is generated from a Kamelet
 - `interceptors` (List of String) Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources
 - `language` (String) specify which is the language (Camel DSL) used to interpret this source code
 - `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime
@@ -424,9 +454,30 @@ Optional:
 
 Optional:
 
-- `command` (String) the command to execute
+- `command` (String) the command to execute Deprecated: use ContainerCommands
+- `commands` (List of String) the command to execute
+- `configuration` (Attributes) The configuration that should be used to perform the Build. (see [below for nested schema](#nestedatt--spec--tasks--custom--configuration))
 - `image` (String) the container image to use
 - `name` (String) name of the task
+- `publishing_image` (String) the desired image build name
+- `user_id` (Number) the user id used to run the container
+
+<a id="nestedatt--spec--tasks--custom--configuration"></a>
+### Nested Schema for `spec.tasks.custom.user_id`
+
+Optional:
+
+- `annotations` (Map of String) Annotation to use for the builder pod. Only used for 'pod' strategy
+- `limit_cpu` (String) The maximum amount of CPU required. Only used for 'pod' strategy
+- `limit_memory` (String) The maximum amount of memory required. Only used for 'pod' strategy
+- `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
+- `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
+- `order_strategy` (String) the build order strategy to adopt
+- `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
+- `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
+- `strategy` (String) the strategy to adopt
+- `tool_image` (String) The container image to be used to run the build.
+
 
 
 <a id="nestedatt--spec--tasks--jib"></a>
@@ -435,10 +486,28 @@ Optional:
 Optional:
 
 - `base_image` (String) base image layer
+- `configuration` (Attributes) The configuration that should be used to perform the Build. (see [below for nested schema](#nestedatt--spec--tasks--jib--configuration))
 - `context_dir` (String) can be useful to share info with other tasks
 - `image` (String) final image name
 - `name` (String) name of the task
 - `registry` (Attributes) where to publish the final image (see [below for nested schema](#nestedatt--spec--tasks--jib--registry))
+
+<a id="nestedatt--spec--tasks--jib--configuration"></a>
+### Nested Schema for `spec.tasks.jib.registry`
+
+Optional:
+
+- `annotations` (Map of String) Annotation to use for the builder pod. Only used for 'pod' strategy
+- `limit_cpu` (String) The maximum amount of CPU required. Only used for 'pod' strategy
+- `limit_memory` (String) The maximum amount of memory required. Only used for 'pod' strategy
+- `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
+- `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
+- `order_strategy` (String) the build order strategy to adopt
+- `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
+- `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
+- `strategy` (String) the strategy to adopt
+- `tool_image` (String) The container image to be used to run the build.
+
 
 <a id="nestedatt--spec--tasks--jib--registry"></a>
 ### Nested Schema for `spec.tasks.jib.registry`
@@ -460,6 +529,7 @@ Optional:
 
 - `base_image` (String) base image layer
 - `cache` (Attributes) use a cache (see [below for nested schema](#nestedatt--spec--tasks--kaniko--cache))
+- `configuration` (Attributes) The configuration that should be used to perform the Build. (see [below for nested schema](#nestedatt--spec--tasks--kaniko--configuration))
 - `context_dir` (String) can be useful to share info with other tasks
 - `executor_image` (String) docker image to use
 - `image` (String) final image name
@@ -476,6 +546,23 @@ Optional:
 - `persistent_volume_claim` (String) the PVC used to store the cache
 
 
+<a id="nestedatt--spec--tasks--kaniko--configuration"></a>
+### Nested Schema for `spec.tasks.kaniko.verbose`
+
+Optional:
+
+- `annotations` (Map of String) Annotation to use for the builder pod. Only used for 'pod' strategy
+- `limit_cpu` (String) The maximum amount of CPU required. Only used for 'pod' strategy
+- `limit_memory` (String) The maximum amount of memory required. Only used for 'pod' strategy
+- `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
+- `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
+- `order_strategy` (String) the build order strategy to adopt
+- `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
+- `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
+- `strategy` (String) the strategy to adopt
+- `tool_image` (String) The container image to be used to run the build.
+
+
 <a id="nestedatt--spec--tasks--kaniko--registry"></a>
 ### Nested Schema for `spec.tasks.kaniko.verbose`
 
@@ -489,14 +576,342 @@ Optional:
 
 
 
+<a id="nestedatt--spec--tasks--package"></a>
+### Nested Schema for `spec.tasks.package`
+
+Optional:
+
+- `base_image` (String) the base image layer
+- `build_dir` (String) workspace directory to use
+- `configuration` (Attributes) The configuration that should be used to perform the Build. (see [below for nested schema](#nestedatt--spec--tasks--package--configuration))
+- `dependencies` (List of String) the list of dependencies to use for this build
+- `maven` (Attributes) the configuration required by Maven for the application build phase (see [below for nested schema](#nestedatt--spec--tasks--package--maven))
+- `name` (String) name of the task
+- `runtime` (Attributes) the configuration required for the runtime application (see [below for nested schema](#nestedatt--spec--tasks--package--runtime))
+- `sources` (Attributes List) the sources to add at build time (see [below for nested schema](#nestedatt--spec--tasks--package--sources))
+- `steps` (List of String) the list of steps to execute (see pkg/builder/)
+
+<a id="nestedatt--spec--tasks--package--configuration"></a>
+### Nested Schema for `spec.tasks.package.steps`
+
+Optional:
+
+- `annotations` (Map of String) Annotation to use for the builder pod. Only used for 'pod' strategy
+- `limit_cpu` (String) The maximum amount of CPU required. Only used for 'pod' strategy
+- `limit_memory` (String) The maximum amount of memory required. Only used for 'pod' strategy
+- `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
+- `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
+- `order_strategy` (String) the build order strategy to adopt
+- `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
+- `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
+- `strategy` (String) the strategy to adopt
+- `tool_image` (String) The container image to be used to run the build.
+
+
+<a id="nestedatt--spec--tasks--package--maven"></a>
+### Nested Schema for `spec.tasks.package.steps`
+
+Optional:
+
+- `ca_secrets` (Attributes List) The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--ca_secrets))
+- `cli_options` (List of String) The CLI options that are appended to the list of arguments for Maven commands, e.g., '-V,--no-transfer-progress,-Dstyle.color=never'. See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.
+- `extension` (Attributes List) The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--extension))
+- `local_repository` (String) The path of the local Maven repository.
+- `profiles` (Attributes List) A reference to the ConfigMap or Secret key that contains the Maven profile. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--profiles))
+- `properties` (Map of String) The Maven properties.
+- `repositories` (Attributes List) additional repositories (see [below for nested schema](#nestedatt--spec--tasks--package--steps--repositories))
+- `servers` (Attributes List) Servers (auth) (see [below for nested schema](#nestedatt--spec--tasks--package--steps--servers))
+- `settings` (Attributes) A reference to the ConfigMap or Secret key that contains the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings))
+- `settings_security` (Attributes) A reference to the ConfigMap or Secret key that contains the security of the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings_security))
+
+<a id="nestedatt--spec--tasks--package--steps--ca_secrets"></a>
+### Nested Schema for `spec.tasks.package.steps.ca_secrets`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--tasks--package--steps--extension"></a>
+### Nested Schema for `spec.tasks.package.steps.extension`
+
+Required:
+
+- `artifact_id` (String) Maven Artifact
+- `group_id` (String) Maven Group
+
+Optional:
+
+- `classifier` (String) Maven Classifier
+- `type` (String) Maven Type
+- `version` (String) Maven Version
+
+
+<a id="nestedatt--spec--tasks--package--steps--profiles"></a>
+### Nested Schema for `spec.tasks.package.steps.profiles`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--profiles--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--profiles--secret_key_ref))
+
+<a id="nestedatt--spec--tasks--package--steps--profiles--config_map_key_ref"></a>
+### Nested Schema for `spec.tasks.package.steps.profiles.secret_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--tasks--package--steps--profiles--secret_key_ref"></a>
+### Nested Schema for `spec.tasks.package.steps.profiles.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--tasks--package--steps--repositories"></a>
+### Nested Schema for `spec.tasks.package.steps.repositories`
+
+Required:
+
+- `id` (String) identifies the repository
+- `url` (String) location of the repository
+
+Optional:
+
+- `name` (String) name of the repository
+- `releases` (Attributes) can use stable releases (see [below for nested schema](#nestedatt--spec--tasks--package--steps--repositories--releases))
+- `snapshots` (Attributes) can use snapshot (see [below for nested schema](#nestedatt--spec--tasks--package--steps--repositories--snapshots))
+
+<a id="nestedatt--spec--tasks--package--steps--repositories--releases"></a>
+### Nested Schema for `spec.tasks.package.steps.repositories.snapshots`
+
+Required:
+
+- `enabled` (Boolean) is the policy activated or not
+
+Optional:
+
+- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
+- `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
+
+
+<a id="nestedatt--spec--tasks--package--steps--repositories--snapshots"></a>
+### Nested Schema for `spec.tasks.package.steps.repositories.snapshots`
+
+Required:
+
+- `enabled` (Boolean) is the policy activated or not
+
+Optional:
+
+- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
+- `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
+
+
+
+<a id="nestedatt--spec--tasks--package--steps--servers"></a>
+### Nested Schema for `spec.tasks.package.steps.servers`
+
+Optional:
+
+- `configuration` (Map of String) Properties -- .
+- `id` (String)
+- `password` (String)
+- `username` (String)
+
+
+<a id="nestedatt--spec--tasks--package--steps--settings"></a>
+### Nested Schema for `spec.tasks.package.steps.settings`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings--secret_key_ref))
+
+<a id="nestedatt--spec--tasks--package--steps--settings--config_map_key_ref"></a>
+### Nested Schema for `spec.tasks.package.steps.settings.secret_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--tasks--package--steps--settings--secret_key_ref"></a>
+### Nested Schema for `spec.tasks.package.steps.settings.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--tasks--package--steps--settings_security"></a>
+### Nested Schema for `spec.tasks.package.steps.settings_security`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings_security--config_map_key_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret. (see [below for nested schema](#nestedatt--spec--tasks--package--steps--settings_security--secret_key_ref))
+
+<a id="nestedatt--spec--tasks--package--steps--settings_security--config_map_key_ref"></a>
+### Nested Schema for `spec.tasks.package.steps.settings_security.secret_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--tasks--package--steps--settings_security--secret_key_ref"></a>
+### Nested Schema for `spec.tasks.package.steps.settings_security.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--tasks--package--runtime"></a>
+### Nested Schema for `spec.tasks.package.steps`
+
+Required:
+
+- `application_class` (String) application entry point (main) to be executed
+- `dependencies` (Attributes List) list of dependencies needed to run the application (see [below for nested schema](#nestedatt--spec--tasks--package--steps--dependencies))
+- `provider` (String) Camel main application provider, ie, Camel Quarkus
+- `version` (String) Camel K Runtime version
+
+Optional:
+
+- `capabilities` (Attributes) features offered by this runtime (see [below for nested schema](#nestedatt--spec--tasks--package--steps--capabilities))
+- `metadata` (Map of String) set of metadata
+
+<a id="nestedatt--spec--tasks--package--steps--dependencies"></a>
+### Nested Schema for `spec.tasks.package.steps.dependencies`
+
+Required:
+
+- `artifact_id` (String) Maven Artifact
+- `group_id` (String) Maven Group
+
+Optional:
+
+- `classifier` (String) Maven Classifier
+- `type` (String) Maven Type
+- `version` (String) Maven Version
+
+
+<a id="nestedatt--spec--tasks--package--steps--capabilities"></a>
+### Nested Schema for `spec.tasks.package.steps.capabilities`
+
+Required:
+
+- `dependencies` (Attributes List) (see [below for nested schema](#nestedatt--spec--tasks--package--steps--capabilities--dependencies))
+
+<a id="nestedatt--spec--tasks--package--steps--capabilities--dependencies"></a>
+### Nested Schema for `spec.tasks.package.steps.capabilities.dependencies`
+
+Required:
+
+- `artifact_id` (String) Maven Artifact
+- `group_id` (String) Maven Group
+
+Optional:
+
+- `classifier` (String) Maven Classifier
+- `type` (String) Maven Type
+- `version` (String) Maven Version
+
+
+
+
+<a id="nestedatt--spec--tasks--package--sources"></a>
+### Nested Schema for `spec.tasks.package.steps`
+
+Optional:
+
+- `compression` (Boolean) if the content is compressed (base64 encrypted)
+- `content` (String) the source code (plain text)
+- `content_key` (String) the confimap key holding the source content
+- `content_ref` (String) the confimap reference holding the source content
+- `content_type` (String) the content type (tipically text or binary)
+- `from_kamelet` (Boolean) True if the spec is generated from a Kamelet
+- `interceptors` (List of String) Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources
+- `language` (String) specify which is the language (Camel DSL) used to interpret this source code
+- `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime
+- `name` (String) the name of the specification
+- `path` (String) the path where the file is stored
+- `property_names` (List of String) List of property names defined in the source (e.g. if type is 'template')
+- `raw_content` (String) the source code (binary)
+- `type` (String) Type defines the kind of source described by this object
+
+
+
 <a id="nestedatt--spec--tasks--s2i"></a>
 ### Nested Schema for `spec.tasks.s2i`
 
 Optional:
 
+- `configuration` (Attributes) The configuration that should be used to perform the Build. (see [below for nested schema](#nestedatt--spec--tasks--s2i--configuration))
 - `context_dir` (String) can be useful to share info with other tasks
 - `name` (String) name of the task
 - `tag` (String) used by the ImageStream
+
+<a id="nestedatt--spec--tasks--s2i--configuration"></a>
+### Nested Schema for `spec.tasks.s2i.tag`
+
+Optional:
+
+- `annotations` (Map of String) Annotation to use for the builder pod. Only used for 'pod' strategy
+- `limit_cpu` (String) The maximum amount of CPU required. Only used for 'pod' strategy
+- `limit_memory` (String) The maximum amount of memory required. Only used for 'pod' strategy
+- `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
+- `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
+- `order_strategy` (String) the build order strategy to adopt
+- `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
+- `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
+- `strategy` (String) the strategy to adopt
+- `tool_image` (String) The container image to be used to run the build.
+
 
 
 <a id="nestedatt--spec--tasks--spectrum"></a>
@@ -505,10 +920,28 @@ Optional:
 Optional:
 
 - `base_image` (String) base image layer
+- `configuration` (Attributes) The configuration that should be used to perform the Build. (see [below for nested schema](#nestedatt--spec--tasks--spectrum--configuration))
 - `context_dir` (String) can be useful to share info with other tasks
 - `image` (String) final image name
 - `name` (String) name of the task
 - `registry` (Attributes) where to publish the final image (see [below for nested schema](#nestedatt--spec--tasks--spectrum--registry))
+
+<a id="nestedatt--spec--tasks--spectrum--configuration"></a>
+### Nested Schema for `spec.tasks.spectrum.registry`
+
+Optional:
+
+- `annotations` (Map of String) Annotation to use for the builder pod. Only used for 'pod' strategy
+- `limit_cpu` (String) The maximum amount of CPU required. Only used for 'pod' strategy
+- `limit_memory` (String) The maximum amount of memory required. Only used for 'pod' strategy
+- `node_selector` (Map of String) The node selector for the builder pod. Only used for 'pod' strategy
+- `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).
+- `order_strategy` (String) the build order strategy to adopt
+- `request_cpu` (String) The minimum amount of CPU required. Only used for 'pod' strategy
+- `request_memory` (String) The minimum amount of memory required. Only used for 'pod' strategy
+- `strategy` (String) the strategy to adopt
+- `tool_image` (String) The container image to be used to run the build.
+
 
 <a id="nestedatt--spec--tasks--spectrum--registry"></a>
 ### Nested Schema for `spec.tasks.spectrum.registry`

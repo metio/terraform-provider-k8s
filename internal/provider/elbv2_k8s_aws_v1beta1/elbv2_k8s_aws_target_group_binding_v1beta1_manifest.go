@@ -185,17 +185,17 @@ func (r *Elbv2K8SAwsTargetGroupBindingV1Beta1Manifest) Schema(_ context.Context,
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"from": schema.ListNestedAttribute{
-											Description:         "List of peers which should be able to access the targets in TargetGroup. At least one NetworkingPeer should be specified.",
-											MarkdownDescription: "List of peers which should be able to access the targets in TargetGroup. At least one NetworkingPeer should be specified.",
+											Description:         "List of peers which should be able to access the targets in TargetGroup.At least one NetworkingPeer should be specified.",
+											MarkdownDescription: "List of peers which should be able to access the targets in TargetGroup.At least one NetworkingPeer should be specified.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"ip_block": schema.SingleNestedAttribute{
-														Description:         "IPBlock defines an IPBlock peer. If specified, none of the other fields can be set.",
-														MarkdownDescription: "IPBlock defines an IPBlock peer. If specified, none of the other fields can be set.",
+														Description:         "IPBlock defines an IPBlock peer.If specified, none of the other fields can be set.",
+														MarkdownDescription: "IPBlock defines an IPBlock peer.If specified, none of the other fields can be set.",
 														Attributes: map[string]schema.Attribute{
 															"cidr": schema.StringAttribute{
-																Description:         "CIDR is the network CIDR. Both IPV4 or IPV6 CIDR are accepted.",
-																MarkdownDescription: "CIDR is the network CIDR. Both IPV4 or IPV6 CIDR are accepted.",
+																Description:         "CIDR is the network CIDR.Both IPV4 or IPV6 CIDR are accepted.",
+																MarkdownDescription: "CIDR is the network CIDR.Both IPV4 or IPV6 CIDR are accepted.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -207,8 +207,8 @@ func (r *Elbv2K8SAwsTargetGroupBindingV1Beta1Manifest) Schema(_ context.Context,
 													},
 
 													"security_group": schema.SingleNestedAttribute{
-														Description:         "SecurityGroup defines a SecurityGroup peer. If specified, none of the other fields can be set.",
-														MarkdownDescription: "SecurityGroup defines a SecurityGroup peer. If specified, none of the other fields can be set.",
+														Description:         "SecurityGroup defines a SecurityGroup peer.If specified, none of the other fields can be set.",
+														MarkdownDescription: "SecurityGroup defines a SecurityGroup peer.If specified, none of the other fields can be set.",
 														Attributes: map[string]schema.Attribute{
 															"group_id": schema.StringAttribute{
 																Description:         "GroupID is the EC2 SecurityGroupID.",
@@ -230,21 +230,21 @@ func (r *Elbv2K8SAwsTargetGroupBindingV1Beta1Manifest) Schema(_ context.Context,
 										},
 
 										"ports": schema.ListNestedAttribute{
-											Description:         "List of ports which should be made accessible on the targets in TargetGroup. If ports is empty or unspecified, it defaults to all ports with TCP.",
-											MarkdownDescription: "List of ports which should be made accessible on the targets in TargetGroup. If ports is empty or unspecified, it defaults to all ports with TCP.",
+											Description:         "List of ports which should be made accessible on the targets in TargetGroup.If ports is empty or unspecified, it defaults to all ports with TCP.",
+											MarkdownDescription: "List of ports which should be made accessible on the targets in TargetGroup.If ports is empty or unspecified, it defaults to all ports with TCP.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"port": schema.StringAttribute{
-														Description:         "The port which traffic must match. When NodePort endpoints(instance TargetType) is used, this must be a numerical port. When Port endpoints(ip TargetType) is used, this can be either numerical or named port on pods. if port is unspecified, it defaults to all ports.",
-														MarkdownDescription: "The port which traffic must match. When NodePort endpoints(instance TargetType) is used, this must be a numerical port. When Port endpoints(ip TargetType) is used, this can be either numerical or named port on pods. if port is unspecified, it defaults to all ports.",
+														Description:         "The port which traffic must match.When NodePort endpoints(instance TargetType) is used, this must be a numerical port.When Port endpoints(ip TargetType) is used, this can be either numerical or named port on pods.if port is unspecified, it defaults to all ports.",
+														MarkdownDescription: "The port which traffic must match.When NodePort endpoints(instance TargetType) is used, this must be a numerical port.When Port endpoints(ip TargetType) is used, this can be either numerical or named port on pods.if port is unspecified, it defaults to all ports.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "The protocol which traffic must match. If protocol is unspecified, it defaults to TCP.",
-														MarkdownDescription: "The protocol which traffic must match. If protocol is unspecified, it defaults to TCP.",
+														Description:         "The protocol which traffic must match.If protocol is unspecified, it defaults to TCP.",
+														MarkdownDescription: "The protocol which traffic must match.If protocol is unspecified, it defaults to TCP.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -288,16 +288,16 @@ func (r *Elbv2K8SAwsTargetGroupBindingV1Beta1Manifest) Schema(_ context.Context,
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -311,8 +311,8 @@ func (r *Elbv2K8SAwsTargetGroupBindingV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

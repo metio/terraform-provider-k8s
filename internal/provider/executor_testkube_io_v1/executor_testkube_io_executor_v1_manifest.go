@@ -61,8 +61,12 @@ type ExecutorTestkubeIoExecutorV1ManifestData struct {
 			IconURI  *string            `tfsdk:"icon_uri" json:"iconURI,omitempty"`
 			Tooltips *map[string]string `tfsdk:"tooltips" json:"tooltips,omitempty"`
 		} `tfsdk:"meta" json:"meta,omitempty"`
-		Types *[]string `tfsdk:"types" json:"types,omitempty"`
-		Uri   *string   `tfsdk:"uri" json:"uri,omitempty"`
+		Slaves *struct {
+			Image *string `tfsdk:"image" json:"image,omitempty"`
+		} `tfsdk:"slaves" json:"slaves,omitempty"`
+		Types                  *[]string `tfsdk:"types" json:"types,omitempty"`
+		Uri                    *string   `tfsdk:"uri" json:"uri,omitempty"`
+		UseDataDirAsWorkingDir *bool     `tfsdk:"use_data_dir_as_working_dir" json:"useDataDirAsWorkingDir,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -275,6 +279,23 @@ func (r *ExecutorTestkubeIoExecutorV1Manifest) Schema(_ context.Context, _ datas
 						Computed: false,
 					},
 
+					"slaves": schema.SingleNestedAttribute{
+						Description:         "Slaves data to run test in distributed environment",
+						MarkdownDescription: "Slaves data to run test in distributed environment",
+						Attributes: map[string]schema.Attribute{
+							"image": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"types": schema.ListAttribute{
 						Description:         "Types defines what types can be handled by executor e.g. 'postman/collection', ':curl/command' etc",
 						MarkdownDescription: "Types defines what types can be handled by executor e.g. 'postman/collection', ':curl/command' etc",
@@ -287,6 +308,14 @@ func (r *ExecutorTestkubeIoExecutorV1Manifest) Schema(_ context.Context, _ datas
 					"uri": schema.StringAttribute{
 						Description:         "URI for rest based executors",
 						MarkdownDescription: "URI for rest based executors",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"use_data_dir_as_working_dir": schema.BoolAttribute{
+						Description:         "use data dir as working dir for executor",
+						MarkdownDescription: "use data dir as working dir for executor",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

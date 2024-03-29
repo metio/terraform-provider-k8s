@@ -63,11 +63,13 @@ Optional:
 - `options` (Map of String) Options specifies the extra dataload properties for runtime
 - `pod_metadata` (Attributes) PodMetadata defines labels and annotations that will be propagated to DataLoad pods (see [below for nested schema](#nestedatt--spec--pod_metadata))
 - `policy` (String) including Once, Cron, OnEvent
+- `resources` (Attributes) Resources that will be requested by the DataLoad job. <br> (see [below for nested schema](#nestedatt--spec--resources))
 - `run_after` (Attributes) Specifies that the preceding operation in a workflow (see [below for nested schema](#nestedatt--spec--run_after))
 - `schedule` (String) The schedule in Cron format, only set when policy is cron, see https://en.wikipedia.org/wiki/Cron.
 - `scheduler_name` (String) SchedulerName sets the scheduler to be used for DataLoad pod
 - `target` (Attributes List) Target defines target paths that needs to be loaded (see [below for nested schema](#nestedatt--spec--target))
 - `tolerations` (Attributes List) Tolerations defines tolerations for DataLoad pod (see [below for nested schema](#nestedatt--spec--tolerations))
+- `ttl_seconds_after_finished` (Number) TTLSecondsAfterFinished is the time second to clean up data operations after finished or failed
 
 <a id="nestedatt--spec--affinity"></a>
 ### Nested Schema for `spec.affinity`
@@ -462,6 +464,15 @@ Optional:
 
 - `annotations` (Map of String) Annotations are annotations of pod specification
 - `labels` (Map of String) Labels are labels of pod specification
+
+
+<a id="nestedatt--spec--resources"></a>
+### Nested Schema for `spec.resources`
+
+Optional:
+
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 <a id="nestedatt--spec--run_after"></a>

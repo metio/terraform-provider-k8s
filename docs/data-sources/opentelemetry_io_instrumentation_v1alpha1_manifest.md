@@ -3,12 +3,12 @@
 page_title: "k8s_opentelemetry_io_instrumentation_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "opentelemetry.io"
 description: |-
-  Instrumentation is the spec for OpenTelemetry instrumentation.
+  
 ---
 
 # k8s_opentelemetry_io_instrumentation_v1alpha1_manifest (Data Source)
 
-Instrumentation is the spec for OpenTelemetry instrumentation.
+
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_opentelemetry_io_instrumentation_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) InstrumentationSpec defines the desired state of OpenTelemetry SDK and instrumentation. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,65 +56,65 @@ Optional:
 
 Optional:
 
-- `apache_httpd` (Attributes) ApacheHttpd defines configuration for Apache HTTPD auto-instrumentation. (see [below for nested schema](#nestedatt--spec--apache_httpd))
-- `dotnet` (Attributes) DotNet defines configuration for DotNet auto-instrumentation. (see [below for nested schema](#nestedatt--spec--dotnet))
-- `env` (Attributes List) Env defines common env vars. (see [below for nested schema](#nestedatt--spec--env))
-- `exporter` (Attributes) Exporter defines exporter configuration. (see [below for nested schema](#nestedatt--spec--exporter))
-- `go` (Attributes) Go defines configuration for Go auto-instrumentation. (see [below for nested schema](#nestedatt--spec--go))
-- `java` (Attributes) Java defines configuration for java auto-instrumentation. (see [below for nested schema](#nestedatt--spec--java))
-- `nginx` (Attributes) Nginx defines configuration for Nginx auto-instrumentation. (see [below for nested schema](#nestedatt--spec--nginx))
-- `nodejs` (Attributes) NodeJS defines configuration for nodejs auto-instrumentation. (see [below for nested schema](#nestedatt--spec--nodejs))
-- `propagators` (List of String) Propagators defines inter-process context propagation configuration. Values in this list will be set in the OTEL_PROPAGATORS env var. Enum=tracecontext;baggage;b3;b3multi;jaeger;xray;ottrace;none
-- `python` (Attributes) Python defines configuration for python auto-instrumentation. (see [below for nested schema](#nestedatt--spec--python))
-- `resource` (Attributes) Resource defines the configuration for the resource attributes, as defined by the OpenTelemetry specification. (see [below for nested schema](#nestedatt--spec--resource))
-- `sampler` (Attributes) Sampler defines sampling configuration. (see [below for nested schema](#nestedatt--spec--sampler))
+- `apache_httpd` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd))
+- `dotnet` (Attributes) (see [below for nested schema](#nestedatt--spec--dotnet))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--env))
+- `exporter` (Attributes) (see [below for nested schema](#nestedatt--spec--exporter))
+- `go` (Attributes) (see [below for nested schema](#nestedatt--spec--go))
+- `java` (Attributes) (see [below for nested schema](#nestedatt--spec--java))
+- `nginx` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx))
+- `nodejs` (Attributes) (see [below for nested schema](#nestedatt--spec--nodejs))
+- `propagators` (List of String)
+- `python` (Attributes) (see [below for nested schema](#nestedatt--spec--python))
+- `resource` (Attributes) (see [below for nested schema](#nestedatt--spec--resource))
+- `sampler` (Attributes) (see [below for nested schema](#nestedatt--spec--sampler))
 
 <a id="nestedatt--spec--apache_httpd"></a>
 ### Nested Schema for `spec.apache_httpd`
 
 Optional:
 
-- `attrs` (Attributes List) Attrs defines Apache HTTPD agent specific attributes. The precedence is: 'agent default attributes' > 'instrument spec attributes' . Attributes are documented at https://github. (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs))
-- `config_path` (String) Location of Apache HTTPD server configuration. Needed only if different from default '/usr/local/apache2/conf'
-- `env` (Attributes List) Env defines Apache HTTPD specific env vars. (see [below for nested schema](#nestedatt--spec--apache_httpd--env))
-- `image` (String) Image is a container image with Apache SDK and auto-instrumentation.
-- `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--apache_httpd--resource_requirements))
-- `version` (String) Apache HTTPD server version. One of 2.4 or 2.2. Default is 2.4
-- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
+- `attrs` (Attributes List) (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs))
+- `config_path` (String)
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--apache_httpd--env))
+- `image` (String)
+- `resource_requirements` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd--resource_requirements))
+- `version` (String)
+- `volume_limit_size` (String)
 
 <a id="nestedatt--spec--apache_httpd--attrs"></a>
 ### Nested Schema for `spec.apache_httpd.attrs`
 
 Required:
 
-- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+- `name` (String)
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs--value_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs--value_from))
 
 <a id="nestedatt--spec--apache_httpd--attrs--value_from"></a>
 ### Nested Schema for `spec.apache_httpd.attrs.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status. (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests. (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd--attrs--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--apache_httpd--attrs--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.apache_httpd.attrs.value_from.config_map_key_ref`
 
 Required:
 
-- `key` (String) The key to select.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 <a id="nestedatt--spec--apache_httpd--attrs--value_from--field_ref"></a>
@@ -122,11 +122,11 @@ Optional:
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--apache_httpd--attrs--value_from--resource_field_ref"></a>
@@ -134,12 +134,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 <a id="nestedatt--spec--apache_httpd--attrs--value_from--secret_key_ref"></a>
@@ -147,12 +147,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 
@@ -162,34 +162,34 @@ Optional:
 
 Required:
 
-- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+- `name` (String)
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--apache_httpd--env--value_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd--env--value_from))
 
 <a id="nestedatt--spec--apache_httpd--env--value_from"></a>
 ### Nested Schema for `spec.apache_httpd.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--apache_httpd--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status. (see [below for nested schema](#nestedatt--spec--apache_httpd--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests. (see [below for nested schema](#nestedatt--spec--apache_httpd--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--apache_httpd--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--apache_httpd--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--apache_httpd--env--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.apache_httpd.env.value_from.config_map_key_ref`
 
 Required:
 
-- `key` (String) The key to select.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 <a id="nestedatt--spec--apache_httpd--env--value_from--field_ref"></a>
@@ -197,11 +197,11 @@ Optional:
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--apache_httpd--env--value_from--resource_field_ref"></a>
@@ -209,12 +209,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 <a id="nestedatt--spec--apache_httpd--env--value_from--secret_key_ref"></a>
@@ -222,12 +222,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 
@@ -237,16 +237,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. (see [below for nested schema](#nestedatt--spec--apache_httpd--resource_requirements--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--apache_httpd--resource_requirements--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
 
 <a id="nestedatt--spec--apache_httpd--resource_requirements--claims"></a>
 ### Nested Schema for `spec.apache_httpd.resource_requirements.requests`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String)
 
 
 
@@ -256,44 +256,44 @@ Required:
 
 Optional:
 
-- `env` (Attributes List) Env defines DotNet specific env vars. (see [below for nested schema](#nestedatt--spec--dotnet--env))
-- `image` (String) Image is a container image with DotNet SDK and auto-instrumentation.
-- `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--dotnet--resource_requirements))
-- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--dotnet--env))
+- `image` (String)
+- `resource_requirements` (Attributes) (see [below for nested schema](#nestedatt--spec--dotnet--resource_requirements))
+- `volume_limit_size` (String)
 
 <a id="nestedatt--spec--dotnet--env"></a>
 ### Nested Schema for `spec.dotnet.env`
 
 Required:
 
-- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+- `name` (String)
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--dotnet--env--value_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--dotnet--env--value_from))
 
 <a id="nestedatt--spec--dotnet--env--value_from"></a>
 ### Nested Schema for `spec.dotnet.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--dotnet--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status. (see [below for nested schema](#nestedatt--spec--dotnet--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests. (see [below for nested schema](#nestedatt--spec--dotnet--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--dotnet--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--dotnet--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--dotnet--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--dotnet--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--dotnet--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--dotnet--env--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.dotnet.env.value_from.config_map_key_ref`
 
 Required:
 
-- `key` (String) The key to select.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 <a id="nestedatt--spec--dotnet--env--value_from--field_ref"></a>
@@ -301,11 +301,11 @@ Optional:
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--dotnet--env--value_from--resource_field_ref"></a>
@@ -313,12 +313,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 <a id="nestedatt--spec--dotnet--env--value_from--secret_key_ref"></a>
@@ -326,12 +326,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 
@@ -341,16 +341,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. (see [below for nested schema](#nestedatt--spec--dotnet--resource_requirements--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--dotnet--resource_requirements--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
 
 <a id="nestedatt--spec--dotnet--resource_requirements--claims"></a>
 ### Nested Schema for `spec.dotnet.resource_requirements.requests`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String)
 
 
 
@@ -360,34 +360,34 @@ Required:
 
 Required:
 
-- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+- `name` (String)
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--env--value_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--env--value_from))
 
 <a id="nestedatt--spec--env--value_from"></a>
 ### Nested Schema for `spec.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status. (see [below for nested schema](#nestedatt--spec--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests. (see [below for nested schema](#nestedatt--spec--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--env--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.env.value_from.secret_key_ref`
 
 Required:
 
-- `key` (String) The key to select.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 <a id="nestedatt--spec--env--value_from--field_ref"></a>
@@ -395,11 +395,11 @@ Optional:
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--env--value_from--resource_field_ref"></a>
@@ -407,12 +407,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 <a id="nestedatt--spec--env--value_from--secret_key_ref"></a>
@@ -420,12 +420,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 
@@ -435,7 +435,7 @@ Optional:
 
 Optional:
 
-- `endpoint` (String) Endpoint is address of the collector with OTLP endpoint.
+- `endpoint` (String)
 
 
 <a id="nestedatt--spec--go"></a>
@@ -443,44 +443,44 @@ Optional:
 
 Optional:
 
-- `env` (Attributes List) Env defines Go specific env vars. (see [below for nested schema](#nestedatt--spec--go--env))
-- `image` (String) Image is a container image with Go SDK and auto-instrumentation.
-- `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--go--resource_requirements))
-- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--go--env))
+- `image` (String)
+- `resource_requirements` (Attributes) (see [below for nested schema](#nestedatt--spec--go--resource_requirements))
+- `volume_limit_size` (String)
 
 <a id="nestedatt--spec--go--env"></a>
 ### Nested Schema for `spec.go.env`
 
 Required:
 
-- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+- `name` (String)
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--go--env--value_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--go--env--value_from))
 
 <a id="nestedatt--spec--go--env--value_from"></a>
 ### Nested Schema for `spec.go.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--go--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status. (see [below for nested schema](#nestedatt--spec--go--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests. (see [below for nested schema](#nestedatt--spec--go--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--go--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--go--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--go--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--go--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--go--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--go--env--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.go.env.value_from.config_map_key_ref`
 
 Required:
 
-- `key` (String) The key to select.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 <a id="nestedatt--spec--go--env--value_from--field_ref"></a>
@@ -488,11 +488,11 @@ Optional:
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--go--env--value_from--resource_field_ref"></a>
@@ -500,12 +500,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 <a id="nestedatt--spec--go--env--value_from--secret_key_ref"></a>
@@ -513,12 +513,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 
@@ -528,16 +528,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. (see [below for nested schema](#nestedatt--spec--go--resource_requirements--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--go--resource_requirements--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
 
 <a id="nestedatt--spec--go--resource_requirements--claims"></a>
 ### Nested Schema for `spec.go.resource_requirements.requests`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String)
 
 
 
@@ -547,44 +547,44 @@ Required:
 
 Optional:
 
-- `env` (Attributes List) Env defines java specific env vars. (see [below for nested schema](#nestedatt--spec--java--env))
-- `image` (String) Image is a container image with javaagent auto-instrumentation JAR.
-- `resources` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--java--resources))
-- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--java--env))
+- `image` (String)
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--java--resources))
+- `volume_limit_size` (String)
 
 <a id="nestedatt--spec--java--env"></a>
 ### Nested Schema for `spec.java.env`
 
 Required:
 
-- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+- `name` (String)
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--java--env--value_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--java--env--value_from))
 
 <a id="nestedatt--spec--java--env--value_from"></a>
 ### Nested Schema for `spec.java.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--java--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status. (see [below for nested schema](#nestedatt--spec--java--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests. (see [below for nested schema](#nestedatt--spec--java--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--java--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--java--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--java--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--java--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--java--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--java--env--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.java.env.value_from.config_map_key_ref`
 
 Required:
 
-- `key` (String) The key to select.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 <a id="nestedatt--spec--java--env--value_from--field_ref"></a>
@@ -592,11 +592,11 @@ Optional:
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--java--env--value_from--resource_field_ref"></a>
@@ -604,12 +604,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 <a id="nestedatt--spec--java--env--value_from--secret_key_ref"></a>
@@ -617,12 +617,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 
@@ -632,16 +632,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. (see [below for nested schema](#nestedatt--spec--java--resources--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--java--resources--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
 
 <a id="nestedatt--spec--java--resources--claims"></a>
 ### Nested Schema for `spec.java.resources.requests`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String)
 
 
 
@@ -651,46 +651,46 @@ Required:
 
 Optional:
 
-- `attrs` (Attributes List) Attrs defines Nginx agent specific attributes. The precedence order is: 'agent default attributes' > 'instrument spec attributes' . Attributes are documented at https://github. (see [below for nested schema](#nestedatt--spec--nginx--attrs))
-- `config_file` (String) Location of Nginx configuration file. Needed only if different from default '/etx/nginx/nginx.conf'
-- `env` (Attributes List) Env defines Nginx specific env vars. (see [below for nested schema](#nestedatt--spec--nginx--env))
-- `image` (String) Image is a container image with Nginx SDK and auto-instrumentation.
-- `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--nginx--resource_requirements))
-- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
+- `attrs` (Attributes List) (see [below for nested schema](#nestedatt--spec--nginx--attrs))
+- `config_file` (String)
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--nginx--env))
+- `image` (String)
+- `resource_requirements` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx--resource_requirements))
+- `volume_limit_size` (String)
 
 <a id="nestedatt--spec--nginx--attrs"></a>
 ### Nested Schema for `spec.nginx.attrs`
 
 Required:
 
-- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+- `name` (String)
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--nginx--attrs--value_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx--attrs--value_from))
 
 <a id="nestedatt--spec--nginx--attrs--value_from"></a>
 ### Nested Schema for `spec.nginx.attrs.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--nginx--attrs--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status. (see [below for nested schema](#nestedatt--spec--nginx--attrs--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests. (see [below for nested schema](#nestedatt--spec--nginx--attrs--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--nginx--attrs--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx--attrs--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx--attrs--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx--attrs--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx--attrs--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--nginx--attrs--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.nginx.attrs.value_from.config_map_key_ref`
 
 Required:
 
-- `key` (String) The key to select.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 <a id="nestedatt--spec--nginx--attrs--value_from--field_ref"></a>
@@ -698,11 +698,11 @@ Optional:
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--nginx--attrs--value_from--resource_field_ref"></a>
@@ -710,12 +710,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 <a id="nestedatt--spec--nginx--attrs--value_from--secret_key_ref"></a>
@@ -723,12 +723,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 
@@ -738,34 +738,34 @@ Optional:
 
 Required:
 
-- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+- `name` (String)
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--nginx--env--value_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx--env--value_from))
 
 <a id="nestedatt--spec--nginx--env--value_from"></a>
 ### Nested Schema for `spec.nginx.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--nginx--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status. (see [below for nested schema](#nestedatt--spec--nginx--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests. (see [below for nested schema](#nestedatt--spec--nginx--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--nginx--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nginx--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--nginx--env--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.nginx.env.value_from.config_map_key_ref`
 
 Required:
 
-- `key` (String) The key to select.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 <a id="nestedatt--spec--nginx--env--value_from--field_ref"></a>
@@ -773,11 +773,11 @@ Optional:
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--nginx--env--value_from--resource_field_ref"></a>
@@ -785,12 +785,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 <a id="nestedatt--spec--nginx--env--value_from--secret_key_ref"></a>
@@ -798,12 +798,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 
@@ -813,16 +813,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. (see [below for nested schema](#nestedatt--spec--nginx--resource_requirements--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--nginx--resource_requirements--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
 
 <a id="nestedatt--spec--nginx--resource_requirements--claims"></a>
 ### Nested Schema for `spec.nginx.resource_requirements.requests`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String)
 
 
 
@@ -832,44 +832,44 @@ Required:
 
 Optional:
 
-- `env` (Attributes List) Env defines nodejs specific env vars. (see [below for nested schema](#nestedatt--spec--nodejs--env))
-- `image` (String) Image is a container image with NodeJS SDK and auto-instrumentation.
-- `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--nodejs--resource_requirements))
-- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--nodejs--env))
+- `image` (String)
+- `resource_requirements` (Attributes) (see [below for nested schema](#nestedatt--spec--nodejs--resource_requirements))
+- `volume_limit_size` (String)
 
 <a id="nestedatt--spec--nodejs--env"></a>
 ### Nested Schema for `spec.nodejs.env`
 
 Required:
 
-- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+- `name` (String)
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--nodejs--env--value_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--nodejs--env--value_from))
 
 <a id="nestedatt--spec--nodejs--env--value_from"></a>
 ### Nested Schema for `spec.nodejs.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--nodejs--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status. (see [below for nested schema](#nestedatt--spec--nodejs--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests. (see [below for nested schema](#nestedatt--spec--nodejs--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--nodejs--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nodejs--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nodejs--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nodejs--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--nodejs--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--nodejs--env--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.nodejs.env.value_from.config_map_key_ref`
 
 Required:
 
-- `key` (String) The key to select.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 <a id="nestedatt--spec--nodejs--env--value_from--field_ref"></a>
@@ -877,11 +877,11 @@ Optional:
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--nodejs--env--value_from--resource_field_ref"></a>
@@ -889,12 +889,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 <a id="nestedatt--spec--nodejs--env--value_from--secret_key_ref"></a>
@@ -902,12 +902,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 
@@ -917,16 +917,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. (see [below for nested schema](#nestedatt--spec--nodejs--resource_requirements--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--nodejs--resource_requirements--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
 
 <a id="nestedatt--spec--nodejs--resource_requirements--claims"></a>
 ### Nested Schema for `spec.nodejs.resource_requirements.requests`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String)
 
 
 
@@ -936,44 +936,44 @@ Required:
 
 Optional:
 
-- `env` (Attributes List) Env defines python specific env vars. (see [below for nested schema](#nestedatt--spec--python--env))
-- `image` (String) Image is a container image with Python SDK and auto-instrumentation.
-- `resource_requirements` (Attributes) Resources describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--python--resource_requirements))
-- `volume_limit_size` (String) VolumeSizeLimit defines size limit for volume used for auto-instrumentation. The default size is 150Mi.
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--python--env))
+- `image` (String)
+- `resource_requirements` (Attributes) (see [below for nested schema](#nestedatt--spec--python--resource_requirements))
+- `volume_limit_size` (String)
 
 <a id="nestedatt--spec--python--env"></a>
 ### Nested Schema for `spec.python.env`
 
 Required:
 
-- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+- `name` (String)
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.
-- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--python--env--value_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--python--env--value_from))
 
 <a id="nestedatt--spec--python--env--value_from"></a>
 ### Nested Schema for `spec.python.env.value_from`
 
 Optional:
 
-- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--python--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status. (see [below for nested schema](#nestedatt--spec--python--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests. (see [below for nested schema](#nestedatt--spec--python--env--value_from--resource_field_ref))
-- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--python--env--value_from--secret_key_ref))
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--python--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--python--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--python--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--python--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--python--env--value_from--config_map_key_ref"></a>
 ### Nested Schema for `spec.python.env.value_from.config_map_key_ref`
 
 Required:
 
-- `key` (String) The key to select.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 <a id="nestedatt--spec--python--env--value_from--field_ref"></a>
@@ -981,11 +981,11 @@ Optional:
 
 Required:
 
-- `field_path` (String) Path of the field to select in the specified API version.
+- `field_path` (String)
 
 Optional:
 
-- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+- `api_version` (String)
 
 
 <a id="nestedatt--spec--python--env--value_from--resource_field_ref"></a>
@@ -993,12 +993,12 @@ Optional:
 
 Required:
 
-- `resource` (String) Required: resource to select
+- `resource` (String)
 
 Optional:
 
-- `container_name` (String) Container name: required for volumes, optional for env vars
-- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+- `container_name` (String)
+- `divisor` (String)
 
 
 <a id="nestedatt--spec--python--env--value_from--secret_key_ref"></a>
@@ -1006,12 +1006,12 @@ Optional:
 
 Required:
 
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+- `key` (String)
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
+- `name` (String)
+- `optional` (Boolean)
 
 
 
@@ -1021,16 +1021,16 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. (see [below for nested schema](#nestedatt--spec--python--resource_requirements--claims))
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--python--resource_requirements--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
 
 <a id="nestedatt--spec--python--resource_requirements--claims"></a>
 ### Nested Schema for `spec.python.resource_requirements.requests`
 
 Required:
 
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
+- `name` (String)
 
 
 
@@ -1040,8 +1040,8 @@ Required:
 
 Optional:
 
-- `add_k8s_uid_attributes` (Boolean) AddK8sUIDAttributes defines whether K8s UID attributes should be collected (e.g. k8s.deployment.uid).
-- `resource_attributes` (Map of String) Attributes defines attributes that are added to the resource. For example environment: dev
+- `add_k8s_uid_attributes` (Boolean)
+- `resource_attributes` (Map of String)
 
 
 <a id="nestedatt--spec--sampler"></a>
@@ -1049,5 +1049,5 @@ Optional:
 
 Optional:
 
-- `argument` (String) Argument defines sampler argument. The value depends on the sampler type. For instance for parentbased_traceidratio sampler type it is a number in range [0..1] e.g. 0.25.
-- `type` (String) Type defines sampler type. The value will be set in the OTEL_TRACES_SAMPLER env var. The value can be for instance parentbased_always_on, parentbased_always_off, parentbased_traceidratio...
+- `argument` (String)
+- `type` (String)

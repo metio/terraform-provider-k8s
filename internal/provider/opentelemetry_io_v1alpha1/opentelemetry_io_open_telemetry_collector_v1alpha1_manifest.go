@@ -101,6 +101,9 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -120,6 +123,9 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -324,6 +330,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -346,6 +354,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+					MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
 							Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -369,6 +379,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -391,6 +403,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+					MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
 							Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -453,8 +467,19 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 			TargetCPUUtilization    *int64 `tfsdk:"target_cpu_utilization" json:"targetCPUUtilization,omitempty"`
 			TargetMemoryUtilization *int64 `tfsdk:"target_memory_utilization" json:"targetMemoryUtilization,omitempty"`
 		} `tfsdk:"autoscaler" json:"autoscaler,omitempty"`
-		Config *string `tfsdk:"config" json:"config,omitempty"`
-		Env    *[]struct {
+		Config     *string `tfsdk:"config" json:"config,omitempty"`
+		Configmaps *[]struct {
+			Mountpath *string `tfsdk:"mountpath" json:"mountpath,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"configmaps" json:"configmaps,omitempty"`
+		DeploymentUpdateStrategy *struct {
+			RollingUpdate *struct {
+				MaxSurge       *string `tfsdk:"max_surge" json:"maxSurge,omitempty"`
+				MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+			} `tfsdk:"rolling_update" json:"rollingUpdate,omitempty"`
+			Type *string `tfsdk:"type" json:"type,omitempty"`
+		} `tfsdk:"deployment_update_strategy" json:"deploymentUpdateStrategy,omitempty"`
+		Env *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Value     *string `tfsdk:"value" json:"value,omitempty"`
 			ValueFrom *struct {
@@ -563,6 +588,9 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -582,6 +610,9 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -758,6 +789,9 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 					Port   *string `tfsdk:"port" json:"port,omitempty"`
 					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 				} `tfsdk:"http_get" json:"httpGet,omitempty"`
+				Sleep *struct {
+					Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+				} `tfsdk:"sleep" json:"sleep,omitempty"`
 				TcpSocket *struct {
 					Host *string `tfsdk:"host" json:"host,omitempty"`
 					Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -777,6 +811,9 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 					Port   *string `tfsdk:"port" json:"port,omitempty"`
 					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 				} `tfsdk:"http_get" json:"httpGet,omitempty"`
+				Sleep *struct {
+					Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+				} `tfsdk:"sleep" json:"sleep,omitempty"`
 				TcpSocket *struct {
 					Host *string `tfsdk:"host" json:"host,omitempty"`
 					Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -798,10 +835,15 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 		NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		Observability   *struct {
 			Metrics *struct {
-				EnableMetrics *bool `tfsdk:"enable_metrics" json:"enableMetrics,omitempty"`
+				DisablePrometheusAnnotations *bool `tfsdk:"disable_prometheus_annotations" json:"DisablePrometheusAnnotations,omitempty"`
+				EnableMetrics                *bool `tfsdk:"enable_metrics" json:"enableMetrics,omitempty"`
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 		} `tfsdk:"observability" json:"observability,omitempty"`
-		PodAnnotations     *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
+		PodAnnotations      *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
+		PodDisruptionBudget *struct {
+			MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+			MinAvailable   *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
+		} `tfsdk:"pod_disruption_budget" json:"podDisruptionBudget,omitempty"`
 		PodSecurityContext *struct {
 			FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 			FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
@@ -876,8 +918,140 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 				RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 			} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 		} `tfsdk:"security_context" json:"securityContext,omitempty"`
-		ServiceAccount  *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
-		TargetAllocator *struct {
+		ServiceAccount        *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+		ShareProcessNamespace *bool   `tfsdk:"share_process_namespace" json:"shareProcessNamespace,omitempty"`
+		TargetAllocator       *struct {
+			Affinity *struct {
+				NodeAffinity *struct {
+					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+						Preference *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchFields *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+						} `tfsdk:"preference" json:"preference,omitempty"`
+						Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+					RequiredDuringSchedulingIgnoredDuringExecution *struct {
+						NodeSelectorTerms *[]struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchFields *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+						} `tfsdk:"node_selector_terms" json:"nodeSelectorTerms,omitempty"`
+					} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+				} `tfsdk:"node_affinity" json:"nodeAffinity,omitempty"`
+				PodAffinity *struct {
+					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+						PodAffinityTerm *struct {
+							LabelSelector *struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+							Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+							TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+						} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
+						Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+						LabelSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+						Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+						TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+					} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+				} `tfsdk:"pod_affinity" json:"podAffinity,omitempty"`
+				PodAntiAffinity *struct {
+					PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
+						PodAffinityTerm *struct {
+							LabelSelector *struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+							NamespaceSelector *struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+							} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+							Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+							TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+						} `tfsdk:"pod_affinity_term" json:"podAffinityTerm,omitempty"`
+						Weight *int64 `tfsdk:"weight" json:"weight,omitempty"`
+					} `tfsdk:"preferred_during_scheduling_ignored_during_execution" json:"preferredDuringSchedulingIgnoredDuringExecution,omitempty"`
+					RequiredDuringSchedulingIgnoredDuringExecution *[]struct {
+						LabelSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+						Namespaces  *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+						TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+					} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
+				} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
+			} `tfsdk:"affinity" json:"affinity,omitempty"`
 			AllocationStrategy *string `tfsdk:"allocation_strategy" json:"allocationStrategy,omitempty"`
 			Enabled            *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 			Env                *[]struct {
@@ -908,7 +1082,45 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 			FilterStrategy *string            `tfsdk:"filter_strategy" json:"filterStrategy,omitempty"`
 			Image          *string            `tfsdk:"image" json:"image,omitempty"`
 			NodeSelector   *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-			PrometheusCR   *struct {
+			Observability  *struct {
+				Metrics *struct {
+					DisablePrometheusAnnotations *bool `tfsdk:"disable_prometheus_annotations" json:"DisablePrometheusAnnotations,omitempty"`
+					EnableMetrics                *bool `tfsdk:"enable_metrics" json:"enableMetrics,omitempty"`
+				} `tfsdk:"metrics" json:"metrics,omitempty"`
+			} `tfsdk:"observability" json:"observability,omitempty"`
+			PodDisruptionBudget *struct {
+				MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+				MinAvailable   *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
+			} `tfsdk:"pod_disruption_budget" json:"podDisruptionBudget,omitempty"`
+			PodSecurityContext *struct {
+				FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
+				FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
+				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxOptions      *struct {
+					Level *string `tfsdk:"level" json:"level,omitempty"`
+					Role  *string `tfsdk:"role" json:"role,omitempty"`
+					Type  *string `tfsdk:"type" json:"type,omitempty"`
+					User  *string `tfsdk:"user" json:"user,omitempty"`
+				} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+				SeccompProfile *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+				SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+				Sysctls            *[]struct {
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+					Value *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"sysctls" json:"sysctls,omitempty"`
+				WindowsOptions *struct {
+					GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+					HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+			} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
+			PrometheusCR *struct {
 				Enabled                *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 				PodMonitorSelector     *map[string]string `tfsdk:"pod_monitor_selector" json:"podMonitorSelector,omitempty"`
 				ScrapeInterval         *string            `tfsdk:"scrape_interval" json:"scrapeInterval,omitempty"`
@@ -922,7 +1134,43 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
-			ServiceAccount            *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+			SecurityContext *struct {
+				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+				Capabilities             *struct {
+					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+				Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+				ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+				ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+				RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+				RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+				RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxOptions         *struct {
+					Level *string `tfsdk:"level" json:"level,omitempty"`
+					Role  *string `tfsdk:"role" json:"role,omitempty"`
+					Type  *string `tfsdk:"type" json:"type,omitempty"`
+					User  *string `tfsdk:"user" json:"user,omitempty"`
+				} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+				SeccompProfile *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+				WindowsOptions *struct {
+					GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+					HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+			} `tfsdk:"security_context" json:"securityContext,omitempty"`
+			ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+			Tolerations    *[]struct {
+				Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+				Key               *string `tfsdk:"key" json:"key,omitempty"`
+				Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+				TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+				Value             *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 			TopologySpreadConstraints *[]struct {
 				LabelSelector *struct {
 					MatchExpressions *[]struct {
@@ -966,6 +1214,13 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 			TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 			WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 		} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+		UpdateStrategy *struct {
+			RollingUpdate *struct {
+				MaxSurge       *string `tfsdk:"max_surge" json:"maxSurge,omitempty"`
+				MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+			} `tfsdk:"rolling_update" json:"rollingUpdate,omitempty"`
+			Type *string `tfsdk:"type" json:"type,omitempty"`
+		} `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 		UpgradeStrategy      *string `tfsdk:"upgrade_strategy" json:"upgradeStrategy,omitempty"`
 		VolumeClaimTemplates *[]struct {
 			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
@@ -991,9 +1246,6 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 				Resources *struct {
-					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
-					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1005,9 +1257,10 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 				} `tfsdk:"selector" json:"selector,omitempty"`
-				StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-				VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-				VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+				StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+				VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+				VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+				VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
 			Status *struct {
 				AccessModes               *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
@@ -1022,6 +1275,11 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 					Status             *string `tfsdk:"status" json:"status,omitempty"`
 					Type               *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"conditions" json:"conditions,omitempty"`
+				CurrentVolumeAttributesClassName *string `tfsdk:"current_volume_attributes_class_name" json:"currentVolumeAttributesClassName,omitempty"`
+				ModifyVolumeStatus               *struct {
+					Status                          *string `tfsdk:"status" json:"status,omitempty"`
+					TargetVolumeAttributesClassName *string `tfsdk:"target_volume_attributes_class_name" json:"targetVolumeAttributesClassName,omitempty"`
+				} `tfsdk:"modify_volume_status" json:"modifyVolumeStatus,omitempty"`
 				Phase *string `tfsdk:"phase" json:"phase,omitempty"`
 			} `tfsdk:"status" json:"status,omitempty"`
 		} `tfsdk:"volume_claim_templates" json:"volumeClaimTemplates,omitempty"`
@@ -1133,9 +1391,6 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 						Resources *struct {
-							Claims *[]struct {
-								Name *string `tfsdk:"name" json:"name,omitempty"`
-							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1147,9 +1402,10 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"selector" json:"selector,omitempty"`
-						StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-						VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-						VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+						StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+						VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+						VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+						VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 					} `tfsdk:"spec" json:"spec,omitempty"`
 				} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 			} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -1230,6 +1486,20 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 			Projected *struct {
 				DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 				Sources     *[]struct {
+					ClusterTrustBundle *struct {
+						LabelSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						Name       *string `tfsdk:"name" json:"name,omitempty"`
+						Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						Path       *string `tfsdk:"path" json:"path,omitempty"`
+						SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+					} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 					ConfigMap *struct {
 						Items *[]struct {
 							Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1339,8 +1609,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Metadata(_ conte
 
 func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "OpenTelemetryCollector is the Schema for the opentelemetrycollectors API.",
-		MarkdownDescription: "OpenTelemetryCollector is the Schema for the opentelemetrycollectors API.",
+		Description:         "",
+		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -1415,17 +1685,17 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "OpenTelemetryCollectorSpec defines the desired state of OpenTelemetryCollector.",
-				MarkdownDescription: "OpenTelemetryCollectorSpec defines the desired state of OpenTelemetryCollector.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"additional_containers": schema.ListNestedAttribute{
-						Description:         "AdditionalContainers allows injecting additional containers into the Collector's pod definition.",
-						MarkdownDescription: "AdditionalContainers allows injecting additional containers into the Collector's pod definition.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"args": schema.ListAttribute{
-									Description:         "Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment.",
-									MarkdownDescription: "Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment.",
+									Description:         "",
+									MarkdownDescription: "",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1433,8 +1703,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"command": schema.ListAttribute{
-									Description:         "Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment.",
-									MarkdownDescription: "Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment.",
+									Description:         "",
+									MarkdownDescription: "",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -1442,53 +1712,53 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"env": schema.ListNestedAttribute{
-									Description:         "List of environment variables to set in the container. Cannot be updated.",
-									MarkdownDescription: "List of environment variables to set in the container. Cannot be updated.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"value": schema.StringAttribute{
-												Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-												MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"value_from": schema.SingleNestedAttribute{
-												Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-												MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+												Description:         "",
+												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"config_map_key_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a key of a ConfigMap.",
-														MarkdownDescription: "Selects a key of a ConfigMap.",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key to select.",
-																MarkdownDescription: "The key to select.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"optional": schema.BoolAttribute{
-																Description:         "Specify whether the ConfigMap or its key must be defined",
-																MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1500,20 +1770,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"field_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-														MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"api_version": schema.StringAttribute{
-																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"field_path": schema.StringAttribute{
-																Description:         "Path of the field to select in the specified API version.",
-																MarkdownDescription: "Path of the field to select in the specified API version.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -1525,28 +1795,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"resource_field_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-														MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"container_name": schema.StringAttribute{
-																Description:         "Container name: required for volumes, optional for env vars",
-																MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"divisor": schema.StringAttribute{
-																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"resource": schema.StringAttribute{
-																Description:         "Required: resource to select",
-																MarkdownDescription: "Required: resource to select",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -1558,28 +1828,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"secret_key_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a key of a secret in the pod's namespace",
-														MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"optional": schema.BoolAttribute{
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1602,25 +1872,25 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"env_from": schema.ListNestedAttribute{
-									Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER.",
-									MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"config_map_ref": schema.SingleNestedAttribute{
-												Description:         "The ConfigMap to select from",
-												MarkdownDescription: "The ConfigMap to select from",
+												Description:         "",
+												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the ConfigMap must be defined",
-														MarkdownDescription: "Specify whether the ConfigMap must be defined",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1632,28 +1902,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 											},
 
 											"prefix": schema.StringAttribute{
-												Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"secret_ref": schema.SingleNestedAttribute{
-												Description:         "The Secret to select from",
-												MarkdownDescription: "The Secret to select from",
+												Description:         "",
+												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the Secret must be defined",
-														MarkdownDescription: "Specify whether the Secret must be defined",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1671,36 +1941,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"image": schema.StringAttribute{
-									Description:         "Container image name. More info: https://kubernetes.",
-									MarkdownDescription: "Container image name. More info: https://kubernetes.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"image_pull_policy": schema.StringAttribute{
-									Description:         "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.",
-									MarkdownDescription: "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"lifecycle": schema.SingleNestedAttribute{
-									Description:         "Actions that the management system should take in response to container lifecycle events. Cannot be updated.",
-									MarkdownDescription: "Actions that the management system should take in response to container lifecycle events. Cannot be updated.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"post_start": schema.SingleNestedAttribute{
-											Description:         "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy.",
-											MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
-															Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-															MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1713,33 +1983,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
-															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-															MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"http_headers": schema.ListNestedAttribute{
-															Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-															MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"value": schema.StringAttribute{
-																		Description:         "The header field value",
-																		MarkdownDescription: "The header field value",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -1752,24 +2022,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"path": schema.StringAttribute{
-															Description:         "Path to access on the HTTP server.",
-															MarkdownDescription: "Path to access on the HTTP server.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-															MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"scheme": schema.StringAttribute{
-															Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-															MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1780,21 +2050,38 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													Computed: false,
 												},
 
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
-															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-															MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-															MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1811,16 +2098,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"pre_stop": schema.SingleNestedAttribute{
-											Description:         "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc.",
-											MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
-															Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-															MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1833,33 +2120,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
-															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-															MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"http_headers": schema.ListNestedAttribute{
-															Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-															MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"value": schema.StringAttribute{
-																		Description:         "The header field value",
-																		MarkdownDescription: "The header field value",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -1872,24 +2159,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"path": schema.StringAttribute{
-															Description:         "Path to access on the HTTP server.",
-															MarkdownDescription: "Path to access on the HTTP server.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-															MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"scheme": schema.StringAttribute{
-															Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-															MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1900,21 +2187,38 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													Computed: false,
 												},
 
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
-															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-															MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-															MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -1936,16 +2240,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"liveness_probe": schema.SingleNestedAttribute{
-									Description:         "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-									MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
-													Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-													MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1958,28 +2262,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"failure_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
-													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-													MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"service": schema.StringAttribute{
-													Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
-													MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1991,33 +2295,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-													MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"http_headers": schema.ListNestedAttribute{
-													Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-													MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+													Description:         "",
+													MarkdownDescription: "",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"value": schema.StringAttribute{
-																Description:         "The header field value",
-																MarkdownDescription: "The header field value",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -2030,24 +2334,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"path": schema.StringAttribute{
-													Description:         "Path to access on the HTTP server.",
-													MarkdownDescription: "Path to access on the HTTP server.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"scheme": schema.StringAttribute{
-													Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-													MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2059,44 +2363,44 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"initial_delay_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"period_seconds": schema.Int64Attribute{
-											Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-											MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"success_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-													MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2108,16 +2412,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"termination_grace_period_seconds": schema.Int64Attribute{
-											Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
-											MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"timeout_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2129,53 +2433,53 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
-									MarkdownDescription: "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"ports": schema.ListNestedAttribute{
-									Description:         "List of ports to expose from the container. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.",
-									MarkdownDescription: "List of ports to expose from the container. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"container_port": schema.Int64Attribute{
-												Description:         "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
-												MarkdownDescription: "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"host_ip": schema.StringAttribute{
-												Description:         "What host IP to bind the external port to.",
-												MarkdownDescription: "What host IP to bind the external port to.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"host_port": schema.Int64Attribute{
-												Description:         "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
-												MarkdownDescription: "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
-												MarkdownDescription: "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"protocol": schema.StringAttribute{
-												Description:         "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
-												MarkdownDescription: "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2188,16 +2492,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"readiness_probe": schema.SingleNestedAttribute{
-									Description:         "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.",
-									MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
-													Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-													MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2210,28 +2514,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"failure_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
-													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-													MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"service": schema.StringAttribute{
-													Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
-													MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2243,33 +2547,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-													MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"http_headers": schema.ListNestedAttribute{
-													Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-													MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+													Description:         "",
+													MarkdownDescription: "",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"value": schema.StringAttribute{
-																Description:         "The header field value",
-																MarkdownDescription: "The header field value",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -2282,24 +2586,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"path": schema.StringAttribute{
-													Description:         "Path to access on the HTTP server.",
-													MarkdownDescription: "Path to access on the HTTP server.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"scheme": schema.StringAttribute{
-													Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-													MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2311,44 +2615,44 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"initial_delay_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"period_seconds": schema.Int64Attribute{
-											Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-											MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"success_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-													MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2360,16 +2664,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"termination_grace_period_seconds": schema.Int64Attribute{
-											Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
-											MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"timeout_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2381,21 +2685,21 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"resize_policy": schema.ListNestedAttribute{
-									Description:         "Resources resize policy for the container.",
-									MarkdownDescription: "Resources resize policy for the container.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"resource_name": schema.StringAttribute{
-												Description:         "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
-												MarkdownDescription: "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"restart_policy": schema.StringAttribute{
-												Description:         "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
-												MarkdownDescription: "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -2408,17 +2712,17 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"resources": schema.SingleNestedAttribute{
-									Description:         "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-									MarkdownDescription: "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"claims": schema.ListNestedAttribute{
-											Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-											MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
+											Description:         "",
+											MarkdownDescription: "",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-														MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -2431,8 +2735,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"limits": schema.MapAttribute{
-											Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-											MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -2440,8 +2744,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"requests": schema.MapAttribute{
-											Description:         "Requests describes the minimum amount of compute resources required.",
-											MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -2454,32 +2758,32 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"restart_policy": schema.StringAttribute{
-									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'.",
-									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"security_context": schema.SingleNestedAttribute{
-									Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.",
-									MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"allow_privilege_escalation": schema.BoolAttribute{
-											Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process.",
-											MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"capabilities": schema.SingleNestedAttribute{
-											Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
-											MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"add": schema.ListAttribute{
-													Description:         "Added capabilities",
-													MarkdownDescription: "Added capabilities",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2487,8 +2791,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"drop": schema.ListAttribute{
-													Description:         "Removed capabilities",
-													MarkdownDescription: "Removed capabilities",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2501,84 +2805,84 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"privileged": schema.BoolAttribute{
-											Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
-											MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proc_mount": schema.StringAttribute{
-											Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths.",
-											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only_root_filesystem": schema.BoolAttribute{
-											Description:         "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
-											MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"run_as_group": schema.Int64Attribute{
-											Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.",
-											MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"run_as_non_root": schema.BoolAttribute{
-											Description:         "Indicates that the container must run as a non-root user.",
-											MarkdownDescription: "Indicates that the container must run as a non-root user.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"run_as_user": schema.Int64Attribute{
-											Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
-											MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"se_linux_options": schema.SingleNestedAttribute{
-											Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.",
-											MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"level": schema.StringAttribute{
-													Description:         "Level is SELinux level label that applies to the container.",
-													MarkdownDescription: "Level is SELinux level label that applies to the container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"role": schema.StringAttribute{
-													Description:         "Role is a SELinux role label that applies to the container.",
-													MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "Type is a SELinux type label that applies to the container.",
-													MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"user": schema.StringAttribute{
-													Description:         "User is a SELinux user label that applies to the container.",
-													MarkdownDescription: "User is a SELinux user label that applies to the container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2590,20 +2894,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"seccomp_profile": schema.SingleNestedAttribute{
-											Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
-											MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"localhost_profile": schema.StringAttribute{
-													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work.",
-													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used.",
-													MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2615,36 +2919,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"windows_options": schema.SingleNestedAttribute{
-											Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used.",
-											MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"gmsa_credential_spec": schema.StringAttribute{
-													Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
-													MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"gmsa_credential_spec_name": schema.StringAttribute{
-													Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
-													MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"host_process": schema.BoolAttribute{
-													Description:         "HostProcess determines if a container should be run as a 'Host Process' container.",
-													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"run_as_user_name": schema.StringAttribute{
-													Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
-													MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2661,16 +2965,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"startup_probe": schema.SingleNestedAttribute{
-									Description:         "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully.",
-									MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
-													Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-													MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2683,28 +2987,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"failure_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
-													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-													MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"service": schema.StringAttribute{
-													Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
-													MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2716,33 +3020,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-													MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"http_headers": schema.ListNestedAttribute{
-													Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-													MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+													Description:         "",
+													MarkdownDescription: "",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"value": schema.StringAttribute{
-																Description:         "The header field value",
-																MarkdownDescription: "The header field value",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -2755,24 +3059,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"path": schema.StringAttribute{
-													Description:         "Path to access on the HTTP server.",
-													MarkdownDescription: "Path to access on the HTTP server.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"scheme": schema.StringAttribute{
-													Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-													MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2784,44 +3088,44 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"initial_delay_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"period_seconds": schema.Int64Attribute{
-											Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-											MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"success_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-													MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -2833,16 +3137,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"termination_grace_period_seconds": schema.Int64Attribute{
-											Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
-											MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"timeout_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2854,61 +3158,61 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"stdin": schema.BoolAttribute{
-									Description:         "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
-									MarkdownDescription: "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"stdin_once": schema.BoolAttribute{
-									Description:         "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions.",
-									MarkdownDescription: "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"termination_message_path": schema.StringAttribute{
-									Description:         "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem.",
-									MarkdownDescription: "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"termination_message_policy": schema.StringAttribute{
-									Description:         "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure.",
-									MarkdownDescription: "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"tty": schema.BoolAttribute{
-									Description:         "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
-									MarkdownDescription: "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"volume_devices": schema.ListNestedAttribute{
-									Description:         "volumeDevices is the list of block devices to be used by the container.",
-									MarkdownDescription: "volumeDevices is the list of block devices to be used by the container.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"device_path": schema.StringAttribute{
-												Description:         "devicePath is the path inside of the container that the device will be mapped to.",
-												MarkdownDescription: "devicePath is the path inside of the container that the device will be mapped to.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "name must match the name of a persistentVolumeClaim in the pod",
-												MarkdownDescription: "name must match the name of a persistentVolumeClaim in the pod",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -2921,53 +3225,53 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"volume_mounts": schema.ListNestedAttribute{
-									Description:         "Pod volumes to mount into the container's filesystem. Cannot be updated.",
-									MarkdownDescription: "Pod volumes to mount into the container's filesystem. Cannot be updated.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"mount_path": schema.StringAttribute{
-												Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'.",
-												MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"mount_propagation": schema.StringAttribute{
-												Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-												MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "This must match the Name of a Volume.",
-												MarkdownDescription: "This must match the Name of a Volume.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"read_only": schema.BoolAttribute{
-												Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
-												MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"sub_path": schema.StringAttribute{
-												Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
-												MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"sub_path_expr": schema.StringAttribute{
-												Description:         "Expanded path within the volume from which the container's volume should be mounted.",
-												MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2980,8 +3284,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"working_dir": schema.StringAttribute{
-									Description:         "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
-									MarkdownDescription: "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2994,46 +3298,46 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"affinity": schema.SingleNestedAttribute{
-						Description:         "If specified, indicates the pod's scheduling constraints",
-						MarkdownDescription: "If specified, indicates the pod's scheduling constraints",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"node_affinity": schema.SingleNestedAttribute{
-								Description:         "Describes node affinity scheduling rules for the pod.",
-								MarkdownDescription: "Describes node affinity scheduling rules for the pod.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-										Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions.",
-										MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"preference": schema.SingleNestedAttribute{
-													Description:         "A node selector term, associated with the corresponding weight.",
-													MarkdownDescription: "A node selector term, associated with the corresponding weight.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
-															Description:         "A list of node selector requirements by node's labels.",
-															MarkdownDescription: "A list of node selector requirements by node's labels.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3047,29 +3351,29 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"match_fields": schema.ListNestedAttribute{
-															Description:         "A list of node selector requirements by node's fields.",
-															MarkdownDescription: "A list of node selector requirements by node's fields.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3088,8 +3392,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"weight": schema.Int64Attribute{
-													Description:         "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
-													MarkdownDescription: "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -3102,38 +3406,38 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 									},
 
 									"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-										Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node.",
-										MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"node_selector_terms": schema.ListNestedAttribute{
-												Description:         "Required. A list of node selector terms. The terms are ORed.",
-												MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
+												Description:         "",
+												MarkdownDescription: "",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
-															Description:         "A list of node selector requirements by node's labels.",
-															MarkdownDescription: "A list of node selector requirements by node's labels.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3147,29 +3451,29 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"match_fields": schema.ListNestedAttribute{
-															Description:         "A list of node selector requirements by node's fields.",
-															MarkdownDescription: "A list of node selector requirements by node's fields.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "The label key that the selector applies to.",
-																		MarkdownDescription: "The label key that the selector applies to.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
-																		MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																		MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3199,46 +3503,46 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"pod_affinity": schema.SingleNestedAttribute{
-								Description:         "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
-								MarkdownDescription: "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-										Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions.",
-										MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"pod_affinity_term": schema.SingleNestedAttribute{
-													Description:         "Required. A pod affinity term, associated with the corresponding weight.",
-													MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over a set of resources, in this case pods.",
-															MarkdownDescription: "A label query over a set of resources, in this case pods.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3252,8 +3556,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3265,34 +3569,52 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 															Computed: false,
 														},
 
+														"match_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3306,8 +3628,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3320,8 +3642,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3329,8 +3651,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose ",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose ",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3342,8 +3664,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"weight": schema.Int64Attribute{
-													Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-													MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -3356,38 +3678,38 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 									},
 
 									"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-										Description:         "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node.",
-										MarkdownDescription: "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"label_selector": schema.SingleNestedAttribute{
-													Description:         "A label query over a set of resources, in this case pods.",
-													MarkdownDescription: "A label query over a set of resources, in this case pods.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
-															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "key is the label key that the selector applies to.",
-																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3401,8 +3723,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3414,34 +3736,52 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													Computed: false,
 												},
 
+												"match_label_keys": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mismatch_label_keys": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"namespace_selector": schema.SingleNestedAttribute{
-													Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field.",
-													MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
-															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "key is the label key that the selector applies to.",
-																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3455,8 +3795,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3469,8 +3809,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"namespaces": schema.ListAttribute{
-													Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector.",
-													MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector.",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -3478,8 +3818,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"topology_key": schema.StringAttribute{
-													Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose ",
-													MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose ",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -3497,46 +3837,46 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"pod_anti_affinity": schema.SingleNestedAttribute{
-								Description:         "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
-								MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-										Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions.",
-										MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"pod_affinity_term": schema.SingleNestedAttribute{
-													Description:         "Required. A pod affinity term, associated with the corresponding weight.",
-													MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over a set of resources, in this case pods.",
-															MarkdownDescription: "A label query over a set of resources, in this case pods.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3550,8 +3890,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3563,34 +3903,52 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 															Computed: false,
 														},
 
+														"match_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"namespace_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field.",
-															MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -3604,8 +3962,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3618,8 +3976,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"namespaces": schema.ListAttribute{
-															Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector.",
-															MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3627,8 +3985,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"topology_key": schema.StringAttribute{
-															Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose ",
-															MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose ",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3640,8 +3998,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"weight": schema.Int64Attribute{
-													Description:         "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
-													MarkdownDescription: "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -3654,38 +4012,38 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 									},
 
 									"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-										Description:         "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node.",
-										MarkdownDescription: "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"label_selector": schema.SingleNestedAttribute{
-													Description:         "A label query over a set of resources, in this case pods.",
-													MarkdownDescription: "A label query over a set of resources, in this case pods.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
-															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "key is the label key that the selector applies to.",
-																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3699,8 +4057,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3712,34 +4070,52 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													Computed: false,
 												},
 
+												"match_label_keys": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mismatch_label_keys": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"namespace_selector": schema.SingleNestedAttribute{
-													Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field.",
-													MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
-															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"key": schema.StringAttribute{
-																		Description:         "key is the label key that the selector applies to.",
-																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"operator": schema.StringAttribute{
-																		Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																		MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"values": schema.ListAttribute{
-																		Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		ElementType:         types.StringType,
 																		Required:            false,
 																		Optional:            true,
@@ -3753,8 +4129,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"match_labels": schema.MapAttribute{
-															Description:         "matchLabels is a map of {key,value} pairs.",
-															MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3767,8 +4143,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"namespaces": schema.ListAttribute{
-													Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector.",
-													MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector.",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -3776,8 +4152,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"topology_key": schema.StringAttribute{
-													Description:         "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose ",
-													MarkdownDescription: "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose ",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -3800,8 +4176,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"args": schema.MapAttribute{
-						Description:         "Args is the set of arguments to pass to the OpenTelemetry Collector binary",
-						MarkdownDescription: "Args is the set of arguments to pass to the OpenTelemetry Collector binary",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -3809,41 +4185,41 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"autoscaler": schema.SingleNestedAttribute{
-						Description:         "Autoscaler specifies the pod autoscaling configuration to use for the OpenTelemetryCollector workload.",
-						MarkdownDescription: "Autoscaler specifies the pod autoscaling configuration to use for the OpenTelemetryCollector workload.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"behavior": schema.SingleNestedAttribute{
-								Description:         "HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).",
-								MarkdownDescription: "HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"scale_down": schema.SingleNestedAttribute{
-										Description:         "scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e.",
-										MarkdownDescription: "scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"policies": schema.ListNestedAttribute{
-												Description:         "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
-												MarkdownDescription: "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+												Description:         "",
+												MarkdownDescription: "",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"period_seconds": schema.Int64Attribute{
-															Description:         "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
-															MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "type is used to specify the scaling policy.",
-															MarkdownDescription: "type is used to specify the scaling policy.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"value": schema.Int64Attribute{
-															Description:         "value contains the amount of change which is permitted by the policy. It must be greater than zero",
-															MarkdownDescription: "value contains the amount of change which is permitted by the policy. It must be greater than zero",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3856,16 +4232,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 											},
 
 											"select_policy": schema.StringAttribute{
-												Description:         "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
-												MarkdownDescription: "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"stabilization_window_seconds": schema.Int64Attribute{
-												Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down.",
-												MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3877,33 +4253,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 									},
 
 									"scale_up": schema.SingleNestedAttribute{
-										Description:         "scaleUp is scaling policy for scaling Up.",
-										MarkdownDescription: "scaleUp is scaling policy for scaling Up.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"policies": schema.ListNestedAttribute{
-												Description:         "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
-												MarkdownDescription: "policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid",
+												Description:         "",
+												MarkdownDescription: "",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"period_seconds": schema.Int64Attribute{
-															Description:         "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
-															MarkdownDescription: "periodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "type is used to specify the scaling policy.",
-															MarkdownDescription: "type is used to specify the scaling policy.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"value": schema.Int64Attribute{
-															Description:         "value contains the amount of change which is permitted by the policy. It must be greater than zero",
-															MarkdownDescription: "value contains the amount of change which is permitted by the policy. It must be greater than zero",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -3916,16 +4292,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 											},
 
 											"select_policy": schema.StringAttribute{
-												Description:         "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
-												MarkdownDescription: "selectPolicy is used to specify which policy should be used. If not set, the default value Max is used.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"stabilization_window_seconds": schema.Int64Attribute{
-												Description:         "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down.",
-												MarkdownDescription: "stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3942,62 +4318,62 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"max_replicas": schema.Int64Attribute{
-								Description:         "MaxReplicas sets an upper bound to the autoscaling feature. If MaxReplicas is set autoscaling is enabled.",
-								MarkdownDescription: "MaxReplicas sets an upper bound to the autoscaling feature. If MaxReplicas is set autoscaling is enabled.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"metrics": schema.ListNestedAttribute{
-								Description:         "Metrics is meant to provide a customizable way to configure HPA metrics. currently the only supported custom metrics is type=Pod.",
-								MarkdownDescription: "Metrics is meant to provide a customizable way to configure HPA metrics. currently the only supported custom metrics is type=Pod.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"pods": schema.SingleNestedAttribute{
-											Description:         "PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second).",
-											MarkdownDescription: "PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second).",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"metric": schema.SingleNestedAttribute{
-													Description:         "metric identifies the target metric by name and selector",
-													MarkdownDescription: "metric identifies the target metric by name and selector",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "name is the name of the given metric",
-															MarkdownDescription: "name is the name of the given metric",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"selector": schema.SingleNestedAttribute{
-															Description:         "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scopi",
-															MarkdownDescription: "selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scopi",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -4011,8 +4387,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -4030,36 +4406,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"target": schema.SingleNestedAttribute{
-													Description:         "target specifies the target value for the given metric",
-													MarkdownDescription: "target specifies the target value for the given metric",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"average_utilization": schema.Int64Attribute{
-															Description:         "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.",
-															MarkdownDescription: "averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"average_value": schema.StringAttribute{
-															Description:         "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
-															MarkdownDescription: "averageValue is the target value of the average of the metric across all relevant pods (as a quantity)",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "type represents whether the metric type is Utilization, Value, or AverageValue",
-															MarkdownDescription: "type represents whether the metric type is Utilization, Value, or AverageValue",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"value": schema.StringAttribute{
-															Description:         "value is the target value of the metric (as a quantity).",
-															MarkdownDescription: "value is the target value of the metric (as a quantity).",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4076,8 +4452,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "MetricSourceType indicates the type of metric.",
-											MarkdownDescription: "MetricSourceType indicates the type of metric.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -4090,24 +4466,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"min_replicas": schema.Int64Attribute{
-								Description:         "MinReplicas sets a lower bound to the autoscaling feature.  Set this if your are using autoscaling. It must be at least 1",
-								MarkdownDescription: "MinReplicas sets a lower bound to the autoscaling feature.  Set this if your are using autoscaling. It must be at least 1",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"target_cpu_utilization": schema.Int64Attribute{
-								Description:         "TargetCPUUtilization sets the target average CPU used across all replicas. If average CPU exceeds this value, the HPA will scale up. Defaults to 90 percent.",
-								MarkdownDescription: "TargetCPUUtilization sets the target average CPU used across all replicas. If average CPU exceeds this value, the HPA will scale up. Defaults to 90 percent.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"target_memory_utilization": schema.Int64Attribute{
-								Description:         "TargetMemoryUtilization sets the target average memory utilization across all replicas",
-								MarkdownDescription: "TargetMemoryUtilization sets the target average memory utilization across all replicas",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4119,61 +4495,130 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"config": schema.StringAttribute{
-						Description:         "Config is the raw JSON to be used as the collector's configuration. Refer to the OpenTelemetry Collector documentation for details.",
-						MarkdownDescription: "Config is the raw JSON to be used as the collector's configuration. Refer to the OpenTelemetry Collector documentation for details.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
+					"configmaps": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"mountpath": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"deployment_update_strategy": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"rolling_update": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"max_surge": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_unavailable": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"type": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"env": schema.ListNestedAttribute{
-						Description:         "ENV vars to set on the OpenTelemetry Collector's Pods. These can then in certain cases be consumed in the config file for the Collector.",
-						MarkdownDescription: "ENV vars to set on the OpenTelemetry Collector's Pods. These can then in certain cases be consumed in the config file for the Collector.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-									MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"value": schema.StringAttribute{
-									Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-									MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"value_from": schema.SingleNestedAttribute{
-									Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-									MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"config_map_key_ref": schema.SingleNestedAttribute{
-											Description:         "Selects a key of a ConfigMap.",
-											MarkdownDescription: "Selects a key of a ConfigMap.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key to select.",
-													MarkdownDescription: "The key to select.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"optional": schema.BoolAttribute{
-													Description:         "Specify whether the ConfigMap or its key must be defined",
-													MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4185,20 +4630,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"field_ref": schema.SingleNestedAttribute{
-											Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-											MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"api_version": schema.StringAttribute{
-													Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-													MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"field_path": schema.StringAttribute{
-													Description:         "Path of the field to select in the specified API version.",
-													MarkdownDescription: "Path of the field to select in the specified API version.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -4210,28 +4655,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"resource_field_ref": schema.SingleNestedAttribute{
-											Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-											MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"container_name": schema.StringAttribute{
-													Description:         "Container name: required for volumes, optional for env vars",
-													MarkdownDescription: "Container name: required for volumes, optional for env vars",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"divisor": schema.StringAttribute{
-													Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-													MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"resource": schema.StringAttribute{
-													Description:         "Required: resource to select",
-													MarkdownDescription: "Required: resource to select",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -4243,28 +4688,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"secret_key_ref": schema.SingleNestedAttribute{
-											Description:         "Selects a key of a secret in the pod's namespace",
-											MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"optional": schema.BoolAttribute{
-													Description:         "Specify whether the Secret or its key must be defined",
-													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4287,25 +4732,25 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"env_from": schema.ListNestedAttribute{
-						Description:         "List of sources to populate environment variables on the OpenTelemetry Collector's Pods. These can then in certain cases be consumed in the config file for the Collector.",
-						MarkdownDescription: "List of sources to populate environment variables on the OpenTelemetry Collector's Pods. These can then in certain cases be consumed in the config file for the Collector.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"config_map_ref": schema.SingleNestedAttribute{
-									Description:         "The ConfigMap to select from",
-									MarkdownDescription: "The ConfigMap to select from",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the ConfigMap must be defined",
-											MarkdownDescription: "Specify whether the ConfigMap must be defined",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4317,28 +4762,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"prefix": schema.StringAttribute{
-									Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-									MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"secret_ref": schema.SingleNestedAttribute{
-									Description:         "The Secret to select from",
-									MarkdownDescription: "The Secret to select from",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"optional": schema.BoolAttribute{
-											Description:         "Specify whether the Secret must be defined",
-											MarkdownDescription: "Specify whether the Secret must be defined",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4356,36 +4801,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"host_network": schema.BoolAttribute{
-						Description:         "HostNetwork indicates if the pod should run in the host networking namespace.",
-						MarkdownDescription: "HostNetwork indicates if the pod should run in the host networking namespace.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"image": schema.StringAttribute{
-						Description:         "Image indicates the container image to use for the OpenTelemetry Collector.",
-						MarkdownDescription: "Image indicates the container image to use for the OpenTelemetry Collector.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"image_pull_policy": schema.StringAttribute{
-						Description:         "ImagePullPolicy indicates the pull policy to be used for retrieving the container image (Always, Never, IfNotPresent)",
-						MarkdownDescription: "ImagePullPolicy indicates the pull policy to be used for retrieving the container image (Always, Never, IfNotPresent)",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ingress": schema.SingleNestedAttribute{
-						Description:         "Ingress is used to specify how OpenTelemetry Collector is exposed. This functionality is only available if one of the valid modes is set. Valid modes are: deployment, daemonset and statefulset.",
-						MarkdownDescription: "Ingress is used to specify how OpenTelemetry Collector is exposed. This functionality is only available if one of the valid modes is set. Valid modes are: deployment, daemonset and statefulset.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
-								Description:         "Annotations to add to ingress. e.g. 'cert-manager.io/cluster-issuer: 'letsencrypt''",
-								MarkdownDescription: "Annotations to add to ingress. e.g. 'cert-manager.io/cluster-issuer: 'letsencrypt''",
+								Description:         "",
+								MarkdownDescription: "",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -4393,28 +4838,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"hostname": schema.StringAttribute{
-								Description:         "Hostname by which the ingress proxy can be reached.",
-								MarkdownDescription: "Hostname by which the ingress proxy can be reached.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"ingress_class_name": schema.StringAttribute{
-								Description:         "IngressClassName is the name of an IngressClass cluster resource. Ingress controller implementations use this field to know whether they should be serving this Ingress resource.",
-								MarkdownDescription: "IngressClassName is the name of an IngressClass cluster resource. Ingress controller implementations use this field to know whether they should be serving this Ingress resource.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"route": schema.SingleNestedAttribute{
-								Description:         "Route is an OpenShift specific section that is only considered when type 'route' is used.",
-								MarkdownDescription: "Route is an OpenShift specific section that is only considered when type 'route' is used.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"termination": schema.StringAttribute{
-										Description:         "Termination indicates termination type. By default 'edge' is used.",
-										MarkdownDescription: "Termination indicates termination type. By default 'edge' is used.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4429,8 +4874,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"rule_type": schema.StringAttribute{
-								Description:         "RuleType defines how Ingress exposes collector receivers. IngressRuleTypePath ('path') exposes each receiver port on a unique path on single domain defined in Hostname.",
-								MarkdownDescription: "RuleType defines how Ingress exposes collector receivers. IngressRuleTypePath ('path') exposes each receiver port on a unique path on single domain defined in Hostname.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4440,13 +4885,13 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"tls": schema.ListNestedAttribute{
-								Description:         "TLS configuration.",
-								MarkdownDescription: "TLS configuration.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"hosts": schema.ListAttribute{
-											Description:         "hosts is a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret.",
-											MarkdownDescription: "hosts is a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -4454,8 +4899,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"secret_name": schema.StringAttribute{
-											Description:         "secretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone.",
-											MarkdownDescription: "secretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4468,8 +4913,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"type": schema.StringAttribute{
-								Description:         "Type default value is: '' Supported types are: ingress, route",
-								MarkdownDescription: "Type default value is: '' Supported types are: ingress, route",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4484,13 +4929,13 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"init_containers": schema.ListNestedAttribute{
-						Description:         "InitContainers allows injecting initContainers to the Collector's pod definition.",
-						MarkdownDescription: "InitContainers allows injecting initContainers to the Collector's pod definition.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"args": schema.ListAttribute{
-									Description:         "Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment.",
-									MarkdownDescription: "Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment.",
+									Description:         "",
+									MarkdownDescription: "",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -4498,8 +4943,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"command": schema.ListAttribute{
-									Description:         "Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment.",
-									MarkdownDescription: "Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment.",
+									Description:         "",
+									MarkdownDescription: "",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -4507,53 +4952,53 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"env": schema.ListNestedAttribute{
-									Description:         "List of environment variables to set in the container. Cannot be updated.",
-									MarkdownDescription: "List of environment variables to set in the container. Cannot be updated.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"value": schema.StringAttribute{
-												Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-												MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"value_from": schema.SingleNestedAttribute{
-												Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-												MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+												Description:         "",
+												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"config_map_key_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a key of a ConfigMap.",
-														MarkdownDescription: "Selects a key of a ConfigMap.",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key to select.",
-																MarkdownDescription: "The key to select.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"optional": schema.BoolAttribute{
-																Description:         "Specify whether the ConfigMap or its key must be defined",
-																MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4565,20 +5010,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"field_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-														MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"api_version": schema.StringAttribute{
-																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"field_path": schema.StringAttribute{
-																Description:         "Path of the field to select in the specified API version.",
-																MarkdownDescription: "Path of the field to select in the specified API version.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4590,28 +5035,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"resource_field_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-														MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"container_name": schema.StringAttribute{
-																Description:         "Container name: required for volumes, optional for env vars",
-																MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"divisor": schema.StringAttribute{
-																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"resource": schema.StringAttribute{
-																Description:         "Required: resource to select",
-																MarkdownDescription: "Required: resource to select",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4623,28 +5068,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"secret_key_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a key of a secret in the pod's namespace",
-														MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "The key of the secret to select from.  Must be a valid secret key.",
-																MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"optional": schema.BoolAttribute{
-																Description:         "Specify whether the Secret or its key must be defined",
-																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4667,25 +5112,25 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"env_from": schema.ListNestedAttribute{
-									Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER.",
-									MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"config_map_ref": schema.SingleNestedAttribute{
-												Description:         "The ConfigMap to select from",
-												MarkdownDescription: "The ConfigMap to select from",
+												Description:         "",
+												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the ConfigMap must be defined",
-														MarkdownDescription: "Specify whether the ConfigMap must be defined",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4697,28 +5142,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 											},
 
 											"prefix": schema.StringAttribute{
-												Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"secret_ref": schema.SingleNestedAttribute{
-												Description:         "The Secret to select from",
-												MarkdownDescription: "The Secret to select from",
+												Description:         "",
+												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the Secret must be defined",
-														MarkdownDescription: "Specify whether the Secret must be defined",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4736,36 +5181,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"image": schema.StringAttribute{
-									Description:         "Container image name. More info: https://kubernetes.",
-									MarkdownDescription: "Container image name. More info: https://kubernetes.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"image_pull_policy": schema.StringAttribute{
-									Description:         "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.",
-									MarkdownDescription: "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"lifecycle": schema.SingleNestedAttribute{
-									Description:         "Actions that the management system should take in response to container lifecycle events. Cannot be updated.",
-									MarkdownDescription: "Actions that the management system should take in response to container lifecycle events. Cannot be updated.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"post_start": schema.SingleNestedAttribute{
-											Description:         "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy.",
-											MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
-															Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-															MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -4778,33 +5223,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
-															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-															MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"http_headers": schema.ListNestedAttribute{
-															Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-															MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"value": schema.StringAttribute{
-																		Description:         "The header field value",
-																		MarkdownDescription: "The header field value",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -4817,24 +5262,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"path": schema.StringAttribute{
-															Description:         "Path to access on the HTTP server.",
-															MarkdownDescription: "Path to access on the HTTP server.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-															MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"scheme": schema.StringAttribute{
-															Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-															MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4845,21 +5290,38 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													Computed: false,
 												},
 
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
-															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-															MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-															MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -4876,16 +5338,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"pre_stop": schema.SingleNestedAttribute{
-											Description:         "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc.",
-											MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
-															Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-															MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -4898,33 +5360,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
-															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-															MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"http_headers": schema.ListNestedAttribute{
-															Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-															MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+															Description:         "",
+															MarkdownDescription: "",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
-																		Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																		MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
 																	},
 
 																	"value": schema.StringAttribute{
-																		Description:         "The header field value",
-																		MarkdownDescription: "The header field value",
+																		Description:         "",
+																		MarkdownDescription: "",
 																		Required:            true,
 																		Optional:            false,
 																		Computed:            false,
@@ -4937,24 +5399,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"path": schema.StringAttribute{
-															Description:         "Path to access on the HTTP server.",
-															MarkdownDescription: "Path to access on the HTTP server.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-															MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"scheme": schema.StringAttribute{
-															Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-															MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4965,21 +5427,38 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													Computed: false,
 												},
 
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
-															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-															MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"port": schema.StringAttribute{
-															Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-															MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -5001,16 +5480,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"liveness_probe": schema.SingleNestedAttribute{
-									Description:         "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-									MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
-													Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-													MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5023,28 +5502,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"failure_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
-													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-													MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"service": schema.StringAttribute{
-													Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
-													MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5056,33 +5535,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-													MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"http_headers": schema.ListNestedAttribute{
-													Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-													MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+													Description:         "",
+													MarkdownDescription: "",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"value": schema.StringAttribute{
-																Description:         "The header field value",
-																MarkdownDescription: "The header field value",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5095,24 +5574,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"path": schema.StringAttribute{
-													Description:         "Path to access on the HTTP server.",
-													MarkdownDescription: "Path to access on the HTTP server.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"scheme": schema.StringAttribute{
-													Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-													MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5124,44 +5603,44 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"initial_delay_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"period_seconds": schema.Int64Attribute{
-											Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-											MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"success_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-													MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -5173,16 +5652,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"termination_grace_period_seconds": schema.Int64Attribute{
-											Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
-											MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"timeout_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -5194,53 +5673,53 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
-									MarkdownDescription: "Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"ports": schema.ListNestedAttribute{
-									Description:         "List of ports to expose from the container. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.",
-									MarkdownDescription: "List of ports to expose from the container. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default '0.0.0.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"container_port": schema.Int64Attribute{
-												Description:         "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
-												MarkdownDescription: "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"host_ip": schema.StringAttribute{
-												Description:         "What host IP to bind the external port to.",
-												MarkdownDescription: "What host IP to bind the external port to.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"host_port": schema.Int64Attribute{
-												Description:         "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
-												MarkdownDescription: "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
-												MarkdownDescription: "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"protocol": schema.StringAttribute{
-												Description:         "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
-												MarkdownDescription: "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5253,16 +5732,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"readiness_probe": schema.SingleNestedAttribute{
-									Description:         "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.",
-									MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
-													Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-													MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5275,28 +5754,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"failure_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
-													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-													MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"service": schema.StringAttribute{
-													Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
-													MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5308,33 +5787,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-													MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"http_headers": schema.ListNestedAttribute{
-													Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-													MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+													Description:         "",
+													MarkdownDescription: "",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"value": schema.StringAttribute{
-																Description:         "The header field value",
-																MarkdownDescription: "The header field value",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5347,24 +5826,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"path": schema.StringAttribute{
-													Description:         "Path to access on the HTTP server.",
-													MarkdownDescription: "Path to access on the HTTP server.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"scheme": schema.StringAttribute{
-													Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-													MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5376,44 +5855,44 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"initial_delay_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"period_seconds": schema.Int64Attribute{
-											Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-											MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"success_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-													MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -5425,16 +5904,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"termination_grace_period_seconds": schema.Int64Attribute{
-											Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
-											MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"timeout_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -5446,21 +5925,21 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"resize_policy": schema.ListNestedAttribute{
-									Description:         "Resources resize policy for the container.",
-									MarkdownDescription: "Resources resize policy for the container.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"resource_name": schema.StringAttribute{
-												Description:         "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
-												MarkdownDescription: "Name of the resource to which this resource resize policy applies. Supported values: cpu, memory.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"restart_policy": schema.StringAttribute{
-												Description:         "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
-												MarkdownDescription: "Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -5473,17 +5952,17 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"resources": schema.SingleNestedAttribute{
-									Description:         "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-									MarkdownDescription: "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"claims": schema.ListNestedAttribute{
-											Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-											MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
+											Description:         "",
+											MarkdownDescription: "",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-														MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -5496,8 +5975,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"limits": schema.MapAttribute{
-											Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-											MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -5505,8 +5984,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"requests": schema.MapAttribute{
-											Description:         "Requests describes the minimum amount of compute resources required.",
-											MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -5519,32 +5998,32 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"restart_policy": schema.StringAttribute{
-									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'.",
-									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"security_context": schema.SingleNestedAttribute{
-									Description:         "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.",
-									MarkdownDescription: "SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"allow_privilege_escalation": schema.BoolAttribute{
-											Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process.",
-											MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"capabilities": schema.SingleNestedAttribute{
-											Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
-											MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"add": schema.ListAttribute{
-													Description:         "Added capabilities",
-													MarkdownDescription: "Added capabilities",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5552,8 +6031,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"drop": schema.ListAttribute{
-													Description:         "Removed capabilities",
-													MarkdownDescription: "Removed capabilities",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5566,84 +6045,84 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"privileged": schema.BoolAttribute{
-											Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
-											MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proc_mount": schema.StringAttribute{
-											Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths.",
-											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only_root_filesystem": schema.BoolAttribute{
-											Description:         "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
-											MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"run_as_group": schema.Int64Attribute{
-											Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.",
-											MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"run_as_non_root": schema.BoolAttribute{
-											Description:         "Indicates that the container must run as a non-root user.",
-											MarkdownDescription: "Indicates that the container must run as a non-root user.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"run_as_user": schema.Int64Attribute{
-											Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
-											MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"se_linux_options": schema.SingleNestedAttribute{
-											Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.",
-											MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"level": schema.StringAttribute{
-													Description:         "Level is SELinux level label that applies to the container.",
-													MarkdownDescription: "Level is SELinux level label that applies to the container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"role": schema.StringAttribute{
-													Description:         "Role is a SELinux role label that applies to the container.",
-													MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "Type is a SELinux type label that applies to the container.",
-													MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"user": schema.StringAttribute{
-													Description:         "User is a SELinux user label that applies to the container.",
-													MarkdownDescription: "User is a SELinux user label that applies to the container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5655,20 +6134,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"seccomp_profile": schema.SingleNestedAttribute{
-											Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
-											MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"localhost_profile": schema.StringAttribute{
-													Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work.",
-													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used.",
-													MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -5680,36 +6159,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"windows_options": schema.SingleNestedAttribute{
-											Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used.",
-											MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"gmsa_credential_spec": schema.StringAttribute{
-													Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
-													MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"gmsa_credential_spec_name": schema.StringAttribute{
-													Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
-													MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"host_process": schema.BoolAttribute{
-													Description:         "HostProcess determines if a container should be run as a 'Host Process' container.",
-													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"run_as_user_name": schema.StringAttribute{
-													Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
-													MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5726,16 +6205,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"startup_probe": schema.SingleNestedAttribute{
-									Description:         "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully.",
-									MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
-													Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-													MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -5748,28 +6227,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"failure_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
-													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
-													MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"service": schema.StringAttribute{
-													Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
-													MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5781,33 +6260,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-													MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"http_headers": schema.ListNestedAttribute{
-													Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-													MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+													Description:         "",
+													MarkdownDescription: "",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-																MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"value": schema.StringAttribute{
-																Description:         "The header field value",
-																MarkdownDescription: "The header field value",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -5820,24 +6299,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"path": schema.StringAttribute{
-													Description:         "Path to access on the HTTP server.",
-													MarkdownDescription: "Path to access on the HTTP server.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"scheme": schema.StringAttribute{
-													Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-													MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5849,44 +6328,44 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"initial_delay_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"period_seconds": schema.Int64Attribute{
-											Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-											MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"success_threshold": schema.Int64Attribute{
-											Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-											MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
-													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-													MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"port": schema.StringAttribute{
-													Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-													MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -5898,16 +6377,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"termination_grace_period_seconds": schema.Int64Attribute{
-											Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
-											MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"timeout_seconds": schema.Int64Attribute{
-											Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-											MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -5919,61 +6398,61 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"stdin": schema.BoolAttribute{
-									Description:         "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
-									MarkdownDescription: "Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"stdin_once": schema.BoolAttribute{
-									Description:         "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions.",
-									MarkdownDescription: "Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"termination_message_path": schema.StringAttribute{
-									Description:         "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem.",
-									MarkdownDescription: "Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"termination_message_policy": schema.StringAttribute{
-									Description:         "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure.",
-									MarkdownDescription: "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"tty": schema.BoolAttribute{
-									Description:         "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
-									MarkdownDescription: "Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"volume_devices": schema.ListNestedAttribute{
-									Description:         "volumeDevices is the list of block devices to be used by the container.",
-									MarkdownDescription: "volumeDevices is the list of block devices to be used by the container.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"device_path": schema.StringAttribute{
-												Description:         "devicePath is the path inside of the container that the device will be mapped to.",
-												MarkdownDescription: "devicePath is the path inside of the container that the device will be mapped to.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "name must match the name of a persistentVolumeClaim in the pod",
-												MarkdownDescription: "name must match the name of a persistentVolumeClaim in the pod",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -5986,53 +6465,53 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"volume_mounts": schema.ListNestedAttribute{
-									Description:         "Pod volumes to mount into the container's filesystem. Cannot be updated.",
-									MarkdownDescription: "Pod volumes to mount into the container's filesystem. Cannot be updated.",
+									Description:         "",
+									MarkdownDescription: "",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"mount_path": schema.StringAttribute{
-												Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'.",
-												MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"mount_propagation": schema.StringAttribute{
-												Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-												MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "This must match the Name of a Volume.",
-												MarkdownDescription: "This must match the Name of a Volume.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"read_only": schema.BoolAttribute{
-												Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
-												MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"sub_path": schema.StringAttribute{
-												Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
-												MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"sub_path_expr": schema.StringAttribute{
-												Description:         "Expanded path within the volume from which the container's volume should be mounted.",
-												MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6045,8 +6524,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"working_dir": schema.StringAttribute{
-									Description:         "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
-									MarkdownDescription: "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -6059,20 +6538,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"lifecycle": schema.SingleNestedAttribute{
-						Description:         "Actions that the management system should take in response to container lifecycle events. Cannot be updated.",
-						MarkdownDescription: "Actions that the management system should take in response to container lifecycle events. Cannot be updated.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"post_start": schema.SingleNestedAttribute{
-								Description:         "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy.",
-								MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
-										Description:         "Exec specifies the action to take.",
-										MarkdownDescription: "Exec specifies the action to take.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"command": schema.ListAttribute{
-												Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+												Description:         "",
+												MarkdownDescription: "",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -6085,33 +6564,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 									},
 
 									"http_get": schema.SingleNestedAttribute{
-										Description:         "HTTPGet specifies the http request to perform.",
-										MarkdownDescription: "HTTPGet specifies the http request to perform.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"host": schema.StringAttribute{
-												Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-												MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"http_headers": schema.ListNestedAttribute{
-												Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-												MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+												Description:         "",
+												MarkdownDescription: "",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-															MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"value": schema.StringAttribute{
-															Description:         "The header field value",
-															MarkdownDescription: "The header field value",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -6124,24 +6603,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 											},
 
 											"path": schema.StringAttribute{
-												Description:         "Path to access on the HTTP server.",
-												MarkdownDescription: "Path to access on the HTTP server.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"port": schema.StringAttribute{
-												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"scheme": schema.StringAttribute{
-												Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-												MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6152,21 +6631,38 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										Computed: false,
 									},
 
+									"sleep": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"tcp_socket": schema.SingleNestedAttribute{
-										Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
-										MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"host": schema.StringAttribute{
-												Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-												MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"port": schema.StringAttribute{
-												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -6183,16 +6679,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"pre_stop": schema.SingleNestedAttribute{
-								Description:         "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc.",
-								MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
-										Description:         "Exec specifies the action to take.",
-										MarkdownDescription: "Exec specifies the action to take.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"command": schema.ListAttribute{
-												Description:         "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
-												MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem.",
+												Description:         "",
+												MarkdownDescription: "",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -6205,33 +6701,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 									},
 
 									"http_get": schema.SingleNestedAttribute{
-										Description:         "HTTPGet specifies the http request to perform.",
-										MarkdownDescription: "HTTPGet specifies the http request to perform.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"host": schema.StringAttribute{
-												Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
-												MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"http_headers": schema.ListNestedAttribute{
-												Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
-												MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+												Description:         "",
+												MarkdownDescription: "",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
-															MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"value": schema.StringAttribute{
-															Description:         "The header field value",
-															MarkdownDescription: "The header field value",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -6244,24 +6740,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 											},
 
 											"path": schema.StringAttribute{
-												Description:         "Path to access on the HTTP server.",
-												MarkdownDescription: "Path to access on the HTTP server.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"port": schema.StringAttribute{
-												Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-												MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"scheme": schema.StringAttribute{
-												Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
-												MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6272,21 +6768,38 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										Computed: false,
 									},
 
+									"sleep": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"tcp_socket": schema.SingleNestedAttribute{
-										Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
-										MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"host": schema.StringAttribute{
-												Description:         "Optional: Host name to connect to, defaults to the pod IP.",
-												MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"port": schema.StringAttribute{
-												Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-												MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -6308,52 +6821,52 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"liveness_probe": schema.SingleNestedAttribute{
-						Description:         "Liveness config for the OpenTelemetry Collector except the probe handler which is auto generated from the health extension of the collector.",
-						MarkdownDescription: "Liveness config for the OpenTelemetry Collector except the probe handler which is auto generated from the health extension of the collector.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"failure_threshold": schema.Int64Attribute{
-								Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
-								MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"initial_delay_seconds": schema.Int64Attribute{
-								Description:         "Number of seconds after the container has started before liveness probes are initiated. Defaults to 0 seconds. Minimum value is 0. More info: https://kubernetes.",
-								MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. Defaults to 0 seconds. Minimum value is 0. More info: https://kubernetes.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"period_seconds": schema.Int64Attribute{
-								Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
-								MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"success_threshold": schema.Int64Attribute{
-								Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
-								MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"termination_grace_period_seconds": schema.Int64Attribute{
-								Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
-								MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"timeout_seconds": schema.Int64Attribute{
-								Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
-								MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -6365,8 +6878,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"management_state": schema.StringAttribute{
-						Description:         "ManagementState defines if the CR should be managed by the operator or not. Default is managed.",
-						MarkdownDescription: "ManagementState defines if the CR should be managed by the operator or not. Default is managed.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -6376,24 +6889,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"max_replicas": schema.Int64Attribute{
-						Description:         "MaxReplicas sets an upper bound to the autoscaling feature. If MaxReplicas is set autoscaling is enabled. Deprecated: use 'OpenTelemetryCollector.Spec.Autoscaler.MaxReplicas' instead.",
-						MarkdownDescription: "MaxReplicas sets an upper bound to the autoscaling feature. If MaxReplicas is set autoscaling is enabled. Deprecated: use 'OpenTelemetryCollector.Spec.Autoscaler.MaxReplicas' instead.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"min_replicas": schema.Int64Attribute{
-						Description:         "MinReplicas sets a lower bound to the autoscaling feature.  Set this if you are using autoscaling. It must be at least 1 Deprecated: use 'OpenTelemetryCollector.Spec.Autoscaler.MinReplicas' instead.",
-						MarkdownDescription: "MinReplicas sets a lower bound to the autoscaling feature.  Set this if you are using autoscaling. It must be at least 1 Deprecated: use 'OpenTelemetryCollector.Spec.Autoscaler.MinReplicas' instead.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"mode": schema.StringAttribute{
-						Description:         "Mode represents how the collector should be deployed (deployment, daemonset, statefulset or sidecar)",
-						MarkdownDescription: "Mode represents how the collector should be deployed (deployment, daemonset, statefulset or sidecar)",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -6403,8 +6916,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"node_selector": schema.MapAttribute{
-						Description:         "NodeSelector to schedule OpenTelemetry Collector pods. This is only relevant to daemonset, statefulset, and deployment mode",
-						MarkdownDescription: "NodeSelector to schedule OpenTelemetry Collector pods. This is only relevant to daemonset, statefulset, and deployment mode",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -6412,16 +6925,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"observability": schema.SingleNestedAttribute{
-						Description:         "ObservabilitySpec defines how telemetry data gets handled.",
-						MarkdownDescription: "ObservabilitySpec defines how telemetry data gets handled.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"metrics": schema.SingleNestedAttribute{
-								Description:         "Metrics defines the metrics configuration for operands.",
-								MarkdownDescription: "Metrics defines the metrics configuration for operands.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"disable_prometheus_annotations": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"enable_metrics": schema.BoolAttribute{
-										Description:         "EnableMetrics specifies if ServiceMonitor should be created for the OpenTelemetry Collector and Prometheus Exporters. The operator.observability.",
-										MarkdownDescription: "EnableMetrics specifies if ServiceMonitor should be created for the OpenTelemetry Collector and Prometheus Exporters. The operator.observability.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6438,89 +6959,114 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"pod_annotations": schema.MapAttribute{
-						Description:         "PodAnnotations is the set of annotations that will be attached to Collector and Target Allocator pods.",
-						MarkdownDescription: "PodAnnotations is the set of annotations that will be attached to Collector and Target Allocator pods.",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
+					"pod_disruption_budget": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"max_unavailable": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"min_available": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"pod_security_context": schema.SingleNestedAttribute{
-						Description:         "PodSecurityContext configures the pod security context for the opentelemetry-collector pod, when running as a deployment, daemonset, or statefulset.",
-						MarkdownDescription: "PodSecurityContext configures the pod security context for the opentelemetry-collector pod, when running as a deployment, daemonset, or statefulset.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"fs_group": schema.Int64Attribute{
-								Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1.",
-								MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"fs_group_change_policy": schema.StringAttribute{
-								Description:         "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod.",
-								MarkdownDescription: "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"run_as_group": schema.Int64Attribute{
-								Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.",
-								MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"run_as_non_root": schema.BoolAttribute{
-								Description:         "Indicates that the container must run as a non-root user.",
-								MarkdownDescription: "Indicates that the container must run as a non-root user.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"run_as_user": schema.Int64Attribute{
-								Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.",
-								MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"se_linux_options": schema.SingleNestedAttribute{
-								Description:         "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.",
-								MarkdownDescription: "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"level": schema.StringAttribute{
-										Description:         "Level is SELinux level label that applies to the container.",
-										MarkdownDescription: "Level is SELinux level label that applies to the container.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"role": schema.StringAttribute{
-										Description:         "Role is a SELinux role label that applies to the container.",
-										MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"type": schema.StringAttribute{
-										Description:         "Type is a SELinux type label that applies to the container.",
-										MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"user": schema.StringAttribute{
-										Description:         "User is a SELinux user label that applies to the container.",
-										MarkdownDescription: "User is a SELinux user label that applies to the container.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6532,20 +7078,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"seccomp_profile": schema.SingleNestedAttribute{
-								Description:         "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"localhost_profile": schema.StringAttribute{
-										Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work.",
-										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"type": schema.StringAttribute{
-										Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used.",
-										MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -6557,8 +7103,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"supplemental_groups": schema.ListAttribute{
-								Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for th",
-								MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for th",
+								Description:         "",
+								MarkdownDescription: "",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -6566,21 +7112,21 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"sysctls": schema.ListNestedAttribute{
-								Description:         "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.",
-								MarkdownDescription: "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of a property to set",
-											MarkdownDescription: "Name of a property to set",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Value of a property to set",
-											MarkdownDescription: "Value of a property to set",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -6593,36 +7139,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"windows_options": schema.SingleNestedAttribute{
-								Description:         "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used.",
-								MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"gmsa_credential_spec": schema.StringAttribute{
-										Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
-										MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"gmsa_credential_spec_name": schema.StringAttribute{
-										Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
-										MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"host_process": schema.BoolAttribute{
-										Description:         "HostProcess determines if a container should be run as a 'Host Process' container.",
-										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"run_as_user_name": schema.StringAttribute{
-										Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
-										MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6639,53 +7185,53 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"ports": schema.ListNestedAttribute{
-						Description:         "Ports allows a set of ports to be exposed by the underlying v1.Service. By default, the operator will attempt to infer the required ports by parsing the .Spec.",
-						MarkdownDescription: "Ports allows a set of ports to be exposed by the underlying v1.Service. By default, the operator will attempt to infer the required ports by parsing the .Spec.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"app_protocol": schema.StringAttribute{
-									Description:         "The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax.",
-									MarkdownDescription: "The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names.",
-									MarkdownDescription: "The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"node_port": schema.Int64Attribute{
-									Description:         "The port on each node on which this service is exposed when type is NodePort or LoadBalancer.  Usually assigned by the system.",
-									MarkdownDescription: "The port on each node on which this service is exposed when type is NodePort or LoadBalancer.  Usually assigned by the system.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"port": schema.Int64Attribute{
-									Description:         "The port that will be exposed by this service.",
-									MarkdownDescription: "The port that will be exposed by this service.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"protocol": schema.StringAttribute{
-									Description:         "The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'. Default is TCP.",
-									MarkdownDescription: "The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'. Default is TCP.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"target_port": schema.StringAttribute{
-									Description:         "Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
-									MarkdownDescription: "Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -6698,33 +7244,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"priority_class_name": schema.StringAttribute{
-						Description:         "If specified, indicates the pod's priority. If not specified, the pod priority will be default or zero if there is no default.",
-						MarkdownDescription: "If specified, indicates the pod's priority. If not specified, the pod priority will be default or zero if there is no default.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"replicas": schema.Int64Attribute{
-						Description:         "Replicas is the number of pod instances for the underlying OpenTelemetry Collector. Set this if your are not using autoscaling",
-						MarkdownDescription: "Replicas is the number of pod instances for the underlying OpenTelemetry Collector. Set this if your are not using autoscaling",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"resources": schema.SingleNestedAttribute{
-						Description:         "Resources to set on the OpenTelemetry Collector pods.",
-						MarkdownDescription: "Resources to set on the OpenTelemetry Collector pods.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"claims": schema.ListNestedAttribute{
-								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -6737,8 +7283,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"limits": schema.MapAttribute{
-								Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "",
+								MarkdownDescription: "",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -6746,8 +7292,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"requests": schema.MapAttribute{
-								Description:         "Requests describes the minimum amount of compute resources required.",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+								Description:         "",
+								MarkdownDescription: "",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -6760,24 +7306,24 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"security_context": schema.SingleNestedAttribute{
-						Description:         "SecurityContext configures the container security context for the opentelemetry-collector container.",
-						MarkdownDescription: "SecurityContext configures the container security context for the opentelemetry-collector container.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"allow_privilege_escalation": schema.BoolAttribute{
-								Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process.",
-								MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"capabilities": schema.SingleNestedAttribute{
-								Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"add": schema.ListAttribute{
-										Description:         "Added capabilities",
-										MarkdownDescription: "Added capabilities",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -6785,8 +7331,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 									},
 
 									"drop": schema.ListAttribute{
-										Description:         "Removed capabilities",
-										MarkdownDescription: "Removed capabilities",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -6799,84 +7345,84 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"privileged": schema.BoolAttribute{
-								Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"proc_mount": schema.StringAttribute{
-								Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths.",
-								MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"read_only_root_filesystem": schema.BoolAttribute{
-								Description:         "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"run_as_group": schema.Int64Attribute{
-								Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.",
-								MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"run_as_non_root": schema.BoolAttribute{
-								Description:         "Indicates that the container must run as a non-root user.",
-								MarkdownDescription: "Indicates that the container must run as a non-root user.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"run_as_user": schema.Int64Attribute{
-								Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
-								MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"se_linux_options": schema.SingleNestedAttribute{
-								Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.",
-								MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"level": schema.StringAttribute{
-										Description:         "Level is SELinux level label that applies to the container.",
-										MarkdownDescription: "Level is SELinux level label that applies to the container.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"role": schema.StringAttribute{
-										Description:         "Role is a SELinux role label that applies to the container.",
-										MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"type": schema.StringAttribute{
-										Description:         "Type is a SELinux type label that applies to the container.",
-										MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"user": schema.StringAttribute{
-										Description:         "User is a SELinux user label that applies to the container.",
-										MarkdownDescription: "User is a SELinux user label that applies to the container.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6888,20 +7434,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"seccomp_profile": schema.SingleNestedAttribute{
-								Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
-								MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"localhost_profile": schema.StringAttribute{
-										Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work.",
-										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"type": schema.StringAttribute{
-										Description:         "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used.",
-										MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -6913,36 +7459,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"windows_options": schema.SingleNestedAttribute{
-								Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used.",
-								MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"gmsa_credential_spec": schema.StringAttribute{
-										Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
-										MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"gmsa_credential_spec_name": schema.StringAttribute{
-										Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
-										MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"host_process": schema.BoolAttribute{
-										Description:         "HostProcess determines if a container should be run as a 'Host Process' container.",
-										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"run_as_user_name": schema.StringAttribute{
-										Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
-										MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6959,84 +7505,970 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"service_account": schema.StringAttribute{
-						Description:         "ServiceAccount indicates the name of an existing service account to use with this instance. When set, the operator will not automatically create a ServiceAccount for the collector.",
-						MarkdownDescription: "ServiceAccount indicates the name of an existing service account to use with this instance. When set, the operator will not automatically create a ServiceAccount for the collector.",
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"share_process_namespace": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"target_allocator": schema.SingleNestedAttribute{
-						Description:         "TargetAllocator indicates a value which determines whether to spawn a target allocation resource or not.",
-						MarkdownDescription: "TargetAllocator indicates a value which determines whether to spawn a target allocation resource or not.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"affinity": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"node_affinity": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"preference": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_fields": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: true,
+															Optional: false,
+															Computed: false,
+														},
+
+														"weight": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"node_selector_terms": schema.ListNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_fields": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+														},
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pod_affinity": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"pod_affinity_term": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"label_selector": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"match_expressions": schema.ListNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"operator": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"values": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_labels": schema.MapAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"namespace_selector": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"match_expressions": schema.ListNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"operator": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"values": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_labels": schema.MapAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"namespaces": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"topology_key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: true,
+															Optional: false,
+															Computed: false,
+														},
+
+														"weight": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"label_selector": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_labels": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"namespace_selector": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_labels": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"namespaces": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"topology_key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pod_anti_affinity": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"pod_affinity_term": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"label_selector": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"match_expressions": schema.ListNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"operator": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"values": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_labels": schema.MapAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"namespace_selector": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"match_expressions": schema.ListNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"operator": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"values": schema.ListAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"match_labels": schema.MapAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"namespaces": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"topology_key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: true,
+															Optional: false,
+															Computed: false,
+														},
+
+														"weight": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"required_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"label_selector": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_labels": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"namespace_selector": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_labels": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"namespaces": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"topology_key": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"allocation_strategy": schema.StringAttribute{
-								Description:         "AllocationStrategy determines which strategy the target allocator should use for allocation. The current options are least-weighted and consistent-hashing. The default option is least-weighted",
-								MarkdownDescription: "AllocationStrategy determines which strategy the target allocator should use for allocation. The current options are least-weighted and consistent-hashing. The default option is least-weighted",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("least-weighted", "consistent-hashing"),
+									stringvalidator.OneOf("least-weighted", "consistent-hashing", "per-node"),
 								},
 							},
 
 							"enabled": schema.BoolAttribute{
-								Description:         "Enabled indicates whether to use a target allocation mechanism for Prometheus targets or not.",
-								MarkdownDescription: "Enabled indicates whether to use a target allocation mechanism for Prometheus targets or not.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"env": schema.ListNestedAttribute{
-								Description:         "ENV vars to set on the OpenTelemetry TargetAllocator's Pods. These can then in certain cases be consumed in the config file for the TargetAllocator.",
-								MarkdownDescription: "ENV vars to set on the OpenTelemetry TargetAllocator's Pods. These can then in certain cases be consumed in the config file for the TargetAllocator.",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"value": schema.StringAttribute{
-											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
-											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"value_from": schema.SingleNestedAttribute{
-											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
-											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"config_map_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a ConfigMap.",
-													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key to select.",
-															MarkdownDescription: "The key to select.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the ConfigMap or its key must be defined",
-															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7048,20 +8480,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
-													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"api_version": schema.StringAttribute{
-															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"field_path": schema.StringAttribute{
-															Description:         "Path of the field to select in the specified API version.",
-															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -7073,28 +8505,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"resource_field_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
-													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"container_name": schema.StringAttribute{
-															Description:         "Container name: required for volumes, optional for env vars",
-															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"divisor": schema.StringAttribute{
-															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"resource": schema.StringAttribute{
-															Description:         "Required: resource to select",
-															MarkdownDescription: "Required: resource to select",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -7106,28 +8538,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"secret_key_ref": schema.SingleNestedAttribute{
-													Description:         "Selects a key of a secret in the pod's namespace",
-													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
-															Description:         "The key of the secret to select from.  Must be a valid secret key.",
-															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"optional": schema.BoolAttribute{
-															Description:         "Specify whether the Secret or its key must be defined",
-															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7150,45 +8582,296 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"filter_strategy": schema.StringAttribute{
-								Description:         "FilterStrategy determines how to filter targets before allocating them among the collectors. The only current option is relabel-config (drops targets based on prom relabel_config).",
-								MarkdownDescription: "FilterStrategy determines how to filter targets before allocating them among the collectors. The only current option is relabel-config (drops targets based on prom relabel_config).",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"image": schema.StringAttribute{
-								Description:         "Image indicates the container image to use for the OpenTelemetry TargetAllocator.",
-								MarkdownDescription: "Image indicates the container image to use for the OpenTelemetry TargetAllocator.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"node_selector": schema.MapAttribute{
-								Description:         "NodeSelector to schedule OpenTelemetry TargetAllocator pods.",
-								MarkdownDescription: "NodeSelector to schedule OpenTelemetry TargetAllocator pods.",
+								Description:         "",
+								MarkdownDescription: "",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
+							"observability": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"metrics": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"disable_prometheus_annotations": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"enable_metrics": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pod_disruption_budget": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"max_unavailable": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"min_available": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"pod_security_context": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"fs_group": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"fs_group_change_policy": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_group": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_non_root": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_options": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"level": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"role": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"user": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"seccomp_profile": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"supplemental_groups": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sysctls": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"windows_options": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"gmsa_credential_spec": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"gmsa_credential_spec_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"host_process": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_user_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"prometheus_cr": schema.SingleNestedAttribute{
-								Description:         "PrometheusCR defines the configuration for the retrieval of PrometheusOperator CRDs ( servicemonitor.monitoring.coreos.com/v1 and podmonitor.monitoring.coreos.com/v1 )  retrieval.",
-								MarkdownDescription: "PrometheusCR defines the configuration for the retrieval of PrometheusOperator CRDs ( servicemonitor.monitoring.coreos.com/v1 and podmonitor.monitoring.coreos.com/v1 )  retrieval.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"enabled": schema.BoolAttribute{
-										Description:         "Enabled indicates whether to use a PrometheusOperator custom resources as targets or not.",
-										MarkdownDescription: "Enabled indicates whether to use a PrometheusOperator custom resources as targets or not.",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"pod_monitor_selector": schema.MapAttribute{
-										Description:         "PodMonitors to be selected for target discovery. This is a map of {key,value} pairs. Each {key,value} in the map is going to exactly match a label in a PodMonitor's meta labels.",
-										MarkdownDescription: "PodMonitors to be selected for target discovery. This is a map of {key,value} pairs. Each {key,value} in the map is going to exactly match a label in a PodMonitor's meta labels.",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -7196,16 +8879,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 									},
 
 									"scrape_interval": schema.StringAttribute{
-										Description:         "Interval between consecutive scrapes. Equivalent to the same setting on the Prometheus CRD.  Default: '30s'",
-										MarkdownDescription: "Interval between consecutive scrapes. Equivalent to the same setting on the Prometheus CRD.  Default: '30s'",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"service_monitor_selector": schema.MapAttribute{
-										Description:         "ServiceMonitors to be selected for target discovery. This is a map of {key,value} pairs. Each {key,value} in the map is going to exactly match a label in a ServiceMonitor's meta labels.",
-										MarkdownDescription: "ServiceMonitors to be selected for target discovery. This is a map of {key,value} pairs. Each {key,value} in the map is going to exactly match a label in a ServiceMonitor's meta labels.",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -7218,25 +8901,25 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 							},
 
 							"replicas": schema.Int64Attribute{
-								Description:         "Replicas is the number of pod instances for the underlying TargetAllocator. This should only be set to a value other than 1 if a strategy that allows for high availability is chosen.",
-								MarkdownDescription: "Replicas is the number of pod instances for the underlying TargetAllocator. This should only be set to a value other than 1 if a strategy that allows for high availability is chosen.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resources": schema.SingleNestedAttribute{
-								Description:         "Resources to set on the OpenTelemetryTargetAllocator containers.",
-								MarkdownDescription: "Resources to set on the OpenTelemetryTargetAllocator containers.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
+										Description:         "",
+										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -7249,8 +8932,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 									},
 
 									"limits": schema.MapAttribute{
-										Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-										MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -7258,8 +8941,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 									},
 
 									"requests": schema.MapAttribute{
-										Description:         "Requests describes the minimum amount of compute resources required.",
-										MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+										Description:         "",
+										MarkdownDescription: "",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -7271,47 +8954,297 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								Computed: false,
 							},
 
+							"security_context": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"allow_privilege_escalation": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"capabilities": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"drop": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"privileged": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"proc_mount": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"read_only_root_filesystem": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_group": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_non_root": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_options": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"level": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"role": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"user": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"seccomp_profile": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"windows_options": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"gmsa_credential_spec": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"gmsa_credential_spec_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"host_process": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_user_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"service_account": schema.StringAttribute{
-								Description:         "ServiceAccount indicates the name of an existing service account to use with this instance. When set, the operator will not automatically create a ServiceAccount for the TargetAllocator.",
-								MarkdownDescription: "ServiceAccount indicates the name of an existing service account to use with this instance. When set, the operator will not automatically create a ServiceAccount for the TargetAllocator.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
+							"tolerations": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"effect": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"operator": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"toleration_seconds": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"topology_spread_constraints": schema.ListNestedAttribute{
-								Description:         "TopologySpreadConstraints embedded kubernetes pod configuration option, controls how pods are spread across your cluster among failure-domains such as regions, zones, nodes, and other user-defined top",
-								MarkdownDescription: "TopologySpreadConstraints embedded kubernetes pod configuration option, controls how pods are spread across your cluster among failure-domains such as regions, zones, nodes, and other user-defined top",
+								Description:         "",
+								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"label_selector": schema.SingleNestedAttribute{
-											Description:         "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
-											MarkdownDescription: "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
-													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-													MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													Description:         "",
+													MarkdownDescription: "",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "key is the label key that the selector applies to.",
-																MarkdownDescription: "key is the label key that the selector applies to.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																Description:         "",
+																MarkdownDescription: "",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -7325,8 +9258,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -7339,8 +9272,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"match_label_keys": schema.ListAttribute{
-											Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated.",
-											MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7348,48 +9281,48 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"max_skew": schema.Int64Attribute{
-											Description:         "MaxSkew describes the degree to which pods may be unevenly distributed.",
-											MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"min_domains": schema.Int64Attribute{
-											Description:         "MinDomains indicates a minimum number of eligible domains.",
-											MarkdownDescription: "MinDomains indicates a minimum number of eligible domains.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"node_affinity_policy": schema.StringAttribute{
-											Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew.",
-											MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"node_taints_policy": schema.StringAttribute{
-											Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew.",
-											MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"topology_key": schema.StringAttribute{
-											Description:         "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology.",
-											MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"when_unsatisfiable": schema.StringAttribute{
-											Description:         "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it.",
-											MarkdownDescription: "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -7407,53 +9340,53 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"termination_grace_period_seconds": schema.Int64Attribute{
-						Description:         "Duration in seconds the pod needs to terminate gracefully upon probe failure.",
-						MarkdownDescription: "Duration in seconds the pod needs to terminate gracefully upon probe failure.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tolerations": schema.ListNestedAttribute{
-						Description:         "Toleration to schedule OpenTelemetry Collector pods. This is only relevant to daemonset, statefulset, and deployment mode",
-						MarkdownDescription: "Toleration to schedule OpenTelemetry Collector pods. This is only relevant to daemonset, statefulset, and deployment mode",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"effect": schema.StringAttribute{
-									Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-									MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"key": schema.StringAttribute{
-									Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-									MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"operator": schema.StringAttribute{
-									Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal.",
-									MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"toleration_seconds": schema.Int64Attribute{
-									Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint.",
-									MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"value": schema.StringAttribute{
-									Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
-									MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -7466,38 +9399,38 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"topology_spread_constraints": schema.ListNestedAttribute{
-						Description:         "TopologySpreadConstraints embedded kubernetes pod configuration option, controls how pods are spread across your cluster among failure-domains such as regions, zones, nodes, and other user-defined top",
-						MarkdownDescription: "TopologySpreadConstraints embedded kubernetes pod configuration option, controls how pods are spread across your cluster among failure-domains such as regions, zones, nodes, and other user-defined top",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"label_selector": schema.SingleNestedAttribute{
-									Description:         "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
-									MarkdownDescription: "LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
-											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-											MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+											Description:         "",
+											MarkdownDescription: "",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "key is the label key that the selector applies to.",
-														MarkdownDescription: "key is the label key that the selector applies to.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"operator": schema.StringAttribute{
-														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"values": schema.ListAttribute{
-														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+														Description:         "",
+														MarkdownDescription: "",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -7511,8 +9444,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"match_labels": schema.MapAttribute{
-											Description:         "matchLabels is a map of {key,value} pairs.",
-											MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7525,8 +9458,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"match_label_keys": schema.ListAttribute{
-									Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated.",
-									MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated.",
+									Description:         "",
+									MarkdownDescription: "",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -7534,48 +9467,48 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"max_skew": schema.Int64Attribute{
-									Description:         "MaxSkew describes the degree to which pods may be unevenly distributed.",
-									MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"min_domains": schema.Int64Attribute{
-									Description:         "MinDomains indicates a minimum number of eligible domains.",
-									MarkdownDescription: "MinDomains indicates a minimum number of eligible domains.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"node_affinity_policy": schema.StringAttribute{
-									Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew.",
-									MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"node_taints_policy": schema.StringAttribute{
-									Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew.",
-									MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"topology_key": schema.StringAttribute{
-									Description:         "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology.",
-									MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"when_unsatisfiable": schema.StringAttribute{
-									Description:         "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it.",
-									MarkdownDescription: "WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -7587,9 +9520,51 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 						Computed: false,
 					},
 
+					"update_strategy": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"rolling_update": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"max_surge": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_unavailable": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"type": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"upgrade_strategy": schema.StringAttribute{
-						Description:         "UpgradeStrategy represents how the operator will handle upgrades to the CR when a newer version of the operator is deployed",
-						MarkdownDescription: "UpgradeStrategy represents how the operator will handle upgrades to the CR when a newer version of the operator is deployed",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -7599,29 +9574,29 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"volume_claim_templates": schema.ListNestedAttribute{
-						Description:         "VolumeClaimTemplates will provide stable storage using PersistentVolumes. Only available when the mode=statefulset.",
-						MarkdownDescription: "VolumeClaimTemplates will provide stable storage using PersistentVolumes. Only available when the mode=statefulset.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"api_version": schema.StringAttribute{
-									Description:         "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values.",
-									MarkdownDescription: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"kind": schema.StringAttribute{
-									Description:         "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase.",
-									MarkdownDescription: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"metadata": schema.SingleNestedAttribute{
-									Description:         "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
-									MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"annotations": schema.MapAttribute{
 											Description:         "",
@@ -7672,12 +9647,12 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"spec": schema.SingleNestedAttribute{
-									Description:         "spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-									MarkdownDescription: "spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"access_modes": schema.ListAttribute{
-											Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-											MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7685,28 +9660,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"data_source": schema.SingleNestedAttribute{
-											Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.",
-											MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"api_group": schema.StringAttribute{
-													Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-													MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"kind": schema.StringAttribute{
-													Description:         "Kind is the type of resource being referenced",
-													MarkdownDescription: "Kind is the type of resource being referenced",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name is the name of resource being referenced",
-													MarkdownDescription: "Name is the name of resource being referenced",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -7718,36 +9693,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"data_source_ref": schema.SingleNestedAttribute{
-											Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired.",
-											MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"api_group": schema.StringAttribute{
-													Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-													MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"kind": schema.StringAttribute{
-													Description:         "Kind is the type of resource being referenced",
-													MarkdownDescription: "Kind is the type of resource being referenced",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name is the name of resource being referenced",
-													MarkdownDescription: "Name is the name of resource being referenced",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"namespace": schema.StringAttribute{
-													Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.",
-													MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7759,31 +9734,12 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"resources": schema.SingleNestedAttribute{
-											Description:         "resources represents the minimum resources the volume should have.",
-											MarkdownDescription: "resources represents the minimum resources the volume should have.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
-												"claims": schema.ListNestedAttribute{
-													Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-													MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"name": schema.StringAttribute{
-																Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																Required:            true,
-																Optional:            false,
-																Computed:            false,
-															},
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
 												"limits": schema.MapAttribute{
-													Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-													MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -7791,8 +9747,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"requests": schema.MapAttribute{
-													Description:         "Requests describes the minimum amount of compute resources required.",
-													MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -7805,33 +9761,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"selector": schema.SingleNestedAttribute{
-											Description:         "selector is a label query over volumes to consider for binding.",
-											MarkdownDescription: "selector is a label query over volumes to consider for binding.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
-													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-													MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													Description:         "",
+													MarkdownDescription: "",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
-																Description:         "key is the label key that the selector applies to.",
-																MarkdownDescription: "key is the label key that the selector applies to.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"operator": schema.StringAttribute{
-																Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
 															},
 
 															"values": schema.ListAttribute{
-																Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																Description:         "",
+																MarkdownDescription: "",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -7845,8 +9801,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"match_labels": schema.MapAttribute{
-													Description:         "matchLabels is a map of {key,value} pairs.",
-													MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+													Description:         "",
+													MarkdownDescription: "",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -7859,24 +9815,32 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"storage_class_name": schema.StringAttribute{
-											Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-											MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"volume_attributes_class_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"volume_mode": schema.StringAttribute{
-											Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-											MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"volume_name": schema.StringAttribute{
-											Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
-											MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -7888,12 +9852,12 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"status": schema.SingleNestedAttribute{
-									Description:         "status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-									MarkdownDescription: "status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"access_modes": schema.ListAttribute{
-											Description:         "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-											MarkdownDescription: "accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7901,8 +9865,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"allocated_resource_statuses": schema.MapAttribute{
-											Description:         "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax.",
-											MarkdownDescription: "allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7910,8 +9874,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"allocated_resources": schema.MapAttribute{
-											Description:         "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax.",
-											MarkdownDescription: "allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7919,8 +9883,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"capacity": schema.MapAttribute{
-											Description:         "capacity represents the actual resources of the underlying volume.",
-											MarkdownDescription: "capacity represents the actual resources of the underlying volume.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7928,13 +9892,13 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"conditions": schema.ListNestedAttribute{
-											Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
-											MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
+											Description:         "",
+											MarkdownDescription: "",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"last_probe_time": schema.StringAttribute{
-														Description:         "lastProbeTime is the time we probed the condition.",
-														MarkdownDescription: "lastProbeTime is the time we probed the condition.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7944,8 +9908,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"last_transition_time": schema.StringAttribute{
-														Description:         "lastTransitionTime is the time the condition transitioned from one status to another.",
-														MarkdownDescription: "lastTransitionTime is the time the condition transitioned from one status to another.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7955,16 +9919,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"message": schema.StringAttribute{
-														Description:         "message is the human-readable message indicating details about last transition.",
-														MarkdownDescription: "message is the human-readable message indicating details about last transition.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"reason": schema.StringAttribute{
-														Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition.",
-														MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7979,8 +9943,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"type": schema.StringAttribute{
-														Description:         "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
-														MarkdownDescription: "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -7992,9 +9956,42 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 											Computed: false,
 										},
 
+										"current_volume_attributes_class_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"modify_volume_status": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"status": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"target_volume_attributes_class_name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"phase": schema.StringAttribute{
-											Description:         "phase represents the current phase of PersistentVolumeClaim.",
-											MarkdownDescription: "phase represents the current phase of PersistentVolumeClaim.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -8012,53 +10009,53 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"volume_mounts": schema.ListNestedAttribute{
-						Description:         "VolumeMounts represents the mount points to use in the underlying collector deployment(s)",
-						MarkdownDescription: "VolumeMounts represents the mount points to use in the underlying collector deployment(s)",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"mount_path": schema.StringAttribute{
-									Description:         "Path within the container at which the volume should be mounted.  Must not contain ':'.",
-									MarkdownDescription: "Path within the container at which the volume should be mounted.  Must not contain ':'.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"mount_propagation": schema.StringAttribute{
-									Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-									MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "This must match the Name of a Volume.",
-									MarkdownDescription: "This must match the Name of a Volume.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"read_only": schema.BoolAttribute{
-									Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
-									MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"sub_path": schema.StringAttribute{
-									Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
-									MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"sub_path_expr": schema.StringAttribute{
-									Description:         "Expanded path within the volume from which the container's volume should be mounted.",
-									MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -8071,41 +10068,41 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"volumes": schema.ListNestedAttribute{
-						Description:         "Volumes represents which volumes to use in the underlying collector deployment(s).",
-						MarkdownDescription: "Volumes represents which volumes to use in the underlying collector deployment(s).",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"aws_elastic_block_store": schema.SingleNestedAttribute{
-									Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.",
-									MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'.",
-											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"partition": schema.Int64Attribute{
-											Description:         "partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'.",
-											MarkdownDescription: "partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-											MarkdownDescription: "readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"volume_id": schema.StringAttribute{
-											Description:         "volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-											MarkdownDescription: "volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -8117,52 +10114,52 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"azure_disk": schema.SingleNestedAttribute{
-									Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-									MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"caching_mode": schema.StringAttribute{
-											Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
-											MarkdownDescription: "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"disk_name": schema.StringAttribute{
-											Description:         "diskName is the Name of the data disk in the blob storage",
-											MarkdownDescription: "diskName is the Name of the data disk in the blob storage",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"disk_uri": schema.StringAttribute{
-											Description:         "diskURI is the URI of data disk in the blob storage",
-											MarkdownDescription: "diskURI is the URI of data disk in the blob storage",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-											MarkdownDescription: "fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"kind": schema.StringAttribute{
-											Description:         "kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set).",
-											MarkdownDescription: "kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set).",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-											MarkdownDescription: "readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -8174,28 +10171,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"azure_file": schema.SingleNestedAttribute{
-									Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-									MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-											MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_name": schema.StringAttribute{
-											Description:         "secretName is the  name of secret that contains Azure Storage Account Name and Key",
-											MarkdownDescription: "secretName is the  name of secret that contains Azure Storage Account Name and Key",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"share_name": schema.StringAttribute{
-											Description:         "shareName is the azure share Name",
-											MarkdownDescription: "shareName is the azure share Name",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -8207,12 +10204,12 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"cephfs": schema.SingleNestedAttribute{
-									Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-									MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"monitors": schema.ListAttribute{
-											Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-											MarkdownDescription: "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,
@@ -8220,36 +10217,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"path": schema.StringAttribute{
-											Description:         "path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
-											MarkdownDescription: "path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-											MarkdownDescription: "readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_file": schema.StringAttribute{
-											Description:         "secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-											MarkdownDescription: "secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_ref": schema.SingleNestedAttribute{
-											Description:         "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-											MarkdownDescription: "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8261,8 +10258,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"user": schema.StringAttribute{
-											Description:         "user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
-											MarkdownDescription: "user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -8274,32 +10271,32 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"cinder": schema.SingleNestedAttribute{
-									Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-									MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-											MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-											MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_ref": schema.SingleNestedAttribute{
-											Description:         "secretRef is optional: points to a secret object containing parameters used to connect to OpenStack.",
-											MarkdownDescription: "secretRef is optional: points to a secret object containing parameters used to connect to OpenStack.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8311,8 +10308,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"volume_id": schema.StringAttribute{
-											Description:         "volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-											MarkdownDescription: "volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -8324,41 +10321,41 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"config_map": schema.SingleNestedAttribute{
-									Description:         "configMap represents a configMap that should populate this volume",
-									MarkdownDescription: "configMap represents a configMap that should populate this volume",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"default_mode": schema.Int64Attribute{
-											Description:         "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
-											MarkdownDescription: "defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"items": schema.ListNestedAttribute{
-											Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value.",
-											MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value.",
+											Description:         "",
+											MarkdownDescription: "",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "key is the key to project.",
-														MarkdownDescription: "key is the key to project.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"mode": schema.Int64Attribute{
-														Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
-														MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"path": schema.StringAttribute{
-														Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-														MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -8371,16 +10368,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"optional": schema.BoolAttribute{
-											Description:         "optional specify whether the ConfigMap or its keys must be defined",
-											MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -8392,32 +10389,32 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"csi": schema.SingleNestedAttribute{
-									Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-									MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"driver": schema.StringAttribute{
-											Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
-											MarkdownDescription: "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
-											MarkdownDescription: "fsType to mount. Ex. 'ext4', 'xfs', 'ntfs'. If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"node_publish_secret_ref": schema.SingleNestedAttribute{
-											Description:         "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls.",
-											MarkdownDescription: "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8429,16 +10426,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).",
-											MarkdownDescription: "readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"volume_attributes": schema.MapAttribute{
-											Description:         "volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.",
-											MarkdownDescription: "volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -8451,37 +10448,37 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"downward_api": schema.SingleNestedAttribute{
-									Description:         "downwardAPI represents downward API about the pod that should populate this volume",
-									MarkdownDescription: "downwardAPI represents downward API about the pod that should populate this volume",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"default_mode": schema.Int64Attribute{
-											Description:         "Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default.",
-											MarkdownDescription: "Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"items": schema.ListNestedAttribute{
-											Description:         "Items is a list of downward API volume file",
-											MarkdownDescription: "Items is a list of downward API volume file",
+											Description:         "",
+											MarkdownDescription: "",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"field_ref": schema.SingleNestedAttribute{
-														Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-														MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"api_version": schema.StringAttribute{
-																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"field_path": schema.StringAttribute{
-																Description:         "Path of the field to select in the specified API version.",
-																MarkdownDescription: "Path of the field to select in the specified API version.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -8493,44 +10490,44 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"mode": schema.Int64Attribute{
-														Description:         "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
-														MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"path": schema.StringAttribute{
-														Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
-														MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"resource_field_ref": schema.SingleNestedAttribute{
-														Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
-														MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"container_name": schema.StringAttribute{
-																Description:         "Container name: required for volumes, optional for env vars",
-																MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"divisor": schema.StringAttribute{
-																Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"resource": schema.StringAttribute{
-																Description:         "Required: resource to select",
-																MarkdownDescription: "Required: resource to select",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -8553,20 +10550,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"empty_dir": schema.SingleNestedAttribute{
-									Description:         "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
-									MarkdownDescription: "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"medium": schema.StringAttribute{
-											Description:         "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory.",
-											MarkdownDescription: "medium represents what type of storage medium should back this directory. The default is '' which means to use the node's default medium. Must be an empty string (default) or Memory.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"size_limit": schema.StringAttribute{
-											Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium.",
-											MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -8578,16 +10575,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"ephemeral": schema.SingleNestedAttribute{
-									Description:         "ephemeral represents a volume that is handled by a cluster storage driver.",
-									MarkdownDescription: "ephemeral represents a volume that is handled by a cluster storage driver.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"volume_claim_template": schema.SingleNestedAttribute{
-											Description:         "Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e.",
-											MarkdownDescription: "Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"metadata": schema.SingleNestedAttribute{
-													Description:         "May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.",
-													MarkdownDescription: "May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"annotations": schema.MapAttribute{
 															Description:         "",
@@ -8638,12 +10635,12 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 												},
 
 												"spec": schema.SingleNestedAttribute{
-													Description:         "The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template.",
-													MarkdownDescription: "The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template.",
+													Description:         "",
+													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"access_modes": schema.ListAttribute{
-															Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-															MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+															Description:         "",
+															MarkdownDescription: "",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -8651,28 +10648,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"data_source": schema.SingleNestedAttribute{
-															Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.",
-															MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"api_group": schema.StringAttribute{
-																	Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-																	MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "Kind is the type of resource being referenced",
-																	MarkdownDescription: "Kind is the type of resource being referenced",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name is the name of resource being referenced",
-																	MarkdownDescription: "Name is the name of resource being referenced",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -8684,36 +10681,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"data_source_ref": schema.SingleNestedAttribute{
-															Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired.",
-															MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"api_group": schema.StringAttribute{
-																	Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
-																	MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "Kind is the type of resource being referenced",
-																	MarkdownDescription: "Kind is the type of resource being referenced",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name is the name of resource being referenced",
-																	MarkdownDescription: "Name is the name of resource being referenced",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.",
-																	MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -8725,31 +10722,12 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"resources": schema.SingleNestedAttribute{
-															Description:         "resources represents the minimum resources the volume should have.",
-															MarkdownDescription: "resources represents the minimum resources the volume should have.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
-																"claims": schema.ListNestedAttribute{
-																	Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-																	MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.",
-																	NestedObject: schema.NestedAttributeObject{
-																		Attributes: map[string]schema.Attribute{
-																			"name": schema.StringAttribute{
-																				Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																				MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																				Required:            true,
-																				Optional:            false,
-																				Computed:            false,
-																			},
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
 																"limits": schema.MapAttribute{
-																	Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																	MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -8757,8 +10735,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 																},
 
 																"requests": schema.MapAttribute{
-																	Description:         "Requests describes the minimum amount of compute resources required.",
-																	MarkdownDescription: "Requests describes the minimum amount of compute resources required.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -8771,33 +10749,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"selector": schema.SingleNestedAttribute{
-															Description:         "selector is a label query over volumes to consider for binding.",
-															MarkdownDescription: "selector is a label query over volumes to consider for binding.",
+															Description:         "",
+															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
-																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	NestedObject: schema.NestedAttributeObject{
 																		Attributes: map[string]schema.Attribute{
 																			"key": schema.StringAttribute{
-																				Description:         "key is the label key that the selector applies to.",
-																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"operator": schema.StringAttribute{
-																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
 																			},
 
 																			"values": schema.ListAttribute{
-																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
-																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+																				Description:         "",
+																				MarkdownDescription: "",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -8811,8 +10789,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 																},
 
 																"match_labels": schema.MapAttribute{
-																	Description:         "matchLabels is a map of {key,value} pairs.",
-																	MarkdownDescription: "matchLabels is a map of {key,value} pairs.",
+																	Description:         "",
+																	MarkdownDescription: "",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -8825,24 +10803,32 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 														},
 
 														"storage_class_name": schema.StringAttribute{
-															Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-															MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"volume_attributes_class_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"volume_mode": schema.StringAttribute{
-															Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
-															MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"volume_name": schema.StringAttribute{
-															Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
-															MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
+															Description:         "",
+															MarkdownDescription: "",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -8864,36 +10850,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"fc": schema.SingleNestedAttribute{
-									Description:         "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
-									MarkdownDescription: "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-											MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"lun": schema.Int64Attribute{
-											Description:         "lun is Optional: FC target lun number",
-											MarkdownDescription: "lun is Optional: FC target lun number",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-											MarkdownDescription: "readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"target_ww_ns": schema.ListAttribute{
-											Description:         "targetWWNs is Optional: FC target worldwide names (WWNs)",
-											MarkdownDescription: "targetWWNs is Optional: FC target worldwide names (WWNs)",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -8901,8 +10887,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"wwids": schema.ListAttribute{
-											Description:         "wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
-											MarkdownDescription: "wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -8915,28 +10901,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"flex_volume": schema.SingleNestedAttribute{
-									Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-									MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"driver": schema.StringAttribute{
-											Description:         "driver is the name of the driver to use for this volume.",
-											MarkdownDescription: "driver is the name of the driver to use for this volume.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.",
-											MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default filesystem depends on FlexVolume script.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"options": schema.MapAttribute{
-											Description:         "options is Optional: this field holds extra command options if any.",
-											MarkdownDescription: "options is Optional: this field holds extra command options if any.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -8944,20 +10930,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-											MarkdownDescription: "readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_ref": schema.SingleNestedAttribute{
-											Description:         "secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified.",
-											MarkdownDescription: "secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8974,20 +10960,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"flocker": schema.SingleNestedAttribute{
-									Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-									MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"dataset_name": schema.StringAttribute{
-											Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
-											MarkdownDescription: "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"dataset_uuid": schema.StringAttribute{
-											Description:         "datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset",
-											MarkdownDescription: "datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -8999,36 +10985,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"gce_persistent_disk": schema.SingleNestedAttribute{
-									Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.",
-									MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'.",
-											MarkdownDescription: "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"partition": schema.Int64Attribute{
-											Description:         "partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'.",
-											MarkdownDescription: "partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as '1'.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"pd_name": schema.StringAttribute{
-											Description:         "pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-											MarkdownDescription: "pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-											MarkdownDescription: "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9040,28 +11026,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"git_repo": schema.SingleNestedAttribute{
-									Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated.",
-									MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"directory": schema.StringAttribute{
-											Description:         "directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.",
-											MarkdownDescription: "directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"repository": schema.StringAttribute{
-											Description:         "repository is the URL",
-											MarkdownDescription: "repository is the URL",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"revision": schema.StringAttribute{
-											Description:         "revision is the commit hash for the specified revision.",
-											MarkdownDescription: "revision is the commit hash for the specified revision.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9073,28 +11059,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"glusterfs": schema.SingleNestedAttribute{
-									Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-									MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"endpoints": schema.StringAttribute{
-											Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-											MarkdownDescription: "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"path": schema.StringAttribute{
-											Description:         "path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-											MarkdownDescription: "path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-											MarkdownDescription: "readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9106,20 +11092,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"host_path": schema.SingleNestedAttribute{
-									Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container.",
-									MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"path": schema.StringAttribute{
-											Description:         "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-											MarkdownDescription: "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
-											MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9131,68 +11117,68 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"iscsi": schema.SingleNestedAttribute{
-									Description:         "iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
-									MarkdownDescription: "iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"chap_auth_discovery": schema.BoolAttribute{
-											Description:         "chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication",
-											MarkdownDescription: "chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"chap_auth_session": schema.BoolAttribute{
-											Description:         "chapAuthSession defines whether support iSCSI Session CHAP authentication",
-											MarkdownDescription: "chapAuthSession defines whether support iSCSI Session CHAP authentication",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'.",
-											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"initiator_name": schema.StringAttribute{
-											Description:         "initiatorName is the custom iSCSI Initiator Name.",
-											MarkdownDescription: "initiatorName is the custom iSCSI Initiator Name.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"iqn": schema.StringAttribute{
-											Description:         "iqn is the target iSCSI Qualified Name.",
-											MarkdownDescription: "iqn is the target iSCSI Qualified Name.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"iscsi_interface": schema.StringAttribute{
-											Description:         "iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).",
-											MarkdownDescription: "iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"lun": schema.Int64Attribute{
-											Description:         "lun represents iSCSI Target Lun number.",
-											MarkdownDescription: "lun represents iSCSI Target Lun number.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"portals": schema.ListAttribute{
-											Description:         "portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
-											MarkdownDescription: "portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -9200,20 +11186,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
-											MarkdownDescription: "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_ref": schema.SingleNestedAttribute{
-											Description:         "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
-											MarkdownDescription: "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9225,8 +11211,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"target_portal": schema.StringAttribute{
-											Description:         "targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
-											MarkdownDescription: "targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -9238,36 +11224,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-									MarkdownDescription: "name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"nfs": schema.SingleNestedAttribute{
-									Description:         "nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
-									MarkdownDescription: "nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"path": schema.StringAttribute{
-											Description:         "path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
-											MarkdownDescription: "path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
-											MarkdownDescription: "readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"server": schema.StringAttribute{
-											Description:         "server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
-											MarkdownDescription: "server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -9279,20 +11265,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"persistent_volume_claim": schema.SingleNestedAttribute{
-									Description:         "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.",
-									MarkdownDescription: "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"claim_name": schema.StringAttribute{
-											Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-											MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
-											MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9304,20 +11290,20 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"photon_persistent_disk": schema.SingleNestedAttribute{
-									Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-									MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-											MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"pd_id": schema.StringAttribute{
-											Description:         "pdID is the ID that identifies Photon Controller persistent disk",
-											MarkdownDescription: "pdID is the ID that identifies Photon Controller persistent disk",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -9329,28 +11315,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"portworx_volume": schema.SingleNestedAttribute{
-									Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-									MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
-											MarkdownDescription: "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-											MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"volume_id": schema.StringAttribute{
-											Description:         "volumeID uniquely identifies a Portworx volume",
-											MarkdownDescription: "volumeID uniquely identifies a Portworx volume",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -9362,50 +11348,145 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"projected": schema.SingleNestedAttribute{
-									Description:         "projected items for all in one resources secrets, configmaps, and downward API",
-									MarkdownDescription: "projected items for all in one resources secrets, configmaps, and downward API",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"default_mode": schema.Int64Attribute{
-											Description:         "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
-											MarkdownDescription: "defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"sources": schema.ListNestedAttribute{
-											Description:         "sources is the list of volume projections",
-											MarkdownDescription: "sources is the list of volume projections",
+											Description:         "",
+											MarkdownDescription: "",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
+													"cluster_trust_bundle": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"label_selector": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"match_expressions": schema.ListNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"operator": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"values": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": schema.MapAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"path": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"signer_name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"config_map": schema.SingleNestedAttribute{
-														Description:         "configMap information about the configMap data to project",
-														MarkdownDescription: "configMap information about the configMap data to project",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"items": schema.ListNestedAttribute{
-																Description:         "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value.",
-																MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value.",
+																Description:         "",
+																MarkdownDescription: "",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "key is the key to project.",
-																			MarkdownDescription: "key is the key to project.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"mode": schema.Int64Attribute{
-																			Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
-																			MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"path": schema.StringAttribute{
-																			Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																			MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -9418,16 +11499,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"optional": schema.BoolAttribute{
-																Description:         "optional specify whether the ConfigMap or its keys must be defined",
-																MarkdownDescription: "optional specify whether the ConfigMap or its keys must be defined",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9439,29 +11520,29 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"downward_api": schema.SingleNestedAttribute{
-														Description:         "downwardAPI information about the downwardAPI data to project",
-														MarkdownDescription: "downwardAPI information about the downwardAPI data to project",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"items": schema.ListNestedAttribute{
-																Description:         "Items is a list of DownwardAPIVolume file",
-																MarkdownDescription: "Items is a list of DownwardAPIVolume file",
+																Description:         "",
+																MarkdownDescription: "",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"field_ref": schema.SingleNestedAttribute{
-																			Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																			MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Attributes: map[string]schema.Attribute{
 																				"api_version": schema.StringAttribute{
-																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
-																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"field_path": schema.StringAttribute{
-																					Description:         "Path of the field to select in the specified API version.",
-																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -9473,44 +11554,44 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 																		},
 
 																		"mode": schema.Int64Attribute{
-																			Description:         "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
-																			MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"path": schema.StringAttribute{
-																			Description:         "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
-																			MarkdownDescription: "Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"resource_field_ref": schema.SingleNestedAttribute{
-																			Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
-																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Attributes: map[string]schema.Attribute{
 																				"container_name": schema.StringAttribute{
-																					Description:         "Container name: required for volumes, optional for env vars",
-																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"divisor": schema.StringAttribute{
-																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
-																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
 																				},
 
 																				"resource": schema.StringAttribute{
-																					Description:         "Required: resource to select",
-																					MarkdownDescription: "Required: resource to select",
+																					Description:         "",
+																					MarkdownDescription: "",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -9533,33 +11614,33 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"secret": schema.SingleNestedAttribute{
-														Description:         "secret information about the secret data to project",
-														MarkdownDescription: "secret information about the secret data to project",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"items": schema.ListNestedAttribute{
-																Description:         "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value.",
-																MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value.",
+																Description:         "",
+																MarkdownDescription: "",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"key": schema.StringAttribute{
-																			Description:         "key is the key to project.",
-																			MarkdownDescription: "key is the key to project.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
 																		},
 
 																		"mode": schema.Int64Attribute{
-																			Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
-																			MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
 																		},
 
 																		"path": schema.StringAttribute{
-																			Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-																			MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																			Description:         "",
+																			MarkdownDescription: "",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -9572,16 +11653,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"optional": schema.BoolAttribute{
-																Description:         "optional field specify whether the Secret or its key must be defined",
-																MarkdownDescription: "optional field specify whether the Secret or its key must be defined",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9593,28 +11674,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 													},
 
 													"service_account_token": schema.SingleNestedAttribute{
-														Description:         "serviceAccountToken is information about the serviceAccountToken data to project",
-														MarkdownDescription: "serviceAccountToken is information about the serviceAccountToken data to project",
+														Description:         "",
+														MarkdownDescription: "",
 														Attributes: map[string]schema.Attribute{
 															"audience": schema.StringAttribute{
-																Description:         "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token.",
-																MarkdownDescription: "audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"expiration_seconds": schema.Int64Attribute{
-																Description:         "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token.",
-																MarkdownDescription: "expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"path": schema.StringAttribute{
-																Description:         "path is the path relative to the mount point of the file to project the token into.",
-																MarkdownDescription: "path is the path relative to the mount point of the file to project the token into.",
+																Description:         "",
+																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -9637,52 +11718,52 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"quobyte": schema.SingleNestedAttribute{
-									Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-									MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"group": schema.StringAttribute{
-											Description:         "group to map volume access to Default is no group",
-											MarkdownDescription: "group to map volume access to Default is no group",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.",
-											MarkdownDescription: "readOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"registry": schema.StringAttribute{
-											Description:         "registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes",
-											MarkdownDescription: "registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"tenant": schema.StringAttribute{
-											Description:         "tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin",
-											MarkdownDescription: "tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"user": schema.StringAttribute{
-											Description:         "user to map volume access to Defaults to serivceaccount user",
-											MarkdownDescription: "user to map volume access to Defaults to serivceaccount user",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"volume": schema.StringAttribute{
-											Description:         "volume is a string that references an already created Quobyte volume by name.",
-											MarkdownDescription: "volume is a string that references an already created Quobyte volume by name.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -9694,36 +11775,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"rbd": schema.SingleNestedAttribute{
-									Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-									MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'.",
-											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"image": schema.StringAttribute{
-											Description:         "image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-											MarkdownDescription: "image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"keyring": schema.StringAttribute{
-											Description:         "keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-											MarkdownDescription: "keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"monitors": schema.ListAttribute{
-											Description:         "monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-											MarkdownDescription: "monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,
@@ -9731,28 +11812,28 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"pool": schema.StringAttribute{
-											Description:         "pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-											MarkdownDescription: "pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-											MarkdownDescription: "readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_ref": schema.SingleNestedAttribute{
-											Description:         "secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-											MarkdownDescription: "secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9764,8 +11845,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"user": schema.StringAttribute{
-											Description:         "user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
-											MarkdownDescription: "user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9777,48 +11858,48 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"scale_io": schema.SingleNestedAttribute{
-									Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-									MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
-											MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"gateway": schema.StringAttribute{
-											Description:         "gateway is the host address of the ScaleIO API Gateway.",
-											MarkdownDescription: "gateway is the host address of the ScaleIO API Gateway.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"protection_domain": schema.StringAttribute{
-											Description:         "protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.",
-											MarkdownDescription: "protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-											MarkdownDescription: "readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_ref": schema.SingleNestedAttribute{
-											Description:         "secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
-											MarkdownDescription: "secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9830,40 +11911,40 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"ssl_enabled": schema.BoolAttribute{
-											Description:         "sslEnabled Flag enable/disable SSL communication with Gateway, default false",
-											MarkdownDescription: "sslEnabled Flag enable/disable SSL communication with Gateway, default false",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"storage_mode": schema.StringAttribute{
-											Description:         "storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.",
-											MarkdownDescription: "storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"storage_pool": schema.StringAttribute{
-											Description:         "storagePool is the ScaleIO Storage Pool associated with the protection domain.",
-											MarkdownDescription: "storagePool is the ScaleIO Storage Pool associated with the protection domain.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"system": schema.StringAttribute{
-											Description:         "system is the name of the storage system as configured in ScaleIO.",
-											MarkdownDescription: "system is the name of the storage system as configured in ScaleIO.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"volume_name": schema.StringAttribute{
-											Description:         "volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.",
-											MarkdownDescription: "volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9875,41 +11956,41 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"secret": schema.SingleNestedAttribute{
-									Description:         "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-									MarkdownDescription: "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"default_mode": schema.Int64Attribute{
-											Description:         "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
-											MarkdownDescription: "defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"items": schema.ListNestedAttribute{
-											Description:         "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value.",
-											MarkdownDescription: "items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value.",
+											Description:         "",
+											MarkdownDescription: "",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"key": schema.StringAttribute{
-														Description:         "key is the key to project.",
-														MarkdownDescription: "key is the key to project.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"mode": schema.Int64Attribute{
-														Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
-														MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"path": schema.StringAttribute{
-														Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
-														MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -9922,16 +12003,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"optional": schema.BoolAttribute{
-											Description:         "optional field specify whether the Secret or its keys must be defined",
-											MarkdownDescription: "optional field specify whether the Secret or its keys must be defined",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_name": schema.StringAttribute{
-											Description:         "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
-											MarkdownDescription: "secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9943,32 +12024,32 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"storageos": schema.SingleNestedAttribute{
-									Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-									MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-											MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"read_only": schema.BoolAttribute{
-											Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
-											MarkdownDescription: "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"secret_ref": schema.SingleNestedAttribute{
-											Description:         "secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
-											MarkdownDescription: "secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.",
+											Description:         "",
+											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "",
+													MarkdownDescription: "",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9980,16 +12061,16 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 										},
 
 										"volume_name": schema.StringAttribute{
-											Description:         "volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
-											MarkdownDescription: "volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"volume_namespace": schema.StringAttribute{
-											Description:         "volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.",
-											MarkdownDescription: "volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -10001,36 +12082,36 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								},
 
 								"vsphere_volume": schema.SingleNestedAttribute{
-									Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-									MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+									Description:         "",
+									MarkdownDescription: "",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
-											MarkdownDescription: "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"storage_policy_id": schema.StringAttribute{
-											Description:         "storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.",
-											MarkdownDescription: "storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"storage_policy_name": schema.StringAttribute{
-											Description:         "storagePolicyName is the storage Policy Based Management (SPBM) profile name.",
-											MarkdownDescription: "storagePolicyName is the storage Policy Based Management (SPBM) profile name.",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"volume_path": schema.StringAttribute{
-											Description:         "volumePath is the path that identifies vSphere volume vmdk",
-											MarkdownDescription: "volumePath is the path that identifies vSphere volume vmdk",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,

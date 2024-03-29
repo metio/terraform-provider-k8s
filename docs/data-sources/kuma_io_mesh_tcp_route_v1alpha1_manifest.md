@@ -56,11 +56,11 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined in-place. (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined in-place. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 Optional:
 
-- `to` (Attributes List) To list makes a match between the consumed services and corresponding configurations (see [below for nested schema](#nestedatt--spec--to))
+- `to` (Attributes List) To list makes a match between the consumed services and correspondingconfigurations (see [below for nested schema](#nestedatt--spec--to))
 
 <a id="nestedatt--spec--target_ref"></a>
 ### Nested Schema for `spec.target_ref`
@@ -69,8 +69,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--to"></a>
@@ -78,11 +79,11 @@ Optional:
 
 Required:
 
-- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group of destinations. (see [below for nested schema](#nestedatt--spec--to--target_ref))
+- `target_ref` (Attributes) TargetRef is a reference to the resource that represents a group ofdestinations. (see [below for nested schema](#nestedatt--spec--to--target_ref))
 
 Optional:
 
-- `rules` (Attributes List) Rules contains the routing rules applies to a combination of top-level targetRef and the targetRef in this entry. (see [below for nested schema](#nestedatt--spec--to--rules))
+- `rules` (Attributes List) Rules contains the routing rules applies to a combination of top-leveltargetRef and the targetRef in this entry. (see [below for nested schema](#nestedatt--spec--to--rules))
 
 <a id="nestedatt--spec--to--target_ref"></a>
 ### Nested Schema for `spec.to.target_ref`
@@ -91,8 +92,9 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 
 
 <a id="nestedatt--spec--to--rules"></a>
@@ -100,7 +102,7 @@ Optional:
 
 Required:
 
-- `default` (Attributes) Default holds routing rules that can be merged with rules from other policies. (see [below for nested schema](#nestedatt--spec--to--rules--default))
+- `default` (Attributes) Default holds routing rules that can be merged with rules from otherpolicies. (see [below for nested schema](#nestedatt--spec--to--rules--default))
 
 <a id="nestedatt--spec--to--rules--default"></a>
 ### Nested Schema for `spec.to.rules.default`
@@ -116,6 +118,8 @@ Optional:
 
 - `kind` (String) Kind of the referenced resource
 - `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `port` (Number) Port is only supported when this ref refers to a real MeshService object
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
 - `weight` (Number)

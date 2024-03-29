@@ -30,7 +30,7 @@ data "k8s_sagemaker_services_k8s_aws_model_package_group_v1alpha1_manifest" "exa
 
 ### Optional
 
-- `spec` (Attributes) ModelPackageGroupSpec defines the desired state of ModelPackageGroup.  A group of versioned models in the model registry. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ModelPackageGroupSpec defines the desired state of ModelPackageGroup.A group of versioned models in the model registry. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -61,7 +61,7 @@ Required:
 Optional:
 
 - `model_package_group_description` (String) A description for the model group.
-- `tags` (Attributes List) A list of key value pairs associated with the model group. For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the Amazon Web Services General Reference Guide. (see [below for nested schema](#nestedatt--spec--tags))
+- `tags` (Attributes List) A list of key value pairs associated with the model group. For more information,see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)in the Amazon Web Services General Reference Guide. (see [below for nested schema](#nestedatt--spec--tags))
 
 <a id="nestedatt--spec--tags"></a>
 ### Nested Schema for `spec.tags`

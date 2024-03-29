@@ -57,12 +57,14 @@ type NetworkingIstioIoDestinationRuleV1Beta1ManifestData struct {
 						Http1MaxPendingRequests  *int64  `tfsdk:"http1_max_pending_requests" json:"http1MaxPendingRequests,omitempty"`
 						Http2MaxRequests         *int64  `tfsdk:"http2_max_requests" json:"http2MaxRequests,omitempty"`
 						IdleTimeout              *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
+						MaxConcurrentStreams     *int64  `tfsdk:"max_concurrent_streams" json:"maxConcurrentStreams,omitempty"`
 						MaxRequestsPerConnection *int64  `tfsdk:"max_requests_per_connection" json:"maxRequestsPerConnection,omitempty"`
 						MaxRetries               *int64  `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						UseClientProtocol        *bool   `tfsdk:"use_client_protocol" json:"useClientProtocol,omitempty"`
 					} `tfsdk:"http" json:"http,omitempty"`
 					Tcp *struct {
 						ConnectTimeout        *string `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+						IdleTimeout           *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
 						MaxConnectionDuration *string `tfsdk:"max_connection_duration" json:"maxConnectionDuration,omitempty"`
 						MaxConnections        *int64  `tfsdk:"max_connections" json:"maxConnections,omitempty"`
 						TcpKeepalive          *struct {
@@ -123,12 +125,14 @@ type NetworkingIstioIoDestinationRuleV1Beta1ManifestData struct {
 							Http1MaxPendingRequests  *int64  `tfsdk:"http1_max_pending_requests" json:"http1MaxPendingRequests,omitempty"`
 							Http2MaxRequests         *int64  `tfsdk:"http2_max_requests" json:"http2MaxRequests,omitempty"`
 							IdleTimeout              *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
+							MaxConcurrentStreams     *int64  `tfsdk:"max_concurrent_streams" json:"maxConcurrentStreams,omitempty"`
 							MaxRequestsPerConnection *int64  `tfsdk:"max_requests_per_connection" json:"maxRequestsPerConnection,omitempty"`
 							MaxRetries               *int64  `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 							UseClientProtocol        *bool   `tfsdk:"use_client_protocol" json:"useClientProtocol,omitempty"`
 						} `tfsdk:"http" json:"http,omitempty"`
 						Tcp *struct {
 							ConnectTimeout        *string `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+							IdleTimeout           *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
 							MaxConnectionDuration *string `tfsdk:"max_connection_duration" json:"maxConnectionDuration,omitempty"`
 							MaxConnections        *int64  `tfsdk:"max_connections" json:"maxConnections,omitempty"`
 							TcpKeepalive          *struct {
@@ -187,6 +191,7 @@ type NetworkingIstioIoDestinationRuleV1Beta1ManifestData struct {
 					} `tfsdk:"port" json:"port,omitempty"`
 					Tls *struct {
 						CaCertificates     *string   `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
+						CaCrl              *string   `tfsdk:"ca_crl" json:"caCrl,omitempty"`
 						ClientCertificate  *string   `tfsdk:"client_certificate" json:"clientCertificate,omitempty"`
 						CredentialName     *string   `tfsdk:"credential_name" json:"credentialName,omitempty"`
 						InsecureSkipVerify *bool     `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
@@ -196,8 +201,12 @@ type NetworkingIstioIoDestinationRuleV1Beta1ManifestData struct {
 						SubjectAltNames    *[]string `tfsdk:"subject_alt_names" json:"subjectAltNames,omitempty"`
 					} `tfsdk:"tls" json:"tls,omitempty"`
 				} `tfsdk:"port_level_settings" json:"portLevelSettings,omitempty"`
+				ProxyProtocol *struct {
+					Version *string `tfsdk:"version" json:"version,omitempty"`
+				} `tfsdk:"proxy_protocol" json:"proxyProtocol,omitempty"`
 				Tls *struct {
 					CaCertificates     *string   `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
+					CaCrl              *string   `tfsdk:"ca_crl" json:"caCrl,omitempty"`
 					ClientCertificate  *string   `tfsdk:"client_certificate" json:"clientCertificate,omitempty"`
 					CredentialName     *string   `tfsdk:"credential_name" json:"credentialName,omitempty"`
 					InsecureSkipVerify *bool     `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
@@ -220,12 +229,14 @@ type NetworkingIstioIoDestinationRuleV1Beta1ManifestData struct {
 					Http1MaxPendingRequests  *int64  `tfsdk:"http1_max_pending_requests" json:"http1MaxPendingRequests,omitempty"`
 					Http2MaxRequests         *int64  `tfsdk:"http2_max_requests" json:"http2MaxRequests,omitempty"`
 					IdleTimeout              *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
+					MaxConcurrentStreams     *int64  `tfsdk:"max_concurrent_streams" json:"maxConcurrentStreams,omitempty"`
 					MaxRequestsPerConnection *int64  `tfsdk:"max_requests_per_connection" json:"maxRequestsPerConnection,omitempty"`
 					MaxRetries               *int64  `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					UseClientProtocol        *bool   `tfsdk:"use_client_protocol" json:"useClientProtocol,omitempty"`
 				} `tfsdk:"http" json:"http,omitempty"`
 				Tcp *struct {
 					ConnectTimeout        *string `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+					IdleTimeout           *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
 					MaxConnectionDuration *string `tfsdk:"max_connection_duration" json:"maxConnectionDuration,omitempty"`
 					MaxConnections        *int64  `tfsdk:"max_connections" json:"maxConnections,omitempty"`
 					TcpKeepalive          *struct {
@@ -286,12 +297,14 @@ type NetworkingIstioIoDestinationRuleV1Beta1ManifestData struct {
 						Http1MaxPendingRequests  *int64  `tfsdk:"http1_max_pending_requests" json:"http1MaxPendingRequests,omitempty"`
 						Http2MaxRequests         *int64  `tfsdk:"http2_max_requests" json:"http2MaxRequests,omitempty"`
 						IdleTimeout              *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
+						MaxConcurrentStreams     *int64  `tfsdk:"max_concurrent_streams" json:"maxConcurrentStreams,omitempty"`
 						MaxRequestsPerConnection *int64  `tfsdk:"max_requests_per_connection" json:"maxRequestsPerConnection,omitempty"`
 						MaxRetries               *int64  `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 						UseClientProtocol        *bool   `tfsdk:"use_client_protocol" json:"useClientProtocol,omitempty"`
 					} `tfsdk:"http" json:"http,omitempty"`
 					Tcp *struct {
 						ConnectTimeout        *string `tfsdk:"connect_timeout" json:"connectTimeout,omitempty"`
+						IdleTimeout           *string `tfsdk:"idle_timeout" json:"idleTimeout,omitempty"`
 						MaxConnectionDuration *string `tfsdk:"max_connection_duration" json:"maxConnectionDuration,omitempty"`
 						MaxConnections        *int64  `tfsdk:"max_connections" json:"maxConnections,omitempty"`
 						TcpKeepalive          *struct {
@@ -350,6 +363,7 @@ type NetworkingIstioIoDestinationRuleV1Beta1ManifestData struct {
 				} `tfsdk:"port" json:"port,omitempty"`
 				Tls *struct {
 					CaCertificates     *string   `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
+					CaCrl              *string   `tfsdk:"ca_crl" json:"caCrl,omitempty"`
 					ClientCertificate  *string   `tfsdk:"client_certificate" json:"clientCertificate,omitempty"`
 					CredentialName     *string   `tfsdk:"credential_name" json:"credentialName,omitempty"`
 					InsecureSkipVerify *bool     `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
@@ -359,8 +373,12 @@ type NetworkingIstioIoDestinationRuleV1Beta1ManifestData struct {
 					SubjectAltNames    *[]string `tfsdk:"subject_alt_names" json:"subjectAltNames,omitempty"`
 				} `tfsdk:"tls" json:"tls,omitempty"`
 			} `tfsdk:"port_level_settings" json:"portLevelSettings,omitempty"`
+			ProxyProtocol *struct {
+				Version *string `tfsdk:"version" json:"version,omitempty"`
+			} `tfsdk:"proxy_protocol" json:"proxyProtocol,omitempty"`
 			Tls *struct {
 				CaCertificates     *string   `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
+				CaCrl              *string   `tfsdk:"ca_crl" json:"caCrl,omitempty"`
 				ClientCertificate  *string   `tfsdk:"client_certificate" json:"clientCertificate,omitempty"`
 				CredentialName     *string   `tfsdk:"credential_name" json:"credentialName,omitempty"`
 				InsecureSkipVerify *bool     `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
@@ -478,19 +496,19 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 					"host": schema.StringAttribute{
 						Description:         "The name of a service from the service registry.",
 						MarkdownDescription: "The name of a service from the service registry.",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 					},
 
 					"subsets": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "One or more named sets that represent individual versions of a service.",
+						MarkdownDescription: "One or more named sets that represent individual versions of a service.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"labels": schema.MapAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Labels apply a filter over the endpoints of a service in the service registry.",
+									MarkdownDescription: "Labels apply a filter over the endpoints of a service in the service registry.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -500,8 +518,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 								"name": schema.StringAttribute{
 									Description:         "Name of the subset.",
 									MarkdownDescription: "Name of the subset.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 
@@ -518,8 +536,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 													MarkdownDescription: "HTTP connection pool settings.",
 													Attributes: map[string]schema.Attribute{
 														"h2_upgrade_policy": schema.StringAttribute{
-															Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-															MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+															Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+															MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -529,8 +547,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 														},
 
 														"http1_max_pending_requests": schema.Int64Attribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
+															MarkdownDescription: "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -552,6 +570,14 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 															Computed:            false,
 														},
 
+														"max_concurrent_streams": schema.Int64Attribute{
+															Description:         "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+															MarkdownDescription: "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"max_requests_per_connection": schema.Int64Attribute{
 															Description:         "Maximum number of requests per connection to a backend.",
 															MarkdownDescription: "Maximum number of requests per connection to a backend.",
@@ -561,8 +587,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 														},
 
 														"max_retries": schema.Int64Attribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
+															MarkdownDescription: "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -588,6 +614,14 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 														"connect_timeout": schema.StringAttribute{
 															Description:         "TCP connection timeout.",
 															MarkdownDescription: "TCP connection timeout.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"idle_timeout": schema.StringAttribute{
+															Description:         "The idle timeout for TCP connections.",
+															MarkdownDescription: "The idle timeout for TCP connections.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -622,16 +656,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																},
 
 																"probes": schema.Int64Attribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
+																	MarkdownDescription: "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"time": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "The time duration a connection needs to be idle before keep-alive probes start being sent.",
+																	MarkdownDescription: "The time duration a connection needs to be idle before keep-alive probes start being sent.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -667,8 +701,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																"name": schema.StringAttribute{
 																	Description:         "Name of the cookie.",
 																	MarkdownDescription: "Name of the cookie.",
-																	Required:            false,
-																	Optional:            true,
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																},
 
@@ -739,8 +773,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 															MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
 															Attributes: map[string]schema.Attribute{
 																"minimum_ring_size": schema.Int64Attribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "The minimum number of virtual nodes to use for the hash ring.",
+																	MarkdownDescription: "The minimum number of virtual nodes to use for the hash ring.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -818,8 +852,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																	},
 
 																	"to": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.",
+																		MarkdownDescription: "Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -846,8 +880,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												},
 
 												"simple": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+													MarkdownDescription: "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -906,8 +940,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												},
 
 												"consecutive_local_origin_failures": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The number of consecutive locally originated failures before ejection occurs.",
+													MarkdownDescription: "The number of consecutive locally originated failures before ejection occurs.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -922,16 +956,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												},
 
 												"max_ejection_percent": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.",
+													MarkdownDescription: "Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"min_health_percent": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
+													MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -964,8 +998,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																MarkdownDescription: "HTTP connection pool settings.",
 																Attributes: map[string]schema.Attribute{
 																	"h2_upgrade_policy": schema.StringAttribute{
-																		Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-																		MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+																		Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+																		MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -975,8 +1009,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																	},
 
 																	"http1_max_pending_requests": schema.Int64Attribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
+																		MarkdownDescription: "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -998,6 +1032,14 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																		Computed:            false,
 																	},
 
+																	"max_concurrent_streams": schema.Int64Attribute{
+																		Description:         "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+																		MarkdownDescription: "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
 																	"max_requests_per_connection": schema.Int64Attribute{
 																		Description:         "Maximum number of requests per connection to a backend.",
 																		MarkdownDescription: "Maximum number of requests per connection to a backend.",
@@ -1007,8 +1049,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																	},
 
 																	"max_retries": schema.Int64Attribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
+																		MarkdownDescription: "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1034,6 +1076,14 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																	"connect_timeout": schema.StringAttribute{
 																		Description:         "TCP connection timeout.",
 																		MarkdownDescription: "TCP connection timeout.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"idle_timeout": schema.StringAttribute{
+																		Description:         "The idle timeout for TCP connections.",
+																		MarkdownDescription: "The idle timeout for TCP connections.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1068,16 +1118,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																			},
 
 																			"probes": schema.Int64Attribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
+																				MarkdownDescription: "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
 																			},
 
 																			"time": schema.StringAttribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "The time duration a connection needs to be idle before keep-alive probes start being sent.",
+																				MarkdownDescription: "The time duration a connection needs to be idle before keep-alive probes start being sent.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1113,8 +1163,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																			"name": schema.StringAttribute{
 																				Description:         "Name of the cookie.",
 																				MarkdownDescription: "Name of the cookie.",
-																				Required:            false,
-																				Optional:            true,
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																			},
 
@@ -1185,8 +1235,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																		MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
 																		Attributes: map[string]schema.Attribute{
 																			"minimum_ring_size": schema.Int64Attribute{
-																				Description:         "",
-																				MarkdownDescription: "",
+																				Description:         "The minimum number of virtual nodes to use for the hash ring.",
+																				MarkdownDescription: "The minimum number of virtual nodes to use for the hash ring.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -1264,8 +1314,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																				},
 
 																				"to": schema.StringAttribute{
-																					Description:         "",
-																					MarkdownDescription: "",
+																					Description:         "Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.",
+																					MarkdownDescription: "Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -1292,8 +1342,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 															},
 
 															"simple": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+																MarkdownDescription: "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1352,8 +1402,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 															},
 
 															"consecutive_local_origin_failures": schema.Int64Attribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "The number of consecutive locally originated failures before ejection occurs.",
+																MarkdownDescription: "The number of consecutive locally originated failures before ejection occurs.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1368,16 +1418,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 															},
 
 															"max_ejection_percent": schema.Int64Attribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.",
+																MarkdownDescription: "Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"min_health_percent": schema.Int64Attribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
+																MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1397,8 +1447,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 													},
 
 													"port": schema.SingleNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Specifies the number of a port on the destination service on which this policy is being applied.",
+														MarkdownDescription: "Specifies the number of a port on the destination service on which this policy is being applied.",
 														Attributes: map[string]schema.Attribute{
 															"number": schema.Int64Attribute{
 																Description:         "",
@@ -1418,8 +1468,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 														MarkdownDescription: "TLS related settings for connections to the upstream service.",
 														Attributes: map[string]schema.Attribute{
 															"ca_certificates": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.",
+																MarkdownDescription: "OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"ca_crl": schema.StringAttribute{
+																Description:         "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.",
+																MarkdownDescription: "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1434,24 +1492,24 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 															},
 
 															"credential_name": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "The name of the secret that holds the TLS certs for the client including the CA certificates.",
+																MarkdownDescription: "The name of the secret that holds the TLS certs for the client including the CA certificates.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"insecure_skip_verify": schema.BoolAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.",
+																MarkdownDescription: "'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"mode": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+																MarkdownDescription: "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1477,8 +1535,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 															},
 
 															"subject_alt_names": schema.ListAttribute{
-																Description:         "",
-																MarkdownDescription: "",
+																Description:         "A list of alternate names to verify the subject identity in the certificate.",
+																MarkdownDescription: "A list of alternate names to verify the subject identity in the certificate.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -1496,13 +1554,41 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 											Computed: false,
 										},
 
+										"proxy_protocol": schema.SingleNestedAttribute{
+											Description:         "The upstream PROXY protocol settings.",
+											MarkdownDescription: "The upstream PROXY protocol settings.",
+											Attributes: map[string]schema.Attribute{
+												"version": schema.StringAttribute{
+													Description:         "The PROXY protocol version to use.Valid Options: V1, V2",
+													MarkdownDescription: "The PROXY protocol version to use.Valid Options: V1, V2",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("V1", "V2"),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"tls": schema.SingleNestedAttribute{
 											Description:         "TLS related settings for connections to the upstream service.",
 											MarkdownDescription: "TLS related settings for connections to the upstream service.",
 											Attributes: map[string]schema.Attribute{
 												"ca_certificates": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.",
+													MarkdownDescription: "OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"ca_crl": schema.StringAttribute{
+													Description:         "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.",
+													MarkdownDescription: "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1517,24 +1603,24 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												},
 
 												"credential_name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The name of the secret that holds the TLS certs for the client including the CA certificates.",
+													MarkdownDescription: "The name of the secret that holds the TLS certs for the client including the CA certificates.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"insecure_skip_verify": schema.BoolAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.",
+													MarkdownDescription: "'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"mode": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+													MarkdownDescription: "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1560,8 +1646,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												},
 
 												"subject_alt_names": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "A list of alternate names to verify the subject identity in the certificate.",
+													MarkdownDescription: "A list of alternate names to verify the subject identity in the certificate.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1574,8 +1660,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 										},
 
 										"tunnel": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Configuration of tunneling TCP over other transport or application layers for the host configured in the DestinationRule.",
+											MarkdownDescription: "Configuration of tunneling TCP over other transport or application layers for the host configured in the DestinationRule.",
 											Attributes: map[string]schema.Attribute{
 												"protocol": schema.StringAttribute{
 													Description:         "Specifies which protocol to use for tunneling the downstream connection.",
@@ -1588,16 +1674,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												"target_host": schema.StringAttribute{
 													Description:         "Specifies a host to which the downstream connection is tunneled.",
 													MarkdownDescription: "Specifies a host to which the downstream connection is tunneled.",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 
 												"target_port": schema.Int64Attribute{
 													Description:         "Specifies a port to which the downstream connection is tunneled.",
 													MarkdownDescription: "Specifies a port to which the downstream connection is tunneled.",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 												},
 											},
@@ -1618,8 +1704,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"traffic_policy": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Traffic policies to apply (load balancing policy, connection pool sizes, outlier detection).",
+						MarkdownDescription: "Traffic policies to apply (load balancing policy, connection pool sizes, outlier detection).",
 						Attributes: map[string]schema.Attribute{
 							"connection_pool": schema.SingleNestedAttribute{
 								Description:         "",
@@ -1630,8 +1716,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 										MarkdownDescription: "HTTP connection pool settings.",
 										Attributes: map[string]schema.Attribute{
 											"h2_upgrade_policy": schema.StringAttribute{
-												Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-												MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+												Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+												MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1641,8 +1727,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 											},
 
 											"http1_max_pending_requests": schema.Int64Attribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
+												MarkdownDescription: "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1664,6 +1750,14 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												Computed:            false,
 											},
 
+											"max_concurrent_streams": schema.Int64Attribute{
+												Description:         "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+												MarkdownDescription: "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"max_requests_per_connection": schema.Int64Attribute{
 												Description:         "Maximum number of requests per connection to a backend.",
 												MarkdownDescription: "Maximum number of requests per connection to a backend.",
@@ -1673,8 +1767,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 											},
 
 											"max_retries": schema.Int64Attribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
+												MarkdownDescription: "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1700,6 +1794,14 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 											"connect_timeout": schema.StringAttribute{
 												Description:         "TCP connection timeout.",
 												MarkdownDescription: "TCP connection timeout.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"idle_timeout": schema.StringAttribute{
+												Description:         "The idle timeout for TCP connections.",
+												MarkdownDescription: "The idle timeout for TCP connections.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1734,16 +1836,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 													},
 
 													"probes": schema.Int64Attribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
+														MarkdownDescription: "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"time": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "The time duration a connection needs to be idle before keep-alive probes start being sent.",
+														MarkdownDescription: "The time duration a connection needs to be idle before keep-alive probes start being sent.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1779,8 +1881,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 													"name": schema.StringAttribute{
 														Description:         "Name of the cookie.",
 														MarkdownDescription: "Name of the cookie.",
-														Required:            false,
-														Optional:            true,
+														Required:            true,
+														Optional:            false,
 														Computed:            false,
 													},
 
@@ -1851,8 +1953,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
 												Attributes: map[string]schema.Attribute{
 													"minimum_ring_size": schema.Int64Attribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "The minimum number of virtual nodes to use for the hash ring.",
+														MarkdownDescription: "The minimum number of virtual nodes to use for the hash ring.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1930,8 +2032,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 														},
 
 														"to": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.",
+															MarkdownDescription: "Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1958,8 +2060,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 									},
 
 									"simple": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+										MarkdownDescription: "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2018,8 +2120,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 									},
 
 									"consecutive_local_origin_failures": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "The number of consecutive locally originated failures before ejection occurs.",
+										MarkdownDescription: "The number of consecutive locally originated failures before ejection occurs.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2034,16 +2136,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 									},
 
 									"max_ejection_percent": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.",
+										MarkdownDescription: "Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"min_health_percent": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
+										MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2076,8 +2178,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 													MarkdownDescription: "HTTP connection pool settings.",
 													Attributes: map[string]schema.Attribute{
 														"h2_upgrade_policy": schema.StringAttribute{
-															Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
-															MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.",
+															Description:         "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
+															MarkdownDescription: "Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2087,8 +2189,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 														},
 
 														"http1_max_pending_requests": schema.Int64Attribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
+															MarkdownDescription: "Maximum number of requests that will be queued while waiting for a ready connection pool connection.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2110,6 +2212,14 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 															Computed:            false,
 														},
 
+														"max_concurrent_streams": schema.Int64Attribute{
+															Description:         "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+															MarkdownDescription: "The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"max_requests_per_connection": schema.Int64Attribute{
 															Description:         "Maximum number of requests per connection to a backend.",
 															MarkdownDescription: "Maximum number of requests per connection to a backend.",
@@ -2119,8 +2229,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 														},
 
 														"max_retries": schema.Int64Attribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
+															MarkdownDescription: "Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2146,6 +2256,14 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 														"connect_timeout": schema.StringAttribute{
 															Description:         "TCP connection timeout.",
 															MarkdownDescription: "TCP connection timeout.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"idle_timeout": schema.StringAttribute{
+															Description:         "The idle timeout for TCP connections.",
+															MarkdownDescription: "The idle timeout for TCP connections.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2180,16 +2298,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																},
 
 																"probes": schema.Int64Attribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
+																	MarkdownDescription: "Maximum number of keepalive probes to send without response before deciding the connection is dead.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"time": schema.StringAttribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "The time duration a connection needs to be idle before keep-alive probes start being sent.",
+																	MarkdownDescription: "The time duration a connection needs to be idle before keep-alive probes start being sent.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2225,8 +2343,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																"name": schema.StringAttribute{
 																	Description:         "Name of the cookie.",
 																	MarkdownDescription: "Name of the cookie.",
-																	Required:            false,
-																	Optional:            true,
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																},
 
@@ -2297,8 +2415,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 															MarkdownDescription: "The ring/modulo hash load balancer implements consistent hashing to backend hosts.",
 															Attributes: map[string]schema.Attribute{
 																"minimum_ring_size": schema.Int64Attribute{
-																	Description:         "",
-																	MarkdownDescription: "",
+																	Description:         "The minimum number of virtual nodes to use for the hash ring.",
+																	MarkdownDescription: "The minimum number of virtual nodes to use for the hash ring.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -2376,8 +2494,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 																	},
 
 																	"to": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
+																		Description:         "Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.",
+																		MarkdownDescription: "Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2404,8 +2522,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												},
 
 												"simple": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
+													MarkdownDescription: "Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2464,8 +2582,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												},
 
 												"consecutive_local_origin_failures": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The number of consecutive locally originated failures before ejection occurs.",
+													MarkdownDescription: "The number of consecutive locally originated failures before ejection occurs.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2480,16 +2598,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												},
 
 												"max_ejection_percent": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.",
+													MarkdownDescription: "Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"min_health_percent": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
+													MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2509,8 +2627,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 										},
 
 										"port": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Specifies the number of a port on the destination service on which this policy is being applied.",
+											MarkdownDescription: "Specifies the number of a port on the destination service on which this policy is being applied.",
 											Attributes: map[string]schema.Attribute{
 												"number": schema.Int64Attribute{
 													Description:         "",
@@ -2530,8 +2648,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 											MarkdownDescription: "TLS related settings for connections to the upstream service.",
 											Attributes: map[string]schema.Attribute{
 												"ca_certificates": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.",
+													MarkdownDescription: "OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"ca_crl": schema.StringAttribute{
+													Description:         "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.",
+													MarkdownDescription: "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2546,24 +2672,24 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												},
 
 												"credential_name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "The name of the secret that holds the TLS certs for the client including the CA certificates.",
+													MarkdownDescription: "The name of the secret that holds the TLS certs for the client including the CA certificates.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"insecure_skip_verify": schema.BoolAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.",
+													MarkdownDescription: "'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"mode": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+													MarkdownDescription: "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2589,8 +2715,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 												},
 
 												"subject_alt_names": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "A list of alternate names to verify the subject identity in the certificate.",
+													MarkdownDescription: "A list of alternate names to verify the subject identity in the certificate.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2608,13 +2734,41 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 								Computed: false,
 							},
 
+							"proxy_protocol": schema.SingleNestedAttribute{
+								Description:         "The upstream PROXY protocol settings.",
+								MarkdownDescription: "The upstream PROXY protocol settings.",
+								Attributes: map[string]schema.Attribute{
+									"version": schema.StringAttribute{
+										Description:         "The PROXY protocol version to use.Valid Options: V1, V2",
+										MarkdownDescription: "The PROXY protocol version to use.Valid Options: V1, V2",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("V1", "V2"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"tls": schema.SingleNestedAttribute{
 								Description:         "TLS related settings for connections to the upstream service.",
 								MarkdownDescription: "TLS related settings for connections to the upstream service.",
 								Attributes: map[string]schema.Attribute{
 									"ca_certificates": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.",
+										MarkdownDescription: "OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ca_crl": schema.StringAttribute{
+										Description:         "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.",
+										MarkdownDescription: "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2629,24 +2783,24 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 									},
 
 									"credential_name": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "The name of the secret that holds the TLS certs for the client including the CA certificates.",
+										MarkdownDescription: "The name of the secret that holds the TLS certs for the client including the CA certificates.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"insecure_skip_verify": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.",
+										MarkdownDescription: "'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"mode": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
+										MarkdownDescription: "Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2672,8 +2826,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 									},
 
 									"subject_alt_names": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "A list of alternate names to verify the subject identity in the certificate.",
+										MarkdownDescription: "A list of alternate names to verify the subject identity in the certificate.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2686,8 +2840,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 							},
 
 							"tunnel": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Configuration of tunneling TCP over other transport or application layers for the host configured in the DestinationRule.",
+								MarkdownDescription: "Configuration of tunneling TCP over other transport or application layers for the host configured in the DestinationRule.",
 								Attributes: map[string]schema.Attribute{
 									"protocol": schema.StringAttribute{
 										Description:         "Specifies which protocol to use for tunneling the downstream connection.",
@@ -2700,16 +2854,16 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 									"target_host": schema.StringAttribute{
 										Description:         "Specifies a host to which the downstream connection is tunneled.",
 										MarkdownDescription: "Specifies a host to which the downstream connection is tunneled.",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 
 									"target_port": schema.Int64Attribute{
 										Description:         "Specifies a port to which the downstream connection is tunneled.",
 										MarkdownDescription: "Specifies a port to which the downstream connection is tunneled.",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 								},
@@ -2724,12 +2878,12 @@ func (r *NetworkingIstioIoDestinationRuleV1Beta1Manifest) Schema(_ context.Conte
 					},
 
 					"workload_selector": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Criteria used to select the specific set of pods/VMs on which this 'DestinationRule' configuration should be applied.",
+						MarkdownDescription: "Criteria used to select the specific set of pods/VMs on which this 'DestinationRule' configuration should be applied.",
 						Attributes: map[string]schema.Attribute{
 							"match_labels": schema.MapAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
+								MarkdownDescription: "One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

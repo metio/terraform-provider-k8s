@@ -154,6 +154,7 @@ type CamelApacheOrgKameletV1Alpha1ManifestData struct {
 			ContentKey     *string   `tfsdk:"content_key" json:"contentKey,omitempty"`
 			ContentRef     *string   `tfsdk:"content_ref" json:"contentRef,omitempty"`
 			ContentType    *string   `tfsdk:"content_type" json:"contentType,omitempty"`
+			From_kamelet   *bool     `tfsdk:"from_kamelet" json:"from-kamelet,omitempty"`
 			Interceptors   *[]string `tfsdk:"interceptors" json:"interceptors,omitempty"`
 			Language       *string   `tfsdk:"language" json:"language,omitempty"`
 			Loader         *string   `tfsdk:"loader" json:"loader,omitempty"`
@@ -1102,6 +1103,14 @@ func (r *CamelApacheOrgKameletV1Alpha1Manifest) Schema(_ context.Context, _ data
 								"content_type": schema.StringAttribute{
 									Description:         "the content type (tipically text or binary)",
 									MarkdownDescription: "the content type (tipically text or binary)",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"from_kamelet": schema.BoolAttribute{
+									Description:         "True if the spec is generated from a Kamelet",
+									MarkdownDescription: "True if the spec is generated from a Kamelet",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

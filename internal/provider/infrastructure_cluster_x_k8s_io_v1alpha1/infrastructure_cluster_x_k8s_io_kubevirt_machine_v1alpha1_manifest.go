@@ -82,11 +82,15 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 								Name     *string `tfsdk:"name" json:"name,omitempty"`
 							} `tfsdk:"data_source" json:"dataSource,omitempty"`
 							DataSourceRef *struct {
-								ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
-								Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+								Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+								Name      *string `tfsdk:"name" json:"name,omitempty"`
+								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 							} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 							Resources *struct {
+								Claims *[]struct {
+									Name *string `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 							} `tfsdk:"resources" json:"resources,omitempty"`
@@ -104,7 +108,11 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 						} `tfsdk:"pvc" json:"pvc,omitempty"`
 						Source *struct {
 							Blank *map[string]string `tfsdk:"blank" json:"blank,omitempty"`
-							Http  *struct {
+							Gcs   *struct {
+								SecretRef *string `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+								Url       *string `tfsdk:"url" json:"url,omitempty"`
+							} `tfsdk:"gcs" json:"gcs,omitempty"`
+							Http *struct {
 								CertConfigMap      *string   `tfsdk:"cert_config_map" json:"certConfigMap,omitempty"`
 								ExtraHeaders       *[]string `tfsdk:"extra_headers" json:"extraHeaders,omitempty"`
 								SecretExtraHeaders *[]string `tfsdk:"secret_extra_headers" json:"secretExtraHeaders,omitempty"`
@@ -133,13 +141,18 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 								SecretRef     *string `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 								Url           *string `tfsdk:"url" json:"url,omitempty"`
 							} `tfsdk:"s3" json:"s3,omitempty"`
+							Snapshot *struct {
+								Name      *string `tfsdk:"name" json:"name,omitempty"`
+								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+							} `tfsdk:"snapshot" json:"snapshot,omitempty"`
 							Upload *map[string]string `tfsdk:"upload" json:"upload,omitempty"`
 							Vddk   *struct {
-								BackingFile *string `tfsdk:"backing_file" json:"backingFile,omitempty"`
-								SecretRef   *string `tfsdk:"secret_ref" json:"secretRef,omitempty"`
-								Thumbprint  *string `tfsdk:"thumbprint" json:"thumbprint,omitempty"`
-								Url         *string `tfsdk:"url" json:"url,omitempty"`
-								Uuid        *string `tfsdk:"uuid" json:"uuid,omitempty"`
+								BackingFile  *string `tfsdk:"backing_file" json:"backingFile,omitempty"`
+								InitImageURL *string `tfsdk:"init_image_url" json:"initImageURL,omitempty"`
+								SecretRef    *string `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+								Thumbprint   *string `tfsdk:"thumbprint" json:"thumbprint,omitempty"`
+								Url          *string `tfsdk:"url" json:"url,omitempty"`
+								Uuid         *string `tfsdk:"uuid" json:"uuid,omitempty"`
 							} `tfsdk:"vddk" json:"vddk,omitempty"`
 						} `tfsdk:"source" json:"source,omitempty"`
 						SourceRef *struct {
@@ -154,7 +167,16 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 								Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
 								Name     *string `tfsdk:"name" json:"name,omitempty"`
 							} `tfsdk:"data_source" json:"dataSource,omitempty"`
+							DataSourceRef *struct {
+								ApiGroup  *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
+								Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+								Name      *string `tfsdk:"name" json:"name,omitempty"`
+								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+							} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 							Resources *struct {
+								Claims *[]struct {
+									Name *string `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 							} `tfsdk:"resources" json:"resources,omitempty"`
@@ -174,14 +196,21 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 					Status *map[string]string `tfsdk:"status" json:"status,omitempty"`
 				} `tfsdk:"data_volume_templates" json:"dataVolumeTemplates,omitempty"`
 				Instancetype *struct {
-					Kind         *string `tfsdk:"kind" json:"kind,omitempty"`
-					Name         *string `tfsdk:"name" json:"name,omitempty"`
-					RevisionName *string `tfsdk:"revision_name" json:"revisionName,omitempty"`
+					InferFromVolume *string `tfsdk:"infer_from_volume" json:"inferFromVolume,omitempty"`
+					Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name            *string `tfsdk:"name" json:"name,omitempty"`
+					RevisionName    *string `tfsdk:"revision_name" json:"revisionName,omitempty"`
 				} `tfsdk:"instancetype" json:"instancetype,omitempty"`
+				LiveUpdateFeatures *struct {
+					Cpu *struct {
+						MaxSockets *int64 `tfsdk:"max_sockets" json:"maxSockets,omitempty"`
+					} `tfsdk:"cpu" json:"cpu,omitempty"`
+				} `tfsdk:"live_update_features" json:"liveUpdateFeatures,omitempty"`
 				Preference *struct {
-					Kind         *string `tfsdk:"kind" json:"kind,omitempty"`
-					Name         *string `tfsdk:"name" json:"name,omitempty"`
-					RevisionName *string `tfsdk:"revision_name" json:"revisionName,omitempty"`
+					InferFromVolume *string `tfsdk:"infer_from_volume" json:"inferFromVolume,omitempty"`
+					Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name            *string `tfsdk:"name" json:"name,omitempty"`
+					RevisionName    *string `tfsdk:"revision_name" json:"revisionName,omitempty"`
 				} `tfsdk:"preference" json:"preference,omitempty"`
 				RunStrategy *string `tfsdk:"run_strategy" json:"runStrategy,omitempty"`
 				Running     *bool   `tfsdk:"running" json:"running,omitempty"`
@@ -336,7 +365,8 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 								} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 							} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 						} `tfsdk:"affinity" json:"affinity,omitempty"`
-						DnsConfig *struct {
+						Architecture *string `tfsdk:"architecture" json:"architecture,omitempty"`
+						DnsConfig    *struct {
 							Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 							Options     *[]struct {
 								Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -388,6 +418,7 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 									Policy *string `tfsdk:"policy" json:"policy,omitempty"`
 								} `tfsdk:"features" json:"features,omitempty"`
 								IsolateEmulatorThread *bool   `tfsdk:"isolate_emulator_thread" json:"isolateEmulatorThread,omitempty"`
+								MaxSockets            *int64  `tfsdk:"max_sockets" json:"maxSockets,omitempty"`
 								Model                 *string `tfsdk:"model" json:"model,omitempty"`
 								Numa                  *struct {
 									GuestMappingPassthrough *map[string]string `tfsdk:"guest_mapping_passthrough" json:"guestMappingPassthrough,omitempty"`
@@ -404,6 +435,7 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 								AutoattachMemBalloon     *bool              `tfsdk:"autoattach_mem_balloon" json:"autoattachMemBalloon,omitempty"`
 								AutoattachPodInterface   *bool              `tfsdk:"autoattach_pod_interface" json:"autoattachPodInterface,omitempty"`
 								AutoattachSerialConsole  *bool              `tfsdk:"autoattach_serial_console" json:"autoattachSerialConsole,omitempty"`
+								AutoattachVSOCK          *bool              `tfsdk:"autoattach_vsock" json:"autoattachVSOCK,omitempty"`
 								BlockMultiQueue          *bool              `tfsdk:"block_multi_queue" json:"blockMultiQueue,omitempty"`
 								ClientPassthrough        *map[string]string `tfsdk:"client_passthrough" json:"clientPassthrough,omitempty"`
 								DisableHotplug           *bool              `tfsdk:"disable_hotplug" json:"disableHotplug,omitempty"`
@@ -432,8 +464,9 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 									} `tfsdk:"disk" json:"disk,omitempty"`
 									Io  *string `tfsdk:"io" json:"io,omitempty"`
 									Lun *struct {
-										Bus      *string `tfsdk:"bus" json:"bus,omitempty"`
-										Readonly *bool   `tfsdk:"readonly" json:"readonly,omitempty"`
+										Bus         *string `tfsdk:"bus" json:"bus,omitempty"`
+										Readonly    *bool   `tfsdk:"readonly" json:"readonly,omitempty"`
+										Reservation *bool   `tfsdk:"reservation" json:"reservation,omitempty"`
 									} `tfsdk:"lun" json:"lun,omitempty"`
 									Name      *string `tfsdk:"name" json:"name,omitempty"`
 									Serial    *string `tfsdk:"serial" json:"serial,omitempty"`
@@ -468,6 +501,7 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 									Type *string `tfsdk:"type" json:"type,omitempty"`
 								} `tfsdk:"inputs" json:"inputs,omitempty"`
 								Interfaces *[]struct {
+									AcpiIndex   *int64             `tfsdk:"acpi_index" json:"acpiIndex,omitempty"`
 									BootOrder   *int64             `tfsdk:"boot_order" json:"bootOrder,omitempty"`
 									Bridge      *map[string]string `tfsdk:"bridge" json:"bridge,omitempty"`
 									DhcpOptions *struct {
@@ -493,6 +527,7 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 									} `tfsdk:"ports" json:"ports,omitempty"`
 									Slirp *map[string]string `tfsdk:"slirp" json:"slirp,omitempty"`
 									Sriov *map[string]string `tfsdk:"sriov" json:"sriov,omitempty"`
+									State *string            `tfsdk:"state" json:"state,omitempty"`
 									Tag   *string            `tfsdk:"tag" json:"tag,omitempty"`
 								} `tfsdk:"interfaces" json:"interfaces,omitempty"`
 								NetworkInterfaceMultiqueue *bool              `tfsdk:"network_interface_multiqueue" json:"networkInterfaceMultiqueue,omitempty"`
@@ -501,8 +536,10 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 									Model *string `tfsdk:"model" json:"model,omitempty"`
 									Name  *string `tfsdk:"name" json:"name,omitempty"`
 								} `tfsdk:"sound" json:"sound,omitempty"`
-								Tpm                   *map[string]string `tfsdk:"tpm" json:"tpm,omitempty"`
-								UseVirtioTransitional *bool              `tfsdk:"use_virtio_transitional" json:"useVirtioTransitional,omitempty"`
+								Tpm *struct {
+									Persistent *bool `tfsdk:"persistent" json:"persistent,omitempty"`
+								} `tfsdk:"tpm" json:"tpm,omitempty"`
+								UseVirtioTransitional *bool `tfsdk:"use_virtio_transitional" json:"useVirtioTransitional,omitempty"`
 								Watchdog              *struct {
 									I6300esb *struct {
 										Action *string `tfsdk:"action" json:"action,omitempty"`
@@ -601,7 +638,11 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 							} `tfsdk:"firmware" json:"firmware,omitempty"`
 							IoThreadsPolicy *string `tfsdk:"io_threads_policy" json:"ioThreadsPolicy,omitempty"`
 							LaunchSecurity  *struct {
-								Sev *map[string]string `tfsdk:"sev" json:"sev,omitempty"`
+								Sev *struct {
+									Policy *struct {
+										EncryptedState *bool `tfsdk:"encrypted_state" json:"encryptedState,omitempty"`
+									} `tfsdk:"policy" json:"policy,omitempty"`
+								} `tfsdk:"sev" json:"sev,omitempty"`
 							} `tfsdk:"launch_security" json:"launchSecurity,omitempty"`
 							Machine *struct {
 								Type *string `tfsdk:"type" json:"type,omitempty"`
@@ -703,9 +744,13 @@ type InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
-							MaxSkew           *int64  `tfsdk:"max_skew" json:"maxSkew,omitempty"`
-							TopologyKey       *string `tfsdk:"topology_key" json:"topologyKey,omitempty"`
-							WhenUnsatisfiable *string `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
+							MatchLabelKeys     *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MaxSkew            *int64    `tfsdk:"max_skew" json:"maxSkew,omitempty"`
+							MinDomains         *int64    `tfsdk:"min_domains" json:"minDomains,omitempty"`
+							NodeAffinityPolicy *string   `tfsdk:"node_affinity_policy" json:"nodeAffinityPolicy,omitempty"`
+							NodeTaintsPolicy   *string   `tfsdk:"node_taints_policy" json:"nodeTaintsPolicy,omitempty"`
+							TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
+							WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 						} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 						Volumes *[]struct {
 							CloudInitConfigDrive *struct {
@@ -1110,8 +1155,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 															MarkdownDescription: "PVC is the PVC specification",
 															Attributes: map[string]schema.Attribute{
 																"access_modes": schema.ListAttribute{
-																	Description:         "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
-																	MarkdownDescription: "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+																	Description:         "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
+																	MarkdownDescription: "accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -1119,8 +1164,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																},
 
 																"data_source": schema.SingleNestedAttribute{
-																	Description:         "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
-																	MarkdownDescription: "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+																	Description:         "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
+																	MarkdownDescription: "dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. When the AnyVolumeDataSource feature gate is enabled, dataSource contents will be copied to dataSourceRef, and dataSourceRef contents will be copied to dataSource when dataSourceRef.namespace is not specified. If the namespace is specified, then dataSourceRef will not be copied to dataSource.",
 																	Attributes: map[string]schema.Attribute{
 																		"api_group": schema.StringAttribute{
 																			Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -1152,8 +1197,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																},
 
 																"data_source_ref": schema.SingleNestedAttribute{
-																	Description:         "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
-																	MarkdownDescription: "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+																	Description:         "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. * While dataSource only allows local objects, dataSourceRef allows objects   in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																	MarkdownDescription: "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. * While dataSource only allows local objects, dataSourceRef allows objects   in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
 																	Attributes: map[string]schema.Attribute{
 																		"api_group": schema.StringAttribute{
 																			Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -1178,6 +1223,14 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																			Optional:            false,
 																			Computed:            false,
 																		},
+
+																		"namespace": schema.StringAttribute{
+																			Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																			MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
 																	},
 																	Required: false,
 																	Optional: true,
@@ -1185,9 +1238,28 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																},
 
 																"resources": schema.SingleNestedAttribute{
-																	Description:         "Resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
-																	MarkdownDescription: "Resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+																	Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
+																	MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																	Attributes: map[string]schema.Attribute{
+																		"claims": schema.ListNestedAttribute{
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"name": schema.StringAttribute{
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"limits": schema.MapAttribute{
 																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -1198,8 +1270,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1212,8 +1284,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																},
 
 																"selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over volumes to consider for binding.",
-																	MarkdownDescription: "A label query over volumes to consider for binding.",
+																	Description:         "selector is a label query over volumes to consider for binding.",
+																	MarkdownDescription: "selector is a label query over volumes to consider for binding.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1266,8 +1338,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																},
 
 																"storage_class_name": schema.StringAttribute{
-																	Description:         "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
-																	MarkdownDescription: "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																	Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																	MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1282,8 +1354,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																},
 
 																"volume_name": schema.StringAttribute{
-																	Description:         "VolumeName is the binding reference to the PersistentVolume backing this claim.",
-																	MarkdownDescription: "VolumeName is the binding reference to the PersistentVolume backing this claim.",
+																	Description:         "volumeName is the binding reference to the PersistentVolume backing this claim.",
+																	MarkdownDescription: "volumeName is the binding reference to the PersistentVolume backing this claim.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1305,6 +1377,31 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"gcs": schema.SingleNestedAttribute{
+																	Description:         "DataVolumeSourceGCS provides the parameters to create a Data Volume from an GCS source",
+																	MarkdownDescription: "DataVolumeSourceGCS provides the parameters to create a Data Volume from an GCS source",
+																	Attributes: map[string]schema.Attribute{
+																		"secret_ref": schema.StringAttribute{
+																			Description:         "SecretRef provides the secret reference needed to access the GCS source",
+																			MarkdownDescription: "SecretRef provides the secret reference needed to access the GCS source",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"url": schema.StringAttribute{
+																			Description:         "URL is the url of the GCS source",
+																			MarkdownDescription: "URL is the url of the GCS source",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 
 																"http": schema.SingleNestedAttribute{
@@ -1506,6 +1603,31 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																	Computed: false,
 																},
 
+																"snapshot": schema.SingleNestedAttribute{
+																	Description:         "DataVolumeSourceSnapshot provides the parameters to create a Data Volume from an existing VolumeSnapshot",
+																	MarkdownDescription: "DataVolumeSourceSnapshot provides the parameters to create a Data Volume from an existing VolumeSnapshot",
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.StringAttribute{
+																			Description:         "The name of the source VolumeSnapshot",
+																			MarkdownDescription: "The name of the source VolumeSnapshot",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
+																			Description:         "The namespace of the source VolumeSnapshot",
+																			MarkdownDescription: "The namespace of the source VolumeSnapshot",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"upload": schema.MapAttribute{
 																	Description:         "DataVolumeSourceUpload provides the parameters to create a Data Volume by uploading the source",
 																	MarkdownDescription: "DataVolumeSourceUpload provides the parameters to create a Data Volume by uploading the source",
@@ -1522,6 +1644,14 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		"backing_file": schema.StringAttribute{
 																			Description:         "BackingFile is the path to the virtual hard disk to migrate from vCenter/ESXi",
 																			MarkdownDescription: "BackingFile is the path to the virtual hard disk to migrate from vCenter/ESXi",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"init_image_url": schema.StringAttribute{
+																			Description:         "InitImageURL is an optional URL to an image containing an extracted VDDK library, overrides v2v-vmware config map",
+																			MarkdownDescription: "InitImageURL is an optional URL to an image containing an extracted VDDK library, overrides v2v-vmware config map",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -1616,8 +1746,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																},
 
 																"data_source": schema.SingleNestedAttribute{
-																	Description:         "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) * An existing custom resource that implements data population (Alpha) In order to use custom resource types that implement data population, the AnyVolumeDataSource feature gate must be enabled. If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source.",
-																	MarkdownDescription: "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) * An existing custom resource that implements data population (Alpha) In order to use custom resource types that implement data population, the AnyVolumeDataSource feature gate must be enabled. If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source.",
+																	Description:         "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) * An existing custom resource that implements data population (Alpha) In order to use custom resource types that implement data population, the AnyVolumeDataSource feature gate must be enabled. If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
+																	MarkdownDescription: "This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) * An existing custom resource that implements data population (Alpha) In order to use custom resource types that implement data population, the AnyVolumeDataSource feature gate must be enabled. If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.",
 																	Attributes: map[string]schema.Attribute{
 																		"api_group": schema.StringAttribute{
 																			Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -1648,10 +1778,70 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																	Computed: false,
 																},
 
+																"data_source_ref": schema.SingleNestedAttribute{
+																	Description:         "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+																	MarkdownDescription: "Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.",
+																	Attributes: map[string]schema.Attribute{
+																		"api_group": schema.StringAttribute{
+																			Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																			MarkdownDescription: "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"kind": schema.StringAttribute{
+																			Description:         "Kind is the type of resource being referenced",
+																			MarkdownDescription: "Kind is the type of resource being referenced",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name is the name of resource being referenced",
+																			MarkdownDescription: "Name is the name of resource being referenced",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
+																			Description:         "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																			MarkdownDescription: "Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"resources": schema.SingleNestedAttribute{
 																	Description:         "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																	MarkdownDescription: "Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																	Attributes: map[string]schema.Attribute{
+																		"claims": schema.ListNestedAttribute{
+																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"name": schema.StringAttribute{
+																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"limits": schema.MapAttribute{
 																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -1662,8 +1852,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		},
 
 																		"requests": schema.MapAttribute{
-																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																			MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -1782,6 +1972,14 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 										Description:         "InstancetypeMatcher references a instancetype that is used to fill fields in Template",
 										MarkdownDescription: "InstancetypeMatcher references a instancetype that is used to fill fields in Template",
 										Attributes: map[string]schema.Attribute{
+											"infer_from_volume": schema.StringAttribute{
+												Description:         "InferFromVolume lists the name of a volume that should be used to infer or discover the instancetype to be used through known annotations on the underlying resource. Once applied to the InstancetypeMatcher this field is removed.",
+												MarkdownDescription: "InferFromVolume lists the name of a volume that should be used to infer or discover the instancetype to be used through known annotations on the underlying resource. Once applied to the InstancetypeMatcher this field is removed.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"kind": schema.StringAttribute{
 												Description:         "Kind specifies which instancetype resource is referenced. Allowed values are: 'VirtualMachineInstancetype' and 'VirtualMachineClusterInstancetype'. If not specified, 'VirtualMachineClusterInstancetype' is used by default.",
 												MarkdownDescription: "Kind specifies which instancetype resource is referenced. Allowed values are: 'VirtualMachineInstancetype' and 'VirtualMachineClusterInstancetype'. If not specified, 'VirtualMachineClusterInstancetype' is used by default.",
@@ -1793,8 +1991,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 											"name": schema.StringAttribute{
 												Description:         "Name is the name of the VirtualMachineInstancetype or VirtualMachineClusterInstancetype",
 												MarkdownDescription: "Name is the name of the VirtualMachineInstancetype or VirtualMachineClusterInstancetype",
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 
@@ -1811,10 +2009,44 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 										Computed: false,
 									},
 
+									"live_update_features": schema.SingleNestedAttribute{
+										Description:         "LiveUpdateFeatures references a configuration of hotpluggable resources",
+										MarkdownDescription: "LiveUpdateFeatures references a configuration of hotpluggable resources",
+										Attributes: map[string]schema.Attribute{
+											"cpu": schema.SingleNestedAttribute{
+												Description:         "LiveUpdateCPU holds hotplug configuration for the CPU resource. Empty struct indicates that default will be used for maxSockets. Default is specified on cluster level. Absence of the struct means opt-out from CPU hotplug functionality.",
+												MarkdownDescription: "LiveUpdateCPU holds hotplug configuration for the CPU resource. Empty struct indicates that default will be used for maxSockets. Default is specified on cluster level. Absence of the struct means opt-out from CPU hotplug functionality.",
+												Attributes: map[string]schema.Attribute{
+													"max_sockets": schema.Int64Attribute{
+														Description:         "The maximum amount of sockets that can be hot-plugged to the Virtual Machine",
+														MarkdownDescription: "The maximum amount of sockets that can be hot-plugged to the Virtual Machine",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"preference": schema.SingleNestedAttribute{
 										Description:         "PreferenceMatcher references a set of preference that is used to fill fields in Template",
 										MarkdownDescription: "PreferenceMatcher references a set of preference that is used to fill fields in Template",
 										Attributes: map[string]schema.Attribute{
+											"infer_from_volume": schema.StringAttribute{
+												Description:         "InferFromVolume lists the name of a volume that should be used to infer or discover the preference to be used through known annotations on the underlying resource. Once applied to the PreferenceMatcher this field is removed.",
+												MarkdownDescription: "InferFromVolume lists the name of a volume that should be used to infer or discover the preference to be used through known annotations on the underlying resource. Once applied to the PreferenceMatcher this field is removed.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"kind": schema.StringAttribute{
 												Description:         "Kind specifies which preference resource is referenced. Allowed values are: 'VirtualMachinePreference' and 'VirtualMachineClusterPreference'. If not specified, 'VirtualMachineClusterPreference' is used by default.",
 												MarkdownDescription: "Kind specifies which preference resource is referenced. Allowed values are: 'VirtualMachinePreference' and 'VirtualMachineClusterPreference'. If not specified, 'VirtualMachineClusterPreference' is used by default.",
@@ -1826,8 +2058,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 											"name": schema.StringAttribute{
 												Description:         "Name is the name of the VirtualMachinePreference or VirtualMachineClusterPreference",
 												MarkdownDescription: "Name is the name of the VirtualMachinePreference or VirtualMachineClusterPreference",
-												Required:            true,
-												Optional:            false,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 
@@ -2285,8 +2517,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																						},
 
 																						"namespace_selector": schema.SingleNestedAttribute{
-																							Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																							MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																							Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																							MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																							Attributes: map[string]schema.Attribute{
 																								"match_expressions": schema.ListNestedAttribute{
 																									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2339,8 +2571,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																						},
 
 																						"namespaces": schema.ListAttribute{
-																							Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																							MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																							Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																							MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2434,8 +2666,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"namespace_selector": schema.SingleNestedAttribute{
-																					Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																					MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																					Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																					MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
 																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2488,8 +2720,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"namespaces": schema.ListAttribute{
-																					Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																					Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2583,8 +2815,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																						},
 
 																						"namespace_selector": schema.SingleNestedAttribute{
-																							Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																							MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																							Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																							MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																							Attributes: map[string]schema.Attribute{
 																								"match_expressions": schema.ListNestedAttribute{
 																									Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2637,8 +2869,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																						},
 
 																						"namespaces": schema.ListAttribute{
-																							Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																							MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																							Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																							MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																							ElementType:         types.StringType,
 																							Required:            false,
 																							Optional:            true,
@@ -2732,8 +2964,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"namespace_selector": schema.SingleNestedAttribute{
-																					Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
-																					MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.",
+																					Description:         "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
+																					MarkdownDescription: "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces.",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
 																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2786,8 +3018,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																				},
 
 																				"namespaces": schema.ListAttribute{
-																					Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
-																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'",
+																					Description:         "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
+																					MarkdownDescription: "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.",
 																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
@@ -2816,6 +3048,14 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 														Required: false,
 														Optional: true,
 														Computed: false,
+													},
+
+													"architecture": schema.StringAttribute{
+														Description:         "Specifies the architecture of the vm guest you are attempting to run. Defaults to the compiled architecture of the KubeVirt components",
+														MarkdownDescription: "Specifies the architecture of the vm guest you are attempting to run. Defaults to the compiled architecture of the KubeVirt components",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
 													},
 
 													"dns_config": schema.SingleNestedAttribute{
@@ -3148,6 +3388,14 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		Computed:            false,
 																	},
 
+																	"max_sockets": schema.Int64Attribute{
+																		Description:         "MaxSockets specifies the maximum amount of sockets that can be hotplugged",
+																		MarkdownDescription: "MaxSockets specifies the maximum amount of sockets that can be hotplugged",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
 																	"model": schema.StringAttribute{
 																		Description:         "Model specifies the CPU model inside the VMI. List of available models https://github.com/libvirt/libvirt/tree/master/src/cpu_map. It is possible to specify special cases like 'host-passthrough' to get the same CPU as the node and 'host-model' to get CPU closest to the node one. Defaults to host-model.",
 																		MarkdownDescription: "Model specifies the CPU model inside the VMI. List of available models https://github.com/libvirt/libvirt/tree/master/src/cpu_map. It is possible to specify special cases like 'host-passthrough' to get the same CPU as the node and 'host-model' to get CPU closest to the node one. Defaults to host-model.",
@@ -3251,6 +3499,14 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																	"autoattach_serial_console": schema.BoolAttribute{
 																		Description:         "Whether to attach the default serial console or not. Serial console access will not be available if set to false. Defaults to true.",
 																		MarkdownDescription: "Whether to attach the default serial console or not. Serial console access will not be available if set to false. Defaults to true.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"autoattach_vsock": schema.BoolAttribute{
+																		Description:         "Whether to attach the VSOCK CID to the VM or not. VSOCK access will be available if set to true. Defaults to false.",
+																		MarkdownDescription: "Whether to attach the VSOCK CID to the VM or not. VSOCK access will be available if set to true. Defaults to false.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3450,6 +3706,14 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																						"readonly": schema.BoolAttribute{
 																							Description:         "ReadOnly. Defaults to false.",
 																							MarkdownDescription: "ReadOnly. Defaults to false.",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"reservation": schema.BoolAttribute{
+																							Description:         "Reservation indicates if the disk needs to support the persistent reservation for the SCSI disk",
+																							MarkdownDescription: "Reservation indicates if the disk needs to support the persistent reservation for the SCSI disk",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -3679,6 +3943,14 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		MarkdownDescription: "Interfaces describe network interfaces which are added to the vmi.",
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
+																				"acpi_index": schema.Int64Attribute{
+																					Description:         "If specified, the ACPI index is used to provide network interface device naming, that is stable across changes in PCI addresses assigned to the device. This value is required to be unique across all devices and be between 1 and (16*1024-1).",
+																					MarkdownDescription: "If specified, the ACPI index is used to provide network interface device naming, that is stable across changes in PCI addresses assigned to the device. This value is required to be unique across all devices and be between 1 and (16*1024-1).",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"boot_order": schema.Int64Attribute{
 																					Description:         "BootOrder is an integer value > 0, used to determine ordering of boot devices. Lower values take precedence. Each interface or disk that has a boot order must have a unique value. Interfaces without a boot order are not tried.",
 																					MarkdownDescription: "BootOrder is an integer value > 0, used to determine ordering of boot devices. Lower values take precedence. Each interface or disk that has a boot order must have a unique value. Interfaces without a boot order are not tried.",
@@ -3869,6 +4141,14 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																					Computed:            false,
 																				},
 
+																				"state": schema.StringAttribute{
+																					Description:         "State represents the requested operational state of the interface. The (only) value supported is 'absent', expressing a request to remove the interface.",
+																					MarkdownDescription: "State represents the requested operational state of the interface. The (only) value supported is 'absent', expressing a request to remove the interface.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"tag": schema.StringAttribute{
 																					Description:         "If specified, the virtual network interface address and its tag will be provided to the guest via config drive",
 																					MarkdownDescription: "If specified, the virtual network interface address and its tag will be provided to the guest via config drive",
@@ -3925,13 +4205,21 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		Computed: false,
 																	},
 
-																	"tpm": schema.MapAttribute{
+																	"tpm": schema.SingleNestedAttribute{
 																		Description:         "Whether to emulate a TPM device.",
 																		MarkdownDescription: "Whether to emulate a TPM device.",
-																		ElementType:         types.StringType,
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
+																		Attributes: map[string]schema.Attribute{
+																			"persistent": schema.BoolAttribute{
+																				Description:         "Persistent indicates the state of the TPM device should be kept accross reboots Defaults to false",
+																				MarkdownDescription: "Persistent indicates the state of the TPM device should be kept accross reboots Defaults to false",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
 																	},
 
 																	"use_virtio_transitional": schema.BoolAttribute{
@@ -4509,13 +4797,30 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																Description:         "Launch Security setting of the vmi.",
 																MarkdownDescription: "Launch Security setting of the vmi.",
 																Attributes: map[string]schema.Attribute{
-																	"sev": schema.MapAttribute{
+																	"sev": schema.SingleNestedAttribute{
 																		Description:         "AMD Secure Encrypted Virtualization (SEV).",
 																		MarkdownDescription: "AMD Secure Encrypted Virtualization (SEV).",
-																		ElementType:         types.StringType,
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
+																		Attributes: map[string]schema.Attribute{
+																			"policy": schema.SingleNestedAttribute{
+																				Description:         "Guest policy flags as defined in AMD SEV API specification. Note: due to security reasons it is not allowed to enable guest debugging. Therefore NoDebug flag is not exposed to users and is always true.",
+																				MarkdownDescription: "Guest policy flags as defined in AMD SEV API specification. Note: due to security reasons it is not allowed to enable guest debugging. Therefore NoDebug flag is not exposed to users and is always true.",
+																				Attributes: map[string]schema.Attribute{
+																					"encrypted_state": schema.BoolAttribute{
+																						Description:         "SEV-ES is required. Defaults to false.",
+																						MarkdownDescription: "SEV-ES is required. Defaults to false.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
 																	},
 																},
 																Required: false,
@@ -4687,8 +4992,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "The header field name",
-																					MarkdownDescription: "The header field name",
+																					Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																					MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -4942,8 +5247,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"name": schema.StringAttribute{
-																					Description:         "The header field name",
-																					MarkdownDescription: "The header field name",
+																					Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																					MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
@@ -5196,17 +5501,50 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																	Computed: false,
 																},
 
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn't set. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.  This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"max_skew": schema.Int64Attribute{
-																	Description:         "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
-																	MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
+																	Description:         "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
+																	MarkdownDescription: "MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
 
+																"min_domains": schema.Int64Attribute{
+																	Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+																	MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"node_affinity_policy": schema.StringAttribute{
+																	Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																	MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"node_taints_policy": schema.StringAttribute{
+																	Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																	MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"topology_key": schema.StringAttribute{
-																	Description:         "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. It's a required field.",
-																	MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. It's a required field.",
+																	Description:         "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.",
+																	MarkdownDescription: "TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
@@ -5468,8 +5806,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		},
 
 																		"name": schema.StringAttribute{
-																			Description:         "Name represents the name of the DataVolume in the same namespace",
-																			MarkdownDescription: "Name represents the name of the DataVolume in the same namespace",
+																			Description:         "Name of both the DataVolume and the PVC in the same namespace. After PVC population the DataVolume is garbage collected by default.",
+																			MarkdownDescription: "Name of both the DataVolume and the PVC in the same namespace. After PVC population the DataVolume is garbage collected by default.",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -5617,16 +5955,16 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																			MarkdownDescription: "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. Directly attached to the vmi via qemu. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																			Attributes: map[string]schema.Attribute{
 																				"claim_name": schema.StringAttribute{
-																					Description:         "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																					MarkdownDescription: "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																					Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																					MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																					Required:            true,
 																					Optional:            false,
 																					Computed:            false,
 																				},
 
 																				"read_only": schema.BoolAttribute{
-																					Description:         "Will force the ReadOnly setting in VolumeMounts. Default false.",
-																					MarkdownDescription: "Will force the ReadOnly setting in VolumeMounts. Default false.",
+																					Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+																					MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5688,8 +6026,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																	MarkdownDescription: "MemoryDump is attached to the virt launcher and is populated with a memory dump of the vmi",
 																	Attributes: map[string]schema.Attribute{
 																		"claim_name": schema.StringAttribute{
-																			Description:         "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																			MarkdownDescription: "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																			Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																			MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -5704,8 +6042,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "Will force the ReadOnly setting in VolumeMounts. Default false.",
-																			MarkdownDescription: "Will force the ReadOnly setting in VolumeMounts. Default false.",
+																			Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+																			MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -5729,8 +6067,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																	MarkdownDescription: "PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. Directly attached to the vmi via qemu. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																	Attributes: map[string]schema.Attribute{
 																		"claim_name": schema.StringAttribute{
-																			Description:         "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
-																			MarkdownDescription: "ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																			Description:         "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
+																			MarkdownDescription: "claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
 																			Required:            true,
 																			Optional:            false,
 																			Computed:            false,
@@ -5745,8 +6083,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtMachineV1Alpha1Manifest) Schema(_ co
 																		},
 
 																		"read_only": schema.BoolAttribute{
-																			Description:         "Will force the ReadOnly setting in VolumeMounts. Default false.",
-																			MarkdownDescription: "Will force the ReadOnly setting in VolumeMounts. Default false.",
+																			Description:         "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
+																			MarkdownDescription: "readOnly Will force the ReadOnly setting in VolumeMounts. Default false.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,

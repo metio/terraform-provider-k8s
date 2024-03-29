@@ -269,6 +269,7 @@ type GlooSoloIoSettingsV1ManifestData struct {
 			IsolateVirtualHostsBySslConfig *bool `tfsdk:"isolate_virtual_hosts_by_ssl_config" json:"isolateVirtualHostsBySslConfig,omitempty"`
 			PersistProxySpec               *bool `tfsdk:"persist_proxy_spec" json:"persistProxySpec,omitempty"`
 			ReadGatewaysFromAllNamespaces  *bool `tfsdk:"read_gateways_from_all_namespaces" json:"readGatewaysFromAllNamespaces,omitempty"`
+			TranslateEmptyGateways         *bool `tfsdk:"translate_empty_gateways" json:"translateEmptyGateways,omitempty"`
 			Validation                     *struct {
 				AllowWarnings                    *bool   `tfsdk:"allow_warnings" json:"allowWarnings,omitempty"`
 				AlwaysAccept                     *bool   `tfsdk:"always_accept" json:"alwaysAccept,omitempty"`
@@ -294,6 +295,7 @@ type GlooSoloIoSettingsV1ManifestData struct {
 				PropagateOriginalRouting  *bool   `tfsdk:"propagate_original_routing" json:"propagateOriginalRouting,omitempty"`
 				ServiceAccountCredentials *struct {
 					Cluster *string `tfsdk:"cluster" json:"cluster,omitempty"`
+					Region  *string `tfsdk:"region" json:"region,omitempty"`
 					Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
 					Uri     *string `tfsdk:"uri" json:"uri,omitempty"`
 				} `tfsdk:"service_account_credentials" json:"serviceAccountCredentials,omitempty"`
@@ -315,6 +317,10 @@ type GlooSoloIoSettingsV1ManifestData struct {
 				InvalidRouteResponseCode *int64  `tfsdk:"invalid_route_response_code" json:"invalidRouteResponseCode,omitempty"`
 				ReplaceInvalidRoutes     *bool   `tfsdk:"replace_invalid_routes" json:"replaceInvalidRoutes,omitempty"`
 			} `tfsdk:"invalid_config_policy" json:"invalidConfigPolicy,omitempty"`
+			IstioOptions *struct {
+				AppendXForwardedHost *bool `tfsdk:"append_x_forwarded_host" json:"appendXForwardedHost,omitempty"`
+				EnableAutoMtls       *bool `tfsdk:"enable_auto_mtls" json:"enableAutoMtls,omitempty"`
+			} `tfsdk:"istio_options" json:"istioOptions,omitempty"`
 			LogTransformationRequestResponseInfo *bool   `tfsdk:"log_transformation_request_response_info" json:"logTransformationRequestResponseInfo,omitempty"`
 			ProxyDebugBindAddr                   *string `tfsdk:"proxy_debug_bind_addr" json:"proxyDebugBindAddr,omitempty"`
 			RegexMaxProgramSize                  *int64  `tfsdk:"regex_max_program_size" json:"regexMaxProgramSize,omitempty"`
@@ -387,7 +393,9 @@ type GlooSoloIoSettingsV1ManifestData struct {
 				LabelToPath *map[string]string `tfsdk:"label_to_path" json:"labelToPath,omitempty"`
 			} `tfsdk:"config_status_metric_labels" json:"configStatusMetricLabels,omitempty"`
 			GrafanaIntegration *struct {
-				DefaultDashboardFolderId *int64 `tfsdk:"default_dashboard_folder_id" json:"defaultDashboardFolderId,omitempty"`
+				DashboardPrefix            *string `tfsdk:"dashboard_prefix" json:"dashboardPrefix,omitempty"`
+				DefaultDashboardFolderId   *int64  `tfsdk:"default_dashboard_folder_id" json:"defaultDashboardFolderId,omitempty"`
+				ExtraMetricQueryParameters *string `tfsdk:"extra_metric_query_parameters" json:"extraMetricQueryParameters,omitempty"`
 			} `tfsdk:"grafana_integration" json:"grafanaIntegration,omitempty"`
 		} `tfsdk:"observability_options" json:"observabilityOptions,omitempty"`
 		Ratelimit *struct {
@@ -407,8 +415,11 @@ type GlooSoloIoSettingsV1ManifestData struct {
 		RatelimitServer *struct {
 			DenyOnFail              *bool `tfsdk:"deny_on_fail" json:"denyOnFail,omitempty"`
 			EnableXRatelimitHeaders *bool `tfsdk:"enable_x_ratelimit_headers" json:"enableXRatelimitHeaders,omitempty"`
-			RateLimitBeforeAuth     *bool `tfsdk:"rate_limit_before_auth" json:"rateLimitBeforeAuth,omitempty"`
-			RatelimitServerRef      *struct {
+			GrpcService             *struct {
+				Authority *string `tfsdk:"authority" json:"authority,omitempty"`
+			} `tfsdk:"grpc_service" json:"grpcService,omitempty"`
+			RateLimitBeforeAuth *bool `tfsdk:"rate_limit_before_auth" json:"rateLimitBeforeAuth,omitempty"`
+			RatelimitServerRef  *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"ratelimit_server_ref" json:"ratelimitServerRef,omitempty"`
@@ -430,6 +441,7 @@ type GlooSoloIoSettingsV1ManifestData struct {
 					Aws         *struct {
 						AccessKeyId       *string `tfsdk:"access_key_id" json:"accessKeyId,omitempty"`
 						IamServerIdHeader *string `tfsdk:"iam_server_id_header" json:"iamServerIdHeader,omitempty"`
+						LeaseIncrement    *int64  `tfsdk:"lease_increment" json:"leaseIncrement,omitempty"`
 						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
 						Region            *string `tfsdk:"region" json:"region,omitempty"`
 						SecretAccessKey   *string `tfsdk:"secret_access_key" json:"secretAccessKey,omitempty"`
@@ -471,6 +483,7 @@ type GlooSoloIoSettingsV1ManifestData struct {
 			Aws         *struct {
 				AccessKeyId       *string `tfsdk:"access_key_id" json:"accessKeyId,omitempty"`
 				IamServerIdHeader *string `tfsdk:"iam_server_id_header" json:"iamServerIdHeader,omitempty"`
+				LeaseIncrement    *int64  `tfsdk:"lease_increment" json:"leaseIncrement,omitempty"`
 				MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
 				Region            *string `tfsdk:"region" json:"region,omitempty"`
 				SecretAccessKey   *string `tfsdk:"secret_access_key" json:"secretAccessKey,omitempty"`
@@ -2072,6 +2085,14 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Computed:            false,
 							},
 
+							"translate_empty_gateways": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"validation": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -2247,6 +2268,14 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 												Computed:            false,
 											},
 
+											"region": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"timeout": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -2399,6 +2428,31 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"replace_invalid_routes": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"istio_options": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"append_x_forwarded_host": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enable_auto_mtls": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -2894,6 +2948,14 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"dashboard_prefix": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"default_dashboard_folder_id": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -2904,6 +2966,14 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 											int64validator.AtLeast(0),
 											int64validator.AtMost(4.294967295e+09),
 										},
+									},
+
+									"extra_metric_query_parameters": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,
@@ -3023,6 +3093,23 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"grpc_service": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"authority": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"rate_limit_before_auth": schema.BoolAttribute{
@@ -3164,6 +3251,14 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 														},
 
 														"iam_server_id_header": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"lease_increment": schema.Int64Attribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Required:            false,
@@ -3455,6 +3550,14 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"iam_server_id_header": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"lease_increment": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

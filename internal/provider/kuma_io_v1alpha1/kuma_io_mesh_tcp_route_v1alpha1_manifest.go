@@ -47,28 +47,32 @@ type KumaIoMeshTcprouteV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		TargetRef *struct {
-			Kind *string            `tfsdk:"kind" json:"kind,omitempty"`
-			Mesh *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-			Name *string            `tfsdk:"name" json:"name,omitempty"`
-			Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+			Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+			Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+			Name       *string            `tfsdk:"name" json:"name,omitempty"`
+			ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+			Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		To *[]struct {
 			Rules *[]struct {
 				Default *struct {
 					BackendRefs *[]struct {
-						Kind   *string            `tfsdk:"kind" json:"kind,omitempty"`
-						Mesh   *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-						Name   *string            `tfsdk:"name" json:"name,omitempty"`
-						Tags   *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
-						Weight *int64             `tfsdk:"weight" json:"weight,omitempty"`
+						Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+						Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+						Name       *string            `tfsdk:"name" json:"name,omitempty"`
+						Port       *int64             `tfsdk:"port" json:"port,omitempty"`
+						ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+						Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+						Weight     *int64             `tfsdk:"weight" json:"weight,omitempty"`
 					} `tfsdk:"backend_refs" json:"backendRefs,omitempty"`
 				} `tfsdk:"default" json:"default,omitempty"`
 			} `tfsdk:"rules" json:"rules,omitempty"`
 			TargetRef *struct {
-				Kind *string            `tfsdk:"kind" json:"kind,omitempty"`
-				Mesh *string            `tfsdk:"mesh" json:"mesh,omitempty"`
-				Name *string            `tfsdk:"name" json:"name,omitempty"`
-				Tags *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+				Kind       *string            `tfsdk:"kind" json:"kind,omitempty"`
+				Mesh       *string            `tfsdk:"mesh" json:"mesh,omitempty"`
+				Name       *string            `tfsdk:"name" json:"name,omitempty"`
+				ProxyTypes *[]string          `tfsdk:"proxy_types" json:"proxyTypes,omitempty"`
+				Tags       *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		} `tfsdk:"to" json:"to,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -160,8 +164,8 @@ func (r *KumaIoMeshTcprouteV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "Spec is the specification of the Kuma MeshTCPRoute resource.",
 				Attributes: map[string]schema.Attribute{
 					"target_ref": schema.SingleNestedAttribute{
-						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined in-place.",
-						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined in-place.",
+						Description:         "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined in-place.",
+						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined in-place.",
 						Attributes: map[string]schema.Attribute{
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
@@ -183,16 +187,25 @@ func (r *KumaIoMeshTcprouteV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
-								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+								Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_types": schema.ListAttribute{
+								Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"tags": schema.MapAttribute{
-								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
-								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+								Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+								MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -205,18 +218,18 @@ func (r *KumaIoMeshTcprouteV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"to": schema.ListNestedAttribute{
-						Description:         "To list makes a match between the consumed services and corresponding configurations",
-						MarkdownDescription: "To list makes a match between the consumed services and corresponding configurations",
+						Description:         "To list makes a match between the consumed services and correspondingconfigurations",
+						MarkdownDescription: "To list makes a match between the consumed services and correspondingconfigurations",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"rules": schema.ListNestedAttribute{
-									Description:         "Rules contains the routing rules applies to a combination of top-level targetRef and the targetRef in this entry.",
-									MarkdownDescription: "Rules contains the routing rules applies to a combination of top-level targetRef and the targetRef in this entry.",
+									Description:         "Rules contains the routing rules applies to a combination of top-leveltargetRef and the targetRef in this entry.",
+									MarkdownDescription: "Rules contains the routing rules applies to a combination of top-leveltargetRef and the targetRef in this entry.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"default": schema.SingleNestedAttribute{
-												Description:         "Default holds routing rules that can be merged with rules from other policies.",
-												MarkdownDescription: "Default holds routing rules that can be merged with rules from other policies.",
+												Description:         "Default holds routing rules that can be merged with rules from otherpolicies.",
+												MarkdownDescription: "Default holds routing rules that can be merged with rules from otherpolicies.",
 												Attributes: map[string]schema.Attribute{
 													"backend_refs": schema.ListNestedAttribute{
 														Description:         "",
@@ -243,16 +256,33 @@ func (r *KumaIoMeshTcprouteV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
-																	MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+																	Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+																	MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"port": schema.Int64Attribute{
+																	Description:         "Port is only supported when this ref refers to a real MeshService object",
+																	MarkdownDescription: "Port is only supported when this ref refers to a real MeshService object",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"proxy_types": schema.ListAttribute{
+																	Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+																	MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"tags": schema.MapAttribute{
-																	Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
-																	MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+																	Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+																	MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -288,8 +318,8 @@ func (r *KumaIoMeshTcprouteV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								},
 
 								"target_ref": schema.SingleNestedAttribute{
-									Description:         "TargetRef is a reference to the resource that represents a group of destinations.",
-									MarkdownDescription: "TargetRef is a reference to the resource that represents a group of destinations.",
+									Description:         "TargetRef is a reference to the resource that represents a group ofdestinations.",
+									MarkdownDescription: "TargetRef is a reference to the resource that represents a group ofdestinations.",
 									Attributes: map[string]schema.Attribute{
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
@@ -311,16 +341,25 @@ func (r *KumaIoMeshTcprouteV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
-											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService', 'MeshServiceSubset' and 'MeshGatewayRoute'",
+											Description:         "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											MarkdownDescription: "Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_types": schema.ListAttribute{
+											Description:         "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											MarkdownDescription: "ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.",
+											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tags": schema.MapAttribute{
-											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
-											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds 'MeshSubset' and 'MeshServiceSubset'",
+											Description:         "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
+											MarkdownDescription: "Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

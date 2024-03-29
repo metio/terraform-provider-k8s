@@ -55,12 +55,12 @@ Optional:
 
 Required:
 
-- `controller_name` (String) controllerName is name of the controller which will actually perform the checks. This is the name with which controller identifies with, not necessarily a K8S Pod or Deployment name. Cannot be empty.
+- `controller_name` (String) controllerName is name of the controller which will actually performthe checks. This is the name with which controller identifies with,not necessarily a K8S Pod or Deployment name. Cannot be empty.
 
 Optional:
 
 - `parameters` (Attributes) Parameters identifies the resource providing additional check parameters. (see [below for nested schema](#nestedatt--spec--parameters))
-- `retry_delay_minutes` (Number) RetryDelayMinutes specifies how long to keep the workload suspended after a failed check (after it transitioned to False). After that the check state goes to 'Unknown'. The default is 15 min.
+- `retry_delay_minutes` (Number) RetryDelayMinutes specifies how long to keep the workload suspendedafter a failed check (after it transitioned to False).After that the check state goes to 'Unknown'.The default is 15 min.
 
 <a id="nestedatt--spec--parameters"></a>
 ### Nested Schema for `spec.parameters`

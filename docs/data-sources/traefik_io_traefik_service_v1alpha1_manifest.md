@@ -3,12 +3,12 @@
 page_title: "k8s_traefik_io_traefik_service_v1alpha1_manifest Data Source - terraform-provider-k8s"
 subcategory: "traefik.io"
 description: |-
-  TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice
+  TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice
 ---
 
 # k8s_traefik_io_traefik_service_v1alpha1_manifest (Data Source)
 
-TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice
+TraefikService is the CRD implementation of a Traefik Service.TraefikService object allows to:- Apply weight to Services on load-balancing- Mirror traffic on servicesMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-traefikservice
 
 ## Example Usage
 
@@ -18,7 +18,9 @@ data "k8s_traefik_io_traefik_service_v1alpha1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {}
+  spec = {
+
+  }
 }
 ```
 
@@ -62,52 +64,54 @@ Optional:
 
 Required:
 
-- `name` (String) Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.
+- `name` (String) Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.
 
 Optional:
 
 - `kind` (String) Kind defines the kind of the Service.
-- `max_body_size` (Number) MaxBodySize defines the maximum size allowed for the body of the request. If the body is larger, the request is not mirrored. Default value is -1, which means unlimited size.
+- `max_body_size` (Number) MaxBodySize defines the maximum size allowed for the body of the request.If the body is larger, the request is not mirrored.Default value is -1, which means unlimited size.
 - `mirrors` (Attributes List) Mirrors defines the list of mirrors where Traefik will duplicate the traffic. (see [below for nested schema](#nestedatt--spec--mirroring--mirrors))
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.
-- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.
-- `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.
-- `port` (String) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
+- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.
+- `node_port_lb` (Boolean) NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.
+- `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.
+- `port` (String) Port defines the port of a Kubernetes Service.This can be a reference to a named port.
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--mirroring--response_forwarding))
-- `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.
-- `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.
-- `sticky` (Attributes) Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--mirroring--sticky))
-- `strategy` (String) Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.
-- `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).
+- `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.
+- `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.
+- `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--mirroring--sticky))
+- `strategy` (String) Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.
+- `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
 
 <a id="nestedatt--spec--mirroring--mirrors"></a>
 ### Nested Schema for `spec.mirroring.mirrors`
 
 Required:
 
-- `name` (String) Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.
+- `name` (String) Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.
 
 Optional:
 
 - `kind` (String) Kind defines the kind of the Service.
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.
-- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.
-- `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.
-- `percent` (Number) Percent defines the part of the traffic to mirror. Supported values: 0 to 100.
-- `port` (String) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
+- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.
+- `node_port_lb` (Boolean) NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.
+- `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.
+- `percent` (Number) Percent defines the part of the traffic to mirror.Supported values: 0 to 100.
+- `port` (String) Port defines the port of a Kubernetes Service.This can be a reference to a named port.
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--mirroring--mirrors--response_forwarding))
-- `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.
-- `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.
-- `sticky` (Attributes) Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--mirroring--mirrors--sticky))
-- `strategy` (String) Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.
-- `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).
+- `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.
+- `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.
+- `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--mirroring--mirrors--sticky))
+- `strategy` (String) Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.
+- `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
 
 <a id="nestedatt--spec--mirroring--mirrors--response_forwarding"></a>
 ### Nested Schema for `spec.mirroring.mirrors.weight`
 
 Optional:
 
-- `flush_interval` (String) FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms
+- `flush_interval` (String) FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms
 
 
 <a id="nestedatt--spec--mirroring--mirrors--sticky"></a>
@@ -123,8 +127,9 @@ Optional:
 Optional:
 
 - `http_only` (Boolean) HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.
+- `max_age` (Number) MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.
 - `name` (String) Name defines the Cookie name.
-- `same_site` (String) SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+- `same_site` (String) SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
 - `secure` (Boolean) Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).
 
 
@@ -135,7 +140,7 @@ Optional:
 
 Optional:
 
-- `flush_interval` (String) FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms
+- `flush_interval` (String) FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms
 
 
 <a id="nestedatt--spec--mirroring--sticky"></a>
@@ -151,8 +156,9 @@ Optional:
 Optional:
 
 - `http_only` (Boolean) HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.
+- `max_age` (Number) MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.
 - `name` (String) Name defines the Cookie name.
-- `same_site` (String) SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+- `same_site` (String) SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
 - `secure` (Boolean) Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).
 
 
@@ -164,35 +170,36 @@ Optional:
 Optional:
 
 - `services` (Attributes List) Services defines the list of Kubernetes Service and/or TraefikService to load-balance, with weight. (see [below for nested schema](#nestedatt--spec--weighted--services))
-- `sticky` (Attributes) Sticky defines whether sticky sessions are enabled. More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#stickiness-and-load-balancing (see [below for nested schema](#nestedatt--spec--weighted--sticky))
+- `sticky` (Attributes) Sticky defines whether sticky sessions are enabled.More info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#stickiness-and-load-balancing (see [below for nested schema](#nestedatt--spec--weighted--sticky))
 
 <a id="nestedatt--spec--weighted--services"></a>
 ### Nested Schema for `spec.weighted.services`
 
 Required:
 
-- `name` (String) Name defines the name of the referenced Kubernetes Service or TraefikService. The differentiation between the two is specified in the Kind field.
+- `name` (String) Name defines the name of the referenced Kubernetes Service or TraefikService.The differentiation between the two is specified in the Kind field.
 
 Optional:
 
 - `kind` (String) Kind defines the kind of the Service.
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.
-- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer, whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP. The Kubernetes Service itself does load-balance to the pods. By default, NativeLB is false.
-- `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service. By default, passHostHeader is true.
-- `port` (String) Port defines the port of a Kubernetes Service. This can be a reference to a named port.
+- `native_lb` (Boolean) NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.
+- `node_port_lb` (Boolean) NodePortLB controls, when creating the load-balancer,whether the LB's children are directly the nodes internal IPs using the nodePort when the service type is NodePort.It allows services to be reachable when Traefik runs externally from the Kubernetes cluster but within the same network of the nodes.By default, NodePortLB is false.
+- `pass_host_header` (Boolean) PassHostHeader defines whether the client Host header is forwarded to the upstream Kubernetes Service.By default, passHostHeader is true.
+- `port` (String) Port defines the port of a Kubernetes Service.This can be a reference to a named port.
 - `response_forwarding` (Attributes) ResponseForwarding defines how Traefik forwards the response from the upstream Kubernetes Service to the client. (see [below for nested schema](#nestedatt--spec--weighted--services--response_forwarding))
-- `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service. It defaults to https when Kubernetes Service port is 443, http otherwise.
-- `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use. It allows to configure the transport between Traefik and your servers. Can only be used on a Kubernetes Service.
-- `sticky` (Attributes) Sticky defines the sticky sessions configuration. More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--weighted--services--sticky))
-- `strategy` (String) Strategy defines the load balancing strategy between the servers. RoundRobin is the only supported value at the moment.
-- `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object (and to be precise, one that embeds a Weighted Round Robin).
+- `scheme` (String) Scheme defines the scheme to use for the request to the upstream Kubernetes Service.It defaults to https when Kubernetes Service port is 443, http otherwise.
+- `servers_transport` (String) ServersTransport defines the name of ServersTransport resource to use.It allows to configure the transport between Traefik and your servers.Can only be used on a Kubernetes Service.
+- `sticky` (Attributes) Sticky defines the sticky sessions configuration.More info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions (see [below for nested schema](#nestedatt--spec--weighted--services--sticky))
+- `strategy` (String) Strategy defines the load balancing strategy between the servers.RoundRobin is the only supported value at the moment.
+- `weight` (Number) Weight defines the weight and should only be specified when Name references a TraefikService object(and to be precise, one that embeds a Weighted Round Robin).
 
 <a id="nestedatt--spec--weighted--services--response_forwarding"></a>
 ### Nested Schema for `spec.weighted.services.weight`
 
 Optional:
 
-- `flush_interval` (String) FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body. A negative value means to flush immediately after each write to the client. This configuration is ignored when ReverseProxy recognizes a response as a streaming response; for such responses, writes are flushed to the client immediately. Default: 100ms
+- `flush_interval` (String) FlushInterval defines the interval, in milliseconds, in between flushes to the client while copying the response body.A negative value means to flush immediately after each write to the client.This configuration is ignored when ReverseProxy recognizes a response as a streaming response;for such responses, writes are flushed to the client immediately.Default: 100ms
 
 
 <a id="nestedatt--spec--weighted--services--sticky"></a>
@@ -208,8 +215,9 @@ Optional:
 Optional:
 
 - `http_only` (Boolean) HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.
+- `max_age` (Number) MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.
 - `name` (String) Name defines the Cookie name.
-- `same_site` (String) SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+- `same_site` (String) SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
 - `secure` (Boolean) Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).
 
 
@@ -228,6 +236,7 @@ Optional:
 Optional:
 
 - `http_only` (Boolean) HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.
+- `max_age` (Number) MaxAge indicates the number of seconds until the cookie expires.When set to a negative number, the cookie expires immediately.When set to zero, the cookie never expires.
 - `name` (String) Name defines the Cookie name.
-- `same_site` (String) SameSite defines the same site policy. More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+- `same_site` (String) SameSite defines the same site policy.More info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
 - `secure` (Boolean) Secure defines whether the cookie can only be transmitted over an encrypted connection (i.e. HTTPS).

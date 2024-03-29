@@ -68,13 +68,22 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 				BlkioQOS *struct {
 					Blocks *[]struct {
 						IoCfg *struct {
-							IoWeightPercent *int64 `tfsdk:"io_weight_percent" json:"ioWeightPercent,omitempty"`
-							ReadBPS         *int64 `tfsdk:"read_bps" json:"readBPS,omitempty"`
-							ReadIOPS        *int64 `tfsdk:"read_iops" json:"readIOPS,omitempty"`
-							ReadLatency     *int64 `tfsdk:"read_latency" json:"readLatency,omitempty"`
-							WriteBPS        *int64 `tfsdk:"write_bps" json:"writeBPS,omitempty"`
-							WriteIOPS       *int64 `tfsdk:"write_iops" json:"writeIOPS,omitempty"`
-							WriteLatency    *int64 `tfsdk:"write_latency" json:"writeLatency,omitempty"`
+							EnableUserModel     *bool  `tfsdk:"enable_user_model" json:"enableUserModel,omitempty"`
+							IoWeightPercent     *int64 `tfsdk:"io_weight_percent" json:"ioWeightPercent,omitempty"`
+							ModelReadBPS        *int64 `tfsdk:"model_read_bps" json:"modelReadBPS,omitempty"`
+							ModelReadRandIOPS   *int64 `tfsdk:"model_read_rand_iops" json:"modelReadRandIOPS,omitempty"`
+							ModelReadSeqIOPS    *int64 `tfsdk:"model_read_seq_iops" json:"modelReadSeqIOPS,omitempty"`
+							ModelWriteBPS       *int64 `tfsdk:"model_write_bps" json:"modelWriteBPS,omitempty"`
+							ModelWriteRandIOPS  *int64 `tfsdk:"model_write_rand_iops" json:"modelWriteRandIOPS,omitempty"`
+							ModelWriteSeqIOPS   *int64 `tfsdk:"model_write_seq_iops" json:"modelWriteSeqIOPS,omitempty"`
+							ReadBPS             *int64 `tfsdk:"read_bps" json:"readBPS,omitempty"`
+							ReadIOPS            *int64 `tfsdk:"read_iops" json:"readIOPS,omitempty"`
+							ReadLatency         *int64 `tfsdk:"read_latency" json:"readLatency,omitempty"`
+							ReadLatencyPercent  *int64 `tfsdk:"read_latency_percent" json:"readLatencyPercent,omitempty"`
+							WriteBPS            *int64 `tfsdk:"write_bps" json:"writeBPS,omitempty"`
+							WriteIOPS           *int64 `tfsdk:"write_iops" json:"writeIOPS,omitempty"`
+							WriteLatency        *int64 `tfsdk:"write_latency" json:"writeLatency,omitempty"`
+							WriteLatencyPercent *int64 `tfsdk:"write_latency_percent" json:"writeLatencyPercent,omitempty"`
 						} `tfsdk:"io_cfg" json:"ioCfg,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 						Type *string `tfsdk:"type" json:"type,omitempty"`
@@ -82,8 +91,10 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 					Enable *bool `tfsdk:"enable" json:"enable,omitempty"`
 				} `tfsdk:"blkio_qos" json:"blkioQOS,omitempty"`
 				CpuQOS *struct {
+					CoreExpeller  *bool  `tfsdk:"core_expeller" json:"coreExpeller,omitempty"`
 					Enable        *bool  `tfsdk:"enable" json:"enable,omitempty"`
 					GroupIdentity *int64 `tfsdk:"group_identity" json:"groupIdentity,omitempty"`
+					SchedIdle     *int64 `tfsdk:"sched_idle" json:"schedIdle,omitempty"`
 				} `tfsdk:"cpu_qos" json:"cpuQOS,omitempty"`
 				MemoryQOS *struct {
 					Enable            *bool  `tfsdk:"enable" json:"enable,omitempty"`
@@ -97,6 +108,13 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 					WmarkRatio        *int64 `tfsdk:"wmark_ratio" json:"wmarkRatio,omitempty"`
 					WmarkScalePermill *int64 `tfsdk:"wmark_scale_permill" json:"wmarkScalePermill,omitempty"`
 				} `tfsdk:"memory_qos" json:"memoryQOS,omitempty"`
+				NetworkQOS *struct {
+					EgressLimit    *string `tfsdk:"egress_limit" json:"egressLimit,omitempty"`
+					EgressRequest  *string `tfsdk:"egress_request" json:"egressRequest,omitempty"`
+					Enable         *bool   `tfsdk:"enable" json:"enable,omitempty"`
+					IngressLimit   *string `tfsdk:"ingress_limit" json:"ingressLimit,omitempty"`
+					IngressRequest *string `tfsdk:"ingress_request" json:"ingressRequest,omitempty"`
+				} `tfsdk:"network_qos" json:"networkQOS,omitempty"`
 				ResctrlQOS *struct {
 					CatRangeEndPercent   *int64 `tfsdk:"cat_range_end_percent" json:"catRangeEndPercent,omitempty"`
 					CatRangeStartPercent *int64 `tfsdk:"cat_range_start_percent" json:"catRangeStartPercent,omitempty"`
@@ -108,13 +126,22 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 				BlkioQOS *struct {
 					Blocks *[]struct {
 						IoCfg *struct {
-							IoWeightPercent *int64 `tfsdk:"io_weight_percent" json:"ioWeightPercent,omitempty"`
-							ReadBPS         *int64 `tfsdk:"read_bps" json:"readBPS,omitempty"`
-							ReadIOPS        *int64 `tfsdk:"read_iops" json:"readIOPS,omitempty"`
-							ReadLatency     *int64 `tfsdk:"read_latency" json:"readLatency,omitempty"`
-							WriteBPS        *int64 `tfsdk:"write_bps" json:"writeBPS,omitempty"`
-							WriteIOPS       *int64 `tfsdk:"write_iops" json:"writeIOPS,omitempty"`
-							WriteLatency    *int64 `tfsdk:"write_latency" json:"writeLatency,omitempty"`
+							EnableUserModel     *bool  `tfsdk:"enable_user_model" json:"enableUserModel,omitempty"`
+							IoWeightPercent     *int64 `tfsdk:"io_weight_percent" json:"ioWeightPercent,omitempty"`
+							ModelReadBPS        *int64 `tfsdk:"model_read_bps" json:"modelReadBPS,omitempty"`
+							ModelReadRandIOPS   *int64 `tfsdk:"model_read_rand_iops" json:"modelReadRandIOPS,omitempty"`
+							ModelReadSeqIOPS    *int64 `tfsdk:"model_read_seq_iops" json:"modelReadSeqIOPS,omitempty"`
+							ModelWriteBPS       *int64 `tfsdk:"model_write_bps" json:"modelWriteBPS,omitempty"`
+							ModelWriteRandIOPS  *int64 `tfsdk:"model_write_rand_iops" json:"modelWriteRandIOPS,omitempty"`
+							ModelWriteSeqIOPS   *int64 `tfsdk:"model_write_seq_iops" json:"modelWriteSeqIOPS,omitempty"`
+							ReadBPS             *int64 `tfsdk:"read_bps" json:"readBPS,omitempty"`
+							ReadIOPS            *int64 `tfsdk:"read_iops" json:"readIOPS,omitempty"`
+							ReadLatency         *int64 `tfsdk:"read_latency" json:"readLatency,omitempty"`
+							ReadLatencyPercent  *int64 `tfsdk:"read_latency_percent" json:"readLatencyPercent,omitempty"`
+							WriteBPS            *int64 `tfsdk:"write_bps" json:"writeBPS,omitempty"`
+							WriteIOPS           *int64 `tfsdk:"write_iops" json:"writeIOPS,omitempty"`
+							WriteLatency        *int64 `tfsdk:"write_latency" json:"writeLatency,omitempty"`
+							WriteLatencyPercent *int64 `tfsdk:"write_latency_percent" json:"writeLatencyPercent,omitempty"`
 						} `tfsdk:"io_cfg" json:"ioCfg,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 						Type *string `tfsdk:"type" json:"type,omitempty"`
@@ -122,8 +149,10 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 					Enable *bool `tfsdk:"enable" json:"enable,omitempty"`
 				} `tfsdk:"blkio_qos" json:"blkioQOS,omitempty"`
 				CpuQOS *struct {
+					CoreExpeller  *bool  `tfsdk:"core_expeller" json:"coreExpeller,omitempty"`
 					Enable        *bool  `tfsdk:"enable" json:"enable,omitempty"`
 					GroupIdentity *int64 `tfsdk:"group_identity" json:"groupIdentity,omitempty"`
+					SchedIdle     *int64 `tfsdk:"sched_idle" json:"schedIdle,omitempty"`
 				} `tfsdk:"cpu_qos" json:"cpuQOS,omitempty"`
 				MemoryQOS *struct {
 					Enable            *bool  `tfsdk:"enable" json:"enable,omitempty"`
@@ -137,6 +166,13 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 					WmarkRatio        *int64 `tfsdk:"wmark_ratio" json:"wmarkRatio,omitempty"`
 					WmarkScalePermill *int64 `tfsdk:"wmark_scale_permill" json:"wmarkScalePermill,omitempty"`
 				} `tfsdk:"memory_qos" json:"memoryQOS,omitempty"`
+				NetworkQOS *struct {
+					EgressLimit    *string `tfsdk:"egress_limit" json:"egressLimit,omitempty"`
+					EgressRequest  *string `tfsdk:"egress_request" json:"egressRequest,omitempty"`
+					Enable         *bool   `tfsdk:"enable" json:"enable,omitempty"`
+					IngressLimit   *string `tfsdk:"ingress_limit" json:"ingressLimit,omitempty"`
+					IngressRequest *string `tfsdk:"ingress_request" json:"ingressRequest,omitempty"`
+				} `tfsdk:"network_qos" json:"networkQOS,omitempty"`
 				ResctrlQOS *struct {
 					CatRangeEndPercent   *int64 `tfsdk:"cat_range_end_percent" json:"catRangeEndPercent,omitempty"`
 					CatRangeStartPercent *int64 `tfsdk:"cat_range_start_percent" json:"catRangeStartPercent,omitempty"`
@@ -148,13 +184,22 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 				BlkioQOS *struct {
 					Blocks *[]struct {
 						IoCfg *struct {
-							IoWeightPercent *int64 `tfsdk:"io_weight_percent" json:"ioWeightPercent,omitempty"`
-							ReadBPS         *int64 `tfsdk:"read_bps" json:"readBPS,omitempty"`
-							ReadIOPS        *int64 `tfsdk:"read_iops" json:"readIOPS,omitempty"`
-							ReadLatency     *int64 `tfsdk:"read_latency" json:"readLatency,omitempty"`
-							WriteBPS        *int64 `tfsdk:"write_bps" json:"writeBPS,omitempty"`
-							WriteIOPS       *int64 `tfsdk:"write_iops" json:"writeIOPS,omitempty"`
-							WriteLatency    *int64 `tfsdk:"write_latency" json:"writeLatency,omitempty"`
+							EnableUserModel     *bool  `tfsdk:"enable_user_model" json:"enableUserModel,omitempty"`
+							IoWeightPercent     *int64 `tfsdk:"io_weight_percent" json:"ioWeightPercent,omitempty"`
+							ModelReadBPS        *int64 `tfsdk:"model_read_bps" json:"modelReadBPS,omitempty"`
+							ModelReadRandIOPS   *int64 `tfsdk:"model_read_rand_iops" json:"modelReadRandIOPS,omitempty"`
+							ModelReadSeqIOPS    *int64 `tfsdk:"model_read_seq_iops" json:"modelReadSeqIOPS,omitempty"`
+							ModelWriteBPS       *int64 `tfsdk:"model_write_bps" json:"modelWriteBPS,omitempty"`
+							ModelWriteRandIOPS  *int64 `tfsdk:"model_write_rand_iops" json:"modelWriteRandIOPS,omitempty"`
+							ModelWriteSeqIOPS   *int64 `tfsdk:"model_write_seq_iops" json:"modelWriteSeqIOPS,omitempty"`
+							ReadBPS             *int64 `tfsdk:"read_bps" json:"readBPS,omitempty"`
+							ReadIOPS            *int64 `tfsdk:"read_iops" json:"readIOPS,omitempty"`
+							ReadLatency         *int64 `tfsdk:"read_latency" json:"readLatency,omitempty"`
+							ReadLatencyPercent  *int64 `tfsdk:"read_latency_percent" json:"readLatencyPercent,omitempty"`
+							WriteBPS            *int64 `tfsdk:"write_bps" json:"writeBPS,omitempty"`
+							WriteIOPS           *int64 `tfsdk:"write_iops" json:"writeIOPS,omitempty"`
+							WriteLatency        *int64 `tfsdk:"write_latency" json:"writeLatency,omitempty"`
+							WriteLatencyPercent *int64 `tfsdk:"write_latency_percent" json:"writeLatencyPercent,omitempty"`
 						} `tfsdk:"io_cfg" json:"ioCfg,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 						Type *string `tfsdk:"type" json:"type,omitempty"`
@@ -162,8 +207,10 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 					Enable *bool `tfsdk:"enable" json:"enable,omitempty"`
 				} `tfsdk:"blkio_qos" json:"blkioQOS,omitempty"`
 				CpuQOS *struct {
+					CoreExpeller  *bool  `tfsdk:"core_expeller" json:"coreExpeller,omitempty"`
 					Enable        *bool  `tfsdk:"enable" json:"enable,omitempty"`
 					GroupIdentity *int64 `tfsdk:"group_identity" json:"groupIdentity,omitempty"`
+					SchedIdle     *int64 `tfsdk:"sched_idle" json:"schedIdle,omitempty"`
 				} `tfsdk:"cpu_qos" json:"cpuQOS,omitempty"`
 				MemoryQOS *struct {
 					Enable            *bool  `tfsdk:"enable" json:"enable,omitempty"`
@@ -177,6 +224,13 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 					WmarkRatio        *int64 `tfsdk:"wmark_ratio" json:"wmarkRatio,omitempty"`
 					WmarkScalePermill *int64 `tfsdk:"wmark_scale_permill" json:"wmarkScalePermill,omitempty"`
 				} `tfsdk:"memory_qos" json:"memoryQOS,omitempty"`
+				NetworkQOS *struct {
+					EgressLimit    *string `tfsdk:"egress_limit" json:"egressLimit,omitempty"`
+					EgressRequest  *string `tfsdk:"egress_request" json:"egressRequest,omitempty"`
+					Enable         *bool   `tfsdk:"enable" json:"enable,omitempty"`
+					IngressLimit   *string `tfsdk:"ingress_limit" json:"ingressLimit,omitempty"`
+					IngressRequest *string `tfsdk:"ingress_request" json:"ingressRequest,omitempty"`
+				} `tfsdk:"network_qos" json:"networkQOS,omitempty"`
 				ResctrlQOS *struct {
 					CatRangeEndPercent   *int64 `tfsdk:"cat_range_end_percent" json:"catRangeEndPercent,omitempty"`
 					CatRangeStartPercent *int64 `tfsdk:"cat_range_start_percent" json:"catRangeStartPercent,omitempty"`
@@ -188,13 +242,22 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 				BlkioQOS *struct {
 					Blocks *[]struct {
 						IoCfg *struct {
-							IoWeightPercent *int64 `tfsdk:"io_weight_percent" json:"ioWeightPercent,omitempty"`
-							ReadBPS         *int64 `tfsdk:"read_bps" json:"readBPS,omitempty"`
-							ReadIOPS        *int64 `tfsdk:"read_iops" json:"readIOPS,omitempty"`
-							ReadLatency     *int64 `tfsdk:"read_latency" json:"readLatency,omitempty"`
-							WriteBPS        *int64 `tfsdk:"write_bps" json:"writeBPS,omitempty"`
-							WriteIOPS       *int64 `tfsdk:"write_iops" json:"writeIOPS,omitempty"`
-							WriteLatency    *int64 `tfsdk:"write_latency" json:"writeLatency,omitempty"`
+							EnableUserModel     *bool  `tfsdk:"enable_user_model" json:"enableUserModel,omitempty"`
+							IoWeightPercent     *int64 `tfsdk:"io_weight_percent" json:"ioWeightPercent,omitempty"`
+							ModelReadBPS        *int64 `tfsdk:"model_read_bps" json:"modelReadBPS,omitempty"`
+							ModelReadRandIOPS   *int64 `tfsdk:"model_read_rand_iops" json:"modelReadRandIOPS,omitempty"`
+							ModelReadSeqIOPS    *int64 `tfsdk:"model_read_seq_iops" json:"modelReadSeqIOPS,omitempty"`
+							ModelWriteBPS       *int64 `tfsdk:"model_write_bps" json:"modelWriteBPS,omitempty"`
+							ModelWriteRandIOPS  *int64 `tfsdk:"model_write_rand_iops" json:"modelWriteRandIOPS,omitempty"`
+							ModelWriteSeqIOPS   *int64 `tfsdk:"model_write_seq_iops" json:"modelWriteSeqIOPS,omitempty"`
+							ReadBPS             *int64 `tfsdk:"read_bps" json:"readBPS,omitempty"`
+							ReadIOPS            *int64 `tfsdk:"read_iops" json:"readIOPS,omitempty"`
+							ReadLatency         *int64 `tfsdk:"read_latency" json:"readLatency,omitempty"`
+							ReadLatencyPercent  *int64 `tfsdk:"read_latency_percent" json:"readLatencyPercent,omitempty"`
+							WriteBPS            *int64 `tfsdk:"write_bps" json:"writeBPS,omitempty"`
+							WriteIOPS           *int64 `tfsdk:"write_iops" json:"writeIOPS,omitempty"`
+							WriteLatency        *int64 `tfsdk:"write_latency" json:"writeLatency,omitempty"`
+							WriteLatencyPercent *int64 `tfsdk:"write_latency_percent" json:"writeLatencyPercent,omitempty"`
 						} `tfsdk:"io_cfg" json:"ioCfg,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 						Type *string `tfsdk:"type" json:"type,omitempty"`
@@ -202,8 +265,10 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 					Enable *bool `tfsdk:"enable" json:"enable,omitempty"`
 				} `tfsdk:"blkio_qos" json:"blkioQOS,omitempty"`
 				CpuQOS *struct {
+					CoreExpeller  *bool  `tfsdk:"core_expeller" json:"coreExpeller,omitempty"`
 					Enable        *bool  `tfsdk:"enable" json:"enable,omitempty"`
 					GroupIdentity *int64 `tfsdk:"group_identity" json:"groupIdentity,omitempty"`
+					SchedIdle     *int64 `tfsdk:"sched_idle" json:"schedIdle,omitempty"`
 				} `tfsdk:"cpu_qos" json:"cpuQOS,omitempty"`
 				MemoryQOS *struct {
 					Enable            *bool  `tfsdk:"enable" json:"enable,omitempty"`
@@ -217,6 +282,13 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 					WmarkRatio        *int64 `tfsdk:"wmark_ratio" json:"wmarkRatio,omitempty"`
 					WmarkScalePermill *int64 `tfsdk:"wmark_scale_permill" json:"wmarkScalePermill,omitempty"`
 				} `tfsdk:"memory_qos" json:"memoryQOS,omitempty"`
+				NetworkQOS *struct {
+					EgressLimit    *string `tfsdk:"egress_limit" json:"egressLimit,omitempty"`
+					EgressRequest  *string `tfsdk:"egress_request" json:"egressRequest,omitempty"`
+					Enable         *bool   `tfsdk:"enable" json:"enable,omitempty"`
+					IngressLimit   *string `tfsdk:"ingress_limit" json:"ingressLimit,omitempty"`
+					IngressRequest *string `tfsdk:"ingress_request" json:"ingressRequest,omitempty"`
+				} `tfsdk:"network_qos" json:"networkQOS,omitempty"`
 				ResctrlQOS *struct {
 					CatRangeEndPercent   *int64 `tfsdk:"cat_range_end_percent" json:"catRangeEndPercent,omitempty"`
 					CatRangeStartPercent *int64 `tfsdk:"cat_range_start_percent" json:"catRangeStartPercent,omitempty"`
@@ -224,17 +296,30 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 					MbaPercent           *int64 `tfsdk:"mba_percent" json:"mbaPercent,omitempty"`
 				} `tfsdk:"resctrl_qos" json:"resctrlQOS,omitempty"`
 			} `tfsdk:"lsr_class" json:"lsrClass,omitempty"`
+			Policies *struct {
+				CpuPolicy    *string `tfsdk:"cpu_policy" json:"cpuPolicy,omitempty"`
+				NetQOSPolicy *string `tfsdk:"net_qos_policy" json:"netQOSPolicy,omitempty"`
+			} `tfsdk:"policies" json:"policies,omitempty"`
 			SystemClass *struct {
 				BlkioQOS *struct {
 					Blocks *[]struct {
 						IoCfg *struct {
-							IoWeightPercent *int64 `tfsdk:"io_weight_percent" json:"ioWeightPercent,omitempty"`
-							ReadBPS         *int64 `tfsdk:"read_bps" json:"readBPS,omitempty"`
-							ReadIOPS        *int64 `tfsdk:"read_iops" json:"readIOPS,omitempty"`
-							ReadLatency     *int64 `tfsdk:"read_latency" json:"readLatency,omitempty"`
-							WriteBPS        *int64 `tfsdk:"write_bps" json:"writeBPS,omitempty"`
-							WriteIOPS       *int64 `tfsdk:"write_iops" json:"writeIOPS,omitempty"`
-							WriteLatency    *int64 `tfsdk:"write_latency" json:"writeLatency,omitempty"`
+							EnableUserModel     *bool  `tfsdk:"enable_user_model" json:"enableUserModel,omitempty"`
+							IoWeightPercent     *int64 `tfsdk:"io_weight_percent" json:"ioWeightPercent,omitempty"`
+							ModelReadBPS        *int64 `tfsdk:"model_read_bps" json:"modelReadBPS,omitempty"`
+							ModelReadRandIOPS   *int64 `tfsdk:"model_read_rand_iops" json:"modelReadRandIOPS,omitempty"`
+							ModelReadSeqIOPS    *int64 `tfsdk:"model_read_seq_iops" json:"modelReadSeqIOPS,omitempty"`
+							ModelWriteBPS       *int64 `tfsdk:"model_write_bps" json:"modelWriteBPS,omitempty"`
+							ModelWriteRandIOPS  *int64 `tfsdk:"model_write_rand_iops" json:"modelWriteRandIOPS,omitempty"`
+							ModelWriteSeqIOPS   *int64 `tfsdk:"model_write_seq_iops" json:"modelWriteSeqIOPS,omitempty"`
+							ReadBPS             *int64 `tfsdk:"read_bps" json:"readBPS,omitempty"`
+							ReadIOPS            *int64 `tfsdk:"read_iops" json:"readIOPS,omitempty"`
+							ReadLatency         *int64 `tfsdk:"read_latency" json:"readLatency,omitempty"`
+							ReadLatencyPercent  *int64 `tfsdk:"read_latency_percent" json:"readLatencyPercent,omitempty"`
+							WriteBPS            *int64 `tfsdk:"write_bps" json:"writeBPS,omitempty"`
+							WriteIOPS           *int64 `tfsdk:"write_iops" json:"writeIOPS,omitempty"`
+							WriteLatency        *int64 `tfsdk:"write_latency" json:"writeLatency,omitempty"`
+							WriteLatencyPercent *int64 `tfsdk:"write_latency_percent" json:"writeLatencyPercent,omitempty"`
 						} `tfsdk:"io_cfg" json:"ioCfg,omitempty"`
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 						Type *string `tfsdk:"type" json:"type,omitempty"`
@@ -242,8 +327,10 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 					Enable *bool `tfsdk:"enable" json:"enable,omitempty"`
 				} `tfsdk:"blkio_qos" json:"blkioQOS,omitempty"`
 				CpuQOS *struct {
+					CoreExpeller  *bool  `tfsdk:"core_expeller" json:"coreExpeller,omitempty"`
 					Enable        *bool  `tfsdk:"enable" json:"enable,omitempty"`
 					GroupIdentity *int64 `tfsdk:"group_identity" json:"groupIdentity,omitempty"`
+					SchedIdle     *int64 `tfsdk:"sched_idle" json:"schedIdle,omitempty"`
 				} `tfsdk:"cpu_qos" json:"cpuQOS,omitempty"`
 				MemoryQOS *struct {
 					Enable            *bool  `tfsdk:"enable" json:"enable,omitempty"`
@@ -257,6 +344,13 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 					WmarkRatio        *int64 `tfsdk:"wmark_ratio" json:"wmarkRatio,omitempty"`
 					WmarkScalePermill *int64 `tfsdk:"wmark_scale_permill" json:"wmarkScalePermill,omitempty"`
 				} `tfsdk:"memory_qos" json:"memoryQOS,omitempty"`
+				NetworkQOS *struct {
+					EgressLimit    *string `tfsdk:"egress_limit" json:"egressLimit,omitempty"`
+					EgressRequest  *string `tfsdk:"egress_request" json:"egressRequest,omitempty"`
+					Enable         *bool   `tfsdk:"enable" json:"enable,omitempty"`
+					IngressLimit   *string `tfsdk:"ingress_limit" json:"ingressLimit,omitempty"`
+					IngressRequest *string `tfsdk:"ingress_request" json:"ingressRequest,omitempty"`
+				} `tfsdk:"network_qos" json:"networkQOS,omitempty"`
 				ResctrlQOS *struct {
 					CatRangeEndPercent   *int64 `tfsdk:"cat_range_end_percent" json:"catRangeEndPercent,omitempty"`
 					CatRangeStartPercent *int64 `tfsdk:"cat_range_start_percent" json:"catRangeStartPercent,omitempty"`
@@ -269,6 +363,7 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 			CpuEvictBESatisfactionLowerPercent *int64  `tfsdk:"cpu_evict_be_satisfaction_lower_percent" json:"cpuEvictBESatisfactionLowerPercent,omitempty"`
 			CpuEvictBESatisfactionUpperPercent *int64  `tfsdk:"cpu_evict_be_satisfaction_upper_percent" json:"cpuEvictBESatisfactionUpperPercent,omitempty"`
 			CpuEvictBEUsageThresholdPercent    *int64  `tfsdk:"cpu_evict_be_usage_threshold_percent" json:"cpuEvictBEUsageThresholdPercent,omitempty"`
+			CpuEvictPolicy                     *string `tfsdk:"cpu_evict_policy" json:"cpuEvictPolicy,omitempty"`
 			CpuEvictTimeWindowSeconds          *int64  `tfsdk:"cpu_evict_time_window_seconds" json:"cpuEvictTimeWindowSeconds,omitempty"`
 			CpuSuppressPolicy                  *string `tfsdk:"cpu_suppress_policy" json:"cpuSuppressPolicy,omitempty"`
 			CpuSuppressThresholdPercent        *int64  `tfsdk:"cpu_suppress_threshold_percent" json:"cpuSuppressThresholdPercent,omitempty"`
@@ -277,9 +372,10 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 			MemoryEvictThresholdPercent        *int64  `tfsdk:"memory_evict_threshold_percent" json:"memoryEvictThresholdPercent,omitempty"`
 		} `tfsdk:"resource_used_threshold_with_be" json:"resourceUsedThresholdWithBE,omitempty"`
 		SystemStrategy *struct {
-			MemcgReapBackGround  *int64 `tfsdk:"memcg_reap_back_ground" json:"memcgReapBackGround,omitempty"`
-			MinFreeKbytesFactor  *int64 `tfsdk:"min_free_kbytes_factor" json:"minFreeKbytesFactor,omitempty"`
-			WatermarkScaleFactor *int64 `tfsdk:"watermark_scale_factor" json:"watermarkScaleFactor,omitempty"`
+			MemcgReapBackGround   *int64  `tfsdk:"memcg_reap_back_ground" json:"memcgReapBackGround,omitempty"`
+			MinFreeKbytesFactor   *int64  `tfsdk:"min_free_kbytes_factor" json:"minFreeKbytesFactor,omitempty"`
+			TotalNetworkBandwidth *string `tfsdk:"total_network_bandwidth" json:"totalNetworkBandwidth,omitempty"`
+			WatermarkScaleFactor  *int64  `tfsdk:"watermark_scale_factor" json:"watermarkScaleFactor,omitempty"`
 		} `tfsdk:"system_strategy" json:"systemStrategy,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -517,6 +613,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
+																"enable_user_model": schema.BoolAttribute{
+																	Description:         "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	MarkdownDescription: "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"io_weight_percent": schema.Int64Attribute{
 																	Description:         "This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.",
 																	MarkdownDescription: "This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.",
@@ -526,6 +630,72 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Validators: []validator.Int64{
 																		int64validator.AtLeast(1),
 																		int64validator.AtMost(100),
+																	},
+																},
+
+																"model_read_bps": schema.Int64Attribute{
+																	Description:         "the read BPS of user model",
+																	MarkdownDescription: "the read BPS of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_read_rand_iops": schema.Int64Attribute{
+																	Description:         "the random read iops of user model",
+																	MarkdownDescription: "the random read iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_read_seq_iops": schema.Int64Attribute{
+																	Description:         "the sequential read iops of user model",
+																	MarkdownDescription: "the sequential read iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_bps": schema.Int64Attribute{
+																	Description:         "the write BPS of user model",
+																	MarkdownDescription: "the write BPS of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_rand_iops": schema.Int64Attribute{
+																	Description:         "the random write iops of user model",
+																	MarkdownDescription: "the random write iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_seq_iops": schema.Int64Attribute{
+																	Description:         "the sequential write iops of user model",
+																	MarkdownDescription: "the sequential write iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
 																	},
 																},
 
@@ -559,6 +729,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Computed:            false,
 																},
 
+																"read_latency_percent": schema.Int64Attribute{
+																	Description:         "the read latency percentile",
+																	MarkdownDescription: "the read latency percentile",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(100),
+																	},
+																},
+
 																"write_bps": schema.Int64Attribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -587,6 +769,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"write_latency_percent": schema.Int64Attribute{
+																	Description:         "the write latency percentile",
+																	MarkdownDescription: "the write latency percentile",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(100),
+																	},
 																},
 															},
 															Required: false,
@@ -633,6 +827,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										Description:         "CPUQOSCfg stores node-level config of cpu qos",
 										MarkdownDescription: "CPUQOSCfg stores node-level config of cpu qos",
 										Attributes: map[string]schema.Attribute{
+											"core_expeller": schema.BoolAttribute{
+												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"enable": schema.BoolAttribute{
 												Description:         "Enable indicates whether the cpu qos is enabled.",
 												MarkdownDescription: "Enable indicates whether the cpu qos is enabled.",
@@ -642,8 +844,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"group_identity": schema.Int64Attribute{
-												Description:         "group identity value for pods, default = 0",
-												MarkdownDescription: "group identity value for pods, default = 0",
+												Description:         "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												MarkdownDescription: "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"sched_idle": schema.Int64Attribute{
+												Description:         "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -757,6 +967,55 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 													int64validator.AtLeast(1),
 													int64validator.AtMost(1000),
 												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"network_qos": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"egress_limit": schema.StringAttribute{
+												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"egress_request": schema.StringAttribute{
+												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"enable": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ingress_limit": schema.StringAttribute{
+												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ingress_request": schema.StringAttribute{
+												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -839,6 +1098,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
+																"enable_user_model": schema.BoolAttribute{
+																	Description:         "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	MarkdownDescription: "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"io_weight_percent": schema.Int64Attribute{
 																	Description:         "This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.",
 																	MarkdownDescription: "This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.",
@@ -848,6 +1115,72 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Validators: []validator.Int64{
 																		int64validator.AtLeast(1),
 																		int64validator.AtMost(100),
+																	},
+																},
+
+																"model_read_bps": schema.Int64Attribute{
+																	Description:         "the read BPS of user model",
+																	MarkdownDescription: "the read BPS of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_read_rand_iops": schema.Int64Attribute{
+																	Description:         "the random read iops of user model",
+																	MarkdownDescription: "the random read iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_read_seq_iops": schema.Int64Attribute{
+																	Description:         "the sequential read iops of user model",
+																	MarkdownDescription: "the sequential read iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_bps": schema.Int64Attribute{
+																	Description:         "the write BPS of user model",
+																	MarkdownDescription: "the write BPS of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_rand_iops": schema.Int64Attribute{
+																	Description:         "the random write iops of user model",
+																	MarkdownDescription: "the random write iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_seq_iops": schema.Int64Attribute{
+																	Description:         "the sequential write iops of user model",
+																	MarkdownDescription: "the sequential write iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
 																	},
 																},
 
@@ -881,6 +1214,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Computed:            false,
 																},
 
+																"read_latency_percent": schema.Int64Attribute{
+																	Description:         "the read latency percentile",
+																	MarkdownDescription: "the read latency percentile",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(100),
+																	},
+																},
+
 																"write_bps": schema.Int64Attribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -909,6 +1254,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"write_latency_percent": schema.Int64Attribute{
+																	Description:         "the write latency percentile",
+																	MarkdownDescription: "the write latency percentile",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(100),
+																	},
 																},
 															},
 															Required: false,
@@ -955,6 +1312,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										Description:         "CPUQOSCfg stores node-level config of cpu qos",
 										MarkdownDescription: "CPUQOSCfg stores node-level config of cpu qos",
 										Attributes: map[string]schema.Attribute{
+											"core_expeller": schema.BoolAttribute{
+												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"enable": schema.BoolAttribute{
 												Description:         "Enable indicates whether the cpu qos is enabled.",
 												MarkdownDescription: "Enable indicates whether the cpu qos is enabled.",
@@ -964,8 +1329,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"group_identity": schema.Int64Attribute{
-												Description:         "group identity value for pods, default = 0",
-												MarkdownDescription: "group identity value for pods, default = 0",
+												Description:         "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												MarkdownDescription: "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"sched_idle": schema.Int64Attribute{
+												Description:         "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1079,6 +1452,55 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 													int64validator.AtLeast(1),
 													int64validator.AtMost(1000),
 												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"network_qos": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"egress_limit": schema.StringAttribute{
+												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"egress_request": schema.StringAttribute{
+												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"enable": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ingress_limit": schema.StringAttribute{
+												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ingress_request": schema.StringAttribute{
+												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -1161,6 +1583,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
+																"enable_user_model": schema.BoolAttribute{
+																	Description:         "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	MarkdownDescription: "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"io_weight_percent": schema.Int64Attribute{
 																	Description:         "This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.",
 																	MarkdownDescription: "This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.",
@@ -1170,6 +1600,72 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Validators: []validator.Int64{
 																		int64validator.AtLeast(1),
 																		int64validator.AtMost(100),
+																	},
+																},
+
+																"model_read_bps": schema.Int64Attribute{
+																	Description:         "the read BPS of user model",
+																	MarkdownDescription: "the read BPS of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_read_rand_iops": schema.Int64Attribute{
+																	Description:         "the random read iops of user model",
+																	MarkdownDescription: "the random read iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_read_seq_iops": schema.Int64Attribute{
+																	Description:         "the sequential read iops of user model",
+																	MarkdownDescription: "the sequential read iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_bps": schema.Int64Attribute{
+																	Description:         "the write BPS of user model",
+																	MarkdownDescription: "the write BPS of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_rand_iops": schema.Int64Attribute{
+																	Description:         "the random write iops of user model",
+																	MarkdownDescription: "the random write iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_seq_iops": schema.Int64Attribute{
+																	Description:         "the sequential write iops of user model",
+																	MarkdownDescription: "the sequential write iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
 																	},
 																},
 
@@ -1203,6 +1699,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Computed:            false,
 																},
 
+																"read_latency_percent": schema.Int64Attribute{
+																	Description:         "the read latency percentile",
+																	MarkdownDescription: "the read latency percentile",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(100),
+																	},
+																},
+
 																"write_bps": schema.Int64Attribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -1231,6 +1739,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"write_latency_percent": schema.Int64Attribute{
+																	Description:         "the write latency percentile",
+																	MarkdownDescription: "the write latency percentile",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(100),
+																	},
 																},
 															},
 															Required: false,
@@ -1277,6 +1797,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										Description:         "CPUQOSCfg stores node-level config of cpu qos",
 										MarkdownDescription: "CPUQOSCfg stores node-level config of cpu qos",
 										Attributes: map[string]schema.Attribute{
+											"core_expeller": schema.BoolAttribute{
+												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"enable": schema.BoolAttribute{
 												Description:         "Enable indicates whether the cpu qos is enabled.",
 												MarkdownDescription: "Enable indicates whether the cpu qos is enabled.",
@@ -1286,8 +1814,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"group_identity": schema.Int64Attribute{
-												Description:         "group identity value for pods, default = 0",
-												MarkdownDescription: "group identity value for pods, default = 0",
+												Description:         "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												MarkdownDescription: "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"sched_idle": schema.Int64Attribute{
+												Description:         "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1401,6 +1937,55 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 													int64validator.AtLeast(1),
 													int64validator.AtMost(1000),
 												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"network_qos": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"egress_limit": schema.StringAttribute{
+												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"egress_request": schema.StringAttribute{
+												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"enable": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ingress_limit": schema.StringAttribute{
+												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ingress_request": schema.StringAttribute{
+												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -1483,6 +2068,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
+																"enable_user_model": schema.BoolAttribute{
+																	Description:         "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	MarkdownDescription: "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"io_weight_percent": schema.Int64Attribute{
 																	Description:         "This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.",
 																	MarkdownDescription: "This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.",
@@ -1492,6 +2085,72 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Validators: []validator.Int64{
 																		int64validator.AtLeast(1),
 																		int64validator.AtMost(100),
+																	},
+																},
+
+																"model_read_bps": schema.Int64Attribute{
+																	Description:         "the read BPS of user model",
+																	MarkdownDescription: "the read BPS of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_read_rand_iops": schema.Int64Attribute{
+																	Description:         "the random read iops of user model",
+																	MarkdownDescription: "the random read iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_read_seq_iops": schema.Int64Attribute{
+																	Description:         "the sequential read iops of user model",
+																	MarkdownDescription: "the sequential read iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_bps": schema.Int64Attribute{
+																	Description:         "the write BPS of user model",
+																	MarkdownDescription: "the write BPS of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_rand_iops": schema.Int64Attribute{
+																	Description:         "the random write iops of user model",
+																	MarkdownDescription: "the random write iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_seq_iops": schema.Int64Attribute{
+																	Description:         "the sequential write iops of user model",
+																	MarkdownDescription: "the sequential write iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
 																	},
 																},
 
@@ -1525,6 +2184,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Computed:            false,
 																},
 
+																"read_latency_percent": schema.Int64Attribute{
+																	Description:         "the read latency percentile",
+																	MarkdownDescription: "the read latency percentile",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(100),
+																	},
+																},
+
 																"write_bps": schema.Int64Attribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -1553,6 +2224,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"write_latency_percent": schema.Int64Attribute{
+																	Description:         "the write latency percentile",
+																	MarkdownDescription: "the write latency percentile",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(100),
+																	},
 																},
 															},
 															Required: false,
@@ -1599,6 +2282,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										Description:         "CPUQOSCfg stores node-level config of cpu qos",
 										MarkdownDescription: "CPUQOSCfg stores node-level config of cpu qos",
 										Attributes: map[string]schema.Attribute{
+											"core_expeller": schema.BoolAttribute{
+												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"enable": schema.BoolAttribute{
 												Description:         "Enable indicates whether the cpu qos is enabled.",
 												MarkdownDescription: "Enable indicates whether the cpu qos is enabled.",
@@ -1608,8 +2299,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"group_identity": schema.Int64Attribute{
-												Description:         "group identity value for pods, default = 0",
-												MarkdownDescription: "group identity value for pods, default = 0",
+												Description:         "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												MarkdownDescription: "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"sched_idle": schema.Int64Attribute{
+												Description:         "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1723,6 +2422,55 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 													int64validator.AtLeast(1),
 													int64validator.AtMost(1000),
 												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"network_qos": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"egress_limit": schema.StringAttribute{
+												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"egress_request": schema.StringAttribute{
+												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"enable": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ingress_limit": schema.StringAttribute{
+												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ingress_request": schema.StringAttribute{
+												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -1788,6 +2536,31 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Computed: false,
 							},
 
+							"policies": schema.SingleNestedAttribute{
+								Description:         "Policies of pod QoS.",
+								MarkdownDescription: "Policies of pod QoS.",
+								Attributes: map[string]schema.Attribute{
+									"cpu_policy": schema.StringAttribute{
+										Description:         "applied policy for the CPU QoS, default = 'groupIdentity'",
+										MarkdownDescription: "applied policy for the CPU QoS, default = 'groupIdentity'",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"net_qos_policy": schema.StringAttribute{
+										Description:         "applied policy for the Net QoS, default = 'tc'",
+										MarkdownDescription: "applied policy for the Net QoS, default = 'tc'",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"system_class": schema.SingleNestedAttribute{
 								Description:         "ResourceQOS for system pods",
 								MarkdownDescription: "ResourceQOS for system pods",
@@ -1805,6 +2578,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
+																"enable_user_model": schema.BoolAttribute{
+																	Description:         "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	MarkdownDescription: "configure the cost model of blkio-cost manually whether the user model is enabled. Default value: false",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"io_weight_percent": schema.Int64Attribute{
 																	Description:         "This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.",
 																	MarkdownDescription: "This field is used to set the weight of a sub-group. Default value: 100. Valid values: 1 to 100.",
@@ -1814,6 +2595,72 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Validators: []validator.Int64{
 																		int64validator.AtLeast(1),
 																		int64validator.AtMost(100),
+																	},
+																},
+
+																"model_read_bps": schema.Int64Attribute{
+																	Description:         "the read BPS of user model",
+																	MarkdownDescription: "the read BPS of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_read_rand_iops": schema.Int64Attribute{
+																	Description:         "the random read iops of user model",
+																	MarkdownDescription: "the random read iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_read_seq_iops": schema.Int64Attribute{
+																	Description:         "the sequential read iops of user model",
+																	MarkdownDescription: "the sequential read iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_bps": schema.Int64Attribute{
+																	Description:         "the write BPS of user model",
+																	MarkdownDescription: "the write BPS of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_rand_iops": schema.Int64Attribute{
+																	Description:         "the random write iops of user model",
+																	MarkdownDescription: "the random write iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
+																	},
+																},
+
+																"model_write_seq_iops": schema.Int64Attribute{
+																	Description:         "the sequential write iops of user model",
+																	MarkdownDescription: "the sequential write iops of user model",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(1),
 																	},
 																},
 
@@ -1847,6 +2694,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Computed:            false,
 																},
 
+																"read_latency_percent": schema.Int64Attribute{
+																	Description:         "the read latency percentile",
+																	MarkdownDescription: "the read latency percentile",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(100),
+																	},
+																},
+
 																"write_bps": schema.Int64Attribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -1875,6 +2734,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"write_latency_percent": schema.Int64Attribute{
+																	Description:         "the write latency percentile",
+																	MarkdownDescription: "the write latency percentile",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(100),
+																	},
 																},
 															},
 															Required: false,
@@ -1921,6 +2792,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 										Description:         "CPUQOSCfg stores node-level config of cpu qos",
 										MarkdownDescription: "CPUQOSCfg stores node-level config of cpu qos",
 										Attributes: map[string]schema.Attribute{
+											"core_expeller": schema.BoolAttribute{
+												Description:         "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "whether pods of the QoS class can expel the cgroup idle pods at the SMT-level. default = false If set to true, pods of this QoS will use a dedicated core sched group for noise clean with the SchedIdle pods. NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"enable": schema.BoolAttribute{
 												Description:         "Enable indicates whether the cpu qos is enabled.",
 												MarkdownDescription: "Enable indicates whether the cpu qos is enabled.",
@@ -1930,8 +2809,16 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"group_identity": schema.Int64Attribute{
-												Description:         "group identity value for pods, default = 0",
-												MarkdownDescription: "group identity value for pods, default = 0",
+												Description:         "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												MarkdownDescription: "group identity value for pods, default = 0 NOTE: It takes effect if cpuPolicy = 'groupIdentity'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"sched_idle": schema.Int64Attribute{
+												Description:         "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
+												MarkdownDescription: "cpu.idle value for pods, default = 0. '1' means using SCHED_IDLE. CGroup Idle (introduced since mainline Linux 5.15): https://lore.kernel.org/lkml/162971078674.25758.15464079371945307825.tip-bot2@tip-bot2/#r NOTE: It takes effect if cpuPolicy = 'coreSched'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2045,6 +2932,55 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 													int64validator.AtLeast(1),
 													int64validator.AtMost(1000),
 												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"network_qos": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"egress_limit": schema.StringAttribute{
+												Description:         "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressLimit describes the maximum network bandwidth can be used in the egress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"egress_request": schema.StringAttribute{
+												Description:         "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "EgressRequest describes the minimum network bandwidth guaranteed in the egress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"enable": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ingress_limit": schema.StringAttribute{
+												Description:         "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressLimit describes the maximum network bandwidth can be used in the ingress direction, unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ingress_request": schema.StringAttribute{
+												Description:         "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												MarkdownDescription: "IngressRequest describes the minimum network bandwidth guaranteed in the ingress direction. unit: bps(bytes per second), two expressions are supported，int and string, int: percentage based on total bandwidth，valid in 0-100 string: a specific network bandwidth value, eg: 50M.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -2143,6 +3079,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Computed:            false,
 							},
 
+							"cpu_evict_policy": schema.StringAttribute{
+								Description:         "CPUEvictPolicy defines the policy for the BECPUEvict feature. Default: 'evictByRealLimit'.",
+								MarkdownDescription: "CPUEvictPolicy defines the policy for the BECPUEvict feature. Default: 'evictByRealLimit'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"cpu_evict_time_window_seconds": schema.Int64Attribute{
 								Description:         "when avg(cpuusage) > CPUEvictThresholdPercent, will start to evict pod by cpu, and avg(cpuusage) is calculated based on the most recent CPUEvictTimeWindowSeconds data",
 								MarkdownDescription: "when avg(cpuusage) > CPUEvictThresholdPercent, will start to evict pod by cpu, and avg(cpuusage) is calculated based on the most recent CPUEvictTimeWindowSeconds data",
@@ -2223,6 +3167,14 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 							"min_free_kbytes_factor": schema.Int64Attribute{
 								Description:         "for /proc/sys/vm/min_free_kbytes, min_free_kbytes = minFreeKbytesFactor * nodeTotalMemory /10000",
 								MarkdownDescription: "for /proc/sys/vm/min_free_kbytes, min_free_kbytes = minFreeKbytesFactor * nodeTotalMemory /10000",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"total_network_bandwidth": schema.StringAttribute{
+								Description:         "TotalNetworkBandwidth indicates the overall network bandwidth, cluster manager can set this field, and default value taken from /sys/class/net/${NIC_NAME}/speed, unit: Mbps",
+								MarkdownDescription: "TotalNetworkBandwidth indicates the overall network bandwidth, cluster manager can set this field, and default value taken from /sys/class/net/${NIC_NAME}/speed, unit: Mbps",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

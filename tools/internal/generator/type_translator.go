@@ -6,6 +6,7 @@
 package generator
 
 type typeTranslator interface {
+	hasNoType() bool
 	isIntOrString() bool
 	isBoolean() bool
 	isString() bool
@@ -97,6 +98,13 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		elementType = "types.StringType"
 		valueType = "types.Map"
 		goType = "map[string]string"
+		return
+	}
+	if translator.hasNoType() && translator.hasProperties() {
+		attributeType = "schema.SingleNestedAttribute"
+		elementType = ""
+		valueType = "types.Object"
+		goType = "struct"
 		return
 	}
 	if translator.hasOneOf() {

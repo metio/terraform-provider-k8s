@@ -59,6 +59,7 @@ type NetworkingIstioIoGatewayV1Beta1ManifestData struct {
 			} `tfsdk:"port" json:"port,omitempty"`
 			Tls *struct {
 				CaCertificates        *string   `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
+				CaCrl                 *string   `tfsdk:"ca_crl" json:"caCrl,omitempty"`
 				CipherSuites          *[]string `tfsdk:"cipher_suites" json:"cipherSuites,omitempty"`
 				CredentialName        *string   `tfsdk:"credential_name" json:"credentialName,omitempty"`
 				HttpsRedirect         *bool     `tfsdk:"https_redirect" json:"httpsRedirect,omitempty"`
@@ -161,8 +162,8 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 				MarkdownDescription: "Configuration affecting edge load balancer. See more details at: https://istio.io/docs/reference/config/networking/gateway.html",
 				Attributes: map[string]schema.Attribute{
 					"selector": schema.MapAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "One or more labels that indicate a specific set of pods/VMs on which this gateway configuration should be applied.",
+						MarkdownDescription: "One or more labels that indicate a specific set of pods/VMs on which this gateway configuration should be applied.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -175,8 +176,8 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"bind": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The ip or the Unix domain socket to which the listener should be bound to.",
+									MarkdownDescription: "The ip or the Unix domain socket to which the listener should be bound to.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -194,8 +195,8 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 									Description:         "One or more hosts exposed by this gateway.",
 									MarkdownDescription: "One or more hosts exposed by this gateway.",
 									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 
@@ -208,30 +209,30 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"port": schema.SingleNestedAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The Port on which the proxy should listen for incoming connections.",
+									MarkdownDescription: "The Port on which the proxy should listen for incoming connections.",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "Label assigned to the port.",
 											MarkdownDescription: "Label assigned to the port.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
 										"number": schema.Int64Attribute{
 											Description:         "A valid non-negative integer port number.",
 											MarkdownDescription: "A valid non-negative integer port number.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
 										"protocol": schema.StringAttribute{
 											Description:         "The protocol exposed on the port.",
 											MarkdownDescription: "The protocol exposed on the port.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -243,8 +244,8 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 											Computed:            false,
 										},
 									},
-									Required: false,
-									Optional: true,
+									Required: true,
+									Optional: false,
 									Computed: false,
 								},
 
@@ -260,6 +261,14 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 											Computed:            false,
 										},
 
+										"ca_crl": schema.StringAttribute{
+											Description:         "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented client side certificate.",
+											MarkdownDescription: "OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented client side certificate.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"cipher_suites": schema.ListAttribute{
 											Description:         "Optional: If specified, only support the specified cipher list.",
 											MarkdownDescription: "Optional: If specified, only support the specified cipher list.",
@@ -270,24 +279,24 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"credential_name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "For gateways running on Kubernetes, the name of the secret that holds the TLS certs including the CA certificates.",
+											MarkdownDescription: "For gateways running on Kubernetes, the name of the secret that holds the TLS certs including the CA certificates.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"https_redirect": schema.BoolAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "If set to true, the load balancer will send a 301 redirect for all http connections, asking the clients to use HTTPS.",
+											MarkdownDescription: "If set to true, the load balancer will send a 301 redirect for all http connections, asking the clients to use HTTPS.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"max_protocol_version": schema.StringAttribute{
-											Description:         "Optional: Maximum TLS protocol version.",
-											MarkdownDescription: "Optional: Maximum TLS protocol version.",
+											Description:         "Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											MarkdownDescription: "Optional: Maximum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -297,8 +306,8 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"min_protocol_version": schema.StringAttribute{
-											Description:         "Optional: Minimum TLS protocol version.",
-											MarkdownDescription: "Optional: Minimum TLS protocol version.",
+											Description:         "Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
+											MarkdownDescription: "Optional: Minimum TLS protocol version.Valid Options: TLS_AUTO, TLSV1_0, TLSV1_1, TLSV1_2, TLSV1_3",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -308,8 +317,8 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"mode": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
+											MarkdownDescription: "Optional: Indicates whether connections to this port should be secured using TLS.Valid Options: PASSTHROUGH, SIMPLE, MUTUAL, AUTO_PASSTHROUGH, ISTIO_MUTUAL, OPTIONAL_MUTUAL",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -335,8 +344,8 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"subject_alt_names": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "A list of alternate names to verify the subject identity in the certificate presented by the client.",
+											MarkdownDescription: "A list of alternate names to verify the subject identity in the certificate presented by the client.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -344,8 +353,8 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"verify_certificate_hash": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "An optional list of hex-encoded SHA-256 hashes of the authorized client certificates.",
+											MarkdownDescription: "An optional list of hex-encoded SHA-256 hashes of the authorized client certificates.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -353,8 +362,8 @@ func (r *NetworkingIstioIoGatewayV1Beta1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"verify_certificate_spki": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "An optional list of base64-encoded SHA-256 hashes of the SPKIs of authorized client certificates.",
+											MarkdownDescription: "An optional list of base64-encoded SHA-256 hashes of the SPKIs of authorized client certificates.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

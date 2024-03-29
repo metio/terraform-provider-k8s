@@ -155,13 +155,13 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta1Manifest) Schema(_ context.Context
 						MarkdownDescription: "AccessFrom defines an Access Control List for allowing cross-namespace references to this object.",
 						Attributes: map[string]schema.Attribute{
 							"namespace_selectors": schema.ListNestedAttribute{
-								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
-								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation.",
+								Description:         "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
+								MarkdownDescription: "NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"match_labels": schema.MapAttribute{
-											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											Description:         "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -196,8 +196,8 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta1Manifest) Schema(_ context.Context
 					},
 
 					"reconcile_strategy": schema.StringAttribute{
-						Description:         "Determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
-						MarkdownDescription: "Determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.",
+						Description:         "Determines what enables the creation of a new artifact. Valid values are('ChartVersion', 'Revision').See the documentation of the values for an explanation on their behavior.Defaults to ChartVersion when omitted.",
+						MarkdownDescription: "Determines what enables the creation of a new artifact. Valid values are('ChartVersion', 'Revision').See the documentation of the values for an explanation on their behavior.Defaults to ChartVersion when omitted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -219,8 +219,8 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta1Manifest) Schema(_ context.Context
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent, valid values are ('HelmRepository', 'GitRepository', 'Bucket').",
-								MarkdownDescription: "Kind of the referent, valid values are ('HelmRepository', 'GitRepository', 'Bucket').",
+								Description:         "Kind of the referent, valid values are ('HelmRepository', 'GitRepository','Bucket').",
+								MarkdownDescription: "Kind of the referent, valid values are ('HelmRepository', 'GitRepository','Bucket').",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -251,16 +251,16 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta1Manifest) Schema(_ context.Context
 					},
 
 					"values_file": schema.StringAttribute{
-						Description:         "Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.",
-						MarkdownDescription: "Alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file defined here is merged before the ValuesFiles items. Ignored when omitted.",
+						Description:         "Alternative values file to use as the default chart values, expected tobe a relative path in the SourceRef. Deprecated in favor of ValuesFiles,for backwards compatibility the file defined here is merged before theValuesFiles items. Ignored when omitted.",
+						MarkdownDescription: "Alternative values file to use as the default chart values, expected tobe a relative path in the SourceRef. Deprecated in favor of ValuesFiles,for backwards compatibility the file defined here is merged before theValuesFiles items. Ignored when omitted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"values_files": schema.ListAttribute{
-						Description:         "Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
-						MarkdownDescription: "Alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.",
+						Description:         "Alternative list of values files to use as the chart values (values.yamlis not included by default), expected to be a relative path in the SourceRef.Values files are merged in the order of this list with the last file overridingthe first. Ignored when omitted.",
+						MarkdownDescription: "Alternative list of values files to use as the chart values (values.yamlis not included by default), expected to be a relative path in the SourceRef.Values files are merged in the order of this list with the last file overridingthe first. Ignored when omitted.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -268,8 +268,8 @@ func (r *SourceToolkitFluxcdIoHelmChartV1Beta1Manifest) Schema(_ context.Context
 					},
 
 					"version": schema.StringAttribute{
-						Description:         "The chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
-						MarkdownDescription: "The chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.",
+						Description:         "The chart version semver expression, ignored for charts from GitRepositoryand Bucket sources. Defaults to latest when omitted.",
+						MarkdownDescription: "The chart version semver expression, ignored for charts from GitRepositoryand Bucket sources. Defaults to latest when omitted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

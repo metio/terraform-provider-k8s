@@ -63,6 +63,8 @@ type MariadbMmontesIoUserV1Alpha1ManifestData struct {
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
 			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 		} `tfsdk:"password_secret_key_ref" json:"passwordSecretKeyRef,omitempty"`
+		RequeueInterval *string `tfsdk:"requeue_interval" json:"requeueInterval,omitempty"`
+		RetryInterval   *string `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -72,8 +74,8 @@ func (r *MariadbMmontesIoUserV1Alpha1Manifest) Metadata(_ context.Context, reque
 
 func (r *MariadbMmontesIoUserV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "User is the Schema for the users API",
-		MarkdownDescription: "User is the Schema for the users API",
+		Description:         "User is the Schema for the users API.  It is used to define grants as if you were running a 'CREATE USER' statement.",
+		MarkdownDescription: "User is the Schema for the users API.  It is used to define grants as if you were running a 'CREATE USER' statement.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -152,8 +154,8 @@ func (r *MariadbMmontesIoUserV1Alpha1Manifest) Schema(_ context.Context, _ datas
 				MarkdownDescription: "UserSpec defines the desired state of User",
 				Attributes: map[string]schema.Attribute{
 					"host": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Host related to the User.",
+						MarkdownDescription: "Host related to the User.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -163,8 +165,8 @@ func (r *MariadbMmontesIoUserV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"maria_db_ref": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "MariaDBRef is a reference to a MariaDB object.",
+						MarkdownDescription: "MariaDBRef is a reference to a MariaDB object.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -223,8 +225,8 @@ func (r *MariadbMmontesIoUserV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"wait_for_it": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.",
+								MarkdownDescription: "WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -236,16 +238,16 @@ func (r *MariadbMmontesIoUserV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"max_user_connections": schema.Int64Attribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "MaxUserConnections defines the maximum number of connections that the User can establish.",
+						MarkdownDescription: "MaxUserConnections defines the maximum number of connections that the User can establish.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Name overrides the default name provided by metadata.name.",
+						MarkdownDescription: "Name overrides the default name provided by metadata.name.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -255,8 +257,8 @@ func (r *MariadbMmontesIoUserV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"password_secret_key_ref": schema.SingleNestedAttribute{
-						Description:         "SecretKeySelector selects a key of a Secret.",
-						MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
+						Description:         "PasswordSecretKeyRef is a reference to the password to be used by the User.",
+						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to be used by the User.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -285,6 +287,22 @@ func (r *MariadbMmontesIoUserV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"requeue_interval": schema.StringAttribute{
+						Description:         "RequeueInterval is used to perform requeue reconcilizations.",
+						MarkdownDescription: "RequeueInterval is used to perform requeue reconcilizations.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"retry_interval": schema.StringAttribute{
+						Description:         "RetryInterval is the interval used to perform retries.",
+						MarkdownDescription: "RetryInterval is the interval used to perform retries.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

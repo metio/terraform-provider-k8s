@@ -60,8 +60,8 @@ Required:
 
 Optional:
 
-- `on_create` (Attributes List) A shell script that runs only once, when you create a notebook instance. The shell script must be a base64-encoded string. (see [below for nested schema](#nestedatt--spec--on_create))
-- `on_start` (Attributes List) A shell script that runs every time you start a notebook instance, including when you create the notebook instance. The shell script must be a base64-encoded string. (see [below for nested schema](#nestedatt--spec--on_start))
+- `on_create` (Attributes List) A shell script that runs only once, when you create a notebook instance.The shell script must be a base64-encoded string. (see [below for nested schema](#nestedatt--spec--on_create))
+- `on_start` (Attributes List) A shell script that runs every time you start a notebook instance, includingwhen you create the notebook instance. The shell script must be a base64-encodedstring. (see [below for nested schema](#nestedatt--spec--on_start))
 
 <a id="nestedatt--spec--on_create"></a>
 ### Nested Schema for `spec.on_create`

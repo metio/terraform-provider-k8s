@@ -30,7 +30,7 @@ data "k8s_sagemaker_services_k8s_aws_model_package_v1alpha1_manifest" "example" 
 
 ### Optional
 
-- `spec` (Attributes) ModelPackageSpec defines the desired state of ModelPackage.  A versioned model that can be deployed for SageMaker inference. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ModelPackageSpec defines the desired state of ModelPackage.A versioned model that can be deployed for SageMaker inference. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -56,25 +56,26 @@ Optional:
 
 Optional:
 
-- `additional_inference_specifications` (Attributes List) An array of additional Inference Specification objects. Each additional Inference Specification specifies artifacts based on this model package that can be used on inference endpoints. Generally used with SageMaker Neo to store the compiled artifacts. (see [below for nested schema](#nestedatt--spec--additional_inference_specifications))
+- `additional_inference_specifications` (Attributes List) An array of additional Inference Specification objects. Each additional InferenceSpecification specifies artifacts based on this model package that can beused on inference endpoints. Generally used with SageMaker Neo to store thecompiled artifacts. (see [below for nested schema](#nestedatt--spec--additional_inference_specifications))
 - `approval_description` (String) A description for the approval status of the model.
-- `certify_for_marketplace` (Boolean) Whether to certify the model package for listing on Amazon Web Services Marketplace.  This parameter is optional for unversioned models, and does not apply to versioned models.
+- `certify_for_marketplace` (Boolean) Whether to certify the model package for listing on Amazon Web Services Marketplace.This parameter is optional for unversioned models, and does not apply toversioned models.
 - `client_token` (String) A unique token that guarantees that the call to this API is idempotent.
 - `customer_metadata_properties` (Map of String) The metadata properties associated with the model package versions.
-- `domain` (String) The machine learning domain of your model package and its components. Common machine learning domains include computer vision and natural language processing.
-- `drift_check_baselines` (Attributes) Represents the drift check baselines that can be used when the model monitor is set using the model package. For more information, see the topic on Drift Detection against Previous Baselines in SageMaker Pipelines (https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-quality-clarify-baseline-lifecycle.html#pipelines-quality-clarify-baseline-drift-detection) in the Amazon SageMaker Developer Guide. (see [below for nested schema](#nestedatt--spec--drift_check_baselines))
-- `inference_specification` (Attributes) Specifies details about inference jobs that can be run with models based on this model package, including the following:  * The Amazon ECR paths of containers that contain the inference code and model artifacts.  * The instance types that the model package supports for transform jobs and real-time endpoints used for inference.  * The input and output content formats that the model package supports for inference. (see [below for nested schema](#nestedatt--spec--inference_specification))
+- `domain` (String) The machine learning domain of your model package and its components. Commonmachine learning domains include computer vision and natural language processing.
+- `drift_check_baselines` (Attributes) Represents the drift check baselines that can be used when the model monitoris set using the model package. For more information, see the topic on DriftDetection against Previous Baselines in SageMaker Pipelines (https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-quality-clarify-baseline-lifecycle.html#pipelines-quality-clarify-baseline-drift-detection)in the Amazon SageMaker Developer Guide. (see [below for nested schema](#nestedatt--spec--drift_check_baselines))
+- `inference_specification` (Attributes) Specifies details about inference jobs that can be run with models basedon this model package, including the following:   * The Amazon ECR paths of containers that contain the inference code and   model artifacts.   * The instance types that the model package supports for transform jobs   and real-time endpoints used for inference.   * The input and output content formats that the model package supports   for inference. (see [below for nested schema](#nestedatt--spec--inference_specification))
 - `metadata_properties` (Attributes) Metadata properties of the tracking entity, trial, or trial component. (see [below for nested schema](#nestedatt--spec--metadata_properties))
-- `model_approval_status` (String) Whether the model is approved for deployment.  This parameter is optional for versioned models, and does not apply to unversioned models.  For versioned models, the value of this parameter must be set to Approved to deploy the model.
+- `model_approval_status` (String) Whether the model is approved for deployment.This parameter is optional for versioned models, and does not apply to unversionedmodels.For versioned models, the value of this parameter must be set to Approvedto deploy the model.
 - `model_metrics` (Attributes) A structure that contains model metrics reports. (see [below for nested schema](#nestedatt--spec--model_metrics))
 - `model_package_description` (String) A description of the model package.
-- `model_package_group_name` (String) The name or Amazon Resource Name (ARN) of the model package group that this model version belongs to.  This parameter is required for versioned models, and does not apply to unversioned models.
-- `model_package_name` (String) The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).  This parameter is required for unversioned models. It is not applicable to versioned models.
-- `sample_payload_url` (String) The Amazon Simple Storage Service (Amazon S3) path where the sample payload is stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). This archive can hold multiple files that are all equally used in the load test. Each file in the archive must satisfy the size constraints of the InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#API_runtime_InvokeEndpoint_RequestSyntax) call.
+- `model_package_group_name` (String) The name or Amazon Resource Name (ARN) of the model package group that thismodel version belongs to.This parameter is required for versioned models, and does not apply to unversionedmodels.
+- `model_package_name` (String) The name of the model package. The name must have 1 to 63 characters. Validcharacters are a-z, A-Z, 0-9, and - (hyphen).This parameter is required for unversioned models. It is not applicable toversioned models.
+- `sample_payload_url` (String) The Amazon Simple Storage Service (Amazon S3) path where the sample payloadis stored. This path must point to a single gzip compressed tar archive (.tar.gzsuffix). This archive can hold multiple files that are all equally used inthe load test. Each file in the archive must satisfy the size constraintsof the InvokeEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html#API_runtime_InvokeEndpoint_RequestSyntax)call.
+- `skip_model_validation` (String) Indicates if you want to skip model validation.
 - `source_algorithm_specification` (Attributes) Details about the algorithm that was used to create the model package. (see [below for nested schema](#nestedatt--spec--source_algorithm_specification))
-- `tags` (Attributes List) A list of key value pairs associated with the model. For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the Amazon Web Services General Reference Guide. (see [below for nested schema](#nestedatt--spec--tags))
-- `task` (String) The machine learning task your model package accomplishes. Common machine learning tasks include object detection and image classification. The following tasks are supported by Inference Recommender: 'IMAGE_CLASSIFICATION' | 'OBJECT_DETECTION' | 'TEXT_GENERATION' |'IMAGE_SEGMENTATION' | 'FILL_MASK' | 'CLASSIFICATION' | 'REGRESSION' | 'OTHER'.  Specify 'OTHER' if none of the tasks listed fit your use case.
-- `validation_specification` (Attributes) Specifies configurations for one or more transform jobs that SageMaker runs to test the model package. (see [below for nested schema](#nestedatt--spec--validation_specification))
+- `tags` (Attributes List) A list of key value pairs associated with the model. For more information,see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)in the Amazon Web Services General Reference Guide.If you supply ModelPackageGroupName, your model package belongs to the modelgroup you specify and uses the tags associated with the model group. In thiscase, you cannot supply a tag argument. (see [below for nested schema](#nestedatt--spec--tags))
+- `task` (String) The machine learning task your model package accomplishes. Common machinelearning tasks include object detection and image classification. The followingtasks are supported by Inference Recommender: 'IMAGE_CLASSIFICATION' | 'OBJECT_DETECTION'| 'TEXT_GENERATION' |'IMAGE_SEGMENTATION' | 'FILL_MASK' | 'CLASSIFICATION'| 'REGRESSION' | 'OTHER'.Specify 'OTHER' if none of the tasks listed fit your use case.
+- `validation_specification` (Attributes) Specifies configurations for one or more transform jobs that SageMaker runsto test the model package. (see [below for nested schema](#nestedatt--spec--validation_specification))
 
 <a id="nestedatt--spec--additional_inference_specifications"></a>
 ### Nested Schema for `spec.additional_inference_specifications`
@@ -94,6 +95,7 @@ Optional:
 
 Optional:
 
+- `additional_s3_data_source` (Attributes) A data source used for training or inference that is in addition to the inputdataset or model data. (see [below for nested schema](#nestedatt--spec--additional_inference_specifications--containers--additional_s3_data_source))
 - `container_hostname` (String)
 - `environment` (Map of String)
 - `framework` (String)
@@ -104,6 +106,16 @@ Optional:
 - `model_input` (Attributes) Input object for the model. (see [below for nested schema](#nestedatt--spec--additional_inference_specifications--containers--model_input))
 - `nearest_model_name` (String)
 - `product_id` (String)
+
+<a id="nestedatt--spec--additional_inference_specifications--containers--additional_s3_data_source"></a>
+### Nested Schema for `spec.additional_inference_specifications.containers.product_id`
+
+Optional:
+
+- `compression_type` (String)
+- `s3_data_type` (String)
+- `s3_uri` (String)
+
 
 <a id="nestedatt--spec--additional_inference_specifications--containers--model_input"></a>
 ### Nested Schema for `spec.additional_inference_specifications.containers.product_id`
@@ -120,10 +132,10 @@ Optional:
 
 Optional:
 
-- `bias` (Attributes) Represents the drift check bias baselines that can be used when the model monitor is set using the model package. (see [below for nested schema](#nestedatt--spec--drift_check_baselines--bias))
-- `explainability` (Attributes) Represents the drift check explainability baselines that can be used when the model monitor is set using the model package. (see [below for nested schema](#nestedatt--spec--drift_check_baselines--explainability))
-- `model_data_quality` (Attributes) Represents the drift check data quality baselines that can be used when the model monitor is set using the model package. (see [below for nested schema](#nestedatt--spec--drift_check_baselines--model_data_quality))
-- `model_quality` (Attributes) Represents the drift check model quality baselines that can be used when the model monitor is set using the model package. (see [below for nested schema](#nestedatt--spec--drift_check_baselines--model_quality))
+- `bias` (Attributes) Represents the drift check bias baselines that can be used when the modelmonitor is set using the model package. (see [below for nested schema](#nestedatt--spec--drift_check_baselines--bias))
+- `explainability` (Attributes) Represents the drift check explainability baselines that can be used whenthe model monitor is set using the model package. (see [below for nested schema](#nestedatt--spec--drift_check_baselines--explainability))
+- `model_data_quality` (Attributes) Represents the drift check data quality baselines that can be used when themodel monitor is set using the model package. (see [below for nested schema](#nestedatt--spec--drift_check_baselines--model_data_quality))
+- `model_quality` (Attributes) Represents the drift check model quality baselines that can be used whenthe model monitor is set using the model package. (see [below for nested schema](#nestedatt--spec--drift_check_baselines--model_quality))
 
 <a id="nestedatt--spec--drift_check_baselines--bias"></a>
 ### Nested Schema for `spec.drift_check_baselines.bias`
@@ -269,6 +281,7 @@ Optional:
 
 Optional:
 
+- `additional_s3_data_source` (Attributes) A data source used for training or inference that is in addition to the inputdataset or model data. (see [below for nested schema](#nestedatt--spec--inference_specification--containers--additional_s3_data_source))
 - `container_hostname` (String)
 - `environment` (Map of String)
 - `framework` (String)
@@ -279,6 +292,16 @@ Optional:
 - `model_input` (Attributes) Input object for the model. (see [below for nested schema](#nestedatt--spec--inference_specification--containers--model_input))
 - `nearest_model_name` (String)
 - `product_id` (String)
+
+<a id="nestedatt--spec--inference_specification--containers--additional_s3_data_source"></a>
+### Nested Schema for `spec.inference_specification.containers.product_id`
+
+Optional:
+
+- `compression_type` (String)
+- `s3_data_type` (String)
+- `s3_uri` (String)
+
 
 <a id="nestedatt--spec--inference_specification--containers--model_input"></a>
 ### Nested Schema for `spec.inference_specification.containers.product_id`
@@ -468,7 +491,7 @@ Optional:
 Optional:
 
 - `profile_name` (String)
-- `transform_job_definition` (Attributes) Defines the input needed to run a transform job using the inference specification specified in the algorithm. (see [below for nested schema](#nestedatt--spec--validation_specification--validation_profiles--transform_job_definition))
+- `transform_job_definition` (Attributes) Defines the input needed to run a transform job using the inference specificationspecified in the algorithm. (see [below for nested schema](#nestedatt--spec--validation_specification--validation_profiles--transform_job_definition))
 
 <a id="nestedatt--spec--validation_specification--validation_profiles--transform_job_definition"></a>
 ### Nested Schema for `spec.validation_specification.validation_profiles.transform_job_definition`
@@ -479,9 +502,9 @@ Optional:
 - `environment` (Map of String)
 - `max_concurrent_transforms` (Number)
 - `max_payload_in_mb` (Number)
-- `transform_input` (Attributes) Describes the input source of a transform job and the way the transform job consumes it. (see [below for nested schema](#nestedatt--spec--validation_specification--validation_profiles--transform_job_definition--transform_input))
+- `transform_input` (Attributes) Describes the input source of a transform job and the way the transform jobconsumes it. (see [below for nested schema](#nestedatt--spec--validation_specification--validation_profiles--transform_job_definition--transform_input))
 - `transform_output` (Attributes) Describes the results of a transform job. (see [below for nested schema](#nestedatt--spec--validation_specification--validation_profiles--transform_job_definition--transform_output))
-- `transform_resources` (Attributes) Describes the resources, including ML instance types and ML instance count, to use for transform job. (see [below for nested schema](#nestedatt--spec--validation_specification--validation_profiles--transform_job_definition--transform_resources))
+- `transform_resources` (Attributes) Describes the resources, including ML instance types and ML instance count,to use for transform job. (see [below for nested schema](#nestedatt--spec--validation_specification--validation_profiles--transform_job_definition--transform_resources))
 
 <a id="nestedatt--spec--validation_specification--validation_profiles--transform_job_definition--transform_input"></a>
 ### Nested Schema for `spec.validation_specification.validation_profiles.transform_job_definition.transform_input`

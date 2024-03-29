@@ -284,8 +284,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 						MarkdownDescription: "Cluster network configuration.",
 						Attributes: map[string]schema.Attribute{
 							"api_server_port": schema.Int64Attribute{
-								Description:         "APIServerPort specifies the port the API Server should bind to. Defaults to 6443.",
-								MarkdownDescription: "APIServerPort specifies the port the API Server should bind to. Defaults to 6443.",
+								Description:         "APIServerPort specifies the port the API Server should bind to.Defaults to 6443.",
+								MarkdownDescription: "APIServerPort specifies the port the API Server should bind to.Defaults to 6443.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -366,8 +366,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"control_plane_ref": schema.SingleNestedAttribute{
-						Description:         "ControlPlaneRef is an optional reference to a provider-specific resource that holds the details for provisioning the Control Plane for a Cluster.",
-						MarkdownDescription: "ControlPlaneRef is an optional reference to a provider-specific resource that holds the details for provisioning the Control Plane for a Cluster.",
+						Description:         "ControlPlaneRef is an optional reference to a provider-specific resource that holdsthe details for provisioning the Control Plane for a Cluster.",
+						MarkdownDescription: "ControlPlaneRef is an optional reference to a provider-specific resource that holdsthe details for provisioning the Control Plane for a Cluster.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -378,48 +378,48 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_version": schema.StringAttribute{
-								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"uid": schema.StringAttribute{
-								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -431,8 +431,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"infrastructure_ref": schema.SingleNestedAttribute{
-						Description:         "InfrastructureRef is a reference to a provider-specific resource that holds the details for provisioning infrastructure for a cluster in said provider.",
-						MarkdownDescription: "InfrastructureRef is a reference to a provider-specific resource that holds the details for provisioning infrastructure for a cluster in said provider.",
+						Description:         "InfrastructureRef is a reference to a provider-specific resource that holds the detailsfor provisioning infrastructure for a cluster in said provider.",
+						MarkdownDescription: "InfrastructureRef is a reference to a provider-specific resource that holds the detailsfor provisioning infrastructure for a cluster in said provider.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -443,48 +443,48 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-								MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+								MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"resource_version": schema.StringAttribute{
-								Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+								MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"uid": schema.StringAttribute{
-								Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-								MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+								MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -504,8 +504,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"topology": schema.SingleNestedAttribute{
-						Description:         "This encapsulates the topology for the cluster. NOTE: It is required to enable the ClusterTopology feature gate flag to activate managed topologies support; this feature is highly experimental, and parts of it might still be not implemented.",
-						MarkdownDescription: "This encapsulates the topology for the cluster. NOTE: It is required to enable the ClusterTopology feature gate flag to activate managed topologies support; this feature is highly experimental, and parts of it might still be not implemented.",
+						Description:         "This encapsulates the topology for the cluster.NOTE: It is required to enable the ClusterTopologyfeature gate flag to activate managed topologies support;this feature is highly experimental, and parts of it might still be not implemented.",
+						MarkdownDescription: "This encapsulates the topology for the cluster.NOTE: It is required to enable the ClusterTopologyfeature gate flag to activate managed topologies support;this feature is highly experimental, and parts of it might still be not implemented.",
 						Attributes: map[string]schema.Attribute{
 							"class": schema.StringAttribute{
 								Description:         "The name of the ClusterClass object to create the topology.",
@@ -520,36 +520,36 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 								MarkdownDescription: "ControlPlane describes the cluster control plane.",
 								Attributes: map[string]schema.Attribute{
 									"machine_health_check": schema.SingleNestedAttribute{
-										Description:         "MachineHealthCheck allows to enable, disable and override the MachineHealthCheck configuration in the ClusterClass for this control plane.",
-										MarkdownDescription: "MachineHealthCheck allows to enable, disable and override the MachineHealthCheck configuration in the ClusterClass for this control plane.",
+										Description:         "MachineHealthCheck allows to enable, disable and overridethe MachineHealthCheck configuration in the ClusterClass for this control plane.",
+										MarkdownDescription: "MachineHealthCheck allows to enable, disable and overridethe MachineHealthCheck configuration in the ClusterClass for this control plane.",
 										Attributes: map[string]schema.Attribute{
 											"enable": schema.BoolAttribute{
-												Description:         "Enable controls if a MachineHealthCheck should be created for the target machines.  If false: No MachineHealthCheck will be created.  If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.  If true: A MachineHealthCheck is guaranteed to be created. Cluster validation will block if 'enable' is true and no MachineHealthCheck definition is available.",
-												MarkdownDescription: "Enable controls if a MachineHealthCheck should be created for the target machines.  If false: No MachineHealthCheck will be created.  If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.  If true: A MachineHealthCheck is guaranteed to be created. Cluster validation will block if 'enable' is true and no MachineHealthCheck definition is available.",
+												Description:         "Enable controls if a MachineHealthCheck should be created for the target machines.If false: No MachineHealthCheck will be created.If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.If true: A MachineHealthCheck is guaranteed to be created. Cluster validation willblock if 'enable' is true and no MachineHealthCheck definition is available.",
+												MarkdownDescription: "Enable controls if a MachineHealthCheck should be created for the target machines.If false: No MachineHealthCheck will be created.If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.If true: A MachineHealthCheck is guaranteed to be created. Cluster validation willblock if 'enable' is true and no MachineHealthCheck definition is available.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"max_unhealthy": schema.StringAttribute{
-												Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
-												MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
+												Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.",
+												MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"node_startup_timeout": schema.StringAttribute{
-												Description:         "Machines older than this duration without a node will be considered to have failed and will be remediated. If you wish to disable this feature, set the value explicitly to 0.",
-												MarkdownDescription: "Machines older than this duration without a node will be considered to have failed and will be remediated. If you wish to disable this feature, set the value explicitly to 0.",
+												Description:         "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
+												MarkdownDescription: "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"remediation_template": schema.SingleNestedAttribute{
-												Description:         "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider.  This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
-												MarkdownDescription: "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider.  This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
+												Description:         "RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API.",
+												MarkdownDescription: "RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API.",
 												Attributes: map[string]schema.Attribute{
 													"api_version": schema.StringAttribute{
 														Description:         "API version of the referent.",
@@ -560,48 +560,48 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 													},
 
 													"field_path": schema.StringAttribute{
-														Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-														MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+														Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+														MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"kind": schema.StringAttribute{
-														Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-														MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+														MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"namespace": schema.StringAttribute{
-														Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-														MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+														Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+														MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"resource_version": schema.StringAttribute{
-														Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-														MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+														Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+														MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"uid": schema.StringAttribute{
-														Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-														MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+														Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+														MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -613,8 +613,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"unhealthy_conditions": schema.ListNestedAttribute{
-												Description:         "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
-												MarkdownDescription: "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+												Description:         "UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+												MarkdownDescription: "UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"status": schema.StringAttribute{
@@ -654,8 +654,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"unhealthy_range": schema.StringAttribute{
-												Description:         "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
-												MarkdownDescription: "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
+												Description:         "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines",
+												MarkdownDescription: "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -670,12 +670,12 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"metadata": schema.SingleNestedAttribute{
-										Description:         "Metadata is the metadata applied to the ControlPlane and the Machines of the ControlPlane if the ControlPlaneTemplate referenced by the ClusterClass is machine based. If not, it is applied only to the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
-										MarkdownDescription: "Metadata is the metadata applied to the ControlPlane and the Machines of the ControlPlane if the ControlPlaneTemplate referenced by the ClusterClass is machine based. If not, it is applied only to the ControlPlane. At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
+										Description:         "Metadata is the metadata applied to the ControlPlane and the Machines of the ControlPlaneif the ControlPlaneTemplate referenced by the ClusterClass is machine based. If not, itis applied only to the ControlPlane.At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
+										MarkdownDescription: "Metadata is the metadata applied to the ControlPlane and the Machines of the ControlPlaneif the ControlPlaneTemplate referenced by the ClusterClass is machine based. If not, itis applied only to the ControlPlane.At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
 										Attributes: map[string]schema.Attribute{
 											"annotations": schema.MapAttribute{
-												Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-												MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+												Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
+												MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -683,8 +683,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 											},
 
 											"labels": schema.MapAttribute{
-												Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-												MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+												Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
+												MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -697,32 +697,32 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"node_deletion_timeout": schema.StringAttribute{
-										Description:         "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds.",
-										MarkdownDescription: "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds.",
+										Description:         "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machinehosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely.Defaults to 10 seconds.",
+										MarkdownDescription: "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machinehosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely.Defaults to 10 seconds.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"node_drain_timeout": schema.StringAttribute{
-										Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
-										MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
+										Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
+										MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"node_volume_detach_timeout": schema.StringAttribute{
-										Description:         "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
-										MarkdownDescription: "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
+										Description:         "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
+										MarkdownDescription: "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"replicas": schema.Int64Attribute{
-										Description:         "Replicas is the number of control plane nodes. If the value is nil, the ControlPlane object is created without the number of Replicas and it's assumed that the control plane controller does not implement support for this field. When specified against a control plane provider that lacks support for this field, this value will be ignored.",
-										MarkdownDescription: "Replicas is the number of control plane nodes. If the value is nil, the ControlPlane object is created without the number of Replicas and it's assumed that the control plane controller does not implement support for this field. When specified against a control plane provider that lacks support for this field, this value will be ignored.",
+										Description:         "Replicas is the number of control plane nodes.If the value is nil, the ControlPlane object is created without the number of Replicasand it's assumed that the control plane controller does not implement support for this field.When specified against a control plane provider that lacks support for this field, this value will be ignored.",
+										MarkdownDescription: "Replicas is the number of control plane nodes.If the value is nil, the ControlPlane object is created without the number of Replicasand it's assumed that the control plane controller does not implement support for this field.When specified against a control plane provider that lacks support for this field, this value will be ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -734,8 +734,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"rollout_after": schema.StringAttribute{
-								Description:         "RolloutAfter performs a rollout of the entire cluster one component at a time, control plane first and then machine deployments.  Deprecated: This field has no function and is going to be removed in the next apiVersion.",
-								MarkdownDescription: "RolloutAfter performs a rollout of the entire cluster one component at a time, control plane first and then machine deployments.  Deprecated: This field has no function and is going to be removed in the next apiVersion.",
+								Description:         "RolloutAfter performs a rollout of the entire cluster one component at a time,control plane first and then machine deployments.Deprecated: This field has no function and is going to be removed in the next apiVersion.",
+								MarkdownDescription: "RolloutAfter performs a rollout of the entire cluster one component at a time,control plane first and then machine deployments.Deprecated: This field has no function and is going to be removed in the next apiVersion.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -745,13 +745,13 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"variables": schema.ListNestedAttribute{
-								Description:         "Variables can be used to customize the Cluster through patches. They must comply to the corresponding VariableClasses defined in the ClusterClass.",
-								MarkdownDescription: "Variables can be used to customize the Cluster through patches. They must comply to the corresponding VariableClasses defined in the ClusterClass.",
+								Description:         "Variables can be used to customize the Cluster throughpatches. They must comply to the correspondingVariableClasses defined in the ClusterClass.",
+								MarkdownDescription: "Variables can be used to customize the Cluster throughpatches. They must comply to the correspondingVariableClasses defined in the ClusterClass.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"definition_from": schema.StringAttribute{
-											Description:         "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when the definition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass '.spec.patches' where the patch is external and provides external variables. This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
-											MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when the definition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass '.spec.patches' where the patch is external and provides external variables. This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+											Description:         "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+											MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -766,8 +766,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 										},
 
 										"value": schema.MapAttribute{
-											Description:         "Value of the variable. Note: the value will be validated against the schema of the corresponding ClusterClassVariable from the ClusterClass. Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has a hard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools, i.e. it is not possible to have no type field. Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
-											MarkdownDescription: "Value of the variable. Note: the value will be validated against the schema of the corresponding ClusterClassVariable from the ClusterClass. Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has a hard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools, i.e. it is not possible to have no type field. Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
+											Description:         "Value of the variable.Note: the value will be validated against the schema of the corresponding ClusterClassVariablefrom the ClusterClass.Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has ahard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools,i.e. it is not possible to have no type field.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
+											MarkdownDescription: "Value of the variable.Note: the value will be validated against the schema of the corresponding ClusterClassVariablefrom the ClusterClass.Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has ahard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools,i.e. it is not possible to have no type field.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
 											ElementType:         types.StringType,
 											Required:            true,
 											Optional:            false,
@@ -789,8 +789,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"workers": schema.SingleNestedAttribute{
-								Description:         "Workers encapsulates the different constructs that form the worker nodes for the cluster.",
-								MarkdownDescription: "Workers encapsulates the different constructs that form the worker nodes for the cluster.",
+								Description:         "Workers encapsulates the different constructs that form the worker nodesfor the cluster.",
+								MarkdownDescription: "Workers encapsulates the different constructs that form the worker nodesfor the cluster.",
 								Attributes: map[string]schema.Attribute{
 									"machine_deployments": schema.ListNestedAttribute{
 										Description:         "MachineDeployments is a list of machine deployments in the cluster.",
@@ -798,52 +798,52 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"class": schema.StringAttribute{
-													Description:         "Class is the name of the MachineDeploymentClass used to create the set of worker nodes. This should match one of the deployment classes defined in the ClusterClass object mentioned in the 'Cluster.Spec.Class' field.",
-													MarkdownDescription: "Class is the name of the MachineDeploymentClass used to create the set of worker nodes. This should match one of the deployment classes defined in the ClusterClass object mentioned in the 'Cluster.Spec.Class' field.",
+													Description:         "Class is the name of the MachineDeploymentClass used to create the set of worker nodes.This should match one of the deployment classes defined in the ClusterClass objectmentioned in the 'Cluster.Spec.Class' field.",
+													MarkdownDescription: "Class is the name of the MachineDeploymentClass used to create the set of worker nodes.This should match one of the deployment classes defined in the ClusterClass objectmentioned in the 'Cluster.Spec.Class' field.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"failure_domain": schema.StringAttribute{
-													Description:         "FailureDomain is the failure domain the machines will be created in. Must match a key in the FailureDomains map stored on the cluster object.",
-													MarkdownDescription: "FailureDomain is the failure domain the machines will be created in. Must match a key in the FailureDomains map stored on the cluster object.",
+													Description:         "FailureDomain is the failure domain the machines will be created in.Must match a key in the FailureDomains map stored on the cluster object.",
+													MarkdownDescription: "FailureDomain is the failure domain the machines will be created in.Must match a key in the FailureDomains map stored on the cluster object.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"machine_health_check": schema.SingleNestedAttribute{
-													Description:         "MachineHealthCheck allows to enable, disable and override the MachineHealthCheck configuration in the ClusterClass for this MachineDeployment.",
-													MarkdownDescription: "MachineHealthCheck allows to enable, disable and override the MachineHealthCheck configuration in the ClusterClass for this MachineDeployment.",
+													Description:         "MachineHealthCheck allows to enable, disable and overridethe MachineHealthCheck configuration in the ClusterClass for this MachineDeployment.",
+													MarkdownDescription: "MachineHealthCheck allows to enable, disable and overridethe MachineHealthCheck configuration in the ClusterClass for this MachineDeployment.",
 													Attributes: map[string]schema.Attribute{
 														"enable": schema.BoolAttribute{
-															Description:         "Enable controls if a MachineHealthCheck should be created for the target machines.  If false: No MachineHealthCheck will be created.  If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.  If true: A MachineHealthCheck is guaranteed to be created. Cluster validation will block if 'enable' is true and no MachineHealthCheck definition is available.",
-															MarkdownDescription: "Enable controls if a MachineHealthCheck should be created for the target machines.  If false: No MachineHealthCheck will be created.  If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.  If true: A MachineHealthCheck is guaranteed to be created. Cluster validation will block if 'enable' is true and no MachineHealthCheck definition is available.",
+															Description:         "Enable controls if a MachineHealthCheck should be created for the target machines.If false: No MachineHealthCheck will be created.If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.If true: A MachineHealthCheck is guaranteed to be created. Cluster validation willblock if 'enable' is true and no MachineHealthCheck definition is available.",
+															MarkdownDescription: "Enable controls if a MachineHealthCheck should be created for the target machines.If false: No MachineHealthCheck will be created.If not set(default): A MachineHealthCheck will be created if it is defined here or in the associated ClusterClass. If no MachineHealthCheck is defined then none will be created.If true: A MachineHealthCheck is guaranteed to be created. Cluster validation willblock if 'enable' is true and no MachineHealthCheck definition is available.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"max_unhealthy": schema.StringAttribute{
-															Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
-															MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy.",
+															Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.",
+															MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by'selector' are not healthy.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"node_startup_timeout": schema.StringAttribute{
-															Description:         "Machines older than this duration without a node will be considered to have failed and will be remediated. If you wish to disable this feature, set the value explicitly to 0.",
-															MarkdownDescription: "Machines older than this duration without a node will be considered to have failed and will be remediated. If you wish to disable this feature, set the value explicitly to 0.",
+															Description:         "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
+															MarkdownDescription: "Machines older than this duration without a node will be considered to havefailed and will be remediated.If you wish to disable this feature, set the value explicitly to 0.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"remediation_template": schema.SingleNestedAttribute{
-															Description:         "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider.  This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
-															MarkdownDescription: "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider.  This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
+															Description:         "RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API.",
+															MarkdownDescription: "RemediationTemplate is a reference to a remediation templateprovided by an infrastructure provider.This field is completely optional, when filled, the MachineHealthCheck controllercreates a new object from the template referenced and hands off remediation of the machine toa controller that lives outside of Cluster API.",
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
 																	Description:         "API version of the referent.",
@@ -854,48 +854,48 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 																},
 
 																"field_path": schema.StringAttribute{
-																	Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-																	MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+																	Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+																	MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"kind": schema.StringAttribute{
-																	Description:         "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-																	MarkdownDescription: "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																	Description:         "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+																	MarkdownDescription: "Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"namespace": schema.StringAttribute{
-																	Description:         "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
-																	MarkdownDescription: "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+																	Description:         "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+																	MarkdownDescription: "Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"resource_version": schema.StringAttribute{
-																	Description:         "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
-																	MarkdownDescription: "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+																	Description:         "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+																	MarkdownDescription: "Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"uid": schema.StringAttribute{
-																	Description:         "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
-																	MarkdownDescription: "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+																	Description:         "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
+																	MarkdownDescription: "UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -907,8 +907,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"unhealthy_conditions": schema.ListNestedAttribute{
-															Description:         "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
-															MarkdownDescription: "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+															Description:         "UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+															MarkdownDescription: "UnhealthyConditions contains a list of the conditions that determinewhether a node is considered unhealthy. The conditions are combined in alogical OR, i.e. if any of the conditions is met, the node is unhealthy.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"status": schema.StringAttribute{
@@ -948,8 +948,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"unhealthy_range": schema.StringAttribute{
-															Description:         "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
-															MarkdownDescription: "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines",
+															Description:         "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines",
+															MarkdownDescription: "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthyis within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy.Eg. '[3-5]' - This means that remediation will be allowed only when:(a) there are at least 3 unhealthy machines (and)(b) there are at most 5 unhealthy machines",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -964,12 +964,12 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"metadata": schema.SingleNestedAttribute{
-													Description:         "Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment. At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
-													MarkdownDescription: "Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment. At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
+													Description:         "Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment.At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
+													MarkdownDescription: "Metadata is the metadata applied to the MachineDeployment and the machines of the MachineDeployment.At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
 													Attributes: map[string]schema.Attribute{
 														"annotations": schema.MapAttribute{
-															Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-															MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+															Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
+															MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -977,8 +977,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"labels": schema.MapAttribute{
-															Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+															Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
+															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -991,64 +991,64 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"min_ready_seconds": schema.Int64Attribute{
-													Description:         "Minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready)",
-													MarkdownDescription: "Minimum number of seconds for which a newly created machine should be ready. Defaults to 0 (machine will be considered available as soon as it is ready)",
+													Description:         "Minimum number of seconds for which a newly created machine shouldbe ready.Defaults to 0 (machine will be considered available as soon as itis ready)",
+													MarkdownDescription: "Minimum number of seconds for which a newly created machine shouldbe ready.Defaults to 0 (machine will be considered available as soon as itis ready)",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name is the unique identifier for this MachineDeploymentTopology. The value is used with other unique identifiers to create a MachineDeployment's Name (e.g. cluster's name, etc). In case the name is greater than the allowed maximum length, the values are hashed together.",
-													MarkdownDescription: "Name is the unique identifier for this MachineDeploymentTopology. The value is used with other unique identifiers to create a MachineDeployment's Name (e.g. cluster's name, etc). In case the name is greater than the allowed maximum length, the values are hashed together.",
+													Description:         "Name is the unique identifier for this MachineDeploymentTopology.The value is used with other unique identifiers to create a MachineDeployment's Name(e.g. cluster's name, etc). In case the name is greater than the allowed maximum length,the values are hashed together.",
+													MarkdownDescription: "Name is the unique identifier for this MachineDeploymentTopology.The value is used with other unique identifiers to create a MachineDeployment's Name(e.g. cluster's name, etc). In case the name is greater than the allowed maximum length,the values are hashed together.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"node_deletion_timeout": schema.StringAttribute{
-													Description:         "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds.",
-													MarkdownDescription: "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machine hosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds.",
+													Description:         "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machinehosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely.Defaults to 10 seconds.",
+													MarkdownDescription: "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the Machinehosts after the Machine is marked for deletion. A duration of 0 will retry deletion indefinitely.Defaults to 10 seconds.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"node_drain_timeout": schema.StringAttribute{
-													Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
-													MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
+													Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
+													MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"node_volume_detach_timeout": schema.StringAttribute{
-													Description:         "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
-													MarkdownDescription: "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
+													Description:         "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
+													MarkdownDescription: "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"replicas": schema.Int64Attribute{
-													Description:         "Replicas is the number of worker nodes belonging to this set. If the value is nil, the MachineDeployment is created without the number of Replicas (defaulting to 1) and it's assumed that an external entity (like cluster autoscaler) is responsible for the management of this value.",
-													MarkdownDescription: "Replicas is the number of worker nodes belonging to this set. If the value is nil, the MachineDeployment is created without the number of Replicas (defaulting to 1) and it's assumed that an external entity (like cluster autoscaler) is responsible for the management of this value.",
+													Description:         "Replicas is the number of worker nodes belonging to this set.If the value is nil, the MachineDeployment is created without the number of Replicas (defaulting to 1)and it's assumed that an external entity (like cluster autoscaler) is responsible for the managementof this value.",
+													MarkdownDescription: "Replicas is the number of worker nodes belonging to this set.If the value is nil, the MachineDeployment is created without the number of Replicas (defaulting to 1)and it's assumed that an external entity (like cluster autoscaler) is responsible for the managementof this value.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"strategy": schema.SingleNestedAttribute{
-													Description:         "The deployment strategy to use to replace existing machines with new ones.",
-													MarkdownDescription: "The deployment strategy to use to replace existing machines with new ones.",
+													Description:         "The deployment strategy to use to replace existing machines withnew ones.",
+													MarkdownDescription: "The deployment strategy to use to replace existing machines withnew ones.",
 													Attributes: map[string]schema.Attribute{
 														"rolling_update": schema.SingleNestedAttribute{
-															Description:         "Rolling update config params. Present only if MachineDeploymentStrategyType = RollingUpdate.",
-															MarkdownDescription: "Rolling update config params. Present only if MachineDeploymentStrategyType = RollingUpdate.",
+															Description:         "Rolling update config params. Present only ifMachineDeploymentStrategyType = RollingUpdate.",
+															MarkdownDescription: "Rolling update config params. Present only ifMachineDeploymentStrategyType = RollingUpdate.",
 															Attributes: map[string]schema.Attribute{
 																"delete_policy": schema.StringAttribute{
-																	Description:         "DeletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling. Valid values are 'Random, 'Newest', 'Oldest' When no value is supplied, the default DeletePolicy of MachineSet is used",
-																	MarkdownDescription: "DeletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling. Valid values are 'Random, 'Newest', 'Oldest' When no value is supplied, the default DeletePolicy of MachineSet is used",
+																	Description:         "DeletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling.Valid values are 'Random, 'Newest', 'Oldest'When no value is supplied, the default DeletePolicy of MachineSet is used",
+																	MarkdownDescription: "DeletePolicy defines the policy used by the MachineDeployment to identify nodes to delete when downscaling.Valid values are 'Random, 'Newest', 'Oldest'When no value is supplied, the default DeletePolicy of MachineSet is used",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1058,16 +1058,16 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 																},
 
 																"max_surge": schema.StringAttribute{
-																	Description:         "The maximum number of machines that can be scheduled above the desired number of machines. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 1. Example: when this is set to 30%, the new MachineSet can be scaled up immediately when the rolling update starts, such that the total number of old and new machines do not exceed 130% of desired machines. Once old machines have been killed, new MachineSet can be scaled up further, ensuring that total number of machines running at any time during the update is at most 130% of desired machines.",
-																	MarkdownDescription: "The maximum number of machines that can be scheduled above the desired number of machines. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 1. Example: when this is set to 30%, the new MachineSet can be scaled up immediately when the rolling update starts, such that the total number of old and new machines do not exceed 130% of desired machines. Once old machines have been killed, new MachineSet can be scaled up further, ensuring that total number of machines running at any time during the update is at most 130% of desired machines.",
+																	Description:         "The maximum number of machines that can be scheduled above thedesired number of machines.Value can be an absolute number (ex: 5) or a percentage ofdesired machines (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up.Defaults to 1.Example: when this is set to 30%, the new MachineSet can be scaledup immediately when the rolling update starts, such that the totalnumber of old and new machines do not exceed 130% of desiredmachines. Once old machines have been killed, new MachineSet canbe scaled up further, ensuring that total number of machines runningat any time during the update is at most 130% of desired machines.",
+																	MarkdownDescription: "The maximum number of machines that can be scheduled above thedesired number of machines.Value can be an absolute number (ex: 5) or a percentage ofdesired machines (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up.Defaults to 1.Example: when this is set to 30%, the new MachineSet can be scaledup immediately when the rolling update starts, such that the totalnumber of old and new machines do not exceed 130% of desiredmachines. Once old machines have been killed, new MachineSet canbe scaled up further, ensuring that total number of machines runningat any time during the update is at most 130% of desired machines.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
 																},
 
 																"max_unavailable": schema.StringAttribute{
-																	Description:         "The maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.",
-																	MarkdownDescription: "The maximum number of machines that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired machines (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 0. Example: when this is set to 30%, the old MachineSet can be scaled down to 70% of desired machines immediately when the rolling update starts. Once new machines are ready, old MachineSet can be scaled down further, followed by scaling up the new MachineSet, ensuring that the total number of machines available at all times during the update is at least 70% of desired machines.",
+																	Description:         "The maximum number of machines that can be unavailable during the update.Value can be an absolute number (ex: 5) or a percentage of desiredmachines (ex: 10%).Absolute number is calculated from percentage by rounding down.This can not be 0 if MaxSurge is 0.Defaults to 0.Example: when this is set to 30%, the old MachineSet can be scaleddown to 70% of desired machines immediately when the rolling updatestarts. Once new machines are ready, old MachineSet can be scaleddown further, followed by scaling up the new MachineSet, ensuringthat the total number of machines available at all timesduring the update is at least 70% of desired machines.",
+																	MarkdownDescription: "The maximum number of machines that can be unavailable during the update.Value can be an absolute number (ex: 5) or a percentage of desiredmachines (ex: 10%).Absolute number is calculated from percentage by rounding down.This can not be 0 if MaxSurge is 0.Defaults to 0.Example: when this is set to 30%, the old MachineSet can be scaleddown to 70% of desired machines immediately when the rolling updatestarts. Once new machines are ready, old MachineSet can be scaleddown further, followed by scaling up the new MachineSet, ensuringthat the total number of machines available at all timesduring the update is at least 70% of desired machines.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1079,8 +1079,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "Type of deployment. Allowed values are RollingUpdate and OnDelete. The default is RollingUpdate.",
-															MarkdownDescription: "Type of deployment. Allowed values are RollingUpdate and OnDelete. The default is RollingUpdate.",
+															Description:         "Type of deployment. Allowed values are RollingUpdate and OnDelete.The default is RollingUpdate.",
+															MarkdownDescription: "Type of deployment. Allowed values are RollingUpdate and OnDelete.The default is RollingUpdate.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1104,8 +1104,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"definition_from": schema.StringAttribute{
-																		Description:         "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when the definition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass '.spec.patches' where the patch is external and provides external variables. This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
-																		MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when the definition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass '.spec.patches' where the patch is external and provides external variables. This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+																		Description:         "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+																		MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1120,8 +1120,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 																	},
 
 																	"value": schema.MapAttribute{
-																		Description:         "Value of the variable. Note: the value will be validated against the schema of the corresponding ClusterClassVariable from the ClusterClass. Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has a hard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools, i.e. it is not possible to have no type field. Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
-																		MarkdownDescription: "Value of the variable. Note: the value will be validated against the schema of the corresponding ClusterClassVariable from the ClusterClass. Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has a hard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools, i.e. it is not possible to have no type field. Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
+																		Description:         "Value of the variable.Note: the value will be validated against the schema of the corresponding ClusterClassVariablefrom the ClusterClass.Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has ahard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools,i.e. it is not possible to have no type field.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
+																		MarkdownDescription: "Value of the variable.Note: the value will be validated against the schema of the corresponding ClusterClassVariablefrom the ClusterClass.Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has ahard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools,i.e. it is not possible to have no type field.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
 																		ElementType:         types.StringType,
 																		Required:            true,
 																		Optional:            false,
@@ -1151,16 +1151,16 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"class": schema.StringAttribute{
-													Description:         "Class is the name of the MachinePoolClass used to create the pool of worker nodes. This should match one of the deployment classes defined in the ClusterClass object mentioned in the 'Cluster.Spec.Class' field.",
-													MarkdownDescription: "Class is the name of the MachinePoolClass used to create the pool of worker nodes. This should match one of the deployment classes defined in the ClusterClass object mentioned in the 'Cluster.Spec.Class' field.",
+													Description:         "Class is the name of the MachinePoolClass used to create the pool of worker nodes.This should match one of the deployment classes defined in the ClusterClass objectmentioned in the 'Cluster.Spec.Class' field.",
+													MarkdownDescription: "Class is the name of the MachinePoolClass used to create the pool of worker nodes.This should match one of the deployment classes defined in the ClusterClass objectmentioned in the 'Cluster.Spec.Class' field.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"failure_domains": schema.ListAttribute{
-													Description:         "FailureDomains is the list of failure domains the machine pool will be created in. Must match a key in the FailureDomains map stored on the cluster object.",
-													MarkdownDescription: "FailureDomains is the list of failure domains the machine pool will be created in. Must match a key in the FailureDomains map stored on the cluster object.",
+													Description:         "FailureDomains is the list of failure domains the machine pool will be created in.Must match a key in the FailureDomains map stored on the cluster object.",
+													MarkdownDescription: "FailureDomains is the list of failure domains the machine pool will be created in.Must match a key in the FailureDomains map stored on the cluster object.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1168,12 +1168,12 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"metadata": schema.SingleNestedAttribute{
-													Description:         "Metadata is the metadata applied to the MachinePool. At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
-													MarkdownDescription: "Metadata is the metadata applied to the MachinePool. At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
+													Description:         "Metadata is the metadata applied to the MachinePool.At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
+													MarkdownDescription: "Metadata is the metadata applied to the MachinePool.At runtime this metadata is merged with the corresponding metadata from the ClusterClass.",
 													Attributes: map[string]schema.Attribute{
 														"annotations": schema.MapAttribute{
-															Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-															MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+															Description:         "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
+															MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may beset by external tools to store and retrieve arbitrary metadata. They are notqueryable and should be preserved when modifying objects.More info: http://kubernetes.io/docs/user-guide/annotations",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1181,8 +1181,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 														},
 
 														"labels": schema.MapAttribute{
-															Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+															Description:         "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
+															MarkdownDescription: "Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services.More info: http://kubernetes.io/docs/user-guide/labels",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1195,48 +1195,48 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 												},
 
 												"min_ready_seconds": schema.Int64Attribute{
-													Description:         "Minimum number of seconds for which a newly created machine pool should be ready. Defaults to 0 (machine will be considered available as soon as it is ready)",
-													MarkdownDescription: "Minimum number of seconds for which a newly created machine pool should be ready. Defaults to 0 (machine will be considered available as soon as it is ready)",
+													Description:         "Minimum number of seconds for which a newly created machine pool shouldbe ready.Defaults to 0 (machine will be considered available as soon as itis ready)",
+													MarkdownDescription: "Minimum number of seconds for which a newly created machine pool shouldbe ready.Defaults to 0 (machine will be considered available as soon as itis ready)",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name is the unique identifier for this MachinePoolTopology. The value is used with other unique identifiers to create a MachinePool's Name (e.g. cluster's name, etc). In case the name is greater than the allowed maximum length, the values are hashed together.",
-													MarkdownDescription: "Name is the unique identifier for this MachinePoolTopology. The value is used with other unique identifiers to create a MachinePool's Name (e.g. cluster's name, etc). In case the name is greater than the allowed maximum length, the values are hashed together.",
+													Description:         "Name is the unique identifier for this MachinePoolTopology.The value is used with other unique identifiers to create a MachinePool's Name(e.g. cluster's name, etc). In case the name is greater than the allowed maximum length,the values are hashed together.",
+													MarkdownDescription: "Name is the unique identifier for this MachinePoolTopology.The value is used with other unique identifiers to create a MachinePool's Name(e.g. cluster's name, etc). In case the name is greater than the allowed maximum length,the values are hashed together.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
 												},
 
 												"node_deletion_timeout": schema.StringAttribute{
-													Description:         "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the MachinePool hosts after the MachinePool is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds.",
-													MarkdownDescription: "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the MachinePool hosts after the MachinePool is marked for deletion. A duration of 0 will retry deletion indefinitely. Defaults to 10 seconds.",
+													Description:         "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the MachinePoolhosts after the MachinePool is marked for deletion. A duration of 0 will retry deletion indefinitely.Defaults to 10 seconds.",
+													MarkdownDescription: "NodeDeletionTimeout defines how long the controller will attempt to delete the Node that the MachinePoolhosts after the MachinePool is marked for deletion. A duration of 0 will retry deletion indefinitely.Defaults to 10 seconds.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"node_drain_timeout": schema.StringAttribute{
-													Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
-													MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node. The default value is 0, meaning that the node can be drained without any time limitations. NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
+													Description:         "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
+													MarkdownDescription: "NodeDrainTimeout is the total amount of time that the controller will spend on draining a node.The default value is 0, meaning that the node can be drained without any time limitations.NOTE: NodeDrainTimeout is different from 'kubectl drain --timeout'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"node_volume_detach_timeout": schema.StringAttribute{
-													Description:         "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
-													MarkdownDescription: "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumes to be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
+													Description:         "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
+													MarkdownDescription: "NodeVolumeDetachTimeout is the total amount of time that the controller will spend on waiting for all volumesto be detached. The default value is 0, meaning that the volumes can be detached without any time limitations.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"replicas": schema.Int64Attribute{
-													Description:         "Replicas is the number of nodes belonging to this pool. If the value is nil, the MachinePool is created without the number of Replicas (defaulting to 1) and it's assumed that an external entity (like cluster autoscaler) is responsible for the management of this value.",
-													MarkdownDescription: "Replicas is the number of nodes belonging to this pool. If the value is nil, the MachinePool is created without the number of Replicas (defaulting to 1) and it's assumed that an external entity (like cluster autoscaler) is responsible for the management of this value.",
+													Description:         "Replicas is the number of nodes belonging to this pool.If the value is nil, the MachinePool is created without the number of Replicas (defaulting to 1)and it's assumed that an external entity (like cluster autoscaler) is responsible for the managementof this value.",
+													MarkdownDescription: "Replicas is the number of nodes belonging to this pool.If the value is nil, the MachinePool is created without the number of Replicas (defaulting to 1)and it's assumed that an external entity (like cluster autoscaler) is responsible for the managementof this value.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1252,8 +1252,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"definition_from": schema.StringAttribute{
-																		Description:         "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when the definition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass '.spec.patches' where the patch is external and provides external variables. This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
-																		MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when the definition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass '.spec.patches' where the patch is external and provides external variables. This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+																		Description:         "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
+																		MarkdownDescription: "DefinitionFrom specifies where the definition of this Variable is from. DefinitionFrom is 'inline' when thedefinition is from the ClusterClass '.spec.variables' or the name of a patch defined in the ClusterClass'.spec.patches' where the patch is external and provides external variables.This field is mandatory if the variable has 'DefinitionsConflict: true' in ClusterClass 'status.variables[]'",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1268,8 +1268,8 @@ func (r *ClusterXK8SIoClusterV1Beta1Manifest) Schema(_ context.Context, _ dataso
 																	},
 
 																	"value": schema.MapAttribute{
-																		Description:         "Value of the variable. Note: the value will be validated against the schema of the corresponding ClusterClassVariable from the ClusterClass. Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has a hard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools, i.e. it is not possible to have no type field. Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
-																		MarkdownDescription: "Value of the variable. Note: the value will be validated against the schema of the corresponding ClusterClassVariable from the ClusterClass. Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has a hard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools, i.e. it is not possible to have no type field. Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
+																		Description:         "Value of the variable.Note: the value will be validated against the schema of the corresponding ClusterClassVariablefrom the ClusterClass.Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has ahard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools,i.e. it is not possible to have no type field.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
+																		MarkdownDescription: "Value of the variable.Note: the value will be validated against the schema of the corresponding ClusterClassVariablefrom the ClusterClass.Note: We have to use apiextensionsv1.JSON instead of a custom JSON type, because controller-tools has ahard-coded schema for apiextensionsv1.JSON which cannot be produced by another type via controller-tools,i.e. it is not possible to have no type field.Ref: https://github.com/kubernetes-sigs/controller-tools/blob/d0e03a142d0ecdd5491593e941ee1d6b5d91dba6/pkg/crd/known_types.go#L106-L111",
 																		ElementType:         types.StringType,
 																		Required:            true,
 																		Optional:            false,

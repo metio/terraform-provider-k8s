@@ -18,25 +18,6 @@ data "k8s_security_profiles_operator_x_k8s_io_selinux_profile_v1alpha2_manifest"
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    allow = {
-      "@self" = {
-        tcp_socket = ["listen"]
-      }
-      http_cache_port_t = {
-        tcp_socket = ["name_bind"]
-      }
-      node_t = {
-        tcp_socket = ["node_bind"]
-      }
-    }
-    inherit = [
-      {
-        kind = "System"
-        name = "container"
-      }
-    ]
-  }
 }
 ```
 
@@ -73,15 +54,12 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
-
-- `disabled` (Boolean) Whether the profile is disabled and should be skipped during reconciliation.
-
 Optional:
 
 - `allow` (Map of Map of List of String) Defines the allow policy for the profile
-- `inherit` (Attributes List) A SELinuxProfile or set of profiles that this inherits from. Note that they need to be in the same namespace. (see [below for nested schema](#nestedatt--spec--inherit))
-- `permissive` (Boolean) Permissive, when true will cause the SELinux profile to only log violations instead of enforcing them.
+- `disabled` (Boolean) Whether the profile is disabled and should be skipped during reconciliation.
+- `inherit` (Attributes List) A SELinuxProfile or set of profiles that this inherits from.Note that they need to be in the same namespace. (see [below for nested schema](#nestedatt--spec--inherit))
+- `permissive` (Boolean) Permissive, when true will cause the SELinux profile to onlylog violations instead of enforcing them.
 
 <a id="nestedatt--spec--inherit"></a>
 ### Nested Schema for `spec.inherit`
@@ -92,4 +70,4 @@ Required:
 
 Optional:
 
-- `kind` (String) The Kind of the policy that this inherits from. Can be a SelinuxProfile object Or 'System' if an already installed policy will be used. The allowed 'System' policies are available in the SecurityProfilesOperatorDaemon instance.
+- `kind` (String) The Kind of the policy that this inherits from.Can be a SelinuxProfile object Or 'System' if an alreadyinstalled policy will be used.The allowed 'System' policies are available in theSecurityProfilesOperatorDaemon instance.

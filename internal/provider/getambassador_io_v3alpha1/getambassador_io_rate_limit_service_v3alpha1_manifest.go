@@ -49,12 +49,15 @@ type GetambassadorIoRateLimitServiceV3Alpha1ManifestData struct {
 		Ambassador_id     *[]string `tfsdk:"ambassador_id" json:"ambassador_id,omitempty"`
 		Domain            *string   `tfsdk:"domain" json:"domain,omitempty"`
 		Failure_mode_deny *bool     `tfsdk:"failure_mode_deny" json:"failure_mode_deny,omitempty"`
-		Protocol_version  *string   `tfsdk:"protocol_version" json:"protocol_version,omitempty"`
-		Service           *string   `tfsdk:"service" json:"service,omitempty"`
-		Stats_name        *string   `tfsdk:"stats_name" json:"stats_name,omitempty"`
-		Timeout_ms        *int64    `tfsdk:"timeout_ms" json:"timeout_ms,omitempty"`
-		Tls               *string   `tfsdk:"tls" json:"tls,omitempty"`
-		V2ExplicitTLS     *struct {
+		Grpc              *struct {
+			Use_resource_exhausted_code *bool `tfsdk:"use_resource_exhausted_code" json:"use_resource_exhausted_code,omitempty"`
+		} `tfsdk:"grpc" json:"grpc,omitempty"`
+		Protocol_version *string `tfsdk:"protocol_version" json:"protocol_version,omitempty"`
+		Service          *string `tfsdk:"service" json:"service,omitempty"`
+		Stats_name       *string `tfsdk:"stats_name" json:"stats_name,omitempty"`
+		Timeout_ms       *int64  `tfsdk:"timeout_ms" json:"timeout_ms,omitempty"`
+		Tls              *string `tfsdk:"tls" json:"tls,omitempty"`
+		V2ExplicitTLS    *struct {
 			ServiceScheme *string `tfsdk:"service_scheme" json:"serviceScheme,omitempty"`
 			Tls           *string `tfsdk:"tls" json:"tls,omitempty"`
 		} `tfsdk:"v2_explicit_tls" json:"v2ExplicitTLS,omitempty"`
@@ -169,6 +172,23 @@ func (r *GetambassadorIoRateLimitServiceV3Alpha1Manifest) Schema(_ context.Conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"grpc": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"use_resource_exhausted_code": schema.BoolAttribute{
+								Description:         "UseResourceExhaustedCode, when set to true, will cause envoy to return a 'RESOURCE_EXHAUSTED' gRPC code instead of the default 'UNAVAILABLE' gRPC code.",
+								MarkdownDescription: "UseResourceExhaustedCode, when set to true, will cause envoy to return a 'RESOURCE_EXHAUSTED' gRPC code instead of the default 'UNAVAILABLE' gRPC code.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"protocol_version": schema.StringAttribute{

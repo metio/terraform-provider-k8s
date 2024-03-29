@@ -56,26 +56,26 @@ Optional:
 
 Required:
 
-- `chart` (String) Chart is the name or path the Helm chart is available at in the SourceRef.
-- `interval` (String) Interval at which the HelmChart SourceRef is checked for updates. This interval is approximate and may be subject to jitter to ensure efficient use of resources.
+- `chart` (String) Chart is the name or path the Helm chart is available at in theSourceRef.
+- `interval` (String) Interval at which the HelmChart SourceRef is checked for updates.This interval is approximate and may be subject to jitter to ensureefficient use of resources.
 - `source_ref` (Attributes) SourceRef is the reference to the Source the chart is available at. (see [below for nested schema](#nestedatt--spec--source_ref))
 
 Optional:
 
-- `access_from` (Attributes) AccessFrom specifies an Access Control List for allowing cross-namespace references to this object. NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092 (see [below for nested schema](#nestedatt--spec--access_from))
-- `reconcile_strategy` (String) ReconcileStrategy determines what enables the creation of a new artifact. Valid values are ('ChartVersion', 'Revision'). See the documentation of the values for an explanation on their behavior. Defaults to ChartVersion when omitted.
-- `suspend` (Boolean) Suspend tells the controller to suspend the reconciliation of this source.
-- `values_file` (String) ValuesFile is an alternative values file to use as the default chart values, expected to be a relative path in the SourceRef. Deprecated in favor of ValuesFiles, for backwards compatibility the file specified here is merged before the ValuesFiles items. Ignored when omitted.
-- `values_files` (List of String) ValuesFiles is an alternative list of values files to use as the chart values (values.yaml is not included by default), expected to be a relative path in the SourceRef. Values files are merged in the order of this list with the last file overriding the first. Ignored when omitted.
-- `verify` (Attributes) Verify contains the secret name containing the trusted public keys used to verify the signature and specifies which provider to use to check whether OCI image is authentic. This field is only supported when using HelmRepository source with spec.type 'oci'. Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified. (see [below for nested schema](#nestedatt--spec--verify))
-- `version` (String) Version is the chart version semver expression, ignored for charts from GitRepository and Bucket sources. Defaults to latest when omitted.
+- `access_from` (Attributes) AccessFrom specifies an Access Control List for allowing cross-namespacereferences to this object.NOTE: Not implemented, provisional as of https://github.com/fluxcd/flux2/pull/2092 (see [below for nested schema](#nestedatt--spec--access_from))
+- `reconcile_strategy` (String) ReconcileStrategy determines what enables the creation of a new artifact.Valid values are ('ChartVersion', 'Revision').See the documentation of the values for an explanation on their behavior.Defaults to ChartVersion when omitted.
+- `suspend` (Boolean) Suspend tells the controller to suspend the reconciliation of thissource.
+- `values_file` (String) ValuesFile is an alternative values file to use as the default chartvalues, expected to be a relative path in the SourceRef. Deprecated infavor of ValuesFiles, for backwards compatibility the file specified hereis merged before the ValuesFiles items. Ignored when omitted.
+- `values_files` (List of String) ValuesFiles is an alternative list of values files to use as the chartvalues (values.yaml is not included by default), expected to be arelative path in the SourceRef.Values files are merged in the order of this list with the last fileoverriding the first. Ignored when omitted.
+- `verify` (Attributes) Verify contains the secret name containing the trusted public keysused to verify the signature and specifies which provider to use to checkwhether OCI image is authentic.This field is only supported when using HelmRepository source with spec.type 'oci'.Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified. (see [below for nested schema](#nestedatt--spec--verify))
+- `version` (String) Version is the chart version semver expression, ignored for charts fromGitRepository and Bucket sources. Defaults to latest when omitted.
 
 <a id="nestedatt--spec--source_ref"></a>
 ### Nested Schema for `spec.source_ref`
 
 Required:
 
-- `kind` (String) Kind of the referent, valid values are ('HelmRepository', 'GitRepository', 'Bucket').
+- `kind` (String) Kind of the referent, valid values are ('HelmRepository', 'GitRepository','Bucket').
 - `name` (String) Name of the referent.
 
 Optional:
@@ -88,14 +88,14 @@ Optional:
 
 Required:
 
-- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
+- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
 
 <a id="nestedatt--spec--access_from--namespace_selectors"></a>
 ### Nested Schema for `spec.access_from.namespace_selectors`
 
 Optional:
 
-- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 
 
@@ -108,7 +108,17 @@ Required:
 
 Optional:
 
-- `secret_ref` (Attributes) SecretRef specifies the Kubernetes Secret containing the trusted public keys. (see [below for nested schema](#nestedatt--spec--verify--secret_ref))
+- `match_oidc_identity` (Attributes List) MatchOIDCIdentity specifies the identity matching criteria to usewhile verifying an OCI artifact which was signed using Cosign keylesssigning. The artifact's identity is deemed to be verified if any of thespecified matchers match against the identity. (see [below for nested schema](#nestedatt--spec--verify--match_oidc_identity))
+- `secret_ref` (Attributes) SecretRef specifies the Kubernetes Secret containing thetrusted public keys. (see [below for nested schema](#nestedatt--spec--verify--secret_ref))
+
+<a id="nestedatt--spec--verify--match_oidc_identity"></a>
+### Nested Schema for `spec.verify.match_oidc_identity`
+
+Required:
+
+- `issuer` (String) Issuer specifies the regex pattern to match against to verifythe OIDC issuer in the Fulcio certificate. The pattern must be avalid Go regular expression.
+- `subject` (String) Subject specifies the regex pattern to match against to verifythe identity subject in the Fulcio certificate. The pattern mustbe a valid Go regular expression.
+
 
 <a id="nestedatt--spec--verify--secret_ref"></a>
 ### Nested Schema for `spec.verify.secret_ref`

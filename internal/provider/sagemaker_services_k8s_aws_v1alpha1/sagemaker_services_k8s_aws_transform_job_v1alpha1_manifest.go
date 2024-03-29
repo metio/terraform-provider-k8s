@@ -176,20 +176,20 @@ func (r *SagemakerServicesK8SAwsTransformJobV1Alpha1Manifest) Schema(_ context.C
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "TransformJobSpec defines the desired state of TransformJob.  A batch transform job. For information about SageMaker batch transform, see Use Batch Transform (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html).",
-				MarkdownDescription: "TransformJobSpec defines the desired state of TransformJob.  A batch transform job. For information about SageMaker batch transform, see Use Batch Transform (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html).",
+				Description:         "TransformJobSpec defines the desired state of TransformJob.A batch transform job. For information about SageMaker batch transform, seeUse Batch Transform (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html).",
+				MarkdownDescription: "TransformJobSpec defines the desired state of TransformJob.A batch transform job. For information about SageMaker batch transform, seeUse Batch Transform (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html).",
 				Attributes: map[string]schema.Attribute{
 					"batch_strategy": schema.StringAttribute{
-						Description:         "Specifies the number of records to include in a mini-batch for an HTTP inference request. A record is a single unit of input data that inference can be made on. For example, a single line in a CSV file is a record.  To enable the batch strategy, you must set the SplitType property to Line, RecordIO, or TFRecord.  To use only one record when making an HTTP invocation request to a container, set BatchStrategy to SingleRecord and SplitType to Line.  To fit as many records in a mini-batch as can fit within the MaxPayloadInMB limit, set BatchStrategy to MultiRecord and SplitType to Line.",
-						MarkdownDescription: "Specifies the number of records to include in a mini-batch for an HTTP inference request. A record is a single unit of input data that inference can be made on. For example, a single line in a CSV file is a record.  To enable the batch strategy, you must set the SplitType property to Line, RecordIO, or TFRecord.  To use only one record when making an HTTP invocation request to a container, set BatchStrategy to SingleRecord and SplitType to Line.  To fit as many records in a mini-batch as can fit within the MaxPayloadInMB limit, set BatchStrategy to MultiRecord and SplitType to Line.",
+						Description:         "Specifies the number of records to include in a mini-batch for an HTTP inferencerequest. A record is a single unit of input data that inference can be madeon. For example, a single line in a CSV file is a record.To enable the batch strategy, you must set the SplitType property to Line,RecordIO, or TFRecord.To use only one record when making an HTTP invocation request to a container,set BatchStrategy to SingleRecord and SplitType to Line.To fit as many records in a mini-batch as can fit within the MaxPayloadInMBlimit, set BatchStrategy to MultiRecord and SplitType to Line.",
+						MarkdownDescription: "Specifies the number of records to include in a mini-batch for an HTTP inferencerequest. A record is a single unit of input data that inference can be madeon. For example, a single line in a CSV file is a record.To enable the batch strategy, you must set the SplitType property to Line,RecordIO, or TFRecord.To use only one record when making an HTTP invocation request to a container,set BatchStrategy to SingleRecord and SplitType to Line.To fit as many records in a mini-batch as can fit within the MaxPayloadInMBlimit, set BatchStrategy to MultiRecord and SplitType to Line.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"data_processing": schema.SingleNestedAttribute{
-						Description:         "The data structure used to specify the data to be used for inference in a batch transform job and to associate the data that is relevant to the prediction results in the output. The input filter provided allows you to exclude input data that is not needed for inference in a batch transform job. The output filter provided allows you to include input data relevant to interpreting the predictions in the output from the job. For more information, see Associate Prediction Results with their Corresponding Input Records (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).",
-						MarkdownDescription: "The data structure used to specify the data to be used for inference in a batch transform job and to associate the data that is relevant to the prediction results in the output. The input filter provided allows you to exclude input data that is not needed for inference in a batch transform job. The output filter provided allows you to include input data relevant to interpreting the predictions in the output from the job. For more information, see Associate Prediction Results with their Corresponding Input Records (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).",
+						Description:         "The data structure used to specify the data to be used for inference in abatch transform job and to associate the data that is relevant to the predictionresults in the output. The input filter provided allows you to exclude inputdata that is not needed for inference in a batch transform job. The outputfilter provided allows you to include input data relevant to interpretingthe predictions in the output from the job. For more information, see AssociatePrediction Results with their Corresponding Input Records (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).",
+						MarkdownDescription: "The data structure used to specify the data to be used for inference in abatch transform job and to associate the data that is relevant to the predictionresults in the output. The input filter provided allows you to exclude inputdata that is not needed for inference in a batch transform job. The outputfilter provided allows you to include input data relevant to interpretingthe predictions in the output from the job. For more information, see AssociatePrediction Results with their Corresponding Input Records (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).",
 						Attributes: map[string]schema.Attribute{
 							"input_filter": schema.StringAttribute{
 								Description:         "",
@@ -221,8 +221,8 @@ func (r *SagemakerServicesK8SAwsTransformJobV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"environment": schema.MapAttribute{
-						Description:         "The environment variables to set in the Docker container. We support up to 16 key and values entries in the map.",
-						MarkdownDescription: "The environment variables to set in the Docker container. We support up to 16 key and values entries in the map.",
+						Description:         "The environment variables to set in the Docker container. We support up to16 key and values entries in the map.",
+						MarkdownDescription: "The environment variables to set in the Docker container. We support up to16 key and values entries in the map.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -230,8 +230,8 @@ func (r *SagemakerServicesK8SAwsTransformJobV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"experiment_config": schema.SingleNestedAttribute{
-						Description:         "Associates a SageMaker job as a trial component with an experiment and trial. Specified when you call the following APIs:  * CreateProcessingJob  * CreateTrainingJob  * CreateTransformJob",
-						MarkdownDescription: "Associates a SageMaker job as a trial component with an experiment and trial. Specified when you call the following APIs:  * CreateProcessingJob  * CreateTrainingJob  * CreateTransformJob",
+						Description:         "Associates a SageMaker job as a trial component with an experiment and trial.Specified when you call the following APIs:   * CreateProcessingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateProcessingJob.html)   * CreateTrainingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)   * CreateTransformJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html)",
+						MarkdownDescription: "Associates a SageMaker job as a trial component with an experiment and trial.Specified when you call the following APIs:   * CreateProcessingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateProcessingJob.html)   * CreateTrainingJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)   * CreateTransformJob (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html)",
 						Attributes: map[string]schema.Attribute{
 							"experiment_name": schema.StringAttribute{
 								Description:         "",
@@ -263,24 +263,24 @@ func (r *SagemakerServicesK8SAwsTransformJobV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"max_concurrent_transforms": schema.Int64Attribute{
-						Description:         "The maximum number of parallel requests that can be sent to each instance in a transform job. If MaxConcurrentTransforms is set to 0 or left unset, Amazon SageMaker checks the optional execution-parameters to determine the settings for your chosen algorithm. If the execution-parameters endpoint is not enabled, the default value is 1. For more information on execution-parameters, see How Containers Serve Requests (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-batch-code.html#your-algorithms-batch-code-how-containe-serves-requests). For built-in algorithms, you don't need to set a value for MaxConcurrentTransforms.",
-						MarkdownDescription: "The maximum number of parallel requests that can be sent to each instance in a transform job. If MaxConcurrentTransforms is set to 0 or left unset, Amazon SageMaker checks the optional execution-parameters to determine the settings for your chosen algorithm. If the execution-parameters endpoint is not enabled, the default value is 1. For more information on execution-parameters, see How Containers Serve Requests (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-batch-code.html#your-algorithms-batch-code-how-containe-serves-requests). For built-in algorithms, you don't need to set a value for MaxConcurrentTransforms.",
+						Description:         "The maximum number of parallel requests that can be sent to each instancein a transform job. If MaxConcurrentTransforms is set to 0 or left unset,Amazon SageMaker checks the optional execution-parameters to determine thesettings for your chosen algorithm. If the execution-parameters endpointis not enabled, the default value is 1. For more information on execution-parameters,see How Containers Serve Requests (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-batch-code.html#your-algorithms-batch-code-how-containe-serves-requests).For built-in algorithms, you don't need to set a value for MaxConcurrentTransforms.",
+						MarkdownDescription: "The maximum number of parallel requests that can be sent to each instancein a transform job. If MaxConcurrentTransforms is set to 0 or left unset,Amazon SageMaker checks the optional execution-parameters to determine thesettings for your chosen algorithm. If the execution-parameters endpointis not enabled, the default value is 1. For more information on execution-parameters,see How Containers Serve Requests (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-batch-code.html#your-algorithms-batch-code-how-containe-serves-requests).For built-in algorithms, you don't need to set a value for MaxConcurrentTransforms.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"max_payload_in_mb": schema.Int64Attribute{
-						Description:         "The maximum allowed size of the payload, in MB. A payload is the data portion of a record (without metadata). The value in MaxPayloadInMB must be greater than, or equal to, the size of a single record. To estimate the size of a record in MB, divide the size of your dataset by the number of records. To ensure that the records fit within the maximum payload size, we recommend using a slightly larger value. The default value is 6 MB.  The value of MaxPayloadInMB cannot be greater than 100 MB. If you specify the MaxConcurrentTransforms parameter, the value of (MaxConcurrentTransforms * MaxPayloadInMB) also cannot exceed 100 MB.  For cases where the payload might be arbitrarily large and is transmitted using HTTP chunked encoding, set the value to 0. This feature works only in supported algorithms. Currently, Amazon SageMaker built-in algorithms do not support HTTP chunked encoding.",
-						MarkdownDescription: "The maximum allowed size of the payload, in MB. A payload is the data portion of a record (without metadata). The value in MaxPayloadInMB must be greater than, or equal to, the size of a single record. To estimate the size of a record in MB, divide the size of your dataset by the number of records. To ensure that the records fit within the maximum payload size, we recommend using a slightly larger value. The default value is 6 MB.  The value of MaxPayloadInMB cannot be greater than 100 MB. If you specify the MaxConcurrentTransforms parameter, the value of (MaxConcurrentTransforms * MaxPayloadInMB) also cannot exceed 100 MB.  For cases where the payload might be arbitrarily large and is transmitted using HTTP chunked encoding, set the value to 0. This feature works only in supported algorithms. Currently, Amazon SageMaker built-in algorithms do not support HTTP chunked encoding.",
+						Description:         "The maximum allowed size of the payload, in MB. A payload is the data portionof a record (without metadata). The value in MaxPayloadInMB must be greaterthan, or equal to, the size of a single record. To estimate the size of arecord in MB, divide the size of your dataset by the number of records. Toensure that the records fit within the maximum payload size, we recommendusing a slightly larger value. The default value is 6 MB.The value of MaxPayloadInMB cannot be greater than 100 MB. If you specifythe MaxConcurrentTransforms parameter, the value of (MaxConcurrentTransforms* MaxPayloadInMB) also cannot exceed 100 MB.For cases where the payload might be arbitrarily large and is transmittedusing HTTP chunked encoding, set the value to 0. This feature works onlyin supported algorithms. Currently, Amazon SageMaker built-in algorithmsdo not support HTTP chunked encoding.",
+						MarkdownDescription: "The maximum allowed size of the payload, in MB. A payload is the data portionof a record (without metadata). The value in MaxPayloadInMB must be greaterthan, or equal to, the size of a single record. To estimate the size of arecord in MB, divide the size of your dataset by the number of records. Toensure that the records fit within the maximum payload size, we recommendusing a slightly larger value. The default value is 6 MB.The value of MaxPayloadInMB cannot be greater than 100 MB. If you specifythe MaxConcurrentTransforms parameter, the value of (MaxConcurrentTransforms* MaxPayloadInMB) also cannot exceed 100 MB.For cases where the payload might be arbitrarily large and is transmittedusing HTTP chunked encoding, set the value to 0. This feature works onlyin supported algorithms. Currently, Amazon SageMaker built-in algorithmsdo not support HTTP chunked encoding.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"model_client_config": schema.SingleNestedAttribute{
-						Description:         "Configures the timeout and maximum number of retries for processing a transform job invocation.",
-						MarkdownDescription: "Configures the timeout and maximum number of retries for processing a transform job invocation.",
+						Description:         "Configures the timeout and maximum number of retries for processing a transformjob invocation.",
+						MarkdownDescription: "Configures the timeout and maximum number of retries for processing a transformjob invocation.",
 						Attributes: map[string]schema.Attribute{
 							"invocations_max_retries": schema.Int64Attribute{
 								Description:         "",
@@ -304,16 +304,16 @@ func (r *SagemakerServicesK8SAwsTransformJobV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"model_name": schema.StringAttribute{
-						Description:         "The name of the model that you want to use for the transform job. ModelName must be the name of an existing Amazon SageMaker model within an Amazon Web Services Region in an Amazon Web Services account.",
-						MarkdownDescription: "The name of the model that you want to use for the transform job. ModelName must be the name of an existing Amazon SageMaker model within an Amazon Web Services Region in an Amazon Web Services account.",
+						Description:         "The name of the model that you want to use for the transform job. ModelNamemust be the name of an existing Amazon SageMaker model within an Amazon WebServices Region in an Amazon Web Services account.",
+						MarkdownDescription: "The name of the model that you want to use for the transform job. ModelNamemust be the name of an existing Amazon SageMaker model within an Amazon WebServices Region in an Amazon Web Services account.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what) in the Amazon Web Services Billing and Cost Management User Guide.",
-						MarkdownDescription: "(Optional) An array of key-value pairs. For more information, see Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what) in the Amazon Web Services Billing and Cost Management User Guide.",
+						Description:         "(Optional) An array of key-value pairs. For more information, see Using CostAllocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)in the Amazon Web Services Billing and Cost Management User Guide.",
+						MarkdownDescription: "(Optional) An array of key-value pairs. For more information, see Using CostAllocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)in the Amazon Web Services Billing and Cost Management User Guide.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{
@@ -406,8 +406,8 @@ func (r *SagemakerServicesK8SAwsTransformJobV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"transform_job_name": schema.StringAttribute{
-						Description:         "The name of the transform job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account.",
-						MarkdownDescription: "The name of the transform job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account.",
+						Description:         "The name of the transform job. The name must be unique within an Amazon WebServices Region in an Amazon Web Services account.",
+						MarkdownDescription: "The name of the transform job. The name must be unique within an Amazon WebServices Region in an Amazon Web Services account.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -455,8 +455,8 @@ func (r *SagemakerServicesK8SAwsTransformJobV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"transform_resources": schema.SingleNestedAttribute{
-						Description:         "Describes the resources, including ML instance types and ML instance count, to use for the transform job.",
-						MarkdownDescription: "Describes the resources, including ML instance types and ML instance count, to use for the transform job.",
+						Description:         "Describes the resources, including ML instance types and ML instance count,to use for the transform job.",
+						MarkdownDescription: "Describes the resources, including ML instance types and ML instance count,to use for the transform job.",
 						Attributes: map[string]schema.Attribute{
 							"instance_count": schema.Int64Attribute{
 								Description:         "",

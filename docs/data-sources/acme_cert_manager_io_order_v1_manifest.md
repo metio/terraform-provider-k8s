@@ -61,15 +61,15 @@ Optional:
 
 Required:
 
-- `issuer_ref` (Attributes) IssuerRef references a properly configured ACME-type Issuer which should be used to create this Order. If the Issuer does not exist, processing will be retried. If the Issuer is not an 'ACME' Issuer, an error will be returned and the Order will be marked as failed. (see [below for nested schema](#nestedatt--spec--issuer_ref))
-- `request` (String) Certificate signing request bytes in DER encoding. This will be used when finalizing the order. This field must be set on the order.
+- `issuer_ref` (Attributes) IssuerRef references a properly configured ACME-type Issuer which shouldbe used to create this Order.If the Issuer does not exist, processing will be retried.If the Issuer is not an 'ACME' Issuer, an error will be returned and theOrder will be marked as failed. (see [below for nested schema](#nestedatt--spec--issuer_ref))
+- `request` (String) Certificate signing request bytes in DER encoding.This will be used when finalizing the order.This field must be set on the order.
 
 Optional:
 
-- `common_name` (String) CommonName is the common name as specified on the DER encoded CSR. If specified, this value must also be present in 'dnsNames' or 'ipAddresses'. This field must match the corresponding field on the DER encoded CSR.
-- `dns_names` (List of String) DNSNames is a list of DNS names that should be included as part of the Order validation process. This field must match the corresponding field on the DER encoded CSR.
-- `duration` (String) Duration is the duration for the not after date for the requested certificate. this is set on order creation as pe the ACME spec.
-- `ip_addresses` (List of String) IPAddresses is a list of IP addresses that should be included as part of the Order validation process. This field must match the corresponding field on the DER encoded CSR.
+- `common_name` (String) CommonName is the common name as specified on the DER encoded CSR.If specified, this value must also be present in 'dnsNames' or 'ipAddresses'.This field must match the corresponding field on the DER encoded CSR.
+- `dns_names` (List of String) DNSNames is a list of DNS names that should be included as part of the Ordervalidation process.This field must match the corresponding field on the DER encoded CSR.
+- `duration` (String) Duration is the duration for the not after date for the requested certificate.this is set on order creation as pe the ACME spec.
+- `ip_addresses` (List of String) IPAddresses is a list of IP addresses that should be included as part of the Ordervalidation process.This field must match the corresponding field on the DER encoded CSR.
 
 <a id="nestedatt--spec--issuer_ref"></a>
 ### Nested Schema for `spec.issuer_ref`

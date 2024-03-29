@@ -80,6 +80,7 @@ type Apps3ScaleNetApicastV1Alpha1ManifestData struct {
 			} `tfsdk:"tls" json:"tls,omitempty"`
 		} `tfsdk:"exposed_host" json:"exposedHost,omitempty"`
 		ExtendedMetrics           *bool   `tfsdk:"extended_metrics" json:"extendedMetrics,omitempty"`
+		Hpa                       *bool   `tfsdk:"hpa" json:"hpa,omitempty"`
 		HttpProxy                 *string `tfsdk:"http_proxy" json:"httpProxy,omitempty"`
 		HttpsCertificateSecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -432,6 +433,14 @@ func (r *Apps3ScaleNetApicastV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					"extended_metrics": schema.BoolAttribute{
 						Description:         "ExtendedMetrics enables additional information on Prometheus metrics; some labels will be used with specific information that will provide more in-depth details about APIcast.",
 						MarkdownDescription: "ExtendedMetrics enables additional information on Prometheus metrics; some labels will be used with specific information that will provide more in-depth details about APIcast.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"hpa": schema.BoolAttribute{
+						Description:         "Enables/disables HPA",
+						MarkdownDescription: "Enables/disables HPA",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

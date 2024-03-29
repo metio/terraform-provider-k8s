@@ -56,10 +56,10 @@ Optional:
 
 Optional:
 
-- `address` (String)
+- `address` (String) Address associated with the network endpoint without the port.
 - `labels` (Map of String) One or more labels associated with the endpoint.
 - `locality` (String) The locality associated with the endpoint.
-- `network` (String)
+- `network` (String) Network enables Istio to group endpoints resident in the same L3 domain/network.
 - `ports` (Map of String) Set of ports associated with the endpoint.
-- `service_account` (String)
+- `service_account` (String) The service account associated with the workload if a sidecar is present in the workload.
 - `weight` (Number) The load balancing weight associated with the endpoint.

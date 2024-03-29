@@ -16,6 +16,7 @@ description: |-
 data "k8s_crd_projectcalico_org_bgp_filter_v1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -65,8 +66,13 @@ Optional:
 Required:
 
 - `action` (String)
+
+Optional:
+
 - `cidr` (String)
+- `interface` (String)
 - `match_operator` (String)
+- `source` (String)
 
 
 <a id="nestedatt--spec--export_v6"></a>
@@ -75,8 +81,13 @@ Required:
 Required:
 
 - `action` (String)
+
+Optional:
+
 - `cidr` (String)
+- `interface` (String)
 - `match_operator` (String)
+- `source` (String)
 
 
 <a id="nestedatt--spec--import_v4"></a>
@@ -85,8 +96,13 @@ Required:
 Required:
 
 - `action` (String)
+
+Optional:
+
 - `cidr` (String)
+- `interface` (String)
 - `match_operator` (String)
+- `source` (String)
 
 
 <a id="nestedatt--spec--import_v6"></a>
@@ -95,5 +111,10 @@ Required:
 Required:
 
 - `action` (String)
+
+Optional:
+
 - `cidr` (String)
+- `interface` (String)
 - `match_operator` (String)
+- `source` (String)

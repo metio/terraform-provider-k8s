@@ -54,21 +54,27 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `host` (String) The name of a service from the service registry.
+
 Optional:
 
 - `export_to` (List of String) A list of namespaces to which this destination rule is exported.
-- `host` (String) The name of a service from the service registry.
-- `subsets` (Attributes List) (see [below for nested schema](#nestedatt--spec--subsets))
-- `traffic_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--traffic_policy))
-- `workload_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--workload_selector))
+- `subsets` (Attributes List) One or more named sets that represent individual versions of a service. (see [below for nested schema](#nestedatt--spec--subsets))
+- `traffic_policy` (Attributes) Traffic policies to apply (load balancing policy, connection pool sizes, outlier detection). (see [below for nested schema](#nestedatt--spec--traffic_policy))
+- `workload_selector` (Attributes) Criteria used to select the specific set of pods/VMs on which this 'DestinationRule' configuration should be applied. (see [below for nested schema](#nestedatt--spec--workload_selector))
 
 <a id="nestedatt--spec--subsets"></a>
 ### Nested Schema for `spec.subsets`
 
+Required:
+
+- `name` (String) Name of the subset.
+
 Optional:
 
-- `labels` (Map of String)
-- `name` (String) Name of the subset.
+- `labels` (Map of String) Labels apply a filter over the endpoints of a service in the service registry.
 - `traffic_policy` (Attributes) Traffic policies that apply to this subset. (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy))
 
 <a id="nestedatt--spec--subsets--traffic_policy"></a>
@@ -80,8 +86,9 @@ Optional:
 - `load_balancer` (Attributes) Settings controlling the load balancer algorithms. (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--load_balancer))
 - `outlier_detection` (Attributes) (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--outlier_detection))
 - `port_level_settings` (Attributes List) Traffic policies specific to individual ports. (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--port_level_settings))
+- `proxy_protocol` (Attributes) The upstream PROXY protocol settings. (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--proxy_protocol))
 - `tls` (Attributes) TLS related settings for connections to the upstream service. (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tls))
-- `tunnel` (Attributes) (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel))
+- `tunnel` (Attributes) Configuration of tunneling TCP over other transport or application layers for the host configured in the DestinationRule. (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel))
 
 <a id="nestedatt--spec--subsets--traffic_policy--connection_pool"></a>
 ### Nested Schema for `spec.subsets.traffic_policy.tunnel`
@@ -96,12 +103,13 @@ Optional:
 
 Optional:
 
-- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.
-- `http1_max_pending_requests` (Number)
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
 - `http2_max_requests` (Number) Maximum number of active requests to a destination.
 - `idle_timeout` (String) The idle timeout for upstream connection pool connections.
+- `max_concurrent_streams` (Number) The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.
 - `max_requests_per_connection` (Number) Maximum number of requests per connection to a backend.
-- `max_retries` (Number)
+- `max_retries` (Number) Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.
 - `use_client_protocol` (Boolean) If set to true, client protocol will be preserved while initiating connection to backend.
 
 
@@ -111,6 +119,7 @@ Optional:
 Optional:
 
 - `connect_timeout` (String) TCP connection timeout.
+- `idle_timeout` (String) The idle timeout for TCP connections.
 - `max_connection_duration` (String) The maximum duration of a connection.
 - `max_connections` (Number) Maximum number of HTTP1 /TCP connections to a destination host.
 - `tcp_keepalive` (Attributes) If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives. (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--tcp--tcp_keepalive))
@@ -121,8 +130,8 @@ Optional:
 Optional:
 
 - `interval` (String) The time duration between keep-alive probes.
-- `probes` (Number)
-- `time` (String)
+- `probes` (Number) Maximum number of keepalive probes to send without response before deciding the connection is dead.
+- `time` (String) The time duration a connection needs to be idle before keep-alive probes start being sent.
 
 
 
@@ -134,7 +143,7 @@ Optional:
 
 - `consistent_hash` (Attributes) (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--consistent_hash))
 - `locality_lb_setting` (Attributes) (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--locality_lb_setting))
-- `simple` (String)
+- `simple` (String) Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST
 - `warmup_duration_secs` (String) Represents the warmup duration of Service.
 
 <a id="nestedatt--spec--subsets--traffic_policy--tunnel--consistent_hash"></a>
@@ -153,9 +162,12 @@ Optional:
 <a id="nestedatt--spec--subsets--traffic_policy--tunnel--consistent_hash--http_cookie"></a>
 ### Nested Schema for `spec.subsets.traffic_policy.tunnel.consistent_hash.use_source_ip`
 
-Optional:
+Required:
 
 - `name` (String) Name of the cookie.
+
+Optional:
+
 - `path` (String) Path to set for the cookie.
 - `ttl` (String) Lifetime of the cookie.
 
@@ -173,7 +185,7 @@ Optional:
 
 Optional:
 
-- `minimum_ring_size` (Number)
+- `minimum_ring_size` (Number) The minimum number of virtual nodes to use for the hash ring.
 
 
 
@@ -202,7 +214,7 @@ Optional:
 Optional:
 
 - `from` (String) Originating region.
-- `to` (String)
+- `to` (String) Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.
 
 
 
@@ -216,10 +228,10 @@ Optional:
 - `consecutive5xx_errors` (Number) Number of 5xx errors before a host is ejected from the connection pool.
 - `consecutive_errors` (Number)
 - `consecutive_gateway_errors` (Number) Number of gateway errors before a host is ejected from the connection pool.
-- `consecutive_local_origin_failures` (Number)
+- `consecutive_local_origin_failures` (Number) The number of consecutive locally originated failures before ejection occurs.
 - `interval` (String) Time interval between ejection sweep analysis.
-- `max_ejection_percent` (Number)
-- `min_health_percent` (Number)
+- `max_ejection_percent` (Number) Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.
+- `min_health_percent` (Number) Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.
 - `split_external_local_origin_errors` (Boolean) Determines whether to distinguish local origin failures from external errors.
 
 
@@ -231,7 +243,7 @@ Optional:
 - `connection_pool` (Attributes) (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--connection_pool))
 - `load_balancer` (Attributes) Settings controlling the load balancer algorithms. (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--load_balancer))
 - `outlier_detection` (Attributes) (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--outlier_detection))
-- `port` (Attributes) (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--port))
+- `port` (Attributes) Specifies the number of a port on the destination service on which this policy is being applied. (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--port))
 - `tls` (Attributes) TLS related settings for connections to the upstream service. (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--tls))
 
 <a id="nestedatt--spec--subsets--traffic_policy--tunnel--connection_pool"></a>
@@ -247,12 +259,13 @@ Optional:
 
 Optional:
 
-- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.
-- `http1_max_pending_requests` (Number)
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
 - `http2_max_requests` (Number) Maximum number of active requests to a destination.
 - `idle_timeout` (String) The idle timeout for upstream connection pool connections.
+- `max_concurrent_streams` (Number) The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.
 - `max_requests_per_connection` (Number) Maximum number of requests per connection to a backend.
-- `max_retries` (Number)
+- `max_retries` (Number) Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.
 - `use_client_protocol` (Boolean) If set to true, client protocol will be preserved while initiating connection to backend.
 
 
@@ -262,6 +275,7 @@ Optional:
 Optional:
 
 - `connect_timeout` (String) TCP connection timeout.
+- `idle_timeout` (String) The idle timeout for TCP connections.
 - `max_connection_duration` (String) The maximum duration of a connection.
 - `max_connections` (Number) Maximum number of HTTP1 /TCP connections to a destination host.
 - `tcp_keepalive` (Attributes) If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives. (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--connection_pool--tcp--tcp_keepalive))
@@ -272,8 +286,8 @@ Optional:
 Optional:
 
 - `interval` (String) The time duration between keep-alive probes.
-- `probes` (Number)
-- `time` (String)
+- `probes` (Number) Maximum number of keepalive probes to send without response before deciding the connection is dead.
+- `time` (String) The time duration a connection needs to be idle before keep-alive probes start being sent.
 
 
 
@@ -285,7 +299,7 @@ Optional:
 
 - `consistent_hash` (Attributes) (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--load_balancer--consistent_hash))
 - `locality_lb_setting` (Attributes) (see [below for nested schema](#nestedatt--spec--subsets--traffic_policy--tunnel--load_balancer--locality_lb_setting))
-- `simple` (String)
+- `simple` (String) Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST
 - `warmup_duration_secs` (String) Represents the warmup duration of Service.
 
 <a id="nestedatt--spec--subsets--traffic_policy--tunnel--load_balancer--consistent_hash"></a>
@@ -304,9 +318,12 @@ Optional:
 <a id="nestedatt--spec--subsets--traffic_policy--tunnel--load_balancer--warmup_duration_secs--http_cookie"></a>
 ### Nested Schema for `spec.subsets.traffic_policy.tunnel.load_balancer.warmup_duration_secs.use_source_ip`
 
-Optional:
+Required:
 
 - `name` (String) Name of the cookie.
+
+Optional:
+
 - `path` (String) Path to set for the cookie.
 - `ttl` (String) Lifetime of the cookie.
 
@@ -324,7 +341,7 @@ Optional:
 
 Optional:
 
-- `minimum_ring_size` (Number)
+- `minimum_ring_size` (Number) The minimum number of virtual nodes to use for the hash ring.
 
 
 
@@ -353,7 +370,7 @@ Optional:
 Optional:
 
 - `from` (String) Originating region.
-- `to` (String)
+- `to` (String) Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.
 
 
 
@@ -367,10 +384,10 @@ Optional:
 - `consecutive5xx_errors` (Number) Number of 5xx errors before a host is ejected from the connection pool.
 - `consecutive_errors` (Number)
 - `consecutive_gateway_errors` (Number) Number of gateway errors before a host is ejected from the connection pool.
-- `consecutive_local_origin_failures` (Number)
+- `consecutive_local_origin_failures` (Number) The number of consecutive locally originated failures before ejection occurs.
 - `interval` (String) Time interval between ejection sweep analysis.
-- `max_ejection_percent` (Number)
-- `min_health_percent` (Number)
+- `max_ejection_percent` (Number) Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.
+- `min_health_percent` (Number) Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.
 - `split_external_local_origin_errors` (Boolean) Determines whether to distinguish local origin failures from external errors.
 
 
@@ -387,15 +404,24 @@ Optional:
 
 Optional:
 
-- `ca_certificates` (String)
+- `ca_certificates` (String) OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.
+- `ca_crl` (String) OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.
 - `client_certificate` (String) REQUIRED if mode is 'MUTUAL'.
-- `credential_name` (String)
-- `insecure_skip_verify` (Boolean)
-- `mode` (String)
+- `credential_name` (String) The name of the secret that holds the TLS certs for the client including the CA certificates.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.
+- `mode` (String) Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'MUTUAL'.
 - `sni` (String) SNI string to present to the server during TLS handshake.
-- `subject_alt_names` (List of String)
+- `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate.
 
+
+
+<a id="nestedatt--spec--subsets--traffic_policy--proxy_protocol"></a>
+### Nested Schema for `spec.subsets.traffic_policy.tunnel`
+
+Optional:
+
+- `version` (String) The PROXY protocol version to use.Valid Options: V1, V2
 
 
 <a id="nestedatt--spec--subsets--traffic_policy--tls"></a>
@@ -403,24 +429,28 @@ Optional:
 
 Optional:
 
-- `ca_certificates` (String)
+- `ca_certificates` (String) OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.
+- `ca_crl` (String) OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.
 - `client_certificate` (String) REQUIRED if mode is 'MUTUAL'.
-- `credential_name` (String)
-- `insecure_skip_verify` (Boolean)
-- `mode` (String)
+- `credential_name` (String) The name of the secret that holds the TLS certs for the client including the CA certificates.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.
+- `mode` (String) Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'MUTUAL'.
 - `sni` (String) SNI string to present to the server during TLS handshake.
-- `subject_alt_names` (List of String)
+- `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate.
 
 
 <a id="nestedatt--spec--subsets--traffic_policy--tunnel"></a>
 ### Nested Schema for `spec.subsets.traffic_policy.tunnel`
 
+Required:
+
+- `target_host` (String) Specifies a host to which the downstream connection is tunneled.
+- `target_port` (Number) Specifies a port to which the downstream connection is tunneled.
+
 Optional:
 
 - `protocol` (String) Specifies which protocol to use for tunneling the downstream connection.
-- `target_host` (String) Specifies a host to which the downstream connection is tunneled.
-- `target_port` (Number) Specifies a port to which the downstream connection is tunneled.
 
 
 
@@ -434,8 +464,9 @@ Optional:
 - `load_balancer` (Attributes) Settings controlling the load balancer algorithms. (see [below for nested schema](#nestedatt--spec--traffic_policy--load_balancer))
 - `outlier_detection` (Attributes) (see [below for nested schema](#nestedatt--spec--traffic_policy--outlier_detection))
 - `port_level_settings` (Attributes List) Traffic policies specific to individual ports. (see [below for nested schema](#nestedatt--spec--traffic_policy--port_level_settings))
+- `proxy_protocol` (Attributes) The upstream PROXY protocol settings. (see [below for nested schema](#nestedatt--spec--traffic_policy--proxy_protocol))
 - `tls` (Attributes) TLS related settings for connections to the upstream service. (see [below for nested schema](#nestedatt--spec--traffic_policy--tls))
-- `tunnel` (Attributes) (see [below for nested schema](#nestedatt--spec--traffic_policy--tunnel))
+- `tunnel` (Attributes) Configuration of tunneling TCP over other transport or application layers for the host configured in the DestinationRule. (see [below for nested schema](#nestedatt--spec--traffic_policy--tunnel))
 
 <a id="nestedatt--spec--traffic_policy--connection_pool"></a>
 ### Nested Schema for `spec.traffic_policy.connection_pool`
@@ -450,12 +481,13 @@ Optional:
 
 Optional:
 
-- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.
-- `http1_max_pending_requests` (Number)
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
 - `http2_max_requests` (Number) Maximum number of active requests to a destination.
 - `idle_timeout` (String) The idle timeout for upstream connection pool connections.
+- `max_concurrent_streams` (Number) The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.
 - `max_requests_per_connection` (Number) Maximum number of requests per connection to a backend.
-- `max_retries` (Number)
+- `max_retries` (Number) Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.
 - `use_client_protocol` (Boolean) If set to true, client protocol will be preserved while initiating connection to backend.
 
 
@@ -465,6 +497,7 @@ Optional:
 Optional:
 
 - `connect_timeout` (String) TCP connection timeout.
+- `idle_timeout` (String) The idle timeout for TCP connections.
 - `max_connection_duration` (String) The maximum duration of a connection.
 - `max_connections` (Number) Maximum number of HTTP1 /TCP connections to a destination host.
 - `tcp_keepalive` (Attributes) If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives. (see [below for nested schema](#nestedatt--spec--traffic_policy--connection_pool--tcp--tcp_keepalive))
@@ -475,8 +508,8 @@ Optional:
 Optional:
 
 - `interval` (String) The time duration between keep-alive probes.
-- `probes` (Number)
-- `time` (String)
+- `probes` (Number) Maximum number of keepalive probes to send without response before deciding the connection is dead.
+- `time` (String) The time duration a connection needs to be idle before keep-alive probes start being sent.
 
 
 
@@ -488,7 +521,7 @@ Optional:
 
 - `consistent_hash` (Attributes) (see [below for nested schema](#nestedatt--spec--traffic_policy--load_balancer--consistent_hash))
 - `locality_lb_setting` (Attributes) (see [below for nested schema](#nestedatt--spec--traffic_policy--load_balancer--locality_lb_setting))
-- `simple` (String)
+- `simple` (String) Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST
 - `warmup_duration_secs` (String) Represents the warmup duration of Service.
 
 <a id="nestedatt--spec--traffic_policy--load_balancer--consistent_hash"></a>
@@ -507,9 +540,12 @@ Optional:
 <a id="nestedatt--spec--traffic_policy--load_balancer--warmup_duration_secs--http_cookie"></a>
 ### Nested Schema for `spec.traffic_policy.load_balancer.warmup_duration_secs.http_cookie`
 
-Optional:
+Required:
 
 - `name` (String) Name of the cookie.
+
+Optional:
+
 - `path` (String) Path to set for the cookie.
 - `ttl` (String) Lifetime of the cookie.
 
@@ -527,7 +563,7 @@ Optional:
 
 Optional:
 
-- `minimum_ring_size` (Number)
+- `minimum_ring_size` (Number) The minimum number of virtual nodes to use for the hash ring.
 
 
 
@@ -556,7 +592,7 @@ Optional:
 Optional:
 
 - `from` (String) Originating region.
-- `to` (String)
+- `to` (String) Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.
 
 
 
@@ -570,10 +606,10 @@ Optional:
 - `consecutive5xx_errors` (Number) Number of 5xx errors before a host is ejected from the connection pool.
 - `consecutive_errors` (Number)
 - `consecutive_gateway_errors` (Number) Number of gateway errors before a host is ejected from the connection pool.
-- `consecutive_local_origin_failures` (Number)
+- `consecutive_local_origin_failures` (Number) The number of consecutive locally originated failures before ejection occurs.
 - `interval` (String) Time interval between ejection sweep analysis.
-- `max_ejection_percent` (Number)
-- `min_health_percent` (Number)
+- `max_ejection_percent` (Number) Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.
+- `min_health_percent` (Number) Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.
 - `split_external_local_origin_errors` (Boolean) Determines whether to distinguish local origin failures from external errors.
 
 
@@ -585,7 +621,7 @@ Optional:
 - `connection_pool` (Attributes) (see [below for nested schema](#nestedatt--spec--traffic_policy--port_level_settings--connection_pool))
 - `load_balancer` (Attributes) Settings controlling the load balancer algorithms. (see [below for nested schema](#nestedatt--spec--traffic_policy--port_level_settings--load_balancer))
 - `outlier_detection` (Attributes) (see [below for nested schema](#nestedatt--spec--traffic_policy--port_level_settings--outlier_detection))
-- `port` (Attributes) (see [below for nested schema](#nestedatt--spec--traffic_policy--port_level_settings--port))
+- `port` (Attributes) Specifies the number of a port on the destination service on which this policy is being applied. (see [below for nested schema](#nestedatt--spec--traffic_policy--port_level_settings--port))
 - `tls` (Attributes) TLS related settings for connections to the upstream service. (see [below for nested schema](#nestedatt--spec--traffic_policy--port_level_settings--tls))
 
 <a id="nestedatt--spec--traffic_policy--port_level_settings--connection_pool"></a>
@@ -601,12 +637,13 @@ Optional:
 
 Optional:
 
-- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.
-- `http1_max_pending_requests` (Number)
+- `h2_upgrade_policy` (String) Specify if http1.1 connection should be upgraded to http2 for the associated destination.Valid Options: DEFAULT, DO_NOT_UPGRADE, UPGRADE
+- `http1_max_pending_requests` (Number) Maximum number of requests that will be queued while waiting for a ready connection pool connection.
 - `http2_max_requests` (Number) Maximum number of active requests to a destination.
 - `idle_timeout` (String) The idle timeout for upstream connection pool connections.
+- `max_concurrent_streams` (Number) The maximum number of concurrent streams allowed for a peer on one HTTP/2 connection.
 - `max_requests_per_connection` (Number) Maximum number of requests per connection to a backend.
-- `max_retries` (Number)
+- `max_retries` (Number) Maximum number of retries that can be outstanding to all hosts in a cluster at a given time.
 - `use_client_protocol` (Boolean) If set to true, client protocol will be preserved while initiating connection to backend.
 
 
@@ -616,6 +653,7 @@ Optional:
 Optional:
 
 - `connect_timeout` (String) TCP connection timeout.
+- `idle_timeout` (String) The idle timeout for TCP connections.
 - `max_connection_duration` (String) The maximum duration of a connection.
 - `max_connections` (Number) Maximum number of HTTP1 /TCP connections to a destination host.
 - `tcp_keepalive` (Attributes) If set then set SO_KEEPALIVE on the socket to enable TCP Keepalives. (see [below for nested schema](#nestedatt--spec--traffic_policy--port_level_settings--tls--tcp--tcp_keepalive))
@@ -626,8 +664,8 @@ Optional:
 Optional:
 
 - `interval` (String) The time duration between keep-alive probes.
-- `probes` (Number)
-- `time` (String)
+- `probes` (Number) Maximum number of keepalive probes to send without response before deciding the connection is dead.
+- `time` (String) The time duration a connection needs to be idle before keep-alive probes start being sent.
 
 
 
@@ -639,7 +677,7 @@ Optional:
 
 - `consistent_hash` (Attributes) (see [below for nested schema](#nestedatt--spec--traffic_policy--port_level_settings--tls--consistent_hash))
 - `locality_lb_setting` (Attributes) (see [below for nested schema](#nestedatt--spec--traffic_policy--port_level_settings--tls--locality_lb_setting))
-- `simple` (String)
+- `simple` (String) Valid Options: LEAST_CONN, RANDOM, PASSTHROUGH, ROUND_ROBIN, LEAST_REQUEST
 - `warmup_duration_secs` (String) Represents the warmup duration of Service.
 
 <a id="nestedatt--spec--traffic_policy--port_level_settings--tls--consistent_hash"></a>
@@ -658,9 +696,12 @@ Optional:
 <a id="nestedatt--spec--traffic_policy--port_level_settings--tls--consistent_hash--http_cookie"></a>
 ### Nested Schema for `spec.traffic_policy.port_level_settings.tls.consistent_hash.use_source_ip`
 
-Optional:
+Required:
 
 - `name` (String) Name of the cookie.
+
+Optional:
+
 - `path` (String) Path to set for the cookie.
 - `ttl` (String) Lifetime of the cookie.
 
@@ -678,7 +719,7 @@ Optional:
 
 Optional:
 
-- `minimum_ring_size` (Number)
+- `minimum_ring_size` (Number) The minimum number of virtual nodes to use for the hash ring.
 
 
 
@@ -707,7 +748,7 @@ Optional:
 Optional:
 
 - `from` (String) Originating region.
-- `to` (String)
+- `to` (String) Destination region the traffic will fail over to when endpoints in the 'from' region becomes unhealthy.
 
 
 
@@ -721,10 +762,10 @@ Optional:
 - `consecutive5xx_errors` (Number) Number of 5xx errors before a host is ejected from the connection pool.
 - `consecutive_errors` (Number)
 - `consecutive_gateway_errors` (Number) Number of gateway errors before a host is ejected from the connection pool.
-- `consecutive_local_origin_failures` (Number)
+- `consecutive_local_origin_failures` (Number) The number of consecutive locally originated failures before ejection occurs.
 - `interval` (String) Time interval between ejection sweep analysis.
-- `max_ejection_percent` (Number)
-- `min_health_percent` (Number)
+- `max_ejection_percent` (Number) Maximum % of hosts in the load balancing pool for the upstream service that can be ejected.
+- `min_health_percent` (Number) Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.
 - `split_external_local_origin_errors` (Boolean) Determines whether to distinguish local origin failures from external errors.
 
 
@@ -741,15 +782,24 @@ Optional:
 
 Optional:
 
-- `ca_certificates` (String)
+- `ca_certificates` (String) OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.
+- `ca_crl` (String) OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.
 - `client_certificate` (String) REQUIRED if mode is 'MUTUAL'.
-- `credential_name` (String)
-- `insecure_skip_verify` (Boolean)
-- `mode` (String)
+- `credential_name` (String) The name of the secret that holds the TLS certs for the client including the CA certificates.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.
+- `mode` (String) Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'MUTUAL'.
 - `sni` (String) SNI string to present to the server during TLS handshake.
-- `subject_alt_names` (List of String)
+- `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate.
 
+
+
+<a id="nestedatt--spec--traffic_policy--proxy_protocol"></a>
+### Nested Schema for `spec.traffic_policy.proxy_protocol`
+
+Optional:
+
+- `version` (String) The PROXY protocol version to use.Valid Options: V1, V2
 
 
 <a id="nestedatt--spec--traffic_policy--tls"></a>
@@ -757,24 +807,28 @@ Optional:
 
 Optional:
 
-- `ca_certificates` (String)
+- `ca_certificates` (String) OPTIONAL: The path to the file containing certificate authority certificates to use in verifying a presented server certificate.
+- `ca_crl` (String) OPTIONAL: The path to the file containing the certificate revocation list (CRL) to use in verifying a presented server certificate.
 - `client_certificate` (String) REQUIRED if mode is 'MUTUAL'.
-- `credential_name` (String)
-- `insecure_skip_verify` (Boolean)
-- `mode` (String)
+- `credential_name` (String) The name of the secret that holds the TLS certs for the client including the CA certificates.
+- `insecure_skip_verify` (Boolean) 'insecureSkipVerify' specifies whether the proxy should skip verifying the CA signature and SAN for the server certificate corresponding to the host.
+- `mode` (String) Indicates whether connections to this port should be secured using TLS.Valid Options: DISABLE, SIMPLE, MUTUAL, ISTIO_MUTUAL
 - `private_key` (String) REQUIRED if mode is 'MUTUAL'.
 - `sni` (String) SNI string to present to the server during TLS handshake.
-- `subject_alt_names` (List of String)
+- `subject_alt_names` (List of String) A list of alternate names to verify the subject identity in the certificate.
 
 
 <a id="nestedatt--spec--traffic_policy--tunnel"></a>
 ### Nested Schema for `spec.traffic_policy.tunnel`
 
+Required:
+
+- `target_host` (String) Specifies a host to which the downstream connection is tunneled.
+- `target_port` (Number) Specifies a port to which the downstream connection is tunneled.
+
 Optional:
 
 - `protocol` (String) Specifies which protocol to use for tunneling the downstream connection.
-- `target_host` (String) Specifies a host to which the downstream connection is tunneled.
-- `target_port` (Number) Specifies a port to which the downstream connection is tunneled.
 
 
 
@@ -783,4 +837,4 @@ Optional:
 
 Optional:
 
-- `match_labels` (Map of String)
+- `match_labels` (Map of String) One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.

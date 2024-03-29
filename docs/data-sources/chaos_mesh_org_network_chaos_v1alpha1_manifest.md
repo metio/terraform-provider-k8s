@@ -73,6 +73,7 @@ Optional:
 - `duration` (String) Duration represents the duration of the chaos action
 - `external_targets` (List of String) ExternalTargets represents network targets outside k8s
 - `loss` (Attributes) Loss represents the detail about loss action (see [below for nested schema](#nestedatt--spec--loss))
+- `rate` (Attributes) Rate represents the detail about rate control action (see [below for nested schema](#nestedatt--spec--rate))
 - `remote_cluster` (String) RemoteCluster represents the remote cluster where the chaos will be deployed
 - `target` (Attributes) Target represents network target, this applies on netem and network partition action (see [below for nested schema](#nestedatt--spec--target))
 - `target_device` (String) TargetDevice represents the network device to be affected in target scope.
@@ -183,6 +184,14 @@ Required:
 Optional:
 
 - `correlation` (String)
+
+
+<a id="nestedatt--spec--rate"></a>
+### Nested Schema for `spec.rate`
+
+Required:
+
+- `rate` (String) Rate is the speed knob. Allows bit, kbit, mbit, gbit, tbit, bps, kbps, mbps, gbps, tbps unit. bps means bytes per second.
 
 
 <a id="nestedatt--spec--target"></a>

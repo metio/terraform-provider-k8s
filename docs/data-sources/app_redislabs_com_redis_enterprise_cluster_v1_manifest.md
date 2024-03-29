@@ -18,30 +18,6 @@ data "k8s_app_redislabs_com_redis_enterprise_cluster_v1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    nodes = 3
-    persistent_spec = {
-      enabled            = "true"
-      storage_class_name = "gp2"
-    }
-    ui_service_type = "LoadBalancer"
-    username        = "admin@acme.com"
-    redis_enterprise_node_resources = {
-      limits = {
-        cpu    = "400m"
-        memory = "4Gi"
-      }
-      requests = {
-        cpu    = "400m"
-        memory = "4Gi"
-      }
-    }
-    redis_enterprise_image_spec = {
-      image_pull_policy = "IfNotPresent"
-      repository        = "redislabs/redis"
-      version_tag       = "5.4.0-19"
-    }
-  }
 }
 ```
 
@@ -115,6 +91,7 @@ Optional:
 - `rack_awareness_node_label` (String) Node label that specifies rack ID - if specified, will create rack aware cluster. Rack awareness requires node label must exist on all nodes. Additionally, operator needs a special cluster role with permission to list nodes.
 - `redis_enterprise_additional_pod_spec_attributes` (Attributes) ADVANCED USAGE USE AT YOUR OWN RISK - specify pod attributes that are required for the statefulset - Redis Enterprise pods. Pod attributes managed by the operator might override these settings. Also make sure the attributes are supported by the K8s version running on the cluster - the operator does not validate that. (see [below for nested schema](#nestedatt--spec--redis_enterprise_additional_pod_spec_attributes))
 - `redis_enterprise_image_spec` (Attributes) Specification for Redis Enterprise container image (see [below for nested schema](#nestedatt--spec--redis_enterprise_image_spec))
+- `redis_enterprise_ip_family` (String) Reserved, future use, only for use if instructed by Redis. IPFamily dictates what IP family to choose for pods' internal and external communication.
 - `redis_enterprise_node_resources` (Attributes) Compute resource requirements for Redis Enterprise containers (see [below for nested schema](#nestedatt--spec--redis_enterprise_node_resources))
 - `redis_enterprise_pod_annotations` (Map of String) annotations for redis enterprise pod
 - `redis_enterprise_services_configuration` (Attributes) RS Cluster optional services settings (see [below for nested schema](#nestedatt--spec--redis_enterprise_services_configuration))
@@ -124,6 +101,7 @@ Optional:
 - `redis_enterprise_volume_mounts` (Attributes List) additional volume mounts within the redis enterprise containers. More info: https://kubernetes.io/docs/concepts/storage/volumes/ (see [below for nested schema](#nestedatt--spec--redis_enterprise_volume_mounts))
 - `redis_on_flash_spec` (Attributes) Stores configurations specific to redis on flash. If provided, the cluster will be capable of creating redis on flash databases. (see [below for nested schema](#nestedatt--spec--redis_on_flash_spec))
 - `redis_upgrade_policy` (String) Redis upgrade policy to be set on the Redis Enterprise Cluster. Possible values: major/latest This value is used by the cluster to choose the Redis version of the database when an upgrade is performed. The Redis Enterprise Cluster includes multiple versions of OSS Redis that can be used for databases.
+- `resp3_default` (Boolean) Whether databases will turn on RESP3 compatibility upon database upgrade. Note - Deleting this property after explicitly setting its value shall have no effect. Please view the corresponding field in RS doc for more info.
 - `service_account_name` (String) Name of the service account to use
 - `services` (Attributes) Customization options for operator-managed service resources created for Redis Enterprise clusters and databases (see [below for nested schema](#nestedatt--spec--services))
 - `services_rigger_spec` (Attributes) Specification for service rigger (see [below for nested schema](#nestedatt--spec--services_rigger_spec))

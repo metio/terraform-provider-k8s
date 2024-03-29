@@ -57,17 +57,19 @@ Optional:
 Optional:
 
 - `access_mode` (String)
-- `backend_store_driver` (String)
+- `backend_store_driver` (String) Deprecated: Replaced by field 'dataEngine'.
 - `backing_image` (String)
 - `backup_compression_method` (String)
+- `data_engine` (String)
 - `data_locality` (String)
 - `data_source` (String)
 - `disable_frontend` (Boolean)
 - `disk_selector` (List of String)
 - `encrypted` (Boolean)
-- `engine_image` (String)
+- `engine_image` (String) Deprecated: Replaced by field 'image'.
 - `from_backup` (String)
 - `frontend` (String)
+- `image` (String)
 - `last_attached_by` (String)
 - `migratable` (Boolean)
 - `migration_node_id` (String)
@@ -83,6 +85,8 @@ Optional:
 - `revision_counter_disabled` (Boolean)
 - `size` (String)
 - `snapshot_data_integrity` (String)
+- `snapshot_max_count` (Number)
+- `snapshot_max_size` (String)
 - `stale_replica_timeout` (Number)
 - `standby` (Boolean)
 - `unmap_mark_snap_chain_removed` (String)

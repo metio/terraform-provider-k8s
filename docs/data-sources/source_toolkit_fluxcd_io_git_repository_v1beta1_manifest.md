@@ -62,12 +62,12 @@ Required:
 Optional:
 
 - `access_from` (Attributes) AccessFrom defines an Access Control List for allowing cross-namespace references to this object. (see [below for nested schema](#nestedatt--spec--access_from))
-- `git_implementation` (String) Determines which git client library to use. Defaults to go-git, valid values are ('go-git', 'libgit2').
-- `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default will be used, consult the documentation for your version to find out what those are.
+- `git_implementation` (String) Determines which git client library to use.Defaults to go-git, valid values are ('go-git', 'libgit2').
+- `ignore` (String) Ignore overrides the set of excluded patterns in the .sourceignore format(which is the same as .gitignore). If not provided, a default will be used,consult the documentation for your version to find out what those are.
 - `include` (Attributes List) Extra git repositories to map into the repository (see [below for nested schema](#nestedatt--spec--include))
-- `recurse_submodules` (Boolean) When enabled, after the clone is created, initializes all submodules within, using their default settings. This option is available only when using the 'go-git' GitImplementation.
-- `ref` (Attributes) The Git reference to checkout and monitor for changes, defaults to master branch. (see [below for nested schema](#nestedatt--spec--ref))
-- `secret_ref` (Attributes) The secret name containing the Git credentials. For HTTPS repositories the secret must contain username and password fields. For SSH repositories the secret must contain identity and known_hosts fields. (see [below for nested schema](#nestedatt--spec--secret_ref))
+- `recurse_submodules` (Boolean) When enabled, after the clone is created, initializes all submodules within,using their default settings.This option is available only when using the 'go-git' GitImplementation.
+- `ref` (Attributes) The Git reference to checkout and monitor for changes, defaults tomaster branch. (see [below for nested schema](#nestedatt--spec--ref))
+- `secret_ref` (Attributes) The secret name containing the Git credentials.For HTTPS repositories the secret must contain username and passwordfields.For SSH repositories the secret must contain identity and known_hostsfields. (see [below for nested schema](#nestedatt--spec--secret_ref))
 - `suspend` (Boolean) This flag tells the controller to suspend the reconciliation of this source.
 - `timeout` (String) The timeout for remote Git operations like cloning, defaults to 60s.
 - `verify` (Attributes) Verify OpenPGP signature for the Git commit HEAD points to. (see [below for nested schema](#nestedatt--spec--verify))
@@ -77,14 +77,14 @@ Optional:
 
 Required:
 
-- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies. Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
+- `namespace_selectors` (Attributes List) NamespaceSelectors is the list of namespace selectors to which this ACL applies.Items in this list are evaluated using a logical OR operation. (see [below for nested schema](#nestedatt--spec--access_from--namespace_selectors))
 
 <a id="nestedatt--spec--access_from--namespace_selectors"></a>
 ### Nested Schema for `spec.access_from.namespace_selectors`
 
 Optional:
 
-- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 
 

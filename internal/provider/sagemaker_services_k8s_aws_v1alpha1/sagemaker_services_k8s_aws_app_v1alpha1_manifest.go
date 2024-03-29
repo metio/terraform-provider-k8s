@@ -49,10 +49,11 @@ type SagemakerServicesK8SAwsAppV1Alpha1ManifestData struct {
 		AppType      *string `tfsdk:"app_type" json:"appType,omitempty"`
 		DomainID     *string `tfsdk:"domain_id" json:"domainID,omitempty"`
 		ResourceSpec *struct {
-			InstanceType             *string `tfsdk:"instance_type" json:"instanceType,omitempty"`
-			LifecycleConfigARN       *string `tfsdk:"lifecycle_config_arn" json:"lifecycleConfigARN,omitempty"`
-			SageMakerImageARN        *string `tfsdk:"sage_maker_image_arn" json:"sageMakerImageARN,omitempty"`
-			SageMakerImageVersionARN *string `tfsdk:"sage_maker_image_version_arn" json:"sageMakerImageVersionARN,omitempty"`
+			InstanceType               *string `tfsdk:"instance_type" json:"instanceType,omitempty"`
+			LifecycleConfigARN         *string `tfsdk:"lifecycle_config_arn" json:"lifecycleConfigARN,omitempty"`
+			SageMakerImageARN          *string `tfsdk:"sage_maker_image_arn" json:"sageMakerImageARN,omitempty"`
+			SageMakerImageVersionARN   *string `tfsdk:"sage_maker_image_version_arn" json:"sageMakerImageVersionARN,omitempty"`
+			SageMakerImageVersionAlias *string `tfsdk:"sage_maker_image_version_alias" json:"sageMakerImageVersionAlias,omitempty"`
 		} `tfsdk:"resource_spec" json:"resourceSpec,omitempty"`
 		Tags *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
@@ -172,8 +173,8 @@ func (r *SagemakerServicesK8SAwsAppV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"resource_spec": schema.SingleNestedAttribute{
-						Description:         "The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.  The value of InstanceType passed as part of the ResourceSpec in the CreateApp call overrides the value passed as part of the ResourceSpec configured for the user profile or the domain. If InstanceType is not specified in any of those three ResourceSpec values for a KernelGateway app, the CreateApp call fails with a request validation error.",
-						MarkdownDescription: "The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.  The value of InstanceType passed as part of the ResourceSpec in the CreateApp call overrides the value passed as part of the ResourceSpec configured for the user profile or the domain. If InstanceType is not specified in any of those three ResourceSpec values for a KernelGateway app, the CreateApp call fails with a request validation error.",
+						Description:         "The instance type and the Amazon Resource Name (ARN) of the SageMaker imagecreated on the instance.The value of InstanceType passed as part of the ResourceSpec in the CreateAppcall overrides the value passed as part of the ResourceSpec configured forthe user profile or the domain. If InstanceType is not specified in any ofthose three ResourceSpec values for a KernelGateway app, the CreateApp callfails with a request validation error.",
+						MarkdownDescription: "The instance type and the Amazon Resource Name (ARN) of the SageMaker imagecreated on the instance.The value of InstanceType passed as part of the ResourceSpec in the CreateAppcall overrides the value passed as part of the ResourceSpec configured forthe user profile or the domain. If InstanceType is not specified in any ofthose three ResourceSpec values for a KernelGateway app, the CreateApp callfails with a request validation error.",
 						Attributes: map[string]schema.Attribute{
 							"instance_type": schema.StringAttribute{
 								Description:         "",
@@ -206,6 +207,14 @@ func (r *SagemakerServicesK8SAwsAppV1Alpha1Manifest) Schema(_ context.Context, _
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"sage_maker_image_version_alias": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -213,8 +222,8 @@ func (r *SagemakerServicesK8SAwsAppV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "Each tag consists of a key and an optional value. Tag keys must be unique per resource.",
-						MarkdownDescription: "Each tag consists of a key and an optional value. Tag keys must be unique per resource.",
+						Description:         "Each tag consists of a key and an optional value. Tag keys must be uniqueper resource.",
+						MarkdownDescription: "Each tag consists of a key and an optional value. Tag keys must be uniqueper resource.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

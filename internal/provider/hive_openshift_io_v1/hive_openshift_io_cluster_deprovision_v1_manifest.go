@@ -50,13 +50,6 @@ type HiveOpenshiftIoClusterDeprovisionV1ManifestData struct {
 		ClusterName *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
 		InfraID     *string `tfsdk:"infra_id" json:"infraID,omitempty"`
 		Platform    *struct {
-			Alibabacloud *struct {
-				BaseDomain           *string `tfsdk:"base_domain" json:"baseDomain,omitempty"`
-				CredentialsSecretRef *struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
-				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
-				Region *string `tfsdk:"region" json:"region,omitempty"`
-			} `tfsdk:"alibabacloud" json:"alibabacloud,omitempty"`
 			Aws *struct {
 				CredentialsAssumeRole *struct {
 					ExternalID *string `tfsdk:"external_id" json:"externalID,omitempty"`
@@ -79,7 +72,8 @@ type HiveOpenshiftIoClusterDeprovisionV1ManifestData struct {
 				CredentialsSecretRef *struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
-				Region *string `tfsdk:"region" json:"region,omitempty"`
+				NetworkProjectID *string `tfsdk:"network_project_id" json:"networkProjectID,omitempty"`
+				Region           *string `tfsdk:"region" json:"region,omitempty"`
 			} `tfsdk:"gcp" json:"gcp,omitempty"`
 			Ibmcloud *struct {
 				BaseDomain           *string `tfsdk:"base_domain" json:"baseDomain,omitempty"`
@@ -240,48 +234,6 @@ func (r *HiveOpenshiftIoClusterDeprovisionV1Manifest) Schema(_ context.Context, 
 						Description:         "Platform contains platform-specific configuration for a ClusterDeprovision",
 						MarkdownDescription: "Platform contains platform-specific configuration for a ClusterDeprovision",
 						Attributes: map[string]schema.Attribute{
-							"alibabacloud": schema.SingleNestedAttribute{
-								Description:         "AlibabaCloud contains Alibaba Cloud specific deprovision settings",
-								MarkdownDescription: "AlibabaCloud contains Alibaba Cloud specific deprovision settings",
-								Attributes: map[string]schema.Attribute{
-									"base_domain": schema.StringAttribute{
-										Description:         "BaseDomain is the DNS base domain. TODO: Use the non-platform-specific BaseDomain field.",
-										MarkdownDescription: "BaseDomain is the DNS base domain. TODO: Use the non-platform-specific BaseDomain field.",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-									},
-
-									"credentials_secret_ref": schema.SingleNestedAttribute{
-										Description:         "CredentialsSecretRef is the Alibaba account credentials to use for deprovisioning the cluster",
-										MarkdownDescription: "CredentialsSecretRef is the Alibaba account credentials to use for deprovisioning the cluster",
-										Attributes: map[string]schema.Attribute{
-											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"region": schema.StringAttribute{
-										Description:         "Region is the Alibaba region for this deprovision",
-										MarkdownDescription: "Region is the Alibaba region for this deprovision",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"aws": schema.SingleNestedAttribute{
 								Description:         "AWS contains AWS-specific deprovision settings",
 								MarkdownDescription: "AWS contains AWS-specific deprovision settings",
@@ -413,6 +365,14 @@ func (r *HiveOpenshiftIoClusterDeprovisionV1Manifest) Schema(_ context.Context, 
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"network_project_id": schema.StringAttribute{
+										Description:         "NetworkProjectID is used for shared VPC setups",
+										MarkdownDescription: "NetworkProjectID is used for shared VPC setups",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"region": schema.StringAttribute{

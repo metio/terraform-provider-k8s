@@ -8,6 +8,8 @@ package ceph_rook_io_v1
 import (
 	"context"
 	"fmt"
+	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -46,6 +48,12 @@ type CephRookIoCephFilesystemSubVolumeGroupV1ManifestData struct {
 
 	Spec *struct {
 		FilesystemName *string `tfsdk:"filesystem_name" json:"filesystemName,omitempty"`
+		Name           *string `tfsdk:"name" json:"name,omitempty"`
+		Pinning        *struct {
+			Distributed *int64   `tfsdk:"distributed" json:"distributed,omitempty"`
+			Export      *int64   `tfsdk:"export" json:"export,omitempty"`
+			Random      *float64 `tfsdk:"random" json:"random,omitempty"`
+		} `tfsdk:"pinning" json:"pinning,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -140,6 +148,59 @@ func (r *CephRookIoCephFilesystemSubVolumeGroupV1Manifest) Schema(_ context.Cont
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"name": schema.StringAttribute{
+						Description:         "The name of the subvolume group. If not set, the default is the name of the subvolumeGroup CR.",
+						MarkdownDescription: "The name of the subvolume group. If not set, the default is the name of the subvolumeGroup CR.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"pinning": schema.SingleNestedAttribute{
+						Description:         "Pinning configuration of CephFilesystemSubVolumeGroup, reference https://docs.ceph.com/en/latest/cephfs/fs-volumes/#pinning-subvolumes-and-subvolume-groups only one out of (export, distributed, random) can be set at a time",
+						MarkdownDescription: "Pinning configuration of CephFilesystemSubVolumeGroup, reference https://docs.ceph.com/en/latest/cephfs/fs-volumes/#pinning-subvolumes-and-subvolume-groups only one out of (export, distributed, random) can be set at a time",
+						Attributes: map[string]schema.Attribute{
+							"distributed": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+									int64validator.AtMost(1),
+								},
+							},
+
+							"export": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(-1),
+									int64validator.AtMost(256),
+								},
+							},
+
+							"random": schema.Float64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Float64{
+									float64validator.AtLeast(0),
+									float64validator.AtMost(1),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: true,

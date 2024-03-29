@@ -48,7 +48,19 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 		AgentRepository *string `tfsdk:"agent_repository" json:"agentRepository,omitempty"`
 		AgentVersion    *string `tfsdk:"agent_version" json:"agentVersion,omitempty"`
 		Alternator      *struct {
-			Port           *int64  `tfsdk:"port" json:"port,omitempty"`
+			InsecureDisableAuthorization *bool  `tfsdk:"insecure_disable_authorization" json:"insecureDisableAuthorization,omitempty"`
+			InsecureEnableHTTP           *bool  `tfsdk:"insecure_enable_http" json:"insecureEnableHTTP,omitempty"`
+			Port                         *int64 `tfsdk:"port" json:"port,omitempty"`
+			ServingCertificate           *struct {
+				OperatorManagedOptions *struct {
+					AdditionalDNSNames    *[]string `tfsdk:"additional_dns_names" json:"additionalDNSNames,omitempty"`
+					AdditionalIPAddresses *[]string `tfsdk:"additional_ip_addresses" json:"additionalIPAddresses,omitempty"`
+				} `tfsdk:"operator_managed_options" json:"operatorManagedOptions,omitempty"`
+				Type               *string `tfsdk:"type" json:"type,omitempty"`
+				UserManagedOptions *struct {
+					SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+				} `tfsdk:"user_managed_options" json:"userManagedOptions,omitempty"`
+			} `tfsdk:"serving_certificate" json:"servingCertificate,omitempty"`
 			WriteIsolation *string `tfsdk:"write_isolation" json:"writeIsolation,omitempty"`
 		} `tfsdk:"alternator" json:"alternator,omitempty"`
 		AutomaticOrphanedNodeCleanup *bool `tfsdk:"automatic_orphaned_node_cleanup" json:"automaticOrphanedNodeCleanup,omitempty"`
@@ -129,6 +141,8 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -151,6 +165,8 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -174,6 +190,8 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -196,6 +214,8 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -226,7 +246,11 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 				ScyllaAgentConfig *string `tfsdk:"scylla_agent_config" json:"scyllaAgentConfig,omitempty"`
 				ScyllaConfig      *string `tfsdk:"scylla_config" json:"scyllaConfig,omitempty"`
 				Storage           *struct {
-					Capacity         *string `tfsdk:"capacity" json:"capacity,omitempty"`
+					Capacity *string `tfsdk:"capacity" json:"capacity,omitempty"`
+					Metadata *struct {
+						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					} `tfsdk:"metadata" json:"metadata,omitempty"`
 					StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
 				} `tfsdk:"storage" json:"storage,omitempty"`
 				VolumeMounts *[]struct {
@@ -331,9 +355,6 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 									Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 								} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 								Resources *struct {
-									Claims *[]struct {
-										Name *string `tfsdk:"name" json:"name,omitempty"`
-									} `tfsdk:"claims" json:"claims,omitempty"`
 									Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 									Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 								} `tfsdk:"resources" json:"resources,omitempty"`
@@ -345,9 +366,10 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"selector" json:"selector,omitempty"`
-								StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-								VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-								VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+								StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+								VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+								VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+								VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 							} `tfsdk:"spec" json:"spec,omitempty"`
 						} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 					} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -428,6 +450,20 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 					Projected *struct {
 						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 						Sources     *[]struct {
+							ClusterTrustBundle *struct {
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								Name       *string `tfsdk:"name" json:"name,omitempty"`
+								Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								Path       *string `tfsdk:"path" json:"path,omitempty"`
+								SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+							} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 							ConfigMap *struct {
 								Items *[]struct {
 									Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -533,13 +569,37 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 		DeveloperMode *bool     `tfsdk:"developer_mode" json:"developerMode,omitempty"`
 		DnsDomains    *[]string `tfsdk:"dns_domains" json:"dnsDomains,omitempty"`
 		ExposeOptions *struct {
+			BroadcastOptions *struct {
+				Clients *struct {
+					PodIP *struct {
+						Source *string `tfsdk:"source" json:"source,omitempty"`
+					} `tfsdk:"pod_ip" json:"podIP,omitempty"`
+					Type *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"clients" json:"clients,omitempty"`
+				Nodes *struct {
+					PodIP *struct {
+						Source *string `tfsdk:"source" json:"source,omitempty"`
+					} `tfsdk:"pod_ip" json:"podIP,omitempty"`
+					Type *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"nodes" json:"nodes,omitempty"`
+			} `tfsdk:"broadcast_options" json:"broadcastOptions,omitempty"`
 			Cql *struct {
 				Ingress *struct {
 					Annotations      *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 					Disabled         *bool              `tfsdk:"disabled" json:"disabled,omitempty"`
 					IngressClassName *string            `tfsdk:"ingress_class_name" json:"ingressClassName,omitempty"`
+					Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				} `tfsdk:"ingress" json:"ingress,omitempty"`
 			} `tfsdk:"cql" json:"cql,omitempty"`
+			NodeService *struct {
+				AllocateLoadBalancerNodePorts *bool              `tfsdk:"allocate_load_balancer_node_ports" json:"allocateLoadBalancerNodePorts,omitempty"`
+				Annotations                   *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				ExternalTrafficPolicy         *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+				InternalTrafficPolicy         *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
+				Labels                        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				LoadBalancerClass             *string            `tfsdk:"load_balancer_class" json:"loadBalancerClass,omitempty"`
+				Type                          *string            `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"node_service" json:"nodeService,omitempty"`
 		} `tfsdk:"expose_options" json:"exposeOptions,omitempty"`
 		ExternalSeeds           *[]string `tfsdk:"external_seeds" json:"externalSeeds,omitempty"`
 		ForceRedeploymentReason *string   `tfsdk:"force_redeployment_reason" json:"forceRedeploymentReason,omitempty"`
@@ -550,10 +610,19 @@ type ScyllaScylladbComScyllaClusterV1ManifestData struct {
 		ImagePullSecrets *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
-		Network *struct {
+		MinReadySeconds                  *int64 `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		MinTerminationGracePeriodSeconds *int64 `tfsdk:"min_termination_grace_period_seconds" json:"minTerminationGracePeriodSeconds,omitempty"`
+		Network                          *struct {
 			DnsPolicy      *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
 			HostNetworking *bool   `tfsdk:"host_networking" json:"hostNetworking,omitempty"`
 		} `tfsdk:"network" json:"network,omitempty"`
+		PodMetadata *struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		} `tfsdk:"pod_metadata" json:"podMetadata,omitempty"`
+		ReadinessGates *[]struct {
+			ConditionType *string `tfsdk:"condition_type" json:"conditionType,omitempty"`
+		} `tfsdk:"readiness_gates" json:"readinessGates,omitempty"`
 		Repairs *[]struct {
 			Dc                  *[]string `tfsdk:"dc" json:"dc,omitempty"`
 			FailFast            *bool     `tfsdk:"fail_fast" json:"failFast,omitempty"`
@@ -679,12 +748,92 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 						Description:         "alternator designates this cluster an Alternator cluster.",
 						MarkdownDescription: "alternator designates this cluster an Alternator cluster.",
 						Attributes: map[string]schema.Attribute{
-							"port": schema.Int64Attribute{
-								Description:         "port is the port number used to bind the Alternator API.",
-								MarkdownDescription: "port is the port number used to bind the Alternator API.",
+							"insecure_disable_authorization": schema.BoolAttribute{
+								Description:         "insecureDisableAuthorization disables Alternator authorization. If not specified, the authorization is enabled. For backwards compatibility the authorization is disabled when this field is not specified and a manual port is used.",
+								MarkdownDescription: "insecureDisableAuthorization disables Alternator authorization. If not specified, the authorization is enabled. For backwards compatibility the authorization is disabled when this field is not specified and a manual port is used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"insecure_enable_http": schema.BoolAttribute{
+								Description:         "insecureEnableHTTP enables serving Alternator traffic also on insecure HTTP port.",
+								MarkdownDescription: "insecureEnableHTTP enables serving Alternator traffic also on insecure HTTP port.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"port": schema.Int64Attribute{
+								Description:         "port is the port number used to bind the Alternator API. Deprecated: 'port' is deprecated and may be ignored in the future. Please make sure to avoid using hostNetworking and work with standard Kubernetes concepts like Services.",
+								MarkdownDescription: "port is the port number used to bind the Alternator API. Deprecated: 'port' is deprecated and may be ignored in the future. Please make sure to avoid using hostNetworking and work with standard Kubernetes concepts like Services.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"serving_certificate": schema.SingleNestedAttribute{
+								Description:         "servingCertificate references a TLS certificate for serving secure traffic.",
+								MarkdownDescription: "servingCertificate references a TLS certificate for serving secure traffic.",
+								Attributes: map[string]schema.Attribute{
+									"operator_managed_options": schema.SingleNestedAttribute{
+										Description:         "operatorManagedOptions specifies options for certificates manged by the operator.",
+										MarkdownDescription: "operatorManagedOptions specifies options for certificates manged by the operator.",
+										Attributes: map[string]schema.Attribute{
+											"additional_dns_names": schema.ListAttribute{
+												Description:         "additionalDNSNames represents external DNS names that the certificates should be signed for.",
+												MarkdownDescription: "additionalDNSNames represents external DNS names that the certificates should be signed for.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"additional_ip_addresses": schema.ListAttribute{
+												Description:         "additionalIPAddresses represents external IP addresses that the certificates should be signed for.",
+												MarkdownDescription: "additionalIPAddresses represents external IP addresses that the certificates should be signed for.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "type determines the source of this certificate.",
+										MarkdownDescription: "type determines the source of this certificate.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("OperatorManaged", "UserManaged"),
+										},
+									},
+
+									"user_managed_options": schema.SingleNestedAttribute{
+										Description:         "userManagedOptions specifies options for certificates manged by users.",
+										MarkdownDescription: "userManagedOptions specifies options for certificates manged by users.",
+										Attributes: map[string]schema.Attribute{
+											"secret_name": schema.StringAttribute{
+												Description:         "secretName references a kubernetes.io/tls type secret containing the TLS cert and key.",
+												MarkdownDescription: "secretName references a kubernetes.io/tls type secret containing the TLS cert and key.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"write_isolation": schema.StringAttribute{
@@ -1178,8 +1327,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 																		MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																		Attributes: map[string]schema.Attribute{
 																			"label_selector": schema.SingleNestedAttribute{
-																				Description:         "A label query over a set of resources, in this case pods.",
-																				MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																				Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																				MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																				Attributes: map[string]schema.Attribute{
 																					"match_expressions": schema.ListNestedAttribute{
 																						Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1229,6 +1378,24 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 																				Required: false,
 																				Optional: true,
 																				Computed: false,
+																			},
+
+																			"match_label_keys": schema.ListAttribute{
+																				Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mismatch_label_keys": schema.ListAttribute{
+																				Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
 																			},
 
 																			"namespace_selector": schema.SingleNestedAttribute{
@@ -1327,8 +1494,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"label_selector": schema.SingleNestedAttribute{
-																		Description:         "A label query over a set of resources, in this case pods.",
-																		MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																		Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																		MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																		Attributes: map[string]schema.Attribute{
 																			"match_expressions": schema.ListNestedAttribute{
 																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1378,6 +1545,24 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+																	},
+
+																	"match_label_keys": schema.ListAttribute{
+																		Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																		MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"mismatch_label_keys": schema.ListAttribute{
+																		Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																		MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
 																	},
 
 																	"namespace_selector": schema.SingleNestedAttribute{
@@ -1476,8 +1661,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 																		MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 																		Attributes: map[string]schema.Attribute{
 																			"label_selector": schema.SingleNestedAttribute{
-																				Description:         "A label query over a set of resources, in this case pods.",
-																				MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																				Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																				MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																				Attributes: map[string]schema.Attribute{
 																					"match_expressions": schema.ListNestedAttribute{
 																						Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1527,6 +1712,24 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 																				Required: false,
 																				Optional: true,
 																				Computed: false,
+																			},
+
+																			"match_label_keys": schema.ListAttribute{
+																				Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mismatch_label_keys": schema.ListAttribute{
+																				Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
 																			},
 
 																			"namespace_selector": schema.SingleNestedAttribute{
@@ -1625,8 +1828,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"label_selector": schema.SingleNestedAttribute{
-																		Description:         "A label query over a set of resources, in this case pods.",
-																		MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																		Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																		MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																		Attributes: map[string]schema.Attribute{
 																			"match_expressions": schema.ListNestedAttribute{
 																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1676,6 +1879,24 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 																		Required: false,
 																		Optional: true,
 																		Computed: false,
+																	},
+
+																	"match_label_keys": schema.ListAttribute{
+																		Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																		MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"mismatch_label_keys": schema.ListAttribute{
+																		Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																		MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
 																	},
 
 																	"namespace_selector": schema.SingleNestedAttribute{
@@ -1888,6 +2109,33 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"metadata": schema.SingleNestedAttribute{
+													Description:         "metadata controls shared metadata for the volume claim for this rack. At this point, the values are applied only for the initial claim and are not reconciled during its lifetime. Note that this may get fixed in the future and this behaviour shouldn't be relied on in any way.",
+													MarkdownDescription: "metadata controls shared metadata for the volume claim for this rack. At this point, the values are applied only for the initial claim and are not reconciled during its lifetime. Note that this may get fixed in the future and this behaviour shouldn't be relied on in any way.",
+													Attributes: map[string]schema.Attribute{
+														"annotations": schema.MapAttribute{
+															Description:         "annotations is a custom key value map that gets merged with managed object annotations.",
+															MarkdownDescription: "annotations is a custom key value map that gets merged with managed object annotations.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"labels": schema.MapAttribute{
+															Description:         "labels is a custom key value map that gets merged with managed object labels.",
+															MarkdownDescription: "labels is a custom key value map that gets merged with managed object labels.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"storage_class_name": schema.StringAttribute{
@@ -2577,25 +2825,6 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 																				Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																				MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																				Attributes: map[string]schema.Attribute{
-																					"claims": schema.ListNestedAttribute{
-																						Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																						MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers.",
-																						NestedObject: schema.NestedAttributeObject{
-																							Attributes: map[string]schema.Attribute{
-																								"name": schema.StringAttribute{
-																									Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																									MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																									Required:            true,
-																									Optional:            false,
-																									Computed:            false,
-																								},
-																							},
-																						},
-																						Required: false,
-																						Optional: true,
-																						Computed: false,
-																					},
-
 																					"limits": schema.MapAttribute{
 																						Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																						MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -2676,6 +2905,14 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 																			"storage_class_name": schema.StringAttribute{
 																				Description:         "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
 																				MarkdownDescription: "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"volume_attributes_class_name": schema.StringAttribute{
+																				Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																				MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -3227,6 +3464,101 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 																MarkdownDescription: "sources is the list of volume projections",
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
+																		"cluster_trust_bundle": schema.SingleNestedAttribute{
+																			Description:         "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file.  Alpha, gated by the ClusterTrustBundleProjection feature gate.  ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector.  Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+																			MarkdownDescription: "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file.  Alpha, gated by the ClusterTrustBundleProjection feature gate.  ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector.  Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+																			Attributes: map[string]schema.Attribute{
+																				"label_selector": schema.SingleNestedAttribute{
+																					Description:         "Select all ClusterTrustBundles that match this label selector.  Only has effect if signerName is set.  Mutually-exclusive with name.  If unset, interpreted as 'match nothing'.  If set but empty, interpreted as 'match everything'.",
+																					MarkdownDescription: "Select all ClusterTrustBundles that match this label selector.  Only has effect if signerName is set.  Mutually-exclusive with name.  If unset, interpreted as 'match nothing'.  If set but empty, interpreted as 'match everything'.",
+																					Attributes: map[string]schema.Attribute{
+																						"match_expressions": schema.ListNestedAttribute{
+																							Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"key": schema.StringAttribute{
+																										Description:         "key is the label key that the selector applies to.",
+																										MarkdownDescription: "key is the label key that the selector applies to.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"operator": schema.StringAttribute{
+																										Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																										Required:            true,
+																										Optional:            false,
+																										Computed:            false,
+																									},
+
+																									"values": schema.ListAttribute{
+																										Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																										MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"match_labels": schema.MapAttribute{
+																							Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.",
+																					MarkdownDescription: "Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																					MarkdownDescription: "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"path": schema.StringAttribute{
+																					Description:         "Relative path from the volume root to write the bundle.",
+																					MarkdownDescription: "Relative path from the volume root to write the bundle.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"signer_name": schema.StringAttribute{
+																					Description:         "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																					MarkdownDescription: "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
 																		"config_map": schema.SingleNestedAttribute{
 																			Description:         "configMap information about the configMap data to project",
 																			MarkdownDescription: "configMap information about the configMap data to project",
@@ -3928,6 +4260,83 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 						Description:         "exposeOptions specifies options for exposing ScyllaCluster services. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
 						MarkdownDescription: "exposeOptions specifies options for exposing ScyllaCluster services. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
 						Attributes: map[string]schema.Attribute{
+							"broadcast_options": schema.SingleNestedAttribute{
+								Description:         "BroadcastOptions defines how ScyllaDB node publishes its IP address to other nodes and clients.",
+								MarkdownDescription: "BroadcastOptions defines how ScyllaDB node publishes its IP address to other nodes and clients.",
+								Attributes: map[string]schema.Attribute{
+									"clients": schema.SingleNestedAttribute{
+										Description:         "clients specifies options related to the address that is broadcasted for communication with clients. This field controls the 'broadcast_rpc_address' value in ScyllaDB config.",
+										MarkdownDescription: "clients specifies options related to the address that is broadcasted for communication with clients. This field controls the 'broadcast_rpc_address' value in ScyllaDB config.",
+										Attributes: map[string]schema.Attribute{
+											"pod_ip": schema.SingleNestedAttribute{
+												Description:         "podIP holds options related to Pod IP address.",
+												MarkdownDescription: "podIP holds options related to Pod IP address.",
+												Attributes: map[string]schema.Attribute{
+													"source": schema.StringAttribute{
+														Description:         "sourceType specifies source of the Pod IP.",
+														MarkdownDescription: "sourceType specifies source of the Pod IP.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type of the address that is broadcasted.",
+												MarkdownDescription: "type of the address that is broadcasted.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"nodes": schema.SingleNestedAttribute{
+										Description:         "nodes specifies options related to the address that is broadcasted for communication with other nodes. This field controls the 'broadcast_address' value in ScyllaDB config.",
+										MarkdownDescription: "nodes specifies options related to the address that is broadcasted for communication with other nodes. This field controls the 'broadcast_address' value in ScyllaDB config.",
+										Attributes: map[string]schema.Attribute{
+											"pod_ip": schema.SingleNestedAttribute{
+												Description:         "podIP holds options related to Pod IP address.",
+												MarkdownDescription: "podIP holds options related to Pod IP address.",
+												Attributes: map[string]schema.Attribute{
+													"source": schema.StringAttribute{
+														Description:         "sourceType specifies source of the Pod IP.",
+														MarkdownDescription: "sourceType specifies source of the Pod IP.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type of the address that is broadcasted.",
+												MarkdownDescription: "type of the address that is broadcasted.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"cql": schema.SingleNestedAttribute{
 								Description:         "cql specifies expose options for CQL SSL backend. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
 								MarkdownDescription: "cql specifies expose options for CQL SSL backend. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
@@ -3937,8 +4346,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "ingress is an Ingress configuration options. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
 										Attributes: map[string]schema.Attribute{
 											"annotations": schema.MapAttribute{
-												Description:         "annotations specifies custom annotations merged into every Ingress object. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
-												MarkdownDescription: "annotations specifies custom annotations merged into every Ingress object. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
+												Description:         "annotations is a custom key value map that gets merged with managed object annotations.",
+												MarkdownDescription: "annotations is a custom key value map that gets merged with managed object annotations.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -3960,10 +4369,86 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 												Optional:            true,
 												Computed:            false,
 											},
+
+											"labels": schema.MapAttribute{
+												Description:         "labels is a custom key value map that gets merged with managed object labels.",
+												MarkdownDescription: "labels is a custom key value map that gets merged with managed object labels.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
 										},
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"node_service": schema.SingleNestedAttribute{
+								Description:         "nodeService controls properties of Service dedicated for each ScyllaCluster node.",
+								MarkdownDescription: "nodeService controls properties of Service dedicated for each ScyllaCluster node.",
+								Attributes: map[string]schema.Attribute{
+									"allocate_load_balancer_node_ports": schema.BoolAttribute{
+										Description:         "allocateLoadBalancerNodePorts controls value of service.spec.allocateLoadBalancerNodePorts of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.",
+										MarkdownDescription: "allocateLoadBalancerNodePorts controls value of service.spec.allocateLoadBalancerNodePorts of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"annotations": schema.MapAttribute{
+										Description:         "annotations is a custom key value map that gets merged with managed object annotations.",
+										MarkdownDescription: "annotations is a custom key value map that gets merged with managed object annotations.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"external_traffic_policy": schema.StringAttribute{
+										Description:         "externalTrafficPolicy controls value of service.spec.externalTrafficPolicy of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.",
+										MarkdownDescription: "externalTrafficPolicy controls value of service.spec.externalTrafficPolicy of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"internal_traffic_policy": schema.StringAttribute{
+										Description:         "internalTrafficPolicy controls value of service.spec.internalTrafficPolicy of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.",
+										MarkdownDescription: "internalTrafficPolicy controls value of service.spec.internalTrafficPolicy of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"labels": schema.MapAttribute{
+										Description:         "labels is a custom key value map that gets merged with managed object labels.",
+										MarkdownDescription: "labels is a custom key value map that gets merged with managed object labels.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"load_balancer_class": schema.StringAttribute{
+										Description:         "loadBalancerClass controls value of service.spec.loadBalancerClass of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.",
+										MarkdownDescription: "loadBalancerClass controls value of service.spec.loadBalancerClass of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "type is the Kubernetes Service type.",
+										MarkdownDescription: "type is the Kubernetes Service type.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
 									},
 								},
 								Required: false,
@@ -4037,6 +4522,22 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 						Computed: false,
 					},
 
+					"min_ready_seconds": schema.Int64Attribute{
+						Description:         "minReadySeconds is the minimum number of seconds for which a newly created ScyllaDB node should be ready for it to be considered available. When used to control load balanced traffic, this can give the load balancer in front of a node enough time to notice that the node is ready and start forwarding traffic in time. Because it all depends on timing, the order is not guaranteed and, if possible, you should use readinessGates instead. If not provided, Operator will determine this value.",
+						MarkdownDescription: "minReadySeconds is the minimum number of seconds for which a newly created ScyllaDB node should be ready for it to be considered available. When used to control load balanced traffic, this can give the load balancer in front of a node enough time to notice that the node is ready and start forwarding traffic in time. Because it all depends on timing, the order is not guaranteed and, if possible, you should use readinessGates instead. If not provided, Operator will determine this value.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"min_termination_grace_period_seconds": schema.Int64Attribute{
+						Description:         "minTerminationGracePeriodSeconds specifies minimum duration in seconds to wait before every drained node is terminated. This gives time to potential load balancer in front of a node to notice that node is not ready anymore and stop forwarding new requests. This applies only when node is terminated gracefully. If not provided, Operator will determine this value. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
+						MarkdownDescription: "minTerminationGracePeriodSeconds specifies minimum duration in seconds to wait before every drained node is terminated. This gives time to potential load balancer in front of a node to notice that node is not ready anymore and stop forwarding new requests. This applies only when node is terminated gracefully. If not provided, Operator will determine this value. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"network": schema.SingleNestedAttribute{
 						Description:         "network holds the networking config.",
 						MarkdownDescription: "network holds the networking config.",
@@ -4055,6 +4556,52 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"pod_metadata": schema.SingleNestedAttribute{
+						Description:         "podMetadata controls shared metadata for all pods created based on this spec.",
+						MarkdownDescription: "podMetadata controls shared metadata for all pods created based on this spec.",
+						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "annotations is a custom key value map that gets merged with managed object annotations.",
+								MarkdownDescription: "annotations is a custom key value map that gets merged with managed object annotations.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "labels is a custom key value map that gets merged with managed object labels.",
+								MarkdownDescription: "labels is a custom key value map that gets merged with managed object labels.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"readiness_gates": schema.ListNestedAttribute{
+						Description:         "readinessGates specifies custom readiness gates that will be evaluated for every ScyllaDB Pod readiness. It's projected into every ScyllaDB Pod as its readinessGate. Refer to upstream documentation to learn more about readiness gates.",
+						MarkdownDescription: "readinessGates specifies custom readiness gates that will be evaluated for every ScyllaDB Pod readiness. It's projected into every ScyllaDB Pod as its readinessGate. Refer to upstream documentation to learn more about readiness gates.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"condition_type": schema.StringAttribute{
+									Description:         "ConditionType refers to a condition in the pod's condition list with matching type.",
+									MarkdownDescription: "ConditionType refers to a condition in the pod's condition list with matching type.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,

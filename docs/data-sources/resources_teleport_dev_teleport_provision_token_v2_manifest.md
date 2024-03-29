@@ -67,6 +67,7 @@ Optional:
 - `join_method` (String) JoinMethod is the joining method required in order to use this token. Supported joining methods include 'token', 'ec2', and 'iam'.
 - `kubernetes` (Attributes) Kubernetes allows the configuration of options specific to the 'kubernetes' join method. (see [below for nested schema](#nestedatt--spec--kubernetes))
 - `roles` (List of String) Roles is a list of roles associated with the token, that will be converted to metadata in the SSH and X509 certificates issued to the user of the token
+- `spacelift` (Attributes) Spacelift allows the configuration of options specific to the 'spacelift' join method. (see [below for nested schema](#nestedatt--spec--spacelift))
 - `suggested_agent_matcher_labels` (Map of String) SuggestedAgentMatcherLabels is a set of labels to be used by agents to match on resources. When an agent uses this token, the agent should monitor resources that match those labels. For databases, this means adding the labels to 'db_service.resources.labels'. Currently, only node-join scripts create a configuration according to the suggestion.
 - `suggested_labels` (Map of String) SuggestedLabels is a set of labels that resources should set when using this token to enroll themselves in the cluster. Currently, only node-join scripts create a configuration according to the suggestion.
 
@@ -141,6 +142,7 @@ Optional:
 
 - `allow` (Attributes List) Allow is a list of TokenRules, nodes using this token must match one allow rule to use this token. (see [below for nested schema](#nestedatt--spec--github--allow))
 - `enterprise_server_host` (String) EnterpriseServerHost allows joining from runners associated with a GitHub Enterprise Server instance. When unconfigured, tokens will be validated against github.com, but when configured to the host of a GHES instance, then the tokens will be validated against host.  This value should be the hostname of the GHES instance, and should not include the scheme or a path. The instance must be accessible over HTTPS at this hostname and the certificate must be trusted by the Auth Server.
+- `enterprise_slug` (String) EnterpriseSlug allows the slug of a GitHub Enterprise organisation to be included in the expected issuer of the OIDC tokens. This is for compatibility with the 'include_enterprise_slug' option in GHE.  This field should be set to the slug of your enterprise if this is enabled. If this is not enabled, then this field must be left empty. This field cannot be specified if 'enterprise_server_host' is specified.  See https://docs.github.com/en/enterprise-cloud@latest/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#customizing-the-issuer-value-for-an-enterprise for more information about customized issuer values.
 
 <a id="nestedatt--spec--github--allow"></a>
 ### Nested Schema for `spec.github.allow`
@@ -171,13 +173,22 @@ Optional:
 
 Optional:
 
+- `ci_config_ref_uri` (String)
+- `ci_config_sha` (String)
+- `deployment_tier` (String)
 - `environment` (String)
+- `environment_protected` (Boolean)
 - `namespace_path` (String)
 - `pipeline_source` (String)
 - `project_path` (String)
+- `project_visibility` (String)
 - `ref` (String)
+- `ref_protected` (Boolean)
 - `ref_type` (String)
 - `sub` (String)
+- `user_email` (String)
+- `user_id` (String)
+- `user_login` (String)
 
 
 
@@ -204,3 +215,23 @@ Optional:
 Optional:
 
 - `jwks` (String)
+
+
+
+<a id="nestedatt--spec--spacelift"></a>
+### Nested Schema for `spec.spacelift`
+
+Optional:
+
+- `allow` (Attributes List) Allow is a list of Rules, nodes using this token must match one allow rule to use this token. (see [below for nested schema](#nestedatt--spec--spacelift--allow))
+- `hostname` (String) Hostname is the hostname of the Spacelift tenant that tokens will originate from. E.g 'example.app.spacelift.io'
+
+<a id="nestedatt--spec--spacelift--allow"></a>
+### Nested Schema for `spec.spacelift.allow`
+
+Optional:
+
+- `caller_id` (String)
+- `caller_type` (String)
+- `scope` (String)
+- `space_id` (String)

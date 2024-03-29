@@ -1,3 +1,0 @@
-output "resource" {
-  value = k8s_longhorn_io_instance_manager_v1beta1.example
-}

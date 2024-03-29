@@ -57,7 +57,7 @@ Optional:
 - `feed` (Attributes) Feed holds references to the objects the Localization applies to. (see [below for nested schema](#nestedatt--spec--feed))
 - `override_policy` (String) OverridePolicy specifies the override policy for this Localization.
 - `overrides` (Attributes List) Overrides holds all the OverrideConfig. (see [below for nested schema](#nestedatt--spec--overrides))
-- `priority` (Number) Priority is an integer defining the relative importance of this Localization compared to others. Lower numbers are considered lower priority. And these Localization(s) will be applied by order from lower priority to higher. That means override values in lower Localization will be overridden by those in higher Localization.
+- `priority` (Number) Priority is an integer defining the relative importance of this Localization compared to others.Lower numbers are considered lower priority.And these Localization(s) will be applied by order from lower priority to higher.That means override values in lower Localization will be overridden by those in higher Localization.
 
 <a id="nestedatt--spec--feed"></a>
 ### Nested Schema for `spec.feed`
@@ -65,7 +65,7 @@ Optional:
 Required:
 
 - `api_version` (String) APIVersion defines the versioned schema of this representation of an object.
-- `kind` (String) Kind is a string value representing the REST resource this object represents. In CamelCase.
+- `kind` (String) Kind is a string value representing the REST resource this object represents.In CamelCase.
 - `name` (String) Name of the target resource.
 
 Optional:

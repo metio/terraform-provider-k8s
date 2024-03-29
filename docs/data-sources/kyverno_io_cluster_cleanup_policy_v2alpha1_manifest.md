@@ -16,6 +16,7 @@ ClusterCleanupPolicy defines rule for resource cleanup.
 data "k8s_kyverno_io_cluster_cleanup_policy_v2alpha1_manifest" "example" {
   metadata = {
     name = "some-name"
+
   }
 }
 ```
@@ -164,9 +165,9 @@ Optional:
 
 Optional:
 
-- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry
-- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR
-- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace
+- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.
 
 
 

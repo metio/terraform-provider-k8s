@@ -71,7 +71,7 @@ Required:
 Optional:
 
 - `from` (String) From is a jsonpatch from string, used by move and copy operations.
-- `value` (String) Value must be a string representing a valid json object used by replace and add operations. String has to be escaped with ' to be valid a json object.
+- `value` (String) Value must be a string representing a valid json object usedby replace and add operations. String has to be escaped with ' to be valid a json object.
 
 
 <a id="nestedatt--spec--sidecar_patch"></a>
@@ -85,4 +85,4 @@ Required:
 Optional:
 
 - `from` (String) From is a jsonpatch from string, used by move and copy operations.
-- `value` (String) Value must be a string representing a valid json object used by replace and add operations. String has to be escaped with ' to be valid a json object.
+- `value` (String) Value must be a string representing a valid json object usedby replace and add operations. String has to be escaped with ' to be valid a json object.

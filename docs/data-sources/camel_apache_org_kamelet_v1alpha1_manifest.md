@@ -18,59 +18,6 @@ data "k8s_camel_apache_org_kamelet_v1alpha1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    definition = {
-      title       = "Telegram Text Source"
-      description = <<-TEXT
-Receive all text messages that people send to your telegram bot.
-
-# Instructions
-Description can include Markdown and guide the final user to configure the Kamelet parameters.
-TEXT
-      required    = ["botToken"]
-      properties = {
-        botToken = {
-          title         = "Token"
-          description   = "The token to access your bot on Telegram"
-          type          = "string"
-          x-descriptors = ["urn:alm:descriptor:com.tectonic.ui:password"]
-        }
-      }
-    }
-    types = {
-      out = {
-        media_type = "text/plain"
-      }
-    }
-    template = {
-      from = {
-        uri = "telegram:bots"
-        parameters = {
-          authorization_token = "#property:botToken"
-        }
-        steps = [
-          {
-            convert-body-to = {
-              type       = "java.lang.String"
-              type-class = "java.lang.String"
-              charset    = "UTF8"
-            }
-          },
-          {
-            filter = {
-              simple = "$${body} != null"
-            }
-          },
-          {
-            log = "$${body}"
-          },
-          {
-            to = "kamelet:sink"
-          }
-        ]
-      }
-    }
-  }
 }
 ```
 
@@ -286,6 +233,7 @@ Optional:
 - `content_key` (String) the confimap key holding the source content
 - `content_ref` (String) the confimap reference holding the source content
 - `content_type` (String) the content type (tipically text or binary)
+- `from_kamelet` (Boolean) True if the spec is generated from a Kamelet
 - `interceptors` (List of String) Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources
 - `language` (String) specify which is the language (Camel DSL) used to interpret this source code
 - `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime

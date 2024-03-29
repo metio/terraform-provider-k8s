@@ -62,7 +62,7 @@ Optional:
 - `generate_existing_on_policy_update` (Boolean) Deprecated, use generateExisting instead
 - `mutate_existing_on_policy_update` (Boolean) MutateExistingOnPolicyUpdate controls if a mutateExisting policy is applied on policy events. Default value is 'false'.
 - `rules` (Attributes List) Rules is a list of Rule instances. A Policy contains multiple rules and each rule can validate, mutate, or generate resources. (see [below for nested schema](#nestedatt--spec--rules))
-- `schema_validation` (Boolean) SchemaValidation skips validation checks for policies as well as patched resources. Optional. The default value is set to 'true', it must be set to 'false' to disable the validation checks.
+- `schema_validation` (Boolean) Deprecated.
 - `use_server_side_apply` (Boolean) UseServerSideApply controls whether to use server-side apply for generate rules If is set to 'true' create & update for generate rules will use apply instead of create/update. Defaults to 'false' if not specified.
 - `validation_failure_action` (String) ValidationFailureAction defines if a validation policy rule violation should block the admission review request (enforce), or allow (audit) the admission review request and report an error in a policy report. Optional. Allowed values are audit or enforce. The default value is 'Audit'.
 - `validation_failure_action_overrides` (Attributes List) ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureAction namespace-wise. It overrides ValidationFailureAction for the specified namespaces. (see [below for nested schema](#nestedatt--spec--validation_failure_action_overrides))
@@ -85,6 +85,7 @@ Optional:
 - `match` (Attributes) MatchResources defines when this policy rule should be applied. The match criteria can include resource information (e.g. kind, name, namespace, labels) and admission review request information like the user name or role. At least one kind is required. (see [below for nested schema](#nestedatt--spec--rules--match))
 - `mutate` (Attributes) Mutation is used to modify matching resources. (see [below for nested schema](#nestedatt--spec--rules--mutate))
 - `preconditions` (Attributes) Preconditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--preconditions))
+- `skip_background_requests` (Boolean) SkipBackgroundRequests bypasses admission requests that are sent by the background controller. The default value is set to 'true', it must be set to 'false' to apply generate and mutateExisting rules to those requests.
 - `validate` (Attributes) Validation is used to validate matching resources. (see [below for nested schema](#nestedatt--spec--rules--validate))
 - `verify_images` (Attributes List) VerifyImages is used to verify image signatures and mutate them to add a digest (see [below for nested schema](#nestedatt--spec--rules--verify_images))
 
@@ -170,9 +171,9 @@ Optional:
 
 Optional:
 
-- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry
-- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR
-- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace
+- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.
 
 
 
@@ -377,9 +378,10 @@ Optional:
 - `name` (String) Name specifies the resource name.
 - `namespace` (String) Namespace specifies resource namespace.
 - `synchronize` (Boolean) Synchronize controls if generated resources should be kept in-sync with their source resource. If Synchronize is set to 'true' changes to generated resources will be overwritten with resource data from Data or the resource specified in the Clone declaration. Optional. Defaults to 'false' if not specified.
+- `uid` (String) UID specifies the resource uid.
 
 <a id="nestedatt--spec--rules--generate--clone"></a>
-### Nested Schema for `spec.rules.generate.synchronize`
+### Nested Schema for `spec.rules.generate.uid`
 
 Optional:
 
@@ -388,24 +390,24 @@ Optional:
 
 
 <a id="nestedatt--spec--rules--generate--clone_list"></a>
-### Nested Schema for `spec.rules.generate.synchronize`
+### Nested Schema for `spec.rules.generate.uid`
 
 Optional:
 
 - `kinds` (List of String) Kinds is a list of resource kinds.
 - `namespace` (String) Namespace specifies source resource namespace.
-- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels'. wildcard characters are not supported. (see [below for nested schema](#nestedatt--spec--rules--generate--synchronize--selector))
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels'. wildcard characters are not supported. (see [below for nested schema](#nestedatt--spec--rules--generate--uid--selector))
 
-<a id="nestedatt--spec--rules--generate--synchronize--selector"></a>
-### Nested Schema for `spec.rules.generate.synchronize.selector`
+<a id="nestedatt--spec--rules--generate--uid--selector"></a>
+### Nested Schema for `spec.rules.generate.uid.selector`
 
 Optional:
 
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--generate--synchronize--selector--match_expressions))
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--generate--uid--selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
-<a id="nestedatt--spec--rules--generate--synchronize--selector--match_expressions"></a>
-### Nested Schema for `spec.rules.generate.synchronize.selector.match_labels`
+<a id="nestedatt--spec--rules--generate--uid--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.generate.uid.selector.match_labels`
 
 Required:
 
@@ -693,9 +695,9 @@ Optional:
 
 Optional:
 
-- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry
-- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR
-- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace
+- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.
 
 
 
@@ -753,6 +755,7 @@ Optional:
 - `name` (String) Name specifies the resource name.
 - `namespace` (String) Namespace specifies resource namespace.
 - `preconditions` (Map of String) Preconditions are used to determine if a policy rule should be applied by evaluating a set of conditions. The declaration can contain nested 'any' or 'all' statements. A direct list of conditions (without 'any' or 'all' statements is supported for backwards compatibility but will be deprecated in the next major release. See: https://kyverno.io/docs/writing-policies/preconditions/
+- `uid` (String) UID specifies the resource uid.
 
 <a id="nestedatt--spec--rules--mutate--targets--context"></a>
 ### Nested Schema for `spec.rules.mutate.targets.context`
@@ -827,9 +830,9 @@ Optional:
 
 Optional:
 
-- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry
-- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR
-- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace
+- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.
 
 
 
@@ -1103,9 +1106,9 @@ Optional:
 
 Optional:
 
-- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry
-- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR
-- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace
+- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.
 
 
 
@@ -1185,10 +1188,10 @@ Optional:
 Optional:
 
 - `annotations` (Map of String) Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.
-- `attestor` (Map of String) Attestor is a nested AttestorSet used to specify a more complex set of match authorities
-- `certificates` (Attributes) Certificates specifies one or more certificates (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--certificates))
+- `attestor` (Map of String) Attestor is a nested set of Attestor used to specify a more complex set of match authorities.
+- `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--certificates))
 - `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--keyless))
-- `keys` (Attributes) Keys specifies one or more public keys (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--keys))
+- `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--keys))
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--certificates"></a>
@@ -1196,9 +1199,9 @@ Optional:
 
 Optional:
 
-- `cert` (String) Certificate is an optional PEM encoded public certificate.
-- `cert_chain` (String) CertificateChain is an optional PEM encoded set of certificates used to verify
-- `ctlog` (Attributes) CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
+- `cert` (String) Cert is an optional PEM-encoded public certificate.
+- `cert_chain` (String) CertChain is an optional PEM encoded set of certificates used to verify.
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog"></a>
@@ -1206,8 +1209,8 @@ Optional:
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT requires that a certificate contain an embedded SCT during verification.
-- `pubkey` (String) CTLogPubKey, if set, is used to validate SCTs against those keys.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor"></a>
@@ -1215,12 +1218,12 @@ Optional:
 
 Required:
 
-- `url` (String) URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 Optional:
 
-- `ignore_tlog` (Boolean) IgnoreTlog skip tlog verification
-- `pubkey` (String) RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.
+- `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
 
 
 
@@ -1230,19 +1233,19 @@ Optional:
 Optional:
 
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
-- `ctlog` (Attributes) CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
 - `roots` (String) Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.
-- `subject` (String) Subject is the verified identity used for keyless signing, for example the email address
+- `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.subject`
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT requires that a certificate contain an embedded SCT during verification.
-- `pubkey` (String) CTLogPubKey, if set, is used to validate SCTs against those keys.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor"></a>
@@ -1250,12 +1253,12 @@ Optional:
 
 Required:
 
-- `url` (String) URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 Optional:
 
-- `ignore_tlog` (Boolean) IgnoreTlog skip tlog verification
-- `pubkey` (String) RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.
+- `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
 
 
 
@@ -1264,20 +1267,20 @@ Optional:
 
 Optional:
 
-- `ctlog` (Attributes) CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog))
 - `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md
 - `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor))
 - `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--secret))
-- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha256 and sha512
+- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--ctlog"></a>
 ### Nested Schema for `spec.rules.validate.pod_security.attestors.entries.repository.signature_algorithm`
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT requires that a certificate contain an embedded SCT during verification.
-- `pubkey` (String) CTLogPubKey, if set, is used to validate SCTs against those keys.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--rekor"></a>
@@ -1285,12 +1288,12 @@ Optional:
 
 Required:
 
-- `url` (String) URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 Optional:
 
-- `ignore_tlog` (Boolean) IgnoreTlog skip tlog verification
-- `pubkey` (String) RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.
+- `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
 
 
 <a id="nestedatt--spec--rules--validate--pod_security--attestors--entries--repository--secret"></a>
@@ -1355,6 +1358,8 @@ Required:
 Optional:
 
 - `images` (List of String) Images selects matching containers and applies the container level PSS. Each image is the image name consisting of the registry address, repository, image, and tag. Empty list matches no containers, PSS checks are applied at the pod level only. Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
+- `restricted_field` (String) RestrictedField selects the field for the given Pod Security Standard control. When not set, all restricted fields for the control are selected.
+- `values` (List of String) Values defines the allowed values that can be excluded.
 
 
 
@@ -1371,6 +1376,7 @@ Optional:
 - `mutate_digest` (Boolean) MutateDigest enables replacement of image tags with digests. Defaults to true.
 - `repository` (String) Repository is an optional alternate OCI repository to use for image signatures and attestations that match this rule. If specified Repository will override the default OCI image repository configured for the installation. The repository can also be overridden per Attestor or Attestation.
 - `required` (Boolean) Required validates that images are verified i.e. have matched passed a signature or attestation check.
+- `skip_image_references` (List of String) SkipImageReferences is a list of matching image reference patterns that should be skipped. At least one pattern in the list must match the image for the rule to be skipped. Each image reference consists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest). Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
 - `type` (String) Type specifies the method of signature validation. The allowed options are Cosign and Notary. By default Cosign is used if a type is not specified.
 - `use_cache` (Boolean) UseCache enables caching of image verify responses for this rule
 - `verify_digest` (Boolean) VerifyDigest validates that images have a digest.
@@ -1380,7 +1386,7 @@ Optional:
 
 Optional:
 
-- `attestors` (Attributes List) Attestors specify the required attestors (i.e. authorities) (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors))
+- `attestors` (Attributes List) Attestors specify the required attestors (i.e. authorities). (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors))
 - `conditions` (Attributes List) Conditions are used to verify attributes within a Predicate. If no Conditions are specified the attestation check is satisfied as long there are predicates that match the predicate type. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--conditions))
 - `predicate_type` (String) Deprecated in favour of 'Type', to be removed soon
 - `type` (String) Type defines the type of attestation contained within the Statement.
@@ -1399,10 +1405,10 @@ Optional:
 Optional:
 
 - `annotations` (Map of String) Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.
-- `attestor` (Map of String) Attestor is a nested AttestorSet used to specify a more complex set of match authorities
-- `certificates` (Attributes) Certificates specifies one or more certificates (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--certificates))
+- `attestor` (Map of String) Attestor is a nested set of Attestor used to specify a more complex set of match authorities.
+- `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--certificates))
 - `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keyless))
-- `keys` (Attributes) Keys specifies one or more public keys (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keys))
+- `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--keys))
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--certificates"></a>
@@ -1410,9 +1416,9 @@ Optional:
 
 Optional:
 
-- `cert` (String) Certificate is an optional PEM encoded public certificate.
-- `cert_chain` (String) CertificateChain is an optional PEM encoded set of certificates used to verify
-- `ctlog` (Attributes) CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
+- `cert` (String) Cert is an optional PEM-encoded public certificate.
+- `cert_chain` (String) CertChain is an optional PEM encoded set of certificates used to verify.
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog"></a>
@@ -1420,8 +1426,8 @@ Optional:
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT requires that a certificate contain an embedded SCT during verification.
-- `pubkey` (String) CTLogPubKey, if set, is used to validate SCTs against those keys.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor"></a>
@@ -1429,12 +1435,12 @@ Optional:
 
 Required:
 
-- `url` (String) URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 Optional:
 
-- `ignore_tlog` (Boolean) IgnoreTlog skip tlog verification
-- `pubkey` (String) RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.
+- `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
 
 
 
@@ -1444,19 +1450,19 @@ Optional:
 Optional:
 
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
-- `ctlog` (Attributes) CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
 - `roots` (String) Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.
-- `subject` (String) Subject is the verified identity used for keyless signing, for example the email address
+- `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.subject`
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT requires that a certificate contain an embedded SCT during verification.
-- `pubkey` (String) CTLogPubKey, if set, is used to validate SCTs against those keys.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor"></a>
@@ -1464,12 +1470,12 @@ Optional:
 
 Required:
 
-- `url` (String) URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 Optional:
 
-- `ignore_tlog` (Boolean) IgnoreTlog skip tlog verification
-- `pubkey` (String) RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.
+- `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
 
 
 
@@ -1478,20 +1484,20 @@ Optional:
 
 Optional:
 
-- `ctlog` (Attributes) CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog))
 - `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md
 - `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor))
 - `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--secret))
-- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha256 and sha512
+- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--ctlog"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.attestors.entries.repository.signature_algorithm`
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT requires that a certificate contain an embedded SCT during verification.
-- `pubkey` (String) CTLogPubKey, if set, is used to validate SCTs against those keys.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--rekor"></a>
@@ -1499,12 +1505,12 @@ Optional:
 
 Required:
 
-- `url` (String) URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 Optional:
 
-- `ignore_tlog` (Boolean) IgnoreTlog skip tlog verification
-- `pubkey` (String) RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.
+- `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--attestors--entries--repository--secret"></a>
@@ -1565,10 +1571,10 @@ Optional:
 Optional:
 
 - `annotations` (Map of String) Annotations are used for image verification. Every specified key-value pair must exist and match in the verified payload. The payload may contain other key-value pairs.
-- `attestor` (Map of String) Attestor is a nested AttestorSet used to specify a more complex set of match authorities
-- `certificates` (Attributes) Certificates specifies one or more certificates (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--certificates))
+- `attestor` (Map of String) Attestor is a nested set of Attestor used to specify a more complex set of match authorities.
+- `certificates` (Attributes) Certificates specifies one or more certificates. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--certificates))
 - `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor. See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--keyless))
-- `keys` (Attributes) Keys specifies one or more public keys (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--keys))
+- `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--keys))
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule. If specified Repository will override other OCI image repository locations for this Attestor.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--certificates"></a>
@@ -1576,9 +1582,9 @@ Optional:
 
 Optional:
 
-- `cert` (String) Certificate is an optional PEM encoded public certificate.
-- `cert_chain` (String) CertificateChain is an optional PEM encoded set of certificates used to verify
-- `ctlog` (Attributes) CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
+- `cert` (String) Cert is an optional PEM-encoded public certificate.
+- `cert_chain` (String) CertChain is an optional PEM encoded set of certificates used to verify.
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog"></a>
@@ -1586,8 +1592,8 @@ Optional:
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT requires that a certificate contain an embedded SCT during verification.
-- `pubkey` (String) CTLogPubKey, if set, is used to validate SCTs against those keys.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor"></a>
@@ -1595,12 +1601,12 @@ Optional:
 
 Required:
 
-- `url` (String) URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 Optional:
 
-- `ignore_tlog` (Boolean) IgnoreTlog skip tlog verification
-- `pubkey` (String) RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.
+- `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
 
 
 
@@ -1610,19 +1616,19 @@ Optional:
 Optional:
 
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
-- `ctlog` (Attributes) CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
 - `roots` (String) Roots is an optional set of PEM encoded trusted root certificates. If not provided, the system roots are used.
-- `subject` (String) Subject is the verified identity used for keyless signing, for example the email address
+- `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.subject`
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT requires that a certificate contain an embedded SCT during verification.
-- `pubkey` (String) CTLogPubKey, if set, is used to validate SCTs against those keys.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor"></a>
@@ -1630,12 +1636,12 @@ Optional:
 
 Required:
 
-- `url` (String) URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 Optional:
 
-- `ignore_tlog` (Boolean) IgnoreTlog skip tlog verification
-- `pubkey` (String) RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.
+- `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
 
 
 
@@ -1644,20 +1650,20 @@ Optional:
 
 Optional:
 
-- `ctlog` (Attributes) CTLog provides configuration for validation of SCTs. If the value is nil, default ctlog public key is used (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
+- `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed Certificate Timestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog))
 - `kms` (String) KMS provides the URI to the public key stored in a Key Management System. See: https://github.com/sigstore/cosign/blob/main/KMS.md
 - `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directly specified or can be a variable reference to a key specified in a ConfigMap (see https://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secret elsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'. The named Secret must specify a key 'cosign.pub' containing the public key used for verification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret). When multiple keys are specified each key is processed as a separate staticKey entry (.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty object is provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor))
 - `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--verify_images--verify_digest--entries--repository--secret))
-- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha256 and sha512
+- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--ctlog"></a>
 ### Nested Schema for `spec.rules.verify_images.verify_digest.entries.repository.signature_algorithm`
 
 Optional:
 
-- `ignore_sct` (Boolean) IgnoreSCT requires that a certificate contain an embedded SCT during verification.
-- `pubkey` (String) CTLogPubKey, if set, is used to validate SCTs against those keys.
+- `ignore_sct` (Boolean) IgnoreSCT defines whether to use the Signed Certificate Timestamp (SCT) log to check for a certificate timestamp. Default is false. Set to true if this was opted out during signing.
+- `pubkey` (String) PubKey, if set, is used to validate SCTs against a custom source.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--rekor"></a>
@@ -1665,12 +1671,12 @@ Optional:
 
 Required:
 
-- `url` (String) URL is the address of the transparency log. Defaults to the public log https://rekor.sigstore.dev.
+- `url` (String) URL is the address of the transparency log. Defaults to the public Rekor log instance https://rekor.sigstore.dev.
 
 Optional:
 
-- `ignore_tlog` (Boolean) IgnoreTlog skip tlog verification
-- `pubkey` (String) RekorPubKey is an optional PEM encoded public key to use for a custom Rekor. If set, is used to validate signatures on log entries from Rekor.
+- `ignore_tlog` (Boolean) IgnoreTlog skips transparency log verification.
+- `pubkey` (String) RekorPubKey is an optional PEM-encoded public key to use for a custom Rekor. If set, this will be used to validate transparency log signatures from a custom Rekor.
 
 
 <a id="nestedatt--spec--rules--verify_images--verify_digest--entries--repository--secret"></a>
@@ -1690,9 +1696,9 @@ Required:
 
 Optional:
 
-- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry
-- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided It can be of one of these values: AWS, ACR, GCP, GHCR
-- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials Secrets must live in the Kyverno namespace
+- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided. It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials. Secrets must live in the Kyverno namespace.
 
 
 

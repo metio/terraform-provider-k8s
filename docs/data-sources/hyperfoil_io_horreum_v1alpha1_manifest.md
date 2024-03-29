@@ -18,9 +18,6 @@ data "k8s_hyperfoil_io_horreum_v1alpha1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    node_host = "127.0.0.1"
-  }
 }
 ```
 

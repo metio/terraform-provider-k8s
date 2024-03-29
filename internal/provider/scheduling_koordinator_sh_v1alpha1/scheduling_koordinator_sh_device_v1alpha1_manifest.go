@@ -53,7 +53,7 @@ type SchedulingKoordinatorShDeviceV1Alpha1ManifestData struct {
 			Topology  *struct {
 				BusID    *string `tfsdk:"bus_id" json:"busID,omitempty"`
 				NodeID   *int64  `tfsdk:"node_id" json:"nodeID,omitempty"`
-				PcieID   *int64  `tfsdk:"pcie_id" json:"pcieID,omitempty"`
+				PcieID   *string `tfsdk:"pcie_id" json:"pcieID,omitempty"`
 				SocketID *int64  `tfsdk:"socket_id" json:"socketID,omitempty"`
 			} `tfsdk:"topology" json:"topology,omitempty"`
 			Type     *string `tfsdk:"type" json:"type,omitempty"`
@@ -201,32 +201,32 @@ func (r *SchedulingKoordinatorShDeviceV1Alpha1Manifest) Schema(_ context.Context
 									MarkdownDescription: "Topology represents the topology information about the device",
 									Attributes: map[string]schema.Attribute{
 										"bus_id": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "BusID is the domain:bus:device.function formatted identifier of PCI/PCIE device",
+											MarkdownDescription: "BusID is the domain:bus:device.function formatted identifier of PCI/PCIE device",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"node_id": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "NodeID is the ID of NUMA Node to which the device belongs, it should be unique across different CPU Sockets",
+											MarkdownDescription: "NodeID is the ID of NUMA Node to which the device belongs, it should be unique across different CPU Sockets",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
-										"pcie_id": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
+										"pcie_id": schema.StringAttribute{
+											Description:         "PCIEID is the ID of PCIE Switch to which the device is connected, it should be unique across difference NUMANodes",
+											MarkdownDescription: "PCIEID is the ID of PCIE Switch to which the device is connected, it should be unique across difference NUMANodes",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
 										"socket_id": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "SocketID is the ID of CPU Socket to which the device belongs",
+											MarkdownDescription: "SocketID is the ID of CPU Socket to which the device belongs",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -251,8 +251,8 @@ func (r *SchedulingKoordinatorShDeviceV1Alpha1Manifest) Schema(_ context.Context
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"labels": schema.MapAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Labels represents the Virtual Function properties that can be used to organize and categorize (scope and select) objects",
+												MarkdownDescription: "Labels represents the Virtual Function properties that can be used to organize and categorize (scope and select) objects",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -260,21 +260,21 @@ func (r *SchedulingKoordinatorShDeviceV1Alpha1Manifest) Schema(_ context.Context
 											},
 
 											"vfs": schema.ListNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "VFs are the virtual function devices which belong to the group",
+												MarkdownDescription: "VFs are the virtual function devices which belong to the group",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"bus_id": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "BusID is the domain:bus:device.function formatted identifier of PCI/PCIE virtual function device",
+															MarkdownDescription: "BusID is the domain:bus:device.function formatted identifier of PCI/PCIE virtual function device",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"minor": schema.Int64Attribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Minor represents the Minor number of VirtualFunction, starting from 0, used to identify virtual function.",
+															MarkdownDescription: "Minor represents the Minor number of VirtualFunction, starting from 0, used to identify virtual function.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,

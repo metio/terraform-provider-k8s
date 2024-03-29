@@ -598,6 +598,7 @@ Optional:
 - `isolate_virtual_hosts_by_ssl_config` (Boolean)
 - `persist_proxy_spec` (Boolean)
 - `read_gateways_from_all_namespaces` (Boolean)
+- `translate_empty_gateways` (Boolean)
 - `validation` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--validation))
 - `validation_server_addr` (String)
 - `virtual_service_options` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--virtual_service_options))
@@ -642,6 +643,7 @@ Optional:
 - `endpoints_warming_timeout` (String)
 - `failover_upstream_dns_polling_interval` (String)
 - `invalid_config_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--gloo--invalid_config_policy))
+- `istio_options` (Attributes) (see [below for nested schema](#nestedatt--spec--gloo--istio_options))
 - `log_transformation_request_response_info` (Boolean)
 - `proxy_debug_bind_addr` (String)
 - `regex_max_program_size` (Number)
@@ -668,6 +670,7 @@ Optional:
 Optional:
 
 - `cluster` (String)
+- `region` (String)
 - `timeout` (String)
 - `uri` (String)
 
@@ -692,6 +695,15 @@ Optional:
 - `invalid_route_response_body` (String)
 - `invalid_route_response_code` (Number)
 - `replace_invalid_routes` (Boolean)
+
+
+<a id="nestedatt--spec--gloo--istio_options"></a>
+### Nested Schema for `spec.gloo.istio_options`
+
+Optional:
+
+- `append_x_forwarded_host` (Boolean)
+- `enable_auto_mtls` (Boolean)
 
 
 
@@ -843,7 +855,9 @@ Optional:
 
 Optional:
 
+- `dashboard_prefix` (String)
 - `default_dashboard_folder_id` (Number)
+- `extra_metric_query_parameters` (String)
 
 
 
@@ -891,9 +905,18 @@ Optional:
 
 - `deny_on_fail` (Boolean)
 - `enable_x_ratelimit_headers` (Boolean)
+- `grpc_service` (Attributes) (see [below for nested schema](#nestedatt--spec--ratelimit_server--grpc_service))
 - `rate_limit_before_auth` (Boolean)
 - `ratelimit_server_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ratelimit_server--ratelimit_server_ref))
 - `request_timeout` (String)
+
+<a id="nestedatt--spec--ratelimit_server--grpc_service"></a>
+### Nested Schema for `spec.ratelimit_server.grpc_service`
+
+Optional:
+
+- `authority` (String)
+
 
 <a id="nestedatt--spec--ratelimit_server--ratelimit_server_ref"></a>
 ### Nested Schema for `spec.ratelimit_server.ratelimit_server_ref`
@@ -963,6 +986,7 @@ Optional:
 
 - `access_key_id` (String)
 - `iam_server_id_header` (String)
+- `lease_increment` (Number)
 - `mount_path` (String)
 - `region` (String)
 - `secret_access_key` (String)
@@ -1032,6 +1056,7 @@ Optional:
 
 - `access_key_id` (String)
 - `iam_server_id_header` (String)
+- `lease_increment` (Number)
 - `mount_path` (String)
 - `region` (String)
 - `secret_access_key` (String)

@@ -85,23 +85,23 @@ Optional:
 
 Required:
 
-- `from` (Attributes List) List of peers which should be able to access the targets in TargetGroup. At least one NetworkingPeer should be specified. (see [below for nested schema](#nestedatt--spec--networking--ingress--from))
-- `ports` (Attributes List) List of ports which should be made accessible on the targets in TargetGroup. If ports is empty or unspecified, it defaults to all ports with TCP. (see [below for nested schema](#nestedatt--spec--networking--ingress--ports))
+- `from` (Attributes List) List of peers which should be able to access the targets in TargetGroup.At least one NetworkingPeer should be specified. (see [below for nested schema](#nestedatt--spec--networking--ingress--from))
+- `ports` (Attributes List) List of ports which should be made accessible on the targets in TargetGroup.If ports is empty or unspecified, it defaults to all ports with TCP. (see [below for nested schema](#nestedatt--spec--networking--ingress--ports))
 
 <a id="nestedatt--spec--networking--ingress--from"></a>
 ### Nested Schema for `spec.networking.ingress.ports`
 
 Optional:
 
-- `ip_block` (Attributes) IPBlock defines an IPBlock peer. If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--ports--ip_block))
-- `security_group` (Attributes) SecurityGroup defines a SecurityGroup peer. If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--ports--security_group))
+- `ip_block` (Attributes) IPBlock defines an IPBlock peer.If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--ports--ip_block))
+- `security_group` (Attributes) SecurityGroup defines a SecurityGroup peer.If specified, none of the other fields can be set. (see [below for nested schema](#nestedatt--spec--networking--ingress--ports--security_group))
 
 <a id="nestedatt--spec--networking--ingress--ports--ip_block"></a>
 ### Nested Schema for `spec.networking.ingress.ports.ip_block`
 
 Required:
 
-- `cidr` (String) CIDR is the network CIDR. Both IPV4 or IPV6 CIDR are accepted.
+- `cidr` (String) CIDR is the network CIDR.Both IPV4 or IPV6 CIDR are accepted.
 
 
 <a id="nestedatt--spec--networking--ingress--ports--security_group"></a>
@@ -118,5 +118,5 @@ Required:
 
 Optional:
 
-- `port` (String) The port which traffic must match. When NodePort endpoints(instance TargetType) is used, this must be a numerical port. When Port endpoints(ip TargetType) is used, this can be either numerical or named port on pods. if port is unspecified, it defaults to all ports.
-- `protocol` (String) The protocol which traffic must match. If protocol is unspecified, it defaults to TCP.
+- `port` (String) The port which traffic must match.When NodePort endpoints(instance TargetType) is used, this must be a numerical port.When Port endpoints(ip TargetType) is used, this can be either numerical or named port on pods.if port is unspecified, it defaults to all ports.
+- `protocol` (String) The protocol which traffic must match.If protocol is unspecified, it defaults to TCP.

@@ -45,11 +45,16 @@ type InfrastructureClusterXK8SIoIbmpowerVsimageV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Bucket            *string `tfsdk:"bucket" json:"bucket,omitempty"`
-		ClusterName       *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
-		DeletePolicy      *string `tfsdk:"delete_policy" json:"deletePolicy,omitempty"`
-		Object            *string `tfsdk:"object" json:"object,omitempty"`
-		Region            *string `tfsdk:"region" json:"region,omitempty"`
+		Bucket          *string `tfsdk:"bucket" json:"bucket,omitempty"`
+		ClusterName     *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+		DeletePolicy    *string `tfsdk:"delete_policy" json:"deletePolicy,omitempty"`
+		Object          *string `tfsdk:"object" json:"object,omitempty"`
+		Region          *string `tfsdk:"region" json:"region,omitempty"`
+		ServiceInstance *struct {
+			Id    *string `tfsdk:"id" json:"id,omitempty"`
+			Name  *string `tfsdk:"name" json:"name,omitempty"`
+			Regex *string `tfsdk:"regex" json:"regex,omitempty"`
+		} `tfsdk:"service_instance" json:"serviceInstance,omitempty"`
 		ServiceInstanceID *string `tfsdk:"service_instance_id" json:"serviceInstanceID,omitempty"`
 		StorageType       *string `tfsdk:"storage_type" json:"storageType,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -186,9 +191,51 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsimageV1Beta2Manifest) Schema(_ con
 						Computed:            false,
 					},
 
+					"service_instance": schema.SingleNestedAttribute{
+						Description:         "serviceInstance is the reference to the Power VS workspace on which the server instance(VM) will be created. Power VS workspace is a container for all Power VS instances at a specific geographic region. serviceInstance can be created via IBM Cloud catalog or CLI. supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli. More detail about Power VS service instance. https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server when omitted system will dynamically create the service instance",
+						MarkdownDescription: "serviceInstance is the reference to the Power VS workspace on which the server instance(VM) will be created. Power VS workspace is a container for all Power VS instances at a specific geographic region. serviceInstance can be created via IBM Cloud catalog or CLI. supported serviceInstance identifier in PowerVSResource are Name and ID and that can be obtained from IBM Cloud UI or IBM Cloud cli. More detail about Power VS service instance. https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server when omitted system will dynamically create the service instance",
+						Attributes: map[string]schema.Attribute{
+							"id": schema.StringAttribute{
+								Description:         "ID of resource",
+								MarkdownDescription: "ID of resource",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+								},
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "Name of resource",
+								MarkdownDescription: "Name of resource",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+								},
+							},
+
+							"regex": schema.StringAttribute{
+								Description:         "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+								MarkdownDescription: "Regular expression to match resource, In case of multiple resources matches the provided regular expression the first matched resource will be selected",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"service_instance_id": schema.StringAttribute{
-						Description:         "ServiceInstanceID is the id of the power cloud instance where the image will get imported.",
-						MarkdownDescription: "ServiceInstanceID is the id of the power cloud instance where the image will get imported.",
+						Description:         "ServiceInstanceID is the id of the power cloud instance where the image will get imported. Deprecated: use ServiceInstance instead",
+						MarkdownDescription: "ServiceInstanceID is the id of the power cloud instance where the image will get imported. Deprecated: use ServiceInstance instead",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

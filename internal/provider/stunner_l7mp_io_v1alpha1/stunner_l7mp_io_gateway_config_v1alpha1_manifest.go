@@ -54,6 +54,7 @@ type StunnerL7MpIoGatewayConfigV1Alpha1ManifestData struct {
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"auth_ref" json:"authRef,omitempty"`
 		AuthType                       *string            `tfsdk:"auth_type" json:"authType,omitempty"`
+		Dataplane                      *string            `tfsdk:"dataplane" json:"dataplane,omitempty"`
 		HealthCheckEndpoint            *string            `tfsdk:"health_check_endpoint" json:"healthCheckEndpoint,omitempty"`
 		LoadBalancerServiceAnnotations *map[string]string `tfsdk:"load_balancer_service_annotations" json:"loadBalancerServiceAnnotations,omitempty"`
 		LogLevel                       *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
@@ -178,8 +179,8 @@ func (r *StunnerL7MpIoGatewayConfigV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
-								MarkdownDescription: "Kind is kind of the referent. For example 'HTTPRoute' or 'Service'.",
+								Description:         "Kind is kind of the referent. For example 'Secret'.",
+								MarkdownDescription: "Kind is kind of the referent. For example 'Secret'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -203,8 +204,8 @@ func (r *StunnerL7MpIoGatewayConfigV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"namespace": schema.StringAttribute{
-								Description:         "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core",
-								MarkdownDescription: "Namespace is the namespace of the backend. When unspecified, the local namespace is inferred.  Note that when a namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core",
+								Description:         "Namespace is the namespace of the referenced object. When unspecified, the local namespace is inferred.  Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core",
+								MarkdownDescription: "Namespace is the namespace of the referenced object. When unspecified, the local namespace is inferred.  Note that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.  Support: Core",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -229,6 +230,14 @@ func (r *StunnerL7MpIoGatewayConfigV1Alpha1Manifest) Schema(_ context.Context, _
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^plaintext|static|longterm|ephemeral|timewindowed$`), ""),
 						},
+					},
+
+					"dataplane": schema.StringAttribute{
+						Description:         "Dataplane defines the TURN server to set up for the STUNner Gateways using this GatewayConfig. Can be used to select the stunnerd image repo and version or deploy into the host-network namespace.",
+						MarkdownDescription: "Dataplane defines the TURN server to set up for the STUNner Gateways using this GatewayConfig. Can be used to select the stunnerd image repo and version or deploy into the host-network namespace.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"health_check_endpoint": schema.StringAttribute{

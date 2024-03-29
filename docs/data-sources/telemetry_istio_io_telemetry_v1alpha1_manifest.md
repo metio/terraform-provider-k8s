@@ -59,7 +59,7 @@ Optional:
 - `access_logging` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--access_logging))
 - `metrics` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--metrics))
 - `selector` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--selector))
-- `target_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--target_ref))
+- `target_ref` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--target_ref))
 - `tracing` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--tracing))
 
 <a id="nestedatt--spec--access_logging"></a>
@@ -85,13 +85,13 @@ Optional:
 
 Optional:
 
-- `mode` (String)
+- `mode` (String) This determines whether or not to apply the access logging configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER
 
 
 <a id="nestedatt--spec--access_logging--providers"></a>
 ### Nested Schema for `spec.access_logging.providers`
 
-Optional:
+Required:
 
 - `name` (String) Required.
 
@@ -112,7 +112,7 @@ Optional:
 Optional:
 
 - `disabled` (Boolean) Optional.
-- `match` (Attributes) Match allows provides the scope of the override. (see [below for nested schema](#nestedatt--spec--metrics--overrides--match))
+- `match` (Attributes) Match allows providing the scope of the override. (see [below for nested schema](#nestedatt--spec--metrics--overrides--match))
 - `tag_overrides` (Attributes) Optional. (see [below for nested schema](#nestedatt--spec--metrics--overrides--tag_overrides))
 
 <a id="nestedatt--spec--metrics--overrides--match"></a>
@@ -121,8 +121,8 @@ Optional:
 Optional:
 
 - `custom_metric` (String) Allows free-form specification of a metric.
-- `metric` (String) One of the well-known Istio Standard Metrics.
-- `mode` (String)
+- `metric` (String) One of the well-known [Istio Standard Metrics](https://istio.io/latest/docs/reference/config/metrics/).Valid Options: ALL_METRICS, REQUEST_COUNT, REQUEST_DURATION, REQUEST_SIZE, RESPONSE_SIZE, TCP_OPENED_CONNECTIONS, TCP_CLOSED_CONNECTIONS, TCP_SENT_BYTES, TCP_RECEIVED_BYTES, GRPC_REQUEST_MESSAGES, GRPC_RESPONSE_MESSAGES
+- `mode` (String) Controls which mode of metrics generation is selected: 'CLIENT', 'SERVER', or 'CLIENT_AND_SERVER'.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER
 
 
 <a id="nestedatt--spec--metrics--overrides--tag_overrides"></a>
@@ -130,7 +130,7 @@ Optional:
 
 Optional:
 
-- `operation` (String) Operation controls whether or not to update/add a tag, or to remove it.
+- `operation` (String) Operation controls whether or not to update/add a tag, or to remove it.Valid Options: UPSERT, REMOVE
 - `value` (String) Value is only considered if the operation is 'UPSERT'.
 
 
@@ -138,7 +138,7 @@ Optional:
 <a id="nestedatt--spec--metrics--providers"></a>
 ### Nested Schema for `spec.metrics.providers`
 
-Optional:
+Required:
 
 - `name` (String) Required.
 
@@ -149,7 +149,7 @@ Optional:
 
 Optional:
 
-- `match_labels` (Map of String)
+- `match_labels` (Map of String) One or more labels that indicate a specific set of pods/VMs on which a policy should be applied.
 
 
 <a id="nestedatt--spec--target_ref"></a>
@@ -172,7 +172,7 @@ Optional:
 - `disable_span_reporting` (Boolean) Controls span reporting.
 - `match` (Attributes) Allows tailoring of behavior to specific conditions. (see [below for nested schema](#nestedatt--spec--tracing--match))
 - `providers` (Attributes List) Optional. (see [below for nested schema](#nestedatt--spec--tracing--providers))
-- `random_sampling_percentage` (Number)
+- `random_sampling_percentage` (Number) Controls the rate at which traffic will be selected for tracing if no prior sampling decision has been made.
 - `use_request_id_for_trace_sampling` (Boolean)
 
 <a id="nestedatt--spec--tracing--custom_tags"></a>
@@ -181,31 +181,37 @@ Optional:
 Optional:
 
 - `environment` (Attributes) Environment adds the value of an environment variable to each span. (see [below for nested schema](#nestedatt--spec--tracing--custom_tags--environment))
-- `header` (Attributes) (see [below for nested schema](#nestedatt--spec--tracing--custom_tags--header))
+- `header` (Attributes) RequestHeader adds the value of an header from the request to each span. (see [below for nested schema](#nestedatt--spec--tracing--custom_tags--header))
 - `literal` (Attributes) Literal adds the same, hard-coded value to each span. (see [below for nested schema](#nestedatt--spec--tracing--custom_tags--literal))
 
 <a id="nestedatt--spec--tracing--custom_tags--environment"></a>
 ### Nested Schema for `spec.tracing.custom_tags.literal`
 
+Required:
+
+- `name` (String) Name of the environment variable from which to extract the tag value.
+
 Optional:
 
 - `default_value` (String) Optional.
-- `name` (String) Name of the environment variable from which to extract the tag value.
 
 
 <a id="nestedatt--spec--tracing--custom_tags--header"></a>
 ### Nested Schema for `spec.tracing.custom_tags.literal`
 
+Required:
+
+- `name` (String) Name of the header from which to extract the tag value.
+
 Optional:
 
 - `default_value` (String) Optional.
-- `name` (String) Name of the header from which to extract the tag value.
 
 
 <a id="nestedatt--spec--tracing--custom_tags--literal"></a>
 ### Nested Schema for `spec.tracing.custom_tags.literal`
 
-Optional:
+Required:
 
 - `value` (String) The tag value to use.
 
@@ -216,12 +222,12 @@ Optional:
 
 Optional:
 
-- `mode` (String)
+- `mode` (String) This determines whether or not to apply the tracing configuration based on the direction of traffic relative to the proxied workload.Valid Options: CLIENT_AND_SERVER, CLIENT, SERVER
 
 
 <a id="nestedatt--spec--tracing--providers"></a>
 ### Nested Schema for `spec.tracing.providers`
 
-Optional:
+Required:
 
 - `name` (String) Required.

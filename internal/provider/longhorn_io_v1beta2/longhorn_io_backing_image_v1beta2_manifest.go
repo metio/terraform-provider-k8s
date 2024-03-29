@@ -170,7 +170,7 @@ func (r *LonghornIoBackingImageV1Beta2Manifest) Schema(_ context.Context, _ data
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("download", "upload", "export-from-volume"),
+							stringvalidator.OneOf("download", "upload", "export-from-volume", "restore"),
 						},
 					},
 				},

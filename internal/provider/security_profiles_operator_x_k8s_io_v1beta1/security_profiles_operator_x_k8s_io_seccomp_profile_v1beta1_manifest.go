@@ -73,8 +73,8 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Manifest) Metadata(_
 
 func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "SeccompProfile is a cluster level specification for a seccomp profile. See https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md#seccomp",
-		MarkdownDescription: "SeccompProfile is a cluster level specification for a seccomp profile. See https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md#seccomp",
+		Description:         "SeccompProfile is a cluster level specification for a seccomp profile.See https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md#seccomp",
+		MarkdownDescription: "SeccompProfile is a cluster level specification for a seccomp profile.See https://github.com/opencontainers/runtime-spec/blob/master/config-linux.md#seccomp",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -162,8 +162,8 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Manifest) Schema(_ c
 					},
 
 					"base_profile_name": schema.StringAttribute{
-						Description:         "BaseProfileName is the name of base profile (in the same namespace) that will be unioned into this profile. Base profiles can be references as remote OCI artifacts as well when prefixed with 'oci://'.",
-						MarkdownDescription: "BaseProfileName is the name of base profile (in the same namespace) that will be unioned into this profile. Base profiles can be references as remote OCI artifacts as well when prefixed with 'oci://'.",
+						Description:         "BaseProfileName is the name of base profile (in the same namespace) thatwill be unioned into this profile. Base profiles can be references asremote OCI artifacts as well when prefixed with 'oci://'.",
+						MarkdownDescription: "BaseProfileName is the name of base profile (in the same namespace) thatwill be unioned into this profile. Base profiles can be references asremote OCI artifacts as well when prefixed with 'oci://'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -183,8 +183,8 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Manifest) Schema(_ c
 					"disabled": schema.BoolAttribute{
 						Description:         "Whether the profile is disabled and should be skipped during reconciliation.",
 						MarkdownDescription: "Whether the profile is disabled and should be skipped during reconciliation.",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
@@ -214,8 +214,8 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Manifest) Schema(_ c
 					},
 
 					"syscalls": schema.ListNestedAttribute{
-						Description:         "match a syscall in seccomp. While this property is OPTIONAL, some values of defaultAction are not useful without syscalls entries. For example, if defaultAction is SCMP_ACT_KILL and syscalls is empty or unset, the kernel will kill the container process on its first syscall",
-						MarkdownDescription: "match a syscall in seccomp. While this property is OPTIONAL, some values of defaultAction are not useful without syscalls entries. For example, if defaultAction is SCMP_ACT_KILL and syscalls is empty or unset, the kernel will kill the container process on its first syscall",
+						Description:         "match a syscall in seccomp. While this property is OPTIONAL, some valuesof defaultAction are not useful without syscalls entries. For example,if defaultAction is SCMP_ACT_KILL and syscalls is empty or unset, thekernel will kill the container process on its first syscall",
+						MarkdownDescription: "match a syscall in seccomp. While this property is OPTIONAL, some valuesof defaultAction are not useful without syscalls entries. For example,if defaultAction is SCMP_ACT_KILL and syscalls is empty or unset, thekernel will kill the container process on its first syscall",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
@@ -285,8 +285,8 @@ func (r *SecurityProfilesOperatorXK8SIoSeccompProfileV1Beta1Manifest) Schema(_ c
 								},
 
 								"errno_ret": schema.Int64Attribute{
-									Description:         "the errno return code to use. Some actions like SCMP_ACT_ERRNO and SCMP_ACT_TRACE allow to specify the errno code to return",
-									MarkdownDescription: "the errno return code to use. Some actions like SCMP_ACT_ERRNO and SCMP_ACT_TRACE allow to specify the errno code to return",
+									Description:         "the errno return code to use. Some actions like SCMP_ACT_ERRNO andSCMP_ACT_TRACE allow to specify the errno code to return",
+									MarkdownDescription: "the errno return code to use. Some actions like SCMP_ACT_ERRNO andSCMP_ACT_TRACE allow to specify the errno code to return",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

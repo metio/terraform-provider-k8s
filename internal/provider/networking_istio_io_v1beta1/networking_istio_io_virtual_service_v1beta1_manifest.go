@@ -382,16 +382,16 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 									MarkdownDescription: "Cross-Origin Resource Sharing policy (CORS).",
 									Attributes: map[string]schema.Attribute{
 										"allow_credentials": schema.BoolAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Indicates whether the caller is allowed to send the actual request (not the preflight) using credentials.",
+											MarkdownDescription: "Indicates whether the caller is allowed to send the actual request (not the preflight) using credentials.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"allow_headers": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "List of HTTP headers that can be used when requesting the resource.",
+											MarkdownDescription: "List of HTTP headers that can be used when requesting the resource.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -408,8 +408,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 										},
 
 										"allow_origin": schema.ListAttribute{
-											Description:         "The list of origins that are allowed to perform CORS requests.",
-											MarkdownDescription: "The list of origins that are allowed to perform CORS requests.",
+											Description:         "",
+											MarkdownDescription: "",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -452,8 +452,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 										},
 
 										"expose_headers": schema.ListAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "A list of HTTP headers that the browsers are allowed to access.",
+											MarkdownDescription: "A list of HTTP headers that the browsers are allowed to access.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -461,8 +461,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 										},
 
 										"max_age": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Specifies how long the results of a preflight request can be cached.",
+											MarkdownDescription: "Specifies how long the results of a preflight request can be cached.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -474,8 +474,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 								},
 
 								"delegate": schema.SingleNestedAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Delegate is used to specify the particular VirtualService which can be used to define delegate HTTPRoute.",
+									MarkdownDescription: "Delegate is used to specify the particular VirtualService which can be used to define delegate HTTPRoute.",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "Name specifies the name of the delegate VirtualService.",
@@ -530,8 +530,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 										"status": schema.Int64Attribute{
 											Description:         "Specifies the HTTP response status to be returned.",
 											MarkdownDescription: "Specifies the HTTP response status to be returned.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 									},
@@ -545,8 +545,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 									MarkdownDescription: "Fault injection policy to apply on HTTP traffic at the client side.",
 									Attributes: map[string]schema.Attribute{
 										"abort": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Abort Http request attempts and return error codes back to downstream service, giving the impression that the upstream service is faulty.",
+											MarkdownDescription: "Abort Http request attempts and return error codes back to downstream service, giving the impression that the upstream service is faulty.",
 											Attributes: map[string]schema.Attribute{
 												"grpc_status": schema.StringAttribute{
 													Description:         "GRPC status code to use to abort the request.",
@@ -595,8 +595,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 										},
 
 										"delay": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Delay requests before forwarding, emulating various failures such as network issues, overloaded upstream service, etc.",
+											MarkdownDescription: "Delay requests before forwarding, emulating various failures such as network issues, overloaded upstream service, etc.",
 											Attributes: map[string]schema.Attribute{
 												"exponential_delay": schema.StringAttribute{
 													Description:         "",
@@ -731,13 +731,13 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 								},
 
 								"match": schema.ListNestedAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Match conditions to be satisfied for the rule to be activated.",
+									MarkdownDescription: "Match conditions to be satisfied for the rule to be activated.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"authority": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "HTTP Authority values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "HTTP Authority values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
 												Attributes: map[string]schema.Attribute{
 													"exact": schema.StringAttribute{
 														Description:         "",
@@ -778,8 +778,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 											},
 
 											"headers": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "The header keys must be lowercase and use hyphen as the separator, e.g.",
+												MarkdownDescription: "The header keys must be lowercase and use hyphen as the separator, e.g.",
 												Attributes: map[string]schema.Attribute{
 													"exact": schema.StringAttribute{
 														Description:         "",
@@ -819,8 +819,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 											},
 
 											"method": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "HTTP Method values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "HTTP Method values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
 												Attributes: map[string]schema.Attribute{
 													"exact": schema.StringAttribute{
 														Description:         "",
@@ -901,8 +901,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 											},
 
 											"scheme": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "URI Scheme values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "URI Scheme values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
 												Attributes: map[string]schema.Attribute{
 													"exact": schema.StringAttribute{
 														Description:         "",
@@ -934,8 +934,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 											},
 
 											"source_labels": schema.MapAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "One or more labels that constrain the applicability of a rule to source (client) workloads with the given labels.",
+												MarkdownDescription: "One or more labels that constrain the applicability of a rule to source (client) workloads with the given labels.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -959,8 +959,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 											},
 
 											"uri": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "URI to match values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
+												MarkdownDescription: "URI to match values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax).",
 												Attributes: map[string]schema.Attribute{
 													"exact": schema.StringAttribute{
 														Description:         "",
@@ -1031,14 +1031,14 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 								},
 
 								"mirror": schema.SingleNestedAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Mirror HTTP traffic to a another destination in addition to forwarding the requests to the intended destination.",
+									MarkdownDescription: "Mirror HTTP traffic to a another destination in addition to forwarding the requests to the intended destination.",
 									Attributes: map[string]schema.Attribute{
 										"host": schema.StringAttribute{
 											Description:         "The name of a service from the service registry.",
 											MarkdownDescription: "The name of a service from the service registry.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
@@ -1073,8 +1073,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 								},
 
 								"mirror_percent": schema.Int64Attribute{
-									Description:         "Percentage of the traffic to be mirrored by the 'mirror' field.",
-									MarkdownDescription: "Percentage of the traffic to be mirrored by the 'mirror' field.",
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1098,8 +1098,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 								},
 
 								"mirrors": schema.ListNestedAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Specifies the destinations to mirror HTTP traffic in addition to the original destination.",
+									MarkdownDescription: "Specifies the destinations to mirror HTTP traffic in addition to the original destination.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"destination": schema.SingleNestedAttribute{
@@ -1109,8 +1109,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 													"host": schema.StringAttribute{
 														Description:         "The name of a service from the service registry.",
 														MarkdownDescription: "The name of a service from the service registry.",
-														Required:            false,
-														Optional:            true,
+														Required:            true,
+														Optional:            false,
 														Computed:            false,
 													},
 
@@ -1139,8 +1139,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 														Computed:            false,
 													},
 												},
-												Required: false,
-												Optional: true,
+												Required: true,
+												Optional: false,
 												Computed: false,
 											},
 
@@ -1180,16 +1180,16 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 									MarkdownDescription: "A HTTP rule can either return a direct_response, redirect or forward (default) traffic.",
 									Attributes: map[string]schema.Attribute{
 										"authority": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "On a redirect, overwrite the Authority/Host portion of the URL with this value.",
+											MarkdownDescription: "On a redirect, overwrite the Authority/Host portion of the URL with this value.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"derive_port": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "On a redirect, dynamically set the port: * FROM_PROTOCOL_DEFAULT: automatically set to 80 for HTTP and 443 for HTTPS.Valid Options: FROM_PROTOCOL_DEFAULT, FROM_REQUEST_PORT",
+											MarkdownDescription: "On a redirect, dynamically set the port: * FROM_PROTOCOL_DEFAULT: automatically set to 80 for HTTP and 443 for HTTPS.Valid Options: FROM_PROTOCOL_DEFAULT, FROM_REQUEST_PORT",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1207,8 +1207,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 										},
 
 										"redirect_code": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "On a redirect, Specifies the HTTP status code to use in the redirect response.",
+											MarkdownDescription: "On a redirect, Specifies the HTTP status code to use in the redirect response.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1223,8 +1223,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 										},
 
 										"uri": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "On a redirect, overwrite the Path portion of the URL with this value.",
+											MarkdownDescription: "On a redirect, overwrite the Path portion of the URL with this value.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1289,8 +1289,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 										},
 
 										"uri": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "rewrite the path (or the prefix) portion of the URI with this value.",
+											MarkdownDescription: "rewrite the path (or the prefix) portion of the URI with this value.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1332,14 +1332,14 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"destination": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to.",
+												MarkdownDescription: "Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "The name of a service from the service registry.",
 														MarkdownDescription: "The name of a service from the service registry.",
-														Required:            false,
-														Optional:            true,
+														Required:            true,
+														Optional:            false,
 														Computed:            false,
 													},
 
@@ -1368,8 +1368,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 														Computed:            false,
 													},
 												},
-												Required: false,
-												Optional: true,
+												Required: true,
+												Optional: false,
 												Computed: false,
 											},
 
@@ -1488,8 +1488,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"match": schema.ListNestedAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Match conditions to be satisfied for the rule to be activated.",
+									MarkdownDescription: "Match conditions to be satisfied for the rule to be activated.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"destination_subnets": schema.ListAttribute{
@@ -1519,8 +1519,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 											},
 
 											"source_labels": schema.MapAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "One or more labels that constrain the applicability of a rule to workloads with the given labels.",
+												MarkdownDescription: "One or more labels that constrain the applicability of a rule to workloads with the given labels.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1536,8 +1536,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 											},
 
 											"source_subnet": schema.StringAttribute{
-												Description:         "IPv4 or IPv6 ip address of source with optional subnet.",
-												MarkdownDescription: "IPv4 or IPv6 ip address of source with optional subnet.",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1555,14 +1555,14 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"destination": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to.",
+												MarkdownDescription: "Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "The name of a service from the service registry.",
 														MarkdownDescription: "The name of a service from the service registry.",
-														Required:            false,
-														Optional:            true,
+														Required:            true,
+														Optional:            false,
 														Computed:            false,
 													},
 
@@ -1591,8 +1591,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 														Computed:            false,
 													},
 												},
-												Required: false,
-												Optional: true,
+												Required: true,
+												Optional: false,
 												Computed: false,
 											},
 
@@ -1617,13 +1617,13 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"tls": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "An ordered list of route rule for non-terminated TLS & HTTPS traffic.",
+						MarkdownDescription: "An ordered list of route rule for non-terminated TLS & HTTPS traffic.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"match": schema.ListNestedAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Match conditions to be satisfied for the rule to be activated.",
+									MarkdownDescription: "Match conditions to be satisfied for the rule to be activated.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"destination_subnets": schema.ListAttribute{
@@ -1656,14 +1656,14 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 												Description:         "SNI (server name indicator) to match on.",
 												MarkdownDescription: "SNI (server name indicator) to match on.",
 												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
 											"source_labels": schema.MapAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "One or more labels that constrain the applicability of a rule to workloads with the given labels.",
+												MarkdownDescription: "One or more labels that constrain the applicability of a rule to workloads with the given labels.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1679,8 +1679,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 											},
 										},
 									},
-									Required: false,
-									Optional: true,
+									Required: true,
+									Optional: false,
 									Computed: false,
 								},
 
@@ -1690,14 +1690,14 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"destination": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to.",
+												MarkdownDescription: "Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "The name of a service from the service registry.",
 														MarkdownDescription: "The name of a service from the service registry.",
-														Required:            false,
-														Optional:            true,
+														Required:            true,
+														Optional:            false,
 														Computed:            false,
 													},
 
@@ -1726,8 +1726,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Beta1Manifest) Schema(_ context.Contex
 														Computed:            false,
 													},
 												},
-												Required: false,
-												Optional: true,
+												Required: true,
+												Optional: false,
 												Computed: false,
 											},
 

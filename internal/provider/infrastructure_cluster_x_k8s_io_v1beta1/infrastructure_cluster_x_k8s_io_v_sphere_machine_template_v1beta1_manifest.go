@@ -106,7 +106,8 @@ type InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1ManifestData struct
 							To     *string `tfsdk:"to" json:"to,omitempty"`
 							Via    *string `tfsdk:"via" json:"via,omitempty"`
 						} `tfsdk:"routes" json:"routes,omitempty"`
-						SearchDomains *[]string `tfsdk:"search_domains" json:"searchDomains,omitempty"`
+						SearchDomains    *[]string `tfsdk:"search_domains" json:"searchDomains,omitempty"`
+						SkipIPAllocation *bool     `tfsdk:"skip_ip_allocation" json:"skipIPAllocation,omitempty"`
 					} `tfsdk:"devices" json:"devices,omitempty"`
 					PreferredAPIServerCidr *string `tfsdk:"preferred_api_server_cidr" json:"preferredAPIServerCidr,omitempty"`
 					Routes                 *[]struct {
@@ -142,8 +143,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Metad
 
 func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "VSphereMachineTemplate is the Schema for the vspheremachinetemplates API",
-		MarkdownDescription: "VSphereMachineTemplate is the Schema for the vspheremachinetemplates API",
+		Description:         "VSphereMachineTemplate is the Schema for the vspheremachinetemplates API.",
+		MarkdownDescription: "VSphereMachineTemplate is the Schema for the vspheremachinetemplates API.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
@@ -218,12 +219,12 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "VSphereMachineTemplateSpec defines the desired state of VSphereMachineTemplate",
-				MarkdownDescription: "VSphereMachineTemplateSpec defines the desired state of VSphereMachineTemplate",
+				Description:         "VSphereMachineTemplateSpec defines the desired state of VSphereMachineTemplate.",
+				MarkdownDescription: "VSphereMachineTemplateSpec defines the desired state of VSphereMachineTemplate.",
 				Attributes: map[string]schema.Attribute{
 					"template": schema.SingleNestedAttribute{
-						Description:         "VSphereMachineTemplateResource describes the data needed to create a VSphereMachine from a template",
-						MarkdownDescription: "VSphereMachineTemplateResource describes the data needed to create a VSphereMachine from a template",
+						Description:         "VSphereMachineTemplateResource describes the data needed to create a VSphereMachine from a template.",
+						MarkdownDescription: "VSphereMachineTemplateResource describes the data needed to create a VSphereMachine from a template.",
 						Attributes: map[string]schema.Attribute{
 							"metadata": schema.SingleNestedAttribute{
 								Description:         "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
@@ -593,8 +594,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 														},
 
 														"ip_addrs": schema.ListAttribute{
-															Description:         "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device.  IP addresses must also specify the segment length in CIDR notation. Required when DHCP4 and DHCP6 are both false.",
-															MarkdownDescription: "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device.  IP addresses must also specify the segment length in CIDR notation. Required when DHCP4 and DHCP6 are both false.",
+															Description:         "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device. IP addresses must also specify the segment length in CIDR notation. Required when DHCP4, DHCP6 and SkipIPAllocation are false.",
+															MarkdownDescription: "IPAddrs is a list of one or more IPv4 and/or IPv6 addresses to assign to this device. IP addresses must also specify the segment length in CIDR notation. Required when DHCP4, DHCP6 and SkipIPAllocation are false.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -677,6 +678,14 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 															Optional:            true,
 															Computed:            false,
 														},
+
+														"skip_ip_allocation": schema.BoolAttribute{
+															Description:         "SkipIPAllocation allows the device to not have IP address or DHCP configured. This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI. If true, CAPV will not verify IP address allocation.",
+															MarkdownDescription: "SkipIPAllocation allows the device to not have IP address or DHCP configured. This is suitable for devices for which IP allocation is handled externally, eg. using Multus CNI. If true, CAPV will not verify IP address allocation.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: true,
@@ -685,8 +694,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 											},
 
 											"preferred_api_server_cidr": schema.StringAttribute{
-												Description:         "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine",
-												MarkdownDescription: "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine",
+												Description:         "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine  Deprecated: This field is going to be removed in a future release.",
+												MarkdownDescription: "PreferredAPIServeCIDR is the preferred CIDR for the Kubernetes API server endpoint on this machine  Deprecated: This field is going to be removed in a future release.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

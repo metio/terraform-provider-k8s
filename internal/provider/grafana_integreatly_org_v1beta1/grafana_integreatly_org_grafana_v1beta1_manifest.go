@@ -126,6 +126,8 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 											} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 											MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 										} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+										MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+										MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 										NamespaceSelector *struct {
 											MatchExpressions *[]struct {
 												Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -148,6 +150,8 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -171,6 +175,8 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 											} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 											MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 										} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+										MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+										MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 										NamespaceSelector *struct {
 											MatchExpressions *[]struct {
 												Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -193,6 +199,8 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 										} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 										MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 									} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+									MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+									MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 									NamespaceSelector *struct {
 										MatchExpressions *[]struct {
 											Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -263,6 +271,9 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 										Port   *string `tfsdk:"port" json:"port,omitempty"`
 										Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 									} `tfsdk:"http_get" json:"httpGet,omitempty"`
+									Sleep *struct {
+										Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+									} `tfsdk:"sleep" json:"sleep,omitempty"`
 									TcpSocket *struct {
 										Host *string `tfsdk:"host" json:"host,omitempty"`
 										Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -282,6 +293,9 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 										Port   *string `tfsdk:"port" json:"port,omitempty"`
 										Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 									} `tfsdk:"http_get" json:"httpGet,omitempty"`
+									Sleep *struct {
+										Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+									} `tfsdk:"sleep" json:"sleep,omitempty"`
 									TcpSocket *struct {
 										Host *string `tfsdk:"host" json:"host,omitempty"`
 										Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -509,6 +523,9 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 										Port   *string `tfsdk:"port" json:"port,omitempty"`
 										Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 									} `tfsdk:"http_get" json:"httpGet,omitempty"`
+									Sleep *struct {
+										Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+									} `tfsdk:"sleep" json:"sleep,omitempty"`
 									TcpSocket *struct {
 										Host *string `tfsdk:"host" json:"host,omitempty"`
 										Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -528,6 +545,9 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 										Port   *string `tfsdk:"port" json:"port,omitempty"`
 										Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 									} `tfsdk:"http_get" json:"httpGet,omitempty"`
+									Sleep *struct {
+										Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+									} `tfsdk:"sleep" json:"sleep,omitempty"`
 									TcpSocket *struct {
 										Host *string `tfsdk:"host" json:"host,omitempty"`
 										Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -758,6 +778,9 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 										Port   *string `tfsdk:"port" json:"port,omitempty"`
 										Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 									} `tfsdk:"http_get" json:"httpGet,omitempty"`
+									Sleep *struct {
+										Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+									} `tfsdk:"sleep" json:"sleep,omitempty"`
 									TcpSocket *struct {
 										Host *string `tfsdk:"host" json:"host,omitempty"`
 										Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -777,6 +800,9 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 										Port   *string `tfsdk:"port" json:"port,omitempty"`
 										Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 									} `tfsdk:"http_get" json:"httpGet,omitempty"`
+									Sleep *struct {
+										Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+									} `tfsdk:"sleep" json:"sleep,omitempty"`
 									TcpSocket *struct {
 										Host *string `tfsdk:"host" json:"host,omitempty"`
 										Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -1105,9 +1131,6 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 											Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 										} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 										Resources *struct {
-											Claims *[]struct {
-												Name *string `tfsdk:"name" json:"name,omitempty"`
-											} `tfsdk:"claims" json:"claims,omitempty"`
 											Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 											Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 										} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1119,9 +1142,10 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 											} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 											MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 										} `tfsdk:"selector" json:"selector,omitempty"`
-										StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-										VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-										VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+										StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+										VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+										VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+										VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 									} `tfsdk:"spec" json:"spec,omitempty"`
 								} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 							} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -1202,6 +1226,20 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 							Projected *struct {
 								DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 								Sources     *[]struct {
+									ClusterTrustBundle *struct {
+										LabelSelector *struct {
+											MatchExpressions *[]struct {
+												Key      *string   `tfsdk:"key" json:"key,omitempty"`
+												Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+												Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+											} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+											MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+										} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+										Name       *string `tfsdk:"name" json:"name,omitempty"`
+										Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+										Path       *string `tfsdk:"path" json:"path,omitempty"`
+										SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+									} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 									ConfigMap *struct {
 										Items *[]struct {
 											Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1421,6 +1459,9 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 				VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
 		} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+		Preferences *struct {
+			HomeDashboardUid *string `tfsdk:"home_dashboard_uid" json:"homeDashboardUid,omitempty"`
+		} `tfsdk:"preferences" json:"preferences,omitempty"`
 		Route *struct {
 			Metadata *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -2118,6 +2159,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																							Computed: false,
 																						},
 
+																						"match_label_keys": schema.ListAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"mismatch_label_keys": schema.ListAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
 																						"namespace_selector": schema.SingleNestedAttribute{
 																							Description:         "",
 																							MarkdownDescription: "",
@@ -2265,6 +2324,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					Required: false,
 																					Optional: true,
 																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
 																				},
 
 																				"namespace_selector": schema.SingleNestedAttribute{
@@ -2416,6 +2493,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																							Computed: false,
 																						},
 
+																						"match_label_keys": schema.ListAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"mismatch_label_keys": schema.ListAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
 																						"namespace_selector": schema.SingleNestedAttribute{
 																							Description:         "",
 																							MarkdownDescription: "",
@@ -2563,6 +2658,24 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					Required: false,
 																					Optional: true,
 																					Computed: false,
+																				},
+
+																				"match_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"mismatch_label_keys": schema.ListAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
 																				},
 
 																				"namespace_selector": schema.SingleNestedAttribute{
@@ -3022,6 +3135,23 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					Computed: false,
 																				},
 
+																				"sleep": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"seconds": schema.Int64Attribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
 																				"tcp_socket": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -3134,6 +3264,23 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																							MarkdownDescription: "",
 																							Required:            false,
 																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"sleep": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"seconds": schema.Int64Attribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
 																							Computed:            false,
 																						},
 																					},
@@ -4667,6 +4814,23 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					Computed: false,
 																				},
 
+																				"sleep": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"seconds": schema.Int64Attribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
 																				"tcp_socket": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -4779,6 +4943,23 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																							MarkdownDescription: "",
 																							Required:            false,
 																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"sleep": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"seconds": schema.Int64Attribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
 																							Computed:            false,
 																						},
 																					},
@@ -6337,6 +6518,23 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																					Computed: false,
 																				},
 
+																				"sleep": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"seconds": schema.Int64Attribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
 																				"tcp_socket": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -6449,6 +6647,23 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																							MarkdownDescription: "",
 																							Required:            false,
 																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"sleep": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"seconds": schema.Int64Attribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
 																							Computed:            false,
 																						},
 																					},
@@ -8688,25 +8903,6 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Attributes: map[string]schema.Attribute{
-																								"claims": schema.ListNestedAttribute{
-																									Description:         "",
-																									MarkdownDescription: "",
-																									NestedObject: schema.NestedAttributeObject{
-																										Attributes: map[string]schema.Attribute{
-																											"name": schema.StringAttribute{
-																												Description:         "",
-																												MarkdownDescription: "",
-																												Required:            true,
-																												Optional:            false,
-																												Computed:            false,
-																											},
-																										},
-																									},
-																									Required: false,
-																									Optional: true,
-																									Computed: false,
-																								},
-
 																								"limits": schema.MapAttribute{
 																									Description:         "",
 																									MarkdownDescription: "",
@@ -8785,6 +8981,14 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																						},
 
 																						"storage_class_name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"volume_attributes_class_name": schema.StringAttribute{
 																							Description:         "",
 																							MarkdownDescription: "",
 																							Required:            false,
@@ -9338,6 +9542,101 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
 																				Attributes: map[string]schema.Attribute{
+																					"cluster_trust_bundle": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"label_selector": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"match_expressions": schema.ListNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										NestedObject: schema.NestedAttributeObject{
+																											Attributes: map[string]schema.Attribute{
+																												"key": schema.StringAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Required:            true,
+																													Optional:            false,
+																													Computed:            false,
+																												},
+
+																												"operator": schema.StringAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Required:            true,
+																													Optional:            false,
+																													Computed:            false,
+																												},
+
+																												"values": schema.ListAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													ElementType:         types.StringType,
+																													Required:            false,
+																													Optional:            true,
+																													Computed:            false,
+																												},
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+
+																									"match_labels": schema.MapAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+
+																							"name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"optional": schema.BoolAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"path": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            true,
+																								Optional:            false,
+																								Computed:            false,
+																							},
+
+																							"signer_name": schema.StringAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
 																					"config_map": schema.SingleNestedAttribute{
 																						Description:         "",
 																						MarkdownDescription: "",
@@ -10747,6 +11046,23 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"preferences": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"home_dashboard_uid": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

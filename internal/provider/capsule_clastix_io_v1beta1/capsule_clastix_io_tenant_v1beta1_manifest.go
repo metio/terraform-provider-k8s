@@ -199,6 +199,14 @@ type CapsuleClastixIoTenantV1Beta1ManifestData struct {
 			ExternalIPs *struct {
 				Allowed *[]string `tfsdk:"allowed" json:"allowed,omitempty"`
 			} `tfsdk:"external_i_ps" json:"externalIPs,omitempty"`
+			ForbiddenAnnotations *struct {
+				Denied      *[]string `tfsdk:"denied" json:"denied,omitempty"`
+				DeniedRegex *string   `tfsdk:"denied_regex" json:"deniedRegex,omitempty"`
+			} `tfsdk:"forbidden_annotations" json:"forbiddenAnnotations,omitempty"`
+			ForbiddenLabels *struct {
+				Denied      *[]string `tfsdk:"denied" json:"denied,omitempty"`
+				DeniedRegex *string   `tfsdk:"denied_regex" json:"deniedRegex,omitempty"`
+			} `tfsdk:"forbidden_labels" json:"forbiddenLabels,omitempty"`
 		} `tfsdk:"service_options" json:"serviceOptions,omitempty"`
 		StorageClasses *struct {
 			Allowed      *[]string `tfsdk:"allowed" json:"allowed,omitempty"`
@@ -1309,6 +1317,58 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"forbidden_annotations": schema.SingleNestedAttribute{
+								Description:         "Define the annotations that a Tenant Owner cannot set for their Service resources.",
+								MarkdownDescription: "Define the annotations that a Tenant Owner cannot set for their Service resources.",
+								Attributes: map[string]schema.Attribute{
+									"denied": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"denied_regex": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"forbidden_labels": schema.SingleNestedAttribute{
+								Description:         "Define the labels that a Tenant Owner cannot set for their Service resources.",
+								MarkdownDescription: "Define the labels that a Tenant Owner cannot set for their Service resources.",
+								Attributes: map[string]schema.Attribute{
+									"denied": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"denied_regex": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 								},

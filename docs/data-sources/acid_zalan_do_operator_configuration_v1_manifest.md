@@ -19,20 +19,8 @@ data "k8s_acid_zalan_do_operator_configuration_v1_manifest" "example" {
     namespace = "some-namespace"
   }
   configuration = {
-    enable_crd_registration               = true
-    max_instances                         = 7
-    min_instances                         = 3
-    enable_spilo_wal_path_compat          = true
-    workers                               = 5
-    docker_image                          = "internal.registry.com/some/image:yes"
-    enable_team_id_clustername_prefix     = true
-    kubernetes_use_configmaps             = true
-    set_memory_request_to_limit           = true
-    etcd_host                             = "localhost"
-    ignore_instance_limits_annotation_key = "some-key/limit"
-    enable_pgversion_env_var              = true
-    enable_lazy_spilo_upgrade             = true
-    enable_shm_volume                     = true
+    max_instances = 7
+    min_instances = 3
   }
 }
 ```
@@ -148,7 +136,9 @@ Optional:
 - `delete_annotation_name_key` (String)
 - `downscaler_annotations` (List of String)
 - `enable_cross_namespace_secret` (Boolean)
+- `enable_finalizers` (Boolean)
 - `enable_init_containers` (Boolean)
+- `enable_persistent_volume_claim_deletion` (Boolean)
 - `enable_pod_antiaffinity` (Boolean)
 - `enable_pod_disruption_budget` (Boolean)
 - `enable_readiness_probe` (Boolean)
@@ -252,6 +242,7 @@ Optional:
 - `logical_backup_azure_storage_container` (String)
 - `logical_backup_cpu_limit` (String)
 - `logical_backup_cpu_request` (String)
+- `logical_backup_cronjob_environment_secret` (String)
 - `logical_backup_docker_image` (String)
 - `logical_backup_google_application_credentials` (String)
 - `logical_backup_job_prefix` (String)

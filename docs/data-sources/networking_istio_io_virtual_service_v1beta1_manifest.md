@@ -61,7 +61,7 @@ Optional:
 - `hosts` (List of String) The destination hosts to which traffic is being sent.
 - `http` (Attributes List) An ordered list of route rules for HTTP traffic. (see [below for nested schema](#nestedatt--spec--http))
 - `tcp` (Attributes List) An ordered list of route rules for opaque TCP traffic. (see [below for nested schema](#nestedatt--spec--tcp))
-- `tls` (Attributes List) (see [below for nested schema](#nestedatt--spec--tls))
+- `tls` (Attributes List) An ordered list of route rule for non-terminated TLS & HTTPS traffic. (see [below for nested schema](#nestedatt--spec--tls))
 
 <a id="nestedatt--spec--http"></a>
 ### Nested Schema for `spec.http`
@@ -69,15 +69,15 @@ Optional:
 Optional:
 
 - `cors_policy` (Attributes) Cross-Origin Resource Sharing policy (CORS). (see [below for nested schema](#nestedatt--spec--http--cors_policy))
-- `delegate` (Attributes) (see [below for nested schema](#nestedatt--spec--http--delegate))
+- `delegate` (Attributes) Delegate is used to specify the particular VirtualService which can be used to define delegate HTTPRoute. (see [below for nested schema](#nestedatt--spec--http--delegate))
 - `direct_response` (Attributes) A HTTP rule can either return a direct_response, redirect or forward (default) traffic. (see [below for nested schema](#nestedatt--spec--http--direct_response))
 - `fault` (Attributes) Fault injection policy to apply on HTTP traffic at the client side. (see [below for nested schema](#nestedatt--spec--http--fault))
 - `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http--headers))
-- `match` (Attributes List) (see [below for nested schema](#nestedatt--spec--http--match))
-- `mirror` (Attributes) (see [below for nested schema](#nestedatt--spec--http--mirror))
-- `mirror_percent` (Number) Percentage of the traffic to be mirrored by the 'mirror' field.
+- `match` (Attributes List) Match conditions to be satisfied for the rule to be activated. (see [below for nested schema](#nestedatt--spec--http--match))
+- `mirror` (Attributes) Mirror HTTP traffic to a another destination in addition to forwarding the requests to the intended destination. (see [below for nested schema](#nestedatt--spec--http--mirror))
+- `mirror_percent` (Number)
 - `mirror_percentage` (Attributes) Percentage of the traffic to be mirrored by the 'mirror' field. (see [below for nested schema](#nestedatt--spec--http--mirror_percentage))
-- `mirrors` (Attributes List) (see [below for nested schema](#nestedatt--spec--http--mirrors))
+- `mirrors` (Attributes List) Specifies the destinations to mirror HTTP traffic in addition to the original destination. (see [below for nested schema](#nestedatt--spec--http--mirrors))
 - `name` (String) The name assigned to the route for debugging purposes.
 - `redirect` (Attributes) A HTTP rule can either return a direct_response, redirect or forward (default) traffic. (see [below for nested schema](#nestedatt--spec--http--redirect))
 - `retries` (Attributes) Retry policy for HTTP requests. (see [below for nested schema](#nestedatt--spec--http--retries))
@@ -90,13 +90,13 @@ Optional:
 
 Optional:
 
-- `allow_credentials` (Boolean)
-- `allow_headers` (List of String)
+- `allow_credentials` (Boolean) Indicates whether the caller is allowed to send the actual request (not the preflight) using credentials.
+- `allow_headers` (List of String) List of HTTP headers that can be used when requesting the resource.
 - `allow_methods` (List of String) List of HTTP methods allowed to access the resource.
-- `allow_origin` (List of String) The list of origins that are allowed to perform CORS requests.
+- `allow_origin` (List of String)
 - `allow_origins` (Attributes List) String patterns that match allowed origins. (see [below for nested schema](#nestedatt--spec--http--cors_policy--allow_origins))
-- `expose_headers` (List of String)
-- `max_age` (String)
+- `expose_headers` (List of String) A list of HTTP headers that the browsers are allowed to access.
+- `max_age` (String) Specifies how long the results of a preflight request can be cached.
 
 <a id="nestedatt--spec--http--cors_policy--allow_origins"></a>
 ### Nested Schema for `spec.http.cors_policy.max_age`
@@ -121,13 +121,16 @@ Optional:
 <a id="nestedatt--spec--http--direct_response"></a>
 ### Nested Schema for `spec.http.direct_response`
 
+Required:
+
+- `status` (Number) Specifies the HTTP response status to be returned.
+
 Optional:
 
 - `body` (Attributes) Specifies the content of the response body. (see [below for nested schema](#nestedatt--spec--http--direct_response--body))
-- `status` (Number) Specifies the HTTP response status to be returned.
 
 <a id="nestedatt--spec--http--direct_response--body"></a>
-### Nested Schema for `spec.http.direct_response.status`
+### Nested Schema for `spec.http.direct_response.body`
 
 Optional:
 
@@ -141,8 +144,8 @@ Optional:
 
 Optional:
 
-- `abort` (Attributes) (see [below for nested schema](#nestedatt--spec--http--fault--abort))
-- `delay` (Attributes) (see [below for nested schema](#nestedatt--spec--http--fault--delay))
+- `abort` (Attributes) Abort Http request attempts and return error codes back to downstream service, giving the impression that the upstream service is faulty. (see [below for nested schema](#nestedatt--spec--http--fault--abort))
+- `delay` (Attributes) Delay requests before forwarding, emulating various failures such as network issues, overloaded upstream service, etc. (see [below for nested schema](#nestedatt--spec--http--fault--delay))
 
 <a id="nestedatt--spec--http--fault--abort"></a>
 ### Nested Schema for `spec.http.fault.delay`
@@ -217,19 +220,19 @@ Optional:
 
 Optional:
 
-- `authority` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--authority))
+- `authority` (Attributes) HTTP Authority values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--authority))
 - `gateways` (List of String) Names of gateways where the rule should be applied.
-- `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--headers))
+- `headers` (Attributes) The header keys must be lowercase and use hyphen as the separator, e.g. (see [below for nested schema](#nestedatt--spec--http--match--headers))
 - `ignore_uri_case` (Boolean) Flag to specify whether the URI matching should be case-insensitive.
-- `method` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--method))
+- `method` (Attributes) HTTP Method values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--method))
 - `name` (String) The name assigned to a match.
 - `port` (Number) Specifies the ports on the host that is being addressed.
 - `query_params` (Attributes) Query parameters for matching. (see [below for nested schema](#nestedatt--spec--http--match--query_params))
-- `scheme` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--scheme))
-- `source_labels` (Map of String)
+- `scheme` (Attributes) URI Scheme values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--scheme))
+- `source_labels` (Map of String) One or more labels that constrain the applicability of a rule to source (client) workloads with the given labels.
 - `source_namespace` (String) Source namespace constraining the applicability of a rule to workloads in that namespace.
 - `stat_prefix` (String) The human readable prefix to use when emitting statistics for this route.
-- `uri` (Attributes) (see [below for nested schema](#nestedatt--spec--http--match--uri))
+- `uri` (Attributes) URI to match values are case-sensitive and formatted as follows: - 'exact: 'value'' for exact string match - 'prefix: 'value'' for prefix-based match - 'regex: 'value'' for RE2 style regex-based match (https://github.com/google/re2/wiki/Syntax). (see [below for nested schema](#nestedatt--spec--http--match--uri))
 - `without_headers` (Attributes) withoutHeader has the same syntax with the header, but has opposite meaning. (see [below for nested schema](#nestedatt--spec--http--match--without_headers))
 
 <a id="nestedatt--spec--http--match--authority"></a>
@@ -306,9 +309,12 @@ Optional:
 <a id="nestedatt--spec--http--mirror"></a>
 ### Nested Schema for `spec.http.mirror`
 
-Optional:
+Required:
 
 - `host` (String) The name of a service from the service registry.
+
+Optional:
+
 - `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--http--mirror--port))
 - `subset` (String) The name of a subset within the service.
 
@@ -332,17 +338,23 @@ Optional:
 <a id="nestedatt--spec--http--mirrors"></a>
 ### Nested Schema for `spec.http.mirrors`
 
-Optional:
+Required:
 
 - `destination` (Attributes) Destination specifies the target of the mirror operation. (see [below for nested schema](#nestedatt--spec--http--mirrors--destination))
+
+Optional:
+
 - `percentage` (Attributes) Percentage of the traffic to be mirrored by the 'destination' field. (see [below for nested schema](#nestedatt--spec--http--mirrors--percentage))
 
 <a id="nestedatt--spec--http--mirrors--destination"></a>
 ### Nested Schema for `spec.http.mirrors.percentage`
 
-Optional:
+Required:
 
 - `host` (String) The name of a service from the service registry.
+
+Optional:
+
 - `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--http--mirrors--percentage--port))
 - `subset` (String) The name of a subset within the service.
 
@@ -369,12 +381,12 @@ Optional:
 
 Optional:
 
-- `authority` (String)
-- `derive_port` (String)
+- `authority` (String) On a redirect, overwrite the Authority/Host portion of the URL with this value.
+- `derive_port` (String) On a redirect, dynamically set the port: * FROM_PROTOCOL_DEFAULT: automatically set to 80 for HTTP and 443 for HTTPS.Valid Options: FROM_PROTOCOL_DEFAULT, FROM_REQUEST_PORT
 - `port` (Number) On a redirect, overwrite the port portion of the URL with this value.
-- `redirect_code` (Number)
+- `redirect_code` (Number) On a redirect, Specifies the HTTP status code to use in the redirect response.
 - `scheme` (String) On a redirect, overwrite the scheme portion of the URL with this value.
-- `uri` (String)
+- `uri` (String) On a redirect, overwrite the Path portion of the URL with this value.
 
 
 <a id="nestedatt--spec--http--retries"></a>
@@ -394,7 +406,7 @@ Optional:
 Optional:
 
 - `authority` (String) rewrite the Authority/Host header with this value.
-- `uri` (String)
+- `uri` (String) rewrite the path (or the prefix) portion of the URI with this value.
 - `uri_regex_rewrite` (Attributes) rewrite the path portion of the URI with the specified regex. (see [below for nested schema](#nestedatt--spec--http--rewrite--uri_regex_rewrite))
 
 <a id="nestedatt--spec--http--rewrite--uri_regex_rewrite"></a>
@@ -410,18 +422,24 @@ Optional:
 <a id="nestedatt--spec--http--route"></a>
 ### Nested Schema for `spec.http.route`
 
+Required:
+
+- `destination` (Attributes) Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to. (see [below for nested schema](#nestedatt--spec--http--route--destination))
+
 Optional:
 
-- `destination` (Attributes) (see [below for nested schema](#nestedatt--spec--http--route--destination))
 - `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--http--route--headers))
 - `weight` (Number) Weight specifies the relative proportion of traffic to be forwarded to the destination.
 
 <a id="nestedatt--spec--http--route--destination"></a>
 ### Nested Schema for `spec.http.route.weight`
 
-Optional:
+Required:
 
 - `host` (String) The name of a service from the service registry.
+
+Optional:
+
 - `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--http--route--weight--port))
 - `subset` (String) The name of a subset within the service.
 
@@ -470,7 +488,7 @@ Optional:
 
 Optional:
 
-- `match` (Attributes List) (see [below for nested schema](#nestedatt--spec--tcp--match))
+- `match` (Attributes List) Match conditions to be satisfied for the rule to be activated. (see [below for nested schema](#nestedatt--spec--tcp--match))
 - `route` (Attributes List) The destination to which the connection should be forwarded to. (see [below for nested schema](#nestedatt--spec--tcp--route))
 
 <a id="nestedatt--spec--tcp--match"></a>
@@ -481,25 +499,31 @@ Optional:
 - `destination_subnets` (List of String) IPv4 or IPv6 ip addresses of destination with optional subnet.
 - `gateways` (List of String) Names of gateways where the rule should be applied.
 - `port` (Number) Specifies the port on the host that is being addressed.
-- `source_labels` (Map of String)
+- `source_labels` (Map of String) One or more labels that constrain the applicability of a rule to workloads with the given labels.
 - `source_namespace` (String) Source namespace constraining the applicability of a rule to workloads in that namespace.
-- `source_subnet` (String) IPv4 or IPv6 ip address of source with optional subnet.
+- `source_subnet` (String)
 
 
 <a id="nestedatt--spec--tcp--route"></a>
 ### Nested Schema for `spec.tcp.route`
 
+Required:
+
+- `destination` (Attributes) Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to. (see [below for nested schema](#nestedatt--spec--tcp--route--destination))
+
 Optional:
 
-- `destination` (Attributes) (see [below for nested schema](#nestedatt--spec--tcp--route--destination))
 - `weight` (Number) Weight specifies the relative proportion of traffic to be forwarded to the destination.
 
 <a id="nestedatt--spec--tcp--route--destination"></a>
 ### Nested Schema for `spec.tcp.route.weight`
 
-Optional:
+Required:
 
 - `host` (String) The name of a service from the service registry.
+
+Optional:
+
 - `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--tcp--route--weight--port))
 - `subset` (String) The name of a subset within the service.
 
@@ -517,38 +541,50 @@ Optional:
 <a id="nestedatt--spec--tls"></a>
 ### Nested Schema for `spec.tls`
 
+Required:
+
+- `match` (Attributes List) Match conditions to be satisfied for the rule to be activated. (see [below for nested schema](#nestedatt--spec--tls--match))
+
 Optional:
 
-- `match` (Attributes List) (see [below for nested schema](#nestedatt--spec--tls--match))
 - `route` (Attributes List) The destination to which the connection should be forwarded to. (see [below for nested schema](#nestedatt--spec--tls--route))
 
 <a id="nestedatt--spec--tls--match"></a>
 ### Nested Schema for `spec.tls.match`
+
+Required:
+
+- `sni_hosts` (List of String) SNI (server name indicator) to match on.
 
 Optional:
 
 - `destination_subnets` (List of String) IPv4 or IPv6 ip addresses of destination with optional subnet.
 - `gateways` (List of String) Names of gateways where the rule should be applied.
 - `port` (Number) Specifies the port on the host that is being addressed.
-- `sni_hosts` (List of String) SNI (server name indicator) to match on.
-- `source_labels` (Map of String)
+- `source_labels` (Map of String) One or more labels that constrain the applicability of a rule to workloads with the given labels.
 - `source_namespace` (String) Source namespace constraining the applicability of a rule to workloads in that namespace.
 
 
 <a id="nestedatt--spec--tls--route"></a>
 ### Nested Schema for `spec.tls.route`
 
+Required:
+
+- `destination` (Attributes) Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to. (see [below for nested schema](#nestedatt--spec--tls--route--destination))
+
 Optional:
 
-- `destination` (Attributes) (see [below for nested schema](#nestedatt--spec--tls--route--destination))
 - `weight` (Number) Weight specifies the relative proportion of traffic to be forwarded to the destination.
 
 <a id="nestedatt--spec--tls--route--destination"></a>
 ### Nested Schema for `spec.tls.route.weight`
 
-Optional:
+Required:
 
 - `host` (String) The name of a service from the service registry.
+
+Optional:
+
 - `port` (Attributes) Specifies the port on the host that is being addressed. (see [below for nested schema](#nestedatt--spec--tls--route--weight--port))
 - `subset` (String) The name of a subset within the service.
 

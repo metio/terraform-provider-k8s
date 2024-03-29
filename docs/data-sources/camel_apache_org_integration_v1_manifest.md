@@ -101,6 +101,7 @@ Optional:
 - `content_key` (String) the confimap key holding the source content
 - `content_ref` (String) the confimap reference holding the source content
 - `content_type` (String) the content type (tipically text or binary)
+- `from_kamelet` (Boolean) True if the spec is generated from a Kamelet
 - `interceptors` (List of String) Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources
 - `language` (String) specify which is the language (Camel DSL) used to interpret this source code
 - `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime
@@ -2859,9 +2860,9 @@ Optional:
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
 - `node_affinity_labels` (List of String) Defines a set of nodes the integration pod(s) are eligible to be scheduled on, based on labels on the node.
-- `pod_affinity` (Boolean) Always co-locates multiple replicas of the integration in the same node (default *false*).
+- `pod_affinity` (Boolean) Always co-locates multiple replicas of the integration in the same node (default 'false').
 - `pod_affinity_labels` (List of String) Defines a set of pods (namely those matching the label selector, relative to the given namespace) that the integration pod(s) should be co-located with.
-- `pod_anti_affinity` (Boolean) Never co-locates multiple replicas of the integration in the same node (default *false*).
+- `pod_anti_affinity` (Boolean) Never co-locates multiple replicas of the integration in the same node (default 'false').
 - `pod_anti_affinity_labels` (List of String) Defines a set of pods (namely those matching the label selector, relative to the given namespace) that the integration pod(s) should not be co-located with.
 
 
@@ -2870,18 +2871,27 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String) When using 'pod' strategy, annotation to use for the builder pod.
+- `base_image` (String) Specify a base image
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
-- `limit_cpu` (String) When using 'pod' strategy, the maximum amount of CPU required by the pod builder.
-- `limit_memory` (String) When using 'pod' strategy, the maximum amount of memory required by the pod builder.
+- `enabled` (Boolean) Deprecated: no longer in use.
+- `incremental_image_build` (Boolean) Use the incremental image build option, to reuse existing containers (default 'true')
+- `limit_cpu` (String) When using 'pod' strategy, the maximum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
+- `limit_memory` (String) When using 'pod' strategy, the maximum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
 - `maven_profiles` (List of String) A list of references pointing to configmaps/secrets that contains a maven profile. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).
-- `order_strategy` (String) The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default sequential)
+- `node_selector` (Map of String) Defines a set of nodes the builder pod is eligible to be scheduled on, based on labels on the node.
+- `order_strategy` (String) The build order strategy to use, either 'dependencies', 'fifo' or 'sequential' (default 'sequential')
 - `properties` (List of String) A list of properties to be provided to the build task
-- `request_cpu` (String) When using 'pod' strategy, the minimum amount of CPU required by the pod builder.
-- `request_memory` (String) When using 'pod' strategy, the minimum amount of memory required by the pod builder.
-- `strategy` (String) The strategy to use, either 'pod' or 'routine' (default routine)
-- `tasks` (List of String) A list of tasks to be executed (available only when using 'pod' strategy) with format <name>;<container-image>;<container-command>
-- `verbose` (Boolean) Enable verbose logging on build components that support it (e.g. Kaniko build pod).
+- `request_cpu` (String) When using 'pod' strategy, the minimum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
+- `request_memory` (String) When using 'pod' strategy, the minimum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.
+- `strategy` (String) The strategy to use, either 'pod' or 'routine' (default 'routine')
+- `tasks` (List of String) A list of tasks to be executed (available only when using 'pod' strategy) with format '<name>;<container-image>;<container-command>'.
+- `tasks_filter` (String) A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 'spectrum', 's2i') if you need to execute them. Useful only with 'pod' strategy.
+- `tasks_limit_cpu` (List of String) A list of limit cpu configuration for the specific task with format '<task-name>:<limit-cpu-conf>'.
+- `tasks_limit_memory` (List of String) A list of limit memory configuration for the specific task with format '<task-name>:<limit-memory-conf>'.
+- `tasks_request_cpu` (List of String) A list of request cpu configuration for the specific task with format '<task-name>:<request-cpu-conf>'.
+- `tasks_request_memory` (List of String) A list of request memory configuration for the specific task with format '<task-name>:<request-memory-conf>'.
+- `verbose` (Boolean) Enable verbose logging on build components that support it (e.g. Kaniko build pod). Deprecated no longer in use
 
 
 <a id="nestedatt--spec--traits--camel"></a>
@@ -2890,7 +2900,7 @@ Optional:
 Optional:
 
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
+- `enabled` (Boolean) Deprecated: no longer in use.
 - `properties` (List of String) A list of properties to be provided to the Integration runtime
 - `runtime_version` (String) The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.
 
@@ -2902,7 +2912,7 @@ Optional:
 
 - `auto` (Boolean) To automatically enable the trait
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
+- `enabled` (Boolean) Deprecated: no longer in use.
 - `expose` (Boolean) Can be used to enable/disable exposure via kubernetes Service.
 - `image` (String) The main container image
 - `image_pull_policy` (String) The pull policy: Always|Never|IfNotPresent
@@ -2940,7 +2950,7 @@ Optional:
 Optional:
 
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
+- `enabled` (Boolean) Deprecated: no longer in use.
 
 
 <a id="nestedatt--spec--traits--deployer"></a>
@@ -2949,7 +2959,7 @@ Optional:
 Optional:
 
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
+- `enabled` (Boolean) Deprecated: no longer in use.
 - `kind` (String) Allows to explicitly select the desired deployment kind between 'deployment', 'cron-job' or 'knative-service' when creating the resources for running the integration.
 - `use_ssa` (Boolean) Use server-side apply to update the owned resources (default 'true'). Note that it automatically falls back to client-side patching, if SSA is not available, e.g., on old Kubernetes clusters.
 
@@ -2960,10 +2970,10 @@ Optional:
 Optional:
 
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
-- `progress_deadline_seconds` (Number) The maximum time in seconds for the deployment to make progress before it is considered to be failed. It defaults to 60s.
-- `rolling_update_max_surge` (Number) The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%.
-- `rolling_update_max_unavailable` (Number) The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%.
+- `enabled` (Boolean) Deprecated: no longer in use.
+- `progress_deadline_seconds` (Number) The maximum time in seconds for the deployment to make progress before it is considered to be failed. It defaults to '60s'.
+- `rolling_update_max_surge` (Number) The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to '25%'.
+- `rolling_update_max_unavailable` (Number) The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to '25%'.
 - `strategy` (String) The deployment strategy to use to replace existing pods with new ones.
 
 
@@ -2974,7 +2984,7 @@ Optional:
 
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `container_meta` (Boolean) Enables injection of 'NAMESPACE' and 'POD_NAME' environment variables (default 'true')
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
+- `enabled` (Boolean) Deprecated: no longer in use.
 - `http_proxy` (Boolean) Propagates the 'HTTP_PROXY', 'HTTPS_PROXY' and 'NO_PROXY' environment variables (default 'true')
 - `vars` (List of String) A list of environment variables to be added to the integration container. The syntax is KEY=VALUE, e.g., 'MY_VAR='my value''. These take precedence over the previously defined environment variables.
 
@@ -2985,7 +2995,7 @@ Optional:
 Optional:
 
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
+- `enabled` (Boolean) Deprecated: no longer in use.
 - `ref` (String) The error handler ref name provided or found in application properties
 
 
@@ -3098,6 +3108,7 @@ Optional:
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
 - `list` (String) Comma separated list of Kamelet names to load into the current integration
+- `mount_point` (String) The directory where the application mounts and reads Kamelet spec (default '/etc/camel/kamelets')
 
 
 <a id="nestedatt--spec--traits--keda"></a>
@@ -3133,6 +3144,7 @@ Optional:
 
 Optional:
 
+- `annotations` (Map of String) The annotations added to route. This can be used to set knative service specific annotations CLI usage example: -t 'knative-service.annotations.'haproxy.router.openshift.io/balance'=true'
 - `auto` (Boolean) Automatically deploy the integration as Knative service when all conditions hold:  * Integration is using the Knative profile * All routes are either starting from an HTTP based consumer or a passive consumer (e.g. 'direct' is a passive consumer)
 - `autoscaling_metric` (String) Configures the Knative autoscaling metric property (e.g. to set 'concurrency' based or 'cpu' based autoscaling).  Refer to the Knative documentation for more information.
 - `autoscaling_target` (Number) Sets the allowed concurrency level or CPU percentage (depending on the autoscaling metric) for each Pod.  Refer to the Knative documentation for more information.
@@ -3156,7 +3168,7 @@ Optional:
 - `format` (String) Logs message format
 - `json` (Boolean) Output the logs in JSON
 - `json_pretty_print` (Boolean) Enable 'pretty printing' of the JSON logs
-- `level` (String) Adjust the logging level (defaults to INFO)
+- `level` (String) Adjust the logging level (defaults to 'INFO')
 
 
 <a id="nestedatt--spec--traits--master"></a>
@@ -3174,8 +3186,8 @@ Optional:
 
 - `configs` (List of String) A list of configuration pointing to configmap/secret. The configuration are expected to be UTF-8 resources as they are processed by runtime Camel Context and tried to be parsed as property files. They are also made available on the classpath in order to ease their usage directly from the Route. Syntax: [configmap|secret]:name[/key], where name represents the resource name and key optionally represents the resource key to be filtered
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
-- `hot_reload` (Boolean) Enable 'hot reload' when a secret/configmap mounted is edited (default false)
+- `enabled` (Boolean) Deprecated: no longer in use.
+- `hot_reload` (Boolean) Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account.
 - `resources` (List of String) A list of resources (text or binary content) pointing to configmap/secret. The resources are expected to be any resource type (text or binary content). The destination path can be either a default location or any path specified by the user. Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path
 - `volumes` (List of String) A list of Persistent Volume Claims to be mounted. Syntax: [pvcname:/container/path]
 
@@ -3187,7 +3199,7 @@ Optional:
 
 - `configmaps` (List of String) The configmaps holding the spec of the OpenAPI
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
+- `enabled` (Boolean) Deprecated: no longer in use.
 
 
 <a id="nestedatt--spec--traits--owner"></a>
@@ -3220,7 +3232,7 @@ Optional:
 - `auto` (Boolean) To automatically detect from the environment if a default platform can be created (it will be created on OpenShift only).
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
 - `create_default` (Boolean) To create a default (empty) platform when the platform is missing.
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
+- `enabled` (Boolean) Deprecated: no longer in use.
 - `global` (Boolean) Indicates if the platform should be created globally in the case of global operator (default true).
 
 
@@ -3261,9 +3273,12 @@ Optional:
 
 Optional:
 
+- `build_mode` (List of String) The Quarkus mode to run: either 'jvm' or 'native' (default 'jvm'). In case both 'jvm' and 'native' are specified, two 'IntegrationKit' resources are created, with the 'native' kit having precedence over the 'jvm' one once ready.
 - `configuration` (Map of String) Legacy trait configuration parameters. Deprecated: for backward compatibility.
-- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
-- `package_types` (List of String) The Quarkus package types, either 'fast-jar' or 'native' (default 'fast-jar'). In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created, with the 'native' kit having precedence over the 'fast-jar' one once ready. The order influences the resolution of the current kit for the integration. The kit corresponding to the first package type will be assigned to the integration in case no existing kit that matches the integration exists.
+- `enabled` (Boolean) Deprecated: no longer in use.
+- `native_base_image` (String) The base image to use when running a native build (default 'quay.io/quarkus/quarkus-micro-image:2.0')
+- `native_builder_image` (String) The image containing the tooling required for a native build (by default it will use the one provided in the runtime catalog)
+- `package_types` (List of String) The Quarkus package types, 'fast-jar' or 'native' (default 'fast-jar'). In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created, with the native kit having precedence over the 'fast-jar' one once ready. The order influences the resolution of the current kit for the integration. The kit corresponding to the first package type will be assigned to the integration in case no existing kit that matches the integration exists. Deprecated: use 'build-mode' instead.
 
 
 <a id="nestedatt--spec--traits--registry"></a>

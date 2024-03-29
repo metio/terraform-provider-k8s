@@ -75,9 +75,9 @@ Optional:
 - `branch` (String) branch/tag name for checkout
 - `certificate_secret` (String) git auth certificate secret for private repositories
 - `commit` (String) commit id (sha) for checkout
-- `path` (String) if needed we can checkout particular path (dir or file) in case of BIG/mono repositories
-- `token_secret` (Attributes) Testkube internal reference for secret storage in Kubernetes secrets (see [below for nested schema](#nestedatt--spec--repository--token_secret))
-- `username_secret` (Attributes) Testkube internal reference for secret storage in Kubernetes secrets (see [below for nested schema](#nestedatt--spec--repository--username_secret))
+- `path` (String) If specified, does a sparse checkout of the repository at the given path
+- `token_secret` (Attributes) SecretRef is the Testkube internal reference for secret storage in Kubernetes secrets (see [below for nested schema](#nestedatt--spec--repository--token_secret))
+- `username_secret` (Attributes) SecretRef is the Testkube internal reference for secret storage in Kubernetes secrets (see [below for nested schema](#nestedatt--spec--repository--username_secret))
 - `working_dir` (String) if provided we checkout the whole repository and run test from this directory
 
 <a id="nestedatt--spec--repository--token_secret"></a>

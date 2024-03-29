@@ -15,6 +15,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 var openapi3Loader *openapi3.Loader
@@ -32,7 +33,7 @@ func ParseOpenAPIv2Files(basePath string) []map[string]*openapi3.SchemaRef {
 	schemas := make([]map[string]*openapi3.SchemaRef, 0)
 
 	err := filepath.WalkDir(basePath, func(path string, d fs.DirEntry, err error) error {
-		if !d.IsDir() {
+		if !d.IsDir() && strings.HasSuffix(path, ".json") {
 			openapiv2, parseErr := parseOpenAPIv2(path)
 			if parseErr != nil {
 				return parseErr

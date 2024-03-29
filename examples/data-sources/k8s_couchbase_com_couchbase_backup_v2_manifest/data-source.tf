@@ -5,8 +5,5 @@ data "k8s_couchbase_com_couchbase_backup_v2_manifest" "example" {
   }
   spec = {
     strategy = "full_incremental"
-    auto_scaling = {
-      limit = "150Ki"
-    }
   }
 }

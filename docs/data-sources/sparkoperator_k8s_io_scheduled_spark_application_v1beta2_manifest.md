@@ -999,6 +999,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--volume_mounts--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--volume_mounts--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--volume_mounts--security_context--windows_options))
 
 <a id="nestedatt--spec--template--driver--volume_mounts--security_context--capabilities"></a>
@@ -1019,6 +1020,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--template--driver--volume_mounts--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.template.driver.volume_mounts.security_context.windows_options`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--template--driver--volume_mounts--security_context--windows_options"></a>
@@ -1303,6 +1312,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--volume_mounts--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--volume_mounts--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--volume_mounts--windows_options))
 
 <a id="nestedatt--spec--template--driver--volume_mounts--capabilities"></a>
@@ -1323,6 +1333,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--template--driver--volume_mounts--seccomp_profile"></a>
+### Nested Schema for `spec.template.driver.volume_mounts.seccomp_profile`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--template--driver--volume_mounts--windows_options"></a>
@@ -1743,6 +1761,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--volume_mounts--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--volume_mounts--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--driver--volume_mounts--security_context--windows_options))
 
 <a id="nestedatt--spec--template--driver--volume_mounts--security_context--capabilities"></a>
@@ -1763,6 +1782,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--template--driver--volume_mounts--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.template.driver.volume_mounts.security_context.windows_options`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--template--driver--volume_mounts--security_context--windows_options"></a>
@@ -2776,6 +2803,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--volume_mounts--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--volume_mounts--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--volume_mounts--security_context--windows_options))
 
 <a id="nestedatt--spec--template--executor--volume_mounts--security_context--capabilities"></a>
@@ -2796,6 +2824,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--template--executor--volume_mounts--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.template.executor.volume_mounts.security_context.windows_options`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--template--executor--volume_mounts--security_context--windows_options"></a>
@@ -2963,6 +2999,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--volume_mounts--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--volume_mounts--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--volume_mounts--windows_options))
 
 <a id="nestedatt--spec--template--executor--volume_mounts--capabilities"></a>
@@ -2983,6 +3020,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--template--executor--volume_mounts--seccomp_profile"></a>
+### Nested Schema for `spec.template.executor.volume_mounts.seccomp_profile`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--template--executor--volume_mounts--windows_options"></a>
@@ -3403,6 +3448,7 @@ Optional:
 - `run_as_non_root` (Boolean)
 - `run_as_user` (Number)
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--volume_mounts--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--volume_mounts--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--template--executor--volume_mounts--security_context--windows_options))
 
 <a id="nestedatt--spec--template--executor--volume_mounts--security_context--capabilities"></a>
@@ -3423,6 +3469,14 @@ Optional:
 - `role` (String)
 - `type` (String)
 - `user` (String)
+
+
+<a id="nestedatt--spec--template--executor--volume_mounts--security_context--seccomp_profile"></a>
+### Nested Schema for `spec.template.executor.volume_mounts.security_context.windows_options`
+
+Optional:
+
+- `type` (String)
 
 
 <a id="nestedatt--spec--template--executor--volume_mounts--security_context--windows_options"></a>

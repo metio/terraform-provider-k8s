@@ -5,7 +5,11 @@
 
 package generator
 
-import "strings"
+import (
+	"fmt"
+	"slices"
+	"strings"
+)
 
 type validatorExtractor interface {
 	integerWithMinimum() string
@@ -84,6 +88,9 @@ func customValidators(terraformResourceName string, propPath string, imports *Ad
 			if usesValidatorPackage(cv, "stringvalidator") {
 				imports.StringValidator = true
 			}
+			if usesValidatorPackage(cv, "boolvalidator") {
+				imports.BoolValidator = true
+			}
 			validators = append(validators, cv...)
 		}
 	}
@@ -101,6 +108,8 @@ func usesValidatorPackage(validators []string, pkg string) bool {
 
 func mapAttributeTypeToValidatorsType(attributeType string) string {
 	switch attributeType {
+	case "schema.BoolAttribute":
+		return "validator.Bool"
 	case "schema.StringAttribute":
 		return "validator.String"
 	case "schema.Int64Attribute":
@@ -124,6 +133,8 @@ func mapAttributeTypeToValidatorsType(attributeType string) string {
 
 func mapAttributeTypeToValidatorsPackage(attributeType string) string {
 	switch attributeType {
+	case "schema.BoolAttribute":
+		return "boolvalidator"
 	case "schema.StringAttribute":
 		return "stringvalidator"
 	case "schema.Int64Attribute":
@@ -147,11 +158,48 @@ func mapAttributeTypeToValidatorsPackage(attributeType string) string {
 
 func addValidatorImports(outer *Property, imports *AdditionalImports) {
 	switch outer.ValidatorsPackage {
+	case "boolvalidator":
+		imports.BoolValidator = true
 	case "listvalidator":
 		imports.ListValidator = true
 	case "objectvalidator":
 		imports.ObjectValidator = true
 	case "mapvalidator":
 		imports.MapValidator = true
+	}
+}
+
+func escapeRegexPattern(pattern string) string {
+	splits := strings.Split(pattern, "`")
+	splits = slices.DeleteFunc(splits, func(s string) bool {
+		return s == ""
+	})
+	if strings.Contains(pattern, "`") {
+		var sb strings.Builder
+		if strings.HasPrefix(pattern, "`") {
+			if len(splits) > 0 {
+				sb.WriteString(fmt.Sprintf(`"%c"+`, '`'))
+			} else {
+				sb.WriteString(fmt.Sprintf(`"%c"`, '`'))
+			}
+		}
+		for index, value := range splits {
+			if index > 0 && splits[index-1] != "" {
+				sb.WriteString(fmt.Sprintf(`+%c%s%c`, '`', value, '`'))
+			} else {
+				sb.WriteString(fmt.Sprintf(`%c%s%c`, '`', value, '`'))
+			}
+			if index < len(splits)-1 {
+				sb.WriteString(fmt.Sprintf(`+"%c"`, '`'))
+			}
+		}
+		if strings.HasSuffix(pattern, "`") {
+			if len(splits) > 0 {
+				sb.WriteString(fmt.Sprintf(`+"%c"`, '`'))
+			}
+		}
+		return sb.String()
+	} else {
+		return fmt.Sprintf("%c%s%c", '`', pattern, '`')
 	}
 }

@@ -30,7 +30,7 @@ data "k8s_eks_services_k8s_aws_cluster_v1alpha1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) ClusterSpec defines the desired state of Cluster.  An object representing an Amazon EKS cluster. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ClusterSpec defines the desired state of Cluster.An object representing an Amazon EKS cluster. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -57,19 +57,20 @@ Optional:
 Required:
 
 - `name` (String) The unique name to give to your cluster.
-- `resources_vpc_config` (Attributes) The VPC configuration that's used by the cluster control plane. Amazon EKS VPC resources have specific requirements to work properly with Kubernetes. For more information, see Cluster VPC Considerations (https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html) and Cluster Security Group Considerations (https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html) in the Amazon EKS User Guide. You must specify at least two subnets. You can specify up to five security groups. However, we recommend that you use a dedicated security group for your cluster control plane. (see [below for nested schema](#nestedatt--spec--resources_vpc_config))
+- `resources_vpc_config` (Attributes) The VPC configuration that's used by the cluster control plane. Amazon EKSVPC resources have specific requirements to work properly with Kubernetes.For more information, see Cluster VPC Considerations (https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)and Cluster Security Group Considerations (https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html)in the Amazon EKS User Guide. You must specify at least two subnets. Youcan specify up to five security groups. However, we recommend that you usea dedicated security group for your cluster control plane. (see [below for nested schema](#nestedatt--spec--resources_vpc_config))
 
 Optional:
 
-- `client_request_token` (String) Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+- `access_config` (Attributes) The access configuration for the cluster. (see [below for nested schema](#nestedatt--spec--access_config))
+- `client_request_token` (String) A unique, case-sensitive identifier that you provide to ensure the idempotencyof the request.
 - `encryption_config` (Attributes List) The encryption configuration for the cluster. (see [below for nested schema](#nestedatt--spec--encryption_config))
 - `kubernetes_network_config` (Attributes) The Kubernetes network configuration for the cluster. (see [below for nested schema](#nestedatt--spec--kubernetes_network_config))
-- `logging` (Attributes) Enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs. By default, cluster control plane logs aren't exported to CloudWatch Logs. For more information, see Amazon EKS Cluster control plane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html) in the Amazon EKS User Guide .  CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see CloudWatch Pricing (http://aws.amazon.com/cloudwatch/pricing/). (see [below for nested schema](#nestedatt--spec--logging))
-- `outpost_config` (Attributes) An object representing the configuration of your local Amazon EKS cluster on an Amazon Web Services Outpost. Before creating a local cluster on an Outpost, review Local clusters for Amazon EKS on Amazon Web Services Outposts (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-local-cluster-overview.html) in the Amazon EKS User Guide. This object isn't available for creating Amazon EKS clusters on the Amazon Web Services cloud. (see [below for nested schema](#nestedatt--spec--outpost_config))
-- `role_arn` (String) The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to Amazon Web Services API operations on your behalf. For more information, see Amazon EKS Service IAM Role (https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html) in the Amazon EKS User Guide .
-- `role_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef:  from: name: my-api (see [below for nested schema](#nestedatt--spec--role_ref))
-- `tags` (Map of String) The metadata to apply to the cluster to assist with categorization and organization. Each tag consists of a key and an optional value. You define both.
-- `version` (String) The desired Kubernetes version for your cluster. If you don't specify a value here, the default version available in Amazon EKS is used.  The default version might not be the latest version available.
+- `logging` (Attributes) Enable or disable exporting the Kubernetes control plane logs for your clusterto CloudWatch Logs. By default, cluster control plane logs aren't exportedto CloudWatch Logs. For more information, see Amazon EKS Cluster controlplane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)in the Amazon EKS User Guide .CloudWatch Logs ingestion, archive storage, and data scanning rates applyto exported control plane logs. For more information, see CloudWatch Pricing(http://aws.amazon.com/cloudwatch/pricing/). (see [below for nested schema](#nestedatt--spec--logging))
+- `outpost_config` (Attributes) An object representing the configuration of your local Amazon EKS clusteron an Amazon Web Services Outpost. Before creating a local cluster on anOutpost, review Local clusters for Amazon EKS on Amazon Web Services Outposts(https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-local-cluster-overview.html)in the Amazon EKS User Guide. This object isn't available for creating AmazonEKS clusters on the Amazon Web Services cloud. (see [below for nested schema](#nestedatt--spec--outpost_config))
+- `role_arn` (String) The Amazon Resource Name (ARN) of the IAM role that provides permissionsfor the Kubernetes control plane to make calls to Amazon Web Services APIoperations on your behalf. For more information, see Amazon EKS Service IAMRole (https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html)in the Amazon EKS User Guide .
+- `role_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--role_ref))
+- `tags` (Map of String) Metadata that assists with categorization and organization. Each tag consistsof a key and an optional value. You define both. Tags don't propagate toany other cluster or Amazon Web Services resources.
+- `version` (String) The desired Kubernetes version for your cluster. If you don't specify a valuehere, the default version available in Amazon EKS is used.The default version might not be the latest version available.
 
 <a id="nestedatt--spec--resources_vpc_config"></a>
 ### Nested Schema for `spec.resources_vpc_config`
@@ -89,7 +90,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--resources_vpc_config--security_group_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--resources_vpc_config--security_group_refs--from))
 
 <a id="nestedatt--spec--resources_vpc_config--security_group_refs--from"></a>
 ### Nested Schema for `spec.resources_vpc_config.security_group_refs.from`
@@ -105,7 +106,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--resources_vpc_config--subnet_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--resources_vpc_config--subnet_refs--from))
 
 <a id="nestedatt--spec--resources_vpc_config--subnet_refs--from"></a>
 ### Nested Schema for `spec.resources_vpc_config.subnet_refs.from`
@@ -115,6 +116,15 @@ Optional:
 - `name` (String)
 
 
+
+
+<a id="nestedatt--spec--access_config"></a>
+### Nested Schema for `spec.access_config`
+
+Optional:
+
+- `authentication_mode` (String)
+- `bootstrap_cluster_creator_admin_permissions` (Boolean)
 
 
 <a id="nestedatt--spec--encryption_config"></a>
@@ -131,6 +141,23 @@ Optional:
 Optional:
 
 - `key_arn` (String)
+- `key_ref` (Attributes) Reference field for KeyARN (see [below for nested schema](#nestedatt--spec--encryption_config--provider--key_ref))
+
+<a id="nestedatt--spec--encryption_config--provider--key_ref"></a>
+### Nested Schema for `spec.encryption_config.provider.key_ref`
+
+Optional:
+
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--encryption_config--provider--key_ref--from))
+
+<a id="nestedatt--spec--encryption_config--provider--key_ref--from"></a>
+### Nested Schema for `spec.encryption_config.provider.key_ref.from`
+
+Optional:
+
+- `name` (String)
+
+
 
 
 
@@ -166,7 +193,7 @@ Optional:
 Optional:
 
 - `control_plane_instance_type` (String)
-- `control_plane_placement` (Attributes) The placement configuration for all the control plane instances of your local Amazon EKS cluster on an Amazon Web Services Outpost. For more information, see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html) in the Amazon EKS User Guide (see [below for nested schema](#nestedatt--spec--outpost_config--control_plane_placement))
+- `control_plane_placement` (Attributes) The placement configuration for all the control plane instances of your localAmazon EKS cluster on an Amazon Web Services Outpost. For more information,see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)in the Amazon EKS User Guide. (see [below for nested schema](#nestedatt--spec--outpost_config--control_plane_placement))
 - `outpost_ar_ns` (List of String)
 
 <a id="nestedatt--spec--outpost_config--control_plane_placement"></a>
@@ -183,7 +210,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--role_ref--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--role_ref--from))
 
 <a id="nestedatt--spec--role_ref--from"></a>
 ### Nested Schema for `spec.role_ref.from`

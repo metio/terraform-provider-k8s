@@ -59,6 +59,7 @@ Optional:
 - `additional_display_details` (Attributes List) A list of additional details that Kiali will look for in annotations. When found on any workload or service, Kiali will display the additional details in the respective workload or service details page. This is typically used to inject some CI metadata or documentation links into Kiali views. For example, by default, Kiali will recognize these annotations on a service or workload (e.g. a Deployment, StatefulSet, etc.):'''annotations:  kiali.io/api-spec: http://list/to/my/api/doc  kiali.io/api-type: rest'''Note that if you change this setting for your own custom annotations, keep in mind that it would override the current default. So you would have to add the default setting as shown in the example CR if you want to preserve the default links. (see [below for nested schema](#nestedatt--spec--additional_display_details))
 - `api` (Attributes) (see [below for nested schema](#nestedatt--spec--api))
 - `auth` (Attributes) (see [below for nested schema](#nestedatt--spec--auth))
+- `clustering` (Attributes) Multi-cluster related features. (see [below for nested schema](#nestedatt--spec--clustering))
 - `custom_dashboards` (List of Map of String) A list of user-defined custom monitoring dashboards that you can use to generate metrics chartsfor your applications. The server has some built-in dashboards; if you define a custom dashboard herewith the same name as a built-in dashboard, your custom dashboard takes precedence and will overwritethe built-in dashboard. You can disable one or more of the built-in dashboards by simply defining anempty dashboard.An example of an additional user-defined dashboard,'''- name: myapp  title: My App Metrics  items:  - chart:      name: 'Thread Count'      spans: 4      metricName: 'thread-count'      dataType: 'raw''''An example of disabling a built-in dashboard (in this case, disabling the Envoy dashboard),'''- name: envoy'''To learn more about custom monitoring dashboards, see the documentation at https://kiali.io/docs/configuration/custom-dashboard/
 - `deployment` (Attributes) (see [below for nested schema](#nestedatt--spec--deployment))
 - `external_services` (Attributes) These external service configuration settings define how to connect to the external serviceslike Prometheus, Grafana, and Jaeger.Regarding sensitive values in the external_services 'auth' sections:Some external services configured below support an 'auth' sub-section in order to tell Kialihow it should authenticate with the external services. Credentials used to authenticate Kialito those external services can be defined in the 'auth.password' and 'auth.token' valueswithin the 'auth' sub-section. Because these are sensitive values, you may not want to declarethe actual credentials here in the Kiali CR. In this case, you may store the actual passwordor token string in a Kubernetes secret. If you do, you need to set the 'auth.password' or'auth.token' to a value in the format 'secret:<secretName>:<secretKey>' where '<secretName>'is the name of the secret object that Kiali can access, and '<secretKey>' is the name of thekey within the named secret that contains the actual password or token string. For example,if Grafana requires a password, you can store that password in a secret named 'myGrafanaCredentials'in a key named 'myGrafanaPw'. In this case, you would set 'external_services.grafana.auth.password'to 'secret:myGrafanaCredentials:myGrafanaPw'. (see [below for nested schema](#nestedatt--spec--external_services))
@@ -71,7 +72,7 @@ Optional:
 - `kubernetes_config` (Attributes) Configuration of Kiali's access of the Kubernetes API. (see [below for nested schema](#nestedatt--spec--kubernetes_config))
 - `login_token` (Attributes) (see [below for nested schema](#nestedatt--spec--login_token))
 - `server` (Attributes) Configuration that controls some core components within the Kiali Server. (see [below for nested schema](#nestedatt--spec--server))
-- `version` (String) The version of the Ansible playbook to execute in order to install that version of Kiali.It is rare you will want to set this - if you are thinking of setting this, know what you are doing first.The only supported value today is 'default'.If not specified, a default version of Kiali will be installed which will be the most recent release of Kiali.Refer to this file to see where these values are defined in the master branch,https://github.com/kiali/kiali-operator/tree/master/playbooks/default-supported-images.ymlThis version setting affects the defaults of the deployment.image_name anddeployment.image_version settings. See the comments for those settingsbelow for additional details. But in short, this version setting willdictate which version of the Kiali image will be deployed by default.Note that if you explicitly set deployment.image_name and/ordeployment.image_version you are responsible for ensuring those settingsare compatible with this setting (i.e. the Kiali image must be compatiblewith the rest of the configuration and resources the operator will install).
+- `version` (String) The version of the Ansible playbook to execute in order to install that version of Kiali.It is rare you will want to set this - if you are thinking of setting this, know what you are doing first.The only supported value today is 'default'.If not specified, a default version of Kiali will be installed which will be the most recent release of Kiali.Refer to this file to see where these values are defined in the master branch,https://github.com/kiali/kiali-operator/blob/master/playbooks/kiali-default-supported-images.ymlThis version setting affects the defaults of the deployment.image_name anddeployment.image_version settings. See the comments for those settingsbelow for additional details. But in short, this version setting willdictate which version of the Kiali image will be deployed by default.Note that if you explicitly set deployment.image_name and/ordeployment.image_version you are responsible for ensuring those settingsare compatible with this setting (i.e. the Kiali image must be compatiblewith the rest of the configuration and resources the operator will install).
 
 <a id="nestedatt--spec--additional_display_details"></a>
 ### Nested Schema for `spec.additional_display_details`
@@ -148,6 +149,45 @@ Optional:
 
 
 
+<a id="nestedatt--spec--clustering"></a>
+### Nested Schema for `spec.clustering`
+
+Optional:
+
+- `autodetect_secrets` (Attributes) Settings to allow cluster secrets to be auto-detected. Secrets must exist in the Kiali deployment namespace. (see [below for nested schema](#nestedatt--spec--clustering--autodetect_secrets))
+- `clusters` (Attributes List) A list of clusters that the Kiali Server can access. You need to specify the remote clusters here if 'autodetect_secrets.enabled' is false. (see [below for nested schema](#nestedatt--spec--clustering--clusters))
+- `kiali_urls` (Attributes List) A map between cluster name, instance name and namespace to a Kiali URL. Will be used showing the Mesh page's Kiali URLs. The Kiali service's 'kiali.io/external-url' annotation will be overridden when this property is set. (see [below for nested schema](#nestedatt--spec--clustering--kiali_urls))
+
+<a id="nestedatt--spec--clustering--autodetect_secrets"></a>
+### Nested Schema for `spec.clustering.autodetect_secrets`
+
+Optional:
+
+- `enabled` (Boolean) If true then remote cluster secrets will be autodetected during the installation of the Kiali Server Deployment. Any remote cluster secrets found in the Kiali deployment namespace will be mounted to the Kiali Server's file system. If false, you can still manually specify the remote cluster secret information in the 'clusters' setting if you wish to utilize multicluster features.
+- `label` (String) The name and value of a label that exists on all remote cluster secrets. Default is 'kiali.io/multiCluster=true'.
+
+
+<a id="nestedatt--spec--clustering--clusters"></a>
+### Nested Schema for `spec.clustering.clusters`
+
+Optional:
+
+- `name` (String) The name of the cluster.
+- `secret_name` (String) The name of the secret that contains the credentials necessary to connect to the remote cluster. This secret must exist in the Kiali deployment namespace. If a secret name is not provided then it's assumed that the cluster is inaccessible.
+
+
+<a id="nestedatt--spec--clustering--kiali_urls"></a>
+### Nested Schema for `spec.clustering.kiali_urls`
+
+Optional:
+
+- `cluster_name` (String) The name of the cluster.
+- `instance_name` (String) The instance name of this Kiali installation. This should be the value used in 'deployment.instance_name' for Kiali resource name.
+- `namespace` (String) The namespace into which Kiali is installed.
+- `url` (String) The URL of Kiali in the cluster.
+
+
+
 <a id="nestedatt--spec--deployment"></a>
 ### Nested Schema for `spec.deployment`
 
@@ -205,7 +245,8 @@ Required:
 
 Optional:
 
-- `optional` (Boolean) Indicates if the secret may or may not exist at the time the Kiali pod starts. This will default to 'false' if not specified.
+- `csi` (Map of String) Defines CSI-specific settings that allows a secret from an external CSI secret store to be injected in the pod via a volume mount. For details, see https://secrets-store-csi-driver.sigs.k8s.io/
+- `optional` (Boolean) Indicates if the secret may or may not exist at the time the Kiali pod starts. This will default to 'false' if not specified. This is ignored if 'csi' is specified - CSI secrets must exist when specified.
 
 
 <a id="nestedatt--spec--deployment--host_aliases"></a>
@@ -275,7 +316,7 @@ Optional:
 - `grafana` (Attributes) Configuration used to access the Grafana dashboards. (see [below for nested schema](#nestedatt--spec--external_services--grafana))
 - `istio` (Attributes) Istio configuration that Kiali needs to know about in order to observe the mesh. (see [below for nested schema](#nestedatt--spec--external_services--istio))
 - `prometheus` (Attributes) The Prometheus configuration defined here refers to the Prometheus instance that is used by Istio to store its telemetry. (see [below for nested schema](#nestedatt--spec--external_services--prometheus))
-- `tracing` (Attributes) Configuration used to access the Tracing (Jaeger) dashboards. (see [below for nested schema](#nestedatt--spec--external_services--tracing))
+- `tracing` (Attributes) Configuration used to access the Tracing (Jaeger or Tempo) dashboards. (see [below for nested schema](#nestedatt--spec--external_services--tracing))
 
 <a id="nestedatt--spec--external_services--custom_dashboards"></a>
 ### Nested Schema for `spec.external_services.custom_dashboards`
@@ -486,13 +527,16 @@ Optional:
 
 - `auth` (Attributes) Settings used to authenticate with the Tracing server instance. (see [below for nested schema](#nestedatt--spec--external_services--tracing--auth))
 - `enabled` (Boolean) When true, connections to the Tracing server are enabled. 'in_cluster_url' and/or 'url' need to be provided.
+- `grpc_port` (Number) Set port number when 'use_grpc' is true and 'provider' is 'tempo'. By default is '9095'
+- `health_check_url` (String) Used in the Components health feature. This is the url which Kiali will ping to determine whether the component is reachable or not. It defaults to 'url' when not provided.
 - `in_cluster_url` (String) Set URL for in-cluster access, which enables further integration between Kiali and Jaeger. When not provided, Kiali will only show external links using the 'url' setting. Note: Jaeger v1.20+ has separated ports for GRPC(16685) and HTTP(16686) requests. Make sure you use the appropriate port according to the 'use_grpc' value. Example: http://tracing.istio-system:16685
 - `is_core` (Boolean) Used in the Components health feature. When true, the unhealthy scenarios will be raised as errors. Otherwise, they will be raised as a warning.
 - `namespace_selector` (Boolean) Kiali use this boolean to find traces with a namespace selector : service.namespace.
+- `provider` (String) The trace provider to get the traces from. Value must be one of: 'jaeger' or 'tempo'.
 - `query_scope` (Map of String) A set of tagKey/tagValue settings applied to every Jaeger query. Used to narrow unified traces to only those scoped to the Kiali instance.
 - `query_timeout` (Number) The amount of time in seconds Kiali will wait for a response from 'jaeger-query' service when fetching traces.
 - `url` (String) The external URL that will be used to generate links to Jaeger. It must be accessible to clients external to the cluster (e.g: a browser) in order to generate valid links. If the tracing service is deployed with a QUERY_BASE_PATH set, set this URL like https://<hostname>/<QUERY_BASE_PATH>. For example, https://tracing-service:8080/jaeger
-- `use_grpc` (Boolean) Set to true in order to enable GRPC connections between Kiali and Jaeger which will speed up the queries. In some setups you might not be able to use GRPC (e.g. if Jaeger is behind some reverse proxy that doesn't support it). If not specified, this will defalt to 'false' if deployed within a Maistra/OSSM+OpenShift environment, 'true' otherwise.
+- `use_grpc` (Boolean) Set to true in order to enable GRPC connections between Kiali and Jaeger which will speed up the queries. In some setups you might not be able to use GRPC (e.g. if Jaeger is behind some reverse proxy that doesn't support it). If not specified, this will defalt to 'true'.
 - `whitelist_istio_system` (List of String) Kiali will get the traces of these services found in the Istio control plane namespace.
 
 <a id="nestedatt--spec--external_services--tracing--auth"></a>
@@ -609,7 +653,7 @@ Optional:
 Optional:
 
 - `name` (String) The name of the cluster.
-- `secret_name` (String) The name of the secret that contains the credentials necessary to connect to the remote cluster. This secret must exist in the Kiali deployment namespace.
+- `secret_name` (String) The name of the secret that contains the credentials necessary to connect to the remote cluster. This secret must exist in the Kiali deployment namespace. If a secret name is not provided then it's assumed that the cluster is inaccessible.
 
 
 <a id="nestedatt--spec--kiali_feature_flags--clustering--kiali_urls"></a>
@@ -630,6 +674,7 @@ Optional:
 Optional:
 
 - `graph` (Attributes) Default settings for the Graph UI. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--graph))
+- `i18n` (Attributes) Default settings for the i18n values. (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--i18n))
 - `list` (Attributes) Default settings for the List views (Apps, Workloads, etc). (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--list))
 - `metrics_inbound` (Attributes) Additional label aggregation for inbound metric pages in detail pages.You will see these configurations in the 'Metric Settings' drop-down.An example,'''metrics_inbound:  aggregations:  - display_name: Istio Network    label: topology_istio_io_network  - display_name: Istio Revision    label: istio_io_rev''' (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--metrics_inbound))
 - `metrics_outbound` (Attributes) Additional label aggregation for outbound metric pages in detail pages.You will see these configurations in the 'Metric Settings' drop-down.An example,'''metrics_outbound:  aggregations:  - display_name: Istio Network    label: topology_istio_io_network  - display_name: Istio Revision    label: istio_io_rev''' (see [below for nested schema](#nestedatt--spec--kiali_feature_flags--ui_defaults--metrics_outbound))
@@ -675,6 +720,15 @@ Optional:
 - `http` (String) HTTP traffic is measured in requests. Value must be one of: 'none' or 'requests'.
 - `tcp` (String) TCP traffic is measured in sent/received/total bytes. Only request traffic supplies response codes. Value must be one of: 'none', 'sent', 'received', or 'total'.
 
+
+
+<a id="nestedatt--spec--kiali_feature_flags--ui_defaults--i18n"></a>
+### Nested Schema for `spec.kiali_feature_flags.ui_defaults.refresh_interval`
+
+Optional:
+
+- `language` (String) Default language used in Kiali application.
+- `show_selector` (Boolean) If true Kiali masthead displays language selector icon. Default is false.
 
 
 <a id="nestedatt--spec--kiali_feature_flags--ui_defaults--list"></a>
@@ -764,8 +818,10 @@ Optional:
 - `audit_log` (Boolean) When true, allows additional audit logging on write operations.
 - `cors_allow_all` (Boolean) When true, allows the web console to send requests to other domains other than where the console came from. Typically used for development environments only.
 - `gzip_enabled` (Boolean) When true, Kiali serves http requests with gzip enabled (if the browser supports it) when the requests are over 1400 bytes.
+- `node_port` (Number) If 'deployment.service_type' is 'NodePort' and this value is set, then this is the node port that the Kiali service will listen to.
 - `observability` (Attributes) Settings to enable observability into the Kiali server itself. (see [below for nested schema](#nestedatt--spec--server--observability))
 - `port` (Number) The port that the server will bind to in order to receive console and API requests.
+- `profiler` (Attributes) Controls the internal profiler used to debug the internals of Kiali (see [below for nested schema](#nestedatt--spec--server--profiler))
 - `web_fqdn` (String) Defines the public domain where Kiali is being served. This is the 'domain' part of the URL (usually it's a fully-qualified domain name). For example, 'kiali.example.org'. When empty, Kiali will try to guess this value from HTTP headers. On non-OpenShift clusters, you must populate this value if you want to enable cross-linking between Kiali instances in a multi-cluster setup.
 - `web_history_mode` (String) Define the history mode of kiali UI. Value must be one of: 'browser' or 'hash'.
 - `web_port` (String) Defines the ingress port where the connections come from. This is usually necessary when the application responds through a proxy/ingress, and it does not forward the correct headers (when this happens, Kiali cannot guess the port). When empty, Kiali will try to guess this value from HTTP headers.
@@ -804,4 +860,17 @@ Optional:
 
 Optional:
 
+- `ca_name` (String) The name of the CA cert; this is used when 'tls_enabled' is 'true' and 'skip_verify' is 'false'.
 - `protocol` (String) Protocol. Supported values are: 'http', 'https' or 'grpc'.
+- `skip_verify` (Boolean) If true, TLS certificate verification will not be performed. This is an unsecure option and is recommended only for testing.
+- `tls_enabled` (Boolean) Enable TLS for the collector. This must be specified when 'protocol' is 'https' or 'grpc'. When you set this to 'true', you must also set a 'ca_name' or set 'skip_verify' to true.
+
+
+
+
+<a id="nestedatt--spec--server--profiler"></a>
+### Nested Schema for `spec.server.profiler`
+
+Optional:
+
+- `enabled` (Boolean) When 'true', the profiler will be enabled and accessible at /debug/pprof/ on the Kiali endpoint.

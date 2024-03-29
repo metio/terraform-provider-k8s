@@ -146,12 +146,12 @@ func (r *Ec2ServicesK8SAwsVpcV1Alpha1Manifest) Schema(_ context.Context, _ datas
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "VpcSpec defines the desired state of Vpc.  Describes a VPC.",
-				MarkdownDescription: "VpcSpec defines the desired state of Vpc.  Describes a VPC.",
+				Description:         "VpcSpec defines the desired state of Vpc.Describes a VPC.",
+				MarkdownDescription: "VpcSpec defines the desired state of Vpc.Describes a VPC.",
 				Attributes: map[string]schema.Attribute{
 					"amazon_provided_i_pv6_cidr_block": schema.BoolAttribute{
-						Description:         "Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length for the VPC. You cannot specify the range of IP addresses, or the size of the CIDR block.",
-						MarkdownDescription: "Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length for the VPC. You cannot specify the range of IP addresses, or the size of the CIDR block.",
+						Description:         "Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length forthe VPC. You cannot specify the range of IP addresses, or the size of theCIDR block.",
+						MarkdownDescription: "Requests an Amazon-provided IPv6 CIDR block with a /56 prefix length forthe VPC. You cannot specify the range of IP addresses, or the size of theCIDR block.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -183,56 +183,56 @@ func (r *Ec2ServicesK8SAwsVpcV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"instance_tenancy": schema.StringAttribute{
-						Description:         "The tenancy options for instances launched into the VPC. For default, instances are launched with shared tenancy by default. You can launch instances with any tenancy into a shared tenancy VPC. For dedicated, instances are launched as dedicated tenancy instances by default. You can only launch instances with a tenancy of dedicated or host into a dedicated tenancy VPC.  Important: The host value cannot be used with this parameter. Use the default or dedicated values only.  Default: default",
-						MarkdownDescription: "The tenancy options for instances launched into the VPC. For default, instances are launched with shared tenancy by default. You can launch instances with any tenancy into a shared tenancy VPC. For dedicated, instances are launched as dedicated tenancy instances by default. You can only launch instances with a tenancy of dedicated or host into a dedicated tenancy VPC.  Important: The host value cannot be used with this parameter. Use the default or dedicated values only.  Default: default",
+						Description:         "The tenancy options for instances launched into the VPC. For default, instancesare launched with shared tenancy by default. You can launch instances withany tenancy into a shared tenancy VPC. For dedicated, instances are launchedas dedicated tenancy instances by default. You can only launch instanceswith a tenancy of dedicated or host into a dedicated tenancy VPC.Important: The host value cannot be used with this parameter. Use the defaultor dedicated values only.Default: default",
+						MarkdownDescription: "The tenancy options for instances launched into the VPC. For default, instancesare launched with shared tenancy by default. You can launch instances withany tenancy into a shared tenancy VPC. For dedicated, instances are launchedas dedicated tenancy instances by default. You can only launch instanceswith a tenancy of dedicated or host into a dedicated tenancy VPC.Important: The host value cannot be used with this parameter. Use the defaultor dedicated values only.Default: default",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ipv4_ipam_pool_id": schema.StringAttribute{
-						Description:         "The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR. For more information, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html) in the Amazon VPC IPAM User Guide.",
-						MarkdownDescription: "The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR. For more information, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html) in the Amazon VPC IPAM User Guide.",
+						Description:         "The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.For more information, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html)in the Amazon VPC IPAM User Guide.",
+						MarkdownDescription: "The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR.For more information, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html)in the Amazon VPC IPAM User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ipv4_netmask_length": schema.Int64Attribute{
-						Description:         "The netmask length of the IPv4 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html) in the Amazon VPC IPAM User Guide.",
-						MarkdownDescription: "The netmask length of the IPv4 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html) in the Amazon VPC IPAM User Guide.",
+						Description:         "The netmask length of the IPv4 CIDR you want to allocate to this VPC froman Amazon VPC IP Address Manager (IPAM) pool. For more information aboutIPAM, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html)in the Amazon VPC IPAM User Guide.",
+						MarkdownDescription: "The netmask length of the IPv4 CIDR you want to allocate to this VPC froman Amazon VPC IP Address Manager (IPAM) pool. For more information aboutIPAM, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html)in the Amazon VPC IPAM User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ipv6_cidr_block": schema.StringAttribute{
-						Description:         "The IPv6 CIDR block from the IPv6 address pool. You must also specify Ipv6Pool in the request.  To let Amazon choose the IPv6 CIDR block for you, omit this parameter.",
-						MarkdownDescription: "The IPv6 CIDR block from the IPv6 address pool. You must also specify Ipv6Pool in the request.  To let Amazon choose the IPv6 CIDR block for you, omit this parameter.",
+						Description:         "The IPv6 CIDR block from the IPv6 address pool. You must also specify Ipv6Poolin the request.To let Amazon choose the IPv6 CIDR block for you, omit this parameter.",
+						MarkdownDescription: "The IPv6 CIDR block from the IPv6 address pool. You must also specify Ipv6Poolin the request.To let Amazon choose the IPv6 CIDR block for you, omit this parameter.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ipv6_cidr_block_network_border_group": schema.StringAttribute{
-						Description:         "The name of the location from which we advertise the IPV6 CIDR block. Use this parameter to limit the address to this location.  You must set AmazonProvidedIpv6CidrBlock to true to use this parameter.",
-						MarkdownDescription: "The name of the location from which we advertise the IPV6 CIDR block. Use this parameter to limit the address to this location.  You must set AmazonProvidedIpv6CidrBlock to true to use this parameter.",
+						Description:         "The name of the location from which we advertise the IPV6 CIDR block. Usethis parameter to limit the address to this location.You must set AmazonProvidedIpv6CidrBlock to true to use this parameter.",
+						MarkdownDescription: "The name of the location from which we advertise the IPV6 CIDR block. Usethis parameter to limit the address to this location.You must set AmazonProvidedIpv6CidrBlock to true to use this parameter.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ipv6_ipam_pool_id": schema.StringAttribute{
-						Description:         "The ID of an IPv6 IPAM pool which will be used to allocate this VPC an IPv6 CIDR. IPAM is a VPC feature that you can use to automate your IP address management workflows including assigning, tracking, troubleshooting, and auditing IP addresses across Amazon Web Services Regions and accounts throughout your Amazon Web Services Organization. For more information, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html) in the Amazon VPC IPAM User Guide.",
-						MarkdownDescription: "The ID of an IPv6 IPAM pool which will be used to allocate this VPC an IPv6 CIDR. IPAM is a VPC feature that you can use to automate your IP address management workflows including assigning, tracking, troubleshooting, and auditing IP addresses across Amazon Web Services Regions and accounts throughout your Amazon Web Services Organization. For more information, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html) in the Amazon VPC IPAM User Guide.",
+						Description:         "The ID of an IPv6 IPAM pool which will be used to allocate this VPC an IPv6CIDR. IPAM is a VPC feature that you can use to automate your IP addressmanagement workflows including assigning, tracking, troubleshooting, andauditing IP addresses across Amazon Web Services Regions and accounts throughoutyour Amazon Web Services Organization. For more information, see What isIPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html)in the Amazon VPC IPAM User Guide.",
+						MarkdownDescription: "The ID of an IPv6 IPAM pool which will be used to allocate this VPC an IPv6CIDR. IPAM is a VPC feature that you can use to automate your IP addressmanagement workflows including assigning, tracking, troubleshooting, andauditing IP addresses across Amazon Web Services Regions and accounts throughoutyour Amazon Web Services Organization. For more information, see What isIPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html)in the Amazon VPC IPAM User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ipv6_netmask_length": schema.Int64Attribute{
-						Description:         "The netmask length of the IPv6 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html) in the Amazon VPC IPAM User Guide.",
-						MarkdownDescription: "The netmask length of the IPv6 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html) in the Amazon VPC IPAM User Guide.",
+						Description:         "The netmask length of the IPv6 CIDR you want to allocate to this VPC froman Amazon VPC IP Address Manager (IPAM) pool. For more information aboutIPAM, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html)in the Amazon VPC IPAM User Guide.",
+						MarkdownDescription: "The netmask length of the IPv6 CIDR you want to allocate to this VPC froman Amazon VPC IP Address Manager (IPAM) pool. For more information aboutIPAM, see What is IPAM? (https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html)in the Amazon VPC IPAM User Guide.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -247,8 +247,8 @@ func (r *Ec2ServicesK8SAwsVpcV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"tags": schema.ListNestedAttribute{
-						Description:         "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
-						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.",
+						Description:         "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
+						MarkdownDescription: "The tags. The value parameter is required, but if you don't want the tagto have a value, specify the parameter with no value, and we set the valueto an empty string.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"key": schema.StringAttribute{

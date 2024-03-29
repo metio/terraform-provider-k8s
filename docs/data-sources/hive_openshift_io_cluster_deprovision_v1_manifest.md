@@ -70,7 +70,6 @@ Optional:
 
 Optional:
 
-- `alibabacloud` (Attributes) AlibabaCloud contains Alibaba Cloud specific deprovision settings (see [below for nested schema](#nestedatt--spec--platform--alibabacloud))
 - `aws` (Attributes) AWS contains AWS-specific deprovision settings (see [below for nested schema](#nestedatt--spec--platform--aws))
 - `azure` (Attributes) Azure contains Azure-specific deprovision settings (see [below for nested schema](#nestedatt--spec--platform--azure))
 - `gcp` (Attributes) GCP contains GCP-specific deprovision settings (see [below for nested schema](#nestedatt--spec--platform--gcp))
@@ -78,24 +77,6 @@ Optional:
 - `openstack` (Attributes) OpenStack contains OpenStack-specific deprovision settings (see [below for nested schema](#nestedatt--spec--platform--openstack))
 - `ovirt` (Attributes) Ovirt contains oVirt-specific deprovision settings (see [below for nested schema](#nestedatt--spec--platform--ovirt))
 - `vsphere` (Attributes) VSphere contains VMWare vSphere-specific deprovision settings (see [below for nested schema](#nestedatt--spec--platform--vsphere))
-
-<a id="nestedatt--spec--platform--alibabacloud"></a>
-### Nested Schema for `spec.platform.alibabacloud`
-
-Required:
-
-- `base_domain` (String) BaseDomain is the DNS base domain. TODO: Use the non-platform-specific BaseDomain field.
-- `credentials_secret_ref` (Attributes) CredentialsSecretRef is the Alibaba account credentials to use for deprovisioning the cluster (see [below for nested schema](#nestedatt--spec--platform--alibabacloud--credentials_secret_ref))
-- `region` (String) Region is the Alibaba region for this deprovision
-
-<a id="nestedatt--spec--platform--alibabacloud--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.alibabacloud.region`
-
-Optional:
-
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
-
-
 
 <a id="nestedatt--spec--platform--aws"></a>
 ### Nested Schema for `spec.platform.aws`
@@ -159,9 +140,10 @@ Required:
 Optional:
 
 - `credentials_secret_ref` (Attributes) CredentialsSecretRef is the GCP account credentials to use for deprovisioning the cluster (see [below for nested schema](#nestedatt--spec--platform--gcp--credentials_secret_ref))
+- `network_project_id` (String) NetworkProjectID is used for shared VPC setups
 
 <a id="nestedatt--spec--platform--gcp--credentials_secret_ref"></a>
-### Nested Schema for `spec.platform.gcp.credentials_secret_ref`
+### Nested Schema for `spec.platform.gcp.network_project_id`
 
 Optional:
 

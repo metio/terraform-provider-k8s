@@ -79,6 +79,9 @@ type HiveOpenshiftIoClusterDeploymentV1ManifestData struct {
 				Azure *struct {
 					ResourceGroupName *string `tfsdk:"resource_group_name" json:"resourceGroupName,omitempty"`
 				} `tfsdk:"azure" json:"azure,omitempty"`
+				Gcp *struct {
+					NetworkProjectID *string `tfsdk:"network_project_id" json:"networkProjectID,omitempty"`
+				} `tfsdk:"gcp" json:"gcp,omitempty"`
 			} `tfsdk:"platform" json:"platform,omitempty"`
 		} `tfsdk:"cluster_metadata" json:"clusterMetadata,omitempty"`
 		ClusterName    *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
@@ -141,12 +144,6 @@ type HiveOpenshiftIoClusterDeploymentV1ManifestData struct {
 					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 				} `tfsdk:"agent_selector" json:"agentSelector,omitempty"`
 			} `tfsdk:"agent_bare_metal" json:"agentBareMetal,omitempty"`
-			Alibabacloud *struct {
-				CredentialsSecretRef *struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
-				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
-				Region *string `tfsdk:"region" json:"region,omitempty"`
-			} `tfsdk:"alibabacloud" json:"alibabacloud,omitempty"`
 			Aws *struct {
 				CredentialsAssumeRole *struct {
 					ExternalID *string `tfsdk:"external_id" json:"externalID,omitempty"`
@@ -373,8 +370,8 @@ func (r *HiveOpenshiftIoClusterDeploymentV1Manifest) Schema(_ context.Context, _
 					},
 
 					"bound_service_account_signing_key_secret_ref": schema.SingleNestedAttribute{
-						Description:         "BoundServiceAccountSignkingKeySecretRef refers to a Secret that contains a 'bound-service-account-signing-key.key' data key pointing to the private key that will be used to sign ServiceAccount objects. Primarily used to provision AWS clusters to use Amazon's Security Token Service.",
-						MarkdownDescription: "BoundServiceAccountSignkingKeySecretRef refers to a Secret that contains a 'bound-service-account-signing-key.key' data key pointing to the private key that will be used to sign ServiceAccount objects. Primarily used to provision AWS clusters to use Amazon's Security Token Service.",
+						Description:         "BoundServiceAccountSigningKeySecretRef refers to a Secret that contains a 'bound-service-account-signing-key.key' data key pointing to the private key that will be used to sign ServiceAccount objects. Primarily used to provision AWS clusters to use Amazon's Security Token Service.",
+						MarkdownDescription: "BoundServiceAccountSigningKeySecretRef refers to a Secret that contains a 'bound-service-account-signing-key.key' data key pointing to the private key that will be used to sign ServiceAccount objects. Primarily used to provision AWS clusters to use Amazon's Security Token Service.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
@@ -558,6 +555,23 @@ func (r *HiveOpenshiftIoClusterDeploymentV1Manifest) Schema(_ context.Context, _
 												MarkdownDescription: "ResourceGroupName is the name of the resource group in which the cluster resources were created.",
 												Required:            true,
 												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"gcp": schema.SingleNestedAttribute{
+										Description:         "GCP holds GCP-specific cluster metadata",
+										MarkdownDescription: "GCP holds GCP-specific cluster metadata",
+										Attributes: map[string]schema.Attribute{
+											"network_project_id": schema.StringAttribute{
+												Description:         "NetworkProjectID is used for shared VPC setups",
+												MarkdownDescription: "NetworkProjectID is used for shared VPC setups",
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 										},
@@ -969,40 +983,6 @@ func (r *HiveOpenshiftIoClusterDeploymentV1Manifest) Schema(_ context.Context, _
 										Required: true,
 										Optional: false,
 										Computed: false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"alibabacloud": schema.SingleNestedAttribute{
-								Description:         "AlibabaCloud is the configuration used when installing on Alibaba Cloud",
-								MarkdownDescription: "AlibabaCloud is the configuration used when installing on Alibaba Cloud",
-								Attributes: map[string]schema.Attribute{
-									"credentials_secret_ref": schema.SingleNestedAttribute{
-										Description:         "CredentialsSecretRef refers to a secret that contains Alibaba Cloud account access credentials.",
-										MarkdownDescription: "CredentialsSecretRef refers to a secret that contains Alibaba Cloud account access credentials.",
-										Attributes: map[string]schema.Attribute{
-											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"region": schema.StringAttribute{
-										Description:         "Region specifies the Alibaba Cloud region where the cluster will be created.",
-										MarkdownDescription: "Region specifies the Alibaba Cloud region where the cluster will be created.",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
 									},
 								},
 								Required: false,

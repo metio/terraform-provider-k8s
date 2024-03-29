@@ -142,8 +142,8 @@ func (r *RdsServicesK8SAwsDbsubnetGroupV1Alpha1Manifest) Schema(_ context.Contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "DBSubnetGroupSpec defines the desired state of DBSubnetGroup.  Contains the details of an Amazon RDS DB subnet group.  This data type is used as a response element in the DescribeDBSubnetGroups action.",
-				MarkdownDescription: "DBSubnetGroupSpec defines the desired state of DBSubnetGroup.  Contains the details of an Amazon RDS DB subnet group.  This data type is used as a response element in the DescribeDBSubnetGroups action.",
+				Description:         "DBSubnetGroupSpec defines the desired state of DBSubnetGroup.Contains the details of an Amazon RDS DB subnet group.This data type is used as a response element in the DescribeDBSubnetGroupsaction.",
+				MarkdownDescription: "DBSubnetGroupSpec defines the desired state of DBSubnetGroup.Contains the details of an Amazon RDS DB subnet group.This data type is used as a response element in the DescribeDBSubnetGroupsaction.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
 						Description:         "The description for the DB subnet group.",
@@ -154,8 +154,8 @@ func (r *RdsServicesK8SAwsDbsubnetGroupV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name for the DB subnet group. This value is stored as a lowercase string.  Constraints:  * Must contain no more than 255 letters, numbers, periods, underscores, spaces, or hyphens.  * Must not be default.  * First character must be a letter.  Example: mydbsubnetgroup",
-						MarkdownDescription: "The name for the DB subnet group. This value is stored as a lowercase string.  Constraints:  * Must contain no more than 255 letters, numbers, periods, underscores, spaces, or hyphens.  * Must not be default.  * First character must be a letter.  Example: mydbsubnetgroup",
+						Description:         "The name for the DB subnet group. This value is stored as a lowercase string.Constraints:   * Must contain no more than 255 letters, numbers, periods, underscores,   spaces, or hyphens.   * Must not be default.   * First character must be a letter.Example: mydbsubnetgroup",
+						MarkdownDescription: "The name for the DB subnet group. This value is stored as a lowercase string.Constraints:   * Must contain no more than 255 letters, numbers, periods, underscores,   spaces, or hyphens.   * Must not be default.   * First character must be a letter.Example: mydbsubnetgroup",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -176,8 +176,8 @@ func (r *RdsServicesK8SAwsDbsubnetGroupV1Alpha1Manifest) Schema(_ context.Contex
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"from": schema.SingleNestedAttribute{
-									Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
-									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+									Description:         "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
+									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",

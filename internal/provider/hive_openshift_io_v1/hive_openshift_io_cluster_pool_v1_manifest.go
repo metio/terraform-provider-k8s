@@ -82,12 +82,6 @@ type HiveOpenshiftIoClusterPoolV1ManifestData struct {
 					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 				} `tfsdk:"agent_selector" json:"agentSelector,omitempty"`
 			} `tfsdk:"agent_bare_metal" json:"agentBareMetal,omitempty"`
-			Alibabacloud *struct {
-				CredentialsSecretRef *struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
-				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
-				Region *string `tfsdk:"region" json:"region,omitempty"`
-			} `tfsdk:"alibabacloud" json:"alibabacloud,omitempty"`
 			Aws *struct {
 				CredentialsAssumeRole *struct {
 					ExternalID *string `tfsdk:"external_id" json:"externalID,omitempty"`
@@ -497,40 +491,6 @@ func (r *HiveOpenshiftIoClusterPoolV1Manifest) Schema(_ context.Context, _ datas
 										Required: true,
 										Optional: false,
 										Computed: false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"alibabacloud": schema.SingleNestedAttribute{
-								Description:         "AlibabaCloud is the configuration used when installing on Alibaba Cloud",
-								MarkdownDescription: "AlibabaCloud is the configuration used when installing on Alibaba Cloud",
-								Attributes: map[string]schema.Attribute{
-									"credentials_secret_ref": schema.SingleNestedAttribute{
-										Description:         "CredentialsSecretRef refers to a secret that contains Alibaba Cloud account access credentials.",
-										MarkdownDescription: "CredentialsSecretRef refers to a secret that contains Alibaba Cloud account access credentials.",
-										Attributes: map[string]schema.Attribute{
-											"name": schema.StringAttribute{
-												Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: true,
-										Optional: false,
-										Computed: false,
-									},
-
-									"region": schema.StringAttribute{
-										Description:         "Region specifies the Alibaba Cloud region where the cluster will be created.",
-										MarkdownDescription: "Region specifies the Alibaba Cloud region where the cluster will be created.",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
 									},
 								},
 								Required: false,

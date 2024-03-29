@@ -66,7 +66,7 @@ Optional:
 
 - `container_names` (List of String) ContainerNames indicates list of the name of affected container. If not set, the first container will be injected
 - `duration` (String) Duration represents the duration of the chaos action
-- `patterns` (List of String) Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note:      1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid.      2. if the patterns is empty, will take effect on all the domain names. For example: 		The value is ['google.com', 'github.*', 'chaos-mes?.org'], 		will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'
+- `patterns` (List of String) Choose which domain names to take effect, support the placeholder ? and wildcard *, or the Specified domain name. Note: 1. The wildcard * must be at the end of the string. For example, chaos-*.org is invalid. 2. if the patterns is empty, will take effect on all the domain names. For example: The value is ['google.com', 'github.*', 'chaos-mes?.org'], will take effect on 'google.com', 'github.com' and 'chaos-mesh.org'
 - `remote_cluster` (String) RemoteCluster represents the remote cluster where the chaos will be deployed
 - `value` (String) Value is required when the mode is set to 'FixedMode' / 'FixedPercentMode' / 'RandomMaxPercentMode'. If 'FixedMode', provide an integer of pods to do chaos action. If 'FixedPercentMode', provide a number from 0-100 to specify the percent of pods the server can do chaos action. IF 'RandomMaxPercentMode',  provide a number from 0-100 to specify the max percent of pods to do chaos action
 

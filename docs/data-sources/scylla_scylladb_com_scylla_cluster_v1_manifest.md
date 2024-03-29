@@ -18,89 +18,6 @@ data "k8s_scylla_scylladb_com_scylla_cluster_v1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
-  spec = {
-    version                         = "2.3.1"
-    repository                      = "scylladb/scylla"
-    developer_mode                  = true
-    cpuset                          = false
-    automatic_orphaned_node_cleanup = true
-    repairs = [
-      {
-        name      = "weekly us-east-1 repair"
-        intensity = "2"
-        interval  = "7d"
-        dc        = ["us-east-1"]
-      }
-    ]
-    backups = [
-      {
-        name       = "daily users backup"
-        rate_limit = ["50"]
-        location   = ["s3 =cluster-backups"]
-        interval   = "1d"
-        keyspace   = ["users"]
-      },
-      {
-        name       = "weekly full cluster backup"
-        rate_limit = ["50"]
-        location   = ["s3 =cluster-backups"]
-        interval   = "7d"
-      }
-    ]
-    datacenter = {
-      name = "us-east-1"
-      racks = [
-        {
-          name    = "us-east-1a"
-          members = 3
-          storage = {
-            capacity           = "500G"
-            storage_class_name = "local-raid-disks"
-          }
-          resources = {
-            requests = {
-              cpu    = 8
-              memory = "32Gi"
-            }
-            limits = {
-              cpu    = 8
-              memory = "32Gi"
-            }
-          }
-          placement = {
-            node_affinity = {
-              required_during_scheduling_ignored_during_execution = {
-                node_selector_terms = [
-                  {
-                    match_expressions = [
-                      {
-                        key      = "failure-domain.beta.kubernetes.io/region"
-                        operator = "In"
-                        values   = ["us-east-1"]
-                      },
-                      {
-                        key      = "failure-domain.beta.kubernetes.io/zone"
-                        operator = "In"
-                        values   = ["us-east-1a"]
-                      },
-                    ]
-                  }
-                ]
-              }
-            }
-            tolerations = [
-              {
-                key      = "role"
-                operator = "Equal"
-                value    = "scylla-clusters"
-                effect   = "NoSchedule"
-              }
-            ]
-          }
-        }
-      ]
-    }
-  }
 }
 ```
 
@@ -153,7 +70,11 @@ Optional:
 - `force_redeployment_reason` (String) forceRedeploymentReason can be used to force a rolling update of all racks by providing a unique string.
 - `generic_upgrade` (Attributes) genericUpgrade allows to configure behavior of generic upgrade logic. (see [below for nested schema](#nestedatt--spec--generic_upgrade))
 - `image_pull_secrets` (Attributes List) imagePullSecrets is an optional list of references to secrets in the same namespace used for pulling Scylla and Agent images. (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
+- `min_ready_seconds` (Number) minReadySeconds is the minimum number of seconds for which a newly created ScyllaDB node should be ready for it to be considered available. When used to control load balanced traffic, this can give the load balancer in front of a node enough time to notice that the node is ready and start forwarding traffic in time. Because it all depends on timing, the order is not guaranteed and, if possible, you should use readinessGates instead. If not provided, Operator will determine this value.
+- `min_termination_grace_period_seconds` (Number) minTerminationGracePeriodSeconds specifies minimum duration in seconds to wait before every drained node is terminated. This gives time to potential load balancer in front of a node to notice that node is not ready anymore and stop forwarding new requests. This applies only when node is terminated gracefully. If not provided, Operator will determine this value. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.
 - `network` (Attributes) network holds the networking config. (see [below for nested schema](#nestedatt--spec--network))
+- `pod_metadata` (Attributes) podMetadata controls shared metadata for all pods created based on this spec. (see [below for nested schema](#nestedatt--spec--pod_metadata))
+- `readiness_gates` (Attributes List) readinessGates specifies custom readiness gates that will be evaluated for every ScyllaDB Pod readiness. It's projected into every ScyllaDB Pod as its readinessGate. Refer to upstream documentation to learn more about readiness gates. (see [below for nested schema](#nestedatt--spec--readiness_gates))
 - `repairs` (Attributes List) repairs specify repair tasks in Scylla Manager. When Scylla Manager is not installed, these will be ignored. (see [below for nested schema](#nestedatt--spec--repairs))
 - `repository` (String) repository is the image repository to pull the Scylla image from.
 - `scylla_args` (String) scyllaArgs will be appended to Scylla binary during startup. This is supported from 4.2.0 Scylla version.
@@ -165,8 +86,38 @@ Optional:
 
 Optional:
 
-- `port` (Number) port is the port number used to bind the Alternator API.
+- `insecure_disable_authorization` (Boolean) insecureDisableAuthorization disables Alternator authorization. If not specified, the authorization is enabled. For backwards compatibility the authorization is disabled when this field is not specified and a manual port is used.
+- `insecure_enable_http` (Boolean) insecureEnableHTTP enables serving Alternator traffic also on insecure HTTP port.
+- `port` (Number) port is the port number used to bind the Alternator API. Deprecated: 'port' is deprecated and may be ignored in the future. Please make sure to avoid using hostNetworking and work with standard Kubernetes concepts like Services.
+- `serving_certificate` (Attributes) servingCertificate references a TLS certificate for serving secure traffic. (see [below for nested schema](#nestedatt--spec--alternator--serving_certificate))
 - `write_isolation` (String) writeIsolation indicates the isolation level.
+
+<a id="nestedatt--spec--alternator--serving_certificate"></a>
+### Nested Schema for `spec.alternator.serving_certificate`
+
+Optional:
+
+- `operator_managed_options` (Attributes) operatorManagedOptions specifies options for certificates manged by the operator. (see [below for nested schema](#nestedatt--spec--alternator--serving_certificate--operator_managed_options))
+- `type` (String) type determines the source of this certificate.
+- `user_managed_options` (Attributes) userManagedOptions specifies options for certificates manged by users. (see [below for nested schema](#nestedatt--spec--alternator--serving_certificate--user_managed_options))
+
+<a id="nestedatt--spec--alternator--serving_certificate--operator_managed_options"></a>
+### Nested Schema for `spec.alternator.serving_certificate.user_managed_options`
+
+Optional:
+
+- `additional_dns_names` (List of String) additionalDNSNames represents external DNS names that the certificates should be signed for.
+- `additional_ip_addresses` (List of String) additionalIPAddresses represents external IP addresses that the certificates should be signed for.
+
+
+<a id="nestedatt--spec--alternator--serving_certificate--user_managed_options"></a>
+### Nested Schema for `spec.alternator.serving_certificate.user_managed_options`
+
+Optional:
+
+- `secret_name` (String) secretName references a kubernetes.io/tls type secret containing the TLS cert and key.
+
+
 
 
 <a id="nestedatt--spec--backups"></a>
@@ -377,7 +328,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -436,7 +389,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -511,7 +466,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--weight--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -570,7 +527,9 @@ Required:
 
 Optional:
 
-- `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `label_selector` (Attributes) A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -657,7 +616,17 @@ Required:
 Optional:
 
 - `capacity` (String) capacity describes the requested size of each persistent volume.
+- `metadata` (Attributes) metadata controls shared metadata for the volume claim for this rack. At this point, the values are applied only for the initial claim and are not reconciled during its lifetime. Note that this may get fixed in the future and this behaviour shouldn't be relied on in any way. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--metadata))
 - `storage_class_name` (String) storageClassName is the name of a storageClass to request.
+
+<a id="nestedatt--spec--datacenter--racks--volumes--metadata"></a>
+### Nested Schema for `spec.datacenter.racks.volumes.metadata`
+
+Optional:
+
+- `annotations` (Map of String) annotations is a custom key value map that gets merged with managed object annotations.
+- `labels` (Map of String) labels is a custom key value map that gets merged with managed object labels.
+
 
 
 <a id="nestedatt--spec--datacenter--racks--volume_mounts"></a>
@@ -937,6 +906,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--ephemeral--volume_claim_template--metadata--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--ephemeral--volume_claim_template--metadata--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -972,17 +942,8 @@ Optional:
 
 Optional:
 
-- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.  This is an alpha field and requires enabling the DynamicResourceAllocation feature gate.  This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 - `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-<a id="nestedatt--spec--datacenter--racks--volumes--ephemeral--volume_claim_template--metadata--volume_name--claims"></a>
-### Nested Schema for `spec.datacenter.racks.volumes.ephemeral.volume_claim_template.metadata.volume_name.claims`
-
-Required:
-
-- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
-
 
 
 <a id="nestedatt--spec--datacenter--racks--volumes--ephemeral--volume_claim_template--metadata--selector"></a>
@@ -1198,10 +1159,48 @@ Optional:
 
 Optional:
 
+- `cluster_trust_bundle` (Attributes) ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file.  Alpha, gated by the ClusterTrustBundleProjection feature gate.  ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector.  Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--projected--sources--cluster_trust_bundle))
 - `config_map` (Attributes) configMap information about the configMap data to project (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--projected--sources--config_map))
 - `downward_api` (Attributes) downwardAPI information about the downwardAPI data to project (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--projected--sources--downward_api))
 - `secret` (Attributes) secret information about the secret data to project (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--projected--sources--secret))
 - `service_account_token` (Attributes) serviceAccountToken is information about the serviceAccountToken data to project (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--datacenter--racks--volumes--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token`
+
+Required:
+
+- `path` (String) Relative path from the volume root to write the bundle.
+
+Optional:
+
+- `label_selector` (Attributes) Select all ClusterTrustBundles that match this label selector.  Only has effect if signerName is set.  Mutually-exclusive with name.  If unset, interpreted as 'match nothing'.  If set but empty, interpreted as 'match everything'. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--projected--sources--service_account_token--label_selector))
+- `name` (String) Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector.
+- `optional` (Boolean) If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.
+- `signer_name` (String) Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated.
+
+<a id="nestedatt--spec--datacenter--racks--volumes--projected--sources--service_account_token--label_selector"></a>
+### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token.signer_name`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--datacenter--racks--volumes--projected--sources--service_account_token--signer_name--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--datacenter--racks--volumes--projected--sources--service_account_token--signer_name--match_expressions"></a>
+### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token.signer_name.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+
+
+
 
 <a id="nestedatt--spec--datacenter--racks--volumes--projected--sources--config_map"></a>
 ### Nested Schema for `spec.datacenter.racks.volumes.projected.sources.service_account_token`
@@ -1447,7 +1446,52 @@ Optional:
 
 Optional:
 
+- `broadcast_options` (Attributes) BroadcastOptions defines how ScyllaDB node publishes its IP address to other nodes and clients. (see [below for nested schema](#nestedatt--spec--expose_options--broadcast_options))
 - `cql` (Attributes) cql specifies expose options for CQL SSL backend. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field. (see [below for nested schema](#nestedatt--spec--expose_options--cql))
+- `node_service` (Attributes) nodeService controls properties of Service dedicated for each ScyllaCluster node. (see [below for nested schema](#nestedatt--spec--expose_options--node_service))
+
+<a id="nestedatt--spec--expose_options--broadcast_options"></a>
+### Nested Schema for `spec.expose_options.broadcast_options`
+
+Optional:
+
+- `clients` (Attributes) clients specifies options related to the address that is broadcasted for communication with clients. This field controls the 'broadcast_rpc_address' value in ScyllaDB config. (see [below for nested schema](#nestedatt--spec--expose_options--broadcast_options--clients))
+- `nodes` (Attributes) nodes specifies options related to the address that is broadcasted for communication with other nodes. This field controls the 'broadcast_address' value in ScyllaDB config. (see [below for nested schema](#nestedatt--spec--expose_options--broadcast_options--nodes))
+
+<a id="nestedatt--spec--expose_options--broadcast_options--clients"></a>
+### Nested Schema for `spec.expose_options.broadcast_options.nodes`
+
+Optional:
+
+- `pod_ip` (Attributes) podIP holds options related to Pod IP address. (see [below for nested schema](#nestedatt--spec--expose_options--broadcast_options--nodes--pod_ip))
+- `type` (String) type of the address that is broadcasted.
+
+<a id="nestedatt--spec--expose_options--broadcast_options--nodes--pod_ip"></a>
+### Nested Schema for `spec.expose_options.broadcast_options.nodes.pod_ip`
+
+Optional:
+
+- `source` (String) sourceType specifies source of the Pod IP.
+
+
+
+<a id="nestedatt--spec--expose_options--broadcast_options--nodes"></a>
+### Nested Schema for `spec.expose_options.broadcast_options.nodes`
+
+Optional:
+
+- `pod_ip` (Attributes) podIP holds options related to Pod IP address. (see [below for nested schema](#nestedatt--spec--expose_options--broadcast_options--nodes--pod_ip))
+- `type` (String) type of the address that is broadcasted.
+
+<a id="nestedatt--spec--expose_options--broadcast_options--nodes--pod_ip"></a>
+### Nested Schema for `spec.expose_options.broadcast_options.nodes.pod_ip`
+
+Optional:
+
+- `source` (String) sourceType specifies source of the Pod IP.
+
+
+
 
 <a id="nestedatt--spec--expose_options--cql"></a>
 ### Nested Schema for `spec.expose_options.cql`
@@ -1461,10 +1505,28 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) annotations specifies custom annotations merged into every Ingress object. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.
+- `annotations` (Map of String) annotations is a custom key value map that gets merged with managed object annotations.
 - `disabled` (Boolean) disabled controls if Ingress object creation is disabled. Unless disabled, there is an Ingress objects created for every Scylla node. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.
 - `ingress_class_name` (String) ingressClassName specifies Ingress class name. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.
+- `labels` (Map of String) labels is a custom key value map that gets merged with managed object labels.
 
+
+
+<a id="nestedatt--spec--expose_options--node_service"></a>
+### Nested Schema for `spec.expose_options.node_service`
+
+Required:
+
+- `type` (String) type is the Kubernetes Service type.
+
+Optional:
+
+- `allocate_load_balancer_node_ports` (Boolean) allocateLoadBalancerNodePorts controls value of service.spec.allocateLoadBalancerNodePorts of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.
+- `annotations` (Map of String) annotations is a custom key value map that gets merged with managed object annotations.
+- `external_traffic_policy` (String) externalTrafficPolicy controls value of service.spec.externalTrafficPolicy of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.
+- `internal_traffic_policy` (String) internalTrafficPolicy controls value of service.spec.internalTrafficPolicy of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.
+- `labels` (Map of String) labels is a custom key value map that gets merged with managed object labels.
+- `load_balancer_class` (String) loadBalancerClass controls value of service.spec.loadBalancerClass of each node Service. Check Kubernetes corev1.Service documentation about semantic of this field.
 
 
 
@@ -1492,6 +1554,23 @@ Optional:
 
 - `dns_policy` (String) dnsPolicy defines how a pod's DNS will be configured.
 - `host_networking` (Boolean) hostNetworking determines if scylla uses the host's network namespace. Setting this option avoids going through Kubernetes SDN and exposes scylla on node's IP.
+
+
+<a id="nestedatt--spec--pod_metadata"></a>
+### Nested Schema for `spec.pod_metadata`
+
+Optional:
+
+- `annotations` (Map of String) annotations is a custom key value map that gets merged with managed object annotations.
+- `labels` (Map of String) labels is a custom key value map that gets merged with managed object labels.
+
+
+<a id="nestedatt--spec--readiness_gates"></a>
+### Nested Schema for `spec.readiness_gates`
+
+Required:
+
+- `condition_type` (String) ConditionType refers to a condition in the pod's condition list with matching type.
 
 
 <a id="nestedatt--spec--repairs"></a>

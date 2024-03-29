@@ -991,6 +991,7 @@ Required:
 Optional:
 
 - `auto_create_container` (Boolean)
+- `azure_cloud` (String)
 - `azure_imds_api_version` (String)
 - `azure_object_key_format` (String)
 - `azure_storage_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--azurestorage--azure_storage_access_key))
@@ -4546,6 +4547,7 @@ Optional:
 - `default_opensearch_version` (Number)
 - `emit_error_for_missing_id` (Boolean)
 - `emit_error_label_event` (Boolean)
+- `endpoint` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint))
 - `exception_backup` (Boolean)
 - `fail_on_detecting_os_version_retry_exceed` (Boolean)
 - `fail_on_putting_template_retry_exceed` (Boolean)
@@ -4861,6 +4863,389 @@ Optional:
 
 - `name` (String)
 - `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint"></a>
+### Nested Schema for `spec.opensearch.endpoint`
+
+Required:
+
+- `url` (String)
+
+Optional:
+
+- `access_key_id` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--access_key_id))
+- `assume_role_arn` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_arn))
+- `assume_role_session_name` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_session_name))
+- `assume_role_web_identity_token_file` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file))
+- `ecs_container_credentials_relative_uri` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri))
+- `region` (String)
+- `secret_access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--secret_access_key))
+- `sts_credentials_region` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region))
+
+<a id="nestedatt--spec--opensearch--endpoint--access_key_id"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_arn"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_session_name"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--assume_role_web_identity_token_file"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--ecs_container_credentials_relative_uri"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--secret_access_key"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opensearch--endpoint--sts_credentials_region--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opensearch.endpoint.sts_credentials_region.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
 
 
 

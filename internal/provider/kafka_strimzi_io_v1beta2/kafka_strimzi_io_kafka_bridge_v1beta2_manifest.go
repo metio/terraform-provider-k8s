@@ -72,6 +72,7 @@ type KafkaStrimziIoKafkaBridgeV1Beta2ManifestData struct {
 			EnableMetrics                  *bool  `tfsdk:"enable_metrics" json:"enableMetrics,omitempty"`
 			HttpRetries                    *int64 `tfsdk:"http_retries" json:"httpRetries,omitempty"`
 			HttpRetryPauseMs               *int64 `tfsdk:"http_retry_pause_ms" json:"httpRetryPauseMs,omitempty"`
+			IncludeAcceptHeader            *bool  `tfsdk:"include_accept_header" json:"includeAcceptHeader,omitempty"`
 			MaxTokenExpirySeconds          *int64 `tfsdk:"max_token_expiry_seconds" json:"maxTokenExpirySeconds,omitempty"`
 			PasswordSecret                 *struct {
 				Password   *string `tfsdk:"password" json:"password,omitempty"`
@@ -290,6 +291,8 @@ type KafkaStrimziIoKafkaBridgeV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -312,6 +315,8 @@ type KafkaStrimziIoKafkaBridgeV1Beta2ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -335,6 +340,8 @@ type KafkaStrimziIoKafkaBridgeV1Beta2ManifestData struct {
 									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+								MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 								NamespaceSelector *struct {
 									MatchExpressions *[]struct {
 										Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -357,6 +364,8 @@ type KafkaStrimziIoKafkaBridgeV1Beta2ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -719,6 +728,14 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Manifest) Schema(_ context.Context, _ d
 								Computed:            false,
 							},
 
+							"include_accept_header": schema.BoolAttribute{
+								Description:         "Whether the Accept header should be set in requests to the authorization servers. The default value is 'true'.",
+								MarkdownDescription: "Whether the Accept header should be set in requests to the authorization servers. The default value is 'true'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"max_token_expiry_seconds": schema.Int64Attribute{
 								Description:         "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.",
 								MarkdownDescription: "Set or limit time-to-live of the access tokens to the specified number of seconds. This should be set if the authorization server returns opaque tokens.",
@@ -942,8 +959,8 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"image": schema.StringAttribute{
-						Description:         "The docker image for the pods.",
-						MarkdownDescription: "The docker image for the pods.",
+						Description:         "The container image used for Kafka Bridge pods. If no image name is explicitly specified, the image name corresponds to the image specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used.",
+						MarkdownDescription: "The container image used for Kafka Bridge pods. If no image name is explicitly specified, the image name corresponds to the image specified in the Cluster Operator configuration. If an image name is not defined in the Cluster Operator configuration, a default value is used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -2204,6 +2221,24 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Manifest) Schema(_ context.Context, _ d
 																			Computed: false,
 																		},
 
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"namespace_selector": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -2351,6 +2386,24 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Manifest) Schema(_ context.Context, _ d
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
@@ -2502,6 +2555,24 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Manifest) Schema(_ context.Context, _ d
 																			Computed: false,
 																		},
 
+																		"match_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"mismatch_label_keys": schema.ListAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"namespace_selector": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -2649,6 +2720,24 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Manifest) Schema(_ context.Context, _ d
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
@@ -2821,8 +2910,8 @@ func (r *KafkaStrimziIoKafkaBridgeV1Beta2Manifest) Schema(_ context.Context, _ d
 									},
 
 									"priority_class_name": schema.StringAttribute{
-										Description:         "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
-										MarkdownDescription: "The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}.",
+										Description:         "The name of the priority class used to assign priority to the pods. ",
+										MarkdownDescription: "The name of the priority class used to assign priority to the pods. ",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

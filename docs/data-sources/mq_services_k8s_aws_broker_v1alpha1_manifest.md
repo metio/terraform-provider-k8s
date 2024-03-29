@@ -68,12 +68,12 @@ Required:
 Optional:
 
 - `authentication_strategy` (String)
-- `configuration` (Attributes) A list of information about the configuration.  Does not apply to RabbitMQ brokers. (see [below for nested schema](#nestedatt--spec--configuration))
+- `configuration` (Attributes) A list of information about the configuration.Does not apply to RabbitMQ brokers. (see [below for nested schema](#nestedatt--spec--configuration))
 - `creator_request_id` (String)
-- `encryption_options` (Attributes) Does not apply to RabbitMQ brokers.  Encryption options for the broker. (see [below for nested schema](#nestedatt--spec--encryption_options))
-- `ldap_server_metadata` (Attributes) Optional. The metadata of the LDAP server used to authenticate and authorize connections to the broker.  Does not apply to RabbitMQ brokers. (see [below for nested schema](#nestedatt--spec--ldap_server_metadata))
+- `encryption_options` (Attributes) Does not apply to RabbitMQ brokers.Encryption options for the broker. (see [below for nested schema](#nestedatt--spec--encryption_options))
+- `ldap_server_metadata` (Attributes) Optional. The metadata of the LDAP server used to authenticate and authorizeconnections to the broker.Does not apply to RabbitMQ brokers. (see [below for nested schema](#nestedatt--spec--ldap_server_metadata))
 - `logs` (Attributes) The list of information about logs to be enabled for the specified broker. (see [below for nested schema](#nestedatt--spec--logs))
-- `maintenance_window_start_time` (Attributes) The scheduled time period relative to UTC during which Amazon MQ begins to apply pending updates or patches to the broker. (see [below for nested schema](#nestedatt--spec--maintenance_window_start_time))
+- `maintenance_window_start_time` (Attributes) The scheduled time period relative to UTC during which Amazon MQ begins toapply pending updates or patches to the broker. (see [below for nested schema](#nestedatt--spec--maintenance_window_start_time))
 - `security_group_refs` (Attributes List) (see [below for nested schema](#nestedatt--spec--security_group_refs))
 - `security_groups` (List of String)
 - `storage_type` (String)
@@ -88,7 +88,7 @@ Optional:
 
 - `console_access` (Boolean)
 - `groups` (List of String)
-- `password` (Attributes) SecretKeyReference combines a k8s corev1.SecretReference with a specific key within the referred-to Secret (see [below for nested schema](#nestedatt--spec--users--password))
+- `password` (Attributes) SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret (see [below for nested schema](#nestedatt--spec--users--password))
 - `username` (String)
 
 <a id="nestedatt--spec--users--password"></a>
@@ -165,7 +165,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--security_group_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--security_group_refs--from))
 
 <a id="nestedatt--spec--security_group_refs--from"></a>
 ### Nested Schema for `spec.security_group_refs.from`
@@ -181,7 +181,7 @@ Optional:
 
 Optional:
 
-- `from` (Attributes) AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_refs--from))
+- `from` (Attributes) AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name) (see [below for nested schema](#nestedatt--spec--subnet_refs--from))
 
 <a id="nestedatt--spec--subnet_refs--from"></a>
 ### Nested Schema for `spec.subnet_refs.from`

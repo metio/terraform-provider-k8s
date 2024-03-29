@@ -52,7 +52,10 @@ type GetambassadorIoRateLimitServiceV1ManifestData struct {
 		Service           *string   `tfsdk:"service" json:"service,omitempty"`
 		Timeout_ms        *int64    `tfsdk:"timeout_ms" json:"timeout_ms,omitempty"`
 		Tls               *bool     `tfsdk:"tls" json:"tls,omitempty"`
-		V3StatsName       *string   `tfsdk:"v3_stats_name" json:"v3StatsName,omitempty"`
+		V3GRPC            *struct {
+			Use_resource_exhausted_code *bool `tfsdk:"use_resource_exhausted_code" json:"use_resource_exhausted_code,omitempty"`
+		} `tfsdk:"v3_grpc" json:"v3GRPC,omitempty"`
+		V3StatsName *string `tfsdk:"v3_stats_name" json:"v3StatsName,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -199,6 +202,23 @@ func (r *GetambassadorIoRateLimitServiceV1Manifest) Schema(_ context.Context, _ 
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"v3_grpc": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"use_resource_exhausted_code": schema.BoolAttribute{
+								Description:         "UseResourceExhaustedCode, when set to true, will cause envoy to return a 'RESOURCE_EXHAUSTED' gRPC code instead of the default 'UNAVAILABLE' gRPC code.",
+								MarkdownDescription: "UseResourceExhaustedCode, when set to true, will cause envoy to return a 'RESOURCE_EXHAUSTED' gRPC code instead of the default 'UNAVAILABLE' gRPC code.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"v3_stats_name": schema.StringAttribute{

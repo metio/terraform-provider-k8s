@@ -120,6 +120,7 @@ type AdditionalImports struct {
 	MapValidator     bool
 	ObjectValidator  bool
 	StringValidator  bool
+	BoolValidator    bool
 	Regexp           bool
 	Path             bool
 	MathBig          bool

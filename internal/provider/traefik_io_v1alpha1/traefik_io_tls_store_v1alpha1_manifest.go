@@ -67,8 +67,8 @@ func (r *TraefikIoTlsstoreV1Alpha1Manifest) Metadata(_ context.Context, request 
 
 func (r *TraefikIoTlsstoreV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "TLSStore is the CRD implementation of a Traefik TLS Store. For the time being, only the TLSStore named default is supported. This means that you cannot have two stores that are named default in different Kubernetes namespaces. More info: https://doc.traefik.io/traefik/v3.0/https/tls/#certificates-stores",
-		MarkdownDescription: "TLSStore is the CRD implementation of a Traefik TLS Store. For the time being, only the TLSStore named default is supported. This means that you cannot have two stores that are named default in different Kubernetes namespaces. More info: https://doc.traefik.io/traefik/v3.0/https/tls/#certificates-stores",
+		Description:         "TLSStore is the CRD implementation of a Traefik TLS Store.For the time being, only the TLSStore named default is supported.This means that you cannot have two stores that are named default in different Kubernetes namespaces.More info: https://doc.traefik.io/traefik/v3.0/https/tls/#certificates-stores",
+		MarkdownDescription: "TLSStore is the CRD implementation of a Traefik TLS Store.For the time being, only the TLSStore named default is supported.This means that you cannot have two stores that are named default in different Kubernetes namespaces.More info: https://doc.traefik.io/traefik/v3.0/https/tls/#certificates-stores",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description:         "Contains the value 'metadata.namespace/metadata.name'.",

@@ -228,8 +228,8 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Manifest) Schema(_ context.Contex
 							},
 
 							"http_get": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "'httpGet' is performed to a given endpoint and the status/able to connect determines health.",
+								MarkdownDescription: "'httpGet' is performed to a given endpoint and the status/able to connect determines health.",
 								Attributes: map[string]schema.Attribute{
 									"host": schema.StringAttribute{
 										Description:         "Host name to connect to, defaults to the pod IP.",
@@ -277,8 +277,8 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Manifest) Schema(_ context.Contex
 									"port": schema.Int64Attribute{
 										Description:         "Port on which the endpoint lives.",
 										MarkdownDescription: "Port on which the endpoint lives.",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 
@@ -334,8 +334,8 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Manifest) Schema(_ context.Contex
 									"port": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 								},
@@ -362,8 +362,8 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Manifest) Schema(_ context.Contex
 						MarkdownDescription: "Template to be used for the generation of 'WorkloadEntry' resources that belong to this 'WorkloadGroup'.",
 						Attributes: map[string]schema.Attribute{
 							"address": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Address associated with the network endpoint without the port.",
+								MarkdownDescription: "Address associated with the network endpoint without the port.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -387,8 +387,8 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Manifest) Schema(_ context.Contex
 							},
 
 							"network": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Network enables Istio to group endpoints resident in the same L3 domain/network.",
+								MarkdownDescription: "Network enables Istio to group endpoints resident in the same L3 domain/network.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -404,8 +404,8 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Manifest) Schema(_ context.Contex
 							},
 
 							"service_account": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "The service account associated with the workload if a sidecar is present in the workload.",
+								MarkdownDescription: "The service account associated with the workload if a sidecar is present in the workload.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -419,8 +419,8 @@ func (r *NetworkingIstioIoWorkloadGroupV1Alpha3Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 						},
-						Required: false,
-						Optional: true,
+						Required: true,
+						Optional: false,
 						Computed: false,
 					},
 				},

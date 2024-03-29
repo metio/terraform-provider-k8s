@@ -64,7 +64,7 @@ Required:
 Optional:
 
 - `recommenders` (Attributes List) Recommender responsible for generating recommendation for this object. List should be empty (then the default recommender will generate the recommendation) or contain exactly one recommender. (see [below for nested schema](#nestedatt--spec--recommenders))
-- `resource_policy` (Attributes) Controls how the autoscaler computes recommended resources. The resource policy may be used to set constraints on the recommendations for individual containers. If not specified, the autoscaler computes recommended resources for all containers in the pod, without additional constraints. (see [below for nested schema](#nestedatt--spec--resource_policy))
+- `resource_policy` (Attributes) Controls how the autoscaler computes recommended resources. The resource policy may be used to set constraints on the recommendations for individual containers. If any individual containers need to be excluded from getting the VPA recommendations, then it must be disabled explicitly by setting mode to 'Off' under containerPolicies. If not specified, the autoscaler computes recommended resources for all containers in the pod, without additional constraints. (see [below for nested schema](#nestedatt--spec--resource_policy))
 - `update_policy` (Attributes) Describes the rules on how changes are applied to the pods. If not specified, all fields in the 'PodUpdatePolicy' are set to their default values. (see [below for nested schema](#nestedatt--spec--update_policy))
 
 <a id="nestedatt--spec--target_ref"></a>
@@ -124,4 +124,4 @@ Optional:
 Required:
 
 - `change_requirement` (String) EvictionChangeRequirement refers to the relationship between the new target recommendation for a Pod and its current requests, what kind of change is necessary for the Pod to be evicted
-- `resource` (List of String) Resources is a list of one or more resources that the condition applies to. If more than one resource is given, the EvictionRequirement is fulfilled if at least one resource meets 'changeRequirement'.
+- `resources` (List of String) Resources is a list of one or more resources that the condition applies to. If more than one resource is given, the EvictionRequirement is fulfilled if at least one resource meets 'changeRequirement'.

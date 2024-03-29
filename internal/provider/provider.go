@@ -211,7 +211,7 @@ func (p *K8sProvider) Configure(ctx context.Context, req provider.ConfigureReque
 	}
 
 	if offline == "" {
-		offline = "false"
+		offline = "true"
 	}
 
 	conflicts, err := strconv.ParseBool(forceConflicts)

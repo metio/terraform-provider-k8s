@@ -58,8 +58,9 @@ type CiliumIoCiliumBgppeeringPolicyV2Alpha1ManifestData struct {
 			Neighbors     *[]struct {
 				AdvertisedPathAttributes *[]struct {
 					Communities *struct {
-						Large    *[]string `tfsdk:"large" json:"large,omitempty"`
-						Standard *[]string `tfsdk:"standard" json:"standard,omitempty"`
+						Large     *[]string `tfsdk:"large" json:"large,omitempty"`
+						Standard  *[]string `tfsdk:"standard" json:"standard,omitempty"`
+						WellKnown *[]string `tfsdk:"well_known" json:"wellKnown,omitempty"`
 					} `tfsdk:"communities" json:"communities,omitempty"`
 					LocalPreference *int64 `tfsdk:"local_preference" json:"localPreference,omitempty"`
 					Selector        *struct {
@@ -72,8 +73,9 @@ type CiliumIoCiliumBgppeeringPolicyV2Alpha1ManifestData struct {
 					} `tfsdk:"selector" json:"selector,omitempty"`
 					SelectorType *string `tfsdk:"selector_type" json:"selectorType,omitempty"`
 				} `tfsdk:"advertised_path_attributes" json:"advertisedPathAttributes,omitempty"`
-				ConnectRetryTimeSeconds *int64 `tfsdk:"connect_retry_time_seconds" json:"connectRetryTimeSeconds,omitempty"`
-				EBGPMultihopTTL         *int64 `tfsdk:"e_bgp_multihop_ttl" json:"eBGPMultihopTTL,omitempty"`
+				AuthSecretRef           *string `tfsdk:"auth_secret_ref" json:"authSecretRef,omitempty"`
+				ConnectRetryTimeSeconds *int64  `tfsdk:"connect_retry_time_seconds" json:"connectRetryTimeSeconds,omitempty"`
+				EBGPMultihopTTL         *int64  `tfsdk:"e_bgp_multihop_ttl" json:"eBGPMultihopTTL,omitempty"`
 				Families                *[]struct {
 					Afi  *string `tfsdk:"afi" json:"afi,omitempty"`
 					Safi *string `tfsdk:"safi" json:"safi,omitempty"`
@@ -88,7 +90,16 @@ type CiliumIoCiliumBgppeeringPolicyV2Alpha1ManifestData struct {
 				PeerAddress          *string `tfsdk:"peer_address" json:"peerAddress,omitempty"`
 				PeerPort             *int64  `tfsdk:"peer_port" json:"peerPort,omitempty"`
 			} `tfsdk:"neighbors" json:"neighbors,omitempty"`
-			ServiceSelector *struct {
+			PodIPPoolSelector *struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"pod_ip_pool_selector" json:"podIPPoolSelector,omitempty"`
+			ServiceAdvertisements *[]string `tfsdk:"service_advertisements" json:"serviceAdvertisements,omitempty"`
+			ServiceSelector       *struct {
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
 					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -279,8 +290,17 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 																},
 
 																"standard": schema.ListAttribute{
-																	Description:         "Standard holds a list of 'standard' 32-bit BGP Communities Attribute (RFC 1997) values.",
-																	MarkdownDescription: "Standard holds a list of 'standard' 32-bit BGP Communities Attribute (RFC 1997) values.",
+																	Description:         "Standard holds a list of 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined as numeric values.",
+																	MarkdownDescription: "Standard holds a list of 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined as numeric values.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"well_known": schema.ListAttribute{
+																	Description:         "WellKnown holds a list 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined as well-known string aliases to their numeric values.",
+																	MarkdownDescription: "WellKnown holds a list 'standard' 32-bit BGP Communities Attribute (RFC 1997) values defined as well-known string aliases to their numeric values.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -362,13 +382,13 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 														},
 
 														"selector_type": schema.StringAttribute{
-															Description:         "SelectorType defines the object type on which the Selector applies: - For 'PodCIDR' the Selector matches k8s CiliumNode resources (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes. Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs. - For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools).",
-															MarkdownDescription: "SelectorType defines the object type on which the Selector applies: - For 'PodCIDR' the Selector matches k8s CiliumNode resources (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes. Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs. - For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools).",
+															Description:         "SelectorType defines the object type on which the Selector applies: - For 'PodCIDR' the Selector matches k8s CiliumNode resources (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes. Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs. - For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools). - For 'CiliumPodIPPool' the Selector matches CiliumPodIPPool custom resources (path attributes apply to routes announced for allocated CIDRs of selected CiliumPodIPPools).",
+															MarkdownDescription: "SelectorType defines the object type on which the Selector applies: - For 'PodCIDR' the Selector matches k8s CiliumNode resources (path attributes apply to routes announced for PodCIDRs of selected CiliumNodes. Only affects routes of cluster scope / Kubernetes IPAM CIDRs, not Multi-Pool IPAM CIDRs. - For 'CiliumLoadBalancerIPPool' the Selector matches CiliumLoadBalancerIPPool custom resources (path attributes apply to routes announced for selected CiliumLoadBalancerIPPools). - For 'CiliumPodIPPool' the Selector matches CiliumPodIPPool custom resources (path attributes apply to routes announced for allocated CIDRs of selected CiliumPodIPPools).",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("PodCIDR", "CiliumLoadBalancerIPPool"),
+																stringvalidator.OneOf("PodCIDR", "CiliumLoadBalancerIPPool", "CiliumPodIPPool"),
 															},
 														},
 													},
@@ -376,6 +396,14 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"auth_secret_ref": schema.StringAttribute{
+												Description:         "AuthSecretRef is the name of the secret to use to fetch a TCP authentication password for this peer.",
+												MarkdownDescription: "AuthSecretRef is the name of the secret to use to fetch a TCP authentication password for this peer.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 
 											"connect_retry_time_seconds": schema.Int64Attribute{
@@ -408,8 +436,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"afi": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Afi is the Address Family Identifier (AFI) of the family.",
+															MarkdownDescription: "Afi is the Address Family Identifier (AFI) of the family.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -419,8 +447,8 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 														},
 
 														"safi": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Safi is the Subsequent Address Family Identifier (SAFI) of the family.",
+															MarkdownDescription: "Safi is the Subsequent Address Family Identifier (SAFI) of the family.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -524,6 +552,72 @@ func (r *CiliumIoCiliumBgppeeringPolicyV2Alpha1Manifest) Schema(_ context.Contex
 									Required: true,
 									Optional: false,
 									Computed: false,
+								},
+
+								"pod_ip_pool_selector": schema.SingleNestedAttribute{
+									Description:         "PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools.  If empty / nil no CiliumPodIPPools will be announced.",
+									MarkdownDescription: "PodIPPoolSelector selects CiliumPodIPPools based on labels. The virtual router will announce allocated CIDRs of matching CiliumPodIPPools.  If empty / nil no CiliumPodIPPools will be announced.",
+									Attributes: map[string]schema.Attribute{
+										"match_expressions": schema.ListNestedAttribute{
+											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+											MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "key is the label key that the selector applies to.",
+														MarkdownDescription: "key is the label key that the selector applies to.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"operator": schema.StringAttribute{
+														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+														},
+													},
+
+													"values": schema.ListAttribute{
+														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"match_labels": schema.MapAttribute{
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"service_advertisements": schema.ListAttribute{
+									Description:         "ServiceAdvertisements selects a group of BGP Advertisement(s) to advertise for the selected services.",
+									MarkdownDescription: "ServiceAdvertisements selects a group of BGP Advertisement(s) to advertise for the selected services.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"service_selector": schema.SingleNestedAttribute{
