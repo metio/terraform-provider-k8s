@@ -3,10 +3,6 @@
 
 name: Update Upstream Specs
 on:
-  pull_request:
-    branches: [ main ]
-    paths:
-      - .github/workflows/update-upstream-specs.yml
   schedule:
     - cron: 49 13 * * FRI
   workflow_dispatch:
@@ -37,7 +33,7 @@ jobs:
         continue-on-error: true
       - id: cpr
         name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PAT }}
           commit-message: Update upstream specifications to their latest version
