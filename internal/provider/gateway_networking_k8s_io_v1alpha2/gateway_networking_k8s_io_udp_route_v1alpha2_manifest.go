@@ -7,7 +7,6 @@ package gateway_networking_k8s_io_v1alpha2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewGatewayNetworkingK8SIoUdprouteV1Alpha2Manifest() datasource.DataSource {
 type GatewayNetworkingK8SIoUdprouteV1Alpha2Manifest struct{}
 
 type GatewayNetworkingK8SIoUdprouteV1Alpha2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -77,14 +75,6 @@ func (r *GatewayNetworkingK8SIoUdprouteV1Alpha2Manifest) Schema(_ context.Contex
 		Description:         "UDPRoute provides a way to route UDP traffic. When combined with a Gatewaylistener, it can be used to forward traffic on the port specified by thelistener to a set of backends specified by the UDPRoute.",
 		MarkdownDescription: "UDPRoute provides a way to route UDP traffic. When combined with a Gatewaylistener, it can be used to forward traffic on the port specified by thelistener to a set of backends specified by the UDPRoute.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -352,7 +342,6 @@ func (r *GatewayNetworkingK8SIoUdprouteV1Alpha2Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("gateway.networking.k8s.io/v1alpha2")
 	model.Kind = pointer.String("UDPRoute")
 

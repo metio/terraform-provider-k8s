@@ -30,7 +30,6 @@ func NewPkgCrossplaneIoLockV1Beta1Manifest() datasource.DataSource {
 type PkgCrossplaneIoLockV1Beta1Manifest struct{}
 
 type PkgCrossplaneIoLockV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -64,14 +63,6 @@ func (r *PkgCrossplaneIoLockV1Beta1Manifest) Schema(_ context.Context, _ datasou
 		Description:         "Lock is the CRD type that tracks package dependencies.",
 		MarkdownDescription: "Lock is the CRD type that tracks package dependencies.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -214,7 +205,6 @@ func (r *PkgCrossplaneIoLockV1Beta1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("pkg.crossplane.io/v1beta1")
 	model.Kind = pointer.String("Lock")
 

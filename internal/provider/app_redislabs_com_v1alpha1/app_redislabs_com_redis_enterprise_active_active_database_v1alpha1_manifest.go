@@ -7,7 +7,6 @@ package app_redislabs_com_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewAppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest() dat
 type AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest struct{}
 
 type AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -205,14 +203,6 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Sch
 		Description:         "RedisEnterpriseActiveActiveDatabase is the Schema for the redisenterpriseactiveactivedatabase API",
 		MarkdownDescription: "RedisEnterpriseActiveActiveDatabase is the Schema for the redisenterpriseactiveactivedatabase API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1286,7 +1276,6 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Rea
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("app.redislabs.com/v1alpha1")
 	model.Kind = pointer.String("RedisEnterpriseActiveActiveDatabase")
 

@@ -7,7 +7,6 @@ package app_kiegroup_org_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewAppKiegroupOrgKogitoInfraV1Beta1Manifest() datasource.DataSource {
 type AppKiegroupOrgKogitoInfraV1Beta1Manifest struct{}
 
 type AppKiegroupOrgKogitoInfraV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -103,14 +101,6 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Manifest) Schema(_ context.Context, _ d
 		Description:         "KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service.  It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index).  Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.",
 		MarkdownDescription: "KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service.  It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index).  Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -510,7 +500,6 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("app.kiegroup.org/v1beta1")
 	model.Kind = pointer.String("KogitoInfra")
 

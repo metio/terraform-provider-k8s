@@ -30,7 +30,6 @@ func NewSharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest() datasource.Da
 type SharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest struct{}
 
 type SharedresourceOpenshiftIoSharedConfigMapV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -60,14 +59,6 @@ func (r *SharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest) Schema(_ cont
 		Description:         "SharedConfigMap allows a ConfigMap to be shared across namespaces. Pods can mount the shared ConfigMap by adding a CSI volume to the pod specification using the 'csi.sharedresource.openshift.io' CSI driver and a reference to the SharedConfigMap in the volume attributes:  spec: volumes: - name: shared-configmap csi: driver: csi.sharedresource.openshift.io volumeAttributes: sharedConfigMap: my-share  For the mount to be successful, the pod's service account must be granted permission to 'use' the named SharedConfigMap object within its namespace with an appropriate Role and RoleBinding. For compactness, here are example 'oc' invocations for creating such Role and RoleBinding objects.  'oc create role shared-resource-my-share --verb=use --resource=sharedconfigmaps.sharedresource.openshift.io --resource-name=my-share' 'oc create rolebinding shared-resource-my-share --role=shared-resource-my-share --serviceaccount=my-namespace:default'  Shared resource objects, in this case ConfigMaps, have default permissions of list, get, and watch for system authenticated users.  Compatibility level 4: No compatibility is provided, the API can change at any point for any reason. These capabilities should not be used by applications needing long term support. These capabilities should not be used by applications needing long term support.",
 		MarkdownDescription: "SharedConfigMap allows a ConfigMap to be shared across namespaces. Pods can mount the shared ConfigMap by adding a CSI volume to the pod specification using the 'csi.sharedresource.openshift.io' CSI driver and a reference to the SharedConfigMap in the volume attributes:  spec: volumes: - name: shared-configmap csi: driver: csi.sharedresource.openshift.io volumeAttributes: sharedConfigMap: my-share  For the mount to be successful, the pod's service account must be granted permission to 'use' the named SharedConfigMap object within its namespace with an appropriate Role and RoleBinding. For compactness, here are example 'oc' invocations for creating such Role and RoleBinding objects.  'oc create role shared-resource-my-share --verb=use --resource=sharedconfigmaps.sharedresource.openshift.io --resource-name=my-share' 'oc create rolebinding shared-resource-my-share --role=shared-resource-my-share --serviceaccount=my-namespace:default'  Shared resource objects, in this case ConfigMaps, have default permissions of list, get, and watch for system authenticated users.  Compatibility level 4: No compatibility is provided, the API can change at any point for any reason. These capabilities should not be used by applications needing long term support. These capabilities should not be used by applications needing long term support.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -174,7 +165,6 @@ func (r *SharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest) Read(ctx cont
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("sharedresource.openshift.io/v1alpha1")
 	model.Kind = pointer.String("SharedConfigMap")
 

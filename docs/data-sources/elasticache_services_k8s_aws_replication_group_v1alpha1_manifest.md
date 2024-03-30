@@ -34,7 +34,6 @@ data "k8s_elasticache_services_k8s_aws_replication_group_v1alpha1_manifest" "exa
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

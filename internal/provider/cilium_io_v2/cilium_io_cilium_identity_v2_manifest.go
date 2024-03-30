@@ -30,7 +30,6 @@ func NewCiliumIoCiliumIdentityV2Manifest() datasource.DataSource {
 type CiliumIoCiliumIdentityV2Manifest struct{}
 
 type CiliumIoCiliumIdentityV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -54,14 +53,6 @@ func (r *CiliumIoCiliumIdentityV2Manifest) Schema(_ context.Context, _ datasourc
 		Description:         "CiliumIdentity is a CRD that represents an identity managed by Cilium. It is intended as a backing store for identity allocation, acting as the global coordination backend, and can be used in place of a KVStore (such as etcd). The name of the CRD is the numeric identity and the labels on the CRD object are the kubernetes sourced labels seen by cilium. This is currently the only label source possible when running under kubernetes. Non-kubernetes labels are filtered but all labels, from all sources, are places in the SecurityLabels field. These also include the source and are used to define the identity. The labels under metav1.ObjectMeta can be used when searching for CiliumIdentity instances that include particular labels. This can be done with invocations such as:  kubectl get ciliumid -l 'foo=bar'",
 		MarkdownDescription: "CiliumIdentity is a CRD that represents an identity managed by Cilium. It is intended as a backing store for identity allocation, acting as the global coordination backend, and can be used in place of a KVStore (such as etcd). The name of the CRD is the numeric identity and the labels on the CRD object are the kubernetes sourced labels seen by cilium. This is currently the only label source possible when running under kubernetes. Non-kubernetes labels are filtered but all labels, from all sources, are places in the SecurityLabels field. These also include the source and are used to define the identity. The labels under metav1.ObjectMeta can be used when searching for CiliumIdentity instances that include particular labels. This can be done with invocations such as:  kubectl get ciliumid -l 'foo=bar'",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -135,7 +126,6 @@ func (r *CiliumIoCiliumIdentityV2Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("cilium.io/v2")
 	model.Kind = pointer.String("CiliumIdentity")
 

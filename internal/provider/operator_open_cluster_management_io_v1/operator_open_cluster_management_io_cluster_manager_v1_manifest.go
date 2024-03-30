@@ -32,7 +32,6 @@ func NewOperatorOpenClusterManagementIoClusterManagerV1Manifest() datasource.Dat
 type OperatorOpenClusterManagementIoClusterManagerV1Manifest struct{}
 
 type OperatorOpenClusterManagementIoClusterManagerV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -113,14 +112,6 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 		Description:         "ClusterManager configures the controllers on the hub that govern registration and work distribution for attached Klusterlets. In Default mode, ClusterManager will only be deployed in open-cluster-management-hub namespace. In Hosted mode, ClusterManager will be deployed in the namespace with the same name as cluster manager.",
 		MarkdownDescription: "ClusterManager configures the controllers on the hub that govern registration and work distribution for attached Klusterlets. In Default mode, ClusterManager will only be deployed in open-cluster-management-hub namespace. In Hosted mode, ClusterManager will be deployed in the namespace with the same name as cluster manager.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -578,7 +569,6 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Read(ctx conte
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.open-cluster-management.io/v1")
 	model.Kind = pointer.String("ClusterManager")
 

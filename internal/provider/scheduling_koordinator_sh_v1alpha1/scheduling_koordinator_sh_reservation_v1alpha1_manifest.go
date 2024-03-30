@@ -32,7 +32,6 @@ func NewSchedulingKoordinatorShReservationV1Alpha1Manifest() datasource.DataSour
 type SchedulingKoordinatorShReservationV1Alpha1Manifest struct{}
 
 type SchedulingKoordinatorShReservationV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -92,14 +91,6 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 		Description:         "Reservation is the Schema for the reservation API. A Reservation object is non-namespaced. Any namespaced affinity/anti-affinity of reservation scheduling can be specified in the spec.template.",
 		MarkdownDescription: "Reservation is the Schema for the reservation API. A Reservation object is non-namespaced. Any namespaced affinity/anti-affinity of reservation scheduling can be specified in the spec.template.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -440,7 +431,6 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("scheduling.koordinator.sh/v1alpha1")
 	model.Kind = pointer.String("Reservation")
 

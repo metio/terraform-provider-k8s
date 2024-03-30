@@ -34,7 +34,6 @@ data "k8s_infrastructure_cluster_x_k8s_io_tinkerbell_machine_template_v1beta1_ma
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

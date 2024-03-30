@@ -7,9 +7,6 @@ package {{ .Package }}
 
 import (
 	"context"
-	{{ if .Namespaced -}}
-	"fmt"
-	{{ end -}}
 	{{ if .AdditionalImports.BoolValidator -}}
 	"github.com/hashicorp/terraform-plugin-framework-validators/boolvalidator"
 	{{ end -}}
@@ -60,7 +57,6 @@ func New{{ .ManifestTypeStruct }}() datasource.DataSource {
 type {{ .ManifestTypeStruct }} struct{}
 
 type {{ .ManifestDataStruct }} struct {
-	ID   types.String {{ .BT }}tfsdk:"id" json:"-"{{ .BT }}
 	YAML types.String {{ .BT }}tfsdk:"yaml" json:"-"{{ .BT }}
 
 	ApiVersion *string {{ .BT }}tfsdk:"-" json:"apiVersion"{{ .BT }}
@@ -89,19 +85,6 @@ func (r *{{ .ManifestTypeStruct }}) Schema(_ context.Context, _ datasource.Schem
 		Description:         "{{ .Description }}",
 		MarkdownDescription: "{{ .Description }}",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				{{ if .Namespaced -}}
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				{{ else -}}
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				{{ end -}}
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -184,11 +167,6 @@ func (r *{{ .ManifestTypeStruct }}) Read(ctx context.Context, request datasource
 		return
 	}
 
-	{{ if .Namespaced -}}
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
-	{{ else -}}
-	model.ID = types.StringValue(model.Metadata.Name)
-	{{ end -}}
 	{{ if .Group -}}
 	model.ApiVersion = pointer.String("{{ .Group }}/{{ .Version }}")
 	{{ else -}}

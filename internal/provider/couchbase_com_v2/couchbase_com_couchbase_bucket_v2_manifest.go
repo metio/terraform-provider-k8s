@@ -7,7 +7,6 @@ package couchbase_com_v2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewCouchbaseComCouchbaseBucketV2Manifest() datasource.DataSource {
 type CouchbaseComCouchbaseBucketV2Manifest struct{}
 
 type CouchbaseComCouchbaseBucketV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -86,14 +84,6 @@ func (r *CouchbaseComCouchbaseBucketV2Manifest) Schema(_ context.Context, _ data
 		Description:         "The CouchbaseBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseBucket provides replication and persistence for documents contained by it.",
 		MarkdownDescription: "The CouchbaseBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseBucket provides replication and persistence for documents contained by it.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -410,7 +400,6 @@ func (r *CouchbaseComCouchbaseBucketV2Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("couchbase.com/v2")
 	model.Kind = pointer.String("CouchbaseBucket")
 

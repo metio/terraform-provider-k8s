@@ -34,7 +34,6 @@ data "k8s_ps_percona_com_percona_server_my_sql_restore_v1alpha1_manifest" "examp
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

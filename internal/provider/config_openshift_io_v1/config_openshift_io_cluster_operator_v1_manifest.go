@@ -30,7 +30,6 @@ func NewConfigOpenshiftIoClusterOperatorV1Manifest() datasource.DataSource {
 type ConfigOpenshiftIoClusterOperatorV1Manifest struct{}
 
 type ConfigOpenshiftIoClusterOperatorV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -54,14 +53,6 @@ func (r *ConfigOpenshiftIoClusterOperatorV1Manifest) Schema(_ context.Context, _
 		Description:         "ClusterOperator is the Custom Resource object which holds the current state of an operator. This object is used by operators to convey their state to the rest of the cluster.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "ClusterOperator is the Custom Resource object which holds the current state of an operator. This object is used by operators to convey their state to the rest of the cluster.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -135,7 +126,6 @@ func (r *ConfigOpenshiftIoClusterOperatorV1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("config.openshift.io/v1")
 	model.Kind = pointer.String("ClusterOperator")
 

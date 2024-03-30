@@ -7,7 +7,6 @@ package camel_apache_org_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewCamelApacheOrgIntegrationPlatformV1Manifest() datasource.DataSource {
 type CamelApacheOrgIntegrationPlatformV1Manifest struct{}
 
 type CamelApacheOrgIntegrationPlatformV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -473,14 +471,6 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 		Description:         "IntegrationPlatform is the resource used to drive the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. When the Camel K operator is installed in 'global' mode, you will need to specify an 'IntegrationPlatform' in each namespace where you want the Camel K operator to be executed.",
 		MarkdownDescription: "IntegrationPlatform is the resource used to drive the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. When the Camel K operator is installed in 'global' mode, you will need to specify an 'IntegrationPlatform' in each namespace where you want the Camel K operator to be executed.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -3628,7 +3618,6 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("camel.apache.org/v1")
 	model.Kind = pointer.String("IntegrationPlatform")
 

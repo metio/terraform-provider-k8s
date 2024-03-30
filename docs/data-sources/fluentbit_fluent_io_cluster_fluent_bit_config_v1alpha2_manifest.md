@@ -34,7 +34,6 @@ data "k8s_fluentbit_fluent_io_cluster_fluent_bit_config_v1alpha2_manifest" "exam
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

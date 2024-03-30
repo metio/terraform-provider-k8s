@@ -7,7 +7,6 @@ package monitoring_openshift_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -32,7 +31,6 @@ func NewMonitoringOpenshiftIoAlertingRuleV1Manifest() datasource.DataSource {
 type MonitoringOpenshiftIoAlertingRuleV1Manifest struct{}
 
 type MonitoringOpenshiftIoAlertingRuleV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -69,14 +67,6 @@ func (r *MonitoringOpenshiftIoAlertingRuleV1Manifest) Schema(_ context.Context, 
 		Description:         "AlertingRule represents a set of user-defined Prometheus rule groups containing alerting rules.  This resource is the supported method for cluster admins to create alerts based on metrics recorded by the platform monitoring stack in OpenShift, i.e. the Prometheus instance deployed to the openshift-monitoring namespace.  You might use this to create custom alerting rules not shipped with OpenShift based on metrics from components such as the node_exporter, which provides machine-level metrics such as CPU usage, or kube-state-metrics, which provides metrics on Kubernetes usage.  The API is mostly compatible with the upstream PrometheusRule type from the prometheus-operator.  The primary difference being that recording rules are not allowed here -- only alerting rules.  For each AlertingRule resource created, a corresponding PrometheusRule will be created in the openshift-monitoring namespace.  OpenShift requires admins to use the AlertingRule resource rather than the upstream type in order to allow better OpenShift specific defaulting and validation, while not modifying the upstream APIs directly.  You can find upstream API documentation for PrometheusRule resources here:  https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "AlertingRule represents a set of user-defined Prometheus rule groups containing alerting rules.  This resource is the supported method for cluster admins to create alerts based on metrics recorded by the platform monitoring stack in OpenShift, i.e. the Prometheus instance deployed to the openshift-monitoring namespace.  You might use this to create custom alerting rules not shipped with OpenShift based on metrics from components such as the node_exporter, which provides machine-level metrics such as CPU usage, or kube-state-metrics, which provides metrics on Kubernetes usage.  The API is mostly compatible with the upstream PrometheusRule type from the prometheus-operator.  The primary difference being that recording rules are not allowed here -- only alerting rules.  For each AlertingRule resource created, a corresponding PrometheusRule will be created in the openshift-monitoring namespace.  OpenShift requires admins to use the AlertingRule resource rather than the upstream type in order to allow better OpenShift specific defaulting and validation, while not modifying the upstream APIs directly.  You can find upstream API documentation for PrometheusRule resources here:  https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -258,7 +248,6 @@ func (r *MonitoringOpenshiftIoAlertingRuleV1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("monitoring.openshift.io/v1")
 	model.Kind = pointer.String("AlertingRule")
 

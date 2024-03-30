@@ -31,7 +31,6 @@ data "k8s_helm_openshift_io_project_helm_chart_repository_v1beta1_manifest" "exa
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

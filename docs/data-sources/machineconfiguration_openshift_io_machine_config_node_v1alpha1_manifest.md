@@ -31,7 +31,6 @@ data "k8s_machineconfiguration_openshift_io_machine_config_node_v1alpha1_manifes
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

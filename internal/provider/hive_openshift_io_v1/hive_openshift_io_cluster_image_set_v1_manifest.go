@@ -30,7 +30,6 @@ func NewHiveOpenshiftIoClusterImageSetV1Manifest() datasource.DataSource {
 type HiveOpenshiftIoClusterImageSetV1Manifest struct{}
 
 type HiveOpenshiftIoClusterImageSetV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -56,14 +55,6 @@ func (r *HiveOpenshiftIoClusterImageSetV1Manifest) Schema(_ context.Context, _ d
 		Description:         "ClusterImageSet is the Schema for the clusterimagesets API",
 		MarkdownDescription: "ClusterImageSet is the Schema for the clusterimagesets API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -145,7 +136,6 @@ func (r *HiveOpenshiftIoClusterImageSetV1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("hive.openshift.io/v1")
 	model.Kind = pointer.String("ClusterImageSet")
 

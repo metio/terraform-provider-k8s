@@ -34,7 +34,6 @@ data "k8s_cilium_io_cilium_egress_gateway_policy_v2_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

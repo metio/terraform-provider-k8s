@@ -31,7 +31,6 @@ func NewCrdProjectcalicoOrgFelixConfigurationV1Manifest() datasource.DataSource 
 type CrdProjectcalicoOrgFelixConfigurationV1Manifest struct{}
 
 type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -209,14 +208,6 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 		Description:         "Felix Configuration contains the configuration for Felix.",
 		MarkdownDescription: "Felix Configuration contains the configuration for Felix.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1616,7 +1607,6 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("crd.projectcalico.org/v1")
 	model.Kind = pointer.String("FelixConfiguration")
 

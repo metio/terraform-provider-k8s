@@ -30,7 +30,6 @@ func NewHncXK8SIoHncconfigurationV1Alpha2Manifest() datasource.DataSource {
 type HncXK8SIoHncconfigurationV1Alpha2Manifest struct{}
 
 type HncXK8SIoHncconfigurationV1Alpha2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -60,14 +59,6 @@ func (r *HncXK8SIoHncconfigurationV1Alpha2Manifest) Schema(_ context.Context, _ 
 		Description:         "HNCConfiguration is a cluster-wide configuration for HNC as a whole. See details in http://bit.ly/hnc-type-configuration",
 		MarkdownDescription: "HNCConfiguration is a cluster-wide configuration for HNC as a whole. See details in http://bit.ly/hnc-type-configuration",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -179,7 +170,6 @@ func (r *HncXK8SIoHncconfigurationV1Alpha2Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("hnc.x-k8s.io/v1alpha2")
 	model.Kind = pointer.String("HNCConfiguration")
 

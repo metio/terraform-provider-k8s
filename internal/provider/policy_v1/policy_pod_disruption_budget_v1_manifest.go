@@ -7,7 +7,6 @@ package policy_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewPolicyPodDisruptionBudgetV1Manifest() datasource.DataSource {
 type PolicyPodDisruptionBudgetV1Manifest struct{}
 
 type PolicyPodDisruptionBudgetV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -68,14 +66,6 @@ func (r *PolicyPodDisruptionBudgetV1Manifest) Schema(_ context.Context, _ dataso
 		Description:         "PodDisruptionBudget is an object to define the max disruption that can be caused to a collection of pods",
 		MarkdownDescription: "PodDisruptionBudget is an object to define the max disruption that can be caused to a collection of pods",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -239,7 +229,6 @@ func (r *PolicyPodDisruptionBudgetV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("policy/v1")
 	model.Kind = pointer.String("PodDisruptionBudget")
 

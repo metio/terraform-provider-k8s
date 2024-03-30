@@ -7,7 +7,6 @@ package network_operator_openshift_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewNetworkOperatorOpenshiftIoEgressRouterV1Manifest() datasource.DataSource
 type NetworkOperatorOpenshiftIoEgressRouterV1Manifest struct{}
 
 type NetworkOperatorOpenshiftIoEgressRouterV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -78,14 +76,6 @@ func (r *NetworkOperatorOpenshiftIoEgressRouterV1Manifest) Schema(_ context.Cont
 		Description:         "EgressRouter is a feature allowing the user to define an egress router that acts as a bridge between pods and external systems. The egress router runs a service that redirects egress traffic originating from a pod or a group of pods to a remote external system or multiple destinations as per configuration.  It is consumed by the cluster-network-operator. More specifically, given an EgressRouter CR with <name>, the CNO will create and manage: - A service called <name> - An egress pod called <name> - A NAD called <name>  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).  EgressRouter is a single egressrouter pod configuration object.",
 		MarkdownDescription: "EgressRouter is a feature allowing the user to define an egress router that acts as a bridge between pods and external systems. The egress router runs a service that redirects egress traffic originating from a pod or a group of pods to a remote external system or multiple destinations as per configuration.  It is consumed by the cluster-network-operator. More specifically, given an EgressRouter CR with <name>, the CNO will create and manage: - A service called <name> - An egress pod called <name> - A NAD called <name>  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).  EgressRouter is a single egressrouter pod configuration object.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -317,7 +307,6 @@ func (r *NetworkOperatorOpenshiftIoEgressRouterV1Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("network.operator.openshift.io/v1")
 	model.Kind = pointer.String("EgressRouter")
 

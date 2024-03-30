@@ -7,7 +7,6 @@ package registry_devfile_io_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewRegistryDevfileIoDevfileRegistryV1Alpha1Manifest() datasource.DataSource
 type RegistryDevfileIoDevfileRegistryV1Alpha1Manifest struct{}
 
 type RegistryDevfileIoDevfileRegistryV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -93,14 +91,6 @@ func (r *RegistryDevfileIoDevfileRegistryV1Alpha1Manifest) Schema(_ context.Cont
 		Description:         "DevfileRegistry is a custom resource allows you to create and manage your own index server and registry viewer. In order to be added, the Devfile Registry must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.",
 		MarkdownDescription: "DevfileRegistry is a custom resource allows you to create and manage your own index server and registry viewer. In order to be added, the Devfile Registry must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -425,7 +415,6 @@ func (r *RegistryDevfileIoDevfileRegistryV1Alpha1Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("registry.devfile.io/v1alpha1")
 	model.Kind = pointer.String("DevfileRegistry")
 

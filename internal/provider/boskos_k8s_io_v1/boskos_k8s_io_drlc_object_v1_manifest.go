@@ -7,7 +7,6 @@ package boskos_k8s_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewBoskosK8SIoDrlcobjectV1Manifest() datasource.DataSource {
 type BoskosK8SIoDrlcobjectV1Manifest struct{}
 
 type BoskosK8SIoDrlcobjectV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -66,14 +64,6 @@ func (r *BoskosK8SIoDrlcobjectV1Manifest) Schema(_ context.Context, _ datasource
 		Description:         "Defines the lifecycle of a dynamic resource. All Resource of a given type will be constructed using the same configuration",
 		MarkdownDescription: "Defines the lifecycle of a dynamic resource. All Resource of a given type will be constructed using the same configuration",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -225,7 +215,6 @@ func (r *BoskosK8SIoDrlcobjectV1Manifest) Read(ctx context.Context, request data
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("boskos.k8s.io/v1")
 	model.Kind = pointer.String("DRLCObject")
 

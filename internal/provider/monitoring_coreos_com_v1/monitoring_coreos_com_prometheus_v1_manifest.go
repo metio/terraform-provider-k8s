@@ -7,7 +7,6 @@ package monitoring_coreos_com_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewMonitoringCoreosComPrometheusV1Manifest() datasource.DataSource {
 type MonitoringCoreosComPrometheusV1Manifest struct{}
 
 type MonitoringCoreosComPrometheusV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -1956,14 +1954,6 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 		Description:         "Prometheus defines a Prometheus deployment.",
 		MarkdownDescription: "Prometheus defines a Prometheus deployment.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -14928,7 +14918,6 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("monitoring.coreos.com/v1")
 	model.Kind = pointer.String("Prometheus")
 

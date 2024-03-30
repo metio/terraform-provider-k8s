@@ -7,7 +7,6 @@ package operator_tigera_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewOperatorTigeraIoEgressGatewayV1Manifest() datasource.DataSource {
 type OperatorTigeraIoEgressGatewayV1Manifest struct{}
 
 type OperatorTigeraIoEgressGatewayV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -260,14 +258,6 @@ func (r *OperatorTigeraIoEgressGatewayV1Manifest) Schema(_ context.Context, _ da
 		Description:         "EgressGateway is the Schema for the egressgateways API",
 		MarkdownDescription: "EgressGateway is the Schema for the egressgateways API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1734,7 +1724,6 @@ func (r *OperatorTigeraIoEgressGatewayV1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("operator.tigera.io/v1")
 	model.Kind = pointer.String("EgressGateway")
 

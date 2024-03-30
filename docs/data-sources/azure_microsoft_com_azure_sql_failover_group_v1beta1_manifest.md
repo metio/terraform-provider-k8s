@@ -34,7 +34,6 @@ data "k8s_azure_microsoft_com_azure_sql_failover_group_v1beta1_manifest" "exampl
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

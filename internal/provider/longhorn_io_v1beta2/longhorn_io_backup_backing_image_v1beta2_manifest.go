@@ -7,7 +7,6 @@ package longhorn_io_v1beta2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewLonghornIoBackupBackingImageV1Beta2Manifest() datasource.DataSource {
 type LonghornIoBackupBackingImageV1Beta2Manifest struct{}
 
 type LonghornIoBackupBackingImageV1Beta2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -60,14 +58,6 @@ func (r *LonghornIoBackupBackingImageV1Beta2Manifest) Schema(_ context.Context, 
 		Description:         "BackupBackingImage is where Longhorn stores backing image backup object.",
 		MarkdownDescription: "BackupBackingImage is where Longhorn stores backing image backup object.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -181,7 +171,6 @@ func (r *LonghornIoBackupBackingImageV1Beta2Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("longhorn.io/v1beta2")
 	model.Kind = pointer.String("BackupBackingImage")
 

@@ -34,7 +34,6 @@ data "k8s_anywhere_eks_amazonaws_com_control_plane_upgrade_v1alpha1_manifest" "e
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

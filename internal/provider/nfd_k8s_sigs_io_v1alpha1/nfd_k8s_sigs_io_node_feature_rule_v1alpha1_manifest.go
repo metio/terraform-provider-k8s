@@ -30,7 +30,6 @@ func NewNfdK8SSigsIoNodeFeatureRuleV1Alpha1Manifest() datasource.DataSource {
 type NfdK8SSigsIoNodeFeatureRuleV1Alpha1Manifest struct{}
 
 type NfdK8SSigsIoNodeFeatureRuleV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -78,14 +77,6 @@ func (r *NfdK8SSigsIoNodeFeatureRuleV1Alpha1Manifest) Schema(_ context.Context, 
 		Description:         "NodeFeatureRule resource specifies a configuration for feature-based customization of node objects, such as node labeling.",
 		MarkdownDescription: "NodeFeatureRule resource specifies a configuration for feature-based customization of node objects, such as node labeling.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -319,7 +310,6 @@ func (r *NfdK8SSigsIoNodeFeatureRuleV1Alpha1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("nfd.k8s-sigs.io/v1alpha1")
 	model.Kind = pointer.String("NodeFeatureRule")
 

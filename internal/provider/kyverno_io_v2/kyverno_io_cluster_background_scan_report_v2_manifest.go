@@ -30,7 +30,6 @@ func NewKyvernoIoClusterBackgroundScanReportV2Manifest() datasource.DataSource {
 type KyvernoIoClusterBackgroundScanReportV2Manifest struct{}
 
 type KyvernoIoClusterBackgroundScanReportV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -94,14 +93,6 @@ func (r *KyvernoIoClusterBackgroundScanReportV2Manifest) Schema(_ context.Contex
 		Description:         "ClusterBackgroundScanReport is the Schema for the ClusterBackgroundScanReports API",
 		MarkdownDescription: "ClusterBackgroundScanReport is the Schema for the ClusterBackgroundScanReports API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -460,7 +451,6 @@ func (r *KyvernoIoClusterBackgroundScanReportV2Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("kyverno.io/v2")
 	model.Kind = pointer.String("ClusterBackgroundScanReport")
 

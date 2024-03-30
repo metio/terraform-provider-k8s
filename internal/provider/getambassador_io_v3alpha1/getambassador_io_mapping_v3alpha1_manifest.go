@@ -7,7 +7,6 @@ package getambassador_io_v3alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
@@ -35,7 +34,6 @@ func NewGetambassadorIoMappingV3Alpha1Manifest() datasource.DataSource {
 type GetambassadorIoMappingV3Alpha1Manifest struct{}
 
 type GetambassadorIoMappingV3Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -217,14 +215,6 @@ func (r *GetambassadorIoMappingV3Alpha1Manifest) Schema(_ context.Context, _ dat
 		Description:         "Mapping is the Schema for the mappings API",
 		MarkdownDescription: "Mapping is the Schema for the mappings API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1484,7 +1474,6 @@ func (r *GetambassadorIoMappingV3Alpha1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("getambassador.io/v3alpha1")
 	model.Kind = pointer.String("Mapping")
 

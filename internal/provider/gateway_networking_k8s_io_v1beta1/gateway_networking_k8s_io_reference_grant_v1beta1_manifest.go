@@ -7,7 +7,6 @@ package gateway_networking_k8s_io_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -32,7 +31,6 @@ func NewGatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest() datasource.DataSou
 type GatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest struct{}
 
 type GatewayNetworkingK8SIoReferenceGrantV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -68,14 +66,6 @@ func (r *GatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest) Schema(_ context.C
 		Description:         "ReferenceGrant identifies kinds of resources in other namespaces that aretrusted to reference the specified kinds of resources in the same namespaceas the policy.Each ReferenceGrant can be used to represent a unique trust relationship.Additional Reference Grants can be used to add to the set of trustedsources of inbound references for the namespace they are defined within.All cross-namespace references in Gateway API (with the exception of cross-namespaceGateway-route attachment) require a ReferenceGrant.ReferenceGrant is a form of runtime verification allowing users to assertwhich cross-namespace object references are permitted. Implementations thatsupport ReferenceGrant MUST NOT permit cross-namespace references which haveno grant, and MUST respond to the removal of a grant by revoking the accessthat the grant allowed.",
 		MarkdownDescription: "ReferenceGrant identifies kinds of resources in other namespaces that aretrusted to reference the specified kinds of resources in the same namespaceas the policy.Each ReferenceGrant can be used to represent a unique trust relationship.Additional Reference Grants can be used to add to the set of trustedsources of inbound references for the namespace they are defined within.All cross-namespace references in Gateway API (with the exception of cross-namespaceGateway-route attachment) require a ReferenceGrant.ReferenceGrant is a form of runtime verification allowing users to assertwhich cross-namespace object references are permitted. Implementations thatsupport ReferenceGrant MUST NOT permit cross-namespace references which haveno grant, and MUST respond to the removal of a grant by revoking the accessthat the grant allowed.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -258,7 +248,6 @@ func (r *GatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("gateway.networking.k8s.io/v1beta1")
 	model.Kind = pointer.String("ReferenceGrant")
 

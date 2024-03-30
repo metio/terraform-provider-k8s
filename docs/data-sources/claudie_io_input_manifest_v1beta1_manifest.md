@@ -34,7 +34,6 @@ data "k8s_claudie_io_input_manifest_v1beta1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

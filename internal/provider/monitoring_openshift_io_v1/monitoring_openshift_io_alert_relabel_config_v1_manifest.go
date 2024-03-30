@@ -7,7 +7,6 @@ package monitoring_openshift_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewMonitoringOpenshiftIoAlertRelabelConfigV1Manifest() datasource.DataSourc
 type MonitoringOpenshiftIoAlertRelabelConfigV1Manifest struct{}
 
 type MonitoringOpenshiftIoAlertRelabelConfigV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -66,14 +64,6 @@ func (r *MonitoringOpenshiftIoAlertRelabelConfigV1Manifest) Schema(_ context.Con
 		Description:         "AlertRelabelConfig defines a set of relabel configs for alerts.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "AlertRelabelConfig defines a set of relabel configs for alerts.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -242,7 +232,6 @@ func (r *MonitoringOpenshiftIoAlertRelabelConfigV1Manifest) Read(ctx context.Con
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("monitoring.openshift.io/v1")
 	model.Kind = pointer.String("AlertRelabelConfig")
 

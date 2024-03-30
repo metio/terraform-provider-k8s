@@ -30,7 +30,6 @@ func NewInfrastructureClusterXK8SIoVsphereClusterIdentityV1Beta1Manifest() datas
 type InfrastructureClusterXK8SIoVsphereClusterIdentityV1Beta1Manifest struct{}
 
 type InfrastructureClusterXK8SIoVsphereClusterIdentityV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -66,14 +65,6 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterIdentityV1Beta1Manifest) Schem
 		Description:         "VSphereClusterIdentity defines the account to be used for reconciling clusters.",
 		MarkdownDescription: "VSphereClusterIdentity defines the account to be used for reconciling clusters.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -221,7 +212,6 @@ func (r *InfrastructureClusterXK8SIoVsphereClusterIdentityV1Beta1Manifest) Read(
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("infrastructure.cluster.x-k8s.io/v1beta1")
 	model.Kind = pointer.String("VSphereClusterIdentity")
 

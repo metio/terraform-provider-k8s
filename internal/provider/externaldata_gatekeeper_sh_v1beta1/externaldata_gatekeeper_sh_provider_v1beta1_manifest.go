@@ -30,7 +30,6 @@ func NewExternaldataGatekeeperShProviderV1Beta1Manifest() datasource.DataSource 
 type ExternaldataGatekeeperShProviderV1Beta1Manifest struct{}
 
 type ExternaldataGatekeeperShProviderV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -58,14 +57,6 @@ func (r *ExternaldataGatekeeperShProviderV1Beta1Manifest) Schema(_ context.Conte
 		Description:         "Provider is the Schema for the providers API",
 		MarkdownDescription: "Provider is the Schema for the providers API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -163,7 +154,6 @@ func (r *ExternaldataGatekeeperShProviderV1Beta1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("externaldata.gatekeeper.sh/v1beta1")
 	model.Kind = pointer.String("Provider")
 

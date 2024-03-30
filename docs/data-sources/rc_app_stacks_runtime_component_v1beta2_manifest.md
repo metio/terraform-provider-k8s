@@ -34,7 +34,6 @@ data "k8s_rc_app_stacks_runtime_component_v1beta2_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

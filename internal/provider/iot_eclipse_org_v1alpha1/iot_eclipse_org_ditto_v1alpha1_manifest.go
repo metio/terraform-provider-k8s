@@ -7,7 +7,6 @@ package iot_eclipse_org_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewIotEclipseOrgDittoV1Alpha1Manifest() datasource.DataSource {
 type IotEclipseOrgDittoV1Alpha1Manifest struct{}
 
 type IotEclipseOrgDittoV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -264,14 +262,6 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 		Description:         "Auto-generated derived type for DittoSpec via 'CustomResource'",
 		MarkdownDescription: "Auto-generated derived type for DittoSpec via 'CustomResource'",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1796,7 +1786,6 @@ func (r *IotEclipseOrgDittoV1Alpha1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("iot.eclipse.org/v1alpha1")
 	model.Kind = pointer.String("Ditto")
 

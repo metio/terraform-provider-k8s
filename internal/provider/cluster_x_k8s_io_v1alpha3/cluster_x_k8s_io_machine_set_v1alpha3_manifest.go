@@ -7,7 +7,6 @@ package cluster_x_k8s_io_v1alpha3
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewClusterXK8SIoMachineSetV1Alpha3Manifest() datasource.DataSource {
 type ClusterXK8SIoMachineSetV1Alpha3Manifest struct{}
 
 type ClusterXK8SIoMachineSetV1Alpha3ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -115,14 +113,6 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Schema(_ context.Context, _ da
 		Description:         "MachineSet is the Schema for the machinesets API.Deprecated: This type will be removed in one of the next releases.",
 		MarkdownDescription: "MachineSet is the Schema for the machinesets API.Deprecated: This type will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -626,7 +616,6 @@ func (r *ClusterXK8SIoMachineSetV1Alpha3Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("cluster.x-k8s.io/v1alpha3")
 	model.Kind = pointer.String("MachineSet")
 

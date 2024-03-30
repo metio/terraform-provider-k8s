@@ -39,7 +39,6 @@ data "k8s_hiveinternal_openshift_io_fake_cluster_install_v1alpha1_manifest" "exa
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

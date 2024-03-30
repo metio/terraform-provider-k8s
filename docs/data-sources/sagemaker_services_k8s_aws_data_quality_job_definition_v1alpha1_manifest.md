@@ -34,7 +34,6 @@ data "k8s_sagemaker_services_k8s_aws_data_quality_job_definition_v1alpha1_manife
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

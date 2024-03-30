@@ -32,7 +32,6 @@ data "k8s_databases_schemahero_io_database_v1alpha4_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

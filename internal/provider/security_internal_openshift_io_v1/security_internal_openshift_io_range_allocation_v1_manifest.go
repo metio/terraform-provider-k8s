@@ -30,7 +30,6 @@ func NewSecurityInternalOpenshiftIoRangeAllocationV1Manifest() datasource.DataSo
 type SecurityInternalOpenshiftIoRangeAllocationV1Manifest struct{}
 
 type SecurityInternalOpenshiftIoRangeAllocationV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -55,14 +54,6 @@ func (r *SecurityInternalOpenshiftIoRangeAllocationV1Manifest) Schema(_ context.
 		Description:         "RangeAllocation is used so we can easily expose a RangeAllocation typed for security group This is an internal API, not intended for external consumption.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "RangeAllocation is used so we can easily expose a RangeAllocation typed for security group This is an internal API, not intended for external consumption.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -143,7 +134,6 @@ func (r *SecurityInternalOpenshiftIoRangeAllocationV1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("security.internal.openshift.io/v1")
 	model.Kind = pointer.String("RangeAllocation")
 

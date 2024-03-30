@@ -7,7 +7,6 @@ package minio_min_io_v2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewMinioMinIoTenantV2Manifest() datasource.DataSource {
 type MinioMinIoTenantV2Manifest struct{}
 
 type MinioMinIoTenantV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -1979,14 +1977,6 @@ func (r *MinioMinIoTenantV2Manifest) Schema(_ context.Context, _ datasource.Sche
 		Description:         "",
 		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -14995,7 +14985,6 @@ func (r *MinioMinIoTenantV2Manifest) Read(ctx context.Context, request datasourc
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("minio.min.io/v2")
 	model.Kind = pointer.String("Tenant")
 

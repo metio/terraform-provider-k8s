@@ -30,7 +30,6 @@ func NewOperatorTigeraIoImageSetV1Manifest() datasource.DataSource {
 type OperatorTigeraIoImageSetV1Manifest struct{}
 
 type OperatorTigeraIoImageSetV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -59,14 +58,6 @@ func (r *OperatorTigeraIoImageSetV1Manifest) Schema(_ context.Context, _ datasou
 		Description:         "ImageSet is used to specify image digests for the images that the operator deploys. The name of the ImageSet is expected to be in the format '<variant>-<release>'. The 'variant' used is 'enterprise' if the InstallationSpec Variant is 'TigeraSecureEnterprise' otherwise it is 'calico'. The 'release' must match the version of the variant that the operator is built to deploy, this version can be obtained by passing the '--version' flag to the operator binary.",
 		MarkdownDescription: "ImageSet is used to specify image digests for the images that the operator deploys. The name of the ImageSet is expected to be in the format '<variant>-<release>'. The 'variant' used is 'enterprise' if the InstallationSpec Variant is 'TigeraSecureEnterprise' otherwise it is 'calico'. The 'release' must match the version of the variant that the operator is built to deploy, this version can be obtained by passing the '--version' flag to the operator binary.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -167,7 +158,6 @@ func (r *OperatorTigeraIoImageSetV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.tigera.io/v1")
 	model.Kind = pointer.String("ImageSet")
 

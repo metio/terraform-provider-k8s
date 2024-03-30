@@ -7,7 +7,6 @@ package actions_github_com_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewActionsGithubComAutoscalingRunnerSetV1Alpha1Manifest() datasource.DataSo
 type ActionsGithubComAutoscalingRunnerSetV1Alpha1Manifest struct{}
 
 type ActionsGithubComAutoscalingRunnerSetV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -2578,14 +2576,6 @@ func (r *ActionsGithubComAutoscalingRunnerSetV1Alpha1Manifest) Schema(_ context.
 		Description:         "AutoscalingRunnerSet is the Schema for the autoscalingrunnersets API",
 		MarkdownDescription: "AutoscalingRunnerSet is the Schema for the autoscalingrunnersets API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -19534,7 +19524,6 @@ func (r *ActionsGithubComAutoscalingRunnerSetV1Alpha1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("actions.github.com/v1alpha1")
 	model.Kind = pointer.String("AutoscalingRunnerSet")
 

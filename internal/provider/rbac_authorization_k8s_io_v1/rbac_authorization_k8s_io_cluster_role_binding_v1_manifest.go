@@ -30,7 +30,6 @@ func NewRbacAuthorizationK8SIoClusterRoleBindingV1Manifest() datasource.DataSour
 type RbacAuthorizationK8SIoClusterRoleBindingV1Manifest struct{}
 
 type RbacAuthorizationK8SIoClusterRoleBindingV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -64,14 +63,6 @@ func (r *RbacAuthorizationK8SIoClusterRoleBindingV1Manifest) Schema(_ context.Co
 		Description:         "ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a ClusterRole in the global namespace, and adds who information via Subject.",
 		MarkdownDescription: "ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a ClusterRole in the global namespace, and adds who information via Subject.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -212,7 +203,6 @@ func (r *RbacAuthorizationK8SIoClusterRoleBindingV1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("rbac.authorization.k8s.io/v1")
 	model.Kind = pointer.String("ClusterRoleBinding")
 

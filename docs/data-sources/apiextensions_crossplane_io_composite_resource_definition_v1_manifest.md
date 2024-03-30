@@ -34,7 +34,6 @@ data "k8s_apiextensions_crossplane_io_composite_resource_definition_v1_manifest"
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

@@ -7,7 +7,6 @@ package secretsmanager_services_k8s_aws_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewSecretsmanagerServicesK8SAwsSecretV1Alpha1Manifest() datasource.DataSour
 type SecretsmanagerServicesK8SAwsSecretV1Alpha1Manifest struct{}
 
 type SecretsmanagerServicesK8SAwsSecretV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -74,14 +72,6 @@ func (r *SecretsmanagerServicesK8SAwsSecretV1Alpha1Manifest) Schema(_ context.Co
 		Description:         "Secret is the Schema for the Secrets API",
 		MarkdownDescription: "Secret is the Schema for the Secrets API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -286,7 +276,6 @@ func (r *SecretsmanagerServicesK8SAwsSecretV1Alpha1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("secretsmanager.services.k8s.aws/v1alpha1")
 	model.Kind = pointer.String("Secret")
 

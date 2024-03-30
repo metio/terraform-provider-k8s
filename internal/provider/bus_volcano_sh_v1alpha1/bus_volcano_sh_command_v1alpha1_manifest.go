@@ -7,7 +7,6 @@ package bus_volcano_sh_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewBusVolcanoShCommandV1Alpha1Manifest() datasource.DataSource {
 type BusVolcanoShCommandV1Alpha1Manifest struct{}
 
 type BusVolcanoShCommandV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -66,14 +64,6 @@ func (r *BusVolcanoShCommandV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 		Description:         "Command defines command structure.",
 		MarkdownDescription: "Command defines command structure.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -231,7 +221,6 @@ func (r *BusVolcanoShCommandV1Alpha1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("bus.volcano.sh/v1alpha1")
 	model.Kind = pointer.String("Command")
 

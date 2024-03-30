@@ -7,7 +7,6 @@ package chaosblade_io_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewChaosbladeIoChaosBladeV1Alpha1Manifest() datasource.DataSource {
 type ChaosbladeIoChaosBladeV1Alpha1Manifest struct{}
 
 type ChaosbladeIoChaosBladeV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -67,14 +65,6 @@ func (r *ChaosbladeIoChaosBladeV1Alpha1Manifest) Schema(_ context.Context, _ dat
 		Description:         "ChaosBlade is the Schema for the chaosblades API",
 		MarkdownDescription: "ChaosBlade is the Schema for the chaosblades API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -231,7 +221,6 @@ func (r *ChaosbladeIoChaosBladeV1Alpha1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("chaosblade.io/v1alpha1")
 	model.Kind = pointer.String("ChaosBlade")
 

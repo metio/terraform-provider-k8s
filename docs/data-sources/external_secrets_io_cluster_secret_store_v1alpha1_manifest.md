@@ -34,7 +34,6 @@ data "k8s_external_secrets_io_cluster_secret_store_v1alpha1_manifest" "example" 
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

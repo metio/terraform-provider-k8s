@@ -34,7 +34,6 @@ data "k8s_operator_open_cluster_management_io_cluster_manager_v1_manifest" "exam
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

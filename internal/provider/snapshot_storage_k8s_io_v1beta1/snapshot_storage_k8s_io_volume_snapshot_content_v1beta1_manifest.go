@@ -30,7 +30,6 @@ func NewSnapshotStorageK8SIoVolumeSnapshotContentV1Beta1Manifest() datasource.Da
 type SnapshotStorageK8SIoVolumeSnapshotContentV1Beta1Manifest struct{}
 
 type SnapshotStorageK8SIoVolumeSnapshotContentV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -71,14 +70,6 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotContentV1Beta1Manifest) Schema(_ cont
 		Description:         "VolumeSnapshotContent represents the actual 'on-disk' snapshot object in the underlying storage system",
 		MarkdownDescription: "VolumeSnapshotContent represents the actual 'on-disk' snapshot object in the underlying storage system",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -269,7 +260,6 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotContentV1Beta1Manifest) Read(ctx cont
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("snapshot.storage.k8s.io/v1beta1")
 	model.Kind = pointer.String("VolumeSnapshotContent")
 

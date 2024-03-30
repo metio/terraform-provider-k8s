@@ -38,7 +38,6 @@ data "k8s_discovery_k8s_io_endpoint_slice_v1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--endpoints"></a>

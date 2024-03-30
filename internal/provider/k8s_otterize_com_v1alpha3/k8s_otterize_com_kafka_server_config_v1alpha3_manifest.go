@@ -7,7 +7,6 @@ package k8s_otterize_com_v1alpha3
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewK8SOtterizeComKafkaServerConfigV1Alpha3Manifest() datasource.DataSource 
 type K8SOtterizeComKafkaServerConfigV1Alpha3Manifest struct{}
 
 type K8SOtterizeComKafkaServerConfigV1Alpha3ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -73,14 +71,6 @@ func (r *K8SOtterizeComKafkaServerConfigV1Alpha3Manifest) Schema(_ context.Conte
 		Description:         "KafkaServerConfig is the Schema for the kafkaserverconfigs API",
 		MarkdownDescription: "KafkaServerConfig is the Schema for the kafkaserverconfigs API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -278,7 +268,6 @@ func (r *K8SOtterizeComKafkaServerConfigV1Alpha3Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("k8s.otterize.com/v1alpha3")
 	model.Kind = pointer.String("KafkaServerConfig")
 

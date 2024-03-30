@@ -36,7 +36,6 @@ data "k8s_snapshot_storage_k8s_io_volume_snapshot_class_v1beta1_manifest" "examp
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

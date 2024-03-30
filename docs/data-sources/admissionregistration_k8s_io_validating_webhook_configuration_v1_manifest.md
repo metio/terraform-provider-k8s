@@ -34,7 +34,6 @@ data "k8s_admissionregistration_k8s_io_validating_webhook_configuration_v1_manif
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

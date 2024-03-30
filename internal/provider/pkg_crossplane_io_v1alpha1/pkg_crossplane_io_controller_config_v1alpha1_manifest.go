@@ -30,7 +30,6 @@ func NewPkgCrossplaneIoControllerConfigV1Alpha1Manifest() datasource.DataSource 
 type PkgCrossplaneIoControllerConfigV1Alpha1Manifest struct{}
 
 type PkgCrossplaneIoControllerConfigV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -633,14 +632,6 @@ func (r *PkgCrossplaneIoControllerConfigV1Alpha1Manifest) Schema(_ context.Conte
 		Description:         "ControllerConfig is the CRD type for a packaged controller configuration.Deprecated: This API is replaced by DeploymentRuntimeConfig, and is scheduledto be removed in a future release. See the design doc for more details:https://github.com/crossplane/crossplane/blob/11bbe13ea3604928cc4e24e8d0d18f3f5f7e847c/design/one-pager-package-runtime-config.md",
 		MarkdownDescription: "ControllerConfig is the CRD type for a packaged controller configuration.Deprecated: This API is replaced by DeploymentRuntimeConfig, and is scheduledto be removed in a future release. See the design doc for more details:https://github.com/crossplane/crossplane/blob/11bbe13ea3604928cc4e24e8d0d18f3f5f7e847c/design/one-pager-package-runtime-config.md",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -4600,7 +4591,6 @@ func (r *PkgCrossplaneIoControllerConfigV1Alpha1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("pkg.crossplane.io/v1alpha1")
 	model.Kind = pointer.String("ControllerConfig")
 

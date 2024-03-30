@@ -31,7 +31,6 @@ data "k8s_app_terraform_io_agent_pool_v1alpha2_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

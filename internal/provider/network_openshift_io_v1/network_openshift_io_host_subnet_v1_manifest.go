@@ -31,7 +31,6 @@ func NewNetworkOpenshiftIoHostSubnetV1Manifest() datasource.DataSource {
 type NetworkOpenshiftIoHostSubnetV1Manifest struct{}
 
 type NetworkOpenshiftIoHostSubnetV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -59,14 +58,6 @@ func (r *NetworkOpenshiftIoHostSubnetV1Manifest) Schema(_ context.Context, _ dat
 		Description:         "HostSubnet describes the container subnet network on a node. The HostSubnet object must have the same name as the Node object it corresponds to.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "HostSubnet describes the container subnet network on a node. The HostSubnet object must have the same name as the Node object it corresponds to.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -182,7 +173,6 @@ func (r *NetworkOpenshiftIoHostSubnetV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("network.openshift.io/v1")
 	model.Kind = pointer.String("HostSubnet")
 

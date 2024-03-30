@@ -7,7 +7,6 @@ package kafka_strimzi_io_v1beta2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewKafkaStrimziIoKafkaConnectV1Beta2Manifest() datasource.DataSource {
 type KafkaStrimziIoKafkaConnectV1Beta2Manifest struct{}
 
 type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -821,14 +819,6 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Schema(_ context.Context, _ 
 		Description:         "",
 		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -6096,7 +6086,6 @@ func (r *KafkaStrimziIoKafkaConnectV1Beta2Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("kafka.strimzi.io/v1beta2")
 	model.Kind = pointer.String("KafkaConnect")
 

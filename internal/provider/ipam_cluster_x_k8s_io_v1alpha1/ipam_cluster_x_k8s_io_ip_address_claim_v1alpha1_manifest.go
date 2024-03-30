@@ -7,7 +7,6 @@ package ipam_cluster_x_k8s_io_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewIpamClusterXK8SIoIpaddressClaimV1Alpha1Manifest() datasource.DataSource 
 type IpamClusterXK8SIoIpaddressClaimV1Alpha1Manifest struct{}
 
 type IpamClusterXK8SIoIpaddressClaimV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -62,14 +60,6 @@ func (r *IpamClusterXK8SIoIpaddressClaimV1Alpha1Manifest) Schema(_ context.Conte
 		Description:         "IPAddressClaim is the Schema for the ipaddressclaim API.",
 		MarkdownDescription: "IPAddressClaim is the Schema for the ipaddressclaim API.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -188,7 +178,6 @@ func (r *IpamClusterXK8SIoIpaddressClaimV1Alpha1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("ipam.cluster.x-k8s.io/v1alpha1")
 	model.Kind = pointer.String("IPAddressClaim")
 

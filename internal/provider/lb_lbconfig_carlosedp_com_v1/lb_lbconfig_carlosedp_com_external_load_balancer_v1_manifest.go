@@ -7,7 +7,6 @@ package lb_lbconfig_carlosedp_com_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewLbLbconfigCarlosedpComExternalLoadBalancerV1Manifest() datasource.DataSo
 type LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest struct{}
 
 type LbLbconfigCarlosedpComExternalLoadBalancerV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -78,14 +76,6 @@ func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest) Schema(_ context.
 		Description:         "ExternalLoadBalancer is the Schema for the externalloadbalancers API",
 		MarkdownDescription: "ExternalLoadBalancer is the Schema for the externalloadbalancers API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -350,7 +340,6 @@ func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("lb.lbconfig.carlosedp.com/v1")
 	model.Kind = pointer.String("ExternalLoadBalancer")
 

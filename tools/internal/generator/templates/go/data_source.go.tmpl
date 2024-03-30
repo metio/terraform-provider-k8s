@@ -8,9 +8,6 @@ package {{ .Package }}
 import (
 	"context"
 	"encoding/json"
-	{{ if .Namespaced -}}
-	"fmt"
-	{{ end -}}
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -42,8 +39,6 @@ type {{ .DataSourceTypeStruct }} struct{
 }
 
 type {{ .DataSourceDataStruct }} struct {
-	ID types.String {{ .BT }}tfsdk:"id" json:"-"{{ .BT }}
-
 	ApiVersion *string {{ .BT }}tfsdk:"api_version" json:"apiVersion"{{ .BT }}
 	Kind *string {{ .BT }}tfsdk:"kind" json:"kind"{{ .BT }}
 
@@ -70,19 +65,6 @@ func (r *{{ .DataSourceTypeStruct }}) Schema(_ context.Context, _ datasource.Sch
 		Description:         "{{ .Description }}",
 		MarkdownDescription: "{{ .Description }}",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				{{ if .Namespaced -}}
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				{{ else -}}
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				{{ end -}}
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"api_version": schema.StringAttribute{
 				Description:         "The API group of the requested resource.",
 				MarkdownDescription: "The API group of the requested resource.",
@@ -210,11 +192,6 @@ func (r *{{ .DataSourceTypeStruct }}) Read(ctx context.Context, request datasour
 		return
 	}
 
-	{{ if .Namespaced -}}
-	data.ID = types.StringValue(fmt.Sprintf("%s/%s", data.Metadata.Namespace, data.Metadata.Name))
-	{{ else -}}
-	data.ID = types.StringValue(data.Metadata.Name)
-	{{ end -}}
 	{{ if .Group -}}
 	data.ApiVersion = pointer.String("{{ .Group }}/{{ .Version }}")
 	{{ else -}}

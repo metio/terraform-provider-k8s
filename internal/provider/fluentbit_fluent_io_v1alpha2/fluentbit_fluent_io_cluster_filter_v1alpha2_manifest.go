@@ -31,7 +31,6 @@ func NewFluentbitFluentIoClusterFilterV1Alpha2Manifest() datasource.DataSource {
 type FluentbitFluentIoClusterFilterV1Alpha2Manifest struct{}
 
 type FluentbitFluentIoClusterFilterV1Alpha2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -204,14 +203,6 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 		Description:         "ClusterFilter defines a cluster-level Filter configuration.",
 		MarkdownDescription: "ClusterFilter defines a cluster-level Filter configuration.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1432,7 +1423,6 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("fluentbit.fluent.io/v1alpha2")
 	model.Kind = pointer.String("ClusterFilter")
 

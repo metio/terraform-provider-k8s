@@ -30,7 +30,6 @@ func NewStunnerL7MpIoDataplaneV1Alpha1Manifest() datasource.DataSource {
 type StunnerL7MpIoDataplaneV1Alpha1Manifest struct{}
 
 type StunnerL7MpIoDataplaneV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -253,14 +252,6 @@ func (r *StunnerL7MpIoDataplaneV1Alpha1Manifest) Schema(_ context.Context, _ dat
 		Description:         "Dataplane is a collection of configuration parameters that can be used for spawning a 'stunnerd' instance for a Gateway. Labels and annotations on the Dataplane object will be copied verbatim into the target Deployment.",
 		MarkdownDescription: "Dataplane is a collection of configuration parameters that can be used for spawning a 'stunnerd' instance for a Gateway. Labels and annotations on the Dataplane object will be copied verbatim into the target Deployment.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1655,7 +1646,6 @@ func (r *StunnerL7MpIoDataplaneV1Alpha1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("stunner.l7mp.io/v1alpha1")
 	model.Kind = pointer.String("Dataplane")
 

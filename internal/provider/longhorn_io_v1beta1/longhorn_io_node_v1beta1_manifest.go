@@ -7,7 +7,6 @@ package longhorn_io_v1beta1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewLonghornIoNodeV1Beta1Manifest() datasource.DataSource {
 type LonghornIoNodeV1Beta1Manifest struct{}
 
 type LonghornIoNodeV1Beta1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -56,14 +54,6 @@ func (r *LonghornIoNodeV1Beta1Manifest) Schema(_ context.Context, _ datasource.S
 		Description:         "Node is where Longhorn stores Longhorn node object.",
 		MarkdownDescription: "Node is where Longhorn stores Longhorn node object.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -149,7 +139,6 @@ func (r *LonghornIoNodeV1Beta1Manifest) Read(ctx context.Context, request dataso
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("longhorn.io/v1beta1")
 	model.Kind = pointer.String("Node")
 

@@ -7,7 +7,6 @@ package hazelcast_com_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewHazelcastComMapV1Alpha1Manifest() datasource.DataSource {
 type HazelcastComMapV1Alpha1Manifest struct{}
 
 type HazelcastComMapV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -121,14 +119,6 @@ func (r *HazelcastComMapV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 		Description:         "Map is the Schema for the maps API",
 		MarkdownDescription: "Map is the Schema for the maps API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -692,7 +682,6 @@ func (r *HazelcastComMapV1Alpha1Manifest) Read(ctx context.Context, request data
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("hazelcast.com/v1alpha1")
 	model.Kind = pointer.String("Map")
 

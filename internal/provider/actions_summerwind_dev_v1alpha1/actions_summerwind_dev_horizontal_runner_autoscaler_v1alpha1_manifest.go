@@ -7,7 +7,6 @@ package actions_summerwind_dev_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest() datasou
 type ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest struct{}
 
 type ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -113,14 +111,6 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(
 		Description:         "HorizontalRunnerAutoscaler is the Schema for the horizontalrunnerautoscaler API",
 		MarkdownDescription: "HorizontalRunnerAutoscaler is the Schema for the horizontalrunnerautoscaler API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -609,7 +599,6 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Read(ct
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("actions.summerwind.dev/v1alpha1")
 	model.Kind = pointer.String("HorizontalRunnerAutoscaler")
 

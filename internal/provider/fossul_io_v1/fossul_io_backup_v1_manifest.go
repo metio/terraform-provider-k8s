@@ -7,7 +7,6 @@ package fossul_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewFossulIoBackupV1Manifest() datasource.DataSource {
 type FossulIoBackupV1Manifest struct{}
 
 type FossulIoBackupV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -56,14 +54,6 @@ func (r *FossulIoBackupV1Manifest) Schema(_ context.Context, _ datasource.Schema
 		Description:         "Backup is the Schema for the backups API",
 		MarkdownDescription: "Backup is the Schema for the backups API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -149,7 +139,6 @@ func (r *FossulIoBackupV1Manifest) Read(ctx context.Context, request datasource.
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("fossul.io/v1")
 	model.Kind = pointer.String("Backup")
 

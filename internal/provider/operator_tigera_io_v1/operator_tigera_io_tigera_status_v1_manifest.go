@@ -30,7 +30,6 @@ func NewOperatorTigeraIoTigeraStatusV1Manifest() datasource.DataSource {
 type OperatorTigeraIoTigeraStatusV1Manifest struct{}
 
 type OperatorTigeraIoTigeraStatusV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -54,14 +53,6 @@ func (r *OperatorTigeraIoTigeraStatusV1Manifest) Schema(_ context.Context, _ dat
 		Description:         "TigeraStatus represents the most recently observed status for Calico or a Calico Enterprise functional area.",
 		MarkdownDescription: "TigeraStatus represents the most recently observed status for Calico or a Calico Enterprise functional area.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -135,7 +126,6 @@ func (r *OperatorTigeraIoTigeraStatusV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.tigera.io/v1")
 	model.Kind = pointer.String("TigeraStatus")
 

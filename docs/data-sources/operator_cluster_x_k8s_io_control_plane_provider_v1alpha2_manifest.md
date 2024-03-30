@@ -34,7 +34,6 @@ data "k8s_operator_cluster_x_k8s_io_control_plane_provider_v1alpha2_manifest" "e
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

@@ -31,7 +31,6 @@ data "k8s_controlplane_operator_openshift_io_pod_network_connectivity_check_v1al
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

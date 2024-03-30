@@ -7,7 +7,6 @@ package data_fluid_io_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewDataFluidIoThinRuntimeV1Alpha1Manifest() datasource.DataSource {
 type DataFluidIoThinRuntimeV1Alpha1Manifest struct{}
 
 type DataFluidIoThinRuntimeV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -876,14 +874,6 @@ func (r *DataFluidIoThinRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ dat
 		Description:         "ThinRuntime is the Schema for the thinruntimes API",
 		MarkdownDescription: "ThinRuntime is the Schema for the thinruntimes API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -6452,7 +6442,6 @@ func (r *DataFluidIoThinRuntimeV1Alpha1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("data.fluid.io/v1alpha1")
 	model.Kind = pointer.String("ThinRuntime")
 

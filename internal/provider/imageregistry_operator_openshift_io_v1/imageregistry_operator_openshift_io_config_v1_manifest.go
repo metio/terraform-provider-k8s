@@ -31,7 +31,6 @@ func NewImageregistryOperatorOpenshiftIoConfigV1Manifest() datasource.DataSource
 type ImageregistryOperatorOpenshiftIoConfigV1Manifest struct{}
 
 type ImageregistryOperatorOpenshiftIoConfigV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -329,14 +328,6 @@ func (r *ImageregistryOperatorOpenshiftIoConfigV1Manifest) Schema(_ context.Cont
 		Description:         "Config is the configuration object for a registry instance managed by the registry operator  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "Config is the configuration object for a registry instance managed by the registry operator  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -2328,7 +2319,6 @@ func (r *ImageregistryOperatorOpenshiftIoConfigV1Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("imageregistry.operator.openshift.io/v1")
 	model.Kind = pointer.String("Config")
 

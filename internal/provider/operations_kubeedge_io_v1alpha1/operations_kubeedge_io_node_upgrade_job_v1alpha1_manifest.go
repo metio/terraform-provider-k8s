@@ -30,7 +30,6 @@ func NewOperationsKubeedgeIoNodeUpgradeJobV1Alpha1Manifest() datasource.DataSour
 type OperationsKubeedgeIoNodeUpgradeJobV1Alpha1Manifest struct{}
 
 type OperationsKubeedgeIoNodeUpgradeJobV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -70,14 +69,6 @@ func (r *OperationsKubeedgeIoNodeUpgradeJobV1Alpha1Manifest) Schema(_ context.Co
 		Description:         "NodeUpgradeJob is used to upgrade edge node from cloud side.",
 		MarkdownDescription: "NodeUpgradeJob is used to upgrade edge node from cloud side.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -263,7 +254,6 @@ func (r *OperationsKubeedgeIoNodeUpgradeJobV1Alpha1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operations.kubeedge.io/v1alpha1")
 	model.Kind = pointer.String("NodeUpgradeJob")
 

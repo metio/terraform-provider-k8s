@@ -31,7 +31,6 @@ data "k8s_networking_karmada_io_multi_cluster_service_v1alpha1_manifest" "exampl
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

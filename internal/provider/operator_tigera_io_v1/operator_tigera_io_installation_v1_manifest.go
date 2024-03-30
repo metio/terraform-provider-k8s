@@ -32,7 +32,6 @@ func NewOperatorTigeraIoInstallationV1Manifest() datasource.DataSource {
 type OperatorTigeraIoInstallationV1Manifest struct{}
 
 type OperatorTigeraIoInstallationV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -1198,14 +1197,6 @@ func (r *OperatorTigeraIoInstallationV1Manifest) Schema(_ context.Context, _ dat
 		Description:         "Installation configures an installation of Calico or Calico Enterprise. At most one instance of this resource is supported. It must be named 'default'. The Installation API installs core networking and network policy components, and provides general install-time configuration.",
 		MarkdownDescription: "Installation configures an installation of Calico or Calico Enterprise. At most one instance of this resource is supported. It must be named 'default'. The Installation API installs core networking and network policy components, and provides general install-time configuration.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -8879,7 +8870,6 @@ func (r *OperatorTigeraIoInstallationV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.tigera.io/v1")
 	model.Kind = pointer.String("Installation")
 

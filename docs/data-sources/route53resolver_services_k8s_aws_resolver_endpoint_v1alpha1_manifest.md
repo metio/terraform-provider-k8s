@@ -34,7 +34,6 @@ data "k8s_route53resolver_services_k8s_aws_resolver_endpoint_v1alpha1_manifest" 
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

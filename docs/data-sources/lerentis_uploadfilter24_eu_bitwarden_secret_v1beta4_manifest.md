@@ -34,7 +34,6 @@ data "k8s_lerentis_uploadfilter24_eu_bitwarden_secret_v1beta4_manifest" "example
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

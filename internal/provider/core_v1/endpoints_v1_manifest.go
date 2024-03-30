@@ -7,7 +7,6 @@ package core_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewEndpointsV1Manifest() datasource.DataSource {
 type EndpointsV1Manifest struct{}
 
 type EndpointsV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -91,14 +89,6 @@ func (r *EndpointsV1Manifest) Schema(_ context.Context, _ datasource.SchemaReque
 		Description:         "Endpoints is a collection of endpoints that implement the actual service. Example:	 Name: 'mysvc',	 Subsets: [	   {	     Addresses: [{'ip': '10.10.1.1'}, {'ip': '10.10.2.2'}],	     Ports: [{'name': 'a', 'port': 8675}, {'name': 'b', 'port': 309}]	   },	   {	     Addresses: [{'ip': '10.10.3.3'}],	     Ports: [{'name': 'a', 'port': 93}, {'name': 'b', 'port': 76}]	   },	]",
 		MarkdownDescription: "Endpoints is a collection of endpoints that implement the actual service. Example:	 Name: 'mysvc',	 Subsets: [	   {	     Addresses: [{'ip': '10.10.1.1'}, {'ip': '10.10.2.2'}],	     Ports: [{'name': 'a', 'port': 8675}, {'name': 'b', 'port': 309}]	   },	   {	     Addresses: [{'ip': '10.10.3.3'}],	     Ports: [{'name': 'a', 'port': 93}, {'name': 'b', 'port': 76}]	   },	]",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -429,7 +419,6 @@ func (r *EndpointsV1Manifest) Read(ctx context.Context, request datasource.ReadR
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("v1")
 	model.Kind = pointer.String("Endpoints")
 

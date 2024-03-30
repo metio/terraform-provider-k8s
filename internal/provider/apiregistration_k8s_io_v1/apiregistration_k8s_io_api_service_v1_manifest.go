@@ -30,7 +30,6 @@ func NewApiregistrationK8SIoApiserviceV1Manifest() datasource.DataSource {
 type ApiregistrationK8SIoApiserviceV1Manifest struct{}
 
 type ApiregistrationK8SIoApiserviceV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -66,14 +65,6 @@ func (r *ApiregistrationK8SIoApiserviceV1Manifest) Schema(_ context.Context, _ d
 		Description:         "APIService represents a server for a particular GroupVersion. Name must be 'version.group'.",
 		MarkdownDescription: "APIService represents a server for a particular GroupVersion. Name must be 'version.group'.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -231,7 +222,6 @@ func (r *ApiregistrationK8SIoApiserviceV1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("apiregistration.k8s.io/v1")
 	model.Kind = pointer.String("APIService")
 

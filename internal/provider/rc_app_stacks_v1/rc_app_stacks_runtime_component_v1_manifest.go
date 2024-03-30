@@ -7,7 +7,6 @@ package rc_app_stacks_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewRcAppStacksRuntimeComponentV1Manifest() datasource.DataSource {
 type RcAppStacksRuntimeComponentV1Manifest struct{}
 
 type RcAppStacksRuntimeComponentV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -1372,14 +1370,6 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 		Description:         "Represents the deployment of a runtime component",
 		MarkdownDescription: "Represents the deployment of a runtime component",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -10295,7 +10285,6 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("rc.app.stacks/v1")
 	model.Kind = pointer.String("RuntimeComponent")
 

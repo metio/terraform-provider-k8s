@@ -31,7 +31,6 @@ func NewConfigOpenshiftIoConsoleV1Manifest() datasource.DataSource {
 type ConfigOpenshiftIoConsoleV1Manifest struct{}
 
 type ConfigOpenshiftIoConsoleV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -59,14 +58,6 @@ func (r *ConfigOpenshiftIoConsoleV1Manifest) Schema(_ context.Context, _ datasou
 		Description:         "Console holds cluster-wide configuration for the web console, including the logout URL, and reports the public URL of the console. The canonical name is 'cluster'.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "Console holds cluster-wide configuration for the web console, including the logout URL, and reports the public URL of the console. The canonical name is 'cluster'.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -160,7 +151,6 @@ func (r *ConfigOpenshiftIoConsoleV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("config.openshift.io/v1")
 	model.Kind = pointer.String("Console")
 

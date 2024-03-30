@@ -7,7 +7,6 @@ package kuma_io_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewKumaIoMeshLoadBalancingStrategyV1Alpha1Manifest() datasource.DataSource 
 type KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest struct{}
 
 type KumaIoMeshLoadBalancingStrategyV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -158,14 +156,6 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 		Description:         "",
 		MarkdownDescription: "",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -933,7 +923,6 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("kuma.io/v1alpha1")
 	model.Kind = pointer.String("MeshLoadBalancingStrategy")
 

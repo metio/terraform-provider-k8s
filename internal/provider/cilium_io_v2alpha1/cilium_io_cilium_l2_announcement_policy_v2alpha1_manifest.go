@@ -30,7 +30,6 @@ func NewCiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest() datasource.DataSour
 type CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest struct{}
 
 type CiliumIoCiliumL2AnnouncementPolicyV2Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -74,14 +73,6 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 		Description:         "CiliumL2AnnouncementPolicy is a Kubernetes third-party resource which is used to defined which nodes should announce what services on the L2 network.",
 		MarkdownDescription: "CiliumL2AnnouncementPolicy is a Kubernetes third-party resource which is used to defined which nodes should announce what services on the L2 network.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -294,7 +285,6 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("cilium.io/v2alpha1")
 	model.Kind = pointer.String("CiliumL2AnnouncementPolicy")
 

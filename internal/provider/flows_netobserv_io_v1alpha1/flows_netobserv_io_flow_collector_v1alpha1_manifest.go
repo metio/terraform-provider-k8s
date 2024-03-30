@@ -32,7 +32,6 @@ func NewFlowsNetobservIoFlowCollectorV1Alpha1Manifest() datasource.DataSource {
 type FlowsNetobservIoFlowCollectorV1Alpha1Manifest struct{}
 
 type FlowsNetobservIoFlowCollectorV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -450,14 +449,6 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Schema(_ context.Context
 		Description:         "FlowCollector is the Schema for the flowcollectors API, which pilots and configures netflow collection.  Deprecated: This package will be removed in one of the next releases.",
 		MarkdownDescription: "FlowCollector is the Schema for the flowcollectors API, which pilots and configures netflow collection.  Deprecated: This package will be removed in one of the next releases.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -3263,7 +3254,6 @@ func (r *FlowsNetobservIoFlowCollectorV1Alpha1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("flows.netobserv.io/v1alpha1")
 	model.Kind = pointer.String("FlowCollector")
 

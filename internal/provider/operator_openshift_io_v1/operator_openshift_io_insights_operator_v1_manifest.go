@@ -31,7 +31,6 @@ func NewOperatorOpenshiftIoInsightsOperatorV1Manifest() datasource.DataSource {
 type OperatorOpenshiftIoInsightsOperatorV1Manifest struct{}
 
 type OperatorOpenshiftIoInsightsOperatorV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -61,14 +60,6 @@ func (r *OperatorOpenshiftIoInsightsOperatorV1Manifest) Schema(_ context.Context
 		Description:         "InsightsOperator holds cluster-wide information about the Insights Operator.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "InsightsOperator holds cluster-wide information about the Insights Operator.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -193,7 +184,6 @@ func (r *OperatorOpenshiftIoInsightsOperatorV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("operator.openshift.io/v1")
 	model.Kind = pointer.String("InsightsOperator")
 

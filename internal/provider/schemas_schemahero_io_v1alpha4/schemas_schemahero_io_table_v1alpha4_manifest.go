@@ -7,7 +7,6 @@ package schemas_schemahero_io_v1alpha4
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewSchemasSchemaheroIoTableV1Alpha4Manifest() datasource.DataSource {
 type SchemasSchemaheroIoTableV1Alpha4Manifest struct{}
 
 type SchemasSchemaheroIoTableV1Alpha4ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -340,14 +338,6 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ d
 		Description:         "Table is the Schema for the tables API",
 		MarkdownDescription: "Table is the Schema for the tables API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -2382,7 +2372,6 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("schemas.schemahero.io/v1alpha4")
 	model.Kind = pointer.String("Table")
 

@@ -30,7 +30,6 @@ func NewStorageKubeblocksIoStorageProviderV1Alpha1Manifest() datasource.DataSour
 type StorageKubeblocksIoStorageProviderV1Alpha1Manifest struct{}
 
 type StorageKubeblocksIoStorageProviderV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -64,14 +63,6 @@ func (r *StorageKubeblocksIoStorageProviderV1Alpha1Manifest) Schema(_ context.Co
 		Description:         "StorageProvider comprises specifications that provide guidance on accessing remote storage. Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool. In case of CSI driver, the specification expounds on provisioning PVCs for that driver. As for the 'datasafed' tool, the specification provides insights on generating the necessary configuration file.",
 		MarkdownDescription: "StorageProvider comprises specifications that provide guidance on accessing remote storage. Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool. In case of CSI driver, the specification expounds on provisioning PVCs for that driver. As for the 'datasafed' tool, the specification provides insights on generating the necessary configuration file.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -212,7 +203,6 @@ func (r *StorageKubeblocksIoStorageProviderV1Alpha1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("storage.kubeblocks.io/v1alpha1")
 	model.Kind = pointer.String("StorageProvider")
 

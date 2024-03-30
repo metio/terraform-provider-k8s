@@ -7,7 +7,6 @@ package camel_apache_org_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewCamelApacheOrgIntegrationKitV1Manifest() datasource.DataSource {
 type CamelApacheOrgIntegrationKitV1Manifest struct{}
 
 type CamelApacheOrgIntegrationKitV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -125,14 +123,6 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 		Description:         "IntegrationKit defines a container image and additional configuration needed to run an 'Integration'. An 'IntegrationKit' is a generic image generally built from the requirements of an 'Integration', but agnostic to it, in order to be reused by any other 'Integration' which has the same required set of capabilities. An 'IntegrationKit' may be used for other kits as a base container layer, when the 'incremental' build option is enabled.",
 		MarkdownDescription: "IntegrationKit defines a container image and additional configuration needed to run an 'Integration'. An 'IntegrationKit' is a generic image generally built from the requirements of an 'Integration', but agnostic to it, in order to be reused by any other 'Integration' which has the same required set of capabilities. An 'IntegrationKit' may be used for other kits as a base container layer, when the 'incremental' build option is enabled.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -747,7 +737,6 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("camel.apache.org/v1")
 	model.Kind = pointer.String("IntegrationKit")
 

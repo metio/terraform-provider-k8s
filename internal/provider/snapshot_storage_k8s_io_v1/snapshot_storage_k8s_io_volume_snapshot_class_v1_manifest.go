@@ -30,7 +30,6 @@ func NewSnapshotStorageK8SIoVolumeSnapshotClassV1Manifest() datasource.DataSourc
 type SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest struct{}
 
 type SnapshotStorageK8SIoVolumeSnapshotClassV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -56,14 +55,6 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest) Schema(_ context.Con
 		Description:         "VolumeSnapshotClass specifies parameters that a underlying storage system uses when creating a volume snapshot. A specific VolumeSnapshotClass is used by specifying its name in a VolumeSnapshot object. VolumeSnapshotClasses are non-namespaced",
 		MarkdownDescription: "VolumeSnapshotClass specifies parameters that a underlying storage system uses when creating a volume snapshot. A specific VolumeSnapshotClass is used by specifying its name in a VolumeSnapshot object. VolumeSnapshotClasses are non-namespaced",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -156,7 +147,6 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest) Read(ctx context.Con
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("snapshot.storage.k8s.io/v1")
 	model.Kind = pointer.String("VolumeSnapshotClass")
 

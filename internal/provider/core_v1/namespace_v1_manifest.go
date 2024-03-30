@@ -30,7 +30,6 @@ func NewNamespaceV1Manifest() datasource.DataSource {
 type NamespaceV1Manifest struct{}
 
 type NamespaceV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -56,14 +55,6 @@ func (r *NamespaceV1Manifest) Schema(_ context.Context, _ datasource.SchemaReque
 		Description:         "Namespace provides a scope for Names. Use of multiple namespaces is optional.",
 		MarkdownDescription: "Namespace provides a scope for Names. Use of multiple namespaces is optional.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -146,7 +137,6 @@ func (r *NamespaceV1Manifest) Read(ctx context.Context, request datasource.ReadR
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("v1")
 	model.Kind = pointer.String("Namespace")
 

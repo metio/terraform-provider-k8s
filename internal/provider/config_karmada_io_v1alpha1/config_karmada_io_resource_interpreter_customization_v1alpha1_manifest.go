@@ -30,7 +30,6 @@ func NewConfigKarmadaIoResourceInterpreterCustomizationV1Alpha1Manifest() dataso
 type ConfigKarmadaIoResourceInterpreterCustomizationV1Alpha1Manifest struct{}
 
 type ConfigKarmadaIoResourceInterpreterCustomizationV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -82,14 +81,6 @@ func (r *ConfigKarmadaIoResourceInterpreterCustomizationV1Alpha1Manifest) Schema
 		Description:         "ResourceInterpreterCustomization describes the configuration of a specific resource for Karmada to get the structure. It has higher precedence than the default interpreter and the interpreter webhook.",
 		MarkdownDescription: "ResourceInterpreterCustomization describes the configuration of a specific resource for Karmada to get the structure. It has higher precedence than the default interpreter and the interpreter webhook.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -316,7 +307,6 @@ func (r *ConfigKarmadaIoResourceInterpreterCustomizationV1Alpha1Manifest) Read(c
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("config.karmada.io/v1alpha1")
 	model.Kind = pointer.String("ResourceInterpreterCustomization")
 

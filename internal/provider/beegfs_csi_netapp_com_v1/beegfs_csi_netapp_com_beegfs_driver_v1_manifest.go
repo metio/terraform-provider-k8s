@@ -7,7 +7,6 @@ package beegfs_csi_netapp_com_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewBeegfsCsiNetappComBeegfsDriverV1Manifest() datasource.DataSource {
 type BeegfsCsiNetappComBeegfsDriverV1Manifest struct{}
 
 type BeegfsCsiNetappComBeegfsDriverV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -215,14 +213,6 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Schema(_ context.Context, _ d
 		Description:         "Deploys the BeeGFS CSI driver",
 		MarkdownDescription: "Deploys the BeeGFS CSI driver",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -1353,7 +1343,6 @@ func (r *BeegfsCsiNetappComBeegfsDriverV1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("beegfs.csi.netapp.com/v1")
 	model.Kind = pointer.String("BeegfsDriver")
 

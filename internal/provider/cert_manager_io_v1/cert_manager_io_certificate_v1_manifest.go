@@ -7,7 +7,6 @@ package cert_manager_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewCertManagerIoCertificateV1Manifest() datasource.DataSource {
 type CertManagerIoCertificateV1Manifest struct{}
 
 type CertManagerIoCertificateV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -135,14 +133,6 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 		Description:         "A Certificate resource should be created to ensure an up to date and signedX.509 certificate is stored in the Kubernetes Secret resource named in 'spec.secretName'.The stored certificate will be renewed before it expires (as configured by 'spec.renewBefore').",
 		MarkdownDescription: "A Certificate resource should be created to ensure an up to date and signedX.509 certificate is stored in the Kubernetes Secret resource named in 'spec.secretName'.The stored certificate will be renewed before it expires (as configured by 'spec.renewBefore').",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -795,7 +785,6 @@ func (r *CertManagerIoCertificateV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("cert-manager.io/v1")
 	model.Kind = pointer.String("Certificate")
 

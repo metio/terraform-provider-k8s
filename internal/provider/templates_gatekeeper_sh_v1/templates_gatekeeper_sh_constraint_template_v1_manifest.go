@@ -30,7 +30,6 @@ func NewTemplatesGatekeeperShConstraintTemplateV1Manifest() datasource.DataSourc
 type TemplatesGatekeeperShConstraintTemplateV1Manifest struct{}
 
 type TemplatesGatekeeperShConstraintTemplateV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -76,14 +75,6 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Manifest) Schema(_ context.Con
 		Description:         "ConstraintTemplate is the Schema for the constrainttemplates API",
 		MarkdownDescription: "ConstraintTemplate is the Schema for the constrainttemplates API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -291,7 +282,6 @@ func (r *TemplatesGatekeeperShConstraintTemplateV1Manifest) Read(ctx context.Con
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("templates.gatekeeper.sh/v1")
 	model.Kind = pointer.String("ConstraintTemplate")
 

@@ -34,7 +34,6 @@ data "k8s_networking_k8s_io_ingress_class_v1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

@@ -34,7 +34,6 @@ data "k8s_pubsubplus_solace_com_pub_sub_plus_event_broker_v1beta1_manifest" "exa
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

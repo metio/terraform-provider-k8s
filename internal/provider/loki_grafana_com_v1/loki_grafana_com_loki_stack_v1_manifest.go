@@ -7,7 +7,6 @@ package loki_grafana_com_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/boolvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
@@ -36,7 +35,6 @@ func NewLokiGrafanaComLokiStackV1Manifest() datasource.DataSource {
 type LokiGrafanaComLokiStackV1Manifest struct{}
 
 type LokiGrafanaComLokiStackV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -683,14 +681,6 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 		Description:         "LokiStack is the Schema for the lokistacks API",
 		MarkdownDescription: "LokiStack is the Schema for the lokistacks API",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -4972,7 +4962,6 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Read(ctx context.Context, request da
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("loki.grafana.com/v1")
 	model.Kind = pointer.String("LokiStack")
 

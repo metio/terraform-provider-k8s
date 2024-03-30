@@ -34,7 +34,6 @@ data "k8s_core_linuxsuren_github_com_a_test_v1alpha1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

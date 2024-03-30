@@ -7,7 +7,6 @@ package cilium_io_v2
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -33,7 +32,6 @@ func NewCiliumIoCiliumNetworkPolicyV2Manifest() datasource.DataSource {
 type CiliumIoCiliumNetworkPolicyV2Manifest struct{}
 
 type CiliumIoCiliumNetworkPolicyV2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -853,14 +851,6 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ data
 		Description:         "CiliumNetworkPolicy is a Kubernetes third-party resource with an extended version of NetworkPolicy.",
 		MarkdownDescription: "CiliumNetworkPolicy is a Kubernetes third-party resource with an extended version of NetworkPolicy.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -6663,7 +6653,6 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("cilium.io/v2")
 	model.Kind = pointer.String("CiliumNetworkPolicy")
 

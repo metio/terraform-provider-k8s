@@ -7,7 +7,6 @@ package ingress_operator_openshift_io_v1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -32,7 +31,6 @@ func NewIngressOperatorOpenshiftIoDnsrecordV1Manifest() datasource.DataSource {
 type IngressOperatorOpenshiftIoDnsrecordV1Manifest struct{}
 
 type IngressOperatorOpenshiftIoDnsrecordV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -63,14 +61,6 @@ func (r *IngressOperatorOpenshiftIoDnsrecordV1Manifest) Schema(_ context.Context
 		Description:         "DNSRecord is a DNS record managed in the zones defined by dns.config.openshift.io/cluster .spec.publicZone and .spec.privateZone.  Cluster admin manipulation of this resource is not supported. This resource is only for internal communication of OpenShift operators.  If DNSManagementPolicy is 'Unmanaged', the operator will not be responsible for managing the DNS records on the cloud provider.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		MarkdownDescription: "DNSRecord is a DNS record managed in the zones defined by dns.config.openshift.io/cluster .spec.publicZone and .spec.privateZone.  Cluster admin manipulation of this resource is not supported. This resource is only for internal communication of OpenShift operators.  If DNSManagementPolicy is 'Unmanaged', the operator will not be responsible for managing the DNS records on the cloud provider.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -209,7 +199,6 @@ func (r *IngressOperatorOpenshiftIoDnsrecordV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("ingress.operator.openshift.io/v1")
 	model.Kind = pointer.String("DNSRecord")
 

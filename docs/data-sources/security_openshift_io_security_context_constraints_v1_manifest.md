@@ -57,7 +57,6 @@ data "k8s_security_openshift_io_security_context_constraints_v1_manifest" "examp
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

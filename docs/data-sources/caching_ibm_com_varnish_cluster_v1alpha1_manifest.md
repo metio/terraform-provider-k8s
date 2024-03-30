@@ -44,7 +44,6 @@ data "k8s_caching_ibm_com_varnish_cluster_v1alpha1_manifest" "example" {
 
 ### Read-Only
 
-- `id` (String) Contains the value `metadata.namespace/metadata.name`.
 - `yaml` (String) The generated manifest in YAML format.
 
 <a id="nestedatt--metadata"></a>

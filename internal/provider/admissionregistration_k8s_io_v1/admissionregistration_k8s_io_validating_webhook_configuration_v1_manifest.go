@@ -30,7 +30,6 @@ func NewAdmissionregistrationK8SIoValidatingWebhookConfigurationV1Manifest() dat
 type AdmissionregistrationK8SIoValidatingWebhookConfigurationV1Manifest struct{}
 
 type AdmissionregistrationK8SIoValidatingWebhookConfigurationV1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -98,14 +97,6 @@ func (r *AdmissionregistrationK8SIoValidatingWebhookConfigurationV1Manifest) Sch
 		Description:         "ValidatingWebhookConfiguration describes the configuration of and admission webhook that accept or reject and object without changing it.",
 		MarkdownDescription: "ValidatingWebhookConfiguration describes the configuration of and admission webhook that accept or reject and object without changing it.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -489,7 +480,6 @@ func (r *AdmissionregistrationK8SIoValidatingWebhookConfigurationV1Manifest) Rea
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("admissionregistration.k8s.io/v1")
 	model.Kind = pointer.String("ValidatingWebhookConfiguration")
 

@@ -30,7 +30,6 @@ func NewFlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta2Manifest() dat
 type FlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta2Manifest struct{}
 
 type FlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta2ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -73,14 +72,6 @@ func (r *FlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta2Manifest) Sch
 		Description:         "PriorityLevelConfiguration represents the configuration of a priority level.",
 		MarkdownDescription: "PriorityLevelConfiguration represents the configuration of a priority level.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -270,7 +261,6 @@ func (r *FlowcontrolApiserverK8SIoPriorityLevelConfigurationV1Beta2Manifest) Rea
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("flowcontrol.apiserver.k8s.io/v1beta2")
 	model.Kind = pointer.String("PriorityLevelConfiguration")
 

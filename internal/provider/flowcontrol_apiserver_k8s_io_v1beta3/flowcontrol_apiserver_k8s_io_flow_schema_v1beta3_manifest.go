@@ -30,7 +30,6 @@ func NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest() datasource.DataSour
 type FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest struct{}
 
 type FlowcontrolApiserverK8SIoFlowSchemaV1Beta3ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -88,14 +87,6 @@ func (r *FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest) Schema(_ context.Co
 		Description:         "FlowSchema defines the schema of a group of flows. Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a 'flow distinguisher'.",
 		MarkdownDescription: "FlowSchema defines the schema of a group of flows. Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a 'flow distinguisher'.",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -384,7 +375,6 @@ func (r *FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ID = types.StringValue(model.Metadata.Name)
 	model.ApiVersion = pointer.String("flowcontrol.apiserver.k8s.io/v1beta3")
 	model.Kind = pointer.String("FlowSchema")
 

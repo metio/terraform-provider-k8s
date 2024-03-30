@@ -7,7 +7,6 @@ package imaging_ingestion_alvearie_org_v1alpha1
 
 import (
 	"context"
-	"fmt"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -31,7 +30,6 @@ func NewImagingIngestionAlvearieOrgDicomStudyBindingV1Alpha1Manifest() datasourc
 type ImagingIngestionAlvearieOrgDicomStudyBindingV1Alpha1Manifest struct{}
 
 type ImagingIngestionAlvearieOrgDicomStudyBindingV1Alpha1ManifestData struct {
-	ID   types.String `tfsdk:"id" json:"-"`
 	YAML types.String `tfsdk:"yaml" json:"-"`
 
 	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
@@ -70,14 +68,6 @@ func (r *ImagingIngestionAlvearieOrgDicomStudyBindingV1Alpha1Manifest) Schema(_ 
 		Description:         "Fan-out notification of DICOM studies (FHIRv4 ImagingStudy)",
 		MarkdownDescription: "Fan-out notification of DICOM studies (FHIRv4 ImagingStudy)",
 		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Description:         "Contains the value 'metadata.namespace/metadata.name'.",
-				MarkdownDescription: "Contains the value `metadata.namespace/metadata.name`.",
-				Required:            false,
-				Optional:            false,
-				Computed:            true,
-			},
-
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
 				MarkdownDescription: "The generated manifest in YAML format.",
@@ -255,7 +245,6 @@ func (r *ImagingIngestionAlvearieOrgDicomStudyBindingV1Alpha1Manifest) Read(ctx 
 		return
 	}
 
-	model.ID = types.StringValue(fmt.Sprintf("%s/%s", model.Metadata.Namespace, model.Metadata.Name))
 	model.ApiVersion = pointer.String("imaging-ingestion.alvearie.org/v1alpha1")
 	model.Kind = pointer.String("DicomStudyBinding")
 
