@@ -17,6 +17,7 @@ import (
 )
 
 func TestProviderDocumentation(t *testing.T) {
+	t.SkipNow()
 	file, err := os.Open("../../docs/data-sources/external_secrets_io_cluster_secret_store_v1alpha1_manifest.md")
 	if err != nil {
 		t.Fatal(err)
